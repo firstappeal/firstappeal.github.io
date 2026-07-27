@@ -1,5 +1,5 @@
 // State
-let records = JSON.parse(localStorage.getItem('fileMovements')) || [];
+let records = [];
 let casesDb = typeof CASES_DB !== 'undefined' ? CASES_DB : {};
 let assistantsDb = typeof ASSISTANTS_DB !== 'undefined' ? ASSISTANTS_DB : {};
 let editingId = null;
@@ -27,12 +27,23 @@ const statOut = document.getElementById('statOut');
 const statReturned = document.getElementById('statReturned');
 
 // Initialize
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
     const today = new Date().toISOString().split('T')[0];
     dateInput.value = today;
     
     // Setup Role Selector
     setupRoleSelector();
+    
+    try {
+        if (window.PortalDB) {
+            const data = await window.PortalDB.getFileTracking();
+            if (Array.isArray(data) && data.length > 0) {
+                records = data;
+            }
+        }
+    } catch (error) {
+        console.error("Error fetching tracker state from cloud:", error);
+    }
     
     renderTable();
 });
@@ -162,7 +173,7 @@ document.addEventListener('click', (e) => {
 });
 
 // Form Submit (Create / Update)
-form.addEventListener('submit', (e) => {
+form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     if (editingId) {
@@ -194,7 +205,7 @@ form.addEventListener('submit', (e) => {
         records.unshift(newRecord);
     }
 
-    saveRecords();
+    await saveRecords();
     renderTable();
     
     // Reset form
@@ -205,10 +216,13 @@ form.addEventListener('submit', (e) => {
     caseNoInput.focus();
 });
 
-function saveRecords() {
-    localStorage.setItem('fileMovements', JSON.stringify(records));
-    if (typeof saveToCloud === 'function') {
-        saveToCloud(true);
+async function saveRecords() {
+    try {
+        if (window.PortalDB) {
+            await window.PortalDB.saveFileTracking(records);
+        }
+    } catch (error) {
+        console.error("Error saving tracker state to cloud:", error);
     }
 }
 
@@ -297,7 +311,7 @@ statusFilter.addEventListener('change', renderTable);
 destinationFilter.addEventListener('change', renderTable);
 
 // Actions
-window.toggleStatus = function(id) {
+window.toggleStatus = async function(id) {
     const record = records.find(r => r.id === id);
     if (record) {
         if (record.status === 'out') {
@@ -307,15 +321,15 @@ window.toggleStatus = function(id) {
             record.status = 'out';
             record.returnDate = null;
         }
-        saveRecords();
+        await saveRecords();
         renderTable();
     }
 };
 
-window.deleteRecord = function(id) {
+window.deleteRecord = async function(id) {
     if (confirm('Are you sure you want to delete this record?')) {
         records = records.filter(r => r.id !== id);
-        saveRecords();
+        await saveRecords();
         renderTable();
     }
 };
@@ -335,136 +349,8 @@ window.editRecord = function(id) {
     }
 };
 
-// Export to CSV
-document.getElementById('exportBtn').addEventListener('click', () => {
-    if (records.length === 0) {
-        alert('No records to export');
-        return;
-    }
-    const headers = ['id', 'date', 'caseNo', 'appellant', 'assistant', 'destination', 'remarks', 'status', 'returnDate', 'timestamp'];
-    const csvRows = [headers.join(',')];
-
-    records.forEach(r => {
-        const row = headers.map(header => `"${(r[header] || '').replace(/"/g, '""')}"`);
-        csvRows.push(row.join(','));
-    });
-
-    const csvContent = csvRows.join('\n');
-    const blob = new Blob([csvContent], { type: 'text/csv' });
-    const url = window.URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.setAttribute('hidden', '');
-    a.setAttribute('href', url);
-    a.setAttribute('download', `file_movements_${new Date().toISOString().split('T')[0]}.csv`);
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-});
-
-// Import CSV
-const importBtn = document.getElementById('importBtn');
-const importFile = document.getElementById('importFile');
-
-importBtn.addEventListener('click', () => importFile.click());
-
-importFile.addEventListener('change', (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
-
-    const reader = new FileReader();
-    reader.onload = function(event) {
-        const text = event.target.result;
-        // Basic CSV parsing (handles quotes)
-        const rows = text.split('\n').filter(row => row.trim() !== '');
-        if (rows.length <= 1) {
-            alert('CSV is empty or invalid.');
-            return;
-        }
-
-        const headers = rows[0].split(',').map(h => h.trim().replace(/^"|"$/g, ''));
-        const required = ['id', 'date', 'caseNo', 'destination', 'status'];
-        const isValid = required.every(req => headers.includes(req));
-
-        if (!isValid) {
-            alert('Invalid CSV format. Please use a file exported from this system.');
-            return;
-        }
-
-        let importedCount = 0;
-        for (let i = 1; i < rows.length; i++) {
-            const rowMatches = rows[i].match(/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g) || rows[i].split(',');
-            if (!rowMatches) continue;
-            
-            const values = rowMatches.map(v => v.replace(/^"|"$/g, '').replace(/""/g, '"'));
-            
-            const record = {};
-            headers.forEach((header, index) => {
-                record[header] = values[index] !== undefined ? values[index] : '';
-            });
-
-            if (!records.find(r => r.id === record.id)) {
-                records.push(record);
-                importedCount++;
-            }
-        }
-
-        records.sort((a, b) => b.id.localeCompare(a.id));
-        saveRecords();
-        renderTable();
-        alert(`Successfully imported ${importedCount} new records.`);
-        importFile.value = '';
-    };
-    reader.readAsText(file);
-});
-
 // Print
-document.getElementById('printBtn').addEventListener('click', () => {
-    saveToCloud(true);
+document.getElementById('printBtn').addEventListener('click', async () => {
+    await saveRecords();
     window.print();
-});
-
-// ── Local Ethernet Storage Integrations ──────────────────────────
-async function saveToCloud(silent = false) {
-    try {
-        if (window.PortalDB) {
-            await window.PortalDB.saveFileTracking(records);
-            if (!silent) alert("Tracker state successfully saved to cloud!");
-        } else {
-            throw new Error('PortalDB not available');
-        }
-    } catch (error) {
-        console.error("Error saving tracker state to cloud:", error);
-        if (!silent) alert("Saved locally in browser.");
-    }
-}
-
-document.getElementById('saveCloudBtn').addEventListener('click', () => {
-    saveToCloud(false);
-});
-
-document.getElementById('loadCloudBtn').addEventListener('click', async () => {
-    if (!confirm("This will overwrite your current screen history with the cloud version. Proceed?")) {
-        return;
-    }
-
-    try {
-        let data = [];
-        if (window.PortalDB) {
-            data = await window.PortalDB.getFileTracking();
-        } else {
-            throw new Error('PortalDB not available');
-        }
-
-        if (Array.isArray(data) && data.length > 0) {
-            records = data;
-            localStorage.setItem('fileMovements', JSON.stringify(records));
-            renderTable();
-            alert("Successfully loaded tracking state from cloud!");
-        } else {
-            alert("No saved tracking state found on cloud.");
-        }
-    } catch (error) {
-        console.error("Error fetching tracker state from cloud:", error);
-        alert("Error loading from cloud.");
-    }
 });
