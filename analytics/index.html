@@ -24,9 +24,6 @@
       </div>
     </div>
     <div class="nav-actions">
-      <span style="font-size:0.78rem;color:var(--text-muted);display:flex;align-items:center;gap:5px;">
-        <i class="fa-solid fa-satellite-dish" style="color:#22c55e;"></i> Live &middot; <span id="lastSyncedTime">—</span>
-      </span>
       <button id="refreshBtn" class="btn btn-secondary"><i class="fa-solid fa-rotate-right"></i> Refresh</button>
       <button id="printBtn" class="btn btn-primary"><i class="fa-solid fa-print"></i> Print Report</button>
     </div>
@@ -119,15 +116,12 @@
               <th>Dealing Assistant</th>
               <th>Cases Allotted</th>
               <th>Workload Share</th>
-              <th>Cases Listed (7d)</th>
-              <th>Direct Notices (7d)</th>
-              <th>Notices Forwarded (7d)</th>
-              <th>LCR Generated (7d)</th>
-              <th>Files Moved (7d)</th>
+              <th>LCR Pending</th>
+              <th>LCR Received</th>
             </tr>
           </thead>
           <tbody id="daTableBody">
-            <tr><td colspan="9" style="text-align:center;color:var(--text-muted);">Loading…</td></tr>
+            <tr><td colspan="6" style="text-align:center;color:var(--text-muted);">Loading…</td></tr>
           </tbody>
         </table>
       </div>
@@ -180,9 +174,8 @@
   </main>
 </div>
 
-<script src="../file_tracking/assistants_db.js?v=2"></script>
-<script src="../notice_form/cases_db.js?v=2"></script>
-  <script src="../shared/db.js?v=2"></script>
-  <script src="script.js"></script>
+<script src="../file_tracking/assistants_db.js"></script>
+<script src="../notice_form/cases_db.js"></script>
+<script src="script.js"></script>
 </body>
 </html>

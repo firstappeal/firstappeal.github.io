@@ -4,11 +4,10 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
+  /* ── Data from APIs ───────────────────────────────────────── */
   let lcrCalls    = [];
   let noticeForms = [];
   let directNotes = [];
-  let causeLists  = [];
-  let fileTracking= [];
   let caseRecords = [];
   let crCount     = 0;
 
@@ -46,25 +45,19 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ── Fetch all API data ───────────────────────────────────── */
   async function fetchAll() {
     try {
-      if (window.PortalDB) {
-        const [analyticsData, crData] = await Promise.all([
-          window.PortalDB.getAnalytics(),
-          window.PortalDB.getCaseRecords()
-        ]);
-        lcrCalls    = analyticsData.lcr_calls    || [];
-        noticeForms = analyticsData.notice_forms || [];
-        directNotes = analyticsData.direct_notices || [];
-        causeLists  = analyticsData.cause_lists  || [];
-        fileTracking= analyticsData.file_tracking|| [];
-        crCount     = analyticsData.case_records_count || 0;
-        caseRecords = crData || [];
-      }
+      const [aRes, crRes] = await Promise.all([
+        fetch('/api/analytics').then(r => r.json()).catch(() => ({})),
+        fetch('/api/case_records').then(r => r.json()).catch(() => ({}))
+      ]);
+
+      lcrCalls    = aRes.lcr_calls    || [];
+      noticeForms = aRes.notice_forms || [];
+      directNotes = aRes.direct_notices || [];
+      crCount     = aRes.case_records_count || 0;
+      caseRecords = crRes.data || [];
     } catch (e) {
       console.warn('Analytics API error:', e);
     }
-    // Update last synced time
-    const syncEl = document.getElementById('lastSyncedTime');
-    if (syncEl) syncEl.textContent = new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' });
     render();
   }
 
@@ -211,77 +204,14 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('daCountBadge').textContent =
       `${all.filter(d => !d.name.includes('/')).length} Assistants`;
 
-    const now = Date.now();
-    const SEVEN_DAYS = 7 * 24 * 60 * 60 * 1000;
-    const daStats = {};
-    all.forEach(d => {
-      daStats[d.name] = { listed7d: new Set(), direct7d: new Set(), notice7d: new Set(), lcr7d: new Set(), files7d: new Set() };
-    });
-
-    function normalizeCaseKey(caseNo, caseYear) {
-      if (!caseNo) return '';
-      let c = String(caseNo).replace('FA/', '').trim();
-      if (c.includes('/')) {
-        const parts = c.split('/');
-        c = parts.length === 3 ? `${parts[1]}/${parts[2]}` : c;
-      } else if (caseYear) {
-        c = `${c}/${caseYear}`;
-      }
-      return c;
-    }
-
-    function getDaForCase(caseNo, caseYear) {
-      if (typeof ASSISTANTS_DB === 'undefined') return '';
-      const c = normalizeCaseKey(caseNo, caseYear);
-      return ASSISTANTS_DB[c] || '';
-    }
-
-    function addStat(daName, key, caseKey) {
-      if (daName && daStats[daName] && caseKey) daStats[daName][key].add(caseKey);
-    }
-
+    // Per-DA LCR stats
+    const lcrByDA = {};
     lcrCalls.forEach(c => {
-      const caseKey = normalizeCaseKey(c.case_no, c.case_year);
-      const da = (c.dealing_assistant || '').trim() || getDaForCase(c.case_no, c.case_year);
+      const da = (c.dealing_assistant || '').trim();
       if (!da) return;
-      if (!daStats[da]) daStats[da] = { listed7d: new Set(), direct7d: new Set(), notice7d: new Set(), lcr7d: new Set(), files7d: new Set() };
-      
-      if (c.saved_at && (now - new Date(c.saved_at).getTime() <= SEVEN_DAYS)) addStat(da, 'lcr7d', caseKey);
-    });
-
-    noticeForms.forEach(c => {
-      if (c.saved_at && (now - new Date(c.saved_at).getTime() <= SEVEN_DAYS)) {
-        const caseKey = normalizeCaseKey(c.caseNo || c.case_no, c.case_year);
-        const da = (c.dealing_assistant || '').trim() || getDaForCase(c.caseNo || c.case_no, c.case_year);
-        addStat(da, 'notice7d', caseKey);
-      }
-    });
-
-    directNotes.forEach(c => {
-      if (c.saved_at && (now - new Date(c.saved_at).getTime() <= SEVEN_DAYS)) {
-        const caseKey = normalizeCaseKey(c.caseNo || c.case_no, c.case_year);
-        const da = (c.dealing_assistant || '').trim() || getDaForCase(c.caseNo || c.case_no, c.case_year);
-        addStat(da, 'direct7d', caseKey);
-      }
-    });
-
-    causeLists.forEach(cl => {
-      if (cl.saved_at && (now - new Date(cl.saved_at).getTime() <= SEVEN_DAYS)) {
-        (cl.cases || []).forEach(c => {
-          const caseKey = normalizeCaseKey(c.case_no, c.case_year);
-          const da = getDaForCase(c.case_no, c.case_year);
-          addStat(da, 'listed7d', caseKey);
-        });
-      }
-    });
-
-    fileTracking.forEach(ft => {
-      const recentLogs = (ft.logs || []).filter(log => log.timestamp && (now - new Date(log.timestamp).getTime() <= SEVEN_DAYS));
-      if (recentLogs.length > 0) {
-        const caseKey = normalizeCaseKey(ft.caseNo, null);
-        const da = getDaForCase(ft.caseNo, null);
-        addStat(da, 'files7d', caseKey);
-      }
+      if (!lcrByDA[da]) lcrByDA[da] = { pending: 0, received: 0 };
+      if ((c.lcr_status || c.status) === 'received') lcrByDA[da].received++;
+      else lcrByDA[da].pending++;
     });
 
     const tbody = document.getElementById('daTableBody');
@@ -290,14 +220,7 @@ document.addEventListener('DOMContentLoaded', () => {
     tbody.innerHTML = das.map(d => {
       const pct = total > 0 ? ((d.casesAllotted / total) * 100).toFixed(1) : 0;
       const barW = Math.min(parseFloat(pct) * 4, 100);
-      const stat = daStats[d.name] || { listed7d: new Set(), direct7d: new Set(), notice7d: new Set(), lcr7d: new Set(), files7d: new Set() };
-      
-      const listedCount = stat.listed7d.size;
-      const directCount = stat.direct7d.size;
-      const noticeCount = stat.notice7d.size;
-      const lcrCount = stat.lcr7d.size;
-      const filesCount = stat.files7d.size;
-      
+      const lcrStat = lcrByDA[d.name] || { pending: 0, received: 0 };
       const isShared = d.name.includes('/');
 
       return `
@@ -316,14 +239,11 @@ document.addEventListener('DOMContentLoaded', () => {
               <span style="font-size:0.8rem;color:var(--text-muted);min-width:38px;">${pct}%</span>
             </div>
           </td>
-          <td><span class="badge ${listedCount > 0 ? 'badge-blue' : ''}" style="${listedCount === 0 ? 'background:transparent;color:var(--text-muted);' : ''}">${listedCount}</span></td>
-          <td><span class="badge ${directCount > 0 ? 'badge-purple' : ''}" style="${directCount === 0 ? 'background:transparent;color:var(--text-muted);' : ''}">${directCount}</span></td>
-          <td><span class="badge ${noticeCount > 0 ? 'badge-green' : ''}" style="${noticeCount === 0 ? 'background:transparent;color:var(--text-muted);' : ''}">${noticeCount}</span></td>
-          <td><span class="badge ${lcrCount > 0 ? 'badge-orange' : ''}" style="${lcrCount === 0 ? 'background:transparent;color:var(--text-muted);' : ''}">${lcrCount}</span></td>
-          <td><span class="badge ${filesCount > 0 ? 'badge-teal' : ''}" style="${filesCount === 0 ? 'background:transparent;color:var(--text-muted);' : ''}">${filesCount}</span></td>
+          <td><span class="badge ${lcrStat.pending > 0 ? 'badge-orange' : 'badge-green'}">${lcrStat.pending}</span></td>
+          <td><span class="badge badge-green">${lcrStat.received}</span></td>
         </tr>
       `;
-    }).join('') || `<tr><td colspan="9" style="text-align:center;color:var(--text-muted);">No results.</td></tr>`;
+    }).join('') || `<tr><td colspan="6" style="text-align:center;color:var(--text-muted);">No results.</td></tr>`;
   }
 
   /* ── LCR Pipeline ─────────────────────────────────────────── */
@@ -356,7 +276,6 @@ document.addEventListener('DOMContentLoaded', () => {
       const caseYear = c.case_year || '-';
       const status   = c.lcr_status || c.status || 'pending';
       const received = status === 'received';
-      const rowId    = c.id || '';
       let days = 0;
       if (c.saved_at) {
         const dt = new Date(c.saved_at);
@@ -383,13 +302,10 @@ document.addEventListener('DOMContentLoaded', () => {
             </span>
           </td>
           <td class="no-print">
-            ${!received
-              ? `<div style="display:flex;gap:6px;align-items:center;">
-                   <button onclick="markLcrReceived('${rowId}', this)" class="btn-link-action" style="background:rgba(34,197,94,0.12);color:#16a34a;border:1px solid rgba(34,197,94,0.3);padding:4px 10px;border-radius:6px;cursor:pointer;font-size:0.78rem;font-weight:600;white-space:nowrap;">
-                     <i class="fa-solid fa-circle-check"></i> Mark Received
-                   </button>
-                   ${overdue ? `<a href="../lcr_call/reminder.html?case_type=${encodeURIComponent(c.case_type||'First Appeal')}&case_no=${encodeURIComponent(caseNo)}&case_year=${encodeURIComponent(caseYear)}&appeal_from=${encodeURIComponent(c.recipient_title||'')}&court_of_the=${encodeURIComponent(c.court_of_the||'')}&arising_out_of=${encodeURIComponent(c.arising_out_of||'')}&appellant=${encodeURIComponent(c.appellant||'')}&respondent=${encodeURIComponent(c.respondent||'')}&recipient_address=${encodeURIComponent(c.recipient_address||'')}&prev_date=${encodeURIComponent(c.custom_date||c.saved_at||'')}" class="btn-link-action" style="background:rgba(245,158,11,0.12);color:#d97706;border:1px solid rgba(245,158,11,0.3);padding:4px 10px;border-radius:6px;cursor:pointer;font-size:0.78rem;font-weight:600;text-decoration:none;white-space:nowrap;"><i class="fa-solid fa-envelope"></i> Reminder</a>` : ''}
-                 </div>`
+            ${overdue
+              ? `<a href="../lcr_call/reminder.html?case_no=${encodeURIComponent(caseNo)}&case_year=${encodeURIComponent(caseYear)}" class="btn-link-action">
+                   <i class="fa-solid fa-envelope-circle-check"></i> Send Reminder
+                 </a>`
               : `<span style="font-size:0.8rem;color:var(--text-muted);">—</span>`
             }
           </td>
@@ -461,25 +377,3 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ── Boot ─────────────────────────────────────────────────── */
   fetchAll();
 });
-
-/* ── Global: Mark LCR as Received (called from inline onclick) ── */
-window.markLcrReceived = async function(id, btn) {
-  if (!id || !window.PortalDB) return;
-  btn.disabled = true;
-  btn.textContent = 'Saving…';
-  try {
-    await window.PortalDB.updateLcrStatus(id, 'received');
-    // Update the row visually
-    const row = btn.closest('tr');
-    if (row) {
-      const statusCell = row.querySelector('.badge');
-      if (statusCell) { statusCell.className = 'badge badge-green'; statusCell.textContent = '✓ Received'; }
-    }
-    btn.closest('td').innerHTML = '<span style="font-size:0.8rem;color:var(--text-muted);">—</span>';
-  } catch (e) {
-    console.error('Failed to mark LCR received:', e);
-    btn.disabled = false;
-    btn.innerHTML = '<i class="fa-solid fa-circle-check"></i> Mark Received';
-    alert('Error updating status. Please try again.');
-  }
-};
