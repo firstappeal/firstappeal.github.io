@@ -444,7 +444,7 @@ async function saveToCloud(silent = false) {
       date_of_decree_award: document.getElementById('decree_date')?.value || ''
     };
 
-    if (confirm("Do you want to update or enter this case into the Master Case Records? \n\nClick 'OK' to update the Master Record.\nClick 'Cancel' to ONLY save the Notice Form.")) {
+    if (confirm("Do you want to check and update this case in the Master Case Records? \n\nClick 'OK' to update the Master Record.\nClick 'Cancel' to ONLY save the Notice Form.")) {
       window.promptSaveCaseRecord(extractedData, doSaveNotice, doSaveNotice);
     } else {
       doSaveNotice();

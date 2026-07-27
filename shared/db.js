@@ -68,6 +68,16 @@
   window.PortalDB = {
 
     // ── CASE RECORDS ─────────────────────────────────────────
+    async getSingleCaseRecord(caseType, caseNo, caseYear) {
+      if (!caseNo || !caseYear) return null;
+      const r = await fetch(`${SUPA_URL}/rest/v1/case_records?case_type=eq.${encodeURIComponent(caseType)}&case_no=eq.${encodeURIComponent(caseNo)}&case_year=eq.${encodeURIComponent(caseYear)}&limit=1`, {
+        headers: HEADERS
+      });
+      if (!r.ok) return null;
+      const data = await r.json();
+      return data.length > 0 ? data[0] : null;
+    },
+
     async getCaseRecords() {
       let allRecords = [];
       let offset = 0;

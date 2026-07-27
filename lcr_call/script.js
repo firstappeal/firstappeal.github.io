@@ -240,13 +240,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Auto-fetch Lower Court details from Master Case Records (Supabase) if available
       try {
-        if (window.PortalDB && typeof window.PortalDB.getAllCaseRecords === 'function') {
-          const records = await window.PortalDB.getAllCaseRecords();
-          const match = records.find(r => 
-            r.case_type === fullTypeName && 
-            String(r.case_no) === String(caseNumber) && 
-            String(r.case_year) === String(caseYear)
-          );
+        if (window.PortalDB && typeof window.PortalDB.getSingleCaseRecord === 'function') {
+          const match = await window.PortalDB.getSingleCaseRecord(fullTypeName, caseNumber, caseYear);
 
           if (match) {
             const lcCourtField = document.getElementById('court_of_the');
@@ -335,30 +330,8 @@ document.addEventListener('DOMContentLoaded', () => {
 // ── Actions ──────────────────────────────────────────────────
 function printForm() {
   syncFields();
-  const extractedData = {
-    case_type: document.getElementById('case_type')?.value || 'First Appeal',
-    case_no: document.getElementById('case_no')?.value || '',
-    case_year: document.getElementById('case_year')?.value || '',
-    appellant: document.getElementById('appellant')?.value || '',
-    respondent: document.getElementById('respondent')?.value || '',
-    lc_court: (document.getElementById('court_of_the')?.value || document.getElementById('recipient_title')?.value || ''),
-    lc_case_type: document.getElementById('arising_out_of')?.value || '',
-    lc_case_no: document.getElementById('appeal_from_no')?.value || '',
-    lc_case_year: document.getElementById('appeal_from_year')?.value || ''
-  };
-
-  if (typeof window.promptSaveCaseRecord === 'function' && (extractedData.case_no || extractedData.appellant)) {
-    window.promptSaveCaseRecord(extractedData, () => {
-      if (typeof saveToCloud === 'function') saveToCloud(true);
-      window.print();
-    }, () => {
-      if (typeof saveToCloud === 'function') saveToCloud(true);
-      window.print();
-    });
-  } else {
-    if (typeof saveToCloud === 'function') saveToCloud(true);
-    window.print();
-  }
+  if (typeof saveToCloud === 'function') saveToCloud(true);
+  window.print();
 }
 
 function clearForm() {
@@ -393,27 +366,40 @@ async function saveToCloud(silent = false) {
   if (lcrStatusElem) lcrData['lcr_status'] = lcrStatusElem.value;
   if (letterTypeElem) lcrData['letter_type'] = letterTypeElem.value;
 
-  try {
-    if (window.PortalDB) {
-      await window.PortalDB.insertLcrCall(lcrData);
-      
-      if (typeof window.PortalDB.syncMasterLowerCourtDetails === 'function') {
-        const lcDataMap = {
-          lc_case_type: lcrData.appeal_from,
-          lc_case_no: lcrData.appeal_from_no,
-          lc_case_year: lcrData.appeal_from_year,
-          lc_court: lcrData.court_of_the
-        };
-        await window.PortalDB.syncMasterLowerCourtDetails(lcrData.case_type || 'First Appeal', lcrData.case_no, lcrData.case_year, lcDataMap);
+  const doSaveLcr = async () => {
+    try {
+      if (window.PortalDB) {
+        await window.PortalDB.insertLcrCall(lcrData);
+        if (!silent) alert('LCR Call successfully saved!');
+      } else {
+        throw new Error('PortalDB not available');
       }
-
-      if (!silent) alert('LCR Call successfully saved!');
-    } else {
-      throw new Error('PortalDB not available');
+    } catch (error) {
+      console.error('Error saving LCR Call:', error);
+      if (!silent) alert('Error saving LCR Call.');
     }
-  } catch (error) {
-    console.error('Error saving LCR Call:', error);
-    if (!silent) alert('Error saving LCR Call.');
+  };
+
+  if (!silent && typeof window.promptSaveCaseRecord === 'function') {
+    const extractedData = {
+      case_type: document.getElementById('case_type')?.value || 'First Appeal',
+      case_no: caseNo,
+      case_year: caseYear,
+      appellant: document.getElementById('appellant')?.value || '',
+      respondent: document.getElementById('respondent')?.value || '',
+      lc_court: (document.getElementById('court_of_the')?.value || document.getElementById('recipient_title')?.value || ''),
+      lc_case_type: document.getElementById('appeal_from')?.value || document.getElementById('arising_out_of')?.value || '',
+      lc_case_no: document.getElementById('appeal_from_no')?.value || '',
+      lc_case_year: document.getElementById('appeal_from_year')?.value || ''
+    };
+
+    if (confirm("Do you want to check and update this case in the Master Case Records? \n\nClick 'OK' to update the Master Record.\nClick 'Cancel' to ONLY save the LCR Call.")) {
+      window.promptSaveCaseRecord(extractedData, doSaveLcr, doSaveLcr);
+    } else {
+      doSaveLcr();
+    }
+  } else {
+    doSaveLcr();
   }
 }
 

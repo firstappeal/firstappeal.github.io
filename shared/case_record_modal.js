@@ -25,13 +25,19 @@
 
     try {
       if (window.PortalDB) {
-        // Use Supabase adapter
-        const records = await window.PortalDB.getCaseRecords();
-        existingRecord = records.find(r =>
-          String(r.case_no)   === String(extractedData.case_no) &&
-          String(r.case_year) === String(extractedData.case_year) &&
-          (r.case_type || '').toLowerCase() === (extractedData.case_type || 'First Appeal').toLowerCase()
-        );
+        // Use Supabase adapter to get just this specific case record
+        if (typeof window.PortalDB.getSingleCaseRecord === 'function') {
+          existingRecord = await window.PortalDB.getSingleCaseRecord(extractedData.case_type || 'First Appeal', extractedData.case_no, extractedData.case_year);
+        } else {
+          // Fallback if not available
+          const records = await window.PortalDB.getCaseRecords();
+          existingRecord = records.find(r =>
+            String(r.case_no)   === String(extractedData.case_no) &&
+            String(r.case_year) === String(extractedData.case_year) &&
+            (r.case_type || '').toLowerCase() === (extractedData.case_type || 'First Appeal').toLowerCase()
+          );
+        }
+        
         const lcrCalls = await window.PortalDB.getLcrCalls();
         lcrCallRecord = lcrCalls.find(l =>
           String(l.case_no) === String(extractedData.case_no) &&
