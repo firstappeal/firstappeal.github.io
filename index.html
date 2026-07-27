@@ -16,13 +16,24 @@
                     <i class="fa-solid fa-scale-balanced fa-3x"></i>
                 </div>
                 <div>
-                    <h1>First Appeal Section</h1>
-                    <p>Unified dashboard for court applications, file tracking, and record management</p>
-                </div>
-            </div>
-            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
-                <i class="fa-solid fa-moon"></i>
-            </button>
+        <div>
+            <h1>First Appeal Section</h1>
+            <p>Unified dashboard for court applications, file tracking, and record management</p>
+        </div>
+    </div>
+    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+        <i class="fa-solid fa-moon" id="themeIcon"></i>
+    </button>
+</header>
+
+<!-- GLOBAL CASE SEARCH -->
+<div class="global-search-wrap">
+    <div class="global-search-box">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="globalSearchInput" placeholder="Quick search any case… e.g. FA 152 or party name" autocomplete="off">
+        <div id="globalSearchResults" class="gsearch-results" style="display:none;"></div>
+    </div>
+</div>
         </header>
 
         <!-- PORTAL APPLICATIONS GRID -->
@@ -91,7 +102,67 @@
 
     <script>
         document.getElementById('year').textContent = new Date().getFullYear();
+
+        // ── Theme Toggle ──────────────────────────────────────────
+        const themeBtn  = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('themeIcon');
+        const html      = document.documentElement;
+
+        function applyTheme(dark) {
+            if (dark) {
+                html.setAttribute('data-theme', 'dark');
+                themeIcon.className = 'fa-solid fa-sun';
+            } else {
+                html.removeAttribute('data-theme');
+                themeIcon.className = 'fa-solid fa-moon';
+            }
+        }
+
+        const savedTheme = localStorage.getItem('phc_theme');
+        applyTheme(savedTheme === 'dark');
+
+        themeBtn.addEventListener('click', () => {
+            const isDark = html.getAttribute('data-theme') === 'dark';
+            localStorage.setItem('phc_theme', isDark ? 'light' : 'dark');
+            applyTheme(!isDark);
+        });
+
+        // ── Global Search (searches CASES_DB) ─────────────────────
+        const gInput   = document.getElementById('globalSearchInput');
+        const gResults = document.getElementById('globalSearchResults');
+
+        function renderGlobalResults(query) {
+            if (!query || query.length < 2) { gResults.style.display = 'none'; return; }
+            if (typeof CASES_DB === 'undefined') { gResults.style.display = 'none'; return; }
+
+            const q = query.toLowerCase().trim();
+            const matches = Object.entries(CASES_DB)
+                .filter(([key, val]) =>
+                    key.toLowerCase().includes(q) ||
+                    (val.appellant || '').toLowerCase().includes(q) ||
+                    (val.respondent || '').toLowerCase().includes(q)
+                )
+                .slice(0, 8);
+
+            if (matches.length === 0) {
+                gResults.innerHTML = '<div class="gs-no-result">No matching cases found</div>';
+            } else {
+                gResults.innerHTML = matches.map(([key, val]) => {
+                    const parts = key.split('/');
+                    const label = parts.length === 3 ? `FA No. ${parts[1]} / ${parts[2]}` : key;
+                    return `<a class="gs-item" href="case_records/index.html">
+                        <div class="gs-case">${label}</div>
+                        <div class="gs-party">${(val.appellant || '').substring(0,40)} vs ${(val.respondent || '').substring(0,30)}</div>
+                    </a>`;
+                }).join('');
+            }
+            gResults.style.display = 'block';
+        }
+
+        gInput.addEventListener('input', () => renderGlobalResults(gInput.value));
+        document.addEventListener('click', (e) => { if (!gInput.contains(e.target)) gResults.style.display = 'none'; });
     </script>
-  <script src="shared/db.js?v=2"></script>
+    <script src="shared/db.js?v=3"></script>
+    <script src="notice_form/cases_db.js"></script>
   </body>
 </html>

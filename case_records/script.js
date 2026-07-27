@@ -54,6 +54,10 @@ document.addEventListener('DOMContentLoaded', () => {
       caseRecords = [];
     }
 
+    // Update last-synced timestamp
+    const syncEl = document.getElementById('lastSyncedTime');
+    if (syncEl) syncEl.textContent = new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' });
+
     populateYearFilter();
     renderRecords();
   }
@@ -164,6 +168,19 @@ document.addEventListener('DOMContentLoaded', () => {
       appeal_value: document.getElementById('appeal_value').value,
       record_room_bundle_no: document.getElementById('record_room_bundle_no').value
     };
+
+    // Duplicate Case Warning (only for new records)
+    if (!recordData.id && window.PortalDB && typeof window.PortalDB.checkCaseExists === 'function') {
+      try {
+        const exists = await window.PortalDB.checkCaseExists(recordData.case_type, recordData.case_no, recordData.case_year);
+        if (exists) {
+          const proceed = confirm(`⚠️ Warning: ${recordData.case_type} No. ${recordData.case_no} of ${recordData.case_year} already exists in the master database.\n\nDo you want to add it again as a duplicate?`);
+          if (!proceed) return;
+        }
+      } catch (err) {
+        console.warn('Duplicate check failed:', err);
+      }
+    }
 
     await saveCaseRecordToStorage(recordData);
     closeRecordModal();
@@ -353,7 +370,12 @@ document.addEventListener('DOMContentLoaded', () => {
   closeDetailsBtn.addEventListener('click', () => detailsModal.style.display = 'none');
   dismissDetailsBtn.addEventListener('click', () => detailsModal.style.display = 'none');
 
-  printDetailsBtn.addEventListener('click', () => window.print());
+  printDetailsBtn.addEventListener('click', () => {
+    const prevTitle = document.title;
+    document.title = detailsModalContent.querySelector('h2')?.textContent?.replace('PATNA HIGH COURT — ', '') || prevTitle;
+    window.print();
+    document.title = prevTitle;
+  });
   printSummaryBtn.addEventListener('click', () => window.print());
 
   // 6. Search & Filters

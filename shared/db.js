@@ -181,10 +181,18 @@
     },
 
     async updateLcrStatus(id, status) {
-      const rows = await sbGet('lcr_calls', `id=eq.${id}`);
+      const rows = await sbGet('lcr_calls', `limit=1&id=eq.${id}`);
       if (!rows.length) return;
       const updated = { ...rows[0].data_json, lcr_status: status };
       return sbUpdate('lcr_calls', { id }, { data_json: updated });
+    },
+
+    async checkCaseExists(caseType, caseNo, caseYear) {
+      const r = await fetch(`${SUPA_URL}/rest/v1/case_records?case_type=eq.${encodeURIComponent(caseType)}&case_no=eq.${encodeURIComponent(caseNo)}&case_year=eq.${encodeURIComponent(caseYear)}&select=id`, {
+        headers: { ...HEADERS, 'Prefer': 'count=exact', 'Range': '0-0', 'Range-Unit': 'items' }
+      });
+      const count = parseInt(r.headers.get('Content-Range')?.split('/')[1] || '0', 10);
+      return count > 0;
     },
 
     // ── NOTICE FORMS ─────────────────────────────────────────
@@ -229,6 +237,11 @@
     },
 
     async saveFileTracking(data) {
+      // Use upsert: check if a row exists, update it, otherwise insert
+      const existing = await sbGet('file_tracking_state', 'limit=1');
+      if (existing.length > 0) {
+        return sbUpdate('file_tracking_state', { id: existing[0].id }, { data_json: data });
+      }
       return sbInsert('file_tracking_state', { data_json: data });
     },
 

@@ -830,11 +830,11 @@ async function viewCloudLists() {
     }
     
     syncPrintTable();
-    alert("लोकल सर्वर से सूची लोड की गई! (List loaded from local server!)");
+    alert("Cause list successfully loaded from cloud!");
     
   } catch (error) {
     console.error("Error fetching from local server:", error);
-    alert("लोकल सर्वर से सूची लोड करने में त्रुटि। (Error loading from local server.)");
+    alert("Error loading cause list from cloud. Please try again.");
   }
 }
 

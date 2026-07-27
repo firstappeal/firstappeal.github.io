@@ -59,6 +59,9 @@ document.addEventListener('DOMContentLoaded', () => {
     } catch (e) {
       console.warn('Analytics API error:', e);
     }
+    // Update last synced time
+    const syncEl = document.getElementById('lastSyncedTime');
+    if (syncEl) syncEl.textContent = new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' });
     render();
   }
 
@@ -277,6 +280,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const caseYear = c.case_year || '-';
       const status   = c.lcr_status || c.status || 'pending';
       const received = status === 'received';
+      const rowId    = c.id || '';
       let days = 0;
       if (c.saved_at) {
         const dt = new Date(c.saved_at);
@@ -303,10 +307,13 @@ document.addEventListener('DOMContentLoaded', () => {
             </span>
           </td>
           <td class="no-print">
-            ${overdue
-              ? `<a href="../lcr_call/reminder.html?case_no=${encodeURIComponent(caseNo)}&case_year=${encodeURIComponent(caseYear)}" class="btn-link-action">
-                   <i class="fa-solid fa-envelope-circle-check"></i> Send Reminder
-                 </a>`
+            ${!received
+              ? `<div style="display:flex;gap:6px;align-items:center;">
+                   <button onclick="markLcrReceived('${rowId}', this)" class="btn-link-action" style="background:rgba(34,197,94,0.12);color:#16a34a;border:1px solid rgba(34,197,94,0.3);padding:4px 10px;border-radius:6px;cursor:pointer;font-size:0.78rem;font-weight:600;white-space:nowrap;">
+                     <i class="fa-solid fa-circle-check"></i> Mark Received
+                   </button>
+                   ${overdue ? `<a href="../lcr_call/reminder.html?case_type=${encodeURIComponent(c.case_type||'First Appeal')}&case_no=${encodeURIComponent(caseNo)}&case_year=${encodeURIComponent(caseYear)}&appeal_from=${encodeURIComponent(c.recipient_title||'')}&court_of_the=${encodeURIComponent(c.court_of_the||'')}&arising_out_of=${encodeURIComponent(c.arising_out_of||'')}&appellant=${encodeURIComponent(c.appellant||'')}&respondent=${encodeURIComponent(c.respondent||'')}&recipient_address=${encodeURIComponent(c.recipient_address||'')}&prev_date=${encodeURIComponent(c.custom_date||c.saved_at||'')}" class="btn-link-action" style="background:rgba(245,158,11,0.12);color:#d97706;border:1px solid rgba(245,158,11,0.3);padding:4px 10px;border-radius:6px;cursor:pointer;font-size:0.78rem;font-weight:600;text-decoration:none;white-space:nowrap;"><i class="fa-solid fa-envelope"></i> Reminder</a>` : ''}
+                 </div>`
               : `<span style="font-size:0.8rem;color:var(--text-muted);">—</span>`
             }
           </td>
@@ -378,3 +385,25 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ── Boot ─────────────────────────────────────────────────── */
   fetchAll();
 });
+
+/* ── Global: Mark LCR as Received (called from inline onclick) ── */
+window.markLcrReceived = async function(id, btn) {
+  if (!id || !window.PortalDB) return;
+  btn.disabled = true;
+  btn.textContent = 'Saving…';
+  try {
+    await window.PortalDB.updateLcrStatus(id, 'received');
+    // Update the row visually
+    const row = btn.closest('tr');
+    if (row) {
+      const statusCell = row.querySelector('.badge');
+      if (statusCell) { statusCell.className = 'badge badge-green'; statusCell.textContent = '✓ Received'; }
+    }
+    btn.closest('td').innerHTML = '<span style="font-size:0.8rem;color:var(--text-muted);">—</span>';
+  } catch (e) {
+    console.error('Failed to mark LCR received:', e);
+    btn.disabled = false;
+    btn.innerHTML = '<i class="fa-solid fa-circle-check"></i> Mark Received';
+    alert('Error updating status. Please try again.');
+  }
+};

@@ -124,25 +124,33 @@
     <!-- Right Panel: Live A4 Letterhead Preview -->
     <main class="preview-panel">
       <div class="preview-card">
-        <div class="print-page" id="printPage" style="padding: 18mm 20mm 15mm 25mm;">
+        <div class="print-page" id="printPage" style="padding: 18mm 20mm 15mm 25mm; position: relative; z-index: 1;">
           
+          <!-- Watermark (per point 4 and 5 of Uniform Letter System guidelines) -->
+          <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0.1; z-index: -1; pointer-events: none;">
+            <img src="emblem.png" alt="Watermark" style="width: 400px; height: auto;">
+          </div>
+
           <!-- Official Patna High Court Letterhead Header (as per BlackWhiteFormat.odt) -->
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16pt;">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16pt;">
             <!-- Left: English Officer Header -->
             <div style="text-align: left; font-size: 11pt; line-height: 1.35; width: 33%;">
               <strong style="font-size: 11.5pt;">Assistant Registrar</strong>,<br>
+              First Appeal Section,<br>
               High Court of Judicature<br>
               at Patna.
             </div>
 
             <!-- Center: High Court Emblem Logo -->
             <div style="text-align: center; width: 34%;">
-              <img src="emblem.png" alt="Patna High Court Emblem" style="height: 75px; width: auto;">
+              <img src="emblem.png" alt="Patna High Court Emblem" style="height: 75px; width: auto;"><br>
+              <span style="font-size: 10pt; font-weight: bold; text-decoration: underline;">Through E-mail / Fax / Post</span>
             </div>
 
             <!-- Right: Hindi Officer Header -->
             <div style="text-align: right; font-size: 11pt; line-height: 1.35; width: 33%; font-family: var(--font-devanagari);">
               <strong style="font-size: 11.5pt;">सहायक निबंधक</strong>,<br>
+              प्रथम अपील अनुभाग,<br>
               पटना उच्च न्यायालय,<br>
               पटना ।
             </div>
@@ -173,12 +181,13 @@
           </div>
 
           <!-- Body Text (Explicit 30-Day Lapse and 15-Day Deadline Protocol) -->
-          <div style="font-size: 12pt; line-height: 1.7; text-align: justify; margin-bottom: 24pt;" id="p_rem_body">
-            With reference to the subject cited above, I am directed to invite your kind attention to this Court's requisition letter dated <strong id="p_rem_prev_date_val">[Requisition Date]</strong>, whereby the Lower Court Records (L.C.R.) connected with <strong id="p_rem_case_title">First Appeal No. 3 of 1973</strong> (Arising out of <em id="p_rem_arising">Land Acquisition Case No. 12 of 1971</em>, Court of the <em id="p_rem_court">Subordinate Judge I, Patna</em>) were called for transmission to this office.
+          <!-- Applied 'Verdana' size 13 and line spacing 1.50 as per Uniform Letter System guidelines for Judicial Sections -->
+          <div style="font-family: 'Verdana', sans-serif; font-size: 13pt; line-height: 1.5; text-align: justify; margin-bottom: 24pt;" id="p_rem_body">
+            With reference to the subject cited above, I am directed to invite your kind attention to this Court's requisition letter dated <strong id="p_rem_prev_date_val">[Requisition Date]</strong>, whereby the Lower Court Records (L.C.R.) connected with <strong id="p_rem_case_title">First Appeal No. 3 of 1973</strong> (Arising out of <em id="p_rem_arising">Land Acquisition Case No. 12 of 1971</em>, Court of the <em id="p_rem_court">Subordinate Judge I, Patna</em>) were called for transmission to this Court.
             <br><br>
-            Although <strong>more than 30 days have elapsed</strong> since the issuance of the aforesaid requisition, the connected Lower Court Records have not yet been received in this Court.
+            It is brought to your notice that despite the lapse of <strong>more than 30 days</strong> since the issuance of the aforementioned LCR call form, the connected Lower Court Records have not yet been received by this Court, causing delay in the proceedings of the instant appeal.
             <br><br>
-            I am, therefore, directed to request you to kindly look into the matter personally and ensure that the connected Lower Court Records are transmitted to this office urgently <strong>within 15 days</strong> from the date of receipt of this <strong>REMINDER</strong> letter.
+            I am, therefore, directed to request you to kindly look into the matter personally and ensure that the connected Lower Court Records are transmitted to this Court positively <strong>within 15 days</strong> from the date of receipt of this <strong>REMINDER</strong> letter, failing which the matter may be placed before the Hon'ble Court for appropriate orders.
           </div>
 
           <!-- Sign-off -->
