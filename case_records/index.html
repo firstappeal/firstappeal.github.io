@@ -154,7 +154,7 @@
           <!-- SECTION 1: HIGH COURT APPEAL INFO -->
           <div class="form-section">
             <div class="section-title"><i class="fa-solid fa-gavel"></i> 1. High Court Appeal Details</div>
-            <div class="form-row cols-4">
+            <div class="form-row cols-3" style="margin-bottom: 12px;">
               <div class="form-group">
                 <label for="case_type">Case Type <span class="req">*</span></label>
                 <select id="case_type" required class="form-control">
@@ -171,7 +171,9 @@
                 <label for="case_year">Case Year <span class="req">*</span></label>
                 <input type="number" id="case_year" required placeholder="e.g. 1973" class="form-control">
               </div>
-
+            </div>
+            
+            <div class="form-row cols-2">
               <div class="form-group">
                 <label for="date_of_filing_fa">Date of Filing First Appeal</label>
                 <input type="date" id="date_of_filing_fa" class="form-control">
@@ -199,17 +201,16 @@
           <!-- SECTION 3: LOWER COURT DETAILS -->
           <div class="form-section">
             <div class="section-title"><i class="fa-solid fa-landmark"></i> 3. Lower Court Details</div>
-            <div class="form-row cols-4">
-              <div class="form-group span-2">
-                <label for="lc_court">Court Name / Designation <span class="req">*</span></label>
-                <input type="text" id="lc_court" required placeholder="e.g. Subordinate Judge I, Patna"
-                  class="form-control">
-              </div>
+            
+            <div class="form-group" style="margin-bottom: 12px;">
+              <label for="lc_court">Court Name / Designation <span class="req">*</span></label>
+              <input type="text" id="lc_court" required placeholder="e.g. Subordinate Judge I, Patna" class="form-control">
+            </div>
 
+            <div class="form-row cols-2">
               <div class="form-group">
                 <label for="lc_case_type">LC Case Type</label>
-                <input type="text" id="lc_case_type" placeholder="e.g. Land Acquisition Case / Title Suit"
-                  class="form-control">
+                <input type="text" id="lc_case_type" placeholder="e.g. Land Acquisition Case / Title Suit" class="form-control">
               </div>
 
               <div class="form-group">
