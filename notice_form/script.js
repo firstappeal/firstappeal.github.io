@@ -355,34 +355,6 @@ function printForm() {
   syncFields();
   document.body.classList.add('preview-active');
 
-  const sankhyaVal = document.getElementById('sankhya')?.value || '';
-  let caseNo = sankhyaVal;
-  let caseYear = document.getElementById('patna_year')?.value || '';
-  let caseType = 'First Appeal';
-
-  if (sankhyaVal.includes('/')) {
-    const parts = sankhyaVal.split('/');
-    if (parts.length === 3) {
-      caseType = parts[0] === 'FA' ? 'First Appeal' : parts[0];
-      caseNo = parts[1];
-      caseYear = parts[2];
-    } else if (parts.length === 2) {
-      caseNo = parts[0];
-      caseYear = parts[1];
-    }
-  }
-
-  const extractedData = {
-    case_type: caseType,
-    case_no: caseNo,
-    case_year: caseYear,
-    appellant: document.getElementById('appellant')?.value || '',
-    respondent: document.getElementById('respondent')?.value || '',
-    lc_court: document.getElementById('lower_court')?.value || '',
-    lc_case_no: document.getElementById('decree_no')?.value || '',
-    date_of_decree_award: document.getElementById('decree_date')?.value || ''
-  };
-
   const doPrint = () => {
     if (typeof saveToCloud === 'function') saveToCloud(true);
     setTimeout(() => {
@@ -393,11 +365,7 @@ function printForm() {
     }, 200);
   };
 
-  if (typeof window.promptSaveCaseRecord === 'function' && (extractedData.case_no || extractedData.appellant)) {
-    window.promptSaveCaseRecord(extractedData, doPrint, doPrint);
-  } else {
-    doPrint();
-  }
+  doPrint();
 }
 
 // ── Clear form ────────────────────────────────────────────────
@@ -412,8 +380,8 @@ function clearForm() {
 // ── Supabase Cloud Storage Integrations ──────────────────────────
 // ── Local Ethernet Storage Integrations ──────────────────────────
 async function saveToCloud(silent = false) {
-  const caseNo = document.getElementById('sankhya').value.trim();
-  if (!caseNo) {
+  const caseNoInput = document.getElementById('sankhya').value.trim();
+  if (!caseNoInput) {
     if (!silent) alert("Please enter a Case Number (संख्या) before saving.");
     return;
   }
@@ -434,16 +402,55 @@ async function saveToCloud(silent = false) {
     });
   });
   noticeData.recipients = recipients;
-  noticeData.caseNo = caseNo;
+  noticeData.caseNo = caseNoInput;
 
-  try {
-    if (window.PortalDB) {
-      await window.PortalDB.insertNoticeForm(noticeData);
-      if (!silent) alert('Notice successfully saved!');
+  const doSaveNotice = async () => {
+    try {
+      if (window.PortalDB) {
+        await window.PortalDB.insertNoticeForm(noticeData);
+        if (!silent) alert('Notice successfully saved!');
+      }
+    } catch (error) {
+      console.error('Error saving Notice:', error);
+      if (!silent) alert('Error saving Notice.');
     }
-  } catch (error) {
-    console.error('Error saving Notice:', error);
-    if (!silent) alert('Error saving Notice.');
+  };
+
+  if (!silent && typeof window.promptSaveCaseRecord === 'function') {
+    let caseType = 'First Appeal';
+    let caseNo = caseNoInput;
+    let caseYear = document.getElementById('patna_year')?.value || '';
+    
+    if (caseNoInput.includes('/')) {
+      const parts = caseNoInput.split('/');
+      if (parts.length === 3) {
+        caseType = parts[0] === 'FA' ? 'First Appeal' : parts[0];
+        caseNo = parts[1];
+        caseYear = parts[2];
+      } else if (parts.length === 2) {
+        caseNo = parts[0];
+        caseYear = parts[1];
+      }
+    }
+
+    const extractedData = {
+      case_type: caseType,
+      case_no: caseNo,
+      case_year: caseYear,
+      appellant: document.getElementById('appellant')?.value || '',
+      respondent: document.getElementById('respondent')?.value || '',
+      lc_court: document.getElementById('lower_court')?.value || '',
+      lc_case_no: document.getElementById('decree_no')?.value || '',
+      date_of_decree_award: document.getElementById('decree_date')?.value || ''
+    };
+
+    if (confirm("Do you want to update or enter this case into the Master Case Records? \n\nClick 'OK' to update the Master Record.\nClick 'Cancel' to ONLY save the Notice Form.")) {
+      window.promptSaveCaseRecord(extractedData, doSaveNotice, doSaveNotice);
+    } else {
+      doSaveNotice();
+    }
+  } else {
+    doSaveNotice();
   }
 }
 
