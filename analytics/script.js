@@ -4,10 +4,11 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  /* ── Data from APIs ───────────────────────────────────────── */
   let lcrCalls    = [];
   let noticeForms = [];
   let directNotes = [];
+  let causeLists  = [];
+  let fileTracking= [];
   let caseRecords = [];
   let crCount     = 0;
 
@@ -53,6 +54,8 @@ document.addEventListener('DOMContentLoaded', () => {
         lcrCalls    = analyticsData.lcr_calls    || [];
         noticeForms = analyticsData.notice_forms || [];
         directNotes = analyticsData.direct_notices || [];
+        causeLists  = analyticsData.cause_lists  || [];
+        fileTracking= analyticsData.file_tracking|| [];
         crCount     = analyticsData.case_records_count || 0;
         caseRecords = crData || [];
       }
@@ -208,14 +211,69 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('daCountBadge').textContent =
       `${all.filter(d => !d.name.includes('/')).length} Assistants`;
 
-    // Per-DA LCR stats
-    const lcrByDA = {};
+    const now = Date.now();
+    const SEVEN_DAYS = 7 * 24 * 60 * 60 * 1000;
+    const daStats = {};
+    all.forEach(d => {
+      daStats[d.name] = { pending: 0, received: 0, listed7d: 0, direct7d: 0, notice7d: 0, lcr7d: 0, files7d: 0 };
+    });
+
+    function getDaForCase(caseNo, caseYear) {
+      if (typeof ASSISTANTS_DB === 'undefined' || !caseNo) return '';
+      let c = String(caseNo).replace('FA/', '').trim();
+      if (c.includes('/')) {
+        const parts = c.split('/');
+        c = parts.length === 3 ? `${parts[1]}/${parts[2]}` : c;
+      } else if (caseYear) {
+        c = `${c}/${caseYear}`;
+      }
+      return ASSISTANTS_DB[c] || '';
+    }
+
+    function addStat(daName, key) {
+      if (daName && daStats[daName]) daStats[daName][key]++;
+    }
+
     lcrCalls.forEach(c => {
-      const da = (c.dealing_assistant || '').trim();
+      const da = (c.dealing_assistant || '').trim() || getDaForCase(c.case_no, c.case_year);
       if (!da) return;
-      if (!lcrByDA[da]) lcrByDA[da] = { pending: 0, received: 0 };
-      if ((c.lcr_status || c.status) === 'received') lcrByDA[da].received++;
-      else lcrByDA[da].pending++;
+      if (!daStats[da]) daStats[da] = { pending: 0, received: 0, listed7d: 0, direct7d: 0, notice7d: 0, lcr7d: 0, files7d: 0 };
+      
+      if ((c.lcr_status || c.status) === 'received') daStats[da].received++;
+      else daStats[da].pending++;
+      
+      if (c.saved_at && (now - new Date(c.saved_at).getTime() <= SEVEN_DAYS)) addStat(da, 'lcr7d');
+    });
+
+    noticeForms.forEach(c => {
+      if (c.saved_at && (now - new Date(c.saved_at).getTime() <= SEVEN_DAYS)) {
+        const da = (c.dealing_assistant || '').trim() || getDaForCase(c.caseNo || c.case_no, c.case_year);
+        addStat(da, 'notice7d');
+      }
+    });
+
+    directNotes.forEach(c => {
+      if (c.saved_at && (now - new Date(c.saved_at).getTime() <= SEVEN_DAYS)) {
+        const da = (c.dealing_assistant || '').trim() || getDaForCase(c.caseNo || c.case_no, c.case_year);
+        addStat(da, 'direct7d');
+      }
+    });
+
+    causeLists.forEach(cl => {
+      if (cl.saved_at && (now - new Date(cl.saved_at).getTime() <= SEVEN_DAYS)) {
+        (cl.cases || []).forEach(c => {
+          const da = getDaForCase(c.case_no, c.case_year);
+          addStat(da, 'listed7d');
+        });
+      }
+    });
+
+    fileTracking.forEach(ft => {
+      const recentLogs = (ft.logs || []).filter(log => log.timestamp && (now - new Date(log.timestamp).getTime() <= SEVEN_DAYS));
+      if (recentLogs.length > 0) {
+        const da = getDaForCase(ft.caseNo, null);
+        addStat(da, 'files7d');
+      }
     });
 
     const tbody = document.getElementById('daTableBody');
@@ -224,7 +282,7 @@ document.addEventListener('DOMContentLoaded', () => {
     tbody.innerHTML = das.map(d => {
       const pct = total > 0 ? ((d.casesAllotted / total) * 100).toFixed(1) : 0;
       const barW = Math.min(parseFloat(pct) * 4, 100);
-      const lcrStat = lcrByDA[d.name] || { pending: 0, received: 0 };
+      const stat = daStats[d.name] || { pending: 0, received: 0, listed7d: 0, direct7d: 0, notice7d: 0, lcr7d: 0, files7d: 0 };
       const isShared = d.name.includes('/');
 
       return `
@@ -243,11 +301,14 @@ document.addEventListener('DOMContentLoaded', () => {
               <span style="font-size:0.8rem;color:var(--text-muted);min-width:38px;">${pct}%</span>
             </div>
           </td>
-          <td><span class="badge ${lcrStat.pending > 0 ? 'badge-orange' : 'badge-green'}">${lcrStat.pending}</span></td>
-          <td><span class="badge badge-green">${lcrStat.received}</span></td>
+          <td><span class="badge ${stat.listed7d > 0 ? 'badge-blue' : ''}" style="${stat.listed7d === 0 ? 'background:transparent;color:var(--text-muted);' : ''}">${stat.listed7d}</span></td>
+          <td><span class="badge ${stat.direct7d > 0 ? 'badge-purple' : ''}" style="${stat.direct7d === 0 ? 'background:transparent;color:var(--text-muted);' : ''}">${stat.direct7d}</span></td>
+          <td><span class="badge ${stat.notice7d > 0 ? 'badge-green' : ''}" style="${stat.notice7d === 0 ? 'background:transparent;color:var(--text-muted);' : ''}">${stat.notice7d}</span></td>
+          <td><span class="badge ${stat.lcr7d > 0 ? 'badge-orange' : ''}" style="${stat.lcr7d === 0 ? 'background:transparent;color:var(--text-muted);' : ''}">${stat.lcr7d}</span></td>
+          <td><span class="badge ${stat.files7d > 0 ? 'badge-teal' : ''}" style="${stat.files7d === 0 ? 'background:transparent;color:var(--text-muted);' : ''}">${stat.files7d}</span></td>
         </tr>
       `;
-    }).join('') || `<tr><td colspan="6" style="text-align:center;color:var(--text-muted);">No results.</td></tr>`;
+    }).join('') || `<tr><td colspan="9" style="text-align:center;color:var(--text-muted);">No results.</td></tr>`;
   }
 
   /* ── LCR Pipeline ─────────────────────────────────────────── */

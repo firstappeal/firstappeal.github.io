@@ -285,7 +285,7 @@
         lcr_calls:           mapJson(lcrRows),
         notice_forms:        mapJson(noticeRows),
         direct_notices:      mapJson(directRows),
-        cause_lists:         causeRows.map(r => ({ cases: r.cases || r.cases_json || [] })),
+        cause_lists:         causeRows.map(r => ({ cases: r.cases || r.cases_json || [], saved_at: r.created_at })),
         file_tracking:       trackRows.length ? (trackRows[0].data || []) : [],
         case_records:        [],   // don't load all 5k for analytics
         case_records_count:  crCount
