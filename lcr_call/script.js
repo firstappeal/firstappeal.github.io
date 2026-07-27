@@ -212,22 +212,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Populate fields when case is selected
-    function selectCase(caseKey) {
+    async function selectCase(caseKey) {
       sankhyaInput.value = caseKey;
       suggestionsDiv.style.display = 'none';
 
       const caseData = CASES_DB[caseKey];
+      const parts = caseKey.split('/');
+      const typeCode = parts[0] || '';
+      const caseNumber = parts[1] || '';
+      const caseYear = parts[2] || '';
+      const fullTypeName = APPEAL_TYPES[typeCode.toUpperCase()] || typeCode;
+
       if (caseData) {
-        // Parse case code e.g. "FA/3/1973"
-        const parts = caseKey.split('/');
-        
-        let typeCode = parts[0] || '';
-        let caseNumber = parts[1] || '';
-        let caseYear = parts[2] || '';
-
-        // Expand type name
-        let fullTypeName = APPEAL_TYPES[typeCode.toUpperCase()] || typeCode;
-
         // Update Inputs
         const typeField = document.getElementById('case_type');
         const noField = document.getElementById('case_no');
@@ -241,6 +237,44 @@ document.addEventListener('DOMContentLoaded', () => {
         if (appellantField) appellantField.value = caseData.appellant || '';
         if (respondentField) respondentField.value = caseData.respondent || '';
       }
+
+      // Auto-fetch Lower Court details from Master Case Records (Supabase) if available
+      try {
+        if (window.PortalDB && typeof window.PortalDB.getAllCaseRecords === 'function') {
+          const records = await window.PortalDB.getAllCaseRecords();
+          const match = records.find(r => 
+            r.case_type === fullTypeName && 
+            String(r.case_no) === String(caseNumber) && 
+            String(r.case_year) === String(caseYear)
+          );
+
+          if (match) {
+            const lcCourtField = document.getElementById('court_of_the');
+            const appealFromField = document.getElementById('appeal_from');
+            const appealFromNoField = document.getElementById('appeal_from_no');
+            const appealFromYearField = document.getElementById('appeal_from_year');
+            const arisingOutOfField = document.getElementById('arising_out_of');
+            const recipientTitleField = document.getElementById('recipient_title');
+
+            if (match.lc_court && lcCourtField && !lcCourtField.value) {
+              lcCourtField.value = match.lc_court;
+              if (recipientTitleField && !recipientTitleField.value) {
+                recipientTitleField.value = match.lc_court.split(',')[0];
+              }
+            }
+            if (match.lc_case_type && appealFromField && !appealFromField.value) appealFromField.value = match.lc_case_type;
+            if (match.lc_case_no && appealFromNoField && !appealFromNoField.value) appealFromNoField.value = match.lc_case_no;
+            if (match.lc_case_year && appealFromYearField && !appealFromYearField.value) appealFromYearField.value = match.lc_case_year;
+            
+            if (arisingOutOfField && !arisingOutOfField.value && match.lc_case_type && match.lc_case_no && match.lc_case_year) {
+              arisingOutOfField.value = `${match.lc_case_type} No. ${match.lc_case_no} of ${match.lc_case_year}`;
+            }
+          }
+        }
+      } catch (err) {
+        console.warn('Could not auto-sync LC details from master DB:', err);
+      }
+
       syncFields();
     }
 
