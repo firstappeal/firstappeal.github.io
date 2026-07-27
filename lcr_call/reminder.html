@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Patna High Court – LCR Reminder Letter Generator</title>
+  <style>
+    :root {
+      --font-ui: 'Segoe UI', 'Ubuntu', 'Helvetica Neue', Arial, sans-serif;
+      --font-devanagari: 'Noto Sans Devanagari', 'Mangal', 'Arial Unicode MS', sans-serif;
+    }
+    body { font-family: var(--font-ui); }
+  </style>
+  <link rel="stylesheet" href="style.css?v=10">
+</head>
+<body>
+  <!-- Top Navigation -->
+  <div style="position: absolute; top: 10px; left: 10px; z-index: 1000;" class="no-print">
+    <a href="../index.html" style="text-decoration: none; font-family: sans-serif; background: #2563eb; color: white; padding: 8px 14px; border-radius: 6px; font-size: 14px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); font-weight: 600;">&#8592; Dashboard</a>
+  </div>
+
+  <!-- Header / Control Navbar -->
+  <header class="navbar no-print">
+    <div class="nav-logo">
+      <div class="nav-icon">⚖️</div>
+      <div>
+        <h1 style="color: #f0d97a;">LCR Reminder Letter Generator</h1>
+        <p>High Court of Judicature at Patna – Official Black & White Format</p>
+      </div>
+    </div>
+    <div class="nav-actions">
+      <button type="button" class="btn btn-primary" onclick="printReminder()">🖨 Print / Save PDF</button>
+    </div>
+  </header>
+
+  <!-- Workspace Split Layout -->
+  <div class="workspace no-print">
+    <!-- Left Editor Panel -->
+    <aside class="editor-panel">
+      <div class="editor-section" style="border-top: 3px solid #ea580c;">
+        <h2 style="color: #f97316;">✉️ LCR Reminder Parameters (30-Day Lapse Notice)</h2>
+        <div style="background: #fffbe6; border: 1px solid #ffe58f; padding: 12px; border-radius: 8px; color: #873800; font-size: 0.84rem; line-height: 1.45;">
+          <strong>⚖️ High Court Protocol:</strong><br>
+          This reminder letter is generated for records pending <strong>over 30 days</strong> from original requisition. Enforces a strict <strong>15-day deadline</strong> for transmission.
+        </div>
+
+        <div class="grid-3">
+          <div class="input-group">
+            <label for="rem_letter_no">Letter No.</label>
+            <input type="text" id="rem_letter_no" placeholder="e.g. 1234/2026">
+          </div>
+          <div class="input-group">
+            <label for="rem_file_no">File No.</label>
+            <input type="text" id="rem_file_no" placeholder="e.g. FA-3/1973">
+          </div>
+          <div class="input-group">
+            <label for="rem_section">Section / Deptt</label>
+            <input type="text" id="rem_section" value="First Appeal Section">
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="input-group">
+            <label for="rem_date">Reminder Letter Date</label>
+            <input type="text" id="rem_date">
+          </div>
+          <div class="input-group">
+            <label for="rem_prev_date">Original Call Date (Requisition Date)</label>
+            <input type="text" id="rem_prev_date" placeholder="e.g. 15th May, 2026">
+            <small class="help-text">Date when LCR was first called for.</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="editor-section">
+        <h2>Case Details & Recipients</h2>
+        <div class="grid-3">
+          <div class="input-group">
+            <label for="rem_case_type">Appeal Type</label>
+            <input type="text" id="rem_case_type" placeholder="e.g. First Appeal">
+          </div>
+          <div class="input-group">
+            <label for="rem_case_no">Case No.</label>
+            <input type="text" id="rem_case_no" placeholder="e.g. 3">
+          </div>
+          <div class="input-group">
+            <label for="rem_case_year">Year</label>
+            <input type="text" id="rem_case_year" placeholder="e.g. 1973">
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label for="rem_court_of_the">Court of the</label>
+          <input type="text" id="rem_court_of_the" placeholder="e.g. Subordinate Judge I, Patna">
+        </div>
+
+        <div class="input-group">
+          <label for="rem_arising_out_of">Arising Out Of</label>
+          <input type="text" id="rem_arising_out_of" placeholder="e.g. Land Acquisition Case No. 12 of 1971">
+        </div>
+
+        <div class="grid-2">
+          <div class="input-group">
+            <label for="rem_appellant">Appellant</label>
+            <input type="text" id="rem_appellant" placeholder="Appellant name">
+          </div>
+          <div class="input-group">
+            <label for="rem_respondent">Respondent</label>
+            <input type="text" id="rem_respondent" placeholder="Respondent name">
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label for="rem_to_title">Recipient Title (To The)</label>
+          <input type="text" id="rem_to_title" value="District and Sessions Judge">
+        </div>
+        <div class="input-group">
+          <label for="rem_to_address">Recipient Address</label>
+          <input type="text" id="rem_to_address" value="Patna">
+        </div>
+      </div>
+    </aside>
+
+    <!-- Right Panel: Live A4 Letterhead Preview -->
+    <main class="preview-panel">
+      <div class="preview-card">
+        <div class="print-page" id="printPage" style="padding: 18mm 20mm 15mm 25mm;">
+          
+          <!-- Official Patna High Court Letterhead Header (as per BlackWhiteFormat.odt) -->
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16pt;">
+            <!-- Left: English Officer Header -->
+            <div style="text-align: left; font-size: 11pt; line-height: 1.35; width: 33%;">
+              <strong style="font-size: 11.5pt;">Assistant Registrar</strong>,<br>
+              High Court of Judicature<br>
+              at Patna.
+            </div>
+
+            <!-- Center: High Court Emblem Logo -->
+            <div style="text-align: center; width: 34%;">
+              <img src="emblem.png" alt="Patna High Court Emblem" style="height: 75px; width: auto;">
+            </div>
+
+            <!-- Right: Hindi Officer Header -->
+            <div style="text-align: right; font-size: 11pt; line-height: 1.35; width: 33%; font-family: var(--font-devanagari);">
+              <strong style="font-size: 11.5pt;">सहायक निबंधक</strong>,<br>
+              पटना उच्च न्यायालय,<br>
+              पटना ।
+            </div>
+          </div>
+
+          <!-- Metadata & Date Row (Left: Letter/File/Section, Right: Date) -->
+          <div style="display: flex; justify-content: space-between; align-items: baseline; font-size: 11pt; border-top: 1px solid #000; border-bottom: 1px solid #000; padding: 5pt 0; margin-bottom: 16pt;">
+            <div>Letter No. <strong id="p_rem_letter_no">………</strong> / File No. <strong id="p_rem_file_no">…………</strong> / <strong id="p_rem_section">First Appeal Section</strong></div>
+            <div>Dated, Patna the <strong id="p_rem_date">………… 20……</strong></div>
+          </div>
+
+          <!-- Addressee -->
+          <div style="font-size: 12pt; margin-bottom: 16pt; line-height: 1.5;">
+            To,<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;The <strong id="p_rem_to_title">District and Sessions Judge</strong>,<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<strong id="p_rem_to_address">Patna</strong>.
+          </div>
+
+          <!-- Subject Line (Bold and Well Aligned) -->
+          <div style="margin-bottom: 16pt; font-size: 12pt; line-height: 1.5; font-weight: bold; display: flex; align-items: flex-start;">
+            <span style="white-space: nowrap; margin-right: 8px;">SUBJECT:</span>
+            <span id="p_rem_subject_text" style="font-weight: bold;">REMINDER regarding non-receipt of Lower Court Records (L.C.R.)</span>
+          </div>
+
+          <!-- Salutation -->
+          <div style="font-size: 12pt; margin-bottom: 12pt;">
+            Sir,
+          </div>
+
+          <!-- Body Text (Explicit 30-Day Lapse and 15-Day Deadline Protocol) -->
+          <div style="font-size: 12pt; line-height: 1.7; text-align: justify; margin-bottom: 24pt;" id="p_rem_body">
+            With reference to the subject cited above, I am directed to invite your kind attention to this Court's requisition letter dated <strong id="p_rem_prev_date_val">[Requisition Date]</strong>, whereby the Lower Court Records (L.C.R.) connected with <strong id="p_rem_case_title">First Appeal No. 3 of 1973</strong> (Arising out of <em id="p_rem_arising">Land Acquisition Case No. 12 of 1971</em>, Court of the <em id="p_rem_court">Subordinate Judge I, Patna</em>) were called for transmission to this office.
+            <br><br>
+            Although <strong>more than 30 days have elapsed</strong> since the issuance of the aforesaid requisition, the connected Lower Court Records have not yet been received in this Court.
+            <br><br>
+            I am, therefore, directed to request you to kindly look into the matter personally and ensure that the connected Lower Court Records are transmitted to this office urgently <strong>within 15 days</strong> from the date of receipt of this <strong>REMINDER</strong> letter.
+          </div>
+
+          <!-- Sign-off -->
+          <div style="margin-top: 35pt; margin-left: auto; width: 250px; text-align: center; display: flex; flex-direction: column; gap: 35pt;">
+            <div style="font-size: 12pt;">Yours faithfully,</div>
+            <div style="font-size: 12pt; font-weight: bold;">Assistant Registrar</div>
+          </div>
+
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    function getFormattedCurrentDate() {
+      const now = new Date();
+      const day = now.getDate();
+      const year = now.getFullYear();
+      const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+      const monthName = months[now.getMonth()];
+      let suffix = "th";
+      if (day === 1 || day === 21 || day === 31) suffix = "st";
+      else if (day === 2 || day === 22) suffix = "nd";
+      else if (day === 3 || day === 23) suffix = "rd";
+      return `${String(day).padStart(2, '0')}${suffix} ${monthName} , ${year}`;
+    }
+
+    function syncReminderFields() {
+      const getVal = (id, def = '') => (document.getElementById(id)?.value || def).trim();
+      
+      const caseType = getVal('rem_case_type', 'First Appeal');
+      const caseNo = getVal('rem_case_no', '___');
+      const caseYear = getVal('rem_case_year', '___');
+      const arising = getVal('rem_arising_out_of', '___');
+      const court = getVal('rem_court_of_the', '___');
+      const app = getVal('rem_appellant');
+      const resp = getVal('rem_respondent');
+      const prevDate = getVal('rem_prev_date', '[Requisition Date]');
+
+      document.getElementById('p_rem_letter_no').textContent = getVal('rem_letter_no', '……');
+      document.getElementById('p_rem_file_no').textContent = getVal('rem_file_no', '……');
+      document.getElementById('p_rem_section').textContent = getVal('rem_section', 'First Appeal Section');
+      document.getElementById('p_rem_date').textContent = getVal('rem_date', getFormattedCurrentDate());
+      document.getElementById('p_rem_to_title').textContent = getVal('rem_to_title', 'District and Sessions Judge');
+      document.getElementById('p_rem_to_address').textContent = getVal('rem_to_address', 'Patna');
+
+      const versusStr = (app && resp) ? ` (${app} Vs ${resp})` : '';
+      document.getElementById('p_rem_subject_text').innerHTML = `REMINDER regarding non-receipt of Lower Court Records (L.C.R.) in connection with <strong>${caseType} No. ${caseNo} of ${caseYear}</strong>${versusStr}.`;
+
+      document.getElementById('p_rem_prev_date_val').textContent = prevDate;
+      document.getElementById('p_rem_case_title').textContent = `${caseType} No. ${caseNo} of ${caseYear}`;
+      document.getElementById('p_rem_arising').textContent = arising;
+      document.getElementById('p_rem_court').textContent = court;
+    }
+
+    function printReminder() {
+      syncReminderFields();
+      const extractedData = {
+        case_type: document.getElementById('rem_case_type')?.value || 'First Appeal',
+        case_no: document.getElementById('rem_case_no')?.value || '',
+        case_year: document.getElementById('rem_case_year')?.value || '',
+        appellant: document.getElementById('rem_appellant')?.value || '',
+        respondent: document.getElementById('rem_respondent')?.value || '',
+        lc_court: document.getElementById('rem_court_of_the')?.value || document.getElementById('rem_to_title')?.value || '',
+        lc_case_type: document.getElementById('rem_arising_out_of')?.value || '',
+      };
+
+      const doPrint = () => window.print();
+
+      if (typeof window.promptSaveCaseRecord === 'function' && (extractedData.case_no || extractedData.appellant)) {
+        window.promptSaveCaseRecord(extractedData, doPrint, doPrint);
+      } else {
+        doPrint();
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Auto date
+      const remDateInput = document.getElementById('rem_date');
+      if (remDateInput) remDateInput.value = getFormattedCurrentDate();
+
+      // 2. Parse URL parameters from LCR Alerts dashboard button
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get('case_type')) document.getElementById('rem_case_type').value = urlParams.get('case_type');
+      if (urlParams.get('case_no')) document.getElementById('rem_case_no').value = urlParams.get('case_no');
+      if (urlParams.get('case_year')) document.getElementById('rem_case_year').value = urlParams.get('case_year');
+      if (urlParams.get('appeal_from')) document.getElementById('rem_to_title').value = urlParams.get('appeal_from');
+      if (urlParams.get('court_of_the')) document.getElementById('rem_court_of_the').value = urlParams.get('court_of_the');
+      if (urlParams.get('arising_out_of')) document.getElementById('rem_arising_out_of').value = urlParams.get('arising_out_of');
+      if (urlParams.get('appellant')) document.getElementById('rem_appellant').value = urlParams.get('appellant');
+      if (urlParams.get('respondent')) document.getElementById('rem_respondent').value = urlParams.get('respondent');
+      if (urlParams.get('recipient_address')) document.getElementById('rem_to_address').value = urlParams.get('recipient_address');
+      if (urlParams.get('prev_date')) {
+        let dtStr = urlParams.get('prev_date');
+        if (dtStr.includes('T') || dtStr.includes('-')) {
+          const dt = new Date(dtStr);
+          if (!isNaN(dt.getTime())) dtStr = dt.toLocaleDateString('en-GB');
+        }
+        document.getElementById('rem_prev_date').value = dtStr;
+      }
+
+      // Add change listeners
+      const inputs = document.querySelectorAll('.editor-panel input');
+      inputs.forEach(input => {
+        input.addEventListener('input', syncReminderFields);
+        input.addEventListener('change', syncReminderFields);
+      });
+
+      syncReminderFields();
+    });
+  </script>
+  <script src="../shared/case_record_modal.js"></script>
+  <script src="../shared/db.js"></script>
+  </body>
+</html>

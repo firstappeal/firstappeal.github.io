@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Seed Supabase Data</title>
+</head>
+<body>
+  <h1>Seeding Data to Supabase...</h1>
+  <div id="status">Initializing...</div>
+  <div id="progress"></div>
+
+  <!-- Load the local database -->
+  <script src="./shared/db.js"></script>
+  <script src="./file_tracking/cases_db.js"></script>
+  
+  <script>
+    async function seedData() {
+      const statusDiv = document.getElementById('status');
+      const progressDiv = document.getElementById('progress');
+      
+      statusDiv.textContent = 'Loading cases...';
+      const caseNos = Object.keys(CASES_DB);
+      const total = caseNos.length;
+      
+      statusDiv.textContent = `Found ${total} cases. Starting upload...`;
+      
+      let successCount = 0;
+      let errorCount = 0;
+      
+      // Batch processing: 50 at a time
+      const batchSize = 50;
+      for (let i = 0; i < total; i += batchSize) {
+        const batchKeys = caseNos.slice(i, i + batchSize);
+        
+        const promises = batchKeys.map(async (caseNo) => {
+          const caseData = CASES_DB[caseNo];
+          
+          // Parse caseNo and caseYear from caseNo string (e.g. "FA/123/2020" or "123/2020")
+          let parsedType = 'First Appeal';
+          let parsedNo = caseNo;
+          let parsedYear = '';
+          
+          if (caseNo.includes('/')) {
+            const parts = caseNo.split('/');
+            if (parts.length === 3) {
+              parsedType = parts[0] === 'FA' ? 'First Appeal' : parts[0];
+              parsedNo = parts[1];
+              parsedYear = parts[2];
+            } else if (parts.length === 2) {
+              parsedNo = parts[0];
+              parsedYear = parts[1];
+            }
+          }
+          
+          const recordPayload = {
+            case_type: parsedType,
+            case_no: parsedNo,
+            case_year: parsedYear,
+            appellant: caseData.appellant || '',
+            respondent: caseData.respondent || '',
+            lc_case_type: caseData.lc_case_type || '',
+            lc_case_no: caseData.lc_case_no || '',
+            lc_case_year: caseData.lc_case_year || '',
+            lc_court: caseData.lc_court || '',
+            date_of_judgment: caseData.date_of_judgment || '',
+            date_of_decree_award: caseData.date_of_decree_award || '',
+            date_of_filing_fa: caseData.date_of_filing_fa || '',
+            suit_value: caseData.suit_value || '',
+            appeal_value: caseData.appeal_value || '',
+            record_room_bundle_no: caseData.record_room_bundle_no || '',
+            dealing_assistant: caseData.dealing_assistant || '',
+            data_json: caseData
+          };
+
+          try {
+            await window.PortalDB.insertCaseRecord(recordPayload);
+            successCount++;
+          } catch (e) {
+            console.error('Error inserting', caseNo, e);
+            errorCount++;
+          }
+        });
+        
+        await Promise.all(promises);
+        
+        progressDiv.innerHTML = `Processed ${Math.min(i + batchSize, total)} of ${total}... <br> Success: ${successCount} <br> Errors: ${errorCount}`;
+      }
+      
+      statusDiv.textContent = 'Finished seeding data!';
+      statusDiv.style.color = 'green';
+      document.title = "Done Seeding";
+    }
+
+    // Give it a brief moment to load DB scripts
+    setTimeout(seedData, 1000);
+  </script>
+</body>
+</html>

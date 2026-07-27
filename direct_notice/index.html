@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Patna High Court – Direct Notice Form Creator</title>
+  <!-- Offline-safe system fonts (no internet required) -->
+  <style>
+    :root {
+      --font-ui: 'Segoe UI', 'Ubuntu', 'Helvetica Neue', Arial, sans-serif;
+      --font-devanagari: 'Noto Sans Devanagari', 'Mangal', 'Arial Unicode MS', sans-serif;
+    }
+    body { font-family: var(--font-ui); }
+  </style>
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css?v=1">
+</head>
+<body>
+    <div style="position: absolute; top: 10px; left: 10px; z-index: 1000;" class="no-print">
+        <a href="../index.html" style="text-decoration: none; font-family: sans-serif; background: #2563eb; color: white; padding: 8px 12px; border-radius: 6px; font-size: 14px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">&#8592; Dashboard</a>
+    </div>
+
+  <!-- ── CONTROL PANEL / NAVBAR ──────────────────────────────────── -->
+  <header class="navbar no-print">
+    <div class="nav-logo">
+      <div class="nav-icon">⚖️</div>
+      <div>
+        <h1>Direct Notice Form Creator</h1>
+        <div class="nav-subtitle">High Court of Judicature at Patna</div>
+      </div>
+    </div>
+    <div class="nav-actions">
+      <button class="btn btn-info" id="viewCloudNoticesBtn">
+        <span class="btn-icon">📂</span> Load Saved Notices
+      </button>
+      <button class="btn btn-success" id="saveToCloudBtn">
+        <span class="btn-icon">💾</span> Save Record
+      </button>
+      <button class="btn btn-secondary" id="clearBtn">
+        <span class="btn-icon">🗑️</span> Clear Form
+      </button>
+      <button class="btn btn-primary" id="printBtn">
+        <span class="btn-icon">🖨️</span> Print / Save PDF
+      </button>
+    </div>
+  </header>
+
+  <!-- ── MAIN WORKSPACE ─────────────────────────────────────────── -->
+  <main class="workspace">
+    <!-- LEFT SIDEBAR: INPUT EDITOR -->
+    <section class="editor-panel no-print">
+      <!-- Section 1: Search Case Database -->
+      <div class="form-section">
+        <h2>Case Search & Auto-Populate</h2>
+        <div class="input-group search-group">
+          <label for="caseSearchInput">Search Case Number</label>
+          <div class="search-input-wrapper">
+            <input type="text" id="caseSearchInput" placeholder="Type Case Number (e.g. FA/1233/1971)..." autocomplete="off">
+            <div class="search-clear" id="searchClearBtn">&times;</div>
+          </div>
+          <div class="autocomplete-dropdown" id="autocompleteDropdown"></div>
+          <div class="helper-text">Select a case to auto-populate Appellant, Respondent, and Case Details.</div>
+        </div>
+      </div>
+
+      <!-- Section 2: Notice Form Fields -->
+      <div class="form-section">
+        <h2>Direct Notice Details</h2>
+
+        <div class="form-row-3">
+          <div class="input-group">
+            <label for="in_appeal_type">Appeal Type</label>
+            <input type="text" id="in_appeal_type" placeholder="e.g. First Appeal">
+          </div>
+          <div class="input-group">
+            <label for="in_case_no">Case Number</label>
+            <input type="text" id="in_case_no" placeholder="e.g. 1233">
+          </div>
+          <div class="input-group">
+            <label for="in_case_year">Year</label>
+            <input type="text" id="in_case_year" placeholder="e.g. 1971">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="input-group">
+            <label for="in_arising_out_of">Arising Out Of</label>
+            <input type="text" id="in_arising_out_of" placeholder="e.g. Title Suit No. 12 of 1969">
+          </div>
+          <div class="input-group">
+            <label for="in_arising_court">the Court of</label>
+            <input type="text" id="in_arising_court" placeholder="e.g. Subordinate Judge I, Patna">
+          </div>
+        </div>
+
+        <div class="form-row-3">
+          <div class="input-group">
+            <label for="in_connected_case">Connected With</label>
+            <input type="text" id="in_connected_case" placeholder="e.g. FA No. 14">
+          </div>
+          <div class="input-group">
+            <label for="in_connected_year">of (Year)</label>
+            <input type="text" id="in_connected_year" placeholder="e.g. 1971">
+          </div>
+          <div class="input-group">
+            <label for="in_connected_court">of the Court of</label>
+            <input type="text" id="in_connected_court" placeholder="e.g. Addl. District Judge, Patna">
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label for="in_appellant">Appellant Name</label>
+          <input type="text" id="in_appellant" placeholder="e.g. MAHABIR SINGH and ORS">
+        </div>
+
+        <div class="input-group">
+          <label for="in_respondent">Respondent Name</label>
+          <input type="text" id="in_respondent" placeholder="e.g. SMT. MADHURI DEVI and ORS">
+        </div>
+
+        <div class="input-group">
+          <label style="margin-bottom: 2px;">Recipients — "To" Address</label>
+          <div class="helper-text" style="font-size: 11px; color: #eab308; margin-bottom: 8px;">
+            📄 Each recipient below gets a <strong>separate printed page</strong>. All case details above are shared across all pages.
+          </div>
+          <div id="recipientsList" class="recipients-list"></div>
+          <button type="button" class="btn btn-secondary" id="addRecipientBtn" style="margin-top: 10px; padding: 7px 14px; font-size: 12px; align-self: flex-start;">
+            ➕ Add Another Recipient / Page
+          </button>
+        </div>
+
+        <div class="input-group">
+          <label for="in_advocate_name">Advocate Name (represented you)</label>
+          <input type="text" id="in_advocate_name" placeholder="e.g. Late Sri K.N. Keshav">
+        </div>
+
+        <div class="input-group">
+          <label for="in_appearance_period">Appearance Period</label>
+          <input type="text" id="in_appearance_period" placeholder="e.g. 15 days">
+        </div>
+
+        <div class="form-row-3">
+          <div class="input-group">
+            <label for="in_date_day">Date: Day</label>
+            <input type="text" id="in_date_day" placeholder="e.g. 08th">
+          </div>
+          <div class="input-group">
+            <label for="in_date_month">Date: Month</label>
+            <input type="text" id="in_date_month" placeholder="e.g. July">
+          </div>
+          <div class="input-group">
+            <label for="in_date_year">Date: Year</label>
+            <input type="text" id="in_date_year" placeholder="e.g. 2026">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RIGHT PANEL: HIGH-FIDELITY LIVE PREVIEW -->
+    <section class="preview-panel">
+      <div id="pagesContainer">
+        <!-- Dynamic print-page elements will be generated here -->
+      </div>
+    </section>
+  </main>
+
+  <!-- ── MODAL DIALOGS ───────────────────────────────────────────── -->
+  <div class="modal-overlay" id="confirmModal">
+    <div class="modal-card">
+      <div class="modal-icon">⚠️</div>
+      <h3>Clear Form Content?</h3>
+      <p>Are you sure you want to clear all form entries? This action cannot be undone.</p>
+      <div class="modal-actions">
+        <button class="btn btn-secondary" id="cancelClearBtn">Cancel</button>
+        <button class="btn btn-danger" id="confirmClearBtn">Yes, Clear All</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Case database (local copy – self-contained) -->
+  <script src="cases_db.js"></script>
+
+  <!-- Application logic script -->
+    <script src="../shared/db.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
