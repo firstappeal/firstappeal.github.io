@@ -215,11 +215,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const SEVEN_DAYS = 7 * 24 * 60 * 60 * 1000;
     const daStats = {};
     all.forEach(d => {
-      daStats[d.name] = { pending: 0, received: 0, listed7d: 0, direct7d: 0, notice7d: 0, lcr7d: 0, files7d: 0 };
+      daStats[d.name] = { listed7d: new Set(), direct7d: new Set(), notice7d: new Set(), lcr7d: new Set(), files7d: new Set() };
     });
 
-    function getDaForCase(caseNo, caseYear) {
-      if (typeof ASSISTANTS_DB === 'undefined' || !caseNo) return '';
+    function normalizeCaseKey(caseNo, caseYear) {
+      if (!caseNo) return '';
       let c = String(caseNo).replace('FA/', '').trim();
       if (c.includes('/')) {
         const parts = c.split('/');
@@ -227,43 +227,50 @@ document.addEventListener('DOMContentLoaded', () => {
       } else if (caseYear) {
         c = `${c}/${caseYear}`;
       }
+      return c;
+    }
+
+    function getDaForCase(caseNo, caseYear) {
+      if (typeof ASSISTANTS_DB === 'undefined') return '';
+      const c = normalizeCaseKey(caseNo, caseYear);
       return ASSISTANTS_DB[c] || '';
     }
 
-    function addStat(daName, key) {
-      if (daName && daStats[daName]) daStats[daName][key]++;
+    function addStat(daName, key, caseKey) {
+      if (daName && daStats[daName] && caseKey) daStats[daName][key].add(caseKey);
     }
 
     lcrCalls.forEach(c => {
+      const caseKey = normalizeCaseKey(c.case_no, c.case_year);
       const da = (c.dealing_assistant || '').trim() || getDaForCase(c.case_no, c.case_year);
       if (!da) return;
-      if (!daStats[da]) daStats[da] = { pending: 0, received: 0, listed7d: 0, direct7d: 0, notice7d: 0, lcr7d: 0, files7d: 0 };
+      if (!daStats[da]) daStats[da] = { listed7d: new Set(), direct7d: new Set(), notice7d: new Set(), lcr7d: new Set(), files7d: new Set() };
       
-      if ((c.lcr_status || c.status) === 'received') daStats[da].received++;
-      else daStats[da].pending++;
-      
-      if (c.saved_at && (now - new Date(c.saved_at).getTime() <= SEVEN_DAYS)) addStat(da, 'lcr7d');
+      if (c.saved_at && (now - new Date(c.saved_at).getTime() <= SEVEN_DAYS)) addStat(da, 'lcr7d', caseKey);
     });
 
     noticeForms.forEach(c => {
       if (c.saved_at && (now - new Date(c.saved_at).getTime() <= SEVEN_DAYS)) {
+        const caseKey = normalizeCaseKey(c.caseNo || c.case_no, c.case_year);
         const da = (c.dealing_assistant || '').trim() || getDaForCase(c.caseNo || c.case_no, c.case_year);
-        addStat(da, 'notice7d');
+        addStat(da, 'notice7d', caseKey);
       }
     });
 
     directNotes.forEach(c => {
       if (c.saved_at && (now - new Date(c.saved_at).getTime() <= SEVEN_DAYS)) {
+        const caseKey = normalizeCaseKey(c.caseNo || c.case_no, c.case_year);
         const da = (c.dealing_assistant || '').trim() || getDaForCase(c.caseNo || c.case_no, c.case_year);
-        addStat(da, 'direct7d');
+        addStat(da, 'direct7d', caseKey);
       }
     });
 
     causeLists.forEach(cl => {
       if (cl.saved_at && (now - new Date(cl.saved_at).getTime() <= SEVEN_DAYS)) {
         (cl.cases || []).forEach(c => {
+          const caseKey = normalizeCaseKey(c.case_no, c.case_year);
           const da = getDaForCase(c.case_no, c.case_year);
-          addStat(da, 'listed7d');
+          addStat(da, 'listed7d', caseKey);
         });
       }
     });
@@ -271,8 +278,9 @@ document.addEventListener('DOMContentLoaded', () => {
     fileTracking.forEach(ft => {
       const recentLogs = (ft.logs || []).filter(log => log.timestamp && (now - new Date(log.timestamp).getTime() <= SEVEN_DAYS));
       if (recentLogs.length > 0) {
+        const caseKey = normalizeCaseKey(ft.caseNo, null);
         const da = getDaForCase(ft.caseNo, null);
-        addStat(da, 'files7d');
+        addStat(da, 'files7d', caseKey);
       }
     });
 
@@ -282,7 +290,14 @@ document.addEventListener('DOMContentLoaded', () => {
     tbody.innerHTML = das.map(d => {
       const pct = total > 0 ? ((d.casesAllotted / total) * 100).toFixed(1) : 0;
       const barW = Math.min(parseFloat(pct) * 4, 100);
-      const stat = daStats[d.name] || { pending: 0, received: 0, listed7d: 0, direct7d: 0, notice7d: 0, lcr7d: 0, files7d: 0 };
+      const stat = daStats[d.name] || { listed7d: new Set(), direct7d: new Set(), notice7d: new Set(), lcr7d: new Set(), files7d: new Set() };
+      
+      const listedCount = stat.listed7d.size;
+      const directCount = stat.direct7d.size;
+      const noticeCount = stat.notice7d.size;
+      const lcrCount = stat.lcr7d.size;
+      const filesCount = stat.files7d.size;
+      
       const isShared = d.name.includes('/');
 
       return `
@@ -301,11 +316,11 @@ document.addEventListener('DOMContentLoaded', () => {
               <span style="font-size:0.8rem;color:var(--text-muted);min-width:38px;">${pct}%</span>
             </div>
           </td>
-          <td><span class="badge ${stat.listed7d > 0 ? 'badge-blue' : ''}" style="${stat.listed7d === 0 ? 'background:transparent;color:var(--text-muted);' : ''}">${stat.listed7d}</span></td>
-          <td><span class="badge ${stat.direct7d > 0 ? 'badge-purple' : ''}" style="${stat.direct7d === 0 ? 'background:transparent;color:var(--text-muted);' : ''}">${stat.direct7d}</span></td>
-          <td><span class="badge ${stat.notice7d > 0 ? 'badge-green' : ''}" style="${stat.notice7d === 0 ? 'background:transparent;color:var(--text-muted);' : ''}">${stat.notice7d}</span></td>
-          <td><span class="badge ${stat.lcr7d > 0 ? 'badge-orange' : ''}" style="${stat.lcr7d === 0 ? 'background:transparent;color:var(--text-muted);' : ''}">${stat.lcr7d}</span></td>
-          <td><span class="badge ${stat.files7d > 0 ? 'badge-teal' : ''}" style="${stat.files7d === 0 ? 'background:transparent;color:var(--text-muted);' : ''}">${stat.files7d}</span></td>
+          <td><span class="badge ${listedCount > 0 ? 'badge-blue' : ''}" style="${listedCount === 0 ? 'background:transparent;color:var(--text-muted);' : ''}">${listedCount}</span></td>
+          <td><span class="badge ${directCount > 0 ? 'badge-purple' : ''}" style="${directCount === 0 ? 'background:transparent;color:var(--text-muted);' : ''}">${directCount}</span></td>
+          <td><span class="badge ${noticeCount > 0 ? 'badge-green' : ''}" style="${noticeCount === 0 ? 'background:transparent;color:var(--text-muted);' : ''}">${noticeCount}</span></td>
+          <td><span class="badge ${lcrCount > 0 ? 'badge-orange' : ''}" style="${lcrCount === 0 ? 'background:transparent;color:var(--text-muted);' : ''}">${lcrCount}</span></td>
+          <td><span class="badge ${filesCount > 0 ? 'badge-teal' : ''}" style="${filesCount === 0 ? 'background:transparent;color:var(--text-muted);' : ''}">${filesCount}</span></td>
         </tr>
       `;
     }).join('') || `<tr><td colspan="9" style="text-align:center;color:var(--text-muted);">No results.</td></tr>`;
