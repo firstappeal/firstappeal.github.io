@@ -439,7 +439,7 @@ async function saveToCloud(silent = false) {
       case_year: caseYear,
       appellant: document.getElementById('appellant')?.value || '',
       respondent: document.getElementById('respondent')?.value || '',
-      lc_court: document.getElementById('lower_court')?.value || '',
+      lc_court: '',
       lc_case_no: document.getElementById('decree_no')?.value || '',
       date_of_decree_award: document.getElementById('decree_date')?.value || ''
     };

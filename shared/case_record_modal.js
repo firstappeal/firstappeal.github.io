@@ -143,7 +143,7 @@
               <!-- LC Court -->
               <div class="cr-form-row">
                 <div class="cr-form-group" style="width: 100%;">
-                  <label>Lower Court Designation & Location</label>
+                  <label>Court Name / Designation</label>
                   <input type="text" id="cr_lc_court" value="${escapeAttr(data.lc_court)}" class="cr-form-control" placeholder="e.g. Subordinate Judge I, Patna">
                 </div>
               </div>
