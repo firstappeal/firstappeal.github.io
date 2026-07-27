@@ -362,6 +362,17 @@ async function saveToCloud(silent = false) {
   try {
     if (window.PortalDB) {
       await window.PortalDB.insertLcrCall(lcrData);
+      
+      if (typeof window.PortalDB.syncMasterLowerCourtDetails === 'function') {
+        const lcDataMap = {
+          lc_case_type: lcrData.appeal_from,
+          lc_case_no: lcrData.appeal_from_no,
+          lc_case_year: lcrData.appeal_from_year,
+          lc_court: lcrData.court_of_the
+        };
+        await window.PortalDB.syncMasterLowerCourtDetails(lcrData.case_type || 'First Appeal', lcrData.case_no, lcrData.case_year, lcDataMap);
+      }
+
       if (!silent) alert('LCR Call successfully saved!');
     } else {
       throw new Error('PortalDB not available');

@@ -128,6 +128,58 @@
       });
     },
 
+    async syncMasterLowerCourtDetails(caseType, caseNo, caseYear, lcDetails) {
+      if (!caseNo || !caseYear) return;
+      try {
+        const r = await fetch(`${SUPA_URL}/rest/v1/case_records?case_type=eq.${encodeURIComponent(caseType)}&case_no=eq.${encodeURIComponent(caseNo)}&case_year=eq.${encodeURIComponent(caseYear)}`, {
+          headers: HEADERS
+        });
+        const data = await r.json();
+        if (data && data.length > 0) {
+          const record = data[0];
+          const updateBody = {};
+          let needsUpdate = false;
+          
+          if (!record.lc_court && lcDetails.lc_court) { updateBody.lc_court = lcDetails.lc_court; needsUpdate = true; }
+          if (!record.lc_case_type && lcDetails.lc_case_type) { updateBody.lc_case_type = lcDetails.lc_case_type; needsUpdate = true; }
+          if (!record.lc_case_no && lcDetails.lc_case_no) { updateBody.lc_case_no = lcDetails.lc_case_no; needsUpdate = true; }
+          if (!record.lc_case_year && lcDetails.lc_case_year) { updateBody.lc_case_year = lcDetails.lc_case_year; needsUpdate = true; }
+          if (!record.date_of_judgment && lcDetails.date_of_judgment) { updateBody.date_of_judgment = lcDetails.date_of_judgment; needsUpdate = true; }
+          if (!record.date_of_decree_award && lcDetails.date_of_decree_award) { updateBody.date_of_decree_award = lcDetails.date_of_decree_award; needsUpdate = true; }
+          
+          if (needsUpdate) {
+            await fetch(`${SUPA_URL}/rest/v1/case_records?id=eq.${record.id}`, {
+              method: 'PATCH',
+              headers: { ...HEADERS, 'Content-Type': 'application/json', 'Prefer': 'return=minimal' },
+              body: JSON.stringify(updateBody)
+            });
+            console.log('Master case record auto-synced with new LC details.');
+          }
+        }
+      } catch (err) {
+        console.warn('Auto-sync to master record failed:', err);
+      }
+    },
+        case_type:             body.case_type || 'First Appeal',
+        case_no:               body.case_no   || '',
+        case_year:             body.case_year || '',
+        appellant:             body.appellant  || '',
+        respondent:            body.respondent || '',
+        lc_case_type:          body.lc_case_type || '',
+        lc_case_no:            body.lc_case_no   || '',
+        lc_case_year:          body.lc_case_year  || '',
+        lc_court:              body.lc_court      || '',
+        date_of_judgment:      body.date_of_judgment      || '',
+        date_of_decree_award:  body.date_of_decree_award  || '',
+        date_of_filing_fa:     body.date_of_filing_fa     || '',
+        suit_value:            body.suit_value             || '',
+        appeal_value:          body.appeal_value           || '',
+        record_room_bundle_no: body.record_room_bundle_no  || '',
+        dealing_assistant:     body.dealing_assistant       || '',
+        data_json:             body
+      });
+    },
+
     async deleteCaseRecord(id) {
       return sbDelete('case_records', { id });
     },
