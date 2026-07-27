@@ -139,16 +139,32 @@
             <!-- SECTION 3: LOWER COURT & DATES -->
             <div class="cr-form-section" style="margin-bottom: 12px;">
               <div class="cr-section-title"><i class="fa-solid fa-landmark"></i> Lower Court & Judgment Details</div>
-              <div class="cr-form-row cols-3">
-                <div class="cr-form-group span-2">
+              
+              <!-- LC Court -->
+              <div class="cr-form-row">
+                <div class="cr-form-group" style="width: 100%;">
                   <label>Lower Court Designation & Location</label>
                   <input type="text" id="cr_lc_court" value="${escapeAttr(data.lc_court)}" class="cr-form-control" placeholder="e.g. Subordinate Judge I, Patna">
                 </div>
+              </div>
+              
+              <!-- LC Case Details -->
+              <div class="cr-form-row cols-3" style="margin-top: 8px;">
                 <div class="cr-form-group">
-                  <label>LC Case Type & No.</label>
-                  <input type="text" id="cr_lc_case_type_no" value="${escapeAttr(data.lc_case_type ? (data.lc_case_type + (data.lc_case_no ? (' No. ' + data.lc_case_no) : '')) : '')}" class="cr-form-control" placeholder="e.g. Land Acquisition Case No. 12">
+                  <label>LC Case Type</label>
+                  <input type="text" id="cr_lc_case_type" value="${escapeAttr(data.lc_case_type)}" class="cr-form-control" placeholder="e.g. Title Suit">
+                </div>
+                <div class="cr-form-group">
+                  <label>LC Case No.</label>
+                  <input type="text" id="cr_lc_case_no" value="${escapeAttr(data.lc_case_no)}" class="cr-form-control" placeholder="e.g. 12">
+                </div>
+                <div class="cr-form-group">
+                  <label>LC Case Year</label>
+                  <input type="text" id="cr_lc_case_year" value="${escapeAttr(data.lc_case_year)}" class="cr-form-control" placeholder="e.g. 2021">
                 </div>
               </div>
+
+              <!-- Dates -->
               <div class="cr-form-row cols-2" style="margin-top: 8px;">
                 <div class="cr-form-group">
                   <label>Date of Judgment</label>
@@ -217,7 +233,9 @@
         appellant: document.getElementById('cr_appellant').value || '',
         respondent: document.getElementById('cr_respondent').value || '',
         lc_court: document.getElementById('cr_lc_court').value || '',
-        lc_case_type: document.getElementById('cr_lc_case_type_no').value || '',
+        lc_case_type: document.getElementById('cr_lc_case_type').value || '',
+        lc_case_no: document.getElementById('cr_lc_case_no').value || '',
+        lc_case_year: document.getElementById('cr_lc_case_year').value || '',
         date_of_judgment: document.getElementById('cr_date_of_judgment').value || '',
         date_of_decree_award: document.getElementById('cr_date_of_decree_award').value || '',
         suit_value: document.getElementById('cr_suit_value').value || '',
