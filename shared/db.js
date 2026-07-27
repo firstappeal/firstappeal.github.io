@@ -173,21 +173,22 @@
     async getLcrCalls() {
       const rows = await sbGet('lcr_calls', 'limit=1000');
       return rows.map(r => ({
-        ...r.data_json,
+        ...(r.data_json || r),
         id:        r.id,
         saved_at:  r.created_at
       }));
     },
 
     async insertLcrCall(body) {
-      return sbInsert('lcr_calls', { data_json: body });
+      return sbInsert('lcr_calls', body);
     },
 
     async updateLcrStatus(id, status) {
-      const rows = await sbGet('lcr_calls', `limit=1&id=eq.${id}`);
-      if (!rows.length) return;
-      const updated = { ...rows[0].data_json, lcr_status: status };
-      return sbUpdate('lcr_calls', { id }, { data_json: updated });
+      try {
+        return await sbUpdate('lcr_calls', { id }, { lcr_status: status });
+      } catch (err) {
+        console.error("Failed to update LCR status. Make sure the 'lcr_status' column exists in Supabase 'lcr_calls' table.", err);
+      }
     },
 
     async checkCaseExists(caseType, caseNo, caseYear) {
@@ -201,21 +202,21 @@
     // ── NOTICE FORMS ─────────────────────────────────────────
     async getNoticeForms() {
       const rows = await sbGet('notice_forms', 'limit=500');
-      return rows.map(r => ({ ...r.data_json, saved_at: r.created_at }));
+      return rows.map(r => ({ ...(r.data || r.data_json || r), saved_at: r.created_at, id: r.id }));
     },
 
     async insertNoticeForm(body) {
-      return sbInsert('notice_forms', { data_json: body });
+      return sbInsert('notice_forms', { caseNo: body.caseNo || '', data: body });
     },
 
     // ── DIRECT NOTICES ───────────────────────────────────────
     async getDirectNotices() {
       const rows = await sbGet('direct_notices', 'limit=500');
-      return rows.map(r => ({ ...r.data_json, saved_at: r.created_at }));
+      return rows.map(r => ({ ...(r.data_json || r), saved_at: r.created_at, id: r.id }));
     },
 
     async insertDirectNotice(body) {
-      return sbInsert('direct_notices', { data_json: body });
+      return sbInsert('direct_notices', body);
     },
 
     // ── CAUSE LISTS ──────────────────────────────────────────
@@ -259,7 +260,8 @@
         sbGet('case_records',        'limit=1&select=id')  // just for count
       ]);
 
-      const mapJson = rows => rows.map(r => ({ ...r.data_json, id: r.id, saved_at: r.created_at }));
+      // Map safely resolving flattened or nested schemas
+      const mapJson = rows => rows.map(r => ({ ...(r.data_json || r.data || r), id: r.id, saved_at: r.created_at }));
 
       // Get actual case record count
       const countResp = await fetch(
