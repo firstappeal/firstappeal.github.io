@@ -95,7 +95,14 @@ document.addEventListener('DOMContentLoaded', () => {
     kpiTotalRecords.textContent = caseRecords.length;
     kpiFirstAppeals.textContent = caseRecords.filter(r => r.case_type === 'First Appeal').length;
     kpiJudgments.textContent = caseRecords.filter(r => r.date_of_judgment).length;
-    kpiBundles.textContent = new Set(caseRecords.map(r => r.record_room_bundle_no).filter(Boolean)).size;
+    const uniqueBundles = new Set(caseRecords.map(r => r.record_room_bundle_no).filter(Boolean)).size;
+    const bundledCasesCount = caseRecords.filter(r => r.record_room_bundle_no && r.record_room_bundle_no.trim() !== '').length;
+    kpiBundles.textContent = uniqueBundles;
+    
+    const kpiBundlesLabel = document.getElementById('kpiBundlesLabel');
+    if (kpiBundlesLabel) {
+      kpiBundlesLabel.textContent = `Bundles (${bundledCasesCount} cases)`;
+    }
 
     recordCountBadge.textContent = `${filtered.length} Record${filtered.length === 1 ? '' : 's'}`;
 
