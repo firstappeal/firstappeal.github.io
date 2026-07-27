@@ -46,7 +46,10 @@
       headers: HEADERS,
       body: JSON.stringify(body)
     });
-    if (!r.ok) throw new Error(`UPDATE ${table} failed: ${r.status}`);
+    if (!r.ok) {
+        const err = await r.text();
+        throw new Error(`UPDATE ${table} failed: ${r.status} - ${err}`);
+    }
     return r.json();
   }
 
@@ -233,16 +236,16 @@
     // ── FILE TRACKING ────────────────────────────────────────
     async getFileTracking() {
       const rows = await sbGet('file_tracking_state', 'limit=1');
-      return rows.length ? (rows[0].data_json || []) : [];
+      return rows.length ? (rows[0].data || []) : [];
     },
 
     async saveFileTracking(data) {
       // Use upsert: check if a row exists, update it, otherwise insert
       const existing = await sbGet('file_tracking_state', 'limit=1');
       if (existing.length > 0) {
-        return sbUpdate('file_tracking_state', { id: existing[0].id }, { data_json: data });
+        return sbUpdate('file_tracking_state', { id: existing[0].id }, { data: data });
       }
-      return sbInsert('file_tracking_state', { data_json: data });
+      return sbInsert('file_tracking_state', { data: data });
     },
 
     // ── ANALYTICS ────────────────────────────────────────────
@@ -271,7 +274,7 @@
         notice_forms:        mapJson(noticeRows),
         direct_notices:      mapJson(directRows),
         cause_lists:         causeRows.map(r => ({ cases: r.cases_json || [] })),
-        file_tracking:       trackRows.length ? (trackRows[0].data_json || []) : [],
+        file_tracking:       trackRows.length ? (trackRows[0].data || []) : [],
         case_records:        [],   // don't load all 5k for analytics
         case_records_count:  crCount
       };
