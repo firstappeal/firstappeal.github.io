@@ -527,14 +527,6 @@ document.addEventListener('DOMContentLoaded', () => {
       if (window.PortalDB) {
         await window.PortalDB.insertDirectNotice(noticeData);
         
-        if (typeof window.PortalDB.syncMasterLowerCourtDetails === 'function') {
-          const lcDataMap = {
-            lc_court: noticeData.in_arising_court,
-            lc_case_type: noticeData.in_arising_out_of
-          };
-          await window.PortalDB.syncMasterLowerCourtDetails(noticeData.in_appeal_type || 'First Appeal', noticeData.in_case_no, noticeData.in_case_year, lcDataMap);
-        }
-
         if (!silent) alert("Notice successfully saved to cloud!");
       } else {
         throw new Error('PortalDB not available');
