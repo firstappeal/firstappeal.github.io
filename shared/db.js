@@ -66,7 +66,22 @@
 
     // ── CASE RECORDS ─────────────────────────────────────────
     async getCaseRecords() {
-      return sbGet('case_records', 'limit=10000');
+      let allRecords = [];
+      let offset = 0;
+      const limit = 1000;
+      
+      while (true) {
+        const r = await fetch(`${SUPA_URL}/rest/v1/case_records?order=id.desc&limit=${limit}&offset=${offset}`, {
+          headers: HEADERS
+        });
+        if (!r.ok) throw new Error(`GET case_records failed: ${r.status}`);
+        const data = await r.json();
+        
+        allRecords = allRecords.concat(data);
+        if (data.length < limit) break;
+        offset += limit;
+      }
+      return allRecords;
     },
 
     async insertCaseRecord(body) {
