@@ -78,23 +78,30 @@
       return data.length > 0 ? data[0] : null;
     },
 
-    async getCaseRecords() {
-      let allRecords = [];
-      let offset = 0;
-      const limit = 1000;
+    async getCaseRecords(select = '*') {
+      const countResp = await fetch(
+        `${SUPA_URL}/rest/v1/case_records?select=id`,
+        { headers: { ...HEADERS, 'Prefer': 'count=exact', 'Range-Unit': 'items', 'Range': '0-0' } }
+      );
+      const total = parseInt(countResp.headers.get('Content-Range')?.split('/')[1] || '0', 10);
       
-      while (true) {
-        const r = await fetch(`${SUPA_URL}/rest/v1/case_records?order=id.desc&limit=${limit}&offset=${offset}`, {
-          headers: HEADERS
-        });
-        if (!r.ok) throw new Error(`GET case_records failed: ${r.status}`);
-        const data = await r.json();
-        
-        allRecords = allRecords.concat(data);
-        if (data.length < limit) break;
-        offset += limit;
+      const limit = 1000;
+      const pages = Math.ceil(total / limit);
+      const promises = [];
+      
+      for (let i = 0; i < pages; i++) {
+        promises.push(
+          fetch(`${SUPA_URL}/rest/v1/case_records?select=${encodeURIComponent(select)}&order=id.desc&limit=${limit}&offset=${i * limit}`, {
+            headers: HEADERS
+          }).then(async r => {
+            if (!r.ok) throw new Error(`GET case_records failed: ${r.status}`);
+            return r.json();
+          })
+        );
       }
-      return allRecords;
+      
+      const results = await Promise.all(promises);
+      return results.flat();
     },
 
     async insertCaseRecord(body) {
@@ -261,24 +268,22 @@
 
     // ── ANALYTICS ────────────────────────────────────────────
     async getAnalytics() {
-      const [lcrRows, noticeRows, directRows, causeRows, trackRows, crRows] = await Promise.all([
+      const countPromise = fetch(
+        `${SUPA_URL}/rest/v1/case_records?select=id`,
+        { headers: { ...HEADERS, 'Prefer': 'count=exact', 'Range-Unit': 'items', 'Range': '0-0' } }
+      ).then(r => parseInt(r.headers.get('Content-Range')?.split('/')[1] || '0', 10));
+
+      const [lcrRows, noticeRows, directRows, causeRows, trackRows, crCount] = await Promise.all([
         sbGet('lcr_calls',           'limit=1000'),
         sbGet('notice_forms',        'limit=500'),
         sbGet('direct_notices',      'limit=500'),
         sbGet('cause_lists',         'limit=100'),
         sbGet('file_tracking_state', 'limit=1'),
-        sbGet('case_records',        'limit=1&select=id')  // just for count
+        countPromise
       ]);
 
       // Map safely resolving flattened or nested schemas
       const mapJson = rows => rows.map(r => ({ ...(r.data_json || r.data || r), id: r.id, saved_at: r.created_at }));
-
-      // Get actual case record count
-      const countResp = await fetch(
-        `${SUPA_URL}/rest/v1/case_records?select=id`,
-        { headers: { ...HEADERS, 'Prefer': 'count=exact', 'Range-Unit': 'items', 'Range': '0-0' } }
-      );
-      const crCount = parseInt(countResp.headers.get('Content-Range')?.split('/')[1] || '0', 10);
 
       return {
         status:              'success',
