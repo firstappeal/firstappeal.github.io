@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Patna High Court – LCR Call Form Creator</title>
+  <!-- Offline-safe system fonts (no internet required) -->
+  <style>
+    :root {
+      --font-ui: 'Segoe UI', 'Ubuntu', 'Helvetica Neue', Arial, sans-serif;
+      --font-devanagari: 'Noto Sans Devanagari', 'Mangal', 'Arial Unicode MS', sans-serif;
+    }
+    body { font-family: var(--font-ui); }
+  </style>
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css?v=7">
+</head>
+<body>
+    <div style="position: absolute; top: 10px; left: 10px; z-index: 1000;" class="no-print">
+        <a href="../index.html" style="text-decoration: none; font-family: sans-serif; background: #2563eb; color: white; padding: 8px 12px; border-radius: 6px; font-size: 14px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">&#8592; Dashboard</a>
+    </div>
+
+  <!-- ── CONTROL PANEL / NAVBAR ──────────────────────────────────── -->
+  <header class="navbar no-print">
+    <div class="nav-logo">
+      <div class="nav-icon">⚖️</div>
+      <div>
+        <h1>LCR Call Letter Creator</h1>
+        <p>High Court of Judicature at Patna</p>
+      </div>
+    </div>
+    <div class="nav-actions">
+      <button type="button" class="btn btn-info" id="viewCloudLcrBtn">📂 Load Saved LCRs</button>
+      <button type="button" class="btn btn-success" id="saveToCloudBtn">💾 Save Record</button>
+      <button type="button" class="btn btn-secondary" onclick="clearForm()">🗑 Clear Form</button>
+      <button type="button" class="btn btn-primary" onclick="printForm()">🖨 Print / Save PDF</button>
+    </div>
+  </header>
+
+  <!-- ── SPLIT WORKSPACE ─────────────────────────────────────────── -->
+  <div class="workspace no-print">
+    <!-- Left Panel: Form Input Editor -->
+    <aside class="editor-panel">
+      <div class="editor-section">
+        <h2>Case Search & Auto-Populate</h2>
+        <div class="input-group search-group">
+          <label for="sankhya">Search Case Number</label>
+          <div class="search-input-wrapper">
+            <input type="text" id="sankhya" placeholder="Type Case Number (e.g. FA/3/1973)" autocomplete="off">
+            <div id="sankhyaSuggestions" class="suggestions-list" style="display: none;"></div>
+          </div>
+          <small class="help-text">Select a case to auto-populate Appellant, Respondent, and Case Details.</small>
+        </div>
+      </div>
+
+      <div class="editor-section">
+        <h2>LCR Call Form Details</h2>
+
+        <!-- Case Info -->
+        <div class="grid-3">
+          <div class="input-group">
+            <label for="case_type">Appeal Type</label>
+            <input type="text" id="case_type" placeholder="e.g. First Appeal">
+          </div>
+          <div class="input-group">
+            <label for="case_no">Case Number</label>
+            <input type="text" id="case_no" placeholder="e.g. 3">
+          </div>
+          <div class="input-group">
+            <label for="case_year">Year</label>
+            <input type="text" id="case_year" placeholder="e.g. 1973">
+          </div>
+        </div>
+
+        <!-- Appeal From Court Info -->
+        <div class="input-group">
+          <label for="appeal_from">Appeal From (Court/Authority)</label>
+          <input type="text" id="appeal_from" placeholder="e.g. District Judge">
+        </div>
+
+        <div class="grid-2">
+          <div class="input-group">
+            <label for="appeal_from_no">Lower Court Case No.</label>
+            <input type="text" id="appeal_from_no" placeholder="e.g. 12">
+          </div>
+          <div class="input-group">
+            <label for="appeal_from_year">Lower Court Year</label>
+            <input type="text" id="appeal_from_year" placeholder="e.g. 1971">
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label for="court_of_the">Court of the</label>
+          <input type="text" id="court_of_the" placeholder="e.g. Subordinate Judge I, Patna">
+        </div>
+
+        <!-- Arising Out Of -->
+        <div class="input-group">
+          <label for="arising_out_of">Arising Out Of</label>
+          <input type="text" id="arising_out_of" placeholder="e.g. Land Acquisition Case No. 12 of 1971">
+        </div>
+
+        <!-- Appellant / Respondent -->
+        <div class="input-group">
+          <label for="appellant">Appellant Name</label>
+          <input type="text" id="appellant" placeholder="Appellant name">
+        </div>
+        <div class="input-group">
+          <label for="respondent">Respondent Name</label>
+          <input type="text" id="respondent" placeholder="Respondent name">
+        </div>
+
+        <!-- Recipient Address -->
+        <div class="input-group">
+          <label for="recipient_title">Recipient Title (To The)</label>
+          <input type="text" id="recipient_title" placeholder="e.g. District and Sessions Judge">
+        </div>
+        <div class="input-group">
+          <label for="recipient_address">Recipient Location/Address</label>
+          <input type="text" id="recipient_address" placeholder="e.g. Patna">
+        </div>
+
+        <!-- Date -->
+        <div class="input-group">
+          <label for="custom_date">Letter Date</label>
+          <input type="text" id="custom_date" placeholder="e.g. 08th July , 2026">
+          <small class="help-text">Defaults to today's date from computer.</small>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Right Panel: Live A4 Preview -->
+    <main class="preview-panel">
+      <div class="preview-card">
+        <div class="print-page" id="printPage">
+          
+          <!-- ── STANDARD FORM CONTAINER (Form II-D-2) ── -->
+          <div id="std_header_block">
+            <!-- Document Header -->
+            <div class="doc-meta-header">
+              <span class="doc-sch-code">[P.H.C. Sch. II-D-2]</span>
+            </div>
+
+            <!-- Document Case Title Row -->
+            <div class="doc-case-title-row">
+              <span class="val-appeal-type" id="p_case_type">&nbsp;</span>
+              <span class="doc-label">No.</span>
+              <span class="val-case-no" id="p_case_no">&nbsp;</span>
+              <span class="doc-label">of</span>
+              <span class="val-case-year" id="p_case_year">&nbsp;</span>
+            </div>
+
+            <!-- Appeal From Row -->
+            <div class="doc-row">
+              <span class="doc-label">Appeal From</span>
+              <span class="val-appeal-from" id="p_appeal_from">&nbsp;</span>
+              <span class="doc-label">No.</span>
+              <span class="val-appeal-from-no" id="p_appeal_from_no">&nbsp;</span>
+              <span class="doc-label">OF</span>
+              <span class="val-appeal-from-year" id="p_appeal_from_year">&nbsp;</span>
+              <span class="doc-label">OF THE</span>
+            </div>
+
+            <!-- Arising Out Of Row -->
+            <div class="doc-row">
+              <span class="doc-label">ARISING OUT OF</span>
+              <span class="val-arising-out-of" id="p_arising_out_of">&nbsp;</span>
+              <span class="doc-label">OF THE</span>
+            </div>
+
+            <!-- Court Of The Row -->
+            <div class="doc-row">
+              <span class="doc-label">COURT OF THE</span>
+              <span class="val-court-of-the" id="p_court_of_the">&nbsp;</span>
+            </div>
+
+            <!-- Appellant Row -->
+            <div class="doc-party-row">
+              <span class="val-appellant" id="p_appellant">&nbsp;</span>
+              <span class="doc-party-label">Appellant.</span>
+            </div>
+
+            <!-- Versus Row -->
+            <div class="doc-versus-row">
+              Versus
+            </div>
+
+            <!-- Respondent Row -->
+            <div class="doc-party-row">
+              <span class="val-respondent" id="p_respondent">&nbsp;</span>
+              <span class="doc-party-label">Respondent.</span>
+            </div>
+
+            <!-- From Section -->
+            <div class="doc-from-section">
+              <div class="from-label">From</div>
+              <div class="from-address" id="p_from_address">
+                The Assistant Registrar<br>
+                High Court of Judicature at Patna
+              </div>
+            </div>
+          </div>
+
+          <!-- To Section -->
+          <div class="doc-to-section">
+            <div class="to-label">To</div>
+            <div class="to-address">
+              The <span class="val-to-title" id="p_recipient_title">&nbsp;</span><br>
+              <span class="val-to-address" id="p_recipient_address">&nbsp;</span>
+            </div>
+          </div>
+
+          <!-- Reminder Banner Header (Visible only in Reminder Mode) -->
+          <div id="p_reminder_banner" style="display: none; text-align: center; font-weight: 800; font-size: 1.25rem; margin: 0.8rem 0; text-transform: uppercase; letter-spacing: 1.5px; text-decoration: underline; color: #1e293b;">
+            *** REMINDER LETTER ***
+          </div>
+
+          <!-- Subject Row (Visible in Black & White Format) -->
+          <div id="bw_subject_block" style="display: none; margin-top: 12pt; font-size: 12pt; line-height: 1.5;">
+            <strong>SUBJECT:</strong> <span id="bw_subject_text">Requisition for Lower Court Records (L.C.R.)</span>
+          </div>
+
+          <!-- Date Row -->
+          <div class="doc-date-row">
+            Dated Patna, the <span class="val-date" id="p_custom_date">&nbsp;</span>
+          </div>
+
+          <!-- Salutation -->
+          <div class="doc-salutation">
+            Sir,
+          </div>
+
+          <!-- Body Paragraph -->
+          <div class="doc-body-paragraph" id="p_body_paragraph">
+            The above mentioned appeal having been preferred to this court, I am directed to ask you to be so good as to transmit to this office the record connected there with within 7 days from the receipt by you of this letter.
+          </div>
+
+          <!-- Sign-off Section -->
+          <div class="doc-sign-off">
+            <div class="sign-off-yours">Yours faithfully</div>
+            <div class="sign-off-title" id="p_sign_off_title">Assistant Registrar</div>
+          </div>
+
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- ── CUSTOM CONFIRMATION MODAL ───────────────────────────────── -->
+  <div id="confirmModal" class="modal-overlay no-print" style="display: none;">
+    <div class="modal-card">
+      <h3>Clear Form Fields?</h3>
+      <p>Are you sure you want to clear all form fields? This action cannot be undone.</p>
+      <div class="modal-actions">
+        <button type="button" id="confirmCancel" class="btn btn-cancel">Cancel</button>
+        <button type="button" id="confirmOk" class="btn btn-danger-action">Clear</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Shared Case Record Sync Script -->
+  <script src="../shared/case_record_modal.js"></script>
+
+  <!-- Master Cases Database -->
+  <script src="../notice_form/cases_db.js"></script>
+
+  <!-- JavaScript Logic -->
+    <script src="../shared/db.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
