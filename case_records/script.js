@@ -65,9 +65,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const urlParams = new URLSearchParams(window.location.search);
     const deepSearch = urlParams.get('search');
     if (deepSearch) {
-      // Parse the key e.g. "FA/152/2025" into a human-readable "FA 152 2025" for the search box
-      const readable = deepSearch.replace(/\//g, ' ');
-      searchInput.value = readable;
+      // Parse key like "FA/152/2025" → extract case_no and year for the search box
+      // e.g. "152 2025" so the search string hits "fa first appeal 152 2025 ..."
+      const parts = deepSearch.split('/');
+      if (parts.length >= 2) {
+        // parts[0] = "FA", parts[1] = case_no, parts[2] = year (optional)
+        const caseNo = parts[1] || '';
+        const caseYear = parts[2] || '';
+        const readable = caseYear ? `${caseNo} ${caseYear}` : caseNo;
+        searchInput.value = readable;
+
+        // Also pre-set the case type filter if it's "FA"
+        if (parts[0].toUpperCase() === 'FA') {
+          filterCaseType.value = 'First Appeal';
+        }
+      } else {
+        searchInput.value = deepSearch;
+      }
       clearSearchBtn.style.display = 'block';
       renderRecords();
       // Smoothly scroll to the table
@@ -98,7 +112,9 @@ document.addEventListener('DOMContentLoaded', () => {
       const matchType = !typeVal || r.case_type === typeVal;
       const matchYear = !yearVal || String(r.case_year) === String(yearVal);
       
-      const searchStr = `${r.case_type} ${r.case_no} ${r.case_year} ${r.appellant} ${r.respondent} ${r.lc_court} ${r.lc_case_type} ${r.record_room_bundle_no}`.toLowerCase();
+      // Include 'fa' as alias for 'First Appeal' and 'first appeal' to support both spellings
+      const caseTypeAlias = (r.case_type || '').toLowerCase().includes('first appeal') ? 'fa first appeal' : (r.case_type || '').toLowerCase();
+      const searchStr = `${caseTypeAlias} ${r.case_no} ${r.case_year} ${r.appellant} ${r.respondent} ${r.lc_court} ${r.lc_case_type} ${r.record_room_bundle_no}`.toLowerCase();
       const matchQuery = !query || searchStr.includes(query);
 
       return matchType && matchYear && matchQuery;
