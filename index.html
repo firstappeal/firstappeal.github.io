@@ -11,26 +11,21 @@
 <body>
     <div class="portal-container">
         <header class="portal-header">
-            <div class="header-content">
-                <div class="logo-container">
-                    <i class="fa-solid fa-scale-balanced fa-3x"></i>
-                </div>
-                <div>
-        <div>
+            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+                <i class="fa-solid fa-moon" id="themeIcon"></i>
+            </button>
+            <div class="logo-container">
+                <i class="fa-solid fa-scale-balanced fa-3x"></i>
+            </div>
             <h1>First Appeal Section</h1>
             <p>Unified dashboard for court applications, file tracking, and record management</p>
-        </div>
-    </div>
-    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
-        <i class="fa-solid fa-moon" id="themeIcon"></i>
-    </button>
-</header>
+        </header>
 
 <!-- GLOBAL CASE SEARCH -->
 <div class="global-search-wrap">
     <div class="global-search-box">
         <i class="fa-solid fa-magnifying-glass"></i>
-        <input type="text" id="globalSearchInput" placeholder="Quick search any case… e.g. FA 152 or party name" autocomplete="off">
+        <input type="text" id="globalSearchInput" placeholder="Search any case… e.g. FA 152 or party name" autocomplete="off">
         <div id="globalSearchResults" class="gsearch-results" style="display:none;"></div>
     </div>
 </div>
@@ -131,11 +126,18 @@
         const gInput   = document.getElementById('globalSearchInput');
         const gResults = document.getElementById('globalSearchResults');
 
+        function normalizeQuery(q) {
+            // Convert natural "FA 152" or "FA 152 2025" to the DB key format "FA/152" or "FA/152/2025"
+            return q.trim().replace(/^(FA)\s+(\d+)(?:\s+(\d+))?$/i, (_, type, no, yr) => {
+                return yr ? `${type.toUpperCase()}/${no}/${yr}` : `${type.toUpperCase()}/${no}`;
+            }).toLowerCase();
+        }
+
         function renderGlobalResults(query) {
             if (!query || query.length < 2) { gResults.style.display = 'none'; return; }
             if (typeof CASES_DB === 'undefined') { gResults.style.display = 'none'; return; }
 
-            const q = query.toLowerCase().trim();
+            const q = normalizeQuery(query);
             const matches = Object.entries(CASES_DB)
                 .filter(([key, val]) =>
                     key.toLowerCase().includes(q) ||
@@ -150,7 +152,9 @@
                 gResults.innerHTML = matches.map(([key, val]) => {
                     const parts = key.split('/');
                     const label = parts.length === 3 ? `FA No. ${parts[1]} / ${parts[2]}` : key;
-                    return `<a class="gs-item" href="case_records/index.html">
+                    // Encode the search term so Case Records page can auto-search for this exact case
+                    const caseUrl = `case_records/index.html?search=${encodeURIComponent(key)}`;
+                    return `<a class="gs-item" href="${caseUrl}">
                         <div class="gs-case">${label}</div>
                         <div class="gs-party">${(val.appellant || '').substring(0,40)} vs ${(val.respondent || '').substring(0,30)}</div>
                     </a>`;

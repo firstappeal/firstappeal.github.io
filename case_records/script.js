@@ -60,6 +60,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     populateYearFilter();
     renderRecords();
+
+    // ── Deep-link: read ?search= param from URL (from global search on dashboard) ──
+    const urlParams = new URLSearchParams(window.location.search);
+    const deepSearch = urlParams.get('search');
+    if (deepSearch) {
+      // Parse the key e.g. "FA/152/2025" into a human-readable "FA 152 2025" for the search box
+      const readable = deepSearch.replace(/\//g, ' ');
+      searchInput.value = readable;
+      clearSearchBtn.style.display = 'block';
+      renderRecords();
+      // Smoothly scroll to the table
+      setTimeout(() => document.getElementById('caseRecordsTable')?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 300);
+    }
   }
 
   function populateYearFilter() {

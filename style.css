@@ -68,10 +68,17 @@ body {
 .portal-header {
     text-align: center;
     margin-bottom: 4rem;
-    padding: 2rem;
+    padding: 2.5rem 2rem;
     background: var(--card-bg);
     border-radius: var(--radius);
     box-shadow: var(--shadow-md);
+    position: relative;
+}
+
+.theme-toggle {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
 }
 
 .logo-container {
@@ -190,6 +197,7 @@ body {
     justify-content: center;
     transition: var(--transition);
     flex-shrink: 0;
+    /* Position overridden by .portal-header context in index.html */
 }
 .theme-toggle:hover {
     background: var(--primary-color);
