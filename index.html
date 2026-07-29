@@ -11,9 +11,6 @@
 <body>
     <div class="portal-container">
         <header class="portal-header">
-            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
-                <i class="fa-solid fa-moon" id="themeIcon"></i>
-            </button>
             <div class="logo-container">
                 <i class="fa-solid fa-scale-balanced fa-3x"></i>
             </div>
@@ -96,30 +93,6 @@
 
     <script>
         document.getElementById('year').textContent = new Date().getFullYear();
-
-        // ── Theme Toggle ──────────────────────────────────────────
-        const themeBtn  = document.getElementById('theme-toggle');
-        const themeIcon = document.getElementById('themeIcon');
-        const html      = document.documentElement;
-
-        function applyTheme(dark) {
-            if (dark) {
-                html.setAttribute('data-theme', 'dark');
-                themeIcon.className = 'fa-solid fa-sun';
-            } else {
-                html.removeAttribute('data-theme');
-                themeIcon.className = 'fa-solid fa-moon';
-            }
-        }
-
-        const savedTheme = localStorage.getItem('phc_theme');
-        applyTheme(savedTheme === 'dark');
-
-        themeBtn.addEventListener('click', () => {
-            const isDark = html.getAttribute('data-theme') === 'dark';
-            localStorage.setItem('phc_theme', isDark ? 'light' : 'dark');
-            applyTheme(!isDark);
-        });
 
         // ── Global Search (searches CASES_DB) ─────────────────────
         const gInput   = document.getElementById('globalSearchInput');
