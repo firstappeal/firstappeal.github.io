@@ -235,11 +235,12 @@ document.addEventListener('DOMContentLoaded', () => {
       if (yearField) yearField.value = caseYear;
 
       if (caseData) {
-        if (appellantField && !appellantField.value) appellantField.value = caseData.appellant || '';
-        if (respondentField && !respondentField.value) respondentField.value = caseData.respondent || '';
+        if (appellantField) appellantField.value = caseData.appellant || '';
+        if (respondentField) respondentField.value = caseData.respondent || '';
       }
 
       await fetchMasterDetails();
+      syncFields();
     }
 
     // Dismiss suggestions on outside click
@@ -272,6 +273,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const respondentField = document.getElementById('respondent');
 
       if (localData) {
+        // Auto-fill only if currently empty when manually triggering
         if (appellantField && !appellantField.value) appellantField.value = localData.appellant || '';
         if (respondentField && !respondentField.value) respondentField.value = localData.respondent || '';
       }
@@ -303,13 +305,12 @@ document.addEventListener('DOMContentLoaded', () => {
           if (arisingOutOfField && !arisingOutOfField.value && match.lc_case_type && match.lc_case_no && match.lc_case_year) {
             arisingOutOfField.value = `${match.lc_case_type} No. ${match.lc_case_no} of ${match.lc_case_year}`;
           }
-          
-          syncFields();
         }
       }
     } catch (err) {
       console.warn('Could not auto-sync details from master DB:', err);
     }
+    syncFields();
   }
 
   // Attach blur listeners to trigger fetch when entered manually
@@ -475,6 +476,8 @@ document.addEventListener('DOMContentLoaded', () => {
         alert('Error loading LCR Call.');
       }
     });
+  } // Fix for missing closing brace
+
   const letterTypeSelect = document.getElementById('letter_type');
   const prevDateInput = document.getElementById('prev_call_date');
 
