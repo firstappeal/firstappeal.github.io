@@ -239,7 +239,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (respondentField) respondentField.value = caseData.respondent || '';
       }
 
-      await fetchMasterDetails();
+      await fetchMasterDetails(true);
       syncFields();
     }
 
@@ -252,20 +252,33 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // 5b. Manual Trigger for Auto-Populate from Master Records
-  async function fetchMasterDetails() {
+  async function fetchMasterDetails(forceOverwrite = false) {
     const typeField = document.getElementById('case_type');
     const noField = document.getElementById('case_no');
     const yearField = document.getElementById('case_year');
 
-    const cType = typeField ? typeField.value.trim() : '';
+    const cTypeRaw = typeField ? typeField.value.trim() : '';
     const cNo = noField ? noField.value.trim() : '';
     const cYear = yearField ? yearField.value.trim() : '';
 
-    if (!cType || !cNo || !cYear) return;
+    if (!cTypeRaw || !cNo || !cYear) return;
+
+    // Resolve Abbreviations (e.g. 'FA' -> 'First Appeal' and 'First Appeal' -> 'FA')
+    let fullType = cTypeRaw;
+    let typeAbbr = cTypeRaw.toUpperCase();
+
+    if (APPEAL_TYPES[cTypeRaw.toUpperCase()]) {
+      fullType = APPEAL_TYPES[cTypeRaw.toUpperCase()];
+    } else {
+      const foundKey = Object.keys(APPEAL_TYPES).find(key => APPEAL_TYPES[key].toLowerCase() === cTypeRaw.toLowerCase());
+      if (foundKey) {
+        typeAbbr = foundKey;
+        fullType = APPEAL_TYPES[foundKey];
+      }
+    }
 
     // 1. Fetch Appellant/Respondent from local CASES_DB
     if (typeof CASES_DB !== 'undefined') {
-      const typeAbbr = Object.keys(APPEAL_TYPES).find(key => APPEAL_TYPES[key].toLowerCase() === cType.toLowerCase()) || cType;
       const localCaseKey = `${typeAbbr}/${cNo}/${cYear}`.toUpperCase();
       const localData = CASES_DB[localCaseKey];
       
@@ -273,16 +286,15 @@ document.addEventListener('DOMContentLoaded', () => {
       const respondentField = document.getElementById('respondent');
 
       if (localData) {
-        // Auto-fill only if currently empty when manually triggering
-        if (appellantField && !appellantField.value) appellantField.value = localData.appellant || '';
-        if (respondentField && !respondentField.value) respondentField.value = localData.respondent || '';
+        if (appellantField && (forceOverwrite || !appellantField.value)) appellantField.value = localData.appellant || '';
+        if (respondentField && (forceOverwrite || !respondentField.value)) respondentField.value = localData.respondent || '';
       }
     }
 
     // 2. Fetch Lower Court details from Supabase
     try {
       if (window.PortalDB && typeof window.PortalDB.getSingleCaseRecord === 'function') {
-        const match = await window.PortalDB.getSingleCaseRecord(cType, cNo, cYear);
+        const match = await window.PortalDB.getSingleCaseRecord(fullType, cNo, cYear);
 
         if (match) {
           const lcCourtField = document.getElementById('court_of_the');
@@ -292,18 +304,34 @@ document.addEventListener('DOMContentLoaded', () => {
           const arisingOutOfField = document.getElementById('arising_out_of');
           const recipientTitleField = document.getElementById('recipient_title');
 
-          if (match.lc_court && lcCourtField && !lcCourtField.value) {
+          if (match.lc_court && lcCourtField && (forceOverwrite || !lcCourtField.value)) {
             lcCourtField.value = match.lc_court;
             if (recipientTitleField && (!recipientTitleField.value || recipientTitleField.value === "District and Sessions Judge")) {
               recipientTitleField.value = match.lc_court.split(',')[0];
             }
           }
-          if (match.lc_case_type && appealFromField && !appealFromField.value) appealFromField.value = match.lc_case_type;
-          if (match.lc_case_no && appealFromNoField && !appealFromNoField.value) appealFromNoField.value = match.lc_case_no;
-          if (match.lc_case_year && appealFromYearField && !appealFromYearField.value) appealFromYearField.value = match.lc_case_year;
+          if (match.lc_case_type && appealFromField && (forceOverwrite || !appealFromField.value)) appealFromField.value = match.lc_case_type;
+          if (match.lc_case_no && appealFromNoField && (forceOverwrite || !appealFromNoField.value)) appealFromNoField.value = match.lc_case_no;
+          if (match.lc_case_year && appealFromYearField && (forceOverwrite || !appealFromYearField.value)) appealFromYearField.value = match.lc_case_year;
           
-          if (arisingOutOfField && !arisingOutOfField.value && match.lc_case_type && match.lc_case_no && match.lc_case_year) {
-            arisingOutOfField.value = `${match.lc_case_type} No. ${match.lc_case_no} of ${match.lc_case_year}`;
+          if (arisingOutOfField && (forceOverwrite || !arisingOutOfField.value) && match.lc_case_type && match.lc_case_no && match.lc_case_year) {
+            let arisingText = `${match.lc_case_type} No. ${match.lc_case_no} of ${match.lc_case_year}`;
+            
+            if (match.date_of_judgment || match.date_of_decree_award) {
+              if (match.date_of_judgment && match.date_of_decree_award) {
+                if (match.date_of_judgment === match.date_of_decree_award) {
+                  arisingText = `Judgment and Decree dated ${match.date_of_judgment} passed in ${arisingText}`;
+                } else {
+                  arisingText = `Judgment dated ${match.date_of_judgment} and Decree dated ${match.date_of_decree_award} passed in ${arisingText}`;
+                }
+              } else if (match.date_of_judgment) {
+                arisingText = `Judgment dated ${match.date_of_judgment} passed in ${arisingText}`;
+              } else if (match.date_of_decree_award) {
+                arisingText = `Decree dated ${match.date_of_decree_award} passed in ${arisingText}`;
+              }
+            }
+            
+            arisingOutOfField.value = arisingText;
           }
         }
       }
@@ -316,8 +344,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // Attach blur listeners to trigger fetch when entered manually
   const cNoInput = document.getElementById('case_no');
   const cYearInput = document.getElementById('case_year');
-  if (cNoInput) cNoInput.addEventListener('blur', fetchMasterDetails);
-  if (cYearInput) cYearInput.addEventListener('blur', fetchMasterDetails);
+  if (cNoInput) cNoInput.addEventListener('blur', () => fetchMasterDetails(false));
+  if (cYearInput) cYearInput.addEventListener('blur', () => fetchMasterDetails(false));
 
   // 6. Custom Confirmation Modal Listeners
   const modal = document.getElementById('confirmModal');
