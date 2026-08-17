@@ -262,22 +262,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (!cType || !cNo || !cYear) return;
 
+    // 1. Fetch Appellant/Respondent from local CASES_DB
+    if (typeof CASES_DB !== 'undefined') {
+      const typeAbbr = Object.keys(APPEAL_TYPES).find(key => APPEAL_TYPES[key].toLowerCase() === cType.toLowerCase()) || cType;
+      const localCaseKey = `${typeAbbr}/${cNo}/${cYear}`.toUpperCase();
+      const localData = CASES_DB[localCaseKey];
+      
+      const appellantField = document.getElementById('appellant');
+      const respondentField = document.getElementById('respondent');
+
+      if (localData) {
+        if (appellantField && !appellantField.value) appellantField.value = localData.appellant || '';
+        if (respondentField && !respondentField.value) respondentField.value = localData.respondent || '';
+      }
+    }
+
+    // 2. Fetch Lower Court details from Supabase
     try {
       if (window.PortalDB && typeof window.PortalDB.getSingleCaseRecord === 'function') {
         const match = await window.PortalDB.getSingleCaseRecord(cType, cNo, cYear);
 
         if (match) {
-          const appellantField = document.getElementById('appellant');
-          const respondentField = document.getElementById('respondent');
           const lcCourtField = document.getElementById('court_of_the');
           const appealFromField = document.getElementById('appeal_from');
           const appealFromNoField = document.getElementById('appeal_from_no');
           const appealFromYearField = document.getElementById('appeal_from_year');
           const arisingOutOfField = document.getElementById('arising_out_of');
           const recipientTitleField = document.getElementById('recipient_title');
-
-          if (match.appellant && appellantField && !appellantField.value) appellantField.value = match.appellant;
-          if (match.respondent && respondentField && !respondentField.value) respondentField.value = match.respondent;
 
           if (match.lc_court && lcCourtField && !lcCourtField.value) {
             lcCourtField.value = match.lc_court;
