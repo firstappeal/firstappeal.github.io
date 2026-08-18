@@ -350,15 +350,17 @@ document.addEventListener('DOMContentLoaded', () => {
             if (match.date_of_judgment || match.date_of_decree_award) {
               if (match.date_of_judgment && match.date_of_decree_award) {
                 if (fmtJ === fmtD) {
-                  arisingText = `Judgment and Decree dated ${fmtJ} passed in ${arisingText}`;
+                  arisingText = `Judgment and Decree/Award dated ${fmtJ}`;
                 } else {
-                  arisingText = `Judgment dated ${fmtJ} and Decree dated ${fmtD} passed in ${arisingText}`;
+                  arisingText = `Judgment dated ${fmtJ} and Decree/Award dated ${fmtD}`;
                 }
               } else if (match.date_of_judgment) {
-                arisingText = `Judgment dated ${fmtJ} passed in ${arisingText}`;
+                arisingText = `Judgment dated ${fmtJ}`;
               } else if (match.date_of_decree_award) {
-                arisingText = `Decree dated ${fmtD} passed in ${arisingText}`;
+                arisingText = `Decree/Award dated ${fmtD}`;
               }
+            } else {
+              arisingText = 'Judgment and Decree';
             }
             
             arisingOutOfField.value = arisingText;
