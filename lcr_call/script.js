@@ -330,17 +330,34 @@ document.addEventListener('DOMContentLoaded', () => {
           if (arisingOutOfField && (forceOverwrite || !arisingOutOfField.value) && match.lc_case_type && match.lc_case_no && match.lc_case_year) {
             let arisingText = `${match.lc_case_type} No. ${match.lc_case_no} of ${match.lc_case_year}`;
             
+            const formatDate = (dateStr) => {
+              if (!dateStr) return '';
+              const parts = dateStr.split('-');
+              if (parts.length === 3) {
+                if (parts[0].length === 4) return `${parts[2]}-${parts[1]}-${parts[0]}`;
+                if (parts[2].length === 4) return dateStr;
+              }
+              const d = new Date(dateStr);
+              if (!isNaN(d.getTime())) {
+                return `${String(d.getDate()).padStart(2, '0')}-${String(d.getMonth() + 1).padStart(2, '0')}-${d.getFullYear()}`;
+              }
+              return dateStr;
+            };
+
+            const fmtJ = formatDate(match.date_of_judgment);
+            const fmtD = formatDate(match.date_of_decree_award);
+
             if (match.date_of_judgment || match.date_of_decree_award) {
               if (match.date_of_judgment && match.date_of_decree_award) {
-                if (match.date_of_judgment === match.date_of_decree_award) {
-                  arisingText = `Judgment and Decree dated ${match.date_of_judgment} passed in ${arisingText}`;
+                if (fmtJ === fmtD) {
+                  arisingText = `Judgment and Decree dated ${fmtJ} passed in ${arisingText}`;
                 } else {
-                  arisingText = `Judgment dated ${match.date_of_judgment} and Decree dated ${match.date_of_decree_award} passed in ${arisingText}`;
+                  arisingText = `Judgment dated ${fmtJ} and Decree dated ${fmtD} passed in ${arisingText}`;
                 }
               } else if (match.date_of_judgment) {
-                arisingText = `Judgment dated ${match.date_of_judgment} passed in ${arisingText}`;
+                arisingText = `Judgment dated ${fmtJ} passed in ${arisingText}`;
               } else if (match.date_of_decree_award) {
-                arisingText = `Decree dated ${match.date_of_decree_award} passed in ${arisingText}`;
+                arisingText = `Decree dated ${fmtD} passed in ${arisingText}`;
               }
             }
             
