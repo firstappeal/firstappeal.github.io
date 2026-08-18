@@ -417,6 +417,10 @@ body {
   margin-bottom: 6pt;
 }
 
+.doc-row + .doc-party-row {
+  margin-top: 25pt;
+}
+
 .val-appellant, .val-respondent {
   flex: 1;
   text-align: center;
@@ -530,6 +534,8 @@ body {
 .val-appeal-type,
 .val-case-no,
 .val-case-year,
+.val-appellant,
+.val-respondent,
 .val-to-title,
 .val-to-address,
 .val-date,
@@ -696,6 +702,9 @@ body {
   }
   .doc-party-row {
     margin-bottom: 6pt !important;
+  }
+  .doc-row + .doc-party-row {
+    margin-top: 25pt !important;
   }
   .doc-from-section {
     margin-top: 15pt !important;
