@@ -1,933 +1,576 @@
-// ── Master Judges List (persisted in LocalStorage) ───────────────────
-let JUDGES = JSON.parse(localStorage.getItem('patna_judges_v3')) || [
-  "Hon'ble Mr. Justice Ramesh Chand Malviya",
-  "Hon'ble Mr. Justice Sourendra Pandey",
-  "Hon'ble Mr. Justice Rudra Prakash Mishra"
-];
+/* ============================================================
+   LCR CALL FORM – JAVASCRIPT LOGIC
+   ============================================================ */
 
-// ── Master Allocation Rules List (persisted in LocalStorage) ──────────
-let RULES = JSON.parse(localStorage.getItem('patna_rules_v3')) || [
-  { heading: 'any', operator: '<=', year: 1994, judge: "Hon'ble Mr. Justice Ramesh Chand Malviya" },
-  { heading: 'any', operator: '<=', year: 2015, judge: "Hon'ble Mr. Justice Sourendra Pandey" },
-  { heading: 'any', operator: 'any', year: '', judge: "Hon'ble Mr. Justice Rudra Prakash Mishra" }
-];
+// ── Field mapping: editor-id → print-element-id ──────────────
+const FIELD_MAP = {
+  case_type         : 'p_case_type',
+  case_no           : 'p_case_no',
+  case_year         : 'p_case_year',
+  appeal_from       : 'p_appeal_from',
+  appeal_from_no    : 'p_appeal_from_no',
+  appeal_from_year  : 'p_appeal_from_year',
+  court_of_the      : 'p_court_of_the',
+  arising_out_of    : 'p_arising_out_of',
+  appellant         : 'p_appellant',
+  respondent        : 'p_respondent',
+  recipient_title   : 'p_recipient_title',
+  recipient_address : 'p_recipient_address',
+  custom_date       : 'p_custom_date',
+  letter_no         : 'p_letter_no',
+  file_no           : 'p_file_no',
+  section_deptt     : 'p_section_deptt',
+};
 
-// ── Default Sample Data from listing.odt ───────────────────────────
-const DEFAULT_ROWS = [];
+// Appeal abbreviation expansions
+const APPEAL_TYPES = {
+  'FA': 'First Appeal',
+  'MA': 'Miscellaneous Appeal',
+  'CA': 'Civil Appeal',
+  'SA': 'Second Appeal'
+};
 
-// ── Print Mode State ───────────────────────────────────────────────
-let currentPrintMode = 'full'; // 'full' or 'short'
-
-function printShort() {
-  currentPrintMode = 'short';
-  syncPrintTable();
-  saveToCloud(true);
-  window.print();
-}
-
-function printFull() {
-  currentPrintMode = 'full';
-  syncPrintTable();
-  saveToCloud(true);
-  window.print();
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-  // Pre-populate Header Date with current system date
+// ── Format Date: e.g. 08th July , 2026 ───────────────────────
+function getFormattedCurrentDate() {
   const now = new Date();
-  const day = String(now.getDate()).padStart(2, '0');
-  const month = String(now.getMonth() + 1).padStart(2, '0');
-  document.getElementById('head_date').value = `${day}-${month}-${now.getFullYear()}`;
+  const day = now.getDate();
+  const year = now.getFullYear();
+  const months = [
+    "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+  ];
+  const monthName = months[now.getMonth()];
   
-  // Render Judges & Rules lists in the settings UI
-  renderJudgesSettings();
-  renderRulesSettings();
-  
-  // Load Default Rows
-  DEFAULT_ROWS.forEach(rowData => {
-    addNewRow(rowData);
-  });
-  
-  syncHeaders();
-  
-  // Global click listener to close autocomplete dropdowns
-  document.addEventListener('click', (e) => {
-    if (!e.target.closest('.autocomplete-cell')) {
-      closeAllSuggestions();
-    }
-  });
-});
-
-// ── Save Lists to LocalStorage ──────────────────────────────────────
-function saveJudges() {
-  localStorage.setItem('patna_judges_v3', JSON.stringify(JUDGES));
-  renderJudgesSettings();
-  updateAllJudgeDropdowns();
-}
-
-function saveRules() {
-  localStorage.setItem('patna_rules_v3', JSON.stringify(RULES));
-  renderRulesSettings();
-  recalculateAllAllocatedJudges();
-}
-
-// ── Sync Header Inputs with Print Preview ─────────────────────────
-function syncHeaders() {
-  document.querySelectorAll('.p_date_span').forEach(span => {
-    span.textContent = document.getElementById('head_date').value.trim();
-  });
-}
-
-// ── Re-calculate Serial Numbers ──────────────────────────────────
-function reindexSerialNumbers() {
-  const rows = document.querySelectorAll('#editorTableBody tr');
-  rows.forEach((row, idx) => {
-    row.querySelector('.serial-number').textContent = idx + 1;
-  });
-  syncPrintTable();
-}
-
-// ── Close autocomplete suggestions ───────────────────────────────
-function closeAllSuggestions() {
-  document.querySelectorAll('.suggestions-list').forEach(div => {
-    div.style.display = 'none';
-    div.innerHTML = '';
-  });
-}
-
-// ── Rule Engine: Allocate Judge based on Heading & Year ───────────
-function evaluateJudge(heading, caseNoYear) {
-  let year = NaN;
-  const parts = caseNoYear.split('/');
-  if (parts.length > 0) {
-    const lastPart = parts[parts.length - 1];
-    year = parseInt(lastPart, 10);
+  // Calculate ordinal suffix
+  let suffix = "th";
+  if (day === 1 || day === 21 || day === 31) {
+    suffix = "st";
+  } else if (day === 2 || day === 22) {
+    suffix = "nd";
+  } else if (day === 3 || day === 23) {
+    suffix = "rd";
   }
   
-  for (const rule of RULES) {
-    // Check heading match
-    const headingMatch = (rule.heading === 'any' || rule.heading === heading);
-    if (!headingMatch) continue;
-    
-    // Check year match
-    let yearMatch = false;
-    if (rule.operator === 'any') {
-      yearMatch = true;
-    } else if (!isNaN(year) && rule.year !== '') {
-      const ruleYear = parseInt(rule.year, 10);
-      switch (rule.operator) {
-        case '<': yearMatch = (year < ruleYear); break;
-        case '<=': yearMatch = (year <= ruleYear); break;
-        case '>': yearMatch = (year > ruleYear); break;
-        case '>=': yearMatch = (year >= ruleYear); break;
-        case '=': yearMatch = (year === ruleYear); break;
-      }
-    }
-    
-    if (headingMatch && yearMatch) {
-      // Ensure the rule's judge still exists in our judges list
-      if (JUDGES.includes(rule.judge)) {
-        return rule.judge;
-      }
+  const paddedDay = String(day).padStart(2, '0') + suffix;
+  return `${paddedDay} ${monthName} , ${year}`;
+}
+
+function syncFields() {
+  for (const [editorId, printId] of Object.entries(FIELD_MAP)) {
+    const input = document.getElementById(editorId);
+    const output = document.getElementById(printId);
+    if (input && output) {
+      // Use &nbsp; (non-breaking space) when input is empty to preserve dotted line height
+      output.textContent = input.value.trim() || '\u00A0'; 
     }
   }
-  
-  // Default to first Judge if no matches
-  return JUDGES[0] || 'Unassigned';
-}
 
-// ── Re-run rule engine on all non-overridden rows ──────────────────
-function recalculateAllAllocatedJudges() {
-  const rows = document.querySelectorAll('#editorTableBody tr');
-  rows.forEach(row => {
-    const judgeSelect = row.querySelector('.judge-field');
-    // If user has not manually overridden, auto-recalculate
-    if (judgeSelect && !judgeSelect.dataset.manual) {
-      const heading = row.querySelector('.heading-field').value;
-      const caseNo = row.querySelector('.case-no-field').value;
-      const allocatedJudge = evaluateJudge(heading, caseNo);
-      judgeSelect.value = allocatedJudge;
-    }
-  });
-  syncPrintTable();
-}
-
-// ── Update Judge selects when Judge List changes ──────────────────
-function updateAllJudgeDropdowns() {
-  const rows = document.querySelectorAll('#editorTableBody tr');
-  rows.forEach(row => {
-    const judgeSelect = row.querySelector('.judge-field');
-    if (judgeSelect) {
-      const currentSelected = judgeSelect.value;
-      
-      // Re-populate select options
-      judgeSelect.innerHTML = JUDGES.map(j => `<option value="${j}">${j}</option>`).join('');
-      
-      // Restore selected if still valid, else fall back to auto-calculate
-      if (JUDGES.includes(currentSelected)) {
-        judgeSelect.value = currentSelected;
-      } else {
-        delete judgeSelect.dataset.manual; // Clear manual flag since judge is gone
-        const heading = row.querySelector('.heading-field').value;
-        const caseNo = row.querySelector('.case-no-field').value;
-        judgeSelect.value = evaluateJudge(heading, caseNo);
-      }
-    }
-  });
-  syncPrintTable();
-}
-
-// ── Add New Row to the Editor Table ────────────────────────────────
-function addNewRow(data = { nature: 'FA', case_no: '', appellant: '', assistant: '', heading: '', direction: '', remarks: 'Fixed' }) {
-  const tbody = document.getElementById('editorTableBody');
-  const tr = document.createElement('tr');
-  const rowId = 'row_' + Math.random().toString(36).substr(2, 9);
-  
-  const headingVal = typeof data.heading !== 'undefined' ? data.heading : '';
-  const remarksVal = data.remarks || 'Fixed';
-  const assistantVal = data.assistant || '';
-  
-  // Calculate allocated judge
-  const allocatedJudge = evaluateJudge(headingVal, data.case_no);
-  
-  tr.id = rowId;
-  tr.innerHTML = `
-    <td class="serial-number" style="text-align: center; font-weight: 600; color: #475569; vertical-align: middle;"></td>
-    <td style="text-align: center; font-weight: 600; color: #334155; vertical-align: middle;">
-      <span class="nature-label">FA</span>
-    </td>
-    <td class="autocomplete-cell">
-      <input type="text" class="cell-input case-no-field" value="${data.case_no}" placeholder="जैसे: 47/2024" autocomplete="off" />
-      <div class="suggestions-list" style="display: none;"></div>
-    </td>
-    <td>
-      <input type="text" class="cell-input appellant-field" value="${data.appellant}" oninput="syncPrintTable()" />
-    </td>
-    <td>
-      <input type="text" class="cell-input assistant-field" value="${assistantVal}" oninput="syncPrintTable()" />
-    </td>
-    <td>
-      <select class="cell-input heading-field" onchange="handleHeadingChange(this)">
-        <option value="" ${headingVal === '' ? 'selected' : ''}></option>
-        <option value="Office notes" ${headingVal === 'Office notes' ? 'selected' : ''}>Office notes</option>
-        <option value="On Petition" ${headingVal === 'On Petition' || headingVal === 'On petition' ? 'selected' : ''}>On Petition</option>
-        <option value="Hearing" ${headingVal === 'Hearing' ? 'selected' : ''}>Hearing</option>
-        <option value="To Be Mentioned" ${headingVal === 'To Be Mentioned' ? 'selected' : ''}>To Be Mentioned</option>
-      </select>
-    </td>
-    <td>
-      <input type="text" class="cell-input direction-field" value="${data.direction}" oninput="syncPrintTable()" />
-    </td>
-    <td>
-      <select class="cell-input remarks-field" onchange="syncPrintTable()">
-        <option value=""></option>
-        <option value="Fixed" ${remarksVal === 'Fixed' || remarksVal === 'fixed' ? 'selected' : ''}>Fixed</option>
-        <option value="Adjourned" ${remarksVal === 'Adjourned' || remarksVal === 'Adj.' ? 'selected' : ''}>Adjourned</option>
-        <option value="Fixed Vide Bench Slip" ${remarksVal === 'Fixed Vide Bench Slip' || remarksVal === 'Fixed vide Bench Slip' ? 'selected' : ''}>Fixed Vide Bench Slip</option>
-      </select>
-    </td>
-    <td>
-      <select class="cell-input judge-field" onchange="handleJudgeManualChange(this)">
-        ${JUDGES.map(j => `<option value="${j}" ${j === allocatedJudge ? 'selected' : ''}>${j}</option>`).join('')}
-      </select>
-    </td>
-    <td style="text-align: center; vertical-align: middle;">
-      <button class="btn btn-danger-outline" style="padding: 4px 8px; font-size: 0.75rem;" onclick="deleteRow('${rowId}')">❌</button>
-    </td>
-  `;
-  
-  tbody.appendChild(tr);
-  
-  // Setup Autocomplete on Case Number
-  const caseNoInput = tr.querySelector('.case-no-field');
-  const suggestionsDiv = tr.querySelector('.suggestions-list');
-  const appellantInput = tr.querySelector('.appellant-field');
-  const judgeSelect = tr.querySelector('.judge-field');
-  
-  let activeIndex = -1;
-  
-  caseNoInput.addEventListener('input', () => {
-    // Auto-calculate judge if case number changed
-    if (!judgeSelect.dataset.manual) {
-      const heading = tr.querySelector('.heading-field').value;
-      judgeSelect.value = evaluateJudge(heading, caseNoInput.value);
-    }
-    
-    // Auto-populate Assistant if matches
-    const assistantInput = tr.querySelector('.assistant-field');
-    const caseVal = caseNoInput.value.trim();
-    if (typeof ASSISTANTS_DB !== 'undefined' && ASSISTANTS_DB[caseVal]) {
-      assistantInput.value = ASSISTANTS_DB[caseVal];
-    } else {
-      assistantInput.value = '';
-    }
-    
-    syncPrintTable();
-    
-    const query = caseNoInput.value.trim().toUpperCase().replace(/\s+/g, '');
-    activeIndex = -1;
-    
-    if (!query || typeof CASES_DB === 'undefined') {
-      suggestionsDiv.style.display = 'none';
-      if (!query) {
-        appellantInput.value = '';
-        syncPrintTable();
-      }
-      return;
-    }
-    
-    const matches = [];
-    for (const key of Object.keys(CASES_DB)) {
-      const normalizedKey = key.toUpperCase().replace(/\s+/g, '');
-      if (normalizedKey.includes(query)) {
-        matches.push(key);
-      }
-      if (matches.length >= 10) break;
-    }
-    
-    if (matches.length === 0) {
-      suggestionsDiv.style.display = 'none';
-      return;
-    }
-    
-    renderSuggestions(matches);
-  });
-  
-  caseNoInput.addEventListener('keydown', (e) => {
-    const items = suggestionsDiv.querySelectorAll('.suggestion-item');
-    if (!items.length) return;
-    
-    if (e.key === 'ArrowDown') {
-      e.preventDefault();
-      activeIndex = (activeIndex + 1) % items.length;
-      updateActiveItem(items);
-    } else if (e.key === 'ArrowUp') {
-      e.preventDefault();
-      activeIndex = (activeIndex - 1 + items.length) % items.length;
-      updateActiveItem(items);
-    } else if (e.key === 'Enter') {
-      e.preventDefault();
-      if (activeIndex > -1 && items[activeIndex]) {
-        selectCase(items[activeIndex].textContent);
-      } else if (items.length > 0) {
-        selectCase(items[0].textContent);
-      }
-    } else if (e.key === 'Escape') {
-      suggestionsDiv.style.display = 'none';
-    }
-  });
-  
-  function updateActiveItem(items) {
-    items.forEach((item, index) => {
-      if (index === activeIndex) {
-        item.classList.add('active');
-        item.scrollIntoView({ block: 'nearest' });
-      } else {
-        item.classList.remove('active');
-      }
-    });
-  }
-  
-  function renderSuggestions(matches) {
-    suggestionsDiv.innerHTML = '';
-    matches.forEach(match => {
-      const div = document.createElement('div');
-      div.className = 'suggestion-item';
-      div.textContent = match;
-      div.addEventListener('click', () => {
-        selectCase(match);
-      });
-      suggestionsDiv.appendChild(div);
-    });
-    suggestionsDiv.style.display = 'block';
-  }
-  
-  function selectCase(selectedKey) {
-    let displayVal = selectedKey;
-    const parts = selectedKey.split('/');
-    if (parts.length > 1) {
-      displayVal = parts.slice(1).join('/');
-    }
-    
-    caseNoInput.value = displayVal;
-    suggestionsDiv.style.display = 'none';
-    
-    const caseData = CASES_DB[selectedKey];
-    if (caseData && caseData.appellant) {
-      appellantInput.value = caseData.appellant;
-    }
-    
-    // Recalculate judge
-    if (!judgeSelect.dataset.manual) {
-      const heading = tr.querySelector('.heading-field').value;
-      judgeSelect.value = evaluateJudge(heading, displayVal);
-    }
-    
-    // Auto-populate Assistant
-    const assistantInput = tr.querySelector('.assistant-field');
-    if (typeof ASSISTANTS_DB !== 'undefined' && ASSISTANTS_DB[displayVal]) {
-      assistantInput.value = ASSISTANTS_DB[displayVal];
-    } else {
-      assistantInput.value = '';
-    }
-    
-    syncPrintTable();
-  }
-  
-  reindexSerialNumbers();
-}
-
-// ── Heading Change Handler ────────────────────────────────────────
-function handleHeadingChange(selectElem) {
-  const tr = selectElem.closest('tr');
-  const caseNo = tr.querySelector('.case-no-field').value;
-  const judgeSelect = tr.querySelector('.judge-field');
-  
-  if (!judgeSelect.dataset.manual) {
-    judgeSelect.value = evaluateJudge(selectElem.value, caseNo);
-  }
-  syncPrintTable();
-}
-
-// ── Manual Judge Change Handler ───────────────────────────────────
-function handleJudgeManualChange(selectElem) {
-  // Mark as manually overridden
-  selectElem.dataset.manual = 'true';
-  syncPrintTable();
-}
-
-// ── Delete Row ────────────────────────────────────────────────────
-function deleteRow(rowId) {
-  const row = document.getElementById(rowId);
-  if (row) {
-    row.remove();
-    reindexSerialNumbers();
+  const bodyParagraph = document.getElementById('p_body_paragraph');
+  if (bodyParagraph) {
+    bodyParagraph.textContent = `The above mentioned appeal having been preferred to this court, I am directed to ask you to be so good as to transmit to this office the record connected there with within 7 days from the receipt by you of this letter.`;
   }
 }
 
-// ── Clear All Rows ────────────────────────────────────────────────
-function clearAllRows() {
-  if (confirm("क्या आप पूरी सूची साफ करना चाहते हैं?")) {
-    document.getElementById('editorTableBody').innerHTML = '';
-    syncPrintTable();
+// ── Initialize Application ───────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  
+  // 1. Auto-populate current date
+  const dateInput = document.getElementById('custom_date');
+  if (dateInput && !dateInput.value) {
+    dateInput.value = getFormattedCurrentDate();
   }
-}
 
-// ── Sync Editor Table to Print Table (Grouped by Judge) ──────────
-function syncPrintTable() {
-  const printPage = document.getElementById('printPage');
-  printPage.innerHTML = '';
-  
-  const courtHeaderVal = document.getElementById('head_court').value.trim() || 'IN THE HIGH COURT OF JUDICATURE AT PATNA';
-  const dateVal = document.getElementById('head_date').value.trim();
-  
-  // 1. Gather all case data
-  const rows = document.querySelectorAll('#editorTableBody tr');
-  const groupedCases = {};
-  
-  // Initialize groupings for all current Judges
-  JUDGES.forEach(j => {
-    groupedCases[j] = [];
-  });
-  
-  rows.forEach((row) => {
-    const nature = row.querySelector('.nature-label').textContent.trim();
-    const case_no = row.querySelector('.case-no-field').value.trim();
-    const appellant = row.querySelector('.appellant-field').value.trim();
-    const assistant = row.querySelector('.assistant-field').value.trim();
-    const heading = row.querySelector('.heading-field').value.trim();
-    const direction = row.querySelector('.direction-field').value.trim();
-    const remarks = row.querySelector('.remarks-field').value.trim();
-    const judge = row.querySelector('.judge-field').value;
-    
-    if (!groupedCases[judge]) {
-      groupedCases[judge] = [];
+  // 2. Set default values for recipient to assist user
+  const recTitle = document.getElementById('recipient_title');
+  const recAddr = document.getElementById('recipient_address');
+  if (recTitle && !recTitle.value) {
+    recTitle.value = "District and Sessions Judge";
+  }
+  if (recAddr && !recAddr.value) {
+    recAddr.value = "Patna";
+  }
+
+  // 3. Add change and input listeners to editor fields
+  for (const editorId of Object.keys(FIELD_MAP)) {
+    const input = document.getElementById(editorId);
+    if (input) {
+      input.addEventListener('input', syncFields);
+      input.addEventListener('change', syncFields);
     }
-    
-    groupedCases[judge].push({ nature, case_no, appellant, assistant, heading, direction, remarks });
-  });
-  
-  // 2. Render separate tables for Judges who have cases
-  let firstRender = true;
-  JUDGES.forEach(judgeName => {
-    const cases = groupedCases[judgeName] || [];
-    if (cases.length === 0) return; // Skip if no cases assigned to this Judge
-    
-    // Sort cases in ascending order according to year and case number
-    cases.sort((a, b) => {
-      const parseCaseNo = str => {
-        const firstCase = str.split(/\bwith\b/i)[0].trim();
-        const parts = firstCase.split('/');
-        let year = 0, num = 0;
-        if (parts.length >= 2) {
-          year = parseInt(parts[parts.length - 1], 10) || 0;
-          num = parseInt(parts[parts.length - 2], 10) || 0;
-        } else if (parts.length === 1) {
-          num = parseInt(parts[0], 10) || 0;
+  }
+
+  // 3b. Auto-populate Recipient from Court of the
+  const courtOfTheInput = document.getElementById('court_of_the');
+  if (courtOfTheInput && recTitle && recAddr) {
+    courtOfTheInput.addEventListener('input', () => {
+      // Only auto-populate if user is typing in court_of_the
+      const val = courtOfTheInput.value;
+      if (val) {
+        const parts = val.split(',');
+        if (parts.length > 1) {
+          recTitle.value = parts[0].trim();
+          recAddr.value = parts.slice(1).join(',').trim();
+        } else {
+          recTitle.value = val.trim();
+          recAddr.value = '';
         }
-        return { year, num };
-      };
-      const aVal = parseCaseNo(a.case_no);
-      const bVal = parseCaseNo(b.case_no);
-      if (aVal.year !== bVal.year) {
-        return aVal.year - bVal.year;
+        syncFields();
       }
-      return aVal.num - bVal.num;
     });
-    
-    const judgeSection = document.createElement('div');
-    judgeSection.className = 'print-judge-section';
-    
-      let theadHTML = '';
-      if (currentPrintMode === 'short') {
-        theadHTML = `
-          <tr>
-            <th style="width: 10%; text-align: center;">Sl. No.</th>
-            <th style="width: 20%;">Case no. and Year</th>
-            <th style="width: 50%;">Name of Appellant</th>
-            <th style="width: 20%;">Dealing Assistant</th>
-          </tr>
-        `;
-      } else {
-        theadHTML = `
-          <tr>
-            <th style="width: 5%; text-align: center;">Sl. No.</th>
-            <th style="width: 8%; text-align: center;">Nature</th>
-            <th style="width: 15%;">Case no. and Year</th>
-            <th style="width: 32%;">Name of Appellant</th>
-            <th style="width: 15%;">Heading</th>
-            <th style="width: 15%;">Specific direction for listing if any</th>
-            <th style="width: 10%;">Remarks</th>
-          </tr>
-        `;
+  }
+
+  // 4. Initial Sync to fill A4 page values
+  syncFields();
+
+  // 5. Autocomplete & Auto-populate Logic
+  const sankhyaInput = document.getElementById('sankhya');
+  const suggestionsDiv = document.getElementById('sankhyaSuggestions');
+
+  if (sankhyaInput && suggestionsDiv && typeof CASES_DB !== 'undefined') {
+    let activeIndex = -1;
+
+    sankhyaInput.addEventListener('input', () => {
+      const query = sankhyaInput.value.trim().toUpperCase().replace(/\s+/g, '');
+      activeIndex = -1;
+
+      if (!query) {
+        suggestionsDiv.style.display = 'none';
+        return;
       }
 
-    judgeSection.innerHTML = `
-      <div class="print-header">
-        <h3>${courtHeaderVal}</h3>
-        <h4>LIST OF FA CASES BEFORE: ${judgeName.toUpperCase()}</h4>
-        <div class="print-date-row">
-          <span>Date for Listing: <strong>${dateVal}</strong></span>
-        </div>
-      </div>
+      // Filter matches from cases database
+      const matches = Object.keys(CASES_DB).filter(caseKey => {
+        const normalizedKey = caseKey.toUpperCase().replace(/\s+/g, '');
+        return normalizedKey.includes(query);
+      }).slice(0, 10);
+
+      // Render Suggestions List
+      suggestionsDiv.innerHTML = '';
+      if (matches.length > 0) {
+        matches.forEach((match, index) => {
+          const item = document.createElement('div');
+          item.className = 'suggestion-item';
+          item.textContent = match;
+          item.addEventListener('click', () => selectCase(match));
+          suggestionsDiv.appendChild(item);
+        });
+        suggestionsDiv.style.display = 'block';
+      } else {
+        suggestionsDiv.style.display = 'none';
+      }
+    });
+
+    // Keyboard navigation inside suggestions list
+    sankhyaInput.addEventListener('keydown', (e) => {
+      const items = suggestionsDiv.querySelectorAll('.suggestion-item');
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        if (items.length > 0) {
+          activeIndex = (activeIndex + 1) % items.length;
+          updateActiveSuggestion(items);
+        }
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        if (items.length > 0) {
+          activeIndex = (activeIndex - 1 + items.length) % items.length;
+          updateActiveSuggestion(items);
+        }
+      } else if (e.key === 'Enter') {
+        e.preventDefault();
+        if (activeIndex >= 0 && activeIndex < items.length) {
+          items[activeIndex].click();
+        } else if (items.length > 0) {
+          items[0].click();
+        }
+      } else if (e.key === 'Escape') {
+        suggestionsDiv.style.display = 'none';
+      }
+    });
+
+    // Check match on input blur
+    sankhyaInput.addEventListener('blur', () => {
+      setTimeout(() => {
+        const val = sankhyaInput.value.trim();
+        const exactMatch = Object.keys(CASES_DB).find(caseKey => 
+          caseKey.toUpperCase().replace(/\s+/g, '') === val.toUpperCase().replace(/\s+/g, '')
+        );
+        if (exactMatch) {
+          selectCase(exactMatch);
+        }
+      }, 200);
+    });
+
+    function updateActiveSuggestion(items) {
+      items.forEach((item, index) => {
+        if (index === activeIndex) {
+          item.classList.add('active');
+          item.scrollIntoView({ block: 'nearest' });
+        } else {
+          item.classList.remove('active');
+        }
+      });
+    }
+
+    // Populate fields when case is selected
+    async function selectCase(caseKey) {
+      sankhyaInput.value = caseKey;
+      suggestionsDiv.style.display = 'none';
+
+      const caseData = CASES_DB[caseKey];
+      const parts = caseKey.split('/');
+      const typeCode = parts[0] || '';
+      const caseNumber = parts[1] || '';
+      const caseYear = parts[2] || '';
+      const fullTypeName = APPEAL_TYPES[typeCode.toUpperCase()] || typeCode;
+
+      // Always Update Core Inputs (Even if not in local CASES_DB)
+      const typeField = document.getElementById('case_type');
+      const noField = document.getElementById('case_no');
+      const yearField = document.getElementById('case_year');
+      const appellantField = document.getElementById('appellant');
+      const respondentField = document.getElementById('respondent');
+
+      if (typeField) typeField.value = fullTypeName;
+      if (noField) noField.value = caseNumber;
+      if (yearField) yearField.value = caseYear;
+
+      if (caseData) {
+        if (appellantField) appellantField.value = caseData.appellant || '';
+        if (respondentField) respondentField.value = caseData.respondent || '';
+      }
+
+      await fetchMasterDetails(true);
+      syncFields();
+    }
+
+    // Dismiss suggestions on outside click
+    document.addEventListener('click', (e) => {
+      if (!sankhyaInput.contains(e.target) && !suggestionsDiv.contains(e.target)) {
+        suggestionsDiv.style.display = 'none';
+      }
+    });
+  }
+
+  // 5b. Manual Trigger for Auto-Populate from Master Records
+  async function fetchMasterDetails(forceOverwrite = false) {
+    const typeField = document.getElementById('case_type');
+    const noField = document.getElementById('case_no');
+    const yearField = document.getElementById('case_year');
+
+    const cTypeRaw = typeField ? typeField.value.trim() : '';
+    const cNo = noField ? noField.value.trim() : '';
+    const cYear = yearField ? yearField.value.trim() : '';
+
+    if (!cTypeRaw || !cNo || !cYear) return;
+
+    // Resolve Abbreviations (e.g. 'FA' -> 'First Appeal' and 'First Appeal' -> 'FA')
+    let fullType = cTypeRaw;
+    let typeAbbr = cTypeRaw.toUpperCase();
+
+    if (APPEAL_TYPES[cTypeRaw.toUpperCase()]) {
+      fullType = APPEAL_TYPES[cTypeRaw.toUpperCase()];
+    } else {
+      const foundKey = Object.keys(APPEAL_TYPES).find(key => APPEAL_TYPES[key].toLowerCase() === cTypeRaw.toLowerCase());
+      if (foundKey) {
+        typeAbbr = foundKey;
+        fullType = APPEAL_TYPES[foundKey];
+      }
+    }
+
+    // 1. Fetch Appellant/Respondent from local CASES_DB
+    if (typeof CASES_DB !== 'undefined') {
+      const localCaseKey = `${typeAbbr}/${cNo}/${cYear}`.toUpperCase();
+      const localData = CASES_DB[localCaseKey];
       
-      <table class="print-table">
-        <thead>
-          ${theadHTML}
-        </thead>
-        <tbody>
-          ${cases.map((c, idx) => {
-            let formattedCaseNo = c.case_no || '&nbsp;';
-            if (c.case_no && /\bwith\b/i.test(c.case_no)) {
-              const nature = (c.nature || '').trim();
-              formattedCaseNo = c.case_no.split(/\bwith\b/i).map((part, index) => {
-                let p = part.trim();
-                if (index > 0) {
-                  if (nature && !p.toLowerCase().startsWith(nature.toLowerCase())) {
-                    p = nature + ' ' + p;
-                  }
-                  return 'with ' + p;
+      const appellantField = document.getElementById('appellant');
+      const respondentField = document.getElementById('respondent');
+
+      if (localData) {
+        if (appellantField && (forceOverwrite || !appellantField.value)) appellantField.value = localData.appellant || '';
+        if (respondentField && (forceOverwrite || !respondentField.value)) respondentField.value = localData.respondent || '';
+      }
+    }
+
+    // 2. Fetch Lower Court details from Supabase
+    try {
+      if (window.PortalDB && typeof window.PortalDB.getSingleCaseRecord === 'function') {
+        const match = await window.PortalDB.getSingleCaseRecord(fullType, cNo, cYear);
+
+        if (match) {
+          const lcCourtField = document.getElementById('court_of_the');
+          const appealFromField = document.getElementById('appeal_from');
+          const appealFromNoField = document.getElementById('appeal_from_no');
+          const appealFromYearField = document.getElementById('appeal_from_year');
+          const arisingOutOfField = document.getElementById('arising_out_of');
+          const recipientTitleField = document.getElementById('recipient_title');
+
+          if (match.lc_court && lcCourtField && (forceOverwrite || !lcCourtField.value)) {
+            lcCourtField.value = match.lc_court;
+            const parts = match.lc_court.split(',');
+            if (recipientTitleField && (!recipientTitleField.value || recipientTitleField.value === "District and Sessions Judge")) {
+              recipientTitleField.value = parts[0].trim();
+            }
+            const recipientAddressField = document.getElementById('recipient_address');
+            if (recipientAddressField && parts.length > 1 && (!recipientAddressField.value || recipientAddressField.value.trim().toLowerCase() === "patna")) {
+              recipientAddressField.value = parts.slice(1).join(',').trim();
+            } else if (recipientAddressField && parts.length === 1 && recipientAddressField.value.trim().toLowerCase() === "patna") {
+              recipientAddressField.value = '';
+            }
+          }
+          if (match.lc_case_type && appealFromField && (forceOverwrite || !appealFromField.value)) {
+            let cleanedType = match.lc_case_type.trim();
+            if (cleanedType.toLowerCase().endsWith('of the')) {
+              cleanedType = cleanedType.substring(0, cleanedType.length - 6).trim();
+            }
+            appealFromField.value = cleanedType;
+          }
+          if (match.lc_case_no && appealFromNoField && (forceOverwrite || !appealFromNoField.value)) appealFromNoField.value = match.lc_case_no;
+          if (match.lc_case_year && appealFromYearField && (forceOverwrite || !appealFromYearField.value)) appealFromYearField.value = match.lc_case_year;
+          
+          if (arisingOutOfField && (forceOverwrite || !arisingOutOfField.value) && match.lc_case_type && match.lc_case_no && match.lc_case_year) {
+            let arisingText = `${match.lc_case_type} No. ${match.lc_case_no} of ${match.lc_case_year}`;
+            
+            const formatDate = (dateStr) => {
+              if (!dateStr) return '';
+              const parts = dateStr.split('-');
+              if (parts.length === 3) {
+                if (parts[0].length === 4) return `${parts[2]}-${parts[1]}-${parts[0]}`;
+                if (parts[2].length === 4) return dateStr;
+              }
+              const d = new Date(dateStr);
+              if (!isNaN(d.getTime())) {
+                return `${String(d.getDate()).padStart(2, '0')}-${String(d.getMonth() + 1).padStart(2, '0')}-${d.getFullYear()}`;
+              }
+              return dateStr;
+            };
+
+            const fmtJ = formatDate(match.date_of_judgment);
+            const fmtD = formatDate(match.date_of_decree_award);
+
+            if (match.date_of_judgment || match.date_of_decree_award) {
+              if (match.date_of_judgment && match.date_of_decree_award) {
+                if (fmtJ === fmtD) {
+                  arisingText = `Judgment and Decree/Award dated ${fmtJ}`;
+                } else {
+                  arisingText = `Judgment dated ${fmtJ} and Decree/Award dated ${fmtD}`;
                 }
-                return p;
-              }).join('<br/>');
+              } else if (match.date_of_judgment) {
+                arisingText = `Judgment dated ${fmtJ}`;
+              } else if (match.date_of_decree_award) {
+                arisingText = `Decree/Award dated ${fmtD}`;
+              }
+            } else {
+              arisingText = 'Judgment and Decree';
             }
             
-            let rowHTML = '';
-            if (currentPrintMode === 'short') {
-              rowHTML = `
-              <tr>
-                <td style="text-align: center;">${idx + 1}</td>
-                <td>${formattedCaseNo}</td>
-                <td>${c.appellant || '&nbsp;'}</td>
-                <td>${c.assistant || '&nbsp;'}</td>
-              </tr>
-              `;
-            } else {
-              rowHTML = `
-              <tr>
-                <td style="text-align: center;">${idx + 1}</td>
-                <td style="text-align: center;">${c.nature || '&nbsp;'}</td>
-                <td>${formattedCaseNo}</td>
-                <td>${c.appellant || '&nbsp;'}</td>
-                <td>${c.heading || '&nbsp;'}</td>
-                <td>${c.direction || '&nbsp;'}</td>
-                <td>${c.remarks || '&nbsp;'}</td>
-              </tr>
-              `;
-            }
-            return rowHTML;
-          }).join('')}
-        </tbody>
-      </table>
-    `;
-    
-    printPage.appendChild(judgeSection);
-  });
-}
-
-// ── Judges List Settings UI Renderer ──────────────────────────────
-function renderJudgesSettings() {
-  const ul = document.getElementById('judgesListUI');
-  ul.innerHTML = '';
-  
-  JUDGES.forEach((judge, index) => {
-    const li = document.createElement('li');
-    li.style.cssText = "display: flex; justify-content: space-between; align-items: center; background: #f1f5f9; padding: 6px 10px; border-radius: 4px; font-size: 0.8rem; font-weight: 500;";
-    li.innerHTML = `
-      <span>${judge}</span>
-      <button type="button" class="btn btn-danger-outline" style="padding: 2px 6px; font-size: 0.7rem;" onclick="deleteJudge(${index})">❌</button>
-    `;
-    ul.appendChild(li);
-  });
-}
-
-function addJudgePrompt() {
-  const name = prompt("नए न्यायाधीश का नाम प्रविष्ट करें:");
-  if (name && name.trim()) {
-    const trimmed = name.trim();
-    if (!JUDGES.includes(trimmed)) {
-      JUDGES.push(trimmed);
-      saveJudges();
-    }
-  }
-}
-
-function deleteJudge(index) {
-  if (confirm(`क्या आप न्यायाधीश "${JUDGES[index]}" को हटाना चाहते हैं?`)) {
-    JUDGES.splice(index, 1);
-    saveJudges();
-  }
-}
-
-// ── Rules List Settings UI Renderer ───────────────────────────────
-function renderRulesSettings() {
-  const tbody = document.getElementById('rulesTableBody');
-  tbody.innerHTML = '';
-  
-  RULES.forEach((rule, index) => {
-    const tr = document.createElement('tr');
-    tr.innerHTML = `
-      <td>
-        <select class="cell-input rule-heading" style="padding: 4px;" onchange="updateRule(${index}, 'heading', this.value)">
-          <option value="any" ${rule.heading === 'any' ? 'selected' : ''}>Any Heading</option>
-          <option value="Office notes" ${rule.heading === 'Office notes' ? 'selected' : ''}>Office notes</option>
-          <option value="On Petition" ${rule.heading === 'On Petition' ? 'selected' : ''}>On Petition</option>
-          <option value="Hearing" ${rule.heading === 'Hearing' ? 'selected' : ''}>Hearing</option>
-          <option value="To Be Mentioned" ${rule.heading === 'To Be Mentioned' ? 'selected' : ''}>To Be Mentioned</option>
-        </select>
-      </td>
-      <td>
-        <div style="display: flex; gap: 4px;">
-          <select class="cell-input rule-op" style="padding: 4px; width: 80px;" onchange="updateRule(${index}, 'operator', this.value)">
-            <option value="any" ${rule.operator === 'any' ? 'selected' : ''}>Any Year</option>
-            <option value="<" ${rule.operator === '<' ? 'selected' : ''}>&lt;</option>
-            <option value="<=" ${rule.operator === '<=' ? 'selected' : ''}>&le;</option>
-            <option value=">" ${rule.operator === '>' ? 'selected' : ''}>&gt;</option>
-            <option value=">=" ${rule.operator === '>=' ? 'selected' : ''}>&ge;</option>
-            <option value="=" ${rule.operator === '=' ? 'selected' : ''}>=</option>
-          </select>
-          <input type="number" class="cell-input rule-year" style="padding: 4px; width: 70px; ${rule.operator === 'any' ? 'display:none;' : ''}" value="${rule.year}" placeholder="Year" oninput="updateRule(${index}, 'year', this.value)" />
-        </div>
-      </td>
-      <td>
-        <select class="cell-input rule-judge" style="padding: 4px;" onchange="updateRule(${index}, 'judge', this.value)">
-          ${JUDGES.map(j => `<option value="${j}" ${j === rule.judge ? 'selected' : ''}>${j}</option>`).join('')}
-        </select>
-      </td>
-      <td style="text-align: center;">
-        <button type="button" class="btn btn-danger-outline" style="padding: 2px 6px; font-size: 0.75rem;" onclick="deleteRule(${index})">❌</button>
-      </td>
-    `;
-    tbody.appendChild(tr);
-  });
-}
-
-function addRuleRow() {
-  const defaultJudge = JUDGES[0] || 'Unassigned';
-  RULES.push({ heading: 'any', operator: 'any', year: '', judge: defaultJudge });
-  saveRules();
-}
-
-function updateRule(index, field, value) {
-  RULES[index][field] = value;
-  saveRules();
-}
-
-function deleteRule(index) {
-  if (confirm("क्या आप इस नियम को हटाना चाहते हैं?")) {
-    RULES.splice(index, 1);
-    saveRules();
-  }
-}
-
-// ── PDF File Upload & Parsing ──────────────────────────────────────
-async function handlePdfUpload(event) {
-  const file = event.target.files[0];
-  if (!file) return;
-
-  if (typeof pdfjsLib === 'undefined') {
-    alert("PDF library is not loaded. Ensure you have an internet connection for the first load.");
-    event.target.value = '';
-    return;
-  }
-
-  try {
-    const arrayBuffer = await file.arrayBuffer();
-    const loadingTask = pdfjsLib.getDocument(new Uint8Array(arrayBuffer));
-    const pdf = await loadingTask.promise;
-    
-    let fullText = '';
-    // Extract text from all pages
-    for (let i = 1; i <= pdf.numPages; i++) {
-      const page = await pdf.getPage(i);
-      const textContent = await page.getTextContent();
-      const pageText = textContent.items.map(item => item.str).join(' ');
-      fullText += pageText + ' ';
-    }
-    
-    // Look for pattern like 47/2024 or FA/47/2024
-    // We try to match any number followed by slash and a 4-digit year, while avoiding dates (like 13/07/2026)
-    const caseNoRegex = /(?:^|[^\d/])(\d{1,5}\s*\/\s*\d{4})(?=[^\d/]|$)/g;
-    const matchesIterator = fullText.matchAll(caseNoRegex);
-    const matches = Array.from(matchesIterator).map(m => m[1]);
-    
-    if (matches && matches.length > 0) {
-      // Remove duplicate case numbers
-      const uniqueMatches = [...new Set(matches.map(m => m.replace(/\s+/g, '')))];
-      
-      for (const caseNoVal of uniqueMatches) {
-        // Try to find the appellant in CASES_DB
-        let appellantName = '';
-        if (typeof CASES_DB !== 'undefined') {
-          const foundKey = Object.keys(CASES_DB).find(key => key.endsWith('/' + caseNoVal));
-          if (foundKey) {
-            appellantName = CASES_DB[foundKey].appellant || '';
+            arisingOutOfField.value = arisingText;
           }
         }
-        
-        // Try to find the assistant in ASSISTANTS_DB
-        let assistantName = '';
-        if (typeof ASSISTANTS_DB !== 'undefined' && ASSISTANTS_DB[caseNoVal]) {
-          assistantName = ASSISTANTS_DB[caseNoVal];
+      }
+    } catch (err) {
+      console.warn('Could not auto-sync details from master DB:', err);
+    }
+    syncFields();
+  }
+
+  // Attach blur listeners to trigger fetch when entered manually
+  const cNoInput = document.getElementById('case_no');
+  const cYearInput = document.getElementById('case_year');
+  if (cNoInput) cNoInput.addEventListener('blur', () => fetchMasterDetails(false));
+  if (cYearInput) cYearInput.addEventListener('blur', () => fetchMasterDetails(false));
+
+  // 6. Custom Confirmation Modal Listeners
+  const modal = document.getElementById('confirmModal');
+  const cancelBtn = document.getElementById('confirmCancel');
+  const okBtn = document.getElementById('confirmOk');
+
+  if (modal && cancelBtn && okBtn) {
+    const hideModal = () => {
+      modal.classList.remove('active');
+      setTimeout(() => { modal.style.display = 'none'; }, 200);
+    };
+
+    cancelBtn.addEventListener('click', hideModal);
+
+    okBtn.addEventListener('click', () => {
+      // Clear all fields
+      for (const editorId of Object.keys(FIELD_MAP)) {
+        const input = document.getElementById(editorId);
+        if (input) {
+          input.value = '';
         }
-        
-        // Add a new row with the parsed data
-        addNewRow({ 
-          nature: 'FA', 
-          case_no: caseNoVal, 
-          appellant: appellantName, 
-          assistant: assistantName,
-          heading: '', 
-          direction: '', 
-          remarks: 'Fixed' 
-        });
       }
       
-      // Ensure the newly added rows are synced
-      syncPrintTable();
-      alert(`PDF से सफलतापूर्वक ${uniqueMatches.length} केस निकाले गए।`);
-    } else {
-      alert("इस PDF से कोई केस नंबर (जैसे 47/2024) नहीं मिला। (No case number found in PDF)");
-    }
-  } catch (error) {
-    console.error('Error parsing PDF:', error);
-    alert("PDF पार्स करने में त्रुटि हुई। (Error parsing PDF)");
+      const searchBox = document.getElementById('sankhya');
+      if (searchBox) searchBox.value = '';
+
+      // Re-populate default date and recipients
+      const dateInput = document.getElementById('custom_date');
+      if (dateInput) {
+        dateInput.value = getFormattedCurrentDate();
+      }
+      
+      const recTitle = document.getElementById('recipient_title');
+      const recAddr = document.getElementById('recipient_address');
+      if (recTitle) recTitle.value = "District and Sessions Judge";
+      if (recAddr) recAddr.value = "Patna";
+
+      syncFields();
+      hideModal();
+    });
+
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) hideModal();
+    });
   }
-  
-  // Clear the input so the same file can be uploaded again if needed
-  event.target.value = '';
+});
+
+// ── Actions ──────────────────────────────────────────────────
+function printForm() {
+  syncFields();
+  if (typeof saveToCloud === 'function') saveToCloud(true);
+  window.print();
+}
+
+function clearForm() {
+  const modal = document.getElementById('confirmModal');
+  if (modal) {
+    modal.style.display = 'flex';
+    // Small delay to trigger CSS transition
+    setTimeout(() => { modal.classList.add('active'); }, 10);
+  }
 }
 
 // ── Local Ethernet Storage Integrations ──────────────────────────
 async function saveToCloud(silent = false) {
-  const dateVal = document.getElementById('head_date').value.trim();
-  if (!dateVal) {
-    if (!silent) alert("कृपया दिनांक दर्ज करें। (Please enter a date.)");
+  const caseNo = document.getElementById('case_no').value.trim();
+  const caseYear = document.getElementById('case_year').value.trim();
+  
+  if (!caseNo || !caseYear) {
+    if (!silent) alert("Please enter a Case Number and Year before saving.");
     return;
   }
-  
-  const rows = document.querySelectorAll('#editorTableBody tr');
-  if (rows.length === 0) {
-    if (!silent) alert("सहेजने के लिए कोई केस नहीं है। (No cases to save.)");
-    return;
+
+  const lcrData = {};
+  for (const editorId of Object.keys(FIELD_MAP)) {
+    const input = document.getElementById(editorId);
+    if (input) {
+      lcrData[editorId] = input.value.trim();
+    }
   }
-  
-  const cases = [];
-  rows.forEach(row => {
-    cases.push({
-      nature: row.querySelector('.nature-label').textContent.trim(),
-      case_no: row.querySelector('.case-no-field').value.trim(),
-      appellant: row.querySelector('.appellant-field').value.trim(),
-      assistant: row.querySelector('.assistant-field').value.trim(),
-      heading: row.querySelector('.heading-field').value.trim(),
-      direction: row.querySelector('.direction-field').value.trim(),
-      remarks: row.querySelector('.remarks-field').value.trim(),
-      judge: row.querySelector('.judge-field').value
-    });
-  });
-  
-  const headerDetails = {
-    head_court: document.getElementById('head_court').value.trim(),
-    head_bench: document.getElementById('head_bench').value.trim(),
-    date: dateVal
+
+  const lcrStatusElem = document.getElementById('lcr_status');
+  const letterTypeElem = document.getElementById('letter_type');
+  if (lcrStatusElem) lcrData['lcr_status'] = lcrStatusElem.value;
+  if (letterTypeElem) lcrData['letter_type'] = letterTypeElem.value;
+
+  const doSaveLcr = async () => {
+    try {
+      if (window.PortalDB) {
+        await window.PortalDB.insertLcrCall(lcrData);
+        if (!silent) alert('LCR Call successfully saved!');
+      } else {
+        throw new Error('PortalDB not available');
+      }
+    } catch (error) {
+      console.error('Error saving LCR Call:', error);
+      if (!silent) alert('Error saving LCR Call.');
+    }
   };
-  
-  try {
-    if (window.PortalDB) {
-      await window.PortalDB.insertCauseList(headerDetails, cases);
-      if (!silent) alert("सफलतापूर्वक क्लाउड में सहेजा गया! (Successfully saved to cloud!)");
+
+  if (!silent && typeof window.promptSaveCaseRecord === 'function') {
+    const extractedData = {
+      case_type: document.getElementById('case_type')?.value || 'First Appeal',
+      case_no: caseNo,
+      case_year: caseYear,
+      appellant: document.getElementById('appellant')?.value || '',
+      respondent: document.getElementById('respondent')?.value || '',
+      lc_court: (document.getElementById('court_of_the')?.value || document.getElementById('recipient_title')?.value || ''),
+      lc_case_type: document.getElementById('appeal_from')?.value || document.getElementById('arising_out_of')?.value || '',
+      lc_case_no: document.getElementById('appeal_from_no')?.value || '',
+      lc_case_year: document.getElementById('appeal_from_year')?.value || ''
+    };
+
+    if (confirm("Do you want to check and update this case in the Master Case Records? \n\nClick 'OK' to update the Master Record.\nClick 'Cancel' to ONLY save the LCR Call.")) {
+      window.promptSaveCaseRecord(extractedData, doSaveLcr, doSaveLcr);
     } else {
-      throw new Error('PortalDB not available');
+      doSaveLcr();
     }
-  } catch (error) {
-    console.error("Error saving to cloud:", error);
-    if (!silent) alert("क्लाउड में सहेजने में त्रुटि। (Error saving to cloud.)");
+  } else {
+    doSaveLcr();
   }
 }
 
-async function viewCloudLists() {
-  const datePrompt = prompt("जिस दिनांक की सूची देखनी है उसे दर्ज करें (e.g. 24-07-2026):", document.getElementById('head_date').value.trim());
-  if (!datePrompt) return;
-  
-  try {
-    let data = [];
-    if (window.PortalDB) {
-      data = await window.PortalDB.getCauseLists();
-    } else {
-      throw new Error('PortalDB not available');
-    }
+document.addEventListener('DOMContentLoaded', () => {
+  const saveBtn = document.getElementById('saveToCloudBtn');
+  const viewBtn = document.getElementById('viewCloudLcrBtn');
 
-    if (data.length === 0) {
-      alert("इस दिनांक के लिए कोई सूची नहीं मिली। (No list found for this date.)");
-      return;
-    }
-    
-    const listData = data.find(d => (d.header && d.header.date === datePrompt) || d.date === datePrompt) || data[0];
-    
-    if (listData.header) {
-      document.getElementById('head_court').value = listData.header.head_court || '';
-      document.getElementById('head_bench').value = listData.header.head_bench || '';
-    }
-    if (listData.date) {
-      document.getElementById('head_date').value = listData.date;
-    }
-    syncHeaders();
-    
-    document.getElementById('editorTableBody').innerHTML = '';
-    if (listData.cases && Array.isArray(listData.cases)) {
-      listData.cases.forEach(caseData => {
-        addNewRow(caseData);
-        const rows = document.querySelectorAll('#editorTableBody tr');
-        const lastRow = rows[rows.length - 1];
-        if (lastRow) {
-          const judgeSelect = lastRow.querySelector('.judge-field');
-          if (judgeSelect && caseData.judge) {
-             judgeSelect.value = caseData.judge;
-             judgeSelect.dataset.manual = 'true';
-          }
+  if (saveBtn) {
+    saveBtn.addEventListener('click', () => saveToCloud(false));
+  }
+
+  if (viewBtn) {
+    viewBtn.addEventListener('click', async () => {
+      const searchCaseNo = prompt('Enter Case Number to fetch LCR Call (e.g., 3):');
+      if (!searchCaseNo) return;
+      try {
+        const data = await window.PortalDB.getLcrCalls();
+        const matches = data.filter(l => (l.case_no || '').toString().toLowerCase().trim() === searchCaseNo.toString().toLowerCase().trim());
+        if (matches.length === 0) { alert('No LCR Call found for Case Number: ' + searchCaseNo); return; }
+        let lcrCall = matches[0];
+        if (matches.length > 1) {
+          let listMsg = `Multiple saved LCR Calls found for '${searchCaseNo}':\n\n`;
+          matches.forEach((m, idx) => { const d = m.saved_at ? m.saved_at.slice(0,10) : 'Saved'; listMsg += `${idx+1}. ${d}\n`; });
+          const choice = prompt(listMsg + `\nEnter number (1-${matches.length}):`, '1');
+          const idx = parseInt(choice,10) - 1;
+          if (!isNaN(idx) && matches[idx]) lcrCall = matches[idx];
         }
-      });
-    }
-    
-    syncPrintTable();
-    alert("Cause list successfully loaded from cloud!");
-    
-  } catch (error) {
-    console.error("Error fetching from local server:", error);
-    alert("Error loading cause list from cloud. Please try again.");
-  }
-}
-
-// ── Search History ──────────────────────────────────────────────
-function openSearchModal() {
-  document.getElementById('searchHistoryModal').style.display = 'flex';
-}
-
-function closeSearchModal() {
-  document.getElementById('searchHistoryModal').style.display = 'none';
-  document.getElementById('searchHistoryResults').style.display = 'none';
-  document.getElementById('searchHistoryInput').value = '';
-}
-
-async function searchCaseHistory() {
-  const searchInput = document.getElementById('searchHistoryInput').value.trim();
-  if (!searchInput) {
-    alert("कृपया केस नंबर दर्ज करें। (Please enter a Case Number)");
-    return;
-  }
-
-  const normalizedSearch = searchInput.toLowerCase().replace(/\s+/g, '');
-  const resultsContainer = document.getElementById('searchHistoryResults');
-  const loading = document.getElementById('searchHistoryLoading');
-  const btn = document.getElementById('searchHistoryBtn');
-
-  resultsContainer.style.display = 'none';
-  loading.style.display = 'block';
-  btn.disabled = true;
-
-  try {
-    let data = [];
-    if (window.PortalDB) {
-      data = await window.PortalDB.getCauseLists();
-    } else {
-      throw new Error('PortalDB not available');
-    }
-
-    const latestMatches = new Map();
-
-    if (data.length > 0) {
-      data.forEach(list => {
-        if (list.cases && Array.isArray(list.cases)) {
-          list.cases.forEach(c => {
-            const caseNo = (c.case_no || '').toLowerCase().replace(/\s+/g, '');
-            if (caseNo.includes(normalizedSearch)) {
-              if (!latestMatches.has(caseNo)) {
-                latestMatches.set(caseNo, {
-                  date: list.created_at ? list.created_at.split('T')[0] : (list.date || '-'),
-                  heading: c.heading || '-',
-                  judge: c.judge || '-',
-                  exactCaseNo: c.case_no
-                });
-              }
-            }
-          });
+        for (const editorId of Object.keys(FIELD_MAP)) {
+          const input = document.getElementById(editorId);
+          if (input && lcrCall[editorId] !== undefined) input.value = lcrCall[editorId];
         }
-      });
-    }
+        syncFields();
+        alert('LCR Call loaded successfully!');
+      } catch (error) {
+        console.error('Error fetching LCR Call:', error);
+        alert('Error loading LCR Call.');
+      }
+    });
+  } // Fix for missing closing brace
 
-    const matches = Array.from(latestMatches.values());
+  const letterTypeSelect = document.getElementById('letter_type');
+  const prevDateInput = document.getElementById('prev_call_date');
 
-    if (matches.length === 0) {
-      resultsContainer.innerHTML = `<div style="text-align: center; color: #d93025; font-weight: bold; padding: 15px;">कोई रिकॉर्ड नहीं मिला। (No records found for '${searchInput}')</div>`;
-    } else {
-      let html = `<table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 14px;">
-                    <thead>
-                      <tr style="background: #f1f3f4; border-bottom: 2px solid #ddd;">
-                        <th style="padding: 10px;">Latest Date</th>
-                        <th style="padding: 10px;">Case No.</th>
-                        <th style="padding: 10px;">Heading</th>
-                        <th style="padding: 10px;">Judge</th>
-                      </tr>
-                    </thead>
-                    <tbody>`;
-      matches.forEach(m => {
-        html += `<tr style="border-bottom: 1px solid #eee;">
-                   <td style="padding: 10px; font-weight: bold; color: #1a73e8; white-space: nowrap;">${m.date}</td>
-                   <td style="padding: 10px;">${m.exactCaseNo}</td>
-                   <td style="padding: 10px;">${m.heading}</td>
-                   <td style="padding: 10px;">${m.judge}</td>
-                 </tr>`;
-      });
-      html += `</tbody></table>`;
-      resultsContainer.innerHTML = html;
-    }
-
-    resultsContainer.style.display = 'block';
-  } catch (error) {
-    console.error("Error searching history:", error);
-    alert("इतिहास खोजने में त्रुटि। (Error searching history.)");
-  } finally {
-    loading.style.display = 'none';
-    btn.disabled = false;
+  if (letterTypeSelect) {
+    letterTypeSelect.addEventListener('change', syncFields);
   }
-}
+  if (prevDateInput) {
+    prevDateInput.addEventListener('input', syncFields);
+  }
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const qCaseNo = urlParams.get('case_no');
+  const qMode = urlParams.get('mode');
+  const qPrevDate = urlParams.get('prev_date');
+
+  if (qMode === 'reminder' && letterTypeSelect) {
+    letterTypeSelect.value = 'reminder';
+  }
+
+  if (qPrevDate && prevDateInput) {
+    let dtStr = qPrevDate;
+    if (qPrevDate.includes('T') || qPrevDate.includes('-')) {
+      const dt = new Date(qPrevDate);
+      if (!isNaN(dt.getTime())) dtStr = dt.toLocaleDateString('en-GB');
+    }
+    prevDateInput.value = dtStr;
+  }
+
+  if (qCaseNo) {
+    const caseInput = document.getElementById('case_no');
+    if (caseInput) {
+      caseInput.value = qCaseNo;
+    }
+  }
+  syncFields();
+});
