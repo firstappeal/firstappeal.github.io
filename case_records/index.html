@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Case Records System - Patna High Court</title>
+  <!-- Google Fonts & Font Awesome -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="app-container">
+    <!-- TOP NAVBAR -->
+    <header class="navbar no-print">
+      <div class="nav-brand">
+        <a href="../index.html" class="back-link" title="Return to Main Portal Dashboard">
+          <i class="fa-solid fa-arrow-left"></i>
+        </a>
+        <div class="brand-logo">
+          <i class="fa-solid fa-box-archive"></i>
+        </div>
+        <div class="brand-text">
+          <h1>High Court Case Records System</h1>
+          <p>Patna High Court — Master Judicial Records & Record Room Register</p>
+        </div>
+      </div>
+
+      <div class="nav-actions">
+        <span style="font-size:0.78rem;color:var(--text-muted);display:flex;align-items:center;gap:5px;" id="syncBadge">
+          <i class="fa-solid fa-circle-check" style="color:#22c55e;"></i> Synced at <span id="lastSyncedTime">—</span>
+        </span>
+        <button type="button" class="btn btn-primary" id="addRecordBtn">
+          <i class="fa-solid fa-plus"></i> New Case Record
+        </button>
+        <button type="button" class="btn btn-secondary" id="exportCsvBtn">
+          <i class="fa-solid fa-file-csv"></i> Export CSV
+        </button>
+        <button type="button" class="btn btn-secondary" id="printSummaryBtn">
+          <i class="fa-solid fa-print"></i> Print Register
+        </button>
+      </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+      <!-- KPI STATS BAR -->
+      <section class="kpi-grid no-print">
+        <div class="kpi-card blue">
+          <div class="kpi-icon"><i class="fa-solid fa-folder-closed"></i></div>
+          <div class="kpi-data">
+            <span class="kpi-value" id="kpiTotalRecords">0</span>
+            <span class="kpi-label">Total Case Records</span>
+          </div>
+        </div>
+
+        <div class="kpi-card green">
+          <div class="kpi-icon"><i class="fa-solid fa-gavel"></i></div>
+          <div class="kpi-data">
+            <span class="kpi-value" id="kpiFirstAppeals">0</span>
+            <span class="kpi-label">First Appeals</span>
+          </div>
+        </div>
+
+        <div class="kpi-card purple">
+          <div class="kpi-icon"><i class="fa-solid fa-landmark"></i></div>
+          <div class="kpi-data">
+            <span class="kpi-value" id="kpiJudgments">0</span>
+            <span class="kpi-label">Lower Court Judgments</span>
+          </div>
+        </div>
+
+        <div class="kpi-card orange">
+          <div class="kpi-icon"><i class="fa-solid fa-cubes"></i></div>
+          <div class="kpi-data">
+            <span class="kpi-value" id="kpiBundles">0</span>
+            <span class="kpi-label" id="kpiBundlesLabel">Record Room Bundles</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- SEARCH & FILTER CONTROLS -->
+      <section class="controls-card no-print">
+        <div class="search-box">
+          <i class="fa-solid fa-magnifying-glass search-icon"></i>
+          <input type="text" id="searchInput"
+            placeholder="Search by Case No, Year, Party Name, Lower Court, or Bundle No...">
+          <button type="button" id="clearSearchBtn" class="clear-btn" style="display: none;"><i
+              class="fa-solid fa-xmark"></i></button>
+        </div>
+
+        <div class="filter-group">
+          <select id="filterCaseType" class="form-select">
+            <option value="First Appeal">First Appeal (F.A.)</option>
+          </select>
+
+          <select id="filterYear" class="form-select">
+            <option value="">All Years</option>
+          </select>
+        </div>
+      </section>
+
+      <!-- DATA TABLE CONTAINER -->
+      <section class="table-card">
+        <div class="table-header-bar no-print">
+          <h2><i class="fa-solid fa-list-check"></i> Master First Appeal Case Records Register</h2>
+          <span class="count-badge" id="recordCountBadge">0 Records</span>
+        </div>
+
+        <div class="table-responsive">
+          <table class="data-table" id="caseRecordsTable">
+            <thead>
+              <tr>
+                <th>First Appeal Details</th>
+                <th>Parties (Appellant vs Respondent)</th>
+                <th>Lower Court Details</th>
+                <th>Judgment / Decree Dates</th>
+                <th>Filing FA Date</th>
+                <th>Valuation (Suit / Appeal)</th>
+                <th>Record Room Bundle</th>
+                <th class="no-print">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="caseRecordsTableBody">
+              <!-- Dynamically populated -->
+            </tbody>
+          </table>
+        </div>
+
+        <div id="noRecordsState" class="empty-state" style="display: none;">
+          <i class="fa-solid fa-folder-open empty-icon"></i>
+          <h3>No Case Records Found</h3>
+          <p>No records match your search criteria. Click "New Case Record" to add case details to the master database.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <!-- ADD / EDIT RECORD MODAL -->
+    <div id="recordModal" class="modal-overlay no-print" style="display: none;">
+      <div class="modal-card wide-modal">
+        <div class="modal-header">
+          <h3 id="modalTitle"><i class="fa-solid fa-plus-circle"></i> Add New First Appeal Case Record</h3>
+          <button type="button" class="modal-close" id="closeModalBtn">&times;</button>
+        </div>
+
+        <form id="recordForm" class="modal-body">
+          <input type="hidden" id="recordId" value="">
+
+          <!-- SECTION 1: HIGH COURT APPEAL INFO -->
+          <div class="form-section">
+            <div class="section-title"><i class="fa-solid fa-gavel"></i> 1. High Court Appeal Details</div>
+            <div class="form-row cols-3" style="margin-bottom: 12px;">
+              <div class="form-group">
+                <label for="case_type">Case Type <span class="req">*</span></label>
+                <select id="case_type" required class="form-control">
+                  <option value="First Appeal">First Appeal (F.A.)</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="case_no">Case No. <span class="req">*</span></label>
+                <input type="number" id="case_no" required placeholder="e.g. 3" class="form-control">
+              </div>
+
+              <div class="form-group">
+                <label for="case_year">Case Year <span class="req">*</span></label>
+                <input type="number" id="case_year" required placeholder="e.g. 1973" class="form-control">
+              </div>
+            </div>
+            
+            <div class="form-row cols-2">
+              <div class="form-group">
+                <label for="date_of_filing_fa">Date of Filing First Appeal</label>
+                <input type="date" id="date_of_filing_fa" class="form-control">
+              </div>
+            </div>
+          </div>
+
+          <!-- SECTION 2: PARTIES -->
+          <div class="form-section">
+            <div class="section-title"><i class="fa-solid fa-users"></i> 2. Party Names</div>
+            <div class="form-row cols-2">
+              <div class="form-group">
+                <label for="appellant">Appellant(s) Name <span class="req">*</span></label>
+                <input type="text" id="appellant" required placeholder="e.g. Ram Swaroop & Others" class="form-control">
+              </div>
+
+              <div class="form-group">
+                <label for="respondent">Respondent(s) Name <span class="req">*</span></label>
+                <input type="text" id="respondent" required placeholder="e.g. State of Bihar & Others"
+                  class="form-control">
+              </div>
+            </div>
+          </div>
+
+          <!-- SECTION 3: LOWER COURT DETAILS -->
+          <div class="form-section">
+            <div class="section-title"><i class="fa-solid fa-landmark"></i> 3. Lower Court Details</div>
+            
+            <div class="form-group" style="margin-bottom: 12px;">
+              <label for="lc_court">Court Name / Designation <span class="req">*</span></label>
+              <input type="text" id="lc_court" required placeholder="e.g. Subordinate Judge I, Patna" class="form-control">
+            </div>
+
+            <div class="form-row cols-2">
+              <div class="form-group">
+                <label for="lc_case_type">LC Case Type</label>
+                <input type="text" id="lc_case_type" placeholder="e.g. Land Acquisition Case / Title Suit" class="form-control">
+              </div>
+
+              <div class="form-group">
+                <label for="lc_case_no">LC Case No. & Year</label>
+                <div class="dual-inputs">
+                  <input type="text" id="lc_case_no" placeholder="No. (e.g. 12)" class="form-control">
+                  <input type="text" id="lc_case_year" placeholder="Year (e.g. 1971)" class="form-control">
+                </div>
+              </div>
+            </div>
+
+            <div class="form-row cols-2" style="margin-top: 12px;">
+              <div class="form-group">
+                <label for="date_of_judgment">Date of Judgment</label>
+                <input type="date" id="date_of_judgment" class="form-control">
+              </div>
+
+              <div class="form-group">
+                <label for="date_of_decree_award">Date of Decree / Award</label>
+                <input type="date" id="date_of_decree_award" class="form-control">
+              </div>
+            </div>
+          </div>
+
+          <!-- SECTION 4: VALUATION & RECORD ROOM -->
+          <div class="form-section">
+            <div class="section-title"><i class="fa-solid fa-coins"></i> 4. Valuation & Record Room Storage</div>
+            <div class="form-row cols-3">
+              <div class="form-group">
+                <label for="suit_value">Suit Value (₹)</label>
+                <input type="text" id="suit_value" placeholder="e.g. ₹ 50,000/-" class="form-control">
+              </div>
+
+              <div class="form-group">
+                <label for="appeal_value">Appeal Value (₹)</label>
+                <input type="text" id="appeal_value" placeholder="e.g. ₹ 50,000/-" class="form-control">
+              </div>
+
+              <div class="form-group">
+                <label for="record_room_bundle_no">Record Room Bundle No. <span class="req">*</span></label>
+                <input type="text" id="record_room_bundle_no" required placeholder="e.g. RR-B-1042 / Shelf 4"
+                  class="form-control">
+              </div>
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-cancel" id="cancelModalBtn">Cancel</button>
+            <button type="submit" class="btn btn-primary" id="saveRecordBtn">
+              <i class="fa-solid fa-floppy-disk"></i> Save Case Record
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- DETAILS VIEW SHEET MODAL -->
+    <div id="detailsModal" class="modal-overlay no-print" style="display: none;">
+      <div class="modal-card">
+        <div class="modal-header">
+          <h3><i class="fa-solid fa-file-invoice"></i> Judicial Case Record Sheet</h3>
+          <button type="button" class="modal-close" id="closeDetailsBtn">&times;</button>
+        </div>
+        <div class="modal-body" id="detailsModalContent">
+          <!-- Dynamically populated preview -->
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" id="printDetailsBtn"><i class="fa-solid fa-print"></i> Print
+            Record Sheet</button>
+          <button type="button" class="btn btn-cancel" id="dismissDetailsBtn">Close</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+    <script src="../shared/db.js?v=2"></script>
+  <script src="script.js"></script>
+</body>
+
+</html>

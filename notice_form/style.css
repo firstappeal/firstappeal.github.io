@@ -1,0 +1,606 @@
+/* ============================================================
+   NOTICE FORWARDING FORM – STYLE SHEET
+   उच्च न्यायालय, पटना
+   ============================================================ */
+
+/* Fonts: using system font stack defined in index.html for offline support */
+
+/* ── CSS Variables ─────────────────────────────────────────── */
+:root {
+  --gold:      #c9a227;
+  --gold-lt:   #f0d97a;
+  --navy:      #1a2744;
+  --navy-lt:   #243260;
+  --cream:     #fdf8ef;
+  --ink:       #1c1c1c;
+  --ink-lt:    #444;
+  --border:    #b8a890;
+  --field-bg:  #fffdf7;
+  --focus:     #c9a227;
+  --shadow:    rgba(26,39,68,.18);
+  --radius:    10px;
+  --paper:     #fff;
+}
+
+/* ── Reset & Base ────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { font-size: 15px; }
+
+body {
+  font-family: 'Noto Sans Devanagari', 'Segoe UI', 'Ubuntu', Arial, sans-serif;
+  background: linear-gradient(135deg, #1a2744 0%, #243260 40%, #2e4080 100%);
+  min-height: 100vh;
+  padding: 0 0 60px 0;
+  color: var(--ink);
+}
+
+/* ══════════════════════════════════════════════════════════════
+   CONTROL PANEL
+   ══════════════════════════════════════════════════════════════ */
+.control-panel {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 40px;
+  background: rgba(26,39,68,.97);
+  backdrop-filter: blur(12px);
+  border-bottom: 2px solid var(--gold);
+  box-shadow: 0 4px 24px rgba(0,0,0,.4);
+}
+
+.panel-header { display: flex; align-items: center; gap: 14px; }
+.panel-logo   { font-size: 2rem; line-height:1; }
+
+.panel-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--gold-lt);
+  font-family: 'Noto Sans Devanagari', sans-serif;
+  letter-spacing: .3px;
+}
+.panel-subtitle {
+  font-size: .82rem;
+  color: #aab4cc;
+  margin-top: 2px;
+}
+
+.panel-actions { display: flex; gap: 12px; align-items: center; }
+
+.btn {
+  padding: 9px 22px;
+  border: none;
+  border-radius: 8px;
+  font-family: 'Noto Sans Devanagari', 'Segoe UI', 'Ubuntu', Arial, sans-serif;
+  font-size: .88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all .22s ease;
+  display: flex; align-items: center; gap: 7px;
+}
+.btn-clear   { background: #2c3654; color: #c5cedf; }
+.btn-preview { background: rgba(201,162,39,.18); color: var(--gold-lt); border: 1.5px solid var(--gold); }
+.btn-print   {
+  background: linear-gradient(135deg, var(--gold) 0%, #e8b830 100%);
+  color: #1a2744;
+  box-shadow: 0 4px 16px rgba(201,162,39,.35);
+}
+.btn:hover   { transform: translateY(-2px); filter: brightness(1.1); }
+.btn:active  { transform: translateY(0); }
+
+/* ══════════════════════════════════════════════════════════════
+   FORM CARD (SCREEN)
+   ══════════════════════════════════════════════════════════════ */
+.page-wrapper {
+  display: flex;
+  justify-content: center;
+  padding: 36px 20px 0;
+}
+
+.form-card {
+  width: 680px;
+  background: var(--paper);
+  border-radius: 14px;
+  box-shadow: 0 20px 60px var(--shadow), 0 0 0 1px rgba(201,162,39,.25);
+  overflow: hidden;
+}
+
+/* Gold top bar */
+.form-card::before {
+  content: '';
+  display: block;
+  height: 6px;
+  background: linear-gradient(90deg, var(--gold) 0%, var(--gold-lt) 50%, var(--gold) 100%);
+}
+
+.form-body { padding: 28px 40px 24px; }
+
+/* ── Sub-header & Main-header ─────────────────────────────── */
+.sub-header {
+  text-align: center;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--ink-lt);
+  margin-top: 4px;
+  font-family: 'Noto Sans Devanagari', sans-serif;
+  letter-spacing: .5px;
+}
+
+.main-header {
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--navy);
+  font-family: 'Noto Sans Devanagari', sans-serif;
+  margin-bottom: 22px;
+  line-height: 1.2;
+  letter-spacing: .5px;
+}
+
+/* ── Top-right corner ─────────────────────────────────────── */
+.top-right-row {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+/* ── Field styles ─────────────────────────────────────────── */
+.field {
+  display: inline-block;
+  background: var(--field-bg);
+  border: none;
+  border-bottom: 1.8px dotted var(--border);
+  border-radius: 0;
+  padding: 4px 6px 2px;
+  font-family: 'Noto Sans Devanagari', 'Segoe UI', 'Ubuntu', Arial, sans-serif;
+  font-size: .88rem;
+  color: var(--ink);
+  outline: none;
+  transition: border-color .2s, background .2s;
+  vertical-align: middle;
+}
+.field:focus {
+  border-bottom: 2px solid var(--focus);
+  background: #fffbe8;
+}
+.field::placeholder { color: #bbb; font-size: .8rem; }
+
+.field-full   { width: 100%; }
+.field-sm     { width: 130px; }
+.field-xs     { width: 72px; }
+.field-inline { width: 100px; }
+.field-long   { width: 220px; }
+
+/* ── Section spacing ─────────────────────────────────────── */
+.section { margin-bottom: 10px; }
+
+.dotted-line-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 6px;
+  border-bottom: 1.4px dotted #ccc;
+  padding-bottom: 4px;
+}
+
+/* ── Labels ──────────────────────────────────────────────── */
+.label-static { font-size: .88rem; color: var(--ink); white-space: nowrap; }
+.label-bold   { font-weight: 700; font-size: .95rem; color: var(--navy); }
+.label-end    { font-size: .78rem; color: #888; white-space: nowrap; margin-left: auto; padding-left: 8px; }
+
+/* ── Date row ────────────────────────────────────────────── */
+.date-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding: 6px 0;
+  border-bottom: 1.4px dotted #ddd;
+  margin-bottom: 8px;
+}
+
+/* ── Case row ────────────────────────────────────────────── */
+.case-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding: 4px 0;
+}
+
+/* ── Party row ───────────────────────────────────────────── */
+.party-row { align-items: center; }
+
+/* ── Prati section ───────────────────────────────────────── */
+.prati-section { margin-top: 6px; }
+.prati-block   { text-align: center; margin-bottom: 6px; }
+
+/* ── Body text ───────────────────────────────────────────── */
+.body-text p {
+  line-height: 1.9;
+  font-size: .88rem;
+  color: var(--ink);
+  text-align: justify;
+}
+.dash-field {
+  display: inline-block;
+  width: 80px;
+  border-bottom: 1.4px dotted var(--border);
+}
+
+/* ── Signature section ───────────────────────────────────── */
+.sig-section {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  margin-top: 10px;
+}
+.left-col  { flex: 1; }
+.right-col {
+  text-align: right;
+  min-width: 160px;
+  padding-top: 20px;
+}
+.sig-name  { font-weight: 700; color: var(--navy); font-size: .95rem; }
+.sig-title { font-size: .85rem; color: var(--ink-lt); margin-top: 3px; }
+
+/* ── Footer ─────────────────────────────────────────────── */
+.form-footer {
+  text-align: center;
+  font-size: .72rem;
+  color: #aaa;
+  margin-top: 22px;
+  padding-top: 12px;
+  border-top: 1px solid #eee;
+  letter-spacing: .3px;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   PRINT PAGE (hidden on screen, shown when printing / preview)
+   ══════════════════════════════════════════════════════════════ */
+.print-page {
+  display: none;
+  width: 210mm;
+  min-height: 297mm;
+  margin: 40px auto 0;
+  background: #fff;
+  box-shadow: 0 8px 40px rgba(0,0,0,.15);
+  padding: 20mm 20mm 20mm 25mm;
+  font-family: 'Noto Sans Devanagari', serif;
+  font-size: 13pt;
+  color: #000;
+  line-height: 1.8;
+  position: relative;
+}
+
+/* Preview mode – show print page on screen */
+.preview-active .print-page    { display: block; }
+.preview-active #editorWrapper { display: none; }
+
+/* ── Print-page internals ─────────────────────────────────── */
+.pr-topright {
+  position: absolute;
+  top: 15mm;
+  right: 20mm;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-size: 11pt;
+}
+.pr-topright .pr-val {
+  border-bottom: 1.5px dotted #000;
+  min-width: 140px;
+  display: inline-block;
+  text-align: center;
+}
+.pr-subheader {
+  text-align: center;
+  font-size: 16pt;
+  font-weight: 700;
+  color: #000;
+  margin-top: 10mm;
+  letter-spacing: 0.5px;
+}
+.pr-mainheader {
+  text-align: center;
+  font-size: 24pt;
+  font-weight: 700;
+  margin-bottom: 20pt;
+  line-height: 1.2;
+  letter-spacing: 1px;
+}
+.pr-row {
+  display: flex;
+  align-items: baseline;
+  gap: 6pt;
+  flex-wrap: wrap;
+  margin-bottom: 8pt;
+}
+.pr-bold { font-weight: 700; }
+.pr-label { font-weight: 700; font-size: 13pt; }
+
+.pr-dline {
+  border-bottom: 1.5px dotted #000;
+  min-height: 24pt;
+  display: block;
+  margin-bottom: 6pt;
+  padding: 0 4pt;
+}
+
+.pr-val {
+  font-family: 'Noto Sans Devanagari', serif;
+  font-size: 13pt;
+  color: #111;
+  padding: 0 4px;
+}
+
+.pr-dotted-under {
+  border-bottom: 1.5px dotted #000;
+  display: inline-block;
+  padding-bottom: 1px;
+  height: 1.5em;
+  vertical-align: bottom;
+  white-space: nowrap;
+  margin: 0 4px;
+}
+
+.pr-date-row {
+  margin: 15pt 0 10pt;
+  font-size: 13pt;
+}
+
+.pr-party-row {
+  display: flex;
+  align-items: baseline;
+  gap: 10pt;
+  border-bottom: 1.5px dotted #000;
+  margin-bottom: 10pt;
+  padding-bottom: 2px;
+}
+.pr-party {
+  flex: 1;
+  font-size: 13pt;
+}
+.pr-party-label {
+  font-size: 11pt;
+  color: #000;
+  white-space: nowrap;
+  padding-left: 8pt;
+  font-weight: 700;
+}
+
+.pr-center-label {
+  text-align: center;
+  font-weight: 700;
+  font-size: 13pt;
+  margin: 12pt 0 8pt;
+}
+
+.pr-para {
+  text-align: justify;
+  font-size: 13pt;
+  line-height: 2;
+  margin-bottom: 12pt;
+}
+
+.pr-sig-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-top: 20pt;
+  gap: 20pt;
+}
+.pr-left {
+  flex: 1;
+}
+.pr-left-divider {
+  width: 140px;
+  border-top: 1.5px solid #000;
+  margin-top: 18pt;
+}
+.pr-right {
+  text-align: right;
+  min-width: 150pt;
+  padding-top: 40pt;
+}
+
+.pr-sig-name  { font-weight: 700; font-size: 13pt; }
+.pr-sig-title { font-size: 11pt; color: #000; margin-top: 4px; }
+
+.pr-footer {
+  text-align: left;
+  font-size: 9pt;
+  color: #333;
+  margin-top: 20pt;
+  padding-top: 8pt;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   @MEDIA PRINT
+   ══════════════════════════════════════════════════════════════ */
+/* ── Watermark ───────────────────────────────────────────────── */
+.watermark-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.08;
+  z-index: 0;
+  pointer-events: none;
+}
+.watermark-container img {
+  width: 200px;
+  height: auto;
+  margin-bottom: 15px;
+}
+.print-body {
+  position: relative;
+  z-index: 1;
+}
+
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 12mm 20mm 12mm 25mm;
+  }
+
+  html, body { 
+    background: #fff !important; 
+    padding: 0 !important;
+    margin: 0 !important;
+    height: auto !important;
+    min-height: auto !important;
+    overflow: visible !important; 
+  }
+
+  .no-print,
+  #editorWrapper { display: none !important; }
+
+  .print-page {
+    display: block !important;
+    box-shadow: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    min-height: auto !important;
+    page-break-after: always !important;
+    break-after: page !important;
+  }
+  .print-page:last-child {
+    page-break-after: auto !important;
+    break-after: auto !important;
+  }
+
+  .pr-topright { position: absolute; top: 0; right: 0; }
+  
+  /* Compact spacing for single-page print fit */
+  .pr-para {
+    line-height: 1.8 !important;
+    margin-bottom: 8pt !important;
+  }
+  .pr-sig-row {
+    margin-top: 15pt !important;
+  }
+  .pr-center-label {
+    margin: 8pt 0 6pt !important;
+  }
+  .pr-date-row {
+    margin-top: 10pt !important;
+  }
+  .pr-footer {
+    margin-top: 15pt !important;
+    padding-top: 4pt !important;
+  }
+
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   UTILITY
+   ══════════════════════════════════════════════════════════════ */
+.seva-section { border: 1.5px solid #e8e0d0; border-radius: 6px; padding: 8px 12px 6px; background: #fffdf9; }
+
+/* ── Autocomplete suggestions ── */
+.suggestions-list {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  max-height: 200px;
+  overflow-y: auto;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  text-align: left;
+}
+.suggestion-item {
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  border-bottom: 1px solid #f0f0f0;
+  color: #333;
+  transition: background 0.2s ease;
+}
+.suggestion-item:last-child {
+  border-bottom: none;
+}
+.suggestion-item:hover, .suggestion-item.active {
+  background: #f0f7ff;
+  color: #0066cc;
+}
+
+/* ── Custom Modal Styling ────────────────────────────────────── */
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(26, 39, 68, 0.8);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.modal-overlay.active {
+  opacity: 1;
+}
+.modal-card {
+  background: var(--paper);
+  border-radius: 12px;
+  padding: 24px;
+  width: 420px;
+  max-width: 90%;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  transform: scale(0.9);
+  transition: transform 0.3s ease;
+  border-top: 4px solid var(--gold);
+}
+.modal-overlay.active .modal-card {
+  transform: scale(1);
+}
+.modal-card h3 {
+  font-family: 'Noto Sans Devanagari', sans-serif;
+  color: var(--navy);
+  font-size: 1.3rem;
+  margin-bottom: 12px;
+}
+.modal-card p {
+  font-size: 0.92rem;
+  color: var(--ink-lt);
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+.modal-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+.btn-cancel {
+  background: #f0f0f0;
+  color: #555;
+  border: 1px solid #ccc;
+}
+.btn-cancel:hover {
+  background: #e4e4e4;
+}
+.btn-danger {
+  background: #d9534f;
+  color: #fff;
+}
+.btn-danger:hover {
+  background: #c9302c;
+}
+
