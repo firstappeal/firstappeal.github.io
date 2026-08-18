@@ -104,6 +104,14 @@
       return results.flat();
     },
 
+    async getRecentCaseRecords(limit = 1000) {
+      const r = await fetch(`${SUPA_URL}/rest/v1/case_records?select=case_no,case_year,appellant,respondent&order=created_at.desc&limit=${limit}`, {
+        headers: HEADERS
+      });
+      if (!r.ok) return [];
+      return r.json();
+    },
+
     async insertCaseRecord(body) {
       return sbInsert('case_records', {
         case_type:             body.case_type || 'First Appeal',
