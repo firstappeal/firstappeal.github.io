@@ -417,6 +417,10 @@ body {
   margin-bottom: 6pt;
 }
 
+.doc-row + .doc-party-row {
+  margin-top: 25pt;
+}
+
 .val-appellant, .val-respondent {
   flex: 1;
   text-align: center;
@@ -530,6 +534,8 @@ body {
 .val-appeal-type,
 .val-case-no,
 .val-case-year,
+.val-appellant,
+.val-respondent,
 .val-to-title,
 .val-to-address,
 .val-date,
@@ -626,6 +632,42 @@ body {
   box-shadow: 0 4px 12px rgba(217, 83, 79, 0.3);
 }
 
+/* ── Watermark ───────────────────────────────────────────────── */
+.watermark-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.08;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.watermark-container img {
+  width: 200px;
+  height: auto;
+  margin-bottom: 15px;
+}
+
+.watermark-text {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #000;
+  text-align: center;
+  white-space: nowrap;
+  letter-spacing: 1.5px;
+}
+
+#std_header_block, .doc-to-section, #p_reminder_banner, #bw_subject_block, .doc-date-row, .doc-salutation, .doc-body-paragraph, .doc-sign-off {
+  z-index: 1;
+  position: relative;
+}
+
 /* ══════════════════════════════════════════════════════════════
    @MEDIA PRINT
    ══════════════════════════════════════════════════════════════ */
@@ -696,6 +738,9 @@ body {
   }
   .doc-party-row {
     margin-bottom: 6pt !important;
+  }
+  .doc-row + .doc-party-row {
+    margin-top: 25pt !important;
   }
   .doc-from-section {
     margin-top: 15pt !important;

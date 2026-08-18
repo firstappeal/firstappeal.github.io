@@ -54,8 +54,39 @@ document.addEventListener('DOMContentLoaded', () => {
       caseRecords = [];
     }
 
+    // Update last-synced timestamp
+    const syncEl = document.getElementById('lastSyncedTime');
+    if (syncEl) syncEl.textContent = new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' });
+
     populateYearFilter();
     renderRecords();
+
+    // ── Deep-link: read ?search= param from URL (from global search on dashboard) ──
+    const urlParams = new URLSearchParams(window.location.search);
+    const deepSearch = urlParams.get('search');
+    if (deepSearch) {
+      // Parse key like "FA/152/2025" → extract case_no and year for the search box
+      // e.g. "152 2025" so the search string hits "fa first appeal 152 2025 ..."
+      const parts = deepSearch.split('/');
+      if (parts.length >= 2) {
+        // parts[0] = "FA", parts[1] = case_no, parts[2] = year (optional)
+        const caseNo = parts[1] || '';
+        const caseYear = parts[2] || '';
+        const readable = caseYear ? `${caseNo} ${caseYear}` : caseNo;
+        searchInput.value = readable;
+
+        // Also pre-set the case type filter if it's "FA"
+        if (parts[0].toUpperCase() === 'FA') {
+          filterCaseType.value = 'First Appeal';
+        }
+      } else {
+        searchInput.value = deepSearch;
+      }
+      clearSearchBtn.style.display = 'block';
+      renderRecords();
+      // Smoothly scroll to the table
+      setTimeout(() => document.getElementById('caseRecordsTable')?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 300);
+    }
   }
 
   function populateYearFilter() {
@@ -81,7 +112,9 @@ document.addEventListener('DOMContentLoaded', () => {
       const matchType = !typeVal || r.case_type === typeVal;
       const matchYear = !yearVal || String(r.case_year) === String(yearVal);
       
-      const searchStr = `${r.case_type} ${r.case_no} ${r.case_year} ${r.appellant} ${r.respondent} ${r.lc_court} ${r.lc_case_type} ${r.record_room_bundle_no}`.toLowerCase();
+      // Include 'fa' as alias for 'First Appeal' and 'first appeal' to support both spellings
+      const caseTypeAlias = (r.case_type || '').toLowerCase().includes('first appeal') ? 'fa first appeal' : (r.case_type || '').toLowerCase();
+      const searchStr = `${caseTypeAlias} ${r.case_no} ${r.case_year} ${r.appellant} ${r.respondent} ${r.lc_court} ${r.lc_case_type} ${r.record_room_bundle_no}`.toLowerCase();
       const matchQuery = !query || searchStr.includes(query);
 
       return matchType && matchYear && matchQuery;
@@ -91,7 +124,14 @@ document.addEventListener('DOMContentLoaded', () => {
     kpiTotalRecords.textContent = caseRecords.length;
     kpiFirstAppeals.textContent = caseRecords.filter(r => r.case_type === 'First Appeal').length;
     kpiJudgments.textContent = caseRecords.filter(r => r.date_of_judgment).length;
-    kpiBundles.textContent = new Set(caseRecords.map(r => r.record_room_bundle_no).filter(Boolean)).size;
+    const uniqueBundles = new Set(caseRecords.map(r => r.record_room_bundle_no).filter(Boolean)).size;
+    const bundledCasesCount = caseRecords.filter(r => r.record_room_bundle_no && r.record_room_bundle_no.trim() !== '').length;
+    kpiBundles.textContent = uniqueBundles;
+    
+    const kpiBundlesLabel = document.getElementById('kpiBundlesLabel');
+    if (kpiBundlesLabel) {
+      kpiBundlesLabel.textContent = `Bundles (${bundledCasesCount} cases)`;
+    }
 
     recordCountBadge.textContent = `${filtered.length} Record${filtered.length === 1 ? '' : 's'}`;
 
@@ -164,6 +204,19 @@ document.addEventListener('DOMContentLoaded', () => {
       appeal_value: document.getElementById('appeal_value').value,
       record_room_bundle_no: document.getElementById('record_room_bundle_no').value
     };
+
+    // Duplicate Case Warning (only for new records)
+    if (!recordData.id && window.PortalDB && typeof window.PortalDB.checkCaseExists === 'function') {
+      try {
+        const exists = await window.PortalDB.checkCaseExists(recordData.case_type, recordData.case_no, recordData.case_year);
+        if (exists) {
+          const proceed = confirm(`⚠️ Warning: ${recordData.case_type} No. ${recordData.case_no} of ${recordData.case_year} already exists in the master database.\n\nDo you want to add it again as a duplicate?`);
+          if (!proceed) return;
+        }
+      } catch (err) {
+        console.warn('Duplicate check failed:', err);
+      }
+    }
 
     await saveCaseRecordToStorage(recordData);
     closeRecordModal();
@@ -353,7 +406,12 @@ document.addEventListener('DOMContentLoaded', () => {
   closeDetailsBtn.addEventListener('click', () => detailsModal.style.display = 'none');
   dismissDetailsBtn.addEventListener('click', () => detailsModal.style.display = 'none');
 
-  printDetailsBtn.addEventListener('click', () => window.print());
+  printDetailsBtn.addEventListener('click', () => {
+    const prevTitle = document.title;
+    document.title = detailsModalContent.querySelector('h2')?.textContent?.replace('PATNA HIGH COURT — ', '') || prevTitle;
+    window.print();
+    document.title = prevTitle;
+  });
   printSummaryBtn.addEventListener('click', () => window.print());
 
   // 6. Search & Filters

@@ -212,35 +212,34 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Populate fields when case is selected
-    function selectCase(caseKey) {
+    async function selectCase(caseKey) {
       sankhyaInput.value = caseKey;
       suggestionsDiv.style.display = 'none';
 
       const caseData = CASES_DB[caseKey];
+      const parts = caseKey.split('/');
+      const typeCode = parts[0] || '';
+      const caseNumber = parts[1] || '';
+      const caseYear = parts[2] || '';
+      const fullTypeName = APPEAL_TYPES[typeCode.toUpperCase()] || typeCode;
+
+      // Always Update Core Inputs (Even if not in local CASES_DB)
+      const typeField = document.getElementById('case_type');
+      const noField = document.getElementById('case_no');
+      const yearField = document.getElementById('case_year');
+      const appellantField = document.getElementById('appellant');
+      const respondentField = document.getElementById('respondent');
+
+      if (typeField) typeField.value = fullTypeName;
+      if (noField) noField.value = caseNumber;
+      if (yearField) yearField.value = caseYear;
+
       if (caseData) {
-        // Parse case code e.g. "FA/3/1973"
-        const parts = caseKey.split('/');
-        
-        let typeCode = parts[0] || '';
-        let caseNumber = parts[1] || '';
-        let caseYear = parts[2] || '';
-
-        // Expand type name
-        let fullTypeName = APPEAL_TYPES[typeCode.toUpperCase()] || typeCode;
-
-        // Update Inputs
-        const typeField = document.getElementById('case_type');
-        const noField = document.getElementById('case_no');
-        const yearField = document.getElementById('case_year');
-        const appellantField = document.getElementById('appellant');
-        const respondentField = document.getElementById('respondent');
-
-        if (typeField) typeField.value = fullTypeName;
-        if (noField) noField.value = caseNumber;
-        if (yearField) yearField.value = caseYear;
         if (appellantField) appellantField.value = caseData.appellant || '';
         if (respondentField) respondentField.value = caseData.respondent || '';
       }
+
+      await fetchMasterDetails(true);
       syncFields();
     }
 
@@ -251,6 +250,134 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
+
+  // 5b. Manual Trigger for Auto-Populate from Master Records
+  async function fetchMasterDetails(forceOverwrite = false) {
+    const typeField = document.getElementById('case_type');
+    const noField = document.getElementById('case_no');
+    const yearField = document.getElementById('case_year');
+
+    const cTypeRaw = typeField ? typeField.value.trim() : '';
+    const cNo = noField ? noField.value.trim() : '';
+    const cYear = yearField ? yearField.value.trim() : '';
+
+    if (!cTypeRaw || !cNo || !cYear) return;
+
+    // Resolve Abbreviations (e.g. 'FA' -> 'First Appeal' and 'First Appeal' -> 'FA')
+    let fullType = cTypeRaw;
+    let typeAbbr = cTypeRaw.toUpperCase();
+
+    if (APPEAL_TYPES[cTypeRaw.toUpperCase()]) {
+      fullType = APPEAL_TYPES[cTypeRaw.toUpperCase()];
+    } else {
+      const foundKey = Object.keys(APPEAL_TYPES).find(key => APPEAL_TYPES[key].toLowerCase() === cTypeRaw.toLowerCase());
+      if (foundKey) {
+        typeAbbr = foundKey;
+        fullType = APPEAL_TYPES[foundKey];
+      }
+    }
+
+    // 1. Fetch Appellant/Respondent from local CASES_DB
+    if (typeof CASES_DB !== 'undefined') {
+      const localCaseKey = `${typeAbbr}/${cNo}/${cYear}`.toUpperCase();
+      const localData = CASES_DB[localCaseKey];
+      
+      const appellantField = document.getElementById('appellant');
+      const respondentField = document.getElementById('respondent');
+
+      if (localData) {
+        if (appellantField && (forceOverwrite || !appellantField.value)) appellantField.value = localData.appellant || '';
+        if (respondentField && (forceOverwrite || !respondentField.value)) respondentField.value = localData.respondent || '';
+      }
+    }
+
+    // 2. Fetch Lower Court details from Supabase
+    try {
+      if (window.PortalDB && typeof window.PortalDB.getSingleCaseRecord === 'function') {
+        const match = await window.PortalDB.getSingleCaseRecord(fullType, cNo, cYear);
+
+        if (match) {
+          const lcCourtField = document.getElementById('court_of_the');
+          const appealFromField = document.getElementById('appeal_from');
+          const appealFromNoField = document.getElementById('appeal_from_no');
+          const appealFromYearField = document.getElementById('appeal_from_year');
+          const arisingOutOfField = document.getElementById('arising_out_of');
+          const recipientTitleField = document.getElementById('recipient_title');
+
+          if (match.lc_court && lcCourtField && (forceOverwrite || !lcCourtField.value)) {
+            lcCourtField.value = match.lc_court;
+            const parts = match.lc_court.split(',');
+            if (recipientTitleField && (!recipientTitleField.value || recipientTitleField.value === "District and Sessions Judge")) {
+              recipientTitleField.value = parts[0].trim();
+            }
+            const recipientAddressField = document.getElementById('recipient_address');
+            if (recipientAddressField && parts.length > 1 && (!recipientAddressField.value || recipientAddressField.value.trim().toLowerCase() === "patna")) {
+              recipientAddressField.value = parts.slice(1).join(',').trim();
+            } else if (recipientAddressField && parts.length === 1 && recipientAddressField.value.trim().toLowerCase() === "patna") {
+              recipientAddressField.value = '';
+            }
+          }
+          if (match.lc_case_type && appealFromField && (forceOverwrite || !appealFromField.value)) {
+            let cleanedType = match.lc_case_type.trim();
+            if (cleanedType.toLowerCase().endsWith('of the')) {
+              cleanedType = cleanedType.substring(0, cleanedType.length - 6).trim();
+            }
+            appealFromField.value = cleanedType;
+          }
+          if (match.lc_case_no && appealFromNoField && (forceOverwrite || !appealFromNoField.value)) appealFromNoField.value = match.lc_case_no;
+          if (match.lc_case_year && appealFromYearField && (forceOverwrite || !appealFromYearField.value)) appealFromYearField.value = match.lc_case_year;
+          
+          if (arisingOutOfField && (forceOverwrite || !arisingOutOfField.value) && match.lc_case_type && match.lc_case_no && match.lc_case_year) {
+            let arisingText = `${match.lc_case_type} No. ${match.lc_case_no} of ${match.lc_case_year}`;
+            
+            const formatDate = (dateStr) => {
+              if (!dateStr) return '';
+              const parts = dateStr.split('-');
+              if (parts.length === 3) {
+                if (parts[0].length === 4) return `${parts[2]}-${parts[1]}-${parts[0]}`;
+                if (parts[2].length === 4) return dateStr;
+              }
+              const d = new Date(dateStr);
+              if (!isNaN(d.getTime())) {
+                return `${String(d.getDate()).padStart(2, '0')}-${String(d.getMonth() + 1).padStart(2, '0')}-${d.getFullYear()}`;
+              }
+              return dateStr;
+            };
+
+            const fmtJ = formatDate(match.date_of_judgment);
+            const fmtD = formatDate(match.date_of_decree_award);
+
+            if (match.date_of_judgment || match.date_of_decree_award) {
+              if (match.date_of_judgment && match.date_of_decree_award) {
+                if (fmtJ === fmtD) {
+                  arisingText = `Judgment and Decree/Award dated ${fmtJ}`;
+                } else {
+                  arisingText = `Judgment dated ${fmtJ} and Decree/Award dated ${fmtD}`;
+                }
+              } else if (match.date_of_judgment) {
+                arisingText = `Judgment dated ${fmtJ}`;
+              } else if (match.date_of_decree_award) {
+                arisingText = `Decree/Award dated ${fmtD}`;
+              }
+            } else {
+              arisingText = 'Judgment and Decree';
+            }
+            
+            arisingOutOfField.value = arisingText;
+          }
+        }
+      }
+    } catch (err) {
+      console.warn('Could not auto-sync details from master DB:', err);
+    }
+    syncFields();
+  }
+
+  // Attach blur listeners to trigger fetch when entered manually
+  const cNoInput = document.getElementById('case_no');
+  const cYearInput = document.getElementById('case_year');
+  if (cNoInput) cNoInput.addEventListener('blur', () => fetchMasterDetails(false));
+  if (cYearInput) cYearInput.addEventListener('blur', () => fetchMasterDetails(false));
 
   // 6. Custom Confirmation Modal Listeners
   const modal = document.getElementById('confirmModal');
@@ -301,30 +428,8 @@ document.addEventListener('DOMContentLoaded', () => {
 // ── Actions ──────────────────────────────────────────────────
 function printForm() {
   syncFields();
-  const extractedData = {
-    case_type: document.getElementById('case_type')?.value || 'First Appeal',
-    case_no: document.getElementById('case_no')?.value || '',
-    case_year: document.getElementById('case_year')?.value || '',
-    appellant: document.getElementById('appellant')?.value || '',
-    respondent: document.getElementById('respondent')?.value || '',
-    lc_court: (document.getElementById('court_of_the')?.value || document.getElementById('recipient_title')?.value || ''),
-    lc_case_type: document.getElementById('arising_out_of')?.value || '',
-    lc_case_no: document.getElementById('appeal_from_no')?.value || '',
-    lc_case_year: document.getElementById('appeal_from_year')?.value || ''
-  };
-
-  if (typeof window.promptSaveCaseRecord === 'function' && (extractedData.case_no || extractedData.appellant)) {
-    window.promptSaveCaseRecord(extractedData, () => {
-      if (typeof saveToCloud === 'function') saveToCloud(true);
-      window.print();
-    }, () => {
-      if (typeof saveToCloud === 'function') saveToCloud(true);
-      window.print();
-    });
-  } else {
-    if (typeof saveToCloud === 'function') saveToCloud(true);
-    window.print();
-  }
+  if (typeof saveToCloud === 'function') saveToCloud(true);
+  window.print();
 }
 
 function clearForm() {
@@ -359,16 +464,40 @@ async function saveToCloud(silent = false) {
   if (lcrStatusElem) lcrData['lcr_status'] = lcrStatusElem.value;
   if (letterTypeElem) lcrData['letter_type'] = letterTypeElem.value;
 
-  try {
-    if (window.PortalDB) {
-      await window.PortalDB.insertLcrCall(lcrData);
-      if (!silent) alert('LCR Call successfully saved!');
-    } else {
-      throw new Error('PortalDB not available');
+  const doSaveLcr = async () => {
+    try {
+      if (window.PortalDB) {
+        await window.PortalDB.insertLcrCall(lcrData);
+        if (!silent) alert('LCR Call successfully saved!');
+      } else {
+        throw new Error('PortalDB not available');
+      }
+    } catch (error) {
+      console.error('Error saving LCR Call:', error);
+      if (!silent) alert('Error saving LCR Call.');
     }
-  } catch (error) {
-    console.error('Error saving LCR Call:', error);
-    if (!silent) alert('Error saving LCR Call.');
+  };
+
+  if (!silent && typeof window.promptSaveCaseRecord === 'function') {
+    const extractedData = {
+      case_type: document.getElementById('case_type')?.value || 'First Appeal',
+      case_no: caseNo,
+      case_year: caseYear,
+      appellant: document.getElementById('appellant')?.value || '',
+      respondent: document.getElementById('respondent')?.value || '',
+      lc_court: (document.getElementById('court_of_the')?.value || document.getElementById('recipient_title')?.value || ''),
+      lc_case_type: document.getElementById('appeal_from')?.value || document.getElementById('arising_out_of')?.value || '',
+      lc_case_no: document.getElementById('appeal_from_no')?.value || '',
+      lc_case_year: document.getElementById('appeal_from_year')?.value || ''
+    };
+
+    if (confirm("Do you want to check and update this case in the Master Case Records? \n\nClick 'OK' to update the Master Record.\nClick 'Cancel' to ONLY save the LCR Call.")) {
+      window.promptSaveCaseRecord(extractedData, doSaveLcr, doSaveLcr);
+    } else {
+      doSaveLcr();
+    }
+  } else {
+    doSaveLcr();
   }
 }
 
@@ -407,6 +536,8 @@ document.addEventListener('DOMContentLoaded', () => {
         alert('Error loading LCR Call.');
       }
     });
+  } // Fix for missing closing brace
+
   const letterTypeSelect = document.getElementById('letter_type');
   const prevDateInput = document.getElementById('prev_call_date');
 

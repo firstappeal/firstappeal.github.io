@@ -98,6 +98,10 @@ function renderPages() {
     
     pagesHTML += `
       <div class="print-page">
+        <!-- Watermark -->
+        <div class="watermark-container">
+          <img src="../lcr_call/emblem.png" alt="Watermark Emblem">
+        </div>
         <div class="doc-meta-header">
           <span class="doc-sch-code">[ P. H. C. Sch. V-22 ]</span>
         </div>
@@ -526,6 +530,7 @@ document.addEventListener('DOMContentLoaded', () => {
     try {
       if (window.PortalDB) {
         await window.PortalDB.insertDirectNotice(noticeData);
+        
         if (!silent) alert("Notice successfully saved to cloud!");
       } else {
         throw new Error('PortalDB not available');

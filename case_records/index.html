@@ -31,6 +31,9 @@
       </div>
 
       <div class="nav-actions">
+        <span style="font-size:0.78rem;color:var(--text-muted);display:flex;align-items:center;gap:5px;" id="syncBadge">
+          <i class="fa-solid fa-circle-check" style="color:#22c55e;"></i> Synced at <span id="lastSyncedTime">—</span>
+        </span>
         <button type="button" class="btn btn-primary" id="addRecordBtn">
           <i class="fa-solid fa-plus"></i> New Case Record
         </button>
@@ -75,7 +78,7 @@
           <div class="kpi-icon"><i class="fa-solid fa-cubes"></i></div>
           <div class="kpi-data">
             <span class="kpi-value" id="kpiBundles">0</span>
-            <span class="kpi-label">Record Room Bundles</span>
+            <span class="kpi-label" id="kpiBundlesLabel">Record Room Bundles</span>
           </div>
         </div>
       </section>
@@ -151,7 +154,7 @@
           <!-- SECTION 1: HIGH COURT APPEAL INFO -->
           <div class="form-section">
             <div class="section-title"><i class="fa-solid fa-gavel"></i> 1. High Court Appeal Details</div>
-            <div class="form-row cols-4">
+            <div class="form-row cols-3" style="margin-bottom: 12px;">
               <div class="form-group">
                 <label for="case_type">Case Type <span class="req">*</span></label>
                 <select id="case_type" required class="form-control">
@@ -168,7 +171,9 @@
                 <label for="case_year">Case Year <span class="req">*</span></label>
                 <input type="number" id="case_year" required placeholder="e.g. 1973" class="form-control">
               </div>
-
+            </div>
+            
+            <div class="form-row cols-2">
               <div class="form-group">
                 <label for="date_of_filing_fa">Date of Filing First Appeal</label>
                 <input type="date" id="date_of_filing_fa" class="form-control">
@@ -196,17 +201,16 @@
           <!-- SECTION 3: LOWER COURT DETAILS -->
           <div class="form-section">
             <div class="section-title"><i class="fa-solid fa-landmark"></i> 3. Lower Court Details</div>
-            <div class="form-row cols-4">
-              <div class="form-group span-2">
-                <label for="lc_court">Court Name / Designation <span class="req">*</span></label>
-                <input type="text" id="lc_court" required placeholder="e.g. Subordinate Judge I, Patna"
-                  class="form-control">
-              </div>
+            
+            <div class="form-group" style="margin-bottom: 12px;">
+              <label for="lc_court">Court Name / Designation <span class="req">*</span></label>
+              <input type="text" id="lc_court" required placeholder="e.g. Subordinate Judge I, Patna" class="form-control">
+            </div>
 
+            <div class="form-row cols-2">
               <div class="form-group">
                 <label for="lc_case_type">LC Case Type</label>
-                <input type="text" id="lc_case_type" placeholder="e.g. Land Acquisition Case / Title Suit"
-                  class="form-control">
+                <input type="text" id="lc_case_type" placeholder="e.g. Land Acquisition Case / Title Suit" class="form-control">
               </div>
 
               <div class="form-group">
@@ -283,7 +287,7 @@
 
   </div>
 
-    <script src="../shared/db.js"></script>
+    <script src="../shared/db.js?v=2"></script>
   <script src="script.js"></script>
 </body>
 

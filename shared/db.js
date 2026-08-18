@@ -46,7 +46,10 @@
       headers: HEADERS,
       body: JSON.stringify(body)
     });
-    if (!r.ok) throw new Error(`UPDATE ${table} failed: ${r.status}`);
+    if (!r.ok) {
+        const err = await r.text();
+        throw new Error(`UPDATE ${table} failed: ${r.status} - ${err}`);
+    }
     return r.json();
   }
 
@@ -65,8 +68,40 @@
   window.PortalDB = {
 
     // ── CASE RECORDS ─────────────────────────────────────────
-    async getCaseRecords() {
-      return sbGet('case_records', 'limit=10000');
+    async getSingleCaseRecord(caseType, caseNo, caseYear) {
+      if (!caseNo || !caseYear) return null;
+      const r = await fetch(`${SUPA_URL}/rest/v1/case_records?case_type=eq.${encodeURIComponent(caseType)}&case_no=eq.${encodeURIComponent(caseNo)}&case_year=eq.${encodeURIComponent(caseYear)}&limit=1`, {
+        headers: HEADERS
+      });
+      if (!r.ok) return null;
+      const data = await r.json();
+      return data.length > 0 ? data[0] : null;
+    },
+
+    async getCaseRecords(select = '*') {
+      const countResp = await fetch(
+        `${SUPA_URL}/rest/v1/case_records?select=id`,
+        { headers: { ...HEADERS, 'Prefer': 'count=exact', 'Range-Unit': 'items', 'Range': '0-0' } }
+      );
+      const total = parseInt(countResp.headers.get('Content-Range')?.split('/')[1] || '0', 10);
+      
+      const limit = 1000;
+      const pages = Math.ceil(total / limit);
+      const promises = [];
+      
+      for (let i = 0; i < pages; i++) {
+        promises.push(
+          fetch(`${SUPA_URL}/rest/v1/case_records?select=${encodeURIComponent(select)}&order=id.desc&limit=${limit}&offset=${i * limit}`, {
+            headers: HEADERS
+          }).then(async r => {
+            if (!r.ok) throw new Error(`GET case_records failed: ${r.status}`);
+            return r.json();
+          })
+        );
+      }
+      
+      const results = await Promise.all(promises);
+      return results.flat();
     },
 
     async insertCaseRecord(body) {
@@ -113,6 +148,40 @@
       });
     },
 
+    async syncMasterLowerCourtDetails(caseType, caseNo, caseYear, lcDetails) {
+      if (!caseNo || !caseYear) return;
+      try {
+        const r = await fetch(`${SUPA_URL}/rest/v1/case_records?case_type=eq.${encodeURIComponent(caseType)}&case_no=eq.${encodeURIComponent(caseNo)}&case_year=eq.${encodeURIComponent(caseYear)}`, {
+          headers: HEADERS
+        });
+        const data = await r.json();
+        if (data && data.length > 0) {
+          const record = data[0];
+          const updateBody = {};
+          let needsUpdate = false;
+          
+          if (!record.lc_court && lcDetails.lc_court) { updateBody.lc_court = lcDetails.lc_court; needsUpdate = true; }
+          if (!record.lc_case_type && lcDetails.lc_case_type) { updateBody.lc_case_type = lcDetails.lc_case_type; needsUpdate = true; }
+          if (!record.lc_case_no && lcDetails.lc_case_no) { updateBody.lc_case_no = lcDetails.lc_case_no; needsUpdate = true; }
+          if (!record.lc_case_year && lcDetails.lc_case_year) { updateBody.lc_case_year = lcDetails.lc_case_year; needsUpdate = true; }
+          if (!record.date_of_judgment && lcDetails.date_of_judgment) { updateBody.date_of_judgment = lcDetails.date_of_judgment; needsUpdate = true; }
+          if (!record.date_of_decree_award && lcDetails.date_of_decree_award) { updateBody.date_of_decree_award = lcDetails.date_of_decree_award; needsUpdate = true; }
+          
+          if (needsUpdate) {
+            await fetch(`${SUPA_URL}/rest/v1/case_records?id=eq.${record.id}`, {
+              method: 'PATCH',
+              headers: { ...HEADERS, 'Content-Type': 'application/json', 'Prefer': 'return=minimal' },
+              body: JSON.stringify(updateBody)
+            });
+            console.log('Master case record auto-synced with new LC details.');
+          }
+        }
+      } catch (err) {
+        console.warn('Auto-sync to master record failed:', err);
+      }
+    },
+
+
     async deleteCaseRecord(id) {
       return sbDelete('case_records', { id });
     },
@@ -121,41 +190,50 @@
     async getLcrCalls() {
       const rows = await sbGet('lcr_calls', 'limit=1000');
       return rows.map(r => ({
-        ...r.data_json,
+        ...(r.data_json || r),
         id:        r.id,
         saved_at:  r.created_at
       }));
     },
 
     async insertLcrCall(body) {
-      return sbInsert('lcr_calls', { data_json: body });
+      return sbInsert('lcr_calls', body);
     },
 
     async updateLcrStatus(id, status) {
-      const rows = await sbGet('lcr_calls', `id=eq.${id}`);
-      if (!rows.length) return;
-      const updated = { ...rows[0].data_json, lcr_status: status };
-      return sbUpdate('lcr_calls', { id }, { data_json: updated });
+      try {
+        return await sbUpdate('lcr_calls', { id }, { lcr_status: status });
+      } catch (err) {
+        console.error("Failed to update LCR status. Make sure the 'lcr_status' column exists in Supabase 'lcr_calls' table.", err);
+      }
+    },
+
+    async checkCaseExists(caseType, caseNo, caseYear) {
+      const r = await fetch(`${SUPA_URL}/rest/v1/case_records?case_type=eq.${encodeURIComponent(caseType)}&case_no=eq.${encodeURIComponent(caseNo)}&case_year=eq.${encodeURIComponent(caseYear)}&select=id`, {
+        headers: { ...HEADERS, 'Prefer': 'count=exact', 'Range': '0-0', 'Range-Unit': 'items' }
+      });
+      const count = parseInt(r.headers.get('Content-Range')?.split('/')[1] || '0', 10);
+      return count > 0;
     },
 
     // ── NOTICE FORMS ─────────────────────────────────────────
     async getNoticeForms() {
       const rows = await sbGet('notice_forms', 'limit=500');
-      return rows.map(r => ({ ...r.data_json, saved_at: r.created_at }));
+      return rows.map(r => ({ ...(r.data || r.data_json || r), saved_at: r.created_at, id: r.id }));
     },
 
     async insertNoticeForm(body) {
-      return sbInsert('notice_forms', { data_json: body });
+      return sbInsert('notice_forms', { caseNo: body.caseNo || '', data: body });
     },
 
     // ── DIRECT NOTICES ───────────────────────────────────────
     async getDirectNotices() {
       const rows = await sbGet('direct_notices', 'limit=500');
-      return rows.map(r => ({ ...r.data_json, saved_at: r.created_at }));
+      return rows.map(r => ({ ...(r.data_json || r), saved_at: r.created_at, id: r.id }));
     },
 
     async insertDirectNotice(body) {
-      return sbInsert('direct_notices', { data_json: body });
+      return sbInsert('direct_notices', body);
     },
 
     // ── CAUSE LISTS ──────────────────────────────────────────
@@ -164,52 +242,56 @@
       return rows.map(r => ({
         id:         r.id,
         created_at: r.created_at,
-        header:     r.header_json || {},
-        cases:      r.cases_json  || []
+        header:     r.header || r.header_json || {},
+        cases:      r.cases || r.cases_json  || []
       }));
     },
 
     async insertCauseList(header, cases) {
-      return sbInsert('cause_lists', { header_json: header, cases_json: cases });
+      return sbInsert('cause_lists', { header: header, cases: cases, date: header.date || null });
     },
 
     // ── FILE TRACKING ────────────────────────────────────────
     async getFileTracking() {
       const rows = await sbGet('file_tracking_state', 'limit=1');
-      return rows.length ? (rows[0].data_json || []) : [];
+      return rows.length ? (rows[0].data || []) : [];
     },
 
     async saveFileTracking(data) {
-      return sbInsert('file_tracking_state', { data_json: data });
+      // Use upsert: check if a row exists, update it, otherwise insert
+      const existing = await sbGet('file_tracking_state', 'limit=1');
+      if (existing.length > 0) {
+        return sbUpdate('file_tracking_state', { id: existing[0].id }, { data: data });
+      }
+      return sbInsert('file_tracking_state', { data: data });
     },
 
     // ── ANALYTICS ────────────────────────────────────────────
     async getAnalytics() {
-      const [lcrRows, noticeRows, directRows, causeRows, trackRows, crRows] = await Promise.all([
+      const countPromise = fetch(
+        `${SUPA_URL}/rest/v1/case_records?select=id`,
+        { headers: { ...HEADERS, 'Prefer': 'count=exact', 'Range-Unit': 'items', 'Range': '0-0' } }
+      ).then(r => parseInt(r.headers.get('Content-Range')?.split('/')[1] || '0', 10));
+
+      const [lcrRows, noticeRows, directRows, causeRows, trackRows, crCount] = await Promise.all([
         sbGet('lcr_calls',           'limit=1000'),
         sbGet('notice_forms',        'limit=500'),
         sbGet('direct_notices',      'limit=500'),
         sbGet('cause_lists',         'limit=100'),
         sbGet('file_tracking_state', 'limit=1'),
-        sbGet('case_records',        'limit=1&select=id')  // just for count
+        countPromise
       ]);
 
-      const mapJson = rows => rows.map(r => ({ ...r.data_json, id: r.id, saved_at: r.created_at }));
-
-      // Get actual case record count
-      const countResp = await fetch(
-        `${SUPA_URL}/rest/v1/case_records?select=id`,
-        { headers: { ...HEADERS, 'Prefer': 'count=exact', 'Range-Unit': 'items', 'Range': '0-0' } }
-      );
-      const crCount = parseInt(countResp.headers.get('Content-Range')?.split('/')[1] || '0', 10);
+      // Map safely resolving flattened or nested schemas
+      const mapJson = rows => rows.map(r => ({ ...(r.data_json || r.data || r), id: r.id, saved_at: r.created_at }));
 
       return {
         status:              'success',
         lcr_calls:           mapJson(lcrRows),
         notice_forms:        mapJson(noticeRows),
         direct_notices:      mapJson(directRows),
-        cause_lists:         causeRows.map(r => ({ cases: r.cases_json || [] })),
-        file_tracking:       trackRows.length ? (trackRows[0].data_json || []) : [],
+        cause_lists:         causeRows.map(r => ({ cases: r.cases || r.cases_json || [], saved_at: r.created_at })),
+        file_tracking:       trackRows.length ? (trackRows[0].data || []) : [],
         case_records:        [],   // don't load all 5k for analytics
         case_records_count:  crCount
       };

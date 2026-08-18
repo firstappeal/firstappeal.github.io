@@ -134,6 +134,11 @@
       <div class="preview-card">
         <div class="print-page" id="printPage">
           
+          <!-- Watermark -->
+          <div class="watermark-container">
+            <img src="emblem.png" alt="Watermark Emblem">
+          </div>
+
           <!-- ── STANDARD FORM CONTAINER (Form II-D-2) ── -->
           <div id="std_header_block">
             <!-- Document Header -->
@@ -158,7 +163,6 @@
               <span class="val-appeal-from-no" id="p_appeal_from_no">&nbsp;</span>
               <span class="doc-label">OF</span>
               <span class="val-appeal-from-year" id="p_appeal_from_year">&nbsp;</span>
-              <span class="doc-label">OF THE</span>
             </div>
 
             <!-- Arising Out Of Row -->
@@ -175,8 +179,8 @@
             </div>
 
             <!-- Appellant Row -->
-            <div class="doc-party-row">
-              <span class="val-appellant" id="p_appellant">&nbsp;</span>
+            <div class="doc-party-row" style="margin-top: 40px;">
+              <span class="val-appellant" id="p_appellant" style="font-weight: bold !important;">&nbsp;</span>
               <span class="doc-party-label">Appellant.</span>
             </div>
 
@@ -187,7 +191,7 @@
 
             <!-- Respondent Row -->
             <div class="doc-party-row">
-              <span class="val-respondent" id="p_respondent">&nbsp;</span>
+              <span class="val-respondent" id="p_respondent" style="font-weight: bold !important;">&nbsp;</span>
               <span class="doc-party-label">Respondent.</span>
             </div>
 
@@ -262,10 +266,10 @@
   <script src="../shared/case_record_modal.js"></script>
 
   <!-- Master Cases Database -->
-  <script src="../notice_form/cases_db.js"></script>
+  <script src="../notice_form/cases_db.js?v=2"></script>
 
   <!-- JavaScript Logic -->
-    <script src="../shared/db.js"></script>
+    <script src="../shared/db.js?v=2"></script>
   <script src="script.js"></script>
 </body>
 </html>

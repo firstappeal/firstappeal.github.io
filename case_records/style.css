@@ -525,3 +525,23 @@ label {
   .data-table th { background: #f0f0f0 !important; }
   .hc-case-badge, .bundle-badge { background: none !important; border: none !important; color: #000 !important; font-weight: bold !important; padding: 0 !important; }
 }
+
+/* ── RESPONSIVE LAYOUT (FIX FOR MODAL / MOBILE) ──────────────── */
+@media (max-width: 900px) {
+  .form-row.cols-4 { grid-template-columns: repeat(2, 1fr); }
+  .form-group.span-2 { grid-column: span 1; }
+}
+
+@media (max-width: 600px) {
+  .form-row.cols-2, .form-row.cols-3, .form-row.cols-4 { grid-template-columns: 1fr; }
+  .form-group.span-2 { grid-column: span 1; }
+  
+  .modal-card { max-height: 95vh; border-radius: 10px; margin: 0 10px; }
+  .modal-overlay { padding: 0.5rem; }
+  
+  .navbar { flex-direction: column; gap: 1rem; align-items: flex-start; padding: 1rem; }
+  .nav-actions { width: 100%; justify-content: space-between; }
+  
+  .controls-card { flex-direction: column; align-items: stretch; }
+  .filter-group { flex-direction: column; }
+}
