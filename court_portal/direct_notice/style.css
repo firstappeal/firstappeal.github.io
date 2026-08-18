@@ -1,0 +1,841 @@
+/* ── SYSTEM DESIGN SYSTEM (style.css) ────────────────────────── */
+
+/* Global Resets */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', 'Ubuntu', 'Helvetica Neue', Arial, sans-serif;
+  background-color: #0b0f19;
+  color: #f3f4f6;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* prevent body-level scroll; panels scroll independently */
+}
+
+/* ── NAVBAR STYLING ────────────────────────────────────────── */
+.navbar {
+  height: 70px;
+  background-color: #0f172a;
+  border-bottom: 1px solid #1e293b;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  z-index: 100;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.nav-icon {
+  font-size: 32px;
+  line-height: 1;
+}
+
+.navbar h1 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #f8fafc;
+  letter-spacing: 0.5px;
+}
+
+.nav-subtitle {
+  font-size: 12px;
+  color: #94a3b8;
+  margin-top: 2px;
+}
+
+.nav-actions {
+  display: flex;
+  gap: 12px;
+}
+
+/* ── BUTTONS ───────────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid transparent;
+}
+
+.btn-primary {
+  background-color: #eab308;
+  color: #0f172a;
+}
+
+.btn-primary:hover {
+  background-color: #ca8a04;
+  box-shadow: 0 4px 12px rgba(234, 179, 8, 0.3);
+}
+
+.btn-secondary {
+  background-color: #1e293b;
+  color: #cbd5e1;
+  border-color: #334155;
+}
+
+.btn-secondary:hover {
+  background-color: #334155;
+  color: #f1f5f9;
+}
+
+.btn-danger {
+  background-color: #ef4444;
+  color: #ffffff;
+}
+
+.btn-danger:hover {
+  background-color: #dc2626;
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+}
+
+/* ── WORKSPACE SPLIT ────────────────────────────────────────── */
+.workspace {
+  flex: 1;
+  display: flex;
+  min-height: 0; /* critical: allows flex children to shrink and scroll */
+  overflow: hidden;
+}
+
+/* Left Sidebar: Editor */
+.editor-panel {
+  width: 450px;
+  min-width: 400px;
+  flex-shrink: 0;
+  background-color: #0f172a;
+  border-right: 1px solid #1e293b;
+  overflow-y: auto;  /* editor panel scrolls independently */
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Scrollbar for Editor */
+.editor-panel::-webkit-scrollbar {
+  width: 6px;
+}
+.editor-panel::-webkit-scrollbar-track {
+  background: #0f172a;
+}
+.editor-panel::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 3px;
+}
+
+.form-section {
+  background-color: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-section h2 {
+  font-size: 15px;
+  font-weight: 700;
+  color: #e2e8f0;
+  border-bottom: 1px solid #334155;
+  padding-bottom: 8px;
+  margin-bottom: 4px;
+}
+
+/* Input elements */
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  position: relative;
+}
+
+.input-group label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.input-group input,
+.input-group textarea {
+  background-color: #0b0f19;
+  border: 1px solid #334155;
+  border-radius: 6px;
+  padding: 10px 12px;
+  font-family: inherit;
+  font-size: 14px;
+  color: #f8fafc;
+  width: 100%;
+  transition: all 0.15s ease-in-out;
+}
+
+.input-group input:focus,
+.input-group textarea:focus {
+  outline: none;
+  border-color: #eab308;
+  box-shadow: 0 0 0 1px #eab308;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.form-row-3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+}
+
+/* Autocomplete search styling */
+.search-group {
+  position: relative;
+}
+
+.search-input-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.search-input-wrapper input {
+  padding-right: 36px;
+}
+
+.search-clear {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #94a3b8;
+  font-size: 20px;
+  cursor: pointer;
+  display: none;
+  line-height: 1;
+}
+
+.search-clear:hover {
+  color: #f8fafc;
+}
+
+.autocomplete-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: #0b0f19;
+  border: 1px solid #334155;
+  border-top: none;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  max-height: 250px;
+  overflow-y: auto;
+  z-index: 50;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+  display: none;
+}
+
+.autocomplete-item {
+  padding: 12px 14px;
+  cursor: pointer;
+  font-size: 13.5px;
+  color: #cbd5e1;
+  border-bottom: 1px solid #1e293b;
+  transition: background-color 0.15s ease;
+}
+
+.autocomplete-item:last-child {
+  border-bottom: none;
+}
+
+.autocomplete-item:hover {
+  background-color: #1e293b;
+  color: #f8fafc;
+}
+
+.helper-text {
+  font-size: 11px;
+  color: #64748b;
+  margin-top: 2px;
+}
+
+/* Right Panel: Preview Container */
+.preview-panel {
+  flex: 1;
+  background-color: #0b0f19;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px;
+  overflow-y: auto;
+}
+
+/* Scrollbar for Preview */
+.preview-panel::-webkit-scrollbar {
+  width: 6px;
+}
+.preview-panel::-webkit-scrollbar-track {
+  background: #0b0f19;
+}
+.preview-panel::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 3px;
+}
+
+/* ── A4 PRINT PAGE SPECIFICATIONS ───────────────────────────── */
+.print-page {
+  width: 210mm;
+  height: 297mm;
+  background-color: #ffffff;
+  color: #000000;
+  padding: 12mm 20mm 12mm 25mm; /* Binding margins */
+  font-family: 'Times New Roman', Times, serif !important;
+  font-size: 13pt;
+  line-height: 1.65;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  box-sizing: border-box;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4) !important;
+  margin-bottom: 25px; /* space between pages on screen */
+  page-break-after: always;
+  break-after: page;
+}
+
+.print-page:last-child {
+  margin-bottom: 0;
+  page-break-after: avoid;
+  break-after: avoid;
+}
+
+/* ── DOCUMENT PREVIEW INTERNAL STYLES ────────────────────────── */
+
+/* Header Code */
+.doc-meta-header {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 35pt;
+}
+
+.doc-sch-code {
+  font-size: 12pt;
+  font-weight: normal;
+  letter-spacing: 0.2px;
+}
+
+/* Main Headers */
+.doc-main-header {
+  text-align: center;
+  margin-bottom: 25pt;
+}
+
+.doc-court-title {
+  font-size: 15.5pt;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  text-transform: none;
+}
+
+.doc-jurisdiction {
+  font-size: 13pt;
+  font-style: italic;
+  margin-top: 4pt;
+}
+
+/* Case Row */
+.doc-case-title-row {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  margin-bottom: 30pt;
+  font-size: 13.5pt;
+  width: 100%;
+}
+
+.doc-label {
+  padding: 0 4px;
+}
+
+.doc-row {
+  width: 100%;
+  margin-bottom: 8pt;
+  display: flex;
+  align-items: baseline;
+}
+
+.inline-row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* Value fillers with dotted underlines */
+.val-appeal-type,
+.val-case-no,
+.val-case-year,
+.val-arising-out-of,
+.val-arising-court,
+.val-connected-case,
+.val-connected-year,
+.val-connected-court,
+.val-appellant,
+.val-respondent,
+.val-to-address,
+.val-advocate-name,
+.val-appearance-period,
+.val-date-day,
+.val-date-month,
+.val-date-year {
+  border-bottom: 1.5px dotted #000000;
+  padding: 0 6px;
+  text-align: center;
+  font-style: italic;
+  font-weight: normal;
+  color: #111111;
+  min-height: 1.6em;
+  display: inline-block;
+  vertical-align: bottom;
+}
+
+/* Dynamic Width / Flex rules for layout lines */
+.val-appeal-type {
+  flex: 1;
+}
+
+.val-case-no {
+  width: 120px;
+}
+
+.val-case-year {
+  width: 80px;
+}
+
+.val-arising-out-of {
+  flex: 1.5;
+}
+
+.val-arising-court {
+  flex: 1;
+}
+
+.val-connected-case {
+  flex: 1;
+}
+
+.val-connected-year {
+  width: 80px;
+}
+
+.val-connected-court {
+  flex: 1.2;
+}
+
+/* Party alignments */
+.doc-party-row {
+  display: flex;
+  align-items: baseline;
+  width: 100%;
+  margin-bottom: 6pt;
+}
+
+.val-appellant,
+.val-respondent {
+  flex: 1;
+  text-align: center;
+  padding-left: 0;
+  min-height: 1.6em;
+}
+
+.doc-party-label {
+  white-space: nowrap;
+  padding-left: 12px;
+}
+
+.doc-versus-row {
+  text-align: center;
+  font-style: italic;
+  margin: 8pt 0;
+  width: 100%;
+}
+
+/* To Section Layout: Next line, left-aligned, indented with paragraph space */
+.doc-to-section {
+  margin-top: 18pt;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.to-label {
+  font-size: 13pt;
+}
+
+.to-address {
+  margin-top: 8pt;
+  padding-left: 40px;
+  line-height: 1.8;
+  width: 100%;
+}
+
+.val-to-address {
+  width: 100%;
+  text-align: left;
+  border-bottom: none;
+  min-height: 2.5em;
+  font-style: normal;
+  white-space: pre-wrap;
+}
+
+/* Notice Body Paragraphs */
+.doc-body-paragraph {
+  margin-top: 14pt;
+  text-align: justify;
+  text-indent: 0;
+}
+
+.paragraph-indent {
+  text-indent: 40pt;
+}
+
+.val-advocate-name {
+  min-width: 250px;
+}
+
+.val-appearance-period {
+  min-width: 100px;
+}
+
+.date-row {
+  margin-top: 20pt;
+}
+
+.val-date-day {
+  min-width: 40px;
+}
+
+.val-date-month {
+  min-width: 100px;
+}
+
+.val-date-year {
+  min-width: 60px;
+}
+
+/* Sign-off styling */
+.doc-sign-off {
+  margin-top: 25pt;
+  display: flex;
+  justify-content: flex-end;
+  text-align: right;
+}
+
+.sign-off-block {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.sign-off-by {
+  font-size: 13pt;
+}
+
+.sign-off-title {
+  font-size: 13pt;
+  font-weight: bold;
+  margin-top: 4pt;
+}
+
+/* Blank space for handwritten signature and stamp */
+.sign-off-space {
+  height: 55pt;
+  width: 100%;
+  display: block;
+}
+
+/* Explicitly allowed bold elements */
+.val-appeal-type,
+.val-case-no,
+.val-case-year,
+.val-to-address,
+.val-advocate-name,
+.val-appearance-period,
+.val-date-day,
+.val-date-month,
+.val-date-year,
+.sign-off-title {
+  font-weight: bold !important;
+}
+
+/* ── MODAL WINDOW STYLING ────────────────────────────────────── */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-card {
+  background-color: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 12px;
+  padding: 24px;
+  width: 400px;
+  text-align: center;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+  transform: scale(0.9);
+  transition: transform 0.2s ease-in-out;
+}
+
+.modal-overlay.active .modal-card {
+  transform: scale(1);
+}
+
+.modal-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+}
+
+.modal-card h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #f8fafc;
+  margin-bottom: 8px;
+}
+
+.modal-card p {
+  font-size: 14px;
+  color: #94a3b8;
+  margin-bottom: 24px;
+  line-height: 1.5;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+/* ── RECIPIENTS EDITOR STYLES ────────────────────────────────── */
+.recipients-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.recipient-item {
+  background-color: #0b0f19;
+  border: 1px solid #334155;
+  border-radius: 6px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.recipient-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.recipient-item-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: #eab308;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.btn-remove-rec {
+  background: none;
+  border: none;
+  color: #ef4444;
+  font-size: 18px;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0;
+  transition: color 0.15s ease;
+}
+
+.btn-remove-rec:hover {
+  color: #fca5a5;
+}
+
+.recipient-input {
+  background-color: #1e293b !important;
+  border-color: #334155 !important;
+  font-family: inherit;
+  font-size: 13.5px;
+  color: #f8fafc;
+  width: 100%;
+  border-radius: 4px;
+  padding: 6px 8px;
+  resize: vertical;
+}
+
+.recipient-input:focus {
+  outline: none;
+  border-color: #eab308 !important;
+}
+
+/* ── PRINT MEDIA QUERY ───────────────────────────────────────── */
+/* ── Watermark ───────────────────────────────────────────────── */
+.watermark-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.08;
+  z-index: 0;
+  pointer-events: none;
+}
+.watermark-container img {
+  width: 200px;
+  height: auto;
+  margin-bottom: 15px;
+}
+.print-page > div:not(.watermark-container) {
+  position: relative;
+  z-index: 1;
+}
+
+@media print {
+  /* Suppress browser background colors & display rules */
+  html, body {
+    background: #ffffff !important;
+    color: #000000 !important;
+    overflow: visible !important;
+    height: auto !important;
+  }
+
+  /* Strip shadows completely on wildcard */
+  * {
+    box-shadow: none !important;
+    text-shadow: none !important;
+    outline: none !important;
+  }
+
+  /* Hide navbar & editor */
+  .no-print {
+    display: none !important;
+  }
+
+  /* Reset workspace and panel heights/overflows */
+  .workspace {
+    display: block !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+
+  .preview-panel {
+    display: block !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background: transparent !important;
+    height: auto !important;
+    width: auto !important;
+    overflow: visible !important;
+  }
+
+  .preview-card {
+    margin: 0 !important;
+    padding: 0 !important;
+    transform: none !important;
+  }
+
+  .print-page {
+    display: flex !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    overflow: hidden !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    background: transparent !important;
+    font-size: 12.5pt !important;
+    line-height: 1.5 !important;
+  }
+
+  /* Spacing tightening for print */
+  .doc-meta-header {
+    margin-bottom: 25pt !important;
+  }
+  .doc-case-title-row {
+    margin-bottom: 25pt !important;
+  }
+  .doc-versus-row {
+    margin: 6pt 0 !important;
+  }
+  .doc-row {
+    margin-bottom: 8pt !important;
+  }
+  .doc-party-row {
+    margin-bottom: 6pt !important;
+  }
+  .doc-to-section {
+    margin-top: 15pt !important;
+  }
+  .doc-body-paragraph {
+    margin-top: 10pt !important;
+    line-height: 1.5 !important;
+  }
+  .doc-sign-off {
+    margin-top: 20pt !important;
+  }
+
+  /* Print specific underline tweaks */
+  .val-appeal-type,
+  .val-case-no,
+  .val-case-year,
+  .val-arising-out-of,
+  .val-arising-court,
+  .val-connected-case,
+  .val-connected-year,
+  .val-connected-court,
+  .val-appellant,
+  .val-respondent,
+  .val-to-address,
+  .val-advocate-name,
+  .val-appearance-period,
+  .val-date-day,
+  .val-date-month,
+  .val-date-year {
+    border-bottom-color: #000000 !important;
+    color: #000000 !important;
+  }
+}
