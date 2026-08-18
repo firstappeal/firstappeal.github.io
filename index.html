@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>उच्च न्यायालय, पटना – सूचना अग्रेषण प्रपत्र</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>पटना उच्च न्यायालय – वाद सूची निर्माता (Cause List Creator)</title>
   <!-- Offline-safe system fonts (no internet required) -->
   <style>
     :root {
@@ -12,276 +12,192 @@
     }
     body { font-family: var(--font-ui); }
   </style>
-  <link rel="stylesheet" href="style.css?v=2"/>
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div style="position: absolute; top: 10px; left: 10px; z-index: 1000;" class="no-print">
         <a href="../index.html" style="text-decoration: none; font-family: sans-serif; background: #2563eb; color: white; padding: 8px 12px; border-radius: 6px; font-size: 14px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">&#8592; Dashboard</a>
     </div>
+  <div id="error-log" style="position:fixed; top:0; left:0; right:0; background:red; color:white; z-index:9999; white-space:pre-wrap;"></div>
+  <script>
+    window.addEventListener('error', function(e) {
+      document.getElementById('error-log').innerText += e.message + ' at ' + e.filename + ':' + e.lineno + '\\n';
+    });
+  </script>
 
-<!-- ═══════════════════ CONTROL PANEL (screen only) ═══════════════════ -->
-<div class="control-panel no-print">
-  <div class="panel-header">
-    <div class="panel-logo">⚖️</div>
-    <div>
-      <div class="panel-title">नोटिस फॉर्वर्डिंग फॉर्म</div>
-      <div class="panel-subtitle">उच्च न्यायालय, पटना</div>
-    </div>
-  </div>
-  <div class="panel-actions">
-    <button class="btn btn-info" id="viewCloudBtn">📂 सहेजे गए नोटिस (Load Saved)</button>
-    <button class="btn btn-success" id="saveToCloudBtn">💾 सहेजें (Save Record)</button>
-    <button class="btn btn-clear" onclick="clearForm()">🗑 साफ़ करें</button>
-    <button class="btn btn-preview" onclick="togglePreview()">👁 Preview</button>
-    <button class="btn btn-print" onclick="printForm()">🖨 Print / PDF</button>
-  </div>
-</div>
-
-<!-- ═══════════════════ EDITABLE FORM (screen) ═══════════════════════ -->
-<!-- ═══════════════════ EDITABLE FORM (screen) ═══════════════════════ -->
-<div class="page-wrapper no-print" id="editorWrapper">
-  <div class="form-card">
-    <div class="form-body">
-
-      <!-- Top-right corner: संख्या -->
-      <div class="top-right-row">
-        <div style="position: relative; display: inline-block;">
-          <input type="text" class="field field-sm" id="sankhya" placeholder="संख्या" autocomplete="off" />
-          <div id="sankhyaSuggestions" class="suggestions-list" style="display: none; position: absolute; top: 100%; left: 0; right: 0; background: #fff; border: 1px solid #ddd; z-index: 1000; max-height: 200px; overflow-y: auto; box-shadow: 0 4px 8px rgba(0,0,0,0.1); border-radius: 4px; text-align: left;"></div>
-        </div>
-        <span class="label-static">संख्या</span>
-      </div>
-
-      <!-- Sub-header -->
-      <div class="sub-header">उप-निबंधक</div>
-      <div class="main-header">उच्च न्यायालय, पटना</div>
-
-      <!-- सेवा में -->
-      <div class="section" id="recipientsContainer">
-        <div class="seva-section recipient-block">
-          <div class="recipient-header" style="display:flex; justify-content:space-between; align-items:center;">
-            <span class="label-bold">सेवा में, (प्राप्तकर्ता 1)</span>
-          </div>
-          <div class="dotted-line-row">
-            <input type="text" class="field field-full recipient-name" placeholder="प्राप्तकर्ता का नाम / पद" />
-          </div>
-          <div class="dotted-line-row">
-            <input type="text" class="field field-full recipient-address" placeholder="पता / कार्यालय" />
-          </div>
-        </div>
-      </div>
-      <div style="text-align: right; margin-bottom: 15px;">
-        <button class="btn btn-sm no-print" style="background: rgba(201,162,39,.18); color: var(--gold-lt); border: 1.5px solid var(--gold); padding: 5px 12px; border-radius: 6px; cursor: pointer;" onclick="addRecipient()">+ एक और प्राप्तकर्ता जोड़ें</button>
-      </div>
-
-      <!-- Patna / date row -->
-      <div class="section date-row">
-        <span class="label-static" style="margin-left: 40px;">पटना</span>
-        <input type="text" class="field field-md" id="patna_date" placeholder="दिनांक/माह (जैसे: 24 जून)" />
-        <span class="label-static">सन्</span>
-        <input type="text" class="field field-sm" id="patna_year" placeholder="वर्ष" />
-        <span class="label-static">ई०</span>
-      </div>
-
-      <!-- Decree row -->
-      <div class="section case-row">
-        <input type="text" class="field" style="width: 320px;" id="lower_court" placeholder="न्यायालय/प्राधिकारी का नाम" />
-        <span class="label-static">की डिक्री सं०</span>
-        <input type="text" class="field field-sm" id="decree_no" placeholder="डिक्री सं०" />
-        <span class="label-static">ता०</span>
-        <input type="text" class="field field-sm" id="decree_date" placeholder="तारीख" />
-        <span class="label-static">के विरुद्ध अपील</span>
-      </div>
-
-      <!-- Appellant / अपीलकर्ता -->
-      <div class="section">
-        <div class="dotted-line-row party-row">
-          <input type="text" class="field field-full" id="appellant" placeholder="अपीलकर्ता का नाम" />
-          <span class="label-end">अपील कर्त्ता</span>
-        </div>
-      </div>
-
-      <!-- Prati / प्रति -->
-      <div class="section prati-section">
-        <div class="prati-block">
-          <span class="label-bold">प्रति</span>
-        </div>
-        <div class="dotted-line-row">
-          <input type="text" class="field field-full" id="respondent" placeholder="उत्तरवादी का नाम" />
-          <span class="label-end">उत्तरवादी</span>
-        </div>
-      </div>
-
-      <!-- महाशय -->
-      <div class="section">
-        <span class="label-bold">महाशय,</span>
-      </div>
-
-      <!-- Body text -->
-      <div class="section body-text">
-        <p style="text-indent: 40px;">
-          निर्देशानुसार उपर्युक्त अपील में इस न्यायालय द्वारा जारी की गई सूचना ता०
-          <input type="text" class="field field-inline" id="notice_date" placeholder="ता०" style="width: 140px;" />
-          इसके साथ आपको भेजी जाती है । अनुरोध है कृपया उस सम्बन्धित व्यक्ति पर यथावत् तामील कराकर, तामील की विवरणी यथाशीघ्र
-          <input type="text" class="field field-inline" id="return_detail" placeholder="विवरण" style="width: 120px;" />
-          तक लौटा दें । आपसे यह भी अनुरोध है कि
-          <input type="text" class="field field-inline field-long" id="extra_anurodh" placeholder="अतिरिक्त विवरण/अनुरोध" style="width: 250px;" />
-          अपील संख्या
-          <input type="text" class="field field-inline" id="appeal_no" placeholder="अपील संख्या" style="width: 140px;" />
-          के अभिलेख में से सम्बन्धित सभी कागज-पत्र निकाल कर इस न्यायालय को यथाशीघ्र भेज दें ।
-        </p>
-      </div>
-
-      <!-- Goshwara, Muchnaye & Signature row -->
-      <div class="section sig-section">
-        <div class="left-col">
-          <div class="label-bold">गोशवारा–</div>
-          <div class="dotted-line-row"><input type="number" class="field field-full" id="goshwara" placeholder="संख्या दर्ज करें" /></div>
-          <div class="label-bold" style="margin-top:14px">सूचनाएं–</div>
-          <div class="dotted-line-row"><input type="number" class="field field-full" id="suchnayein" placeholder="संख्या दर्ज करें" /></div>
-          <div class="label-bold" style="margin-top:14px">प्रतिलिपियां</div>
-          <div class="dotted-line-row"><input type="number" class="field field-full" id="pratilipi1" placeholder="संख्या दर्ज करें" /></div>
-        </div>
-        <div class="right-col">
-          <div class="sig-name">विश्वास भाजन</div>
-          <div class="sig-title">उप-निबंधक</div>
-        </div>
-      </div>
-
-      <!-- Footer -->
-      <div class="form-footer">
-        विनोद प्रेस, पटना-20 (30,000) 12/2013
-      </div>
-
-    </div>
-  </div>
-</div>
-
-<!-- ═══════════════════════ PRINT / PREVIEW CONTAINER ════════════════════════ -->
-<div id="printContainer"></div>
-
-<!-- ═══════════════════════ PRINT TEMPLATE ════════════════════════ -->
-<template id="printTemplate">
-<div class="print-page">
-  <!-- Watermark -->
-  <div class="watermark-container">
-    <img src="../lcr_call/emblem.png" alt="Watermark Emblem">
-  </div>
-  <div class="print-body">
-
-    <!-- top right -->
-    <div class="pr-topright">
-      <span class="pr-val p_sankhya">&nbsp;</span>
-      <span>संख्या</span>
-    </div>
-
-    <div class="pr-subheader">उप-निबंधक</div>
-    <div class="pr-mainheader">उच्च न्यायालय, पटना</div>
-
-    <!-- seva me -->
-    <div class="pr-row" style="margin-top: 25pt;">
-      <span class="pr-label">सेवा में,</span>
-    </div>
-    <div class="pr-dline"><span class="pr-val p_sevame1">&nbsp;</span></div>
-    <div class="pr-dline"><span class="pr-val p_sevame2">&nbsp;</span></div>
-
-    <!-- date row -->
-    <div class="pr-row pr-date-row" style="margin-top: 15pt;">
-      <span style="margin-left: 80pt;">पटना</span>
-      <span class="pr-val pr-dotted-under p_patna_date" style="flex: 1; text-align: center; min-width: 150px;">&nbsp;</span>
-      <span>सन्</span>
-      <span class="pr-val pr-dotted-under p_patna_year" style="width: 80px; text-align: center;">&nbsp;</span>
-      <span>ई०</span>
-    </div>
-
-    <!-- decree row -->
-    <div class="pr-row" style="margin-top: 10pt;">
-      <span class="pr-val pr-dotted-under p_lower_court" style="flex: 2; text-align: center; min-width: 260px;">&nbsp;</span>
-      <span>की डिक्री सं०</span>
-      <span class="pr-val pr-dotted-under p_decree_no" style="flex: 1; text-align: center; min-width: 120px;">&nbsp;</span>
-      <span>ता०</span>
-      <span class="pr-val pr-dotted-under p_decree_date" style="width: 120px; text-align: center;">&nbsp;</span>
-      <span>के विरुद्ध अपील</span>
-    </div>
-
-    <!-- appellant -->
-    <div class="pr-party-row" style="margin-top: 10pt;">
-      <span class="pr-val pr-party p_appellant">&nbsp;</span>
-      <span class="pr-party-label">अपील कर्त्ता</span>
-    </div>
-
-    <!-- prati -->
-    <div class="pr-center-label">प्रति</div>
-    <div class="pr-party-row">
-      <span class="pr-val pr-party p_respondent">&nbsp;</span>
-      <span class="pr-party-label">उत्तरवादी</span>
-    </div>
-
-    <!-- mahashay -->
-    <div class="pr-row pr-bold" style="margin-top: 18pt;">महाशय,</div>
-
-    <!-- body paragraph -->
-    <div class="pr-para" style="text-indent: 40pt; margin-top: 6pt; line-height: 2.2;">
-      निर्देशानुसार उपर्युक्त अपील में इस न्यायालय द्वारा जारी की गई सूचना ता०
-      &nbsp;<span class="pr-val pr-dotted-under p_notice_date" style="display: inline-block; min-width: 100px; text-align: center;">&nbsp;</span>&nbsp;
-      इसके साथ आपको भेजी जाती है । अनुरोध है कृपया उस सम्बन्धित व्यक्ति पर यथावत् तामील कराकर, तामील की विवरणी यथाशीघ्र
-      &nbsp;<span class="pr-val pr-dotted-under p_return_detail" style="display: inline-block; min-width: 120px; text-align: center;">&nbsp;</span>&nbsp;
-      तक लौटा दें । आपसे यह भी अनुरोध है कि
-      &nbsp;<span class="pr-val pr-dotted-under p_extra_anurodh" style="display: inline-block; min-width: 280px; text-align: center;">&nbsp;</span>&nbsp;
-      अपील संख्या
-      &nbsp;<span class="pr-val pr-dotted-under p_appeal_no" style="display: inline-block; min-width: 100px; text-align: center;">&nbsp;</span>&nbsp;
-      के अभिलेख में से सम्बन्धित सभी कागज-पत्र निकाल कर इस न्यायालय को यथाशीघ्र भेज दें ।
-    </div>
-
-    <!-- sig section -->
-    <div class="pr-sig-row" style="margin-top: 25pt;">
-      <div class="pr-left" style="line-height: 2.2;">
+  <!-- ── EDITOR INTERFACE ────────────────────────────────────────── -->
+  <div id="editorWrapper" class="no-print">
+    <!-- Navbar -->
+    <header class="navbar">
+      <div class="nav-logo">
+        <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
+          <path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
+        </svg>
         <div>
-          <span class="pr-bold">गोशवारा–</span>
-          <span class="pr-val pr-dotted-under p_goshwara" style="min-width: 60px; text-align: center;">&nbsp;</span>
+          <h1>वाद सूची निर्माता</h1>
+          <p>पटना उच्च न्यायालय</p>
         </div>
-        <div style="margin-top: 6pt;">
-          <span class="pr-bold">सूचनाएं–</span>
-          <span class="pr-val pr-dotted-under p_suchnayein" style="min-width: 60px; text-align: center;">&nbsp;</span>
-        </div>
-        <div style="margin-top: 6pt;">
-          <span class="pr-bold">प्रतिलिपियां–</span>
-          <span class="pr-val pr-dotted-under p_pratilipi1" style="min-width: 60px; text-align: center;">&nbsp;</span>
-        </div>
-        <div class="pr-left-divider"></div>
       </div>
-      <div class="pr-right">
-        <div class="pr-sig-name">विश्वास भाजन</div>
-        <div class="pr-sig-title">उप-निबंधक</div>
+      <div class="nav-actions">
+        <button type="button" class="btn btn-info" onclick="openSearchModal()">🔍 इतिहास खोजें (Search History)</button>
+        <button type="button" class="btn btn-info" onclick="viewCloudLists()">📂 सहेजी गई सूची लोड करें</button>
+        <button type="button" class="btn btn-success" onclick="saveToCloud()">💾 सूची सहेजें (Save List)</button>
+        <button type="button" class="btn btn-danger" onclick="clearAllRows()">🗑 सूची साफ करें</button>
+        <button type="button" class="btn btn-primary" onclick="printShort()">🖨 संक्षिप्त प्रिंट (Short Print)</button>
+        <button type="button" class="btn btn-primary" onclick="printFull()">🖨 पूरा प्रिंट (Full Print)</button>
       </div>
-    </div>
+    </header>
 
-    <!-- footer -->
-    <div class="pr-footer">
-      विनोद प्रेस, पटना-20 (30,000) 12/2013
-    </div>
+    <!-- Main Container -->
+    <main class="main-container">
+      <!-- Settings Panel -->
+      <div class="panel card">
+        <h2>हेडर विवरण (Header Details)</h2>
+        <div class="settings-grid">
+          <div class="setting-field">
+            <label for="head_court">न्यायालय / शीर्षलेख</label>
+            <input type="text" id="head_court" value="IN THE HIGH COURT OF JUDICATURE AT PATNA" placeholder="शीर्षलेख 1" oninput="syncHeaders()" />
+          </div>
+          <div class="setting-field">
+            <label for="head_bench">शीर्षलेख 2 (Header Line 2)</label>
+            <input type="text" id="head_bench" value="LIST OF FA CASES FOR LISTING" placeholder="शीर्षलेख 2" oninput="syncHeaders()" />
+          </div>
+          <div class="setting-field">
+            <label for="head_date">दिनांक (Date)</label>
+            <input type="text" id="head_date" placeholder="दिनांक" oninput="syncHeaders()" />
+          </div>
+        </div>
+      </div>
 
+      <!-- Collapsible Judge Allocation Panel -->
+      <div class="panel card">
+        <details>
+          <summary style="font-weight: 700; color: var(--primary-color); cursor: pointer; font-size: 1rem; outline: none; display: flex; align-items: center; justify-content: space-between;">
+            <span>⚖️ न्यायाधीश एवं आवंटन नियम (Judges & Allocation Rules)</span>
+            <span style="font-size: 0.8rem; color: var(--accent-color); font-weight: 600;">(क्लिक कर खोलें / बंद करें)</span>
+          </summary>
+          <div style="margin-top: 16px; border-top: 1px solid var(--border-color); padding-top: 16px; display: grid; grid-template-columns: 1fr 2fr; gap: 24px;">
+            <!-- Judges List -->
+            <div style="border-right: 1px solid var(--border-color); padding-right: 16px;">
+              <h3 style="font-size: 0.9rem; font-weight: 700; color: var(--text-main); margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center;">
+                <span>न्यायाधीशों की सूची (Judges List)</span>
+                <button type="button" class="btn btn-success" style="padding: 2px 6px; font-size: 0.75rem;" onclick="addJudgePrompt()">➕ जोड़ें</button>
+              </h3>
+              <ul id="judgesListUI" style="list-style: none; display: flex; flex-direction: column; gap: 8px;">
+                <!-- Judges will be dynamically loaded here -->
+              </ul>
+            </div>
+            
+            <!-- Rules List -->
+            <div>
+              <h3 style="font-size: 0.9rem; font-weight: 700; color: var(--text-main); margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center;">
+                <span>आवंटन नियम (Allocation Rules)</span>
+                <button type="button" class="btn btn-success" style="padding: 2px 6px; font-size: 0.75rem;" onclick="addRuleRow()">➕ नया नियम</button>
+              </h3>
+              <div class="table-responsive">
+                <table class="editor-table" style="font-size: 0.8rem;">
+                  <thead>
+                    <tr>
+                      <th>हेडिंग (Heading)</th>
+                      <th>वर्ष की शर्त (Year Rule)</th>
+                      <th>न्यायाधीश (Assigned Judge)</th>
+                      <th style="width: 50px; text-align: center;">क्रिया</th>
+                    </tr>
+                  </thead>
+                  <tbody id="rulesTableBody">
+                    <!-- Rules will be dynamically loaded here -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </details>
+      </div>
+
+      <!-- Listing Table Panel -->
+      <div class="panel card table-card">
+        <div class="table-header" style="display: flex; gap: 10px; align-items: center; justify-content: space-between; flex-wrap: wrap;">
+          <h2>मुकदमा सूची (Case List)</h2>
+          <div style="display: flex; gap: 10px;">
+            <label class="btn btn-primary" style="cursor: pointer; margin: 0;">
+              📄 PDF से केस निकालें
+              <input type="file" id="pdfUpload" accept=".pdf" style="display: none;" onchange="handlePdfUpload(event)" />
+            </label>
+            <button type="button" class="btn btn-success" onclick="addNewRow()">➕ नया रो जोड़ें</button>
+          </div>
+        </div>
+        
+        <div class="table-responsive">
+          <table class="editor-table">
+            <thead>
+              <tr>
+                <th style="width: 50px;">क्र० सं०</th>
+                <th style="width: 80px;">प्रकृति</th>
+                <th style="width: 140px;">अपील सं० / वर्ष</th>
+                <th>अपीलकर्ता का नाम (Name of Appellant)</th>
+                <th style="width: 150px;">डीलिंग असिस्टेंट (Dealing Assistant)</th>
+                <th style="width: 150px;">हेडिंग (Heading)</th>
+                <th style="width: 200px;">विशेष निर्देश (Listing Direction)</th>
+                <th style="width: 140px;">टिप्पणी (Remarks)</th>
+                <th style="width: 220px;">न्यायाधीश (Allocated Judge)</th>
+                <th style="width: 60px; text-align: center;">हटाएं</th>
+              </tr>
+            </thead>
+            <tbody id="editorTableBody">
+              <!-- Rows will be dynamically added here -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
   </div>
-</div>
-</template>
 
 
-  <!-- Custom Confirmation Modal -->
-  <div id="confirmModal" class="modal-overlay no-print" style="display: none;">
-    <div class="modal-card">
-      <h3>सभी फ़ील्ड साफ़ करें?</h3>
-      <p>क्या आप वाकई सभी फ़ील्ड खाली करना चाहते हैं?<br>Are you sure you want to clear all fields?</p>
-      <div class="modal-actions">
-        <button id="confirmCancel" class="btn btn-cancel">रद्द करें / Cancel</button>
-        <button id="confirmOk" class="btn btn-danger">साफ़ करें / Clear</button>
+  <!-- ── PRINT LAYOUT (A4 Landscape replica) ─────────────────────── -->
+  <div class="print-page" id="printPage">
+    <!-- Dynamic Judge-wise sections are generated here by script.js -->
+  </div>
+
+  <!-- Search History Modal -->
+  <div id="searchHistoryModal" class="no-print" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 10000; align-items: center; justify-content: center;">
+    <div style="background: white; padding: 25px; border-radius: 12px; max-width: 650px; width: 90%; box-shadow: 0 10px 25px rgba(0,0,0,0.2);">
+      <h2 style="margin-top: 0; margin-bottom: 10px; color: #1a73e8;">🔍 केस का इतिहास (Search Case History)</h2>
+      <p style="margin-bottom: 20px; font-size: 14px; color: #555;">यह पता लगाएं कि कोई केस कब सूचीबद्ध हुआ था, किस हेडिंग के तहत और किस जज के सामने।</p>
+      
+      <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+        <input type="text" id="searchHistoryInput" placeholder="Enter Case No. (e.g. FA/123/2023)" style="flex: 1; padding: 10px 15px; border: 1px solid #ccc; border-radius: 6px; font-size: 16px;">
+        <button type="button" class="btn btn-primary" onclick="searchCaseHistory()" id="searchHistoryBtn">खोजें (Search)</button>
+      </div>
+
+      <div id="searchHistoryResults" style="max-height: 350px; overflow-y: auto; border: 1px solid #e0e0e0; border-radius: 6px; padding: 15px; background: #f8f9fa; display: none;">
+        <!-- Results go here -->
+      </div>
+      <div id="searchHistoryLoading" style="display: none; text-align: center; padding: 20px; color: #666;">खोज रहा है... (Searching...)</div>
+
+      <div style="text-align: right; margin-top: 20px;">
+        <button type="button" class="btn btn-danger" onclick="closeSearchModal()">बंद करें (Close)</button>
       </div>
     </div>
   </div>
 
-  <!-- Shared Case Record Sync Script -->
-  <script src="../shared/case_record_modal.js"></script>
+  <!-- Load Master Cases Database -->
+  <script src="../notice_form/cases_db.js?v=2"></script>
+  
+  <!-- Load Assistants Database -->
+  <script src="assistants_db.js?v=2"></script>
+  
+  <!-- Load PDF.js for PDF parsing -->
+  <script src="pdf.min.js"></script>
+  <script>
+    // Configure worker source
+    if (window['pdfjs-dist/build/pdf']) {
+      window.pdfjsLib = window['pdfjs-dist/build/pdf'];
+      window.pdfjsLib.GlobalWorkerOptions.workerSrc = 'pdf.worker.min.js';
+    }
+  </script>
 
-  <script src="cases_db.js?v=2"></script>
+  <!-- Main Script -->
     <script src="../shared/db.js?v=2"></script>
   <script src="script.js"></script>
 </body>
