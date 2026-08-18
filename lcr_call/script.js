@@ -306,11 +306,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
           if (match.lc_court && lcCourtField && (forceOverwrite || !lcCourtField.value)) {
             lcCourtField.value = match.lc_court;
+            const parts = match.lc_court.split(',');
             if (recipientTitleField && (!recipientTitleField.value || recipientTitleField.value === "District and Sessions Judge")) {
-              recipientTitleField.value = match.lc_court.split(',')[0];
+              recipientTitleField.value = parts[0].trim();
+            }
+            const recipientAddressField = document.getElementById('recipient_address');
+            if (recipientAddressField && parts.length > 1 && (!recipientAddressField.value || recipientAddressField.value.trim().toLowerCase() === "patna")) {
+              recipientAddressField.value = parts.slice(1).join(',').trim();
+            } else if (recipientAddressField && parts.length === 1 && recipientAddressField.value.trim().toLowerCase() === "patna") {
+              recipientAddressField.value = '';
             }
           }
-          if (match.lc_case_type && appealFromField && (forceOverwrite || !appealFromField.value)) appealFromField.value = match.lc_case_type;
+          if (match.lc_case_type && appealFromField && (forceOverwrite || !appealFromField.value)) {
+            let cleanedType = match.lc_case_type.trim();
+            if (cleanedType.toLowerCase().endsWith('of the')) {
+              cleanedType = cleanedType.substring(0, cleanedType.length - 6).trim();
+            }
+            appealFromField.value = cleanedType;
+          }
           if (match.lc_case_no && appealFromNoField && (forceOverwrite || !appealFromNoField.value)) appealFromNoField.value = match.lc_case_no;
           if (match.lc_case_year && appealFromYearField && (forceOverwrite || !appealFromYearField.value)) appealFromYearField.value = match.lc_case_year;
           
