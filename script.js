@@ -1,96 +1,138 @@
 /* ============================================================
-   LCR CALL FORM – JAVASCRIPT LOGIC
+   NOTICE FORWARDING FORM – JAVASCRIPT
+   उच्च न्यायालय, पटना
    ============================================================ */
 
-// ── Field mapping: editor-id → print-element-id ──────────────
+// ── Field mapping: editor-id → print-element-class ──────────────
 const FIELD_MAP = {
-  case_type         : 'p_case_type',
-  case_no           : 'p_case_no',
-  case_year         : 'p_case_year',
-  appeal_from       : 'p_appeal_from',
-  appeal_from_no    : 'p_appeal_from_no',
-  appeal_from_year  : 'p_appeal_from_year',
-  court_of_the      : 'p_court_of_the',
-  arising_out_of    : 'p_arising_out_of',
-  appellant         : 'p_appellant',
-  respondent        : 'p_respondent',
-  recipient_title   : 'p_recipient_title',
-  recipient_address : 'p_recipient_address',
-  custom_date       : 'p_custom_date',
-  letter_no         : 'p_letter_no',
-  file_no           : 'p_file_no',
-  section_deptt     : 'p_section_deptt',
+  sankhya       : 'p_sankhya',
+  patna_date    : 'p_patna_date',
+  patna_year    : 'p_patna_year',
+  lower_court   : 'p_lower_court',
+  decree_no     : 'p_decree_no',
+  decree_date   : 'p_decree_date',
+  appellant     : 'p_appellant',
+  respondent    : 'p_respondent',
+  notice_date   : 'p_notice_date',
+  return_detail : 'p_return_detail',
+  extra_anurodh : 'p_extra_anurodh',
+  appeal_no     : 'p_appeal_no',
+  goshwara      : 'p_goshwara',
+  suchnayein    : 'p_suchnayein',
+  pratilipi1    : 'p_pratilipi1',
 };
 
-// Appeal abbreviation expansions
-const APPEAL_TYPES = {
-  'FA': 'First Appeal',
-  'MA': 'Miscellaneous Appeal',
-  'CA': 'Civil Appeal',
-  'SA': 'Second Appeal'
-};
-
-// ── Format Date: e.g. 08th July , 2026 ───────────────────────
-function getFormattedCurrentDate() {
-  const now = new Date();
-  const day = now.getDate();
-  const year = now.getFullYear();
-  const months = [
-    "January", "February", "March", "April", "May", "June",
-    "July", "August", "September", "October", "November", "December"
-  ];
-  const monthName = months[now.getMonth()];
-  
-  // Calculate ordinal suffix
-  let suffix = "th";
-  if (day === 1 || day === 21 || day === 31) {
-    suffix = "st";
-  } else if (day === 2 || day === 22) {
-    suffix = "nd";
-  } else if (day === 3 || day === 23) {
-    suffix = "rd";
-  }
-  
-  const paddedDay = String(day).padStart(2, '0') + suffix;
-  return `${paddedDay} ${monthName} , ${year}`;
-}
-
+// ── Sync all editor fields → print page ───────────────────────
 function syncFields() {
-  for (const [editorId, printId] of Object.entries(FIELD_MAP)) {
-    const input = document.getElementById(editorId);
-    const output = document.getElementById(printId);
-    if (input && output) {
-      // Use &nbsp; (non-breaking space) when input is empty to preserve dotted line height
-      output.textContent = input.value.trim() || '\u00A0'; 
-    }
-  }
+  const container = document.getElementById('printContainer');
+  const template = document.getElementById('printTemplate');
+  if (!container || !template) return;
+  
+  container.innerHTML = ''; // clear
 
-  const bodyParagraph = document.getElementById('p_body_paragraph');
-  if (bodyParagraph) {
-    bodyParagraph.textContent = `The above mentioned appeal having been preferred to this court, I am directed to ask you to be so good as to transmit to this office the record connected there with within 7 days from the receipt by you of this letter.`;
+  const recipientBlocks = document.querySelectorAll('.recipient-block');
+  
+  recipientBlocks.forEach((block, index) => {
+    const clone = template.content.cloneNode(true);
+    
+    // populate standard fields
+    for (const [editorId, printClass] of Object.entries(FIELD_MAP)) {
+      const input = document.getElementById(editorId);
+      const output = clone.querySelector('.' + printClass);
+      if (input && output) {
+        output.textContent = input.value.trim() || '\u00A0';
+      }
+    }
+
+    // populate recipient specific fields
+    const nameInput = block.querySelector('.recipient-name');
+    const addressInput = block.querySelector('.recipient-address');
+    
+    const sevame1Out = clone.querySelector('.p_sevame1');
+    const sevame2Out = clone.querySelector('.p_sevame2');
+    
+    if (sevame1Out) sevame1Out.textContent = nameInput ? nameInput.value.trim() || '\u00A0' : '\u00A0';
+    if (sevame2Out) sevame2Out.textContent = addressInput ? addressInput.value.trim() || '\u00A0' : '\u00A0';
+
+    container.appendChild(clone);
+  });
+}
+
+let recipientCount = 1;
+function addRecipient() {
+  recipientCount++;
+  const container = document.getElementById('recipientsContainer');
+  const block = document.createElement('div');
+  block.className = 'seva-section recipient-block';
+  block.style.marginTop = '10px';
+  block.innerHTML = `
+    <div class="recipient-header" style="display:flex; justify-content:space-between; align-items:center;">
+      <span class="label-bold">सेवा में, (प्राप्तकर्ता ${recipientCount})</span>
+      <button class="btn btn-sm no-print" style="background:#fce8e6; color:#d93025; border:1px solid #d93025; padding:2px 8px; border-radius:4px; cursor:pointer;" onclick="removeRecipient(this)">हटाएं (Remove)</button>
+    </div>
+    <div class="dotted-line-row">
+      <input type="text" class="field field-full recipient-name" placeholder="प्राप्तकर्ता का नाम / पद" />
+    </div>
+    <div class="dotted-line-row">
+      <input type="text" class="field field-full recipient-address" placeholder="पता / कार्यालय" />
+    </div>
+  `;
+  container.appendChild(block);
+  syncFields();
+}
+
+function removeRecipient(btn) {
+  const block = btn.closest('.recipient-block');
+  if (block) {
+    block.remove();
+    updateRecipientLabels();
+    syncFields();
   }
 }
 
-// ── Initialize Application ───────────────────────────────────
+function updateRecipientLabels() {
+  const blocks = document.querySelectorAll('.recipient-block');
+  blocks.forEach((block, index) => {
+    const label = block.querySelector('.label-bold');
+    if (label) {
+      label.textContent = 'सेवा में, (प्राप्तकर्ता ' + (index + 1) + ')';
+    }
+  });
+  recipientCount = blocks.length;
+}
+
+// ── Live-sync on every keystroke ──────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
+  // ── Auto-populate current date and year from computer ────────
+  const now = new Date();
+  const monthsHindi = [
+    "जनवरी", "फरवरी", "मार्च", "अप्रैल", "मई", "जून",
+    "जुलाई", "अगस्त", "सितंबर", "अक्टूबर", "नवंबर", "दिसंबर"
+  ];
   
-  // 1. Auto-populate current date
-  const dateInput = document.getElementById('custom_date');
-  if (dateInput && !dateInput.value) {
-    dateInput.value = getFormattedCurrentDate();
+  const patnaDateInput = document.getElementById('patna_date');
+  const patnaYearInput = document.getElementById('patna_year');
+  const noticeDateInput = document.getElementById('notice_date');
+  const returnDetailInput = document.getElementById('return_detail');
+
+  if (patnaDateInput && !patnaDateInput.value) {
+    patnaDateInput.value = now.getDate() + ' ' + monthsHindi[now.getMonth()];
+  }
+  if (patnaYearInput && !patnaYearInput.value) {
+    patnaYearInput.value = now.getFullYear();
+  }
+  if (noticeDateInput && !noticeDateInput.value) {
+    const day = String(now.getDate()).padStart(2, '0');
+    const month = String(now.getMonth() + 1).padStart(2, '0');
+    noticeDateInput.value = `${day}-${month}-${now.getFullYear()}`;
+  }
+  if (returnDetailInput && !returnDetailInput.value) {
+    const sixWeeksLater = new Date(now.getTime() + 6 * 7 * 24 * 60 * 60 * 1000);
+    const day = String(sixWeeksLater.getDate()).padStart(2, '0');
+    const month = String(sixWeeksLater.getMonth() + 1).padStart(2, '0');
+    returnDetailInput.value = `${day}-${month}-${sixWeeksLater.getFullYear()}`;
   }
 
-  // 2. Set default values for recipient to assist user
-  const recTitle = document.getElementById('recipient_title');
-  const recAddr = document.getElementById('recipient_address');
-  if (recTitle && !recTitle.value) {
-    recTitle.value = "District and Sessions Judge";
-  }
-  if (recAddr && !recAddr.value) {
-    recAddr.value = "Patna";
-  }
-
-  // 3. Add change and input listeners to editor fields
   for (const editorId of Object.keys(FIELD_MAP)) {
     const input = document.getElementById(editorId);
     if (input) {
@@ -99,30 +141,77 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // 3b. Auto-populate Recipient from Court of the
-  const courtOfTheInput = document.getElementById('court_of_the');
-  if (courtOfTheInput && recTitle && recAddr) {
-    courtOfTheInput.addEventListener('input', () => {
-      // Only auto-populate if user is typing in court_of_the
-      const val = courtOfTheInput.value;
-      if (val) {
-        const parts = val.split(',');
-        if (parts.length > 1) {
-          recTitle.value = parts[0].trim();
-          recAddr.value = parts.slice(1).join(',').trim();
-        } else {
-          recTitle.value = val.trim();
-          recAddr.value = '';
-        }
-        syncFields();
+  // Event delegation for dynamically added recipients
+  const recipientsContainer = document.getElementById('recipientsContainer');
+  if (recipientsContainer) {
+    recipientsContainer.addEventListener('input', syncFields);
+    recipientsContainer.addEventListener('change', syncFields);
+  }
+
+  // ── Custom modal listeners ──
+  const modal = document.getElementById('confirmModal');
+  const confirmCancel = document.getElementById('confirmCancel');
+  const confirmOk = document.getElementById('confirmOk');
+
+  if (modal && confirmCancel && confirmOk) {
+    const hideModal = () => {
+      modal.classList.remove('active');
+      setTimeout(() => { modal.style.display = 'none'; }, 300);
+    };
+    confirmCancel.addEventListener('click', hideModal);
+    confirmOk.addEventListener('click', () => {
+      // Clear non-recipient fields
+      for (const editorId of Object.keys(FIELD_MAP)) {
+        const input = document.getElementById(editorId);
+        if (input) input.value = '';
       }
+      
+      // Reset recipient blocks to exactly 1 empty block
+      const container = document.getElementById('recipientsContainer');
+      if (container) {
+        const blocks = container.querySelectorAll('.recipient-block');
+        for (let i = 1; i < blocks.length; i++) {
+          blocks[i].remove();
+        }
+        const firstBlock = container.querySelector('.recipient-block');
+        if (firstBlock) {
+          const inputs = firstBlock.querySelectorAll('input');
+          inputs.forEach(inp => inp.value = '');
+        }
+        updateRecipientLabels();
+      }
+      // Re-populate default dates
+      const now = new Date();
+      const monthsHindi = [
+        "जनवरी", "फरवरी", "मार्च", "अप्रैल", "मई", "जून",
+        "जुलाई", "अगस्त", "सितंबर", "अक्टूबर", "नवंबर", "दिसंबर"
+      ];
+      const patnaDateInput = document.getElementById('patna_date');
+      const patnaYearInput = document.getElementById('patna_year');
+      const noticeDateInput = document.getElementById('notice_date');
+      const returnDetailInput = document.getElementById('return_detail');
+      if (patnaDateInput) patnaDateInput.value = now.getDate() + ' ' + monthsHindi[now.getMonth()];
+      if (patnaYearInput) patnaYearInput.value = now.getFullYear();
+      if (noticeDateInput) {
+        const day = String(now.getDate()).padStart(2, '0');
+        const month = String(now.getMonth() + 1).padStart(2, '0');
+        noticeDateInput.value = `${day}-${month}-${now.getFullYear()}`;
+      }
+      if (returnDetailInput) {
+        const sixWeeksLater = new Date(now.getTime() + 6 * 7 * 24 * 60 * 60 * 1000);
+        const day = String(sixWeeksLater.getDate()).padStart(2, '0');
+        const month = String(sixWeeksLater.getMonth() + 1).padStart(2, '0');
+        returnDetailInput.value = `${day}-${month}-${sixWeeksLater.getFullYear()}`;
+      }
+      syncFields();
+      hideModal();
+    });
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) hideModal();
     });
   }
 
-  // 4. Initial Sync to fill A4 page values
-  syncFields();
-
-  // 5. Autocomplete & Auto-populate Logic
+  // ── Autocomplete / Auto-populate logic ──────────────────────
   const sankhyaInput = document.getElementById('sankhya');
   const suggestionsDiv = document.getElementById('sankhyaSuggestions');
 
@@ -132,19 +221,25 @@ document.addEventListener('DOMContentLoaded', () => {
     sankhyaInput.addEventListener('input', () => {
       const query = sankhyaInput.value.trim().toUpperCase().replace(/\s+/g, '');
       activeIndex = -1;
-
       if (!query) {
         suggestionsDiv.style.display = 'none';
+        const appellantInput = document.getElementById('appellant');
+        const respondentInput = document.getElementById('respondent');
+        const appealNoInput = document.getElementById('appeal_no');
+        if (appellantInput) appellantInput.value = '';
+        if (respondentInput) respondentInput.value = '';
+        if (appealNoInput) appealNoInput.value = '';
+        syncFields();
         return;
       }
 
-      // Filter matches from cases database
-      const matches = Object.keys(CASES_DB).filter(caseKey => {
-        const normalizedKey = caseKey.toUpperCase().replace(/\s+/g, '');
-        return normalizedKey.includes(query);
+      // Find matching cases
+      const matches = Object.keys(CASES_DB).filter(caseNo => {
+        const normCase = caseNo.toUpperCase().replace(/\s+/g, '');
+        return normCase.includes(query);
       }).slice(0, 10);
 
-      // Render Suggestions List
+      // Render suggestions
       suggestionsDiv.innerHTML = '';
       if (matches.length > 0) {
         matches.forEach((match, index) => {
@@ -160,7 +255,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // Keyboard navigation inside suggestions list
     sankhyaInput.addEventListener('keydown', (e) => {
       const items = suggestionsDiv.querySelectorAll('.suggestion-item');
       if (e.key === 'ArrowDown') {
@@ -180,19 +274,20 @@ document.addEventListener('DOMContentLoaded', () => {
         if (activeIndex >= 0 && activeIndex < items.length) {
           items[activeIndex].click();
         } else if (items.length > 0) {
-          items[0].click();
+          items[0].click(); // Select first item if user hits enter
         }
       } else if (e.key === 'Escape') {
         suggestionsDiv.style.display = 'none';
       }
     });
 
-    // Check match on input blur
     sankhyaInput.addEventListener('blur', () => {
+      // Small delay to allow click event on suggestion items to fire
       setTimeout(() => {
         const val = sankhyaInput.value.trim();
-        const exactMatch = Object.keys(CASES_DB).find(caseKey => 
-          caseKey.toUpperCase().replace(/\s+/g, '') === val.toUpperCase().replace(/\s+/g, '')
+        // Exact match check on blur
+        const exactMatch = Object.keys(CASES_DB).find(caseNo => 
+          caseNo.toUpperCase().replace(/\s+/g, '') === val.toUpperCase().replace(/\s+/g, '')
         );
         if (exactMatch) {
           selectCase(exactMatch);
@@ -211,39 +306,23 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    // Populate fields when case is selected
-    async function selectCase(caseKey) {
-      sankhyaInput.value = caseKey;
+    function selectCase(caseNo) {
+      sankhyaInput.value = caseNo;
       suggestionsDiv.style.display = 'none';
-
-      const caseData = CASES_DB[caseKey];
-      const parts = caseKey.split('/');
-      const typeCode = parts[0] || '';
-      const caseNumber = parts[1] || '';
-      const caseYear = parts[2] || '';
-      const fullTypeName = APPEAL_TYPES[typeCode.toUpperCase()] || typeCode;
-
-      // Always Update Core Inputs (Even if not in local CASES_DB)
-      const typeField = document.getElementById('case_type');
-      const noField = document.getElementById('case_no');
-      const yearField = document.getElementById('case_year');
-      const appellantField = document.getElementById('appellant');
-      const respondentField = document.getElementById('respondent');
-
-      if (typeField) typeField.value = fullTypeName;
-      if (noField) noField.value = caseNumber;
-      if (yearField) yearField.value = caseYear;
-
+      
+      const caseData = CASES_DB[caseNo];
       if (caseData) {
-        if (appellantField) appellantField.value = caseData.appellant || '';
-        if (respondentField) respondentField.value = caseData.respondent || '';
+        const appellantInput = document.getElementById('appellant');
+        const respondentInput = document.getElementById('respondent');
+        const appealNoInput = document.getElementById('appeal_no');
+        if (appellantInput) appellantInput.value = caseData.appellant || '';
+        if (respondentInput) respondentInput.value = caseData.respondent || '';
+        if (appealNoInput) appealNoInput.value = caseNo;
       }
-
-      await fetchMasterDetails(true);
       syncFields();
     }
 
-    // Dismiss suggestions on outside click
+    // Dismiss suggestions list on clicking outside
     document.addEventListener('click', (e) => {
       if (!sankhyaInput.contains(e.target) && !suggestionsDiv.contains(e.target)) {
         suggestionsDiv.style.display = 'none';
@@ -251,211 +330,133 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 5b. Manual Trigger for Auto-Populate from Master Records
-  async function fetchMasterDetails(forceOverwrite = false) {
-    const typeField = document.getElementById('case_type');
-    const noField = document.getElementById('case_no');
-    const yearField = document.getElementById('case_year');
-
-    const cTypeRaw = typeField ? typeField.value.trim() : '';
-    const cNo = noField ? noField.value.trim() : '';
-    const cYear = yearField ? yearField.value.trim() : '';
-
-    if (!cTypeRaw || !cNo || !cYear) return;
-
-    // Resolve Abbreviations (e.g. 'FA' -> 'First Appeal' and 'First Appeal' -> 'FA')
-    let fullType = cTypeRaw;
-    let typeAbbr = cTypeRaw.toUpperCase();
-
-    if (APPEAL_TYPES[cTypeRaw.toUpperCase()]) {
-      fullType = APPEAL_TYPES[cTypeRaw.toUpperCase()];
-    } else {
-      const foundKey = Object.keys(APPEAL_TYPES).find(key => APPEAL_TYPES[key].toLowerCase() === cTypeRaw.toLowerCase());
-      if (foundKey) {
-        typeAbbr = foundKey;
-        fullType = APPEAL_TYPES[foundKey];
-      }
-    }
-
-    // 1. Fetch Appellant/Respondent from local CASES_DB
-    if (typeof CASES_DB !== 'undefined') {
-      const localCaseKey = `${typeAbbr}/${cNo}/${cYear}`.toUpperCase();
-      const localData = CASES_DB[localCaseKey];
-      
-      const appellantField = document.getElementById('appellant');
-      const respondentField = document.getElementById('respondent');
-
-      if (localData) {
-        if (appellantField && (forceOverwrite || !appellantField.value)) appellantField.value = localData.appellant || '';
-        if (respondentField && (forceOverwrite || !respondentField.value)) respondentField.value = localData.respondent || '';
-      }
-    }
-
-    // 2. Fetch Lower Court details from Supabase
-    try {
-      if (window.PortalDB && typeof window.PortalDB.getSingleCaseRecord === 'function') {
-        const match = await window.PortalDB.getSingleCaseRecord(fullType, cNo, cYear);
-
-        if (match) {
-          const lcCourtField = document.getElementById('court_of_the');
-          const appealFromField = document.getElementById('appeal_from');
-          const appealFromNoField = document.getElementById('appeal_from_no');
-          const appealFromYearField = document.getElementById('appeal_from_year');
-          const arisingOutOfField = document.getElementById('arising_out_of');
-          const recipientTitleField = document.getElementById('recipient_title');
-
-          if (match.lc_court && lcCourtField && (forceOverwrite || !lcCourtField.value)) {
-            lcCourtField.value = match.lc_court;
-            if (recipientTitleField && (!recipientTitleField.value || recipientTitleField.value === "District and Sessions Judge")) {
-              recipientTitleField.value = match.lc_court.split(',')[0];
-            }
-          }
-          if (match.lc_case_type && appealFromField && (forceOverwrite || !appealFromField.value)) appealFromField.value = match.lc_case_type;
-          if (match.lc_case_no && appealFromNoField && (forceOverwrite || !appealFromNoField.value)) appealFromNoField.value = match.lc_case_no;
-          if (match.lc_case_year && appealFromYearField && (forceOverwrite || !appealFromYearField.value)) appealFromYearField.value = match.lc_case_year;
-          
-          if (arisingOutOfField && (forceOverwrite || !arisingOutOfField.value) && match.lc_case_type && match.lc_case_no && match.lc_case_year) {
-            arisingOutOfField.value = `${match.lc_case_type} No. ${match.lc_case_no} of ${match.lc_case_year}`;
-          }
-        }
-      }
-    } catch (err) {
-      console.warn('Could not auto-sync details from master DB:', err);
-    }
-    syncFields();
-  }
-
-  // Attach blur listeners to trigger fetch when entered manually
-  const cNoInput = document.getElementById('case_no');
-  const cYearInput = document.getElementById('case_year');
-  if (cNoInput) cNoInput.addEventListener('blur', () => fetchMasterDetails(false));
-  if (cYearInput) cYearInput.addEventListener('blur', () => fetchMasterDetails(false));
-
-  // 6. Custom Confirmation Modal Listeners
-  const modal = document.getElementById('confirmModal');
-  const cancelBtn = document.getElementById('confirmCancel');
-  const okBtn = document.getElementById('confirmOk');
-
-  if (modal && cancelBtn && okBtn) {
-    const hideModal = () => {
-      modal.classList.remove('active');
-      setTimeout(() => { modal.style.display = 'none'; }, 200);
-    };
-
-    cancelBtn.addEventListener('click', hideModal);
-
-    okBtn.addEventListener('click', () => {
-      // Clear all fields
-      for (const editorId of Object.keys(FIELD_MAP)) {
-        const input = document.getElementById(editorId);
-        if (input) {
-          input.value = '';
-        }
-      }
-      
-      const searchBox = document.getElementById('sankhya');
-      if (searchBox) searchBox.value = '';
-
-      // Re-populate default date and recipients
-      const dateInput = document.getElementById('custom_date');
-      if (dateInput) {
-        dateInput.value = getFormattedCurrentDate();
-      }
-      
-      const recTitle = document.getElementById('recipient_title');
-      const recAddr = document.getElementById('recipient_address');
-      if (recTitle) recTitle.value = "District and Sessions Judge";
-      if (recAddr) recAddr.value = "Patna";
-
-      syncFields();
-      hideModal();
-    });
-
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) hideModal();
-    });
-  }
+  syncFields(); // initial sync
 });
 
-// ── Actions ──────────────────────────────────────────────────
-function printForm() {
+// ── Toggle Preview mode ───────────────────────────────────────
+let previewActive = false;
+
+function togglePreview() {
   syncFields();
-  if (typeof saveToCloud === 'function') saveToCloud(true);
-  window.print();
+  previewActive = !previewActive;
+  document.body.classList.toggle('preview-active', previewActive);
+
+  const btn = document.querySelector('.btn-preview');
+  if (previewActive) {
+    btn.textContent = '✏️ Edit Form';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  } else {
+    btn.textContent = '👁 Preview';
+  }
 }
 
+// ── Print ─────────────────────────────────────────────────────
+function printForm() {
+  syncFields();
+  document.body.classList.add('preview-active');
+
+  const doPrint = () => {
+    if (typeof saveToCloud === 'function') saveToCloud(true);
+    setTimeout(() => {
+      window.print();
+      if (!previewActive) {
+        document.body.classList.remove('preview-active');
+      }
+    }, 200);
+  };
+
+  doPrint();
+}
+
+// ── Clear form ────────────────────────────────────────────────
 function clearForm() {
   const modal = document.getElementById('confirmModal');
   if (modal) {
     modal.style.display = 'flex';
-    // Small delay to trigger CSS transition
     setTimeout(() => { modal.classList.add('active'); }, 10);
   }
 }
 
+// ── Supabase Cloud Storage Integrations ──────────────────────────
 // ── Local Ethernet Storage Integrations ──────────────────────────
 async function saveToCloud(silent = false) {
-  const caseNo = document.getElementById('case_no').value.trim();
-  const caseYear = document.getElementById('case_year').value.trim();
-  
-  if (!caseNo || !caseYear) {
-    if (!silent) alert("Please enter a Case Number and Year before saving.");
+  const caseNoInput = document.getElementById('sankhya').value.trim();
+  if (!caseNoInput) {
+    if (!silent) alert("Please enter a Case Number (संख्या) before saving.");
     return;
   }
 
-  const lcrData = {};
+  const noticeData = {};
   for (const editorId of Object.keys(FIELD_MAP)) {
     const input = document.getElementById(editorId);
     if (input) {
-      lcrData[editorId] = input.value.trim();
+      noticeData[editorId] = input.value.trim();
     }
   }
 
-  const lcrStatusElem = document.getElementById('lcr_status');
-  const letterTypeElem = document.getElementById('letter_type');
-  if (lcrStatusElem) lcrData['lcr_status'] = lcrStatusElem.value;
-  if (letterTypeElem) lcrData['letter_type'] = letterTypeElem.value;
+  const recipients = [];
+  document.querySelectorAll('.recipient-block').forEach(block => {
+    recipients.push({
+      name: block.querySelector('.recipient-name')?.value.trim() || '',
+      address: block.querySelector('.recipient-address')?.value.trim() || ''
+    });
+  });
+  noticeData.recipients = recipients;
+  noticeData.caseNo = caseNoInput;
 
-  const doSaveLcr = async () => {
+  const doSaveNotice = async () => {
     try {
       if (window.PortalDB) {
-        await window.PortalDB.insertLcrCall(lcrData);
-        if (!silent) alert('LCR Call successfully saved!');
-      } else {
-        throw new Error('PortalDB not available');
+        await window.PortalDB.insertNoticeForm(noticeData);
+        if (!silent) alert('Notice successfully saved!');
       }
     } catch (error) {
-      console.error('Error saving LCR Call:', error);
-      if (!silent) alert('Error saving LCR Call.');
+      console.error('Error saving Notice:', error);
+      if (!silent) alert('Error saving Notice.');
     }
   };
 
   if (!silent && typeof window.promptSaveCaseRecord === 'function') {
+    let caseType = 'First Appeal';
+    let caseNo = caseNoInput;
+    let caseYear = document.getElementById('patna_year')?.value || '';
+    
+    if (caseNoInput.includes('/')) {
+      const parts = caseNoInput.split('/');
+      if (parts.length === 3) {
+        caseType = parts[0] === 'FA' ? 'First Appeal' : parts[0];
+        caseNo = parts[1];
+        caseYear = parts[2];
+      } else if (parts.length === 2) {
+        caseNo = parts[0];
+        caseYear = parts[1];
+      }
+    }
+
     const extractedData = {
-      case_type: document.getElementById('case_type')?.value || 'First Appeal',
+      case_type: caseType,
       case_no: caseNo,
       case_year: caseYear,
       appellant: document.getElementById('appellant')?.value || '',
       respondent: document.getElementById('respondent')?.value || '',
-      lc_court: (document.getElementById('court_of_the')?.value || document.getElementById('recipient_title')?.value || ''),
-      lc_case_type: document.getElementById('appeal_from')?.value || document.getElementById('arising_out_of')?.value || '',
-      lc_case_no: document.getElementById('appeal_from_no')?.value || '',
-      lc_case_year: document.getElementById('appeal_from_year')?.value || ''
+      lc_court: '',
+      lc_case_no: document.getElementById('decree_no')?.value || '',
+      date_of_decree_award: document.getElementById('decree_date')?.value || ''
     };
 
-    if (confirm("Do you want to check and update this case in the Master Case Records? \n\nClick 'OK' to update the Master Record.\nClick 'Cancel' to ONLY save the LCR Call.")) {
-      window.promptSaveCaseRecord(extractedData, doSaveLcr, doSaveLcr);
+    if (confirm("Do you want to check and update this case in the Master Case Records? \n\nClick 'OK' to update the Master Record.\nClick 'Cancel' to ONLY save the Notice Form.")) {
+      window.promptSaveCaseRecord(extractedData, doSaveNotice, doSaveNotice);
     } else {
-      doSaveLcr();
+      doSaveNotice();
     }
   } else {
-    doSaveLcr();
+    doSaveNotice();
   }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
   const saveBtn = document.getElementById('saveToCloudBtn');
-  const viewBtn = document.getElementById('viewCloudLcrBtn');
+  const viewBtn = document.getElementById('viewCloudBtn');
 
   if (saveBtn) {
     saveBtn.addEventListener('click', () => saveToCloud(false));
@@ -463,66 +464,44 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (viewBtn) {
     viewBtn.addEventListener('click', async () => {
-      const searchCaseNo = prompt('Enter Case Number to fetch LCR Call (e.g., 3):');
+      const searchCaseNo = prompt("Enter Case Number to fetch Notice (e.g. FA/3/1973):");
       if (!searchCaseNo) return;
+
       try {
-        const data = await window.PortalDB.getLcrCalls();
-        const matches = data.filter(l => (l.case_no || '').toString().toLowerCase().trim() === searchCaseNo.toString().toLowerCase().trim());
-        if (matches.length === 0) { alert('No LCR Call found for Case Number: ' + searchCaseNo); return; }
-        let lcrCall = matches[0];
-        if (matches.length > 1) {
-          let listMsg = `Multiple saved LCR Calls found for '${searchCaseNo}':\n\n`;
-          matches.forEach((m, idx) => { const d = m.saved_at ? m.saved_at.slice(0,10) : 'Saved'; listMsg += `${idx+1}. ${d}\n`; });
-          const choice = prompt(listMsg + `\nEnter number (1-${matches.length}):`, '1');
-          const idx = parseInt(choice,10) - 1;
-          if (!isNaN(idx) && matches[idx]) lcrCall = matches[idx];
-        }
+        const data = await window.PortalDB.getNoticeForms();
+        const matches = data.filter(n => (n.caseNo || '').toString().toLowerCase().trim() === searchCaseNo.toString().toLowerCase().trim());
+        if (matches.length === 0) { alert('No Notice found for Case Number: ' + searchCaseNo); return; }
+        let notice = matches[0];
         for (const editorId of Object.keys(FIELD_MAP)) {
           const input = document.getElementById(editorId);
-          if (input && lcrCall[editorId] !== undefined) input.value = lcrCall[editorId];
+          if (input && notice[editorId] !== undefined) input.value = notice[editorId];
+        }
+        if (notice.recipients && Array.isArray(notice.recipients)) {
+          const container = document.getElementById('recipientsContainer');
+          if (container) {
+            const blocks = container.querySelectorAll('.recipient-block');
+            for (let i = 1; i < blocks.length; i++) blocks[i].remove();
+            recipientCount = 1;
+            const firstBlock = container.querySelector('.recipient-block');
+            if (firstBlock && notice.recipients.length > 0) {
+              firstBlock.querySelector('.recipient-name').value = notice.recipients[0].name || '';
+              firstBlock.querySelector('.recipient-address').value = notice.recipients[0].address || '';
+            }
+            for (let i = 1; i < notice.recipients.length; i++) {
+              addRecipient();
+              const newBlocks = container.querySelectorAll('.recipient-block');
+              const nb = newBlocks[newBlocks.length - 1];
+              nb.querySelector('.recipient-name').value = notice.recipients[i].name || '';
+              nb.querySelector('.recipient-address').value = notice.recipients[i].address || '';
+            }
+          }
         }
         syncFields();
-        alert('LCR Call loaded successfully!');
+        alert('Notice loaded successfully!');
       } catch (error) {
-        console.error('Error fetching LCR Call:', error);
-        alert('Error loading LCR Call.');
+        console.error('Error fetching Notice:', error);
+        alert('Error loading Notice.');
       }
     });
-  } // Fix for missing closing brace
-
-  const letterTypeSelect = document.getElementById('letter_type');
-  const prevDateInput = document.getElementById('prev_call_date');
-
-  if (letterTypeSelect) {
-    letterTypeSelect.addEventListener('change', syncFields);
   }
-  if (prevDateInput) {
-    prevDateInput.addEventListener('input', syncFields);
-  }
-
-  const urlParams = new URLSearchParams(window.location.search);
-  const qCaseNo = urlParams.get('case_no');
-  const qMode = urlParams.get('mode');
-  const qPrevDate = urlParams.get('prev_date');
-
-  if (qMode === 'reminder' && letterTypeSelect) {
-    letterTypeSelect.value = 'reminder';
-  }
-
-  if (qPrevDate && prevDateInput) {
-    let dtStr = qPrevDate;
-    if (qPrevDate.includes('T') || qPrevDate.includes('-')) {
-      const dt = new Date(qPrevDate);
-      if (!isNaN(dt.getTime())) dtStr = dt.toLocaleDateString('en-GB');
-    }
-    prevDateInput.value = dtStr;
-  }
-
-  if (qCaseNo) {
-    const caseInput = document.getElementById('case_no');
-    if (caseInput) {
-      caseInput.value = qCaseNo;
-    }
-  }
-  syncFields();
 });
