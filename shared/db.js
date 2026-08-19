@@ -104,6 +104,14 @@
       return results.flat();
     },
 
+    async getRecentCaseRecords(limit = 1000) {
+      const r = await fetch(`${SUPA_URL}/rest/v1/case_records?select=case_no,case_year,appellant,respondent&order=created_at.desc&limit=${limit}`, {
+        headers: HEADERS
+      });
+      if (!r.ok) return [];
+      return r.json();
+    },
+
     async insertCaseRecord(body) {
       return sbInsert('case_records', {
         case_type:             body.case_type || 'First Appeal',
@@ -124,6 +132,41 @@
         dealing_assistant:     body.dealing_assistant       || '',
         data_json:             body
       });
+    },
+
+    async bulkInsertCaseRecords(records, chunkSize = 150) {
+      if (!records || records.length === 0) return [];
+      const formattedRecords = records.map(body => ({
+        case_type:             body.case_type || 'First Appeal',
+        case_no:               body.case_no   || '',
+        case_year:             body.case_year || '',
+        appellant:             body.appellant  || '',
+        respondent:            body.respondent || '',
+        lc_case_type:          body.lc_case_type || '',
+        lc_case_no:            body.lc_case_no   || '',
+        lc_case_year:          body.lc_case_year  || '',
+        lc_court:              body.lc_court      || '',
+        date_of_judgment:      body.date_of_judgment      || '',
+        date_of_decree_award:  body.date_of_decree_award  || '',
+        date_of_filing_fa:     body.date_of_filing_fa     || '',
+        suit_value:            body.suit_value             || '',
+        appeal_value:          body.appeal_value           || '',
+        record_room_bundle_no: body.record_room_bundle_no  || '',
+        dealing_assistant:     body.dealing_assistant       || '',
+        data_json:             body
+      }));
+
+      const results = [];
+      for (let i = 0; i < formattedRecords.length; i += chunkSize) {
+        const chunk = formattedRecords.slice(i, i + chunkSize);
+        try {
+          const res = await sbInsert('case_records', chunk);
+          if (Array.isArray(res)) results.push(...res);
+        } catch (e) {
+          console.warn(`Bulk insert chunk failed (${i} to ${i + chunkSize}):`, e);
+        }
+      }
+      return results;
     },
 
     async updateCaseRecord(id, body) {

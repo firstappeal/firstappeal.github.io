@@ -671,47 +671,70 @@ async function handlePdfUpload(event) {
     return;
   }
 
+  const labelBtn = event.target.closest('label');
+  const originalLabelText = labelBtn ? labelBtn.innerHTML : '';
+
   try {
+    if (labelBtn) {
+      const fileInput = labelBtn.querySelector('input');
+      labelBtn.innerHTML = "⏳ PDF लोड हो रहा है...";
+      if (fileInput) labelBtn.appendChild(fileInput);
+    }
+
     const arrayBuffer = await file.arrayBuffer();
     const loadingTask = pdfjsLib.getDocument(new Uint8Array(arrayBuffer));
     const pdf = await loadingTask.promise;
     
-    let fullText = '';
-    // Extract text from all pages
-    for (let i = 1; i <= pdf.numPages; i++) {
-      const page = await pdf.getPage(i);
-      const textContent = await page.getTextContent();
-      const pageText = textContent.items.map(item => item.str).join(' ');
-      fullText += pageText + ' ';
+    // Parallel Page Extraction in Chunks of 10 pages
+    const pageTexts = new Array(pdf.numPages);
+    const BATCH_SIZE = 10;
+    
+    for (let i = 1; i <= pdf.numPages; i += BATCH_SIZE) {
+      const endPage = Math.min(i + BATCH_SIZE - 1, pdf.numPages);
+      if (labelBtn) {
+        const fileInput = labelBtn.querySelector('input');
+        labelBtn.innerHTML = `⏳ पार्सिंग... (${i}-${endPage}/${pdf.numPages})`;
+        if (fileInput) labelBtn.appendChild(fileInput);
+      }
+      
+      const pagePromises = [];
+      for (let pageNum = i; pageNum <= endPage; pageNum++) {
+        pagePromises.push((async (pNum) => {
+          const page = await pdf.getPage(pNum);
+          const textContent = await page.getTextContent();
+          pageTexts[pNum - 1] = textContent.items.map(item => item.str).join(' ');
+        })(pageNum));
+      }
+      await Promise.all(pagePromises);
+      await new Promise(r => setTimeout(r, 0)); // yield to UI
     }
     
+    const fullText = pageTexts.join(' ');
+    
     // Look for pattern like 47/2024 or FA/47/2024
-    // We try to match any number followed by slash and a 4-digit year, while avoiding dates (like 13/07/2026)
     const caseNoRegex = /(?:^|[^\d/])(\d{1,5}\s*\/\s*\d{4})(?=[^\d/]|$)/g;
     const matchesIterator = fullText.matchAll(caseNoRegex);
     const matches = Array.from(matchesIterator).map(m => m[1]);
     
     if (matches && matches.length > 0) {
-      // Remove duplicate case numbers
       const uniqueMatches = [...new Set(matches.map(m => m.replace(/\s+/g, '')))];
       
-      for (const caseNoVal of uniqueMatches) {
-        // Try to find the appellant in CASES_DB
-        let appellantName = '';
-        if (typeof CASES_DB !== 'undefined') {
-          const foundKey = Object.keys(CASES_DB).find(key => key.endsWith('/' + caseNoVal));
-          if (foundKey) {
-            appellantName = CASES_DB[foundKey].appellant || '';
+      // Fast O(1) lookup map for CASES_DB
+      const casesMapBySuffix = {};
+      if (typeof CASES_DB !== 'undefined') {
+        for (const key of Object.keys(CASES_DB)) {
+          const parts = key.split('/');
+          if (parts.length >= 2) {
+            const suffix = parts.slice(1).join('/');
+            casesMapBySuffix[suffix] = CASES_DB[key].appellant || '';
           }
         }
+      }
+
+      for (const caseNoVal of uniqueMatches) {
+        const appellantName = casesMapBySuffix[caseNoVal] || '';
+        const assistantName = (typeof ASSISTANTS_DB !== 'undefined' && ASSISTANTS_DB[caseNoVal]) ? ASSISTANTS_DB[caseNoVal] : '';
         
-        // Try to find the assistant in ASSISTANTS_DB
-        let assistantName = '';
-        if (typeof ASSISTANTS_DB !== 'undefined' && ASSISTANTS_DB[caseNoVal]) {
-          assistantName = ASSISTANTS_DB[caseNoVal];
-        }
-        
-        // Add a new row with the parsed data
         addNewRow({ 
           nature: 'FA', 
           case_no: caseNoVal, 
@@ -723,7 +746,6 @@ async function handlePdfUpload(event) {
         });
       }
       
-      // Ensure the newly added rows are synced
       syncPrintTable();
       alert(`PDF से सफलतापूर्वक ${uniqueMatches.length} केस निकाले गए।`);
     } else {
@@ -732,10 +754,10 @@ async function handlePdfUpload(event) {
   } catch (error) {
     console.error('Error parsing PDF:', error);
     alert("PDF पार्स करने में त्रुटि हुई। (Error parsing PDF)");
+  } finally {
+    if (labelBtn && originalLabelText) labelBtn.innerHTML = originalLabelText;
+    event.target.value = '';
   }
-  
-  // Clear the input so the same file can be uploaded again if needed
-  event.target.value = '';
 }
 
 // ── Local Ethernet Storage Integrations ──────────────────────────

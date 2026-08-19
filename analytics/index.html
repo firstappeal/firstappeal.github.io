@@ -180,8 +180,27 @@
   </main>
 </div>
 
-<script src="../file_tracking/assistants_db.js?v=2"></script>
-<script src="../notice_form/cases_db.js?v=2"></script>
+<script src="../file_tracking/assistants_db.js?v=3"></script>
+<script src="../shared/cases_db.js?v=2"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', async () => {
+     if (typeof CASES_DB !== 'undefined' && window.PortalDB) {
+         try {
+             const recentCases = await window.PortalDB.getRecentCaseRecords(1000);
+             recentCases.forEach(c => {
+                 if (c.case_no && c.case_year) {
+                     const key = `FA/${c.case_no}/${c.case_year}`;
+                     if (!CASES_DB[key]) {
+                         CASES_DB[key] = { appellant: c.appellant, respondent: c.respondent };
+                     }
+                 }
+             });
+         } catch (e) {
+             console.warn("Failed to sync recent cases from Supabase", e);
+         }
+     }
+  });
+</script>
   <script src="../shared/db.js?v=2"></script>
   <script src="script.js?v=3"></script>
 </body>
