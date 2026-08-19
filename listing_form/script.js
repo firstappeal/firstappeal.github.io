@@ -371,8 +371,12 @@ function addNewRow(data = { nature: 'FA', case_no: '', appellant: '', assistant:
       assistantInput.value = '';
     }
     
-    syncPrintTable();
+    sortEditorTableDescending();
   }
+  
+  caseNoInput.addEventListener('change', () => {
+    sortEditorTableDescending();
+  });
   
   reindexSerialNumbers();
 }
@@ -411,6 +415,58 @@ function clearAllRows() {
     document.getElementById('editorTableBody').innerHTML = '';
     syncPrintTable();
   }
+}
+
+// ── Sort Editor Table Descending ──────────────────────────────────
+function sortEditorTableDescending() {
+  const tbody = document.getElementById('editorTableBody');
+  if (!tbody) return;
+  const rows = Array.from(tbody.querySelectorAll('tr'));
+  
+  const parseCaseNo = str => {
+    const firstCase = str.split(/\bwith\b/i)[0].trim();
+    const parts = firstCase.split('/');
+    let year = 0, num = 0;
+    if (parts.length >= 2) {
+      year = parseInt(parts[parts.length - 1], 10) || 0;
+      num = parseInt(parts[parts.length - 2], 10) || 0;
+    } else if (parts.length === 1) {
+      num = parseInt(parts[0], 10) || 0;
+    }
+    return { year, num };
+  };
+
+  rows.sort((a, b) => {
+    const aCase = a.querySelector('.case-no-field').value.trim();
+    const bCase = b.querySelector('.case-no-field').value.trim();
+    
+    if (!aCase && bCase) return -1;
+    if (aCase && !bCase) return 1;
+    if (!aCase && !bCase) return 0;
+    
+    const aVal = parseCaseNo(aCase);
+    const bVal = parseCaseNo(bCase);
+    
+    if (aVal.year !== bVal.year) {
+      return bVal.year - aVal.year;
+    }
+    return bVal.num - aVal.num;
+  });
+
+  const activeEl = document.activeElement;
+
+  rows.forEach(row => tbody.appendChild(row));
+  
+  rows.forEach((row, idx) => {
+    const sn = row.querySelector('.serial-number');
+    if(sn) sn.textContent = idx + 1;
+  });
+  
+  if (activeEl && typeof activeEl.focus === 'function') {
+    activeEl.focus();
+  }
+
+  syncPrintTable();
 }
 
 // ── Sync Editor Table to Print Table (Grouped by Judge) ──────────
@@ -453,7 +509,7 @@ function syncPrintTable() {
     const cases = groupedCases[judgeName] || [];
     if (cases.length === 0) return; // Skip if no cases assigned to this Judge
     
-    // Sort cases in ascending order according to year and case number
+    // Sort cases in descending order according to year and case number
     cases.sort((a, b) => {
       const parseCaseNo = str => {
         const firstCase = str.split(/\bwith\b/i)[0].trim();
@@ -470,9 +526,9 @@ function syncPrintTable() {
       const aVal = parseCaseNo(a.case_no);
       const bVal = parseCaseNo(b.case_no);
       if (aVal.year !== bVal.year) {
-        return aVal.year - bVal.year;
+        return bVal.year - aVal.year;
       }
-      return aVal.num - bVal.num;
+      return bVal.num - aVal.num;
     });
     
     const judgeSection = document.createElement('div');
@@ -746,7 +802,7 @@ async function handlePdfUpload(event) {
         });
       }
       
-      syncPrintTable();
+      sortEditorTableDescending();
       alert(`PDF से सफलतापूर्वक ${uniqueMatches.length} केस निकाले गए।`);
     } else {
       alert("इस PDF से कोई केस नंबर (जैसे 47/2024) नहीं मिला। (No case number found in PDF)");
