@@ -5,7 +5,7 @@ const CASES_DB = {
   },
   "FA/652/1968": {
     "appellant": "JAGARNATH PANDEY and ORS",
-    "respondent": "SHEO NATH PANDEY and"
+    "respondent": "SHEO NATH PANDEY and ORS"
   },
   "FA/1173/1971": {
     "appellant": "Ram Das",
@@ -32,7 +32,7 @@ const CASES_DB = {
     "respondent": "BIBI RABJA and ORS"
   },
   "FA/150/1973": {
-    "appellant": "MOST.MANTI DEVI and ANR",
+    "appellant": "MOST.MANTI DEVI and ANR.",
     "respondent": "SITA RAM THAKUR AND ANR"
   },
   "FA/185/1973": {
@@ -41,7 +41,7 @@ const CASES_DB = {
   },
   "FA/208/1973": {
     "appellant": "MOST.KUSUMA THAKURAIN and ORS",
-    "respondent": "MOST.AKBARI"
+    "respondent": "MOST.AKBARI THAKURAIN and ORS"
   },
   "FA/301/1973": {
     "appellant": "CHAMPA DEVI and ORS",
@@ -49,7 +49,7 @@ const CASES_DB = {
   },
   "FA/449/1973": {
     "appellant": "BIH.STATE.BOARD OF.HIN.REL.TRU",
-    "respondent": "MAHANTH RAMGIR and"
+    "respondent": "MAHANTH RAMGIR and ORS"
   },
   "FA/90/1974": {
     "appellant": "ANITA KUMARI and ORS",
@@ -80,12 +80,12 @@ const CASES_DB = {
     "respondent": "Brahmdeo Thakur"
   },
   "FA/662/1974": {
-    "appellant": "Pradeep kumar and ors",
-    "respondent": "Tetari devi and ors"
+    "appellant": "Pradeep kumar and ors.",
+    "respondent": "Tetari devi and ors."
   },
   "FA/684/1974": {
     "appellant": "The State of Bihar through the Collector",
-    "respondent": "Bettiah Estate"
+    "respondent": "Bettiah Estate,"
   },
   "FA/690/1974": {
     "appellant": "ARJUN MASAT",
@@ -101,7 +101,7 @@ const CASES_DB = {
   },
   "FA/132/1975": {
     "appellant": "PADMA KANT CHOUDHARY and ORS",
-    "respondent": "PRAMOD NARAIN"
+    "respondent": "PRAMOD NARAIN CHOUDHARY andORS"
   },
   "FA/143/1975": {
     "appellant": "BIBI KANIZ KHATOON",
@@ -117,7 +117,7 @@ const CASES_DB = {
   },
   "FA/195/1975": {
     "appellant": "PREM LATA TRIVEDI and ORS",
-    "respondent": "ARUN KUMAR MISHRA and"
+    "respondent": "ARUN KUMAR MISHRA and ORS"
   },
   "FA/198/1975": {
     "appellant": "SMT. INDRA DEVI",
@@ -125,11 +125,11 @@ const CASES_DB = {
   },
   "FA/214/1975": {
     "appellant": "SURAJ SINGH and ORS",
-    "respondent": "RAGHU NANDAN SINGH and ORS BIBI AKHTARI BEGUM and ORS VS. BIBI ZAHIRON NISSA and"
+    "respondent": "RAGHU NANDAN SINGH and ORS"
   },
   "FA/229/1975": {
     "appellant": "BIBI AKHTARI BEGUM and ORS",
-    "respondent": "BIBI ZAHIRON NISSA and"
+    "respondent": "BIBI ZAHIRON NISSA and ORS"
   },
   "FA/234/1975": {
     "appellant": "MOKHTAR AHMAD",
@@ -141,10 +141,10 @@ const CASES_DB = {
   },
   "FA/399/1975": {
     "appellant": "DULHIN KABUTRA DEVI and ORS",
-    "respondent": "GUPTA CHAUDHARY and"
+    "respondent": "GUPTA CHAUDHARY and ORS"
   },
   "FA/420/1975": {
-    "appellant": "Shri Radhey Krishna Das Agrawal",
+    "appellant": "Shri Radhey Krishna Das Agrawal,",
     "respondent": "Sri Raja Ram Mukhiya"
   },
   "FA/431/1975": {
@@ -181,7 +181,7 @@ const CASES_DB = {
   },
   "FA/531/1975": {
     "appellant": "MOST.BENA DEVI and ORS",
-    "respondent": "GOPAL SAH @ JAGLAL SAH and"
+    "respondent": "GOPAL SAH @ JAGLAL SAH and ORS"
   },
   "FA/545/1975": {
     "appellant": "YOGANAND SINGH and ORS",
@@ -204,8 +204,8 @@ const CASES_DB = {
     "respondent": "INDRA KUMAR and ORS"
   },
   "FA/38/1976": {
-    "appellant": "Raja Ram Pandey",
-    "respondent": "Jagdish Singh"
+    "appellant": "Raja Ram Pandey,",
+    "respondent": "Jagdish Singh,"
   },
   "FA/45/1976": {
     "appellant": "MD. LUQMAN",
@@ -217,11 +217,11 @@ const CASES_DB = {
   },
   "FA/56/1976": {
     "appellant": "MRITUNJAY PRASAD and ORS",
-    "respondent": "SMT. ANPURNA DEVI and ORS SINGHESHWAR SINGH and ORS VS. MOST SURAJWATI KUER"
+    "respondent": "SMT. ANPURNA DEVI and ORS"
   },
   "FA/60/1976": {
     "appellant": "SINGHESHWAR SINGH and ORS",
-    "respondent": "MOST SURAJWATI KUER"
+    "respondent": "MOST SURAJWATI KUER and ORS"
   },
   "FA/62/1976": {
     "appellant": "NARAIN RAM and ORS",
@@ -229,27 +229,27 @@ const CASES_DB = {
   },
   "FA/94/1976": {
     "appellant": "CHANDRESHWAR SINGH and ORS",
-    "respondent": "HARI NARAIN SINGH and 58   94/1976"
+    "respondent": "HARI NARAIN SINGH and ORS"
   },
   "FA/103/1976": {
     "appellant": "UMA SHANKAR RAM and ORS",
-    "respondent": "SMT.MUNGESHWARI DEVI and 59   103/1976"
+    "respondent": "SMT.MUNGESHWARI DEVI and ORS"
   },
   "FA/168/1976": {
     "appellant": "SATA YADAV and ORS",
     "respondent": "JHARI LAL YADAV and ORS"
   },
   "FA/195/1976": {
-    "appellant": "MOSTT. DEOKI and ORS",
-    "respondent": "SUMITRA DEVI and ORS"
+    "appellant": "MOSTT. DEOKI and ORS.",
+    "respondent": "SUMITRA DEVI and ORS."
   },
   "FA/202/1976": {
-    "appellant": "KAMLA DEVI and ORS",
+    "appellant": "KAMLA DEVI and ORS.",
     "respondent": "SUKHDEO PRASAD and ORS"
   },
   "FA/256/1976": {
     "appellant": "THE L.I.C. OF INDIA",
-    "respondent": "JHAMAN PD"
+    "respondent": "JHAMAN PD."
   },
   "FA/265/1976": {
     "appellant": "ASHRFI SINGH and ORS",
@@ -257,7 +257,7 @@ const CASES_DB = {
   },
   "FA/275/1976": {
     "appellant": "RAM CHANDRA CHAUDHARY and ORS",
-    "respondent": "SMT. CHITRA REKHA 65   275/1976"
+    "respondent": "SMT. CHITRA REKHA DEVI and ORS"
   },
   "FA/283/1976": {
     "appellant": "ANJALI DEVI and ORS",
@@ -329,15 +329,15 @@ const CASES_DB = {
   },
   "FA/649/1976": {
     "appellant": "BINDESHWARI SINGH and ORS",
-    "respondent": "SHARDANAND SHARMA and"
+    "respondent": "SHARDANAND SHARMA and ORS"
   },
   "FA/704/1976": {
-    "appellant": "LAL BABU SINGH and ANR",
+    "appellant": "LAL BABU SINGH and ANR.",
     "respondent": "ADHIKARI DEVI and ORS"
   },
   "FA/786/1976": {
     "appellant": "TEJ NARAIN SINGH @ TARESH SING",
-    "respondent": "NAWAL KISHORE"
+    "respondent": "NAWAL KISHORE SINGH and ORS"
   },
   "FA/804/1976": {
     "appellant": "Sidheshwar Singh",
@@ -357,15 +357,15 @@ const CASES_DB = {
   },
   "FA/294/1977": {
     "appellant": "PRABHU NATH BHARTI andORS",
-    "respondent": "UTTIM JHARO KUER and"
+    "respondent": "UTTIM JHARO KUER and ORS"
   },
   "FA/361/1977": {
     "appellant": "MOST MANGAURI DEVI and ORS",
-    "respondent": "DULHIN SHARDA DEVI and"
+    "respondent": "DULHIN SHARDA DEVI and ORS"
   },
   "FA/383/1977": {
     "appellant": "RAM BHAROS SINGH and ORS",
-    "respondent": "KESHARI NANDAN SINGH and 92    383/1977 ORS"
+    "respondent": "KESHARI NANDAN SINGH and ORS"
   },
   "FA/393/1977": {
     "appellant": "BHOLA RAM and ORS",
@@ -381,7 +381,7 @@ const CASES_DB = {
   },
   "FA/434/1977": {
     "appellant": "SK. RAZAQUE @ ABDUL RAZAQUEandOR",
-    "respondent": "MD. ABHAS and"
+    "respondent": "MD. ABHAS and ORS"
   },
   "FA/435/1977": {
     "appellant": "SK. MOHIUDDIN and ORS",
@@ -397,19 +397,19 @@ const CASES_DB = {
   },
   "FA/474/1977": {
     "appellant": "SMT LAGOBATI DEVI and ORS",
-    "respondent": "BASUDEO PD. SAH                       17       TIED UP SMT PUSHPA @ PUSPI YADAV and ORS VS. INDRADEO RAI and"
+    "respondent": "BASUDEO PD. SAH"
   },
   "FA/476/1977": {
     "appellant": "SMT PUSHPA @ PUSPI YADAV and ORS",
-    "respondent": "INDRADEO RAI and"
+    "respondent": "INDRADEO RAI and ORS"
   },
   "FA/487/1977": {
     "appellant": "SK.AZIZUR RAHMAN @ MAKUND andANR",
-    "respondent": "BIBI SAVERA"
+    "respondent": "BIBI SAVERA KHATOON and ORS"
   },
   "FA/529/1977": {
     "appellant": "MUNNI LAL SAH @ MUNI SAH ORS",
-    "respondent": "MANAGER                            24       UP"
+    "respondent": "MANAGER"
   },
   "FA/587/1977": {
     "appellant": "BAIJ NATH SINGH",
@@ -429,11 +429,11 @@ const CASES_DB = {
   },
   "FA/676/1977": {
     "appellant": "SMT. DEOMURTA KUER and ORS",
-    "respondent": "SURENDRA NARAYAN"
+    "respondent": "SURENDRA NARAYAN SINGH and ORS"
   },
   "FA/702/1977": {
     "appellant": "BAIDYA NATH RAI and ORS",
-    "respondent": "CHANDESHWAR THAKUR and"
+    "respondent": "CHANDESHWAR THAKUR and ORS"
   },
   "FA/703/1977": {
     "appellant": "RAM PARI ROY and ORS",
@@ -449,11 +449,11 @@ const CASES_DB = {
   },
   "FA/2/1978": {
     "appellant": "JITENDRA PD SUKUL AND ANR",
-    "respondent": "SARDENDRA KUMAR"
+    "respondent": "SARDENDRA KUMAR PANDEY AND ORS"
   },
   "FA/5/1978": {
     "appellant": "DWARIKA CHOURASIA @ DWARIKA PD",
-    "respondent": "SADANAND"
+    "respondent": "SADANAND CHOURASIA AND ORS"
   },
   "FA/9/1978": {
     "appellant": "BINDESHWARI MAHTO AND ORS",
@@ -461,7 +461,7 @@ const CASES_DB = {
   },
   "FA/73/1978": {
     "appellant": "MOST SONA DEVI and ORS",
-    "respondent": "MOST. RAJ KALI KUNWAR and"
+    "respondent": "MOST. RAJ KALI KUNWAR and ORS"
   },
   "FA/85/1978": {
     "appellant": "Nand Kishore Singh",
@@ -473,23 +473,23 @@ const CASES_DB = {
   },
   "FA/91/1978": {
     "appellant": "RAMESH CHANDRA YADAV and ORS",
-    "respondent": "KHULANAND YADAV 119   91/1978 and ORS"
+    "respondent": "KHULANAND YADAV and ORS"
   },
   "FA/99/1978": {
     "appellant": "MODINA KHATOON and ORS",
-    "respondent": "MOST GODAVRI DEVI and ORS SMT. LALPARI DEVI AND ORS VS. MOST.SARASWATI DEVI AND"
+    "respondent": "MOST GODAVRI DEVI and ORS"
   },
   "FA/117/1978": {
     "appellant": "SMT. LALPARI DEVI AND ORS",
-    "respondent": "MOST.SARASWATI DEVI AND"
+    "respondent": "MOST.SARASWATI DEVI AND ORS"
   },
   "FA/122/1978": {
-    "appellant": "FOR HEARING",
-    "respondent": "JAGDISH PD SRIVASTAVA AND ORS                       31 RAJESHWARI PD SINGH AND ORS VS. SMT.KAUSHALYA DEVI"
+    "appellant": "SATISH KUMAR @ SATYENDRA PRASAD SRIVASTAVA and ORS.",
+    "respondent": "JAGDISH PD SRIVASTAVA AND ORS"
   },
   "FA/169/1978": {
     "appellant": "RAJESHWARI PD SINGH AND ORS",
-    "respondent": "SMT.KAUSHALYA DEVI"
+    "respondent": "SMT.KAUSHALYA DEVI AND ORS"
   },
   "FA/173/1978": {
     "appellant": "BASDEO RAY AND ORS",
@@ -504,7 +504,7 @@ const CASES_DB = {
     "respondent": "SAKALDIP RAI and ORS"
   },
   "FA/237/1978": {
-    "appellant": "RAM BICHAR SINGH and ORS",
+    "appellant": "RAM BICHAR SINGH and ORS.",
     "respondent": "MOST. DULARO KUER"
   },
   "FA/241/1978": {
@@ -541,11 +541,11 @@ const CASES_DB = {
   },
   "FA/352/1978": {
     "appellant": "BAIJNATH SAO",
-    "respondent": "SITARAM SAO INDERPAREE DEVI VS. MOST SULHODRAKUR @"
+    "respondent": "SITARAM SAO"
   },
   "FA/356/1978": {
     "appellant": "INDERPAREE DEVI",
-    "respondent": "MOST SULHODRAKUR @"
+    "respondent": "MOST SULHODRAKUR @ MANTOSANKUR"
   },
   "FA/357/1978": {
     "appellant": "SRI ANAND KUMAR",
@@ -557,10 +557,10 @@ const CASES_DB = {
   },
   "FA/373/1978": {
     "appellant": "SHREE SATRUGHAN PD. SINGH",
-    "respondent": "MUNESHWAR NR. SINGH"
+    "respondent": "MUNESHWAR NR. SINGH and ORS"
   },
   "FA/380/1978": {
-    "appellant": "GAUTAM PD",
+    "appellant": "GAUTAM PD.",
     "respondent": "KISHUN KUMARI DEVI and ORS"
   },
   "FA/386/1978": {
@@ -577,18 +577,18 @@ const CASES_DB = {
   },
   "FA/417/1978": {
     "appellant": "SIDHESHWAR PD. SINGH and ANR",
-    "respondent": "MOST BRIHSPATI DEVI"
+    "respondent": "MOST BRIHSPATI DEVI and ORS"
   },
   "FA/431/1978": {
     "appellant": "RAM BAHAL SINGH and ORS",
-    "respondent": "SHREE THAKURJEEALMORI"
+    "respondent": "SHREE THAKURJEEALMORI and ORS"
   },
   "FA/436/1978": {
     "appellant": "MOST TAPESHWAR KEUR and ORS",
-    "respondent": "NARBDESHWAR TIWARI"
+    "respondent": "NARBDESHWAR TIWARI and ORS"
   },
   "FA/439/1978": {
-    "appellant": "SHIV NARAYAN RAM and ORS",
+    "appellant": "SHIV NARAYAN RAM and ORS.",
     "respondent": "MOST MATISARI and ORS"
   },
   "FA/447/1978": {
@@ -625,10 +625,10 @@ const CASES_DB = {
   },
   "FA/475/1978": {
     "appellant": "BAJRANGI MISTRY and ORS",
-    "respondent": "SHYAM SUNDER PD"
+    "respondent": "SHYAM SUNDER PD."
   },
   "FA/476/1978": {
-    "appellant": "KRISHNA TRADING and CO",
+    "appellant": "KRISHNA TRADING and CO.",
     "respondent": "UNION OF INDIA"
   },
   "FA/478/1978": {
@@ -644,8 +644,8 @@ const CASES_DB = {
     "respondent": "SMT.LILA DEVI and ORS"
   },
   "FA/491/1978": {
-    "appellant": "SHAHBAD AGRICULTURAL CO.LTD",
-    "respondent": "SMT. MALTI DEVI AND 162   491/1978 ORS"
+    "appellant": "SHAHBAD AGRICULTURAL CO.LTD.",
+    "respondent": "SMT. MALTI DEVI AND ORS."
   },
   "FA/494/1978": {
     "appellant": "MOST URMI DEVI and ORS",
@@ -669,7 +669,7 @@ const CASES_DB = {
   },
   "FA/505/1978": {
     "appellant": "JAGUNANDAN DUBEY and ORS",
-    "respondent": "RAMDADAYALI KUER and"
+    "respondent": "RAMDADAYALI KUER and ORS"
   },
   "FA/510/1978": {
     "appellant": "BHAGWATI PD. PANDEY",
@@ -709,7 +709,7 @@ const CASES_DB = {
   },
   "FA/595/1978": {
     "appellant": "KUMARI SONA SINHA and ORS",
-    "respondent": "HEMLAL MAHTO @ KAROO"
+    "respondent": "HEMLAL MAHTO @ KAROO MAHTO andOR"
   },
   "FA/598/1978": {
     "appellant": "BALESHWAR PD. and ORS",
@@ -736,12 +736,12 @@ const CASES_DB = {
     "respondent": "PRABHU DAYAL PD. and ORS"
   },
   "FA/634/1978": {
-    "appellant": "SHAMBHU SARAN PD",
+    "appellant": "SHAMBHU SARAN PD.",
     "respondent": "PRABHU DAYAL PD. and ORS"
   },
   "FA/644/1978": {
-    "appellant": "BABU DAI DEVI and ORS",
-    "respondent": "GANGA DEVI and ORS"
+    "appellant": "BABU DAI DEVI and ORS.",
+    "respondent": "GANGA DEVI and ORS."
   },
   "FA/647/1978": {
     "appellant": "GANPAT GOPE and ORS",
@@ -813,7 +813,7 @@ const CASES_DB = {
   },
   "FA/720/1978": {
     "appellant": "RAM CHANDRA GOPE and ORS",
-    "respondent": "DHUNESHWARI DEVI and"
+    "respondent": "DHUNESHWARI DEVI and ORS"
   },
   "FA/730/1978": {
     "appellant": "KANHAIYA LAL and ORS",
@@ -892,7 +892,7 @@ const CASES_DB = {
     "respondent": "MOST BUDHIA PASIN and ORS"
   },
   "FA/900/1978": {
-    "appellant": "PRABHU NATH PD",
+    "appellant": "PRABHU NATH PD.",
     "respondent": "KUAR PD. and ORS"
   },
   "FA/905/1978": {
@@ -901,11 +901,11 @@ const CASES_DB = {
   },
   "FA/907/1978": {
     "appellant": "AVINASH CHANDRA VERMA",
-    "respondent": "STATE BANK OF INDIA SUDHENDU KR. BASU and ORS VS. MURARI LAL SHARMA and"
+    "respondent": "STATE BANK OF INDIA"
   },
   "FA/908/1978": {
     "appellant": "SUDHENDU KR. BASU and ORS",
-    "respondent": "MURARI LAL SHARMA and"
+    "respondent": "MURARI LAL SHARMA and ORS"
   },
   "FA/910/1978": {
     "appellant": "TARA CHAND AGRAWAL",
@@ -913,7 +913,7 @@ const CASES_DB = {
   },
   "FA/911/1978": {
     "appellant": "GANESH MAHTO @ GANESH BHAGAT",
-    "respondent": "SHRIBACHAN MAHTO 229   911/1978 and ORS"
+    "respondent": "SHRIBACHAN MAHTO and ORS"
   },
   "FA/917/1978": {
     "appellant": "SUNAINA DEVI",
@@ -925,15 +925,15 @@ const CASES_DB = {
   },
   "FA/922/1978": {
     "appellant": "DINA MAHTO @ DINA YADAV",
-    "respondent": "ATTAR DEVI and ORS SMT. RAJ KUMARI DEVI and ORS. VS. SHEO KALO DEVI and"
+    "respondent": "ATTAR DEVI and ORS"
   },
   "FA/935/1978": {
-    "appellant": "SMT. RAJ KUMARI DEVI and ORS",
-    "respondent": "SHEO KALO DEVI and"
+    "appellant": "SMT. RAJ KUMARI DEVI and ORS.",
+    "respondent": "SHEO KALO DEVI and ORS."
   },
   "FA/1010/1978": {
     "appellant": "PRAYAG RAM and ORS",
-    "respondent": "MURARI MANOHAR PD"
+    "respondent": "MURARI MANOHAR PD."
   },
   "FA/1014/1978": {
     "appellant": "SK. MD. USMAN GHARI",
@@ -949,7 +949,7 @@ const CASES_DB = {
   },
   "FA/1063/1978": {
     "appellant": "JUGAL KISHORE ROY @ GUGAL ROY",
-    "respondent": "MOST SIYABATI and"
+    "respondent": "MOST SIYABATI and ORS"
   },
   "FA/1064/1978": {
     "appellant": "PHULENA MISHRA and ORS",
@@ -993,7 +993,7 @@ const CASES_DB = {
   },
   "FA/282/1979": {
     "appellant": "JANAK SAO @ SUAR SAO @ JANAK LALL",
-    "respondent": "GOPAL PRASAD"
+    "respondent": "GOPAL PRASAD and ANR"
   },
   "FA/298/1979": {
     "appellant": "BINOY KUMAR",
@@ -1009,11 +1009,11 @@ const CASES_DB = {
   },
   "FA/324/1979": {
     "appellant": "RAM KRISHNA DIKSHIT",
-    "respondent": "LAL MUNI DEVI and ORS"
+    "respondent": "LAL MUNI DEVI and ORS."
   },
   "FA/336/1979": {
     "appellant": "GUNESHWAR JHA and ORS",
-    "respondent": "MOSTT. NIRO DEVI and ORS"
+    "respondent": "MOSTT. NIRO DEVI and ORS."
   },
   "FA/340/1979": {
     "appellant": "BRAJ KISHORE PRASAD",
@@ -1028,12 +1028,12 @@ const CASES_DB = {
     "respondent": "CHUNI YADAV and ORS"
   },
   "FA/359/1979": {
-    "appellant": "Ramchandra Prasad",
-    "respondent": "Mostt. Mahajani Devi"
+    "appellant": "Ramchandra Prasad,",
+    "respondent": "Mostt. Mahajani Devi,"
   },
   "FA/368/1979": {
     "appellant": "CHHOTEY LAL and ANR",
-    "respondent": "KUNTI DEVI and ORS"
+    "respondent": "KUNTI DEVI and ORS."
   },
   "FA/372/1979": {
     "appellant": "RAM NATH KOERI and ORS",
@@ -1073,7 +1073,7 @@ const CASES_DB = {
   },
   "FA/536/1979": {
     "appellant": "FATEH BAHADUR SINGH and ORS",
-    "respondent": "SMT. JAMWANTI KUER and"
+    "respondent": "SMT. JAMWANTI KUER and ORS"
   },
   "FA/544/1979": {
     "appellant": "Ramashray Singh",
@@ -1089,11 +1089,11 @@ const CASES_DB = {
   },
   "FA/589/1979": {
     "appellant": "MOSTT.NAGESHWARI DEVI and ORS",
-    "respondent": "SMT LALJHARI DEVI"
+    "respondent": "SMT LALJHARI DEVI and ORS"
   },
   "FA/593/1979": {
     "appellant": "GARAKH RAI and ANR",
-    "respondent": "SHEO KUMAR @ BACHHA SINGH"
+    "respondent": "SHEO KUMAR @ BACHHA SINGH andORS"
   },
   "FA/594/1979": {
     "appellant": "CHANDRABHAN PD. and ORS",
@@ -1105,15 +1105,15 @@ const CASES_DB = {
   },
   "FA/618/1979": {
     "appellant": "JAGDISH PD. SINHA and ANR",
-    "respondent": "PARMESHWAR MAHTO and"
+    "respondent": "PARMESHWAR MAHTO and ORS"
   },
   "FA/621/1979": {
     "appellant": "BHAGWAN RAI and ANR",
-    "respondent": "MAIDA DEVI and ORS                              MISCELLANEOUS Dalmia Cement (Bharat) Limited VS. The State of Bihar through"
+    "respondent": "MAIDA DEVI and ORS"
   },
   "FA/626/1979": {
     "appellant": "Dalmia Cement (Bharat) Limited",
-    "respondent": "The State of Bihar through"
+    "respondent": "The State of Bihar through Collector of Rohtas, Sasaram"
   },
   "FA/629/1979": {
     "appellant": "Srimati Kusum Devi Harnandika",
@@ -1145,7 +1145,7 @@ const CASES_DB = {
   },
   "FA/693/1979": {
     "appellant": "BHOLA YADAV and ANR",
-    "respondent": "RAMESHWAR YADAV and ANR                         MISCELLANEOUS"
+    "respondent": "RAMESHWAR YADAV and ANR"
   },
   "FA/697/1979": {
     "appellant": "MOST.KRISHNA DEVI",
@@ -1165,7 +1165,7 @@ const CASES_DB = {
   },
   "FA/709/1979": {
     "appellant": "VISHWANATH PANDEY and ORS",
-    "respondent": "RAGHUNATH PANDEY and"
+    "respondent": "RAGHUNATH PANDEY and ORS"
   },
   "FA/717/1979": {
     "appellant": "ISUB MIAN and ORS",
@@ -1177,7 +1177,7 @@ const CASES_DB = {
   },
   "FA/740/1979": {
     "appellant": "BINDESHWARI CHOUDHARY",
-    "respondent": "JAMADAR CHOUDHARY and"
+    "respondent": "JAMADAR CHOUDHARY and ORS"
   },
   "FA/742/1979": {
     "appellant": "HAKIM HUSSAIN and ANR",
@@ -1201,7 +1201,7 @@ const CASES_DB = {
   },
   "FA/769/1979": {
     "appellant": "AWADHESH SINGH and ORS",
-    "respondent": "SMT.JIACHI and ORS                     MISCELLANEOUS"
+    "respondent": "SMT.JIACHI and ORS"
   },
   "FA/771/1979": {
     "appellant": "KAULESHWAR SINGH and ORS",
@@ -1221,7 +1221,7 @@ const CASES_DB = {
   },
   "FA/784/1979": {
     "appellant": "ASHOK KUMAR SINGH and ORS",
-    "respondent": "SHREE KISHUN RAI and"
+    "respondent": "SHREE KISHUN RAI and ORS"
   },
   "FA/785/1979": {
     "appellant": "Sambhu Saran Dubey",
@@ -1232,7 +1232,7 @@ const CASES_DB = {
     "respondent": "Jaimangal Kuer"
   },
   "FA/796/1979": {
-    "appellant": "SHANKAR PD. GUPTA and ORS",
+    "appellant": "SHANKAR PD. GUPTA and ORS.",
     "respondent": "JANKI DEVI and ORS"
   },
   "FA/801/1979": {
@@ -1265,7 +1265,7 @@ const CASES_DB = {
   },
   "FA/870/1979": {
     "appellant": "RAMJATAN PD.@ RAMJATAN SINGHandO",
-    "respondent": "RAMANUJ PD. @"
+    "respondent": "RAMANUJ PD. @ RAM KIRIT PD.andOR"
   },
   "FA/871/1979": {
     "appellant": "KAMESHWAR SINGH and ORS",
@@ -1284,7 +1284,7 @@ const CASES_DB = {
     "respondent": "NAGINA CHOUDHARY and ORS"
   },
   "FA/954/1979": {
-    "appellant": "MD. NISAR AHMAD KHAN and ORS",
+    "appellant": "MD. NISAR AHMAD KHAN and ORS.",
     "respondent": "NAZIR KHAN AND ORS"
   },
   "FA/7/1980": {
@@ -1297,7 +1297,7 @@ const CASES_DB = {
   },
   "FA/14/1980": {
     "appellant": "JAGNARAIN RAI and ORS",
-    "respondent": "ROBIN RAI and ORS                       FORMAL ORDER"
+    "respondent": "ROBIN RAI and ORS"
   },
   "FA/24/1980": {
     "appellant": "HARISH CHANDRA JHA",
@@ -1313,7 +1313,7 @@ const CASES_DB = {
   },
   "FA/32/1980": {
     "appellant": "RAM SAGAR GIR CHELA and ORS",
-    "respondent": "MAHANTHANI KAUSHALYA 329   32/1980 GIR CHELA"
+    "respondent": "MAHANTHANI KAUSHALYA GIR CHELA"
   },
   "FA/36/1980": {
     "appellant": "BISHWAMITRA BHAGAT and ORS",
@@ -1357,7 +1357,7 @@ const CASES_DB = {
   },
   "FA/106/1980": {
     "appellant": "RAM GULAM CHAUDHARY and ORS",
-    "respondent": "NAVEEN CHOUDHARY"
+    "respondent": "NAVEEN CHOUDHARY and ORS"
   },
   "FA/108/1980": {
     "appellant": "NORTHERN INDIA COLD STORAGE",
@@ -1373,7 +1373,7 @@ const CASES_DB = {
   },
   "FA/119/1980": {
     "appellant": "SMT.SHAIL KUMARI DEVI",
-    "respondent": "C/S BROOKE BOND INDIA PVT.LTD"
+    "respondent": "C/S BROOKE BOND INDIA PVT.LTD."
   },
   "FA/131/1980": {
     "appellant": "TRIGUNA SINGH and ORS",
@@ -1397,7 +1397,7 @@ const CASES_DB = {
   },
   "FA/153/1980": {
     "appellant": "RAMCHANDRA MAHTO and ORS",
-    "respondent": "RAMPRAKASH"
+    "respondent": "RAMPRAKASH CHAUDHARY and ORS"
   },
   "FA/154/1980": {
     "appellant": "BALIRAM SINGH",
@@ -1405,7 +1405,7 @@ const CASES_DB = {
   },
   "FA/161/1980": {
     "appellant": "RAM SHEELA DEVI and ORS",
-    "respondent": "PRABHUNATH CHAUBEY and 352   161/1980 ORS"
+    "respondent": "PRABHUNATH CHAUBEY and ORS"
   },
   "FA/163/1980": {
     "appellant": "SMT.BALKESHI DEVI and ANR",
@@ -1416,7 +1416,7 @@ const CASES_DB = {
     "respondent": "Kailash Lal"
   },
   "FA/169/1980": {
-    "appellant": "BANARSI PD. @ GODA PD",
+    "appellant": "BANARSI PD. @ GODA PD.",
     "respondent": "MOSTT.JONHIA and ORS"
   },
   "FA/172/1980": {
@@ -1429,15 +1429,15 @@ const CASES_DB = {
   },
   "FA/178/1980": {
     "appellant": "CHANDRAVATI DEVI",
-    "respondent": "SMT.DAMYANTI DEVI and ORS MAHANTH RAMESHWAR PARBAT VS. PRESIDENT,BIHAR"
+    "respondent": "SMT.DAMYANTI DEVI and ORS"
   },
   "FA/179/1980": {
     "appellant": "MAHANTH RAMESHWAR PARBAT",
-    "respondent": "PRESIDENT,BIHAR 359   179/1980 RELIGIOUS TRUS RAMASHANKAR SAH VS. HARISHANKER SAH@WALA SAH"
+    "respondent": "PRESIDENT,BIHAR RELIGIOUS TRUS"
   },
   "FA/181/1980": {
     "appellant": "RAMASHANKAR SAH",
-    "respondent": "HARISHANKER SAH@WALA SAH 360   181/1980 andORS"
+    "respondent": "HARISHANKER SAH@WALA SAH andORS"
   },
   "FA/182/1980": {
     "appellant": "Most. Ratni",
@@ -1472,7 +1472,7 @@ const CASES_DB = {
     "respondent": "SMT.RAMJYOTI and ORS"
   },
   "FA/220/1980": {
-    "appellant": "M/S Champaran Sugar Co. Ltd",
+    "appellant": "M/S Champaran Sugar Co. Ltd.",
     "respondent": "Usha Kumari Bothra"
   },
   "FA/241/1980": {
@@ -1481,11 +1481,11 @@ const CASES_DB = {
   },
   "FA/251/1980": {
     "appellant": "SHANKAR BHAGWAN SHARMA",
-    "respondent": "JUGESHWAR PD. SINGH and 371   251/1980 ORS Union of India VS. Uma Nath Prasad Proprietor of the Firm M/S"
+    "respondent": "JUGESHWAR PD. SINGH and ORS"
   },
   "FA/256/1980": {
     "appellant": "Union of India",
-    "respondent": "Uma Nath Prasad Proprietor of the Firm M/S"
+    "respondent": "Uma Nath Prasad Proprietor of the Firm M/S Gabordhan Ram Bhagwan Lal Fruit and Vegetable Merchants"
   },
   "FA/260/1980": {
     "appellant": "DINA NATH RAI and ORS",
@@ -1493,14 +1493,14 @@ const CASES_DB = {
   },
   "FA/267/1980": {
     "appellant": "RAMPRASAD CHAUDHARY and ORS",
-    "respondent": "JOHARMAL SANTHALIA"
+    "respondent": "JOHARMAL SANTHALIA and ORS"
   },
   "FA/277/1980": {
     "appellant": "RAJENDRA PD.UPADHYAY andANR",
-    "respondent": "CHANDRAMA SINGH"
+    "respondent": "CHANDRAMA SINGH @NATHUNI SINGH"
   },
   "FA/283/1980": {
-    "appellant": "SHEONATH PD",
+    "appellant": "SHEONATH PD.",
     "respondent": "GANESH MAHTO and ORS"
   },
   "FA/284/1980": {
@@ -1537,7 +1537,7 @@ const CASES_DB = {
   },
   "FA/333/1980": {
     "appellant": "Manrupa Devi",
-    "respondent": "The State of Bihar, through the Land Acquisition"
+    "respondent": "The State of Bihar, through the Land Acquisition Officer,"
   },
   "FA/378/1980": {
     "appellant": "STATE OF BIHAR",
@@ -1548,12 +1548,12 @@ const CASES_DB = {
     "respondent": "BANSHI SAH and ORS"
   },
   "FA/386/1980": {
-    "appellant": "Chandra Keta Narayan Singh and Ors",
+    "appellant": "Chandra Keta Narayan Singh and Ors.",
     "respondent": "Debi Dayal Singh and Ors"
   },
   "FA/388/1980": {
     "appellant": "KARU RAI and ORS. and ORS",
-    "respondent": "RAM CHANDRA PRASAD RAI 389   388/1980 and ORS"
+    "respondent": "RAM CHANDRA PRASAD RAI and ORS"
   },
   "FA/395/1980": {
     "appellant": "KULDEVTA",
@@ -1561,7 +1561,7 @@ const CASES_DB = {
   },
   "FA/405/1980": {
     "appellant": "Binod Kumar Singh",
-    "respondent": "Anandi Pd. Singh"
+    "respondent": "Anandi Pd. Singh,"
   },
   "FA/408/1980": {
     "appellant": "BASUNDHRA KUMARI and ORS",
@@ -1573,7 +1573,7 @@ const CASES_DB = {
   },
   "FA/416/1980": {
     "appellant": "SATYENDRA PD,SINHA and ORS",
-    "respondent": "HARE KRISHNA PRASAD"
+    "respondent": "HARE KRISHNA PRASAD and ORS"
   },
   "FA/427/1980": {
     "appellant": "RAJENDRA SINGH@KHIRU SINGH",
@@ -1585,11 +1585,11 @@ const CASES_DB = {
   },
   "FA/432/1980": {
     "appellant": "MOST.RADHA PEYARI KUER and ORS",
-    "respondent": "MOST. SINGARO KEUR"
+    "respondent": "MOST. SINGARO KEUR and ORS"
   },
   "FA/466/1980": {
     "appellant": "GAURI SHANKAR SAHAY and ORS",
-    "respondent": "UPENDRA NR.VERMA and"
+    "respondent": "UPENDRA NR.VERMA and ORS"
   },
   "FA/472/1980": {
     "appellant": "MOST YASODA DEVI and ORS",
@@ -1597,7 +1597,7 @@ const CASES_DB = {
   },
   "FA/473/1980": {
     "appellant": "JOGENDRA MAHTO and ORS",
-    "respondent": "MOST. MUNAKWA DEVI and"
+    "respondent": "MOST. MUNAKWA DEVI and ORS"
   },
   "FA/479/1980": {
     "appellant": "ARJUN RAUT",
@@ -1612,7 +1612,7 @@ const CASES_DB = {
     "respondent": "RAGIA DEVI and ORS"
   },
   "FA/486/1980": {
-    "appellant": "KAPILDEO MISHRA andORS",
+    "appellant": "KAPILDEO MISHRA andORS.",
     "respondent": "KEWAL DUBEY and ORS"
   },
   "FA/502/1980": {
@@ -1641,15 +1641,15 @@ const CASES_DB = {
   },
   "FA/627/1980": {
     "appellant": "SADHO SINGH and ORS",
-    "respondent": "RAJ MANGAL SINGH SUDHAKAR UPADHYAY and ORS VS. RAMESHWAR UPADHYAYA"
+    "respondent": "RAJ MANGAL SINGH"
   },
   "FA/630/1980": {
     "appellant": "SUDHAKAR UPADHYAY and ORS",
-    "respondent": "RAMESHWAR UPADHYAYA"
+    "respondent": "RAMESHWAR UPADHYAYA and ORS"
   },
   "FA/645/1980": {
     "appellant": "MUKTINATH SINGH@MULO SINGH",
-    "respondent": "RAMJI"
+    "respondent": "RAMJI SINGH@SHAMBHU SHARAN SIN"
   },
   "FA/647/1980": {
     "appellant": "RAMSAROOP SINGH and ORS",
@@ -1657,7 +1657,7 @@ const CASES_DB = {
   },
   "FA/651/1980": {
     "appellant": "RAM CHALLITAR SINGH and ORS",
-    "respondent": "RAM NARAIN SINGH and"
+    "respondent": "RAM NARAIN SINGH and ORS"
   },
   "FA/652/1980": {
     "appellant": "RAM BINOY SINGH and ORS",
@@ -1669,7 +1669,7 @@ const CASES_DB = {
   },
   "FA/748/1980": {
     "appellant": "BACHA PANDEY and ORS",
-    "respondent": "RAJENDRA PRASAD and ORS                 MISCELLANEOUS"
+    "respondent": "RAJENDRA PRASAD and ORS"
   },
   "FA/761/1980": {
     "appellant": "SAHODAR RAUT",
@@ -1689,7 +1689,7 @@ const CASES_DB = {
   },
   "FA/775/1980": {
     "appellant": "CHANDRIKA TIWARY and ORS",
-    "respondent": "SHREE RAMJANKI and SHREE"
+    "respondent": "SHREE RAMJANKI and SHREE HANUMAN"
   },
   "FA/776/1980": {
     "appellant": "Dina Nath Singh",
@@ -1717,7 +1717,7 @@ const CASES_DB = {
   },
   "FA/796/1980": {
     "appellant": "RAGHUBANSH NR.SINGH@RAGHUBANSH",
-    "respondent": "MAHABIR GOPE"
+    "respondent": "MAHABIR GOPE and ORS"
   },
   "FA/797/1980": {
     "appellant": "SAGAR MALL",
@@ -1765,14 +1765,14 @@ const CASES_DB = {
   },
   "FA/885/1980": {
     "appellant": "RAM KEWAL TEWARY and ORS",
-    "respondent": "TEJ NR. TIWARY AND ORS                         MISCELLANEOUS"
+    "respondent": "TEJ NR. TIWARY AND ORS"
   },
   "FA/1163/1980": {
     "appellant": "JAGO GOPE",
     "respondent": "RAJU GOPE and ORS"
   },
   "FA/1164/1980": {
-    "appellant": "RAJENDRA PD",
+    "appellant": "RAJENDRA PD.",
     "respondent": "KANHAIYA PD.GUPTA and ORS"
   },
   "FA/1170/1980": {
@@ -1840,8 +1840,8 @@ const CASES_DB = {
     "respondent": "Most. Munna Devi"
   },
   "FA/165/1981": {
-    "appellant": "BIH.BHUDAN YAGNA COMMI.SECRE",
-    "respondent": "BIRENDRA KR.MANDAL"
+    "appellant": "BIH.BHUDAN YAGNA COMMI.SECRE.",
+    "respondent": "BIRENDRA KR.MANDAL and ORS"
   },
   "FA/179/1981": {
     "appellant": "JAGDISH SINGH",
@@ -1865,11 +1865,11 @@ const CASES_DB = {
   },
   "FA/210/1981": {
     "appellant": "Mosstt. Sugabati Devi",
-    "respondent": "Sri Bhagwati Sugal Mahamayajee alias Sri"
+    "respondent": "Sri Bhagwati Sugal Mahamayajee alias Sri Sri 108 Sri Sugal Mahamaya Devi"
   },
   "FA/211/1981": {
     "appellant": "SMT.BHOLI DEVI",
-    "respondent": "ANMAL KUMAR CHAUDHARY and ORS                            MISCELLANEOUS"
+    "respondent": "ANMAL KUMAR CHAUDHARY and ORS"
   },
   "FA/212/1981": {
     "appellant": "RAM PRATAP RAI and ORS",
@@ -1877,11 +1877,11 @@ const CASES_DB = {
   },
   "FA/230/1981": {
     "appellant": "AKALI DEVI and ORS",
-    "respondent": "MAHADEO YADAV and ORS BAIJ NATH PD. SINGH and ORS VS. THE UNION OF INDIA and"
+    "respondent": "MAHADEO YADAV and ORS"
   },
   "FA/234/1981": {
     "appellant": "BAIJ NATH PD. SINGH and ORS",
-    "respondent": "THE UNION OF INDIA and"
+    "respondent": "THE UNION OF INDIA and ANR"
   },
   "FA/237/1981": {
     "appellant": "",
@@ -1953,7 +1953,7 @@ const CASES_DB = {
   },
   "FA/354/1981": {
     "appellant": "KEDAR PASWAN",
-    "respondent": "SMT.CHANDRA KALA DEVI                                        MISCELLANEOUS"
+    "respondent": "SMT.CHANDRA KALA DEVI"
   },
   "FA/361/1981": {
     "appellant": "RAM BRICHH SAO",
@@ -1976,7 +1976,7 @@ const CASES_DB = {
     "respondent": "Surya Narain Yadav"
   },
   "FA/385/1981": {
-    "appellant": "Giriak Cold Storage (P) Ltd",
+    "appellant": "Giriak Cold Storage (P) Ltd.",
     "respondent": "State Bank of India"
   },
   "FA/399/1981": {
@@ -2029,7 +2029,7 @@ const CASES_DB = {
   },
   "FA/475/1981": {
     "appellant": "Bibi Soghra",
-    "respondent": "Bibi Sakina"
+    "respondent": "Bibi Sakina,"
   },
   "FA/476/1981": {
     "appellant": "Sk. Abdul Ghafoor",
@@ -2037,11 +2037,11 @@ const CASES_DB = {
   },
   "FA/477/1981": {
     "appellant": "UNION OF INDIA",
-    "respondent": "THE BIHAR STATE SMALL INDU LTD M/s Pioneer Foundry and Engineering Works VS. M/s Sitalpur Sugar"
+    "respondent": "THE BIHAR STATE SMALL INDU LTD"
   },
   "FA/479/1981": {
     "appellant": "M/s Pioneer Foundry and Engineering Works",
-    "respondent": "M/s Sitalpur Sugar"
+    "respondent": "M/s Sitalpur Sugar Works Ltd."
   },
   "FA/488/1981": {
     "appellant": "Rambilas Singh",
@@ -2061,7 +2061,7 @@ const CASES_DB = {
   },
   "FA/518/1981": {
     "appellant": "MAHADEO LAL and ORS",
-    "respondent": "JUGAL KISHORE PD"
+    "respondent": "JUGAL KISHORE PD."
   },
   "FA/524/1981": {
     "appellant": "Ramchandra Tiwary",
@@ -2077,7 +2077,7 @@ const CASES_DB = {
   },
   "FA/40/1982": {
     "appellant": "CHANDRAMA BHAGAT and ORS",
-    "respondent": "RAM SUNDAR BHAGAT and"
+    "respondent": "RAM SUNDAR BHAGAT and ORS"
   },
   "FA/44/1982": {
     "appellant": "MISHRI LAL SAO @ M.LAL and ORS",
@@ -2141,19 +2141,19 @@ const CASES_DB = {
   },
   "FA/216/1982": {
     "appellant": "JAYVANTI DEVI and ORS",
-    "respondent": "SIYA SARAN PD. and ORS SACHIDANANDAN PANDEY VS. HARI BANSH NR.PANDEY and"
+    "respondent": "SIYA SARAN PD. and ORS"
   },
   "FA/217/1982": {
     "appellant": "SACHIDANANDAN PANDEY",
-    "respondent": "HARI BANSH NR.PANDEY and"
+    "respondent": "HARI BANSH NR.PANDEY and ORS"
   },
   "FA/218/1982": {
     "appellant": "HIRDAY NR.PANDEY and ORS",
-    "respondent": "HARIBANSH NR.PANDEY and 538   218/1982                                                                       MISCELLANEOUS ORS HIRDAY NR.PANDEY and ORS VS. HARIBANSH NR.PANDEY and"
+    "respondent": "HARIBANSH NR.PANDEY and ORS"
   },
   "FA/219/1982": {
     "appellant": "HIRDAY NR.PANDEY and ORS",
-    "respondent": "HARIBANSH NR.PANDEY and"
+    "respondent": "HARIBANSH NR.PANDEY and ORS"
   },
   "FA/220/1982": {
     "appellant": "SACHIDANAND PANDEY",
@@ -2161,7 +2161,7 @@ const CASES_DB = {
   },
   "FA/223/1982": {
     "appellant": "BINDHYACHAL PD.PANDEY",
-    "respondent": "PANDEY BIRENDRA PD. and ORS               MISCELLANEOUS"
+    "respondent": "PANDEY BIRENDRA PD. and ORS"
   },
   "FA/240/1982": {
     "appellant": "BANARAS SINGH and ANR",
@@ -2169,7 +2169,7 @@ const CASES_DB = {
   },
   "FA/260/1982": {
     "appellant": "SRI NAGENDRA SINGH @NAGENDRA P",
-    "respondent": "SHIVRATAN SINGH                  MISCELLANEOUS"
+    "respondent": "SHIVRATAN SINGH"
   },
   "FA/265/1982": {
     "appellant": "SMT.SONFUL DEVI and ANR",
@@ -2185,11 +2185,11 @@ const CASES_DB = {
   },
   "FA/286/1982": {
     "appellant": "CHANDRA DEO YADAV and ORS",
-    "respondent": "TAPESHWAR PD.GUPTA and 547   286/1982                                                                 MISCELLANEOUS ORS SMT.ACHHARWATI DEVI and ORS VS. JANARDAN SINGH and"
+    "respondent": "TAPESHWAR PD.GUPTA and ORS"
   },
   "FA/326/1982": {
     "appellant": "SMT.ACHHARWATI DEVI and ORS",
-    "respondent": "JANARDAN SINGH and"
+    "respondent": "JANARDAN SINGH and ORS"
   },
   "FA/328/1982": {
     "appellant": "GOPAL THAKUR and ORS",
@@ -2213,7 +2213,7 @@ const CASES_DB = {
   },
   "FA/344/1982": {
     "appellant": "BINOD KUMAR SINGH and ANR",
-    "respondent": "RAM PRAVESH SINGH and 554   344/1982                                                                       MISCELLANEOUS ORS"
+    "respondent": "RAM PRAVESH SINGH and ORS"
   },
   "FA/352/1982": {
     "appellant": "Mustaqima Khatoon and ors",
@@ -2229,7 +2229,7 @@ const CASES_DB = {
   },
   "FA/378/1982": {
     "appellant": "RAM PRAKASH CHOUDHARY and ORS",
-    "respondent": "BIRENDRA"
+    "respondent": "BIRENDRA CHAUDHARY and ORS"
   },
   "FA/385/1982": {
     "appellant": "MANGU RAM SADHU RAM and ORS",
@@ -2253,7 +2253,7 @@ const CASES_DB = {
   },
   "FA/403/1982": {
     "appellant": "KESHO MAHTO and ORS",
-    "respondent": "KAILASH PD.                                        MISCELLANEOUS"
+    "respondent": "KAILASH PD."
   },
   "FA/414/1982": {
     "appellant": "Bindeshwari Yadav",
@@ -2273,7 +2273,7 @@ const CASES_DB = {
   },
   "FA/442/1982": {
     "appellant": "MIR NEK MOHAMMAD",
-    "respondent": "MD.HATIRUKHAN and ORS                                 MISCELLANEOUS"
+    "respondent": "MD.HATIRUKHAN and ORS"
   },
   "FA/472/1982": {
     "appellant": "RAM PD. MAHTO and ORS",
@@ -2281,15 +2281,15 @@ const CASES_DB = {
   },
   "FA/475/1982": {
     "appellant": "SURAJ NR. SINGH",
-    "respondent": "RAM SHUKLA and ORS.                                    MISCELLANEOUS"
+    "respondent": "RAM SHUKLA and ORS."
   },
   "FA/479/1982": {
-    "appellant": "MUNDRIKA MAHTO and ORS",
-    "respondent": "TUPHANI MAHTO and ORS"
+    "appellant": "MUNDRIKA MAHTO and ORS.",
+    "respondent": "TUPHANI MAHTO and ORS."
   },
   "FA/481/1982": {
     "appellant": "Kapil Deo Singh and Ors",
-    "respondent": "Ram Kumari Devi @ Raj Kumari Devi"
+    "respondent": "Ram Kumari Devi @ Raj Kumari Devi and Ors"
   },
   "FA/485/1982": {
     "appellant": "AMBIKA PD.and ORS",
@@ -2308,7 +2308,7 @@ const CASES_DB = {
     "respondent": "Sri Singheshwar Mishra"
   },
   "FA/511/1982": {
-    "appellant": "HARIHAR PD",
+    "appellant": "HARIHAR PD.",
     "respondent": "SMT.GAYATRI DEVI and ORS"
   },
   "FA/517/1982": {
@@ -2329,11 +2329,11 @@ const CASES_DB = {
   },
   "FA/542/1982": {
     "appellant": "SUSHIL KR.SRIVASTAVA and ORS",
-    "respondent": "GULAB CHAND PD. and"
+    "respondent": "GULAB CHAND PD. and ORS"
   },
   "FA/546/1982": {
     "appellant": "JAGDISH PD. MANDAL and ORS",
-    "respondent": "CHANDRA MAULESHWAR 584   546/1982                                                                              MISCELLANEOUS THAKUR"
+    "respondent": "CHANDRA MAULESHWAR THAKUR"
   },
   "FA/548/1982": {
     "appellant": "JUGAL KISHORE PD. and ORS",
@@ -2345,7 +2345,7 @@ const CASES_DB = {
   },
   "FA/585/1982": {
     "appellant": "HARENDRA PD.SINGH and ORS",
-    "respondent": "BASUDHA PD. SINGH and 587   585/1982                                                                              MISCELLANEOUS ORS"
+    "respondent": "BASUDHA PD. SINGH and ORS"
   },
   "FA/597/1982": {
     "appellant": "ACHAIBAR PRASAD",
@@ -2360,8 +2360,8 @@ const CASES_DB = {
     "respondent": "MOTI LAL and ORS"
   },
   "FA/611/1982": {
-    "appellant": "RAM NARAYAN SINGH and ORS",
-    "respondent": "BIRENDRA PRASAD SINGH 591   611/1982                                                                              MISCELLANEOUS and ORS"
+    "appellant": "RAM NARAYAN SINGH and ORS.",
+    "respondent": "BIRENDRA PRASAD SINGH and ORS"
   },
   "FA/614/1982": {
     "appellant": "Bishwanath Prasad",
@@ -2369,7 +2369,7 @@ const CASES_DB = {
   },
   "FA/1/1983": {
     "appellant": "JALESHWAR THAKUR and ORS",
-    "respondent": "RAM NARESH THAKUR and"
+    "respondent": "RAM NARESH THAKUR and ORS"
   },
   "FA/2/1983": {
     "appellant": "Rajendra Yadav",
@@ -2409,7 +2409,7 @@ const CASES_DB = {
   },
   "FA/27/1983": {
     "appellant": "GAYATRI DEVI",
-    "respondent": "RAM NAGINA PD"
+    "respondent": "RAM NAGINA PD."
   },
   "FA/29/1983": {
     "appellant": "CENTRAL BANK OF INDIA",
@@ -2428,7 +2428,7 @@ const CASES_DB = {
     "respondent": "RAM NR.SINGH and ORS"
   },
   "FA/74/1983": {
-    "appellant": "BRAHMDEO NR",
+    "appellant": "BRAHMDEO NR.",
     "respondent": "RADHA MURARI"
   },
   "FA/80/1983": {
@@ -2441,7 +2441,7 @@ const CASES_DB = {
   },
   "FA/84/1983": {
     "appellant": "DHARM NATH PANDEY and ORS",
-    "respondent": "JAGDISH NR.DUBEY and"
+    "respondent": "JAGDISH NR.DUBEY and ORS"
   },
   "FA/86/1983": {
     "appellant": "GUPTESHWAR PD.SINGH",
@@ -2449,7 +2449,7 @@ const CASES_DB = {
   },
   "FA/94/1983": {
     "appellant": "LAKHAN PD.VERMA",
-    "respondent": "SITA RAM PD"
+    "respondent": "SITA RAM PD."
   },
   "FA/104/1983": {
     "appellant": "RAM DIWAN SINGH and ORS",
@@ -2481,7 +2481,7 @@ const CASES_DB = {
   },
   "FA/172/1983": {
     "appellant": "SHIVNANDAN SINGH and ORS",
-    "respondent": "RAM TAPESHA SINGH and"
+    "respondent": "RAM TAPESHA SINGH and ORS"
   },
   "FA/178/1983": {
     "appellant": "DEVI DAYAL VAIDYA AND ORS",
@@ -2516,7 +2516,7 @@ const CASES_DB = {
     "respondent": "MOST. MANTULIA DEVI and ORS"
   },
   "FA/215/1983": {
-    "appellant": "DAMODAR PD",
+    "appellant": "DAMODAR PD.",
     "respondent": "SMT.ANITA DEVI and ORS"
   },
   "FA/219/1983": {
@@ -2545,7 +2545,7 @@ const CASES_DB = {
   },
   "FA/256/1983": {
     "appellant": "CHOUDHARY MUHAMMAD MAZHAR andANR",
-    "respondent": "RAMA"
+    "respondent": "RAMA SHANKER PD. and ORS"
   },
   "FA/273/1983": {
     "appellant": "SMT.SEO BACHNI DEVI",
@@ -2569,14 +2569,14 @@ const CASES_DB = {
   },
   "FA/285/1983": {
     "appellant": "K.N.H.MEDICAL COLLEGE and ORS",
-    "respondent": "STATE OF BIHAR and"
+    "respondent": "STATE OF BIHAR and ORS"
   },
   "FA/286/1983": {
     "appellant": "RAM GOVIND PATHAK",
     "respondent": "MOST.FULJHARI KUER and ORS"
   },
   "FA/288/1983": {
-    "appellant": "CHHABILA MISHRA and ANR",
+    "appellant": "CHHABILA MISHRA and ANR.",
     "respondent": "AMBIKA MISHRA and ORS"
   },
   "FA/296/1983": {
@@ -2601,7 +2601,7 @@ const CASES_DB = {
   },
   "FA/304/1983": {
     "appellant": "M/S.JAI BHARAT STORE WORKSandANR",
-    "respondent": "CENTRAL BANK OF"
+    "respondent": "CENTRAL BANK OF INDIA"
   },
   "FA/308/1983": {
     "appellant": "THE UNION OF INDIA",
@@ -2620,16 +2620,16 @@ const CASES_DB = {
     "respondent": "RAM SHANKAR PD. and ORS"
   },
   "FA/322/1983": {
-    "appellant": "SMT. SAVITA DEVI @ SAVITA SINGH and ORS",
-    "respondent": "NAWAL"
+    "appellant": "SMT. SAVITA DEVI @ SAVITA SINGH and ORS.",
+    "respondent": "NAWAL KISHORE SINGH and ORS"
   },
   "FA/326/1983": {
-    "appellant": "CHALITAR CHOUDHARY",
-    "respondent": "13"
+    "appellant": "CHALITAR CHOUDHARY VS.",
+    "respondent": ""
   },
   "FA/329/1983": {
     "appellant": "SMT.RADHA DEVI and ORS",
-    "respondent": "SMT. SNEH LATA SINHA and ORS"
+    "respondent": "SMT. SNEH LATA SINHA and ORS."
   },
   "FA/337/1983": {
     "appellant": "SRI SANTA SINGH and ORS",
@@ -2692,11 +2692,11 @@ const CASES_DB = {
     "respondent": "SMT. NIRMALA DEVI and ORS"
   },
   "FA/376/1983": {
-    "appellant": "SURENDRA GAIN and ORS",
+    "appellant": "SURENDRA GAIN and ORS.",
     "respondent": "MATHURA PRASAD and ORS"
   },
   "FA/382/1983": {
-    "appellant": "MAHENDRA PRASAD",
+    "appellant": "MAHENDRA PRASAD VS.",
     "respondent": ""
   },
   "FA/384/1983": {
@@ -2712,8 +2712,8 @@ const CASES_DB = {
     "respondent": "RAJ BALAM GIRI and ORS"
   },
   "FA/393/1983": {
-    "appellant": "BALGOVIND MAHTO",
-    "respondent": "13"
+    "appellant": "BALGOVIND MAHTO VS.",
+    "respondent": ""
   },
   "FA/399/1983": {
     "appellant": "SHEO GOBIND MAHTO and ORS",
@@ -2777,19 +2777,19 @@ const CASES_DB = {
   },
   "FA/440/1983": {
     "appellant": "SHYAM SUNDAR DUKANIA",
-    "respondent": "PUNJAB NATI. BANK LTD. and"
+    "respondent": "PUNJAB NATI. BANK LTD. and ORS"
   },
   "FA/445/1983": {
     "appellant": "RAGHU NATH SARAN SINGH",
-    "respondent": "TOOK NARAYAN SINGHand"
+    "respondent": "TOOK NARAYAN SINGHand ORS"
   },
   "FA/449/1983": {
     "appellant": "AKHTAR HUSSAIN KHAN and ORS",
-    "respondent": "SYED WARIS HUSSAIN"
+    "respondent": "SYED WARIS HUSSAIN and ORS"
   },
   "FA/455/1983": {
     "appellant": "MOSTT.PHULMATI DEVI and ORS",
-    "respondent": "SHEO SHANKER SAH and"
+    "respondent": "SHEO SHANKER SAH and ORS"
   },
   "FA/457/1983": {
     "appellant": "Sudama Pandey alias Chulhan Pandey",
@@ -2813,7 +2813,7 @@ const CASES_DB = {
   },
   "FA/468/1983": {
     "appellant": "DUL KAUSHAILYA DEVI and ANR",
-    "respondent": "RAM NARAYAN SAH and"
+    "respondent": "RAM NARAYAN SAH and ORS"
   },
   "FA/469/1983": {
     "appellant": "UMESH KUMAR SINGH and ORS",
@@ -2853,14 +2853,14 @@ const CASES_DB = {
   },
   "FA/485/1983": {
     "appellant": "PASHUPATI NATH SINGHand ORS",
-    "respondent": "DHARMDEO SINGH and"
+    "respondent": "DHARMDEO SINGH and ANR"
   },
   "FA/487/1983": {
     "appellant": "SMT. DUKHIYA KUER and ORS",
     "respondent": "DWARIKA SINGH and ORS"
   },
   "FA/489/1983": {
-    "appellant": "MOST. JICHHI DEVI and ORS",
+    "appellant": "MOST. JICHHI DEVI and ORS.",
     "respondent": "RAM NANDAN SINGH AND ORS"
   },
   "FA/490/1983": {
@@ -2873,7 +2873,7 @@ const CASES_DB = {
   },
   "FA/499/1983": {
     "appellant": "JUGAL KISHORE PRASAD and ORS",
-    "respondent": "SRI SIFAN MAHTOand"
+    "respondent": "SRI SIFAN MAHTOand ORS"
   },
   "FA/505/1983": {
     "appellant": "STATE",
@@ -2897,7 +2897,7 @@ const CASES_DB = {
   },
   "FA/581/1983": {
     "appellant": "SATYENARAYAN SINGH andANR",
-    "respondent": "PUNJAB NATIONAL BANK"
+    "respondent": "PUNJAB NATIONAL BANK and ORS"
   },
   "FA/582/1983": {
     "appellant": "MAULVEE MAHTO",
@@ -2941,7 +2941,7 @@ const CASES_DB = {
   },
   "FA/610/1983": {
     "appellant": "HARI NARAYAN SINGH and ORS",
-    "respondent": "MOST. RESHMA DEVI and"
+    "respondent": "MOST. RESHMA DEVI and ORS"
   },
   "FA/611/1983": {
     "appellant": "HARI NARAYAN SINGH and ORS",
@@ -2968,7 +2968,7 @@ const CASES_DB = {
     "respondent": "RUDAL SAH and ORS"
   },
   "FA/617/1983": {
-    "appellant": "SHRAWAN SAH @ HARENDRA PD",
+    "appellant": "SHRAWAN SAH @ HARENDRA PD.",
     "respondent": "GANESH SAHand ORS"
   },
   "FA/618/1983": {
@@ -3000,7 +3000,7 @@ const CASES_DB = {
     "respondent": "MADAN PRASAD and ORS"
   },
   "FA/634/1983": {
-    "appellant": "BISHWANATH PD",
+    "appellant": "BISHWANATH PD.",
     "respondent": "SHYAMJEE PRASAD"
   },
   "FA/635/1983": {
@@ -3020,8 +3020,8 @@ const CASES_DB = {
     "respondent": "BIBI JAIVILA KHATOON"
   },
   "FA/643/1983": {
-    "appellant": "M.D. HUSSAIN and ORS",
-    "respondent": "MOST. HALIMA KHATOON and ORS"
+    "appellant": "M.D. HUSSAIN and ORS.",
+    "respondent": "MOST. HALIMA KHATOON and ORS."
   },
   "FA/644/1983": {
     "appellant": "MOST.RAJ KUMARI DEVI",
@@ -3033,7 +3033,7 @@ const CASES_DB = {
   },
   "FA/652/1983": {
     "appellant": "ASHOK ENGINEERINGBIHARPVTLTD",
-    "respondent": "THE STATE BANK OF"
+    "respondent": "THE STATE BANK OF INDIA and ORS"
   },
   "FA/654/1983": {
     "appellant": "S.M. WASIQUE and ORS",
@@ -3049,10 +3049,10 @@ const CASES_DB = {
   },
   "FA/39/1984": {
     "appellant": "MOST.MUNESHWARI DEVI and ORS",
-    "respondent": "SUKHDEO MAHTO and"
+    "respondent": "SUKHDEO MAHTO and ORS"
   },
   "FA/48/1984": {
-    "appellant": "SANTOSH KR",
+    "appellant": "SANTOSH KR.",
     "respondent": "GURUL PD.NAG @ RATAN and ORS"
   },
   "FA/62/1984": {
@@ -3061,7 +3061,7 @@ const CASES_DB = {
   },
   "FA/70/1984": {
     "appellant": "BADRI RAM and ORS",
-    "respondent": "BIHARI RAM and ORS                            ORDERS"
+    "respondent": "BIHARI RAM and ORS"
   },
   "FA/73/1984": {
     "appellant": "SHANTI DEVI and ORS",
@@ -3069,7 +3069,7 @@ const CASES_DB = {
   },
   "FA/88/1984": {
     "appellant": "SMT. MUNRA DEVI @ MUNARI DEVI",
-    "respondent": "RAM KISHUN SAH and"
+    "respondent": "RAM KISHUN SAH and ORS"
   },
   "FA/98/1984": {
     "appellant": "DEO PRABESH MISHRA and ORS",
@@ -3077,23 +3077,23 @@ const CASES_DB = {
   },
   "FA/99/1984": {
     "appellant": "RAMBABU MISHRA and ORS",
-    "respondent": "DEB PRABESH MISHRA and"
+    "respondent": "DEB PRABESH MISHRA and ORS"
   },
   "FA/116/1984": {
     "appellant": "NIRANJAN LAL BHAIYA @ NR.LAL",
-    "respondent": "KISHUN LAL BHAIYA and"
+    "respondent": "KISHUN LAL BHAIYA and ORS"
   },
   "FA/198/1984": {
     "appellant": "DINESHWAR PD.CHAUDHARY",
-    "respondent": "THE PATNA REGIONAL"
+    "respondent": "THE PATNA REGIONAL DEVELOP.AUT"
   },
   "FA/199/1984": {
-    "appellant": "SMT. KAUSHAL KUMARI and ORS",
-    "respondent": "KAPILESHWAR OJHA and"
+    "appellant": "SMT. KAUSHAL KUMARI and ORS.",
+    "respondent": "KAPILESHWAR OJHA and ORS"
   },
   "FA/201/1984": {
     "appellant": "BHAGWAN JEE SHARMA",
-    "respondent": "BISHWANATH THAKUR                            MISCELLANEOUS"
+    "respondent": "BISHWANATH THAKUR"
   },
   "FA/202/1984": {
     "appellant": "LAL BABU KUNWAR and ORS",
@@ -3149,11 +3149,11 @@ const CASES_DB = {
   },
   "FA/309/1984": {
     "appellant": "NARENDRA NATH LAHARI",
-    "respondent": "MONINDRA NATH LAHERI and"
+    "respondent": "MONINDRA NATH LAHERI and ORS"
   },
   "FA/315/1984": {
     "appellant": "CHAUDHARY BAIDYANATH RAY and ANR",
-    "respondent": "RAM BHAGAT RAY"
+    "respondent": "RAM BHAGAT RAY and ORS"
   },
   "FA/318/1984": {
     "appellant": "LAXMI NARAYAN JI",
@@ -3173,7 +3173,7 @@ const CASES_DB = {
   },
   "FA/326/1984": {
     "appellant": "MUNI LALL SINGH and ORS",
-    "respondent": "P.N.B.,BRANCH"
+    "respondent": "P.N.B.,BRANCH OFFICE,SHAHPUR"
   },
   "FA/327/1984": {
     "appellant": "RAM CHANDRA SINGH and ORS",
@@ -3184,7 +3184,7 @@ const CASES_DB = {
     "respondent": "RAM EKBAL SAH and ORS"
   },
   "FA/342/1984": {
-    "appellant": "BIMLA DEVI and ORS",
+    "appellant": "BIMLA DEVI and ORS.",
     "respondent": "RAM JHARI DEVI and ORS"
   },
   "FA/345/1984": {
@@ -3265,18 +3265,18 @@ const CASES_DB = {
   },
   "FA/401/1984": {
     "appellant": "RAM ANUGRAH SINGH @ RAM ANUGRA",
-    "respondent": "JANKI DEVI and"
+    "respondent": "JANKI DEVI and ORS"
   },
   "FA/403/1984": {
     "appellant": "SMT.RAMSHAKHI DEVI and ORS",
-    "respondent": "YOGENDRA CHAUDHARY"
+    "respondent": "YOGENDRA CHAUDHARY and ORS"
   },
   "FA/405/1984": {
     "appellant": "CENTRAL BANK OF INDIA,SASARAM",
-    "respondent": "UDARDEO NR.SINGH"
+    "respondent": "UDARDEO NR.SINGH and ORS"
   },
   "FA/406/1984": {
-    "appellant": "KEDARNATH PD",
+    "appellant": "KEDARNATH PD.",
     "respondent": "SMT.TARA DEVI"
   },
   "FA/407/1984": {
@@ -3289,11 +3289,11 @@ const CASES_DB = {
   },
   "FA/423/1984": {
     "appellant": "LAKHAN LAL",
-    "respondent": "JAGDISH PD"
+    "respondent": "JAGDISH PD."
   },
   "FA/425/1984": {
     "appellant": "SHAKILA KHATOON and ANR",
-    "respondent": "BIBI RAJHINA KHATOON and"
+    "respondent": "BIBI RAJHINA KHATOON and ORS"
   },
   "FA/429/1984": {
     "appellant": "DESH RATNA OJHA and ORS",
@@ -3317,7 +3317,7 @@ const CASES_DB = {
   },
   "FA/440/1984": {
     "appellant": "SRI RAMASHANKAR SINGH andANR",
-    "respondent": "RAM NIWAS TIWARY"
+    "respondent": "RAM NIWAS TIWARY andORS"
   },
   "FA/450/1984": {
     "appellant": "NATHUNI SINGH",
@@ -3377,7 +3377,7 @@ const CASES_DB = {
   },
   "FA/509/1984": {
     "appellant": "SALIK KUMAR TIWARY and ORS",
-    "respondent": "RAM VIEHAR TIWARY and 845   509/1984"
+    "respondent": "RAM VIEHAR TIWARY and ORS"
   },
   "FA/513/1984": {
     "appellant": "NARENDRA KR.SINGH",
@@ -3396,7 +3396,7 @@ const CASES_DB = {
     "respondent": "Rajendra Singh"
   },
   "FA/528/1984": {
-    "appellant": "BISHWANATH PD",
+    "appellant": "BISHWANATH PD.",
     "respondent": "MOST.KAMLA DEVI"
   },
   "FA/529/1984": {
@@ -3424,7 +3424,7 @@ const CASES_DB = {
     "respondent": "STATE"
   },
   "FA/547/1984": {
-    "appellant": "CHANDRADEO PD",
+    "appellant": "CHANDRADEO PD.",
     "respondent": "KAPILDEO NARAYAN and ORS"
   },
   "FA/548/1984": {
@@ -3433,10 +3433,10 @@ const CASES_DB = {
   },
   "FA/555/1984": {
     "appellant": "M/S NEWPANI TOBACCO STORE andORS",
-    "respondent": "TAKHAT"
+    "respondent": "TAKHAT HARIMANDIRJI SAHEB"
   },
   "FA/559/1984": {
-    "appellant": "SRI CHANDESHWAR PD",
+    "appellant": "SRI CHANDESHWAR PD.",
     "respondent": "MOST.SUKANI DEVI and ORS"
   },
   "FA/560/1984": {
@@ -3445,7 +3445,7 @@ const CASES_DB = {
   },
   "FA/564/1984": {
     "appellant": "HRIDAY NARAIN CHAUDHARY",
-    "respondent": "SMT. KAUSHALYA DEVI and"
+    "respondent": "SMT. KAUSHALYA DEVI and ORS"
   },
   "FA/572/1984": {
     "appellant": "RAMESHWAR SAH",
@@ -3453,7 +3453,7 @@ const CASES_DB = {
   },
   "FA/584/1984": {
     "appellant": "MOST.PATO DEVI@ PATI DEVI andORS",
-    "respondent": "RAM ADHIKARI RAI"
+    "respondent": "RAM ADHIKARI RAI and ORS"
   },
   "FA/587/1984": {
     "appellant": "SITA RAM",
@@ -3461,7 +3461,7 @@ const CASES_DB = {
   },
   "FA/590/1984": {
     "appellant": "ACHHIBAR RAM",
-    "respondent": "UMA SHANKER PD"
+    "respondent": "UMA SHANKER PD."
   },
   "FA/591/1984": {
     "appellant": "MUKESH SINHA",
@@ -3545,19 +3545,19 @@ const CASES_DB = {
   },
   "FA/625/1984": {
     "appellant": "ORIENTAL FIRE GEN.INSUR.CO.LTD",
-    "respondent": "PODDAR COLD"
+    "respondent": "PODDAR COLD STORAGE CHAPRA"
   },
   "FA/627/1984": {
     "appellant": "RAMESHWAR VISHWAKARMA",
     "respondent": "BISHWANATH BISHWAKARMA"
   },
   "FA/631/1984": {
-    "appellant": "JALESHWAR PD",
+    "appellant": "JALESHWAR PD.",
     "respondent": "CHANDRA KALI DEVI"
   },
   "FA/642/1984": {
     "appellant": "SATRUHAN SINHA and ORS",
-    "respondent": "SMT.SHANTI PD"
+    "respondent": "SMT.SHANTI PD."
   },
   "FA/643/1984": {
     "appellant": "KAMLESHWARI NANDAN SINHA and ORS",
@@ -3572,7 +3572,7 @@ const CASES_DB = {
     "respondent": "DULHIN MAIDA DEVI AND ORS"
   },
   "FA/653/1984": {
-    "appellant": "BHUNESHWAR PD",
+    "appellant": "BHUNESHWAR PD.",
     "respondent": "STATE OF BIHAR"
   },
   "FA/654/1984": {
@@ -3593,7 +3593,7 @@ const CASES_DB = {
   },
   "FA/664/1984": {
     "appellant": "RAJESHWAR PD.SHARMA and ORS",
-    "respondent": "STATE OF BIHAR and"
+    "respondent": "STATE OF BIHAR and ORS"
   },
   "FA/665/1984": {
     "appellant": "PARSURAM SINGH",
@@ -3609,7 +3609,7 @@ const CASES_DB = {
   },
   "FA/673/1984": {
     "appellant": "SATYENDRA SINGH and ORS",
-    "respondent": "MUNSHI PD"
+    "respondent": "MUNSHI PD."
   },
   "FA/674/1984": {
     "appellant": "LAXMI PD.PAUL and ORS",
@@ -3617,11 +3617,11 @@ const CASES_DB = {
   },
   "FA/678/1984": {
     "appellant": "RAJHINI DEVI and ANR",
-    "respondent": "JOGENDRA PD"
+    "respondent": "JOGENDRA PD."
   },
   "FA/4/1985": {
     "appellant": "PUNJAB NATIONAL BANK",
-    "respondent": "RAJKUMAR JHUNJHUNWALA"
+    "respondent": "RAJKUMAR JHUNJHUNWALA andORS"
   },
   "FA/19/1985": {
     "appellant": "STATE",
@@ -3636,27 +3636,27 @@ const CASES_DB = {
     "respondent": "MATHURA PD.and ORS"
   },
   "FA/26/1985": {
-    "appellant": "KAILASH RAI and ORS",
-    "respondent": "GUDA DEVI and ORS"
+    "appellant": "KAILASH RAI and ORS.",
+    "respondent": "GUDA DEVI and ORS."
   },
   "FA/35/1985": {
     "appellant": "SMT.RAM DULARI SINHA",
     "respondent": "SMT.SUNAINA SINHA"
   },
   "FA/49/1985": {
-    "appellant": "INDRAWATI DEVI and ORS",
-    "respondent": "VIKRAM PRASAD and ORS"
+    "appellant": "INDRAWATI DEVI and ORS.",
+    "respondent": "VIKRAM PRASAD and ORS."
   },
   "FA/54/1985": {
     "appellant": "THE UNION OF INDIA",
-    "respondent": "THE NATIONAL TRADING LTD"
+    "respondent": "THE NATIONAL TRADING LTD."
   },
   "FA/56/1985": {
     "appellant": "RAM KR.DUBEY",
     "respondent": "RAM PADARATH TIWARY"
   },
   "FA/58/1985": {
-    "appellant": "LAKHAN MISHRA and ORS",
+    "appellant": "LAKHAN MISHRA and ORS.",
     "respondent": "GAURI SHANKER MISHRA"
   },
   "FA/67/1985": {
@@ -3664,39 +3664,39 @@ const CASES_DB = {
     "respondent": "ACHHOIBAR SINGH"
   },
   "FA/76/1985": {
-    "appellant": "AKBARI KHATOON and ORS",
-    "respondent": "SYED MD.ZAYAUDDIN and ORS"
+    "appellant": "AKBARI KHATOON and ORS.",
+    "respondent": "SYED MD.ZAYAUDDIN and ORS."
   },
   "FA/78/1985": {
     "appellant": "Kailash Singh",
-    "respondent": "SMT.DARPANIA DEVI and ORS"
+    "respondent": "SMT.DARPANIA DEVI and ORS."
   },
   "FA/90/1985": {
-    "appellant": "SK.IMTIAZ AHMAD and ORS",
-    "respondent": "BIBI MEHRANNISSA and ORS"
+    "appellant": "SK.IMTIAZ AHMAD and ORS.",
+    "respondent": "BIBI MEHRANNISSA and ORS."
   },
   "FA/91/1985": {
     "appellant": "SADRUL HODA @ KHADRUL HODA",
-    "respondent": "BIBI MEHRUNNISSA and"
+    "respondent": "BIBI MEHRUNNISSA and ORS."
   },
   "FA/92/1985": {
     "appellant": "Chanda Devi",
     "respondent": "SHAMBHU PD.GUPTA"
   },
   "FA/105/1985": {
-    "appellant": "HAMIDA KHATOON and ORS",
-    "respondent": "MD. IDRIS KHAN and ORS"
+    "appellant": "HAMIDA KHATOON and ORS.",
+    "respondent": "MD. IDRIS KHAN and ORS."
   },
   "FA/111/1985": {
     "appellant": "MAIMUNA KHATOON",
     "respondent": "SYED AKHTAR HUSSAIN"
   },
   "FA/119/1985": {
-    "appellant": "Shri Chandra Shekhar Pd",
-    "respondent": "Jupitor General Insurance Company"
+    "appellant": "Shri Chandra Shekhar Pd.",
+    "respondent": "Jupitor General Insurance Company Ltd."
   },
   "FA/175/1985": {
-    "appellant": "BILASINI DEVI and ORS",
+    "appellant": "BILASINI DEVI and ORS.",
     "respondent": "THE STATE OF BIHAR"
   },
   "FA/177/1985": {
@@ -3717,23 +3717,23 @@ const CASES_DB = {
   },
   "FA/185/1985": {
     "appellant": "RAM NATH SAMAIYAR and ORS",
-    "respondent": "SMT.RAMADHAR DEVI and"
+    "respondent": "SMT.RAMADHAR DEVI and ORS."
   },
   "FA/187/1985": {
-    "appellant": "TASAUR KHAN and ORS",
-    "respondent": "HARUN KHAN and ORS"
+    "appellant": "TASAUR KHAN and ORS.",
+    "respondent": "HARUN KHAN and ORS."
   },
   "FA/196/1985": {
-    "appellant": "NAURANGI SAH and ORS",
-    "respondent": "JOKHAN SAH and ORS"
+    "appellant": "NAURANGI SAH and ORS.",
+    "respondent": "JOKHAN SAH and ORS."
   },
   "FA/198/1985": {
     "appellant": "SUBH KARAN GIRIA",
-    "respondent": "DEEP CHAND GIRIA and ORS"
+    "respondent": "DEEP CHAND GIRIA and ORS."
   },
   "FA/200/1985": {
     "appellant": "SMT.PHOOL KUMARI DEVI",
-    "respondent": "RAMESH PD. and ORS"
+    "respondent": "RAMESH PD. and ORS."
   },
   "FA/202/1985": {
     "appellant": "Dinanath Pandey",
@@ -3741,55 +3741,55 @@ const CASES_DB = {
   },
   "FA/204/1985": {
     "appellant": "SURYA BANSHI SING and ORS",
-    "respondent": "SHIV KUMARI DEVI and ORS"
+    "respondent": "SHIV KUMARI DEVI and ORS."
   },
   "FA/205/1985": {
     "appellant": "ACHARYA SARVESHWARNAND AWDHOOT",
-    "respondent": "THE STATE OF"
+    "respondent": "THE STATE OF BIHAR and ORS."
   },
   "FA/209/1985": {
-    "appellant": "MOST. RAMUNA DEVI and ORS",
-    "respondent": "RAMANAND CHOUDHARY"
+    "appellant": "MOST. RAMUNA DEVI and ORS.",
+    "respondent": "RAMANAND CHOUDHARY and ORS."
   },
   "FA/214/1985": {
-    "appellant": "MANGILAL DUGAR and ORS",
-    "respondent": "SMT.RIDH KUNWARI DEVI @R"
+    "appellant": "MANGILAL DUGAR and ORS.",
+    "respondent": "SMT.RIDH KUNWARI DEVI @R DEVI"
   },
   "FA/215/1985": {
-    "appellant": "KAMLA DEVI and ORS",
-    "respondent": "RAMANAND PD. and ORS"
+    "appellant": "KAMLA DEVI and ORS.",
+    "respondent": "RAMANAND PD. and ORS."
   },
   "FA/219/1985": {
     "appellant": "KRISHNA KANT MISHRA",
     "respondent": "STATE"
   },
   "FA/224/1985": {
-    "appellant": "SMT.SUMITRA DEVI and ORS",
-    "respondent": "SHYAM BIHARI SINGH and"
+    "appellant": "SMT.SUMITRA DEVI and ORS.",
+    "respondent": "SHYAM BIHARI SINGH and ORS."
   },
   "FA/227/1985": {
-    "appellant": "RAMJEE MAHTA and ORS",
-    "respondent": "SMT.KALAWATI DEVI and ORS"
+    "appellant": "RAMJEE MAHTA and ORS.",
+    "respondent": "SMT.KALAWATI DEVI and ORS."
   },
   "FA/228/1985": {
-    "appellant": "JUGESWAR MAHTO and ORS",
-    "respondent": "BABU GURU PRASADA and"
+    "appellant": "JUGESWAR MAHTO and ORS.",
+    "respondent": "BABU GURU PRASADA and ORS."
   },
   "FA/230/1985": {
-    "appellant": "DORIKA JHA and ORS",
-    "respondent": "RAGHUNANDAN MAHTON and ORS"
+    "appellant": "DORIKA JHA and ORS.",
+    "respondent": "RAGHUNANDAN MAHTON and ORS."
   },
   "FA/234/1985": {
     "appellant": "SMT.SHANTI DEVI",
     "respondent": "BABY @ SMT.SAVITRI DEVI"
   },
   "FA/235/1985": {
-    "appellant": "ANIL KR. SINGH and ORS",
-    "respondent": "RAM KISHORI DEVI"
+    "appellant": "ANIL KR. SINGH and ORS.",
+    "respondent": "RAM KISHORI DEVI @RAMKISHORI"
   },
   "FA/238/1985": {
-    "appellant": "NUNU PRASAD and ANR",
-    "respondent": "BUDHDEO SINGH and ORS"
+    "appellant": "NUNU PRASAD and ANR.",
+    "respondent": "BUDHDEO SINGH and ORS."
   },
   "FA/241/1985": {
     "appellant": "NAND KISHORE JHA and ORS",
@@ -3804,20 +3804,20 @@ const CASES_DB = {
     "respondent": "LAXMI MANDAL"
   },
   "FA/253/1985": {
-    "appellant": "DULAR CHAND GOPE and ORS",
-    "respondent": "KRISHNA KR. and ORS"
+    "appellant": "DULAR CHAND GOPE and ORS.",
+    "respondent": "KRISHNA KR. and ORS."
   },
   "FA/257/1985": {
-    "appellant": "HARESHWAR PODDAR and ORS",
-    "respondent": "RAMESHWAR PODDAR and"
+    "appellant": "HARESHWAR PODDAR and ORS.",
+    "respondent": "RAMESHWAR PODDAR and ORS."
   },
   "FA/258/1985": {
-    "appellant": "MITYA SINGH and ORS",
-    "respondent": "SMT.LAHASO KUER and ORS"
+    "appellant": "MITYA SINGH and ORS.",
+    "respondent": "SMT.LAHASO KUER and ORS."
   },
   "FA/259/1985": {
-    "appellant": "SANTOSH KR",
-    "respondent": "RAM DAS RAM and ORS"
+    "appellant": "SANTOSH KR.",
+    "respondent": "RAM DAS RAM and ORS."
   },
   "FA/263/1985": {
     "appellant": "STATE OF BIHAR THR.COLLEC.BAIS",
@@ -3825,7 +3825,7 @@ const CASES_DB = {
   },
   "FA/265/1985": {
     "appellant": "KISHUN RAI",
-    "respondent": "KAMLA RAI and ORS"
+    "respondent": "KAMLA RAI and ORS."
   },
   "FA/268/1985": {
     "appellant": "SATYA NR.RAI and ORS",
@@ -3840,16 +3840,16 @@ const CASES_DB = {
     "respondent": "KISHO MAHTO and ORS"
   },
   "FA/304/1985": {
-    "appellant": "BIMLESH JHA and ANR",
-    "respondent": "SHYAM JHA @ GAURI JHA and ORS"
+    "appellant": "BIMLESH JHA and ANR.",
+    "respondent": "SHYAM JHA @ GAURI JHA and ORS."
   },
   "FA/306/1985": {
     "appellant": "PRITHVI CHAND BHAGAT",
-    "respondent": "SINGHESHWAR MODI and ORS"
+    "respondent": "SINGHESHWAR MODI and ORS."
   },
   "FA/307/1985": {
     "appellant": "BARHO YADAV",
-    "respondent": "HARO YADAV and ORS"
+    "respondent": "HARO YADAV and ORS."
   },
   "FA/311/1985": {
     "appellant": "SYED ALI MUKTAR RIGVI",
@@ -3876,7 +3876,7 @@ const CASES_DB = {
     "respondent": "SHANKER ROY"
   },
   "FA/333/1985": {
-    "appellant": "BIKRAMADITYA PD",
+    "appellant": "BIKRAMADITYA PD.",
     "respondent": "RAMDEO PD. and ORS"
   },
   "FA/334/1985": {
@@ -3909,15 +3909,15 @@ const CASES_DB = {
   },
   "FA/346/1985": {
     "appellant": "RATAN LAL AGRAWAL and ORS",
-    "respondent": "BAIJNATH AGRAWAL and"
+    "respondent": "BAIJNATH AGRAWAL and ORS"
   },
   "FA/364/1985": {
     "appellant": "CHOUDHARY MAZHAR HUSSAIN and ORS",
-    "respondent": "RAMA SHANKAR"
+    "respondent": "RAMA SHANKAR SONAR and ORS"
   },
   "FA/365/1985": {
     "appellant": "SUBHASH CHANDRA JHA AJAD and ORS",
-    "respondent": "PRABHU JHA and"
+    "respondent": "PRABHU JHA and ORS"
   },
   "FA/368/1985": {
     "appellant": "BHOLA SINGH YADAV",
@@ -3937,19 +3937,19 @@ const CASES_DB = {
   },
   "FA/403/1985": {
     "appellant": "MOTI LAL CHAUDHARY and ORS",
-    "respondent": "JAGLAL CHAUDHARY and"
+    "respondent": "JAGLAL CHAUDHARY and ORS"
   },
   "FA/404/1985": {
     "appellant": "PUNJAB NATIONAL BANK",
-    "respondent": "ASHA NAGAR MOTOR PARIBAHAN"
+    "respondent": "ASHA NAGAR MOTOR PARIBAHAN SAH"
   },
   "FA/407/1985": {
     "appellant": "SAVAR MAL and ORS",
     "respondent": "DAYAL SINGH @ DIDAR SINGH"
   },
   "FA/410/1985": {
-    "appellant": "THE ORIENTAL INSURANCE CO.LTD",
-    "respondent": "THE ARWAL COLD"
+    "appellant": "THE ORIENTAL INSURANCE CO.LTD.",
+    "respondent": "THE ARWAL COLD STORAGE andINDUS."
   },
   "FA/411/1985": {
     "appellant": "SMT.GENDA DEVI and ORS",
@@ -3960,8 +3960,8 @@ const CASES_DB = {
     "respondent": "BADRI DAS and ORS"
   },
   "FA/415/1985": {
-    "appellant": "VISHNU SUGAR MILLS LTD",
-    "respondent": "GOPALGANJ"
+    "appellant": "VISHNU SUGAR MILLS LTD.",
+    "respondent": "GOPALGANJ AGRI.PROD.MARKET COM"
   },
   "FA/417/1985": {
     "appellant": "SHEOJI SINGH and ORS",
@@ -3969,30 +3969,30 @@ const CASES_DB = {
   },
   "FA/430/1985": {
     "appellant": "RAM NANDAN MISHIR@DEEP NR MISH",
-    "respondent": "MOST.NAGESHWARY"
+    "respondent": "MOST.NAGESHWARY DEVI and ORS"
   },
   "FA/438/1985": {
     "appellant": "BISHO SINGH@BISHESHWAR SINGH",
     "respondent": "CHANDRIKA SINGH"
   },
   "FA/440/1985": {
-    "appellant": "Sri Ramadhin Nonia and Anr",
+    "appellant": "Sri Ramadhin Nonia and Anr.",
     "respondent": "Bhagwan Mishra"
   },
   "FA/441/1985": {
     "appellant": "NARAYAN SAH and ORS",
-    "respondent": "SMT.CHAMPA DEVI and ORS LACHCHENA DEVI @ LACHMINIA DEV VS. BHUNESHWAR"
+    "respondent": "SMT.CHAMPA DEVI and ORS"
   },
   "FA/444/1985": {
     "appellant": "LACHCHENA DEVI @ LACHMINIA DEV",
-    "respondent": "BHUNESHWAR"
+    "respondent": "BHUNESHWAR TIWARY and ORS"
   },
   "FA/453/1985": {
     "appellant": "RAM SARAN SAH",
     "respondent": "URMILA DEVI and ORS"
   },
   "FA/454/1985": {
-    "appellant": "AMEER ALAM and ORS",
+    "appellant": "AMEER ALAM and ORS.",
     "respondent": "SHAUKAT ALI"
   },
   "FA/455/1985": {
@@ -4065,7 +4065,7 @@ const CASES_DB = {
   },
   "FA/526/1985": {
     "appellant": "PARTH BREHMCHARI and ORS",
-    "respondent": "ARUN SHANKER BHADURI"
+    "respondent": "ARUN SHANKER BHADURI and ORS"
   },
   "FA/527/1985": {
     "appellant": "SMT.PANO DEVI",
@@ -4097,11 +4097,11 @@ const CASES_DB = {
   },
   "FA/563/1985": {
     "appellant": "SYED ASHARAF MUNIR",
-    "respondent": "SYED WARISH MUNIR and ORS"
+    "respondent": "SYED WARISH MUNIR and ORS."
   },
   "FA/566/1985": {
     "appellant": "MD.ISLAMUDDIN and ORS",
-    "respondent": "THE STATE OF BIHAR                   MISCELLANEOUS"
+    "respondent": "THE STATE OF BIHAR"
   },
   "FA/572/1985": {
     "appellant": "SARSWATI DEVI and ORS",
@@ -4121,11 +4121,11 @@ const CASES_DB = {
   },
   "FA/616/1985": {
     "appellant": "CHANDRIKA PD.SINGH and ORS",
-    "respondent": "BRAJNANDAN SINGH and"
+    "respondent": "BRAJNANDAN SINGH and ORS"
   },
   "FA/619/1985": {
     "appellant": "MOSTT BHUNESHWARI DEVI and ORS",
-    "respondent": "RAM DEO SINGH and"
+    "respondent": "RAM DEO SINGH and ORS"
   },
   "FA/621/1985": {
     "appellant": "AJIT LAL RAI",
@@ -4157,7 +4157,7 @@ const CASES_DB = {
   },
   "FA/640/1985": {
     "appellant": "ASHOKA ENGINEERINGBIHARPVT.L",
-    "respondent": "STATE BANK OF INDIA"
+    "respondent": "STATE BANK OF INDIA and ORS"
   },
   "FA/642/1985": {
     "appellant": "UMA DEVI and ORS",
@@ -4169,34 +4169,34 @@ const CASES_DB = {
   },
   "FA/653/1985": {
     "appellant": "SMT.RAJ KUMARI DEVIandORS",
-    "respondent": "SMT.SANGITA KUMARI DEVI"
+    "respondent": "SMT.SANGITA KUMARI DEVI and ORS"
   },
   "FA/662/1985": {
     "appellant": "THE PUNJAB NATIONAL BANK,PAROO",
-    "respondent": "YUGAL KISHORE"
+    "respondent": "YUGAL KISHORE SAHU and ORS"
   },
   "FA/690/1985": {
     "appellant": "BANKEY SINGH and ORS",
     "respondent": "THE STATE OF BIHAR and ORS"
   },
   "FA/694/1985": {
-    "appellant": "SMT. HEWANTI DEVI AND ORS",
-    "respondent": "KALESHWARI DEVI AND"
+    "appellant": "SMT. HEWANTI DEVI AND ORS.",
+    "respondent": "KALESHWARI DEVI AND ORS."
   },
   "FA/699/1985": {
     "appellant": "SAKAL DEEP MAHTO",
     "respondent": "SHEO DAYAL MAHTO and ORS"
   },
   "FA/728/1985": {
-    "appellant": "KAMLA TIWARY and ORS",
-    "respondent": "13"
+    "appellant": "KAMLA TIWARY and ORS VS.",
+    "respondent": ""
   },
   "FA/729/1985": {
     "appellant": "BODHI BELDAR and ORS",
     "respondent": "DHANKANTI DEVI and ORS"
   },
   "FA/733/1985": {
-    "appellant": "SANTOKHI CHY",
+    "appellant": "SANTOKHI CHY.",
     "respondent": "MOST. MUNAKIA DEVI and ORS"
   },
   "FA/748/1985": {
@@ -4217,10 +4217,10 @@ const CASES_DB = {
   },
   "FA/766/1985": {
     "appellant": "RAJENDRA PD. and ORS",
-    "respondent": "MUNESHWAR NATH @ MUNNU and"
+    "respondent": "MUNESHWAR NATH @ MUNNU and ORS"
   },
   "FA/770/1985": {
-    "appellant": "BIHAR STATE FOOD and CIVIL SUP",
+    "appellant": "BIHAR STATE FOOD and CIVIL SUP.",
     "respondent": "SHEO GALA BHANDAN"
   },
   "FA/3/1986": {
@@ -4245,7 +4245,7 @@ const CASES_DB = {
   },
   "FA/18/1986": {
     "appellant": "JAGDISH NATH TEWARY and ORS",
-    "respondent": "INDRA JEET TEWARY and"
+    "respondent": "INDRA JEET TEWARY and ORS"
   },
   "FA/29/1986": {
     "appellant": "REYANUL HAQUE and ORS",
@@ -4297,11 +4297,11 @@ const CASES_DB = {
   },
   "FA/65/1986": {
     "appellant": "BHUNESHWARI PD. SINGH and ORS",
-    "respondent": "KAMESHWARI PD"
+    "respondent": "KAMESHWARI PD. SINGH and ORS"
   },
   "FA/71/1986": {
     "appellant": "GURU DUTTA GUPTA and ORS",
-    "respondent": "GANESH DUTTA GUPTA and"
+    "respondent": "GANESH DUTTA GUPTA and ORS"
   },
   "FA/72/1986": {
     "appellant": "SADASHIV MAHTO and ORS",
@@ -4325,7 +4325,7 @@ const CASES_DB = {
   },
   "FA/89/1986": {
     "appellant": "SHEO NANDAN PD. SHARMA and ORS",
-    "respondent": "ANIL KR. SHARMA and"
+    "respondent": "ANIL KR. SHARMA and ORS"
   },
   "FA/91/1986": {
     "appellant": "Union of India",
@@ -4348,7 +4348,7 @@ const CASES_DB = {
     "respondent": "SUKHDEO SONAR and ORS"
   },
   "FA/115/1986": {
-    "appellant": "SAVITRI DEVI",
+    "appellant": "SAVITRI DEVI.",
     "respondent": "KUBER PRASAD GUPTA"
   },
   "FA/118/1986": {
@@ -4373,7 +4373,7 @@ const CASES_DB = {
   },
   "FA/140/1986": {
     "appellant": "SMT JOGESHWARI DEVI and ORS",
-    "respondent": "SMT. SHYAMA DEVI"
+    "respondent": "SMT. SHYAMA DEVI andORS"
   },
   "FA/142/1986": {
     "appellant": "RAJ NANDAN SINGH",
@@ -4381,7 +4381,7 @@ const CASES_DB = {
   },
   "FA/143/1986": {
     "appellant": "RADHE RAMAN PD. SINGH and ORS",
-    "respondent": "DHARAMRAJ PD. SINGH"
+    "respondent": "DHARAMRAJ PD. SINGH and ORS"
   },
   "FA/154/1986": {
     "appellant": "BINO YADAV and ORS",
@@ -4417,7 +4417,7 @@ const CASES_DB = {
   },
   "FA/171/1986": {
     "appellant": "GOPI AHIR @ G.CHY.and ORS",
-    "respondent": "INDRASAN CHAUDHARY and"
+    "respondent": "INDRASAN CHAUDHARY and ORS"
   },
   "FA/173/1986": {
     "appellant": "MD. ZAINUL and ORS",
@@ -4493,7 +4493,7 @@ const CASES_DB = {
   },
   "FA/211/1986": {
     "appellant": "ASSOCIATED TRADES and ENGINEERS",
-    "respondent": "M/S CEAT TYRES OF"
+    "respondent": "M/S CEAT TYRES OF INIDA LTD."
   },
   "FA/216/1986": {
     "appellant": "MD.MAINUDDIN and ORS",
@@ -4509,7 +4509,7 @@ const CASES_DB = {
   },
   "FA/219/1986": {
     "appellant": "MAHENDRA BHAGAT and ORS",
-    "respondent": "MOSTT. SAKUNTALA DEVI and"
+    "respondent": "MOSTT. SAKUNTALA DEVI and ORS"
   },
   "FA/220/1986": {
     "appellant": "SITARAM SINGH and ORS",
@@ -4517,7 +4517,7 @@ const CASES_DB = {
   },
   "FA/221/1986": {
     "appellant": "BIHAR STATE ELECTRICITY BOARD",
-    "respondent": "M/S SHAHABAD COLD"
+    "respondent": "M/S SHAHABAD COLD STORAGE"
   },
   "FA/223/1986": {
     "appellant": "RAM RATAN LAL and ORS",
@@ -4533,7 +4533,7 @@ const CASES_DB = {
   },
   "FA/231/1986": {
     "appellant": "SHAHABAD COLD STORAGE INDUSTIR",
-    "respondent": "THE ELECTRICAL"
+    "respondent": "THE ELECTRICAL EXCUTIVE ENG."
   },
   "FA/235/1986": {
     "appellant": "DHARAM NATH RAI",
@@ -4552,7 +4552,7 @@ const CASES_DB = {
     "respondent": "JAIBABU SAH and ORS"
   },
   "FA/240/1986": {
-    "appellant": "MAHENDRA PD",
+    "appellant": "MAHENDRA PD.,",
     "respondent": "BADRI PD. and ORS"
   },
   "FA/243/1986": {
@@ -4560,8 +4560,8 @@ const CASES_DB = {
     "respondent": "RAJA RAM RABI DAS and ORS"
   },
   "FA/244/1986": {
-    "appellant": "SAKET BIHARI SARAN and ORS",
-    "respondent": "DR. SURESH CHANDRA and"
+    "appellant": "SAKET BIHARI SARAN and ORS.",
+    "respondent": "DR. SURESH CHANDRA and ORS"
   },
   "FA/245/1986": {
     "appellant": "SHAMBHU NATH YADAV and ORS",
@@ -4581,7 +4581,7 @@ const CASES_DB = {
   },
   "FA/250/1986": {
     "appellant": "SHAMBHU NATH SHARMA and ORS",
-    "respondent": "SARYUG SHARMA and"
+    "respondent": "SARYUG SHARMA and ORS"
   },
   "FA/251/1986": {
     "appellant": "RAMJEE MAHTON and ORS",
@@ -4589,7 +4589,7 @@ const CASES_DB = {
   },
   "FA/252/1986": {
     "appellant": "Chiranjiva Mishra",
-    "respondent": "The State of Bihar, through the Secretary"
+    "respondent": "The State of Bihar, through the Secretary, Revenue Department,"
   },
   "FA/253/1986": {
     "appellant": "ARUN KR.MISHRA",
@@ -4636,7 +4636,7 @@ const CASES_DB = {
     "respondent": "ADYA SINGH and ORS"
   },
   "FA/278/1986": {
-    "appellant": "RAJENDRA PD",
+    "appellant": "RAJENDRA PD.",
     "respondent": "CENTRAL BANK OF INDIA and ORS"
   },
   "FA/280/1986": {
@@ -4669,10 +4669,10 @@ const CASES_DB = {
   },
   "FA/289/1986": {
     "appellant": "STATE",
-    "respondent": "MADAN PD"
+    "respondent": "MADAN PD."
   },
   "FA/290/1986": {
-    "appellant": "SAGAR PD",
+    "appellant": "SAGAR PD.",
     "respondent": "MOSTT.TETARI DEVI and ORS"
   },
   "FA/291/1986": {
@@ -4685,7 +4685,7 @@ const CASES_DB = {
   },
   "FA/296/1986": {
     "appellant": "NAWAL KISHORE MISHRA and ORS",
-    "respondent": "RADH KRISHNA MISHRA"
+    "respondent": "RADH KRISHNA MISHRA and ORS"
   },
   "FA/301/1986": {
     "appellant": "DAROGA SINGH and ORS",
@@ -4709,7 +4709,7 @@ const CASES_DB = {
   },
   "FA/309/1986": {
     "appellant": "PRABHU NRN.SINGH and ORS",
-    "respondent": "SMT.RAM DULARI DEVI and"
+    "respondent": "SMT.RAM DULARI DEVI and ORS"
   },
   "FA/311/1986": {
     "appellant": "UNION OF INDIA",
@@ -4745,11 +4745,11 @@ const CASES_DB = {
   },
   "FA/321/1986": {
     "appellant": "MD.SAMMUDIN and ANR",
-    "respondent": "PUNJAB NATIONAL BANK BIHAR"
+    "respondent": "PUNJAB NATIONAL BANK BIHAR SHA"
   },
   "FA/322/1986": {
-    "appellant": "M/S HARI NAGAR SAGAR MILL LTD",
-    "respondent": "STATE OF"
+    "appellant": "M/S HARI NAGAR SAGAR MILL LTD.",
+    "respondent": "STATE OF BIHAR,COLL.WCH"
   },
   "FA/323/1986": {
     "appellant": "MD. SAYEED and ORS",
@@ -4765,7 +4765,7 @@ const CASES_DB = {
   },
   "FA/329/1986": {
     "appellant": "DALLU TATMA @ DALLU SHARMA",
-    "respondent": "MUNGI LAL SHARMA and"
+    "respondent": "MUNGI LAL SHARMA and ORS"
   },
   "FA/331/1986": {
     "appellant": "SITAL MANDAL and ORS",
@@ -4785,7 +4785,7 @@ const CASES_DB = {
   },
   "FA/339/1986": {
     "appellant": "VIKRAM ASHILA GRIH NIRMAN SAMI",
-    "respondent": "UMA CHARAN RAI @"
+    "respondent": "UMA CHARAN RAI @ MUKHIYA and ORS"
   },
   "FA/340/1986": {
     "appellant": "CHAMPA DEVI and ORS",
@@ -4828,7 +4828,7 @@ const CASES_DB = {
     "respondent": "STATE OF BIHAR"
   },
   "FA/356/1986": {
-    "appellant": "KESHO PD",
+    "appellant": "KESHO PD.",
     "respondent": "NAGINA CHY. and ORS"
   },
   "FA/357/1986": {
@@ -4845,7 +4845,7 @@ const CASES_DB = {
   },
   "FA/364/1986": {
     "appellant": "MOSTT.DAYA MANI DEVI and ORS",
-    "respondent": "BALESHWAR THAKUR and"
+    "respondent": "BALESHWAR THAKUR and ORS"
   },
   "FA/369/1986": {
     "appellant": "SHARLA DEVI KHEMKA",
@@ -4920,7 +4920,7 @@ const CASES_DB = {
     "respondent": "RUKMINI DEVI and ANR"
   },
   "FA/392/1986": {
-    "appellant": "KAILASH DEVI and ORS",
+    "appellant": "KAILASH DEVI and ORS.",
     "respondent": "DWARIKA SAH and ORS"
   },
   "FA/393/1986": {
@@ -4941,7 +4941,7 @@ const CASES_DB = {
   },
   "FA/399/1986": {
     "appellant": "SMT.HARMOHINDRAKUER",
-    "respondent": "SHIVA SHANKAR PD"
+    "respondent": "SHIVA SHANKAR PD."
   },
   "FA/400/1986": {
     "appellant": "SHIV DAYAL MAHTO and ORS",
@@ -4949,7 +4949,7 @@ const CASES_DB = {
   },
   "FA/401/1986": {
     "appellant": "HARNANDAN PD.SAH and ORS",
-    "respondent": "MOSTT.MEKHO DEVI and"
+    "respondent": "MOSTT.MEKHO DEVI and ORS"
   },
   "FA/402/1986": {
     "appellant": "CHANDRA DEO MAHTO and ORS",
@@ -4997,7 +4997,7 @@ const CASES_DB = {
   },
   "FA/422/1986": {
     "appellant": "BIDYA SAGAR TIWARY and ANR",
-    "respondent": "MOST.KISHORI KUER and"
+    "respondent": "MOST.KISHORI KUER and ANR"
   },
   "FA/424/1986": {
     "appellant": "RAJO MAHTO and ORS",
@@ -5008,7 +5008,7 @@ const CASES_DB = {
     "respondent": "GORAKH NATH MAHTO and ANR"
   },
   "FA/426/1986": {
-    "appellant": "RAM NARESH PD",
+    "appellant": "RAM NARESH PD.",
     "respondent": "SHAKALDEEP RAM and ORS"
   },
   "FA/427/1986": {
@@ -5144,12 +5144,12 @@ const CASES_DB = {
     "respondent": "RAMA SHANKAR KOIRI and ORS"
   },
   "FA/492/1986": {
-    "appellant": "BIHAR STATE CONSTRUCTION CORP",
-    "respondent": "MANORANJAN SINHA"
+    "appellant": "BIHAR STATE CONSTRUCTION CORP.",
+    "respondent": "MANORANJAN SINHA and ANR"
   },
   "FA/494/1986": {
     "appellant": "SMT. SUMITRA DEVI and OTHERS",
-    "respondent": "STATE OF BIHAR"
+    "respondent": "STATE OF BIHAR THROUGH COLLECTOR OF BHAGALPUR"
   },
   "FA/496/1986": {
     "appellant": "BISHWANATH RAI and ANR",
@@ -5160,8 +5160,8 @@ const CASES_DB = {
     "respondent": "BUNDA DEVI and ORS"
   },
   "FA/499/1986": {
-    "appellant": "RAMJEE PD",
-    "respondent": "RAM CHANDRA PD"
+    "appellant": "RAMJEE PD.",
+    "respondent": "RAM CHANDRA PD."
   },
   "FA/505/1986": {
     "appellant": "SATENDRA SINGH and ORS",
@@ -5169,7 +5169,7 @@ const CASES_DB = {
   },
   "FA/506/1986": {
     "appellant": "GANGA PD.@ GANGA PD.CHAUDHARY",
-    "respondent": "MOST.RADHIKA"
+    "respondent": "MOST.RADHIKA KUER and ORS"
   },
   "FA/507/1986": {
     "appellant": "BHAGWATI DEVI",
@@ -5205,11 +5205,11 @@ const CASES_DB = {
   },
   "FA/518/1986": {
     "appellant": "DR.J.P.SRIVASTAVA and ORS",
-    "respondent": "SHYAM BAHADUR SINHA and"
+    "respondent": "SHYAM BAHADUR SINHA and ORS"
   },
   "FA/523/1986": {
     "appellant": "RAMAGYA THAKUR and ORS",
-    "respondent": "NAND KISHORE THAKUR and"
+    "respondent": "NAND KISHORE THAKUR and ORS"
   },
   "FA/527/1986": {
     "appellant": "UDAI RAM",
@@ -5233,7 +5233,7 @@ const CASES_DB = {
   },
   "FA/548/1986": {
     "appellant": "HEMCHANDRA MUKHERJEE",
-    "respondent": "AGICULTURAL FINANCE"
+    "respondent": "AGICULTURAL FINANCE CORP.LTD."
   },
   "FA/553/1986": {
     "appellant": "RAJENDRA PD.SAH and ORS",
@@ -5241,7 +5241,7 @@ const CASES_DB = {
   },
   "FA/558/1986": {
     "appellant": "AMIR CHAND SINGH and ANR",
-    "respondent": "RAS BIHARI CHAUDHARY and"
+    "respondent": "RAS BIHARI CHAUDHARY and ANR"
   },
   "FA/561/1986": {
     "appellant": "RAMBHAJU SINGH",
@@ -5265,11 +5265,11 @@ const CASES_DB = {
   },
   "FA/567/1986": {
     "appellant": "RAM AUTAR YADAV and ORS",
-    "respondent": "DINESH YADAV and ANR SMT.GANGA DEVI @ GANGAWATI DEV VS. SHYAMA DEVI and"
+    "respondent": "DINESH YADAV and ANR"
   },
   "FA/569/1986": {
     "appellant": "SMT.GANGA DEVI @ GANGAWATI DEV",
-    "respondent": "SHYAMA DEVI and"
+    "respondent": "SHYAMA DEVI and ORS"
   },
   "FA/572/1986": {
     "appellant": "KAILASH THAKUR and ANR",
@@ -5336,7 +5336,7 @@ const CASES_DB = {
     "respondent": "UNION OF INDIA and ORS"
   },
   "FA/628/1986": {
-    "appellant": "SATYA NR.PD",
+    "appellant": "SATYA NR.PD.",
     "respondent": "YOGENDRA PD.and ORS"
   },
   "FA/630/1986": {
@@ -5360,7 +5360,7 @@ const CASES_DB = {
     "respondent": "MD.HEMAYAN and ORS"
   },
   "FA/640/1986": {
-    "appellant": "BINDESWARI PD",
+    "appellant": "BINDESWARI PD.",
     "respondent": "THE EASTERN RAILWAY INDIA"
   },
   "FA/642/1986": {
@@ -5369,7 +5369,7 @@ const CASES_DB = {
   },
   "FA/645/1986": {
     "appellant": "THE STATE OF BIHAR THR.COLLECT",
-    "respondent": "THANA LABOUR"
+    "respondent": "THANA LABOUR COOPERATIVE SOCIE"
   },
   "FA/647/1986": {
     "appellant": "RAM DULARI DEVI and ORS",
@@ -5397,11 +5397,11 @@ const CASES_DB = {
   },
   "FA/675/1986": {
     "appellant": "SHANTI DEVI and ORS",
-    "respondent": "MAHANTH MADUSUDAN SHARAN"
+    "respondent": "MAHANTH MADUSUDAN SHARAN RAMJE"
   },
   "FA/676/1986": {
     "appellant": "SHANKAR PD.MISTRY",
-    "respondent": "MAHANTH GOSWAMI MADHUSUDAN"
+    "respondent": "MAHANTH GOSWAMI MADHUSUDAN SHA"
   },
   "FA/681/1986": {
     "appellant": "DALCHAND KOIRI",
@@ -5421,7 +5421,7 @@ const CASES_DB = {
   },
   "FA/691/1986": {
     "appellant": "SMT.CHANDRAWATI DEVI",
-    "respondent": "THE STATE OF BIHAR"
+    "respondent": "THE STATE OF BIHAR THR.COLLECT"
   },
   "FA/692/1986": {
     "appellant": "NIRAS PASWAN and ORS",
@@ -5436,11 +5436,11 @@ const CASES_DB = {
     "respondent": "MUNESHWAR RAI and ORS"
   },
   "FA/696/1986": {
-    "appellant": "RAM CHANDRA PD",
+    "appellant": "RAM CHANDRA PD.",
     "respondent": "KISHORI GOPE and ORS"
   },
   "FA/697/1986": {
-    "appellant": "M/S GUPTA and COMP",
+    "appellant": "M/S GUPTA and COMP.",
     "respondent": "SAWORIA BROTHERS and ORS"
   },
   "FA/698/1986": {
@@ -5453,7 +5453,7 @@ const CASES_DB = {
   },
   "FA/700/1986": {
     "appellant": "MAHANTH TILAK DAS",
-    "respondent": "RAMESH NANDAN GOSHWAMI and"
+    "respondent": "RAMESH NANDAN GOSHWAMI and ORS"
   },
   "FA/702/1986": {
     "appellant": "MAHENDRA PRASAD GUPTA",
@@ -5509,7 +5509,7 @@ const CASES_DB = {
   },
   "FA/75/1987": {
     "appellant": "MOST.SUDAMIA HAZAMIN and ORS",
-    "respondent": "MOST.MEENA HAZAMIN"
+    "respondent": "MOST.MEENA HAZAMIN and ORS"
   },
   "FA/80/1987": {
     "appellant": "LAL DAI and ORS",
@@ -5525,15 +5525,15 @@ const CASES_DB = {
   },
   "FA/103/1987": {
     "appellant": "MUNESHWAR SHARMA@BHUNESHWAR SH",
-    "respondent": "GIRIJA NANDAN"
+    "respondent": "GIRIJA NANDAN PD."
   },
   "FA/108/1987": {
     "appellant": "DWARIKA NATH SINGH",
     "respondent": "MOST.KAUSHLYA DEVI"
   },
   "FA/112/1987": {
-    "appellant": "SITA MAHTO",
-    "respondent": "13"
+    "appellant": "SITA MAHTO VS.",
+    "respondent": ""
   },
   "FA/117/1987": {
     "appellant": "MOSTT.DEVANTI DEVI and ORS",
@@ -5565,7 +5565,7 @@ const CASES_DB = {
   },
   "FA/163/1987": {
     "appellant": "RAMANUJ THAKUR @ RAMNUJ THAKUR",
-    "respondent": "RAM NANDAN"
+    "respondent": "RAM NANDAN THAKUR and ORS"
   },
   "FA/164/1987": {
     "appellant": "TRIBHUWAN SINGH",
@@ -5581,7 +5581,7 @@ const CASES_DB = {
   },
   "FA/178/1987": {
     "appellant": "SHYAM NARAYAN RAI AND ANR",
-    "respondent": "CHANDESHWAR RAI AND"
+    "respondent": "CHANDESHWAR RAI AND ORS"
   },
   "FA/181/1987": {
     "appellant": "MD. HARIF and ORS",
@@ -5700,8 +5700,8 @@ const CASES_DB = {
     "respondent": "ALAMGIR KHAN and ORS"
   },
   "FA/287/1987": {
-    "appellant": "SAMUDARA NARAIN YADAV and ANR",
-    "respondent": "SMT.DALAN DEVI and"
+    "appellant": "SAMUDARA NARAIN YADAV and ANR.",
+    "respondent": "SMT.DALAN DEVI and ORS"
   },
   "FA/310/1987": {
     "appellant": "SMT.BESRA KUAR",
@@ -5709,14 +5709,14 @@ const CASES_DB = {
   },
   "FA/314/1987": {
     "appellant": "NAGESHWAR PRASAD and ORS",
-    "respondent": "NAND KISHORE DAS and"
+    "respondent": "NAND KISHORE DAS and ORS"
   },
   "FA/318/1987": {
     "appellant": "DEOPATI KUER",
     "respondent": "STATE"
   },
   "FA/319/1987": {
-    "appellant": "RAN CHANDRA PD",
+    "appellant": "RAN CHANDRA PD.",
     "respondent": "STATE"
   },
   "FA/320/1987": {
@@ -5737,11 +5737,11 @@ const CASES_DB = {
   },
   "FA/328/1987": {
     "appellant": "BRIJ KISHORE SHARMA and ORS",
-    "respondent": "HARENDRA SINGH and"
+    "respondent": "HARENDRA SINGH and ORS"
   },
   "FA/329/1987": {
     "appellant": "SRI DIPAK KUMAR DEV and ORS",
-    "respondent": "SMT. NIVA RANI SUR and"
+    "respondent": "SMT. NIVA RANI SUR and ORS"
   },
   "FA/330/1987": {
     "appellant": "SURESH PRASAD",
@@ -5761,7 +5761,7 @@ const CASES_DB = {
   },
   "FA/334/1987": {
     "appellant": "MRS.HAZEL MORRISON and ORS",
-    "respondent": "ASHIANA CO-OPT"
+    "respondent": "ASHIANA CO-OPT HOU_SOC.LTD"
   },
   "FA/337/1987": {
     "appellant": "MOBARAK RAI and ORS",
@@ -5812,7 +5812,7 @@ const CASES_DB = {
     "respondent": "NARESH NARAYAN PD. and ORS"
   },
   "FA/390/1987": {
-    "appellant": "A.CO.H.S.LTD",
+    "appellant": "A.CO.H.S.LTD.",
     "respondent": "HAJAL MORISON and ORS"
   },
   "FA/391/1987": {
@@ -5849,15 +5849,15 @@ const CASES_DB = {
   },
   "FA/467/1987": {
     "appellant": "CHANDESHWAR TIWARY and ORS",
-    "respondent": "SHIVNANDAN TIWARY"
+    "respondent": "SHIVNANDAN TIWARY and ORS"
   },
   "FA/472/1987": {
     "appellant": "RAGHUNATH PD. and ORS",
-    "respondent": "SMT.SONIA DEVI and MOTKI and"
+    "respondent": "SMT.SONIA DEVI and MOTKI and ORS"
   },
   "FA/473/1987": {
     "appellant": "ASHUTOSH KUMAR SINGH",
-    "respondent": "FIRM LAKHU RAM HARI RAM and"
+    "respondent": "FIRM LAKHU RAM HARI RAM and ORS"
   },
   "FA/476/1987": {
     "appellant": "KISHORI RAI and ORS",
@@ -5869,7 +5869,7 @@ const CASES_DB = {
   },
   "FA/489/1987": {
     "appellant": "SMT. LALITA DEVI CANNOTH",
-    "respondent": "GUPTESHWAR MISHRA"
+    "respondent": "GUPTESHWAR MISHRA CANOTH"
   },
   "FA/492/1987": {
     "appellant": "SARSWATI DEVI and ORS",
@@ -5877,7 +5877,7 @@ const CASES_DB = {
   },
   "FA/493/1987": {
     "appellant": "Gopi Ram Agrawal",
-    "respondent": "The State of Bihar through the Collector"
+    "respondent": "The State of Bihar through the Collector,"
   },
   "FA/494/1987": {
     "appellant": "Gopi Ram Agrawal",
@@ -5885,15 +5885,15 @@ const CASES_DB = {
   },
   "FA/495/1987": {
     "appellant": "SRI. DWARIKA NATH",
-    "respondent": "M/S TRAVEL CORP. INDIA LTD"
+    "respondent": "M/S TRAVEL CORP. INDIA LTD."
   },
   "FA/498/1987": {
-    "appellant": "Ram Prakash Singh",
+    "appellant": "Ram Prakash Singh,",
     "respondent": "Nanhku Singh"
   },
   "FA/499/1987": {
     "appellant": "BHAGALPUR UNIVERSITY",
-    "respondent": "RAJ KUMAR CHOUDHARY and"
+    "respondent": "RAJ KUMAR CHOUDHARY and ORS"
   },
   "FA/500/1987": {
     "appellant": "RAM NIWAS PANDEY",
@@ -5905,7 +5905,7 @@ const CASES_DB = {
   },
   "FA/503/1987": {
     "appellant": "RAGHUNATH SAHNI and ORS",
-    "respondent": "RAM BAHADUR SAHNI and"
+    "respondent": "RAM BAHADUR SAHNI and ORS"
   },
   "FA/504/1987": {
     "appellant": "SHANTILAL BISHNOI",
@@ -5933,7 +5933,7 @@ const CASES_DB = {
   },
   "FA/523/1987": {
     "appellant": "RAMAWATAR YADAV and ORS",
-    "respondent": "SATYA NARAIN YADAV and"
+    "respondent": "SATYA NARAIN YADAV and ORS"
   },
   "FA/525/1987": {
     "appellant": "MAHABIR MANDAL",
@@ -6009,14 +6009,14 @@ const CASES_DB = {
   },
   "FA/32/1988": {
     "appellant": "RAJ KR.AWADHESHARY PD.NR.SINGH",
-    "respondent": "DR. KUMAR SITA RAM"
+    "respondent": "DR. KUMAR SITA RAM PRASAD NARAIN SINGH and ORS."
   },
   "FA/36/1988": {
     "appellant": "UMA DEVI",
-    "respondent": "HARI PD"
+    "respondent": "HARI PD."
   },
   "FA/38/1988": {
-    "appellant": "SHRISH KISHORE PD",
+    "appellant": "SHRISH KISHORE PD.",
     "respondent": "SMT.KRISHNA DEVI"
   },
   "FA/50/1988": {
@@ -6032,7 +6032,7 @@ const CASES_DB = {
     "respondent": "RAMGTI YADAV"
   },
   "FA/55/1988": {
-    "appellant": "GOPAL LAL BAJONIA @ GOPAL PD",
+    "appellant": "GOPAL LAL BAJONIA @ GOPAL PD.",
     "respondent": "NAGARMAL and ORS"
   },
   "FA/58/1988": {
@@ -6040,12 +6040,12 @@ const CASES_DB = {
     "respondent": "SUSHILA DEVI and ORS"
   },
   "FA/64/1988": {
-    "appellant": "BIRENDRA PD",
+    "appellant": "BIRENDRA PD.",
     "respondent": "STATE and ANR"
   },
   "FA/65/1988": {
     "appellant": "BAJANKA COLD STORAGE PEHARI",
-    "respondent": "CENTRAL BANK OF"
+    "respondent": "CENTRAL BANK OF INDIA"
   },
   "FA/66/1988": {
     "appellant": "Ram Jatan Mahto",
@@ -6100,11 +6100,11 @@ const CASES_DB = {
     "respondent": "Shri Punyatma Tiwary"
   },
   "FA/126/1988": {
-    "appellant": "SUKHDEO YADAV and ORS",
+    "appellant": "SUKHDEO YADAV and ORS.",
     "respondent": "PUNA YADAV and ORS"
   },
   "FA/133/1988": {
-    "appellant": "MAHENDRA PD",
+    "appellant": "MAHENDRA PD.",
     "respondent": "RABINDRA PD.SAH @ TARU SAH andOR"
   },
   "FA/138/1988": {
@@ -6125,7 +6125,7 @@ const CASES_DB = {
   },
   "FA/149/1988": {
     "appellant": "TELESHARI and ORS",
-    "respondent": "HARI OM PD"
+    "respondent": "HARI OM PD."
   },
   "FA/151/1988": {
     "appellant": "KULLO MANDAL and ORS",
@@ -6133,7 +6133,7 @@ const CASES_DB = {
   },
   "FA/153/1988": {
     "appellant": "HIRENDRA PRATAP SINGH and ORS",
-    "respondent": "NARENDRA PRATAP"
+    "respondent": "NARENDRA PRATAP SINGH and ORS"
   },
   "FA/154/1988": {
     "appellant": "DR.R.R.SRIVASTAVA",
@@ -6141,7 +6141,7 @@ const CASES_DB = {
   },
   "FA/155/1988": {
     "appellant": "MURARI and COMPANY and ORS",
-    "respondent": "INDIAN OIL CORPORATION"
+    "respondent": "INDIAN OIL CORPORATION LTD."
   },
   "FA/158/1988": {
     "appellant": "S.M. Kalim @ Md. Kalim and Ors",
@@ -6156,7 +6156,7 @@ const CASES_DB = {
     "respondent": "BHANSA YADAV and ORS"
   },
   "FA/164/1988": {
-    "appellant": "KRISHNANAND PD",
+    "appellant": "KRISHNANAND PD.",
     "respondent": "CENTRAL BANK OF INDIA"
   },
   "FA/165/1988": {
@@ -6165,15 +6165,15 @@ const CASES_DB = {
   },
   "FA/166/1988": {
     "appellant": "LAXMAN SINGH",
-    "respondent": "RAMCHANDRA TRIPATHY                                  MISCELLANEOUS"
+    "respondent": "RAMCHANDRA TRIPATHY"
   },
   "FA/168/1988": {
-    "appellant": "RAM CHANDRA PD",
-    "respondent": "KAUSHILYA DEVI and ORS"
+    "appellant": "RAM CHANDRA PD.",
+    "respondent": "KAUSHILYA DEVI and ORS."
   },
   "FA/171/1988": {
     "appellant": "RADHA KRISHNA MAHTO and ORS",
-    "respondent": "KRISHNAJI MAHTO and"
+    "respondent": "KRISHNAJI MAHTO and ORS"
   },
   "FA/174/1988": {
     "appellant": "RADHA KRISHNAJI MAHARAJ",
@@ -6189,7 +6189,7 @@ const CASES_DB = {
   },
   "FA/180/1988": {
     "appellant": "CENTRAL BANK OF INDIA",
-    "respondent": "NEW STAINLESS STEEL HOUSE"
+    "respondent": "NEW STAINLESS STEEL HOUSE andORS"
   },
   "FA/204/1988": {
     "appellant": "VINOD KR.MASKARA",
@@ -6205,14 +6205,14 @@ const CASES_DB = {
   },
   "FA/212/1988": {
     "appellant": "SMT. SHYAM SUNDARI DEVI and ORS",
-    "respondent": "SMT. DEO SAKHI DEVI"
+    "respondent": "SMT. DEO SAKHI DEVI and ORS"
   },
   "FA/213/1988": {
     "appellant": "CHANDRIKA MAHTO",
-    "respondent": "RAGHO MAHTO @ RAGHO PD"
+    "respondent": "RAGHO MAHTO @ RAGHO PD."
   },
   "FA/214/1988": {
-    "appellant": "SITA DEVI and ORS",
+    "appellant": "SITA DEVI and ORS.",
     "respondent": "STATE"
   },
   "FA/223/1988": {
@@ -6221,11 +6221,11 @@ const CASES_DB = {
   },
   "FA/224/1988": {
     "appellant": "BRIJNANDAN SINGH",
-    "respondent": "STATE GONDO SINGH @ GUNDO SINGH andORS VS. RAM SAROOP"
+    "respondent": "STATE"
   },
   "FA/227/1988": {
     "appellant": "GONDO SINGH @ GUNDO SINGH andORS",
-    "respondent": "RAM SAROOP"
+    "respondent": "RAM SAROOP SINGH and ORS"
   },
   "FA/231/1988": {
     "appellant": "Abu Mohsin Mahmad Jamil",
@@ -6233,7 +6233,7 @@ const CASES_DB = {
   },
   "FA/233/1988": {
     "appellant": "BHARAT SALES CORPORATION and ORS",
-    "respondent": "J.K.KHATWAT and"
+    "respondent": "J.K.KHATWAT and ORS"
   },
   "FA/244/1988": {
     "appellant": "PRABHUNATH SINGH and ORS",
@@ -6248,8 +6248,8 @@ const CASES_DB = {
     "respondent": "BIBI SUBAIDA KHATOON and ORS"
   },
   "FA/277/1988": {
-    "appellant": "Jagat Narain Yadav",
-    "respondent": "Ram Babu Yadav"
+    "appellant": "Jagat Narain Yadav,",
+    "respondent": "Ram Babu Yadav,"
   },
   "FA/278/1988": {
     "appellant": "SAHABUDDIN ANSARI",
@@ -6276,12 +6276,12 @@ const CASES_DB = {
     "respondent": "NAGENDRA SINGH and ANR"
   },
   "FA/313/1988": {
-    "appellant": "SAILENDRA PD",
+    "appellant": "SAILENDRA PD.",
     "respondent": "DINANATH JAISWAL"
   },
   "FA/315/1988": {
     "appellant": "RAJA RAM PD.and ORS",
-    "respondent": "SATYA NARAYAN PD"
+    "respondent": "SATYA NARAYAN PD."
   },
   "FA/316/1988": {
     "appellant": "MD. TASLIM",
@@ -6293,7 +6293,7 @@ const CASES_DB = {
   },
   "FA/323/1988": {
     "appellant": "SHAHU COLD STORAGE and ORS",
-    "respondent": "CENTRAL BANK OF INDIA"
+    "respondent": "CENTRAL BANK OF INDIA and ANR"
   },
   "FA/328/1988": {
     "appellant": "KISHUN THAKUR and ORS",
@@ -6332,7 +6332,7 @@ const CASES_DB = {
     "respondent": "LAXMI PD. and ORS"
   },
   "FA/353/1988": {
-    "appellant": "KRISHNA PD",
+    "appellant": "KRISHNA PD.",
     "respondent": "SMT.SABITRI DEVI and ORS"
   },
   "FA/355/1988": {
@@ -6365,11 +6365,11 @@ const CASES_DB = {
   },
   "FA/370/1988": {
     "appellant": "STATE OF BIHAR and ORS",
-    "respondent": "BIHAR CONSTRUCTION"
+    "respondent": "BIHAR CONSTRUCTION REGISTERED"
   },
   "FA/380/1988": {
     "appellant": "THE ORIENTAL FIRE and GENERAL",
-    "respondent": "CHANDRA SHEKHAR PD"
+    "respondent": "CHANDRA SHEKHAR PD."
   },
   "FA/412/1988": {
     "appellant": "KEDAR NATH",
@@ -6381,7 +6381,7 @@ const CASES_DB = {
   },
   "FA/488/1988": {
     "appellant": "ANIL KUMAR RAI and ORS",
-    "respondent": "RAM BADAN RAI and ORS and"
+    "respondent": "RAM BADAN RAI and ORS and ORS"
   },
   "FA/491/1988": {
     "appellant": "NARAYAN PRASAD TEBRIWAL",
@@ -6401,7 +6401,7 @@ const CASES_DB = {
   },
   "FA/499/1988": {
     "appellant": "UNION OF INDIA and ORS",
-    "respondent": "MUZAFFARPUR RE RALLING"
+    "respondent": "MUZAFFARPUR RE RALLING MILLS"
   },
   "FA/500/1988": {
     "appellant": "CHANDRIKA RAI",
@@ -6416,8 +6416,8 @@ const CASES_DB = {
     "respondent": "Bhujangi Mandal"
   },
   "FA/506/1988": {
-    "appellant": "ASSOCI.TRADERS and ENG. LTD.and OR",
-    "respondent": "13"
+    "appellant": "ASSOCI.TRADERS and ENG. LTD.and OR VS.",
+    "respondent": ""
   },
   "FA/507/1988": {
     "appellant": "SHIB SHANKER CHAUDHARY",
@@ -6429,11 +6429,11 @@ const CASES_DB = {
   },
   "FA/510/1988": {
     "appellant": "STATE OF BIHAR",
-    "respondent": "YAMAN INDIA LTD"
+    "respondent": "YAMAN INDIA LTD."
   },
   "FA/512/1988": {
     "appellant": "GANGA @ GANGADHAR PANDEY",
-    "respondent": "DULHIN ALIRAJA DEVI and"
+    "respondent": "DULHIN ALIRAJA DEVI and ORS"
   },
   "FA/513/1988": {
     "appellant": "SADAN YADAV",
@@ -6480,8 +6480,8 @@ const CASES_DB = {
     "respondent": "MOST SITA DEVI and ORS"
   },
   "FA/39/1989": {
-    "appellant": "LAXMAN PD",
-    "respondent": "HARIHAR PD"
+    "appellant": "LAXMAN PD.",
+    "respondent": "HARIHAR PD."
   },
   "FA/41/1989": {
     "appellant": "RAJ BALLAM RAI",
@@ -6525,18 +6525,18 @@ const CASES_DB = {
   },
   "FA/91/1989": {
     "appellant": "NAGESHWAR RAI @ BALESHWAR RAI",
-    "respondent": "RAM SUDHISTA RAUT"
+    "respondent": "RAM SUDHISTA RAUT and ORS"
   },
   "FA/93/1989": {
     "appellant": "THE UNION OF INDIA",
-    "respondent": "KANHAYALAL YADUNANDAN PD"
+    "respondent": "KANHAYALAL YADUNANDAN PD."
   },
   "FA/99/1989": {
     "appellant": "CHANDRADEO SINGHTI DEVI",
-    "respondent": "DEVENDRA KISHORE"
+    "respondent": "DEVENDRA KISHORE CHAUDHARY"
   },
   "FA/100/1989": {
-    "appellant": "Rajendra Sharma",
+    "appellant": "Rajendra Sharma,",
     "respondent": "RAJENDRA SAHU"
   },
   "FA/103/1989": {
@@ -6545,7 +6545,7 @@ const CASES_DB = {
   },
   "FA/117/1989": {
     "appellant": "SAVITRI DEVI",
-    "respondent": "SACHCHIDANAND PD"
+    "respondent": "SACHCHIDANAND PD."
   },
   "FA/122/1989": {
     "appellant": "MOST.TULSI KUER",
@@ -6556,7 +6556,7 @@ const CASES_DB = {
     "respondent": "SMT.SATYA BHAMA LILHA"
   },
   "FA/138/1989": {
-    "appellant": "NATIONAL INSURANCE COMP.LTD",
+    "appellant": "NATIONAL INSURANCE COMP.LTD.",
     "respondent": "LAL MOHAN ROY"
   },
   "FA/139/1989": {
@@ -6568,8 +6568,8 @@ const CASES_DB = {
     "respondent": "MOST.DEPARI DEVI"
   },
   "FA/183/1989": {
-    "appellant": "DR. VISHWA MOHAN KUMAR SINHA AND ORS",
-    "respondent": "SATYA"
+    "appellant": "DR. VISHWA MOHAN KUMAR SINHA AND ORS.",
+    "respondent": "SATYA NR.SINHA and ORS"
   },
   "FA/186/1989": {
     "appellant": "JOHN BAPTIST PAUL",
@@ -6585,7 +6585,7 @@ const CASES_DB = {
   },
   "FA/196/1989": {
     "appellant": "SHAKTIDHAR PD.RASTOGI NUNU BAB",
-    "respondent": "DAMODAR LAL"
+    "respondent": "DAMODAR LAL RASTOGI"
   },
   "FA/200/1989": {
     "appellant": "MUNDRIKA SINGH",
@@ -6593,7 +6593,7 @@ const CASES_DB = {
   },
   "FA/202/1989": {
     "appellant": "SAWALIA PD.@ MURARI BHUSAN",
-    "respondent": "MOST.GULABO KUNWAR                  MISCELLANEOUS"
+    "respondent": "MOST.GULABO KUNWAR"
   },
   "FA/203/1989": {
     "appellant": "MOST.LALDEI DEVI and ORS",
@@ -6609,7 +6609,7 @@ const CASES_DB = {
   },
   "FA/217/1989": {
     "appellant": "RAM SINGARI DEVI @ RAM SANEHI",
-    "respondent": "RAM BINOD TIWARY and"
+    "respondent": "RAM BINOD TIWARY and ORS"
   },
   "FA/218/1989": {
     "appellant": "SHAIL DEVI",
@@ -6628,7 +6628,7 @@ const CASES_DB = {
     "respondent": "STATE"
   },
   "FA/241/1989": {
-    "appellant": "STATE BANK OF INDIA",
+    "appellant": "STATE BANK OF INDIA.",
     "respondent": "UMESH SERVICING STATION"
   },
   "FA/244/1989": {
@@ -6644,7 +6644,7 @@ const CASES_DB = {
     "respondent": "NARAIN PD.SINGH"
   },
   "FA/252/1989": {
-    "appellant": "RAMESHWAR PD",
+    "appellant": "RAMESHWAR PD.",
     "respondent": "CHANDRIKA SINGH"
   },
   "FA/254/1989": {
@@ -6665,7 +6665,7 @@ const CASES_DB = {
   },
   "FA/271/1989": {
     "appellant": "ASHOK COLD STORAGE PVT.LTD.andOR",
-    "respondent": "STATE BANK OF"
+    "respondent": "STATE BANK OF INDIA"
   },
   "FA/272/1989": {
     "appellant": "MD. HEBIB KHAN",
@@ -6689,11 +6689,11 @@ const CASES_DB = {
   },
   "FA/283/1989": {
     "appellant": "RAMJEE RAI",
-    "respondent": "MOHNI MOHAN SHARMA                                  MISCELLANEOUS SHREE PHULENA SINGH and ORS VS. PROF.CHANDRADEO"
+    "respondent": "MOHNI MOHAN SHARMA"
   },
   "FA/285/1989": {
     "appellant": "SHREE PHULENA SINGH and ORS",
-    "respondent": "PROF.CHANDRADEO"
+    "respondent": "PROF.CHANDRADEO SINGH"
   },
   "FA/304/1989": {
     "appellant": "BASUDEO SAO",
@@ -6701,7 +6701,7 @@ const CASES_DB = {
   },
   "FA/306/1989": {
     "appellant": "DELTA ENGINEERING CO PVT.LTD",
-    "respondent": "THE STATE OF BIHAR and"
+    "respondent": "THE STATE OF BIHAR and ORS"
   },
   "FA/311/1989": {
     "appellant": "JAWAHAR SAH",
@@ -6744,8 +6744,8 @@ const CASES_DB = {
     "respondent": "NAGESHWAR PD VERMA"
   },
   "FA/350/1989": {
-    "appellant": "RAM CHARITAR MAHTO and ORS",
-    "respondent": "RAMANAND PD.and ORS"
+    "appellant": "RAM CHARITAR MAHTO and ORS.",
+    "respondent": "RAMANAND PD.and ORS."
   },
   "FA/351/1989": {
     "appellant": "LAL NR. SHARMA",
@@ -6756,28 +6756,28 @@ const CASES_DB = {
     "respondent": "SHANKAR MAHTO"
   },
   "FA/359/1989": {
-    "appellant": "ANIL KR.and ORS",
-    "respondent": "VIVEKANAND MISHRA and ORS"
+    "appellant": "ANIL KR.and ORS.",
+    "respondent": "VIVEKANAND MISHRA and ORS."
   },
   "FA/361/1989": {
-    "appellant": "SMT.KANTI SINHA and ORS",
-    "respondent": "BAHADUR SINGH and ORS"
+    "appellant": "SMT.KANTI SINHA and ORS.",
+    "respondent": "BAHADUR SINGH and ORS."
   },
   "FA/362/1989": {
-    "appellant": "MADHUSUDAN CHAUDHARY and ORS",
-    "respondent": "BRAHAMDEO"
+    "appellant": "MADHUSUDAN CHAUDHARY and ORS.",
+    "respondent": "BRAHAMDEO CHAUDHARY and ORS."
   },
   "FA/376/1989": {
-    "appellant": "RAMA SINGH@RAMJI SINGH and ORS",
-    "respondent": "SMT.SAMUNDARI"
+    "appellant": "RAMA SINGH@RAMJI SINGH and ORS.",
+    "respondent": "SMT.SAMUNDARI DEVI"
   },
   "FA/377/1989": {
     "appellant": "MITHILESH DIKSHIT",
-    "respondent": "RAMESHWAR MISHRA and ORS"
+    "respondent": "RAMESHWAR MISHRA and ORS."
   },
   "FA/379/1989": {
     "appellant": "MIR MOHAMMAD ALI@ALIMOHAMMADandO",
-    "respondent": "ABDULLAH"
+    "respondent": "ABDULLAH HUSSAIN and ORS"
   },
   "FA/380/1989": {
     "appellant": "SK.MD. ZUHAIR and ORS",
@@ -6801,11 +6801,11 @@ const CASES_DB = {
   },
   "FA/394/1989": {
     "appellant": "SUKHDEO YADAV and ORS",
-    "respondent": "RAM JANAK YADAV and ORS"
+    "respondent": "RAM JANAK YADAV and ORS."
   },
   "FA/395/1989": {
-    "appellant": "ANIMA PD",
-    "respondent": "MD.SAUF ANSARI and ORS"
+    "appellant": "ANIMA PD.",
+    "respondent": "MD.SAUF ANSARI and ORS."
   },
   "FA/399/1989": {
     "appellant": "GANESH THAKUR",
@@ -6825,7 +6825,7 @@ const CASES_DB = {
   },
   "FA/417/1989": {
     "appellant": "VISHWANATH CHOUDHARYandORS",
-    "respondent": "INDRASAN CHOUDHARY"
+    "respondent": "INDRASAN CHOUDHARY and ORS"
   },
   "FA/420/1989": {
     "appellant": "GAJENDRA RAI",
@@ -6873,7 +6873,7 @@ const CASES_DB = {
   },
   "FA/450/1989": {
     "appellant": "THE SPECIAL OFFICER OF THE BIH",
-    "respondent": "MAHANTH RAGHAV"
+    "respondent": "MAHANTH RAGHAV PRAPANNA RAMANU"
   },
   "FA/460/1989": {
     "appellant": "MAHESHWAR RAI",
@@ -6881,7 +6881,7 @@ const CASES_DB = {
   },
   "FA/464/1989": {
     "appellant": "JAGDISH PD.AGRAWAL",
-    "respondent": "PUROSHOTAM LAL SUKARIYA and"
+    "respondent": "PUROSHOTAM LAL SUKARIYA and ORS"
   },
   "FA/466/1989": {
     "appellant": "MOST.PASPATI DEVI and ORS",
@@ -6900,8 +6900,8 @@ const CASES_DB = {
     "respondent": "VIJAY NR.DAS and ORS"
   },
   "FA/482/1989": {
-    "appellant": "SURENDRA SHRMA AND ORS",
-    "respondent": "MOST. PARWATI KUER AND"
+    "appellant": "SURENDRA SHRMA AND ORS.",
+    "respondent": "MOST. PARWATI KUER AND ORS."
   },
   "FA/483/1989": {
     "appellant": "SONFI SINGH and ORS",
@@ -6929,7 +6929,7 @@ const CASES_DB = {
   },
   "FA/491/1989": {
     "appellant": "ANANT LAL",
-    "respondent": "SRI KISHUN PD"
+    "respondent": "SRI KISHUN PD."
   },
   "FA/495/1989": {
     "appellant": "GOPI CHAND RAM",
@@ -6937,7 +6937,7 @@ const CASES_DB = {
   },
   "FA/498/1989": {
     "appellant": "BIRENDRA KR. MANDAL and ORS",
-    "respondent": "NAGESHWAR MANDAL and"
+    "respondent": "NAGESHWAR MANDAL and ORS"
   },
   "FA/499/1989": {
     "appellant": "LALMATI DEVI",
@@ -7009,7 +7009,7 @@ const CASES_DB = {
   },
   "FA/728/1989": {
     "appellant": "AJAY KR.AGRAWAL @ AJAY AGRAWAL",
-    "respondent": "BIHAR STATE"
+    "respondent": "BIHAR STATE FINANCE CORPORATIO"
   },
   "FA/729/1989": {
     "appellant": "RAMESHWAR SINGH and ORS",
@@ -7057,7 +7057,7 @@ const CASES_DB = {
   },
   "FA/777/1989": {
     "appellant": "KALI PRASAD CHATTERJEE and ORS",
-    "respondent": "SMT. MAYA BANERJEE"
+    "respondent": "SMT. MAYA BANERJEE and ORS"
   },
   "FA/782/1989": {
     "appellant": "CHANDRADEO SINGH and ORS",
@@ -7065,15 +7065,15 @@ const CASES_DB = {
   },
   "FA/786/1989": {
     "appellant": "KISHUNDEO THAKUR and ORS",
-    "respondent": "SUDARSHAN THAKUR and"
+    "respondent": "SUDARSHAN THAKUR and ORS"
   },
   "FA/788/1989": {
     "appellant": "RAM CHANDRA PD.SINGH and ORS",
-    "respondent": "DR.KAMLA PD.SINGH"
+    "respondent": "DR.KAMLA PD.SINGH and ORS"
   },
   "FA/789/1989": {
     "appellant": "BRAHMDEO MAHTO @ CHAUI MAHTO",
-    "respondent": "ARJUN MAHTO and"
+    "respondent": "ARJUN MAHTO and ORS"
   },
   "FA/790/1989": {
     "appellant": "KASHINATH SAROGI",
@@ -7085,7 +7085,7 @@ const CASES_DB = {
   },
   "FA/797/1989": {
     "appellant": "NARESH SAO @ NARESH PD. and ORS",
-    "respondent": "SMT.KAILASH DEVI"
+    "respondent": "SMT.KAILASH DEVI and ORS"
   },
   "FA/800/1989": {
     "appellant": "UMASHANKAR JAISWAL",
@@ -7096,12 +7096,12 @@ const CASES_DB = {
     "respondent": "SAWARMAL TEKRIWAL and ORS"
   },
   "FA/803/1989": {
-    "appellant": "BASUDEO PD",
+    "appellant": "BASUDEO PD.",
     "respondent": "RAMESHWAR RAM and ORS"
   },
   "FA/805/1989": {
     "appellant": "MANJU DEVI @ MANJU GUPTA",
-    "respondent": "LAXMAN PD"
+    "respondent": "LAXMAN PD."
   },
   "FA/806/1989": {
     "appellant": "REKHA ENTERPRISES and ORS",
@@ -7109,7 +7109,7 @@ const CASES_DB = {
   },
   "FA/810/1989": {
     "appellant": "RAMCHANDRA CHAUDHARY",
-    "respondent": "HARENDRA CHAUDHARY and"
+    "respondent": "HARENDRA CHAUDHARY and ORS"
   },
   "FA/812/1989": {
     "appellant": "YUGESHWAR PD.SINGH",
@@ -7141,7 +7141,7 @@ const CASES_DB = {
   },
   "FA/22/1990": {
     "appellant": "MADUSUDAN SAH @ MADUSUDAN SAH",
-    "respondent": "HIRA SAH @ HIRA"
+    "respondent": "HIRA SAH @ HIRA SAO"
   },
   "FA/37/1990": {
     "appellant": "MANAGER RAI",
@@ -7149,7 +7149,7 @@ const CASES_DB = {
   },
   "FA/52/1990": {
     "appellant": "RAI NR.COLLEGE ,HAJIPUR and ORS",
-    "respondent": "MOST.SARASWATI"
+    "respondent": "MOST.SARASWATI CHAUDHARAIN"
   },
   "FA/53/1990": {
     "appellant": "BIMAL MAJIMDAR",
@@ -7160,8 +7160,8 @@ const CASES_DB = {
     "respondent": "CHANDRA NARAIN SAHA @ MAHADEO"
   },
   "FA/80/1990": {
-    "appellant": "RAM BAJLAWAN PD",
-    "respondent": "DEVI LAL PD"
+    "appellant": "RAM BAJLAWAN PD.",
+    "respondent": "DEVI LAL PD."
   },
   "FA/82/1990": {
     "appellant": "RAJMANGAL SINGH",
@@ -7221,11 +7221,11 @@ const CASES_DB = {
   },
   "FA/137/1990": {
     "appellant": "SAROOP MAHTORAMSARUPMAHTOandORS",
-    "respondent": "RAGHO MAHTO"
+    "respondent": "RAGHO MAHTO and ORS"
   },
   "FA/140/1990": {
     "appellant": "MD. SABIR KHAN @ SHABIR KHAN",
-    "respondent": "BIBI RAHILA KHATOON"
+    "respondent": "BIBI RAHILA KHATOON and ORS"
   },
   "FA/145/1990": {
     "appellant": "RAMESHWARI DEVI",
@@ -7241,11 +7241,11 @@ const CASES_DB = {
   },
   "FA/159/1990": {
     "appellant": "SAROJ NARAYAN SINGH and ORS",
-    "respondent": "BHAGWAN SINGH and"
+    "respondent": "BHAGWAN SINGH and ORS"
   },
   "FA/165/1990": {
     "appellant": "SHYAM SHANKAR THAKUR and ORS",
-    "respondent": "RAMAYAN THAKUR and"
+    "respondent": "RAMAYAN THAKUR and ORS"
   },
   "FA/166/1990": {
     "appellant": "BASHGIT SINGH",
@@ -7253,11 +7253,11 @@ const CASES_DB = {
   },
   "FA/178/1990": {
     "appellant": "BIHAR STATE ELECTRICITY BOARD",
-    "respondent": "MADHAV MILLSPVTLTD"
+    "respondent": "MADHAV MILLSPVTLTD."
   },
   "FA/202/1990": {
-    "appellant": "LAKHAN PD",
-    "respondent": "HARI PD"
+    "appellant": "LAKHAN PD.",
+    "respondent": "HARI PD."
   },
   "FA/206/1990": {
     "appellant": "RAJ MANGAL SINGH",
@@ -7285,7 +7285,7 @@ const CASES_DB = {
   },
   "FA/256/1990": {
     "appellant": "M/S.CANRA KHAD STORETHROUGH",
-    "respondent": "BRANCH"
+    "respondent": "BRANCH MANAGE.NATIONAL.INC.CO"
   },
   "FA/261/1990": {
     "appellant": "RAMESH KR. @ RAMESH PD. TIWARI",
@@ -7293,7 +7293,7 @@ const CASES_DB = {
   },
   "FA/271/1990": {
     "appellant": "MOSTT.CHANDRAKANTA DEVI and ORS",
-    "respondent": "SMT. SHYAMPATI"
+    "respondent": "SMT. SHYAMPATI DEVI and ORS"
   },
   "FA/280/1990": {
     "appellant": "RAMA SHANKAR SINGH",
@@ -7301,7 +7301,7 @@ const CASES_DB = {
   },
   "FA/284/1990": {
     "appellant": "BIJAY SARKHEL",
-    "respondent": "STATE OF BIHAR THROUGH COLLECTOR"
+    "respondent": "STATE OF BIHAR THROUGH COLLECTOR BHAGALPUR"
   },
   "FA/285/1990": {
     "appellant": "THE SECRETARY",
@@ -7321,7 +7321,7 @@ const CASES_DB = {
   },
   "FA/292/1990": {
     "appellant": "ASARFI ROUT",
-    "respondent": "MOST. RAMJHARIYA and ORS"
+    "respondent": "MOST. RAMJHARIYA and ORS."
   },
   "FA/293/1990": {
     "appellant": "MANAGAR PD.and ORS",
@@ -7333,7 +7333,7 @@ const CASES_DB = {
   },
   "FA/299/1990": {
     "appellant": "SMT.SNEH LATA SAHI",
-    "respondent": "Bihar State Food and Civil Supplies"
+    "respondent": "Bihar State Food and Civil Supplies Corporation Ltd. and Ors."
   },
   "FA/300/1990": {
     "appellant": "DHARAMDEO SINGH",
@@ -7353,19 +7353,19 @@ const CASES_DB = {
   },
   "FA/306/1990": {
     "appellant": "ANIL KR. BARNWAL and ORS",
-    "respondent": "MOST SINGHASAHI DEVI and"
+    "respondent": "MOST SINGHASAHI DEVI and ORS"
   },
   "FA/311/1990": {
     "appellant": "Md. Nasiruddin",
     "respondent": "Md. Samsuddin"
   },
   "FA/315/1990": {
-    "appellant": "JANAK DULARI",
-    "respondent": "13"
+    "appellant": "JANAK DULARI VS.",
+    "respondent": ""
   },
   "FA/317/1990": {
     "appellant": "MADAN PD. TIWARY @ MADAN TIWAR",
-    "respondent": "BHUHASWAR DIKSHIT"
+    "respondent": "BHUHASWAR DIKSHIT @ FULESHWAR"
   },
   "FA/318/1990": {
     "appellant": "Baijnath Sahu Tarha alias Bajnath Sahu",
@@ -7381,7 +7381,7 @@ const CASES_DB = {
   },
   "FA/335/1990": {
     "appellant": "MOST KAMLESHWARI DEVI and ORS",
-    "respondent": "KEDAR PD. SINGH and"
+    "respondent": "KEDAR PD. SINGH and ORS"
   },
   "FA/337/1990": {
     "appellant": "STATE BANK OF INDIA",
@@ -7397,7 +7397,7 @@ const CASES_DB = {
   },
   "FA/348/1990": {
     "appellant": "BIRJA KUMHAR and ORS",
-    "respondent": "DUDHNATH KUMHAR and ORS"
+    "respondent": "DUDHNATH KUMHAR and ORS."
   },
   "FA/352/1990": {
     "appellant": "PRAMESHWAR PD. HALWAI",
@@ -7405,7 +7405,7 @@ const CASES_DB = {
   },
   "FA/353/1990": {
     "appellant": "SACHCHDANAND SINHA",
-    "respondent": "RAMESHWAR PD"
+    "respondent": "RAMESHWAR PD."
   },
   "FA/354/1990": {
     "appellant": "RAM SAGAR SINGH and ORS",
@@ -7441,7 +7441,7 @@ const CASES_DB = {
   },
   "FA/398/1990": {
     "appellant": "SRI KEDAR NATH CHOUDHARY and ORS",
-    "respondent": "MAHANTH BALRAM"
+    "respondent": "MAHANTH BALRAM DAS and ORS"
   },
   "FA/402/1990": {
     "appellant": "RAM CHANDRA SHARMA",
@@ -7452,7 +7452,7 @@ const CASES_DB = {
     "respondent": "RATAN SHARMA"
   },
   "FA/408/1990": {
-    "appellant": "Mohmad Gulzar @ Mohmad Gulzar Ahmad",
+    "appellant": "Mohmad Gulzar @ Mohmad Gulzar Ahmad,",
     "respondent": "Bibi Jamila Khatoon"
   },
   "FA/411/1990": {
@@ -7516,16 +7516,16 @@ const CASES_DB = {
     "respondent": "BIBI JAMILA KHATOON"
   },
   "FA/458/1990": {
-    "appellant": "CHATARANJAN PD",
-    "respondent": "SHRI NIRANJAN PD"
+    "appellant": "CHATARANJAN PD.",
+    "respondent": "SHRI NIRANJAN PD."
   },
   "FA/469/1990": {
-    "appellant": "THE STATE OF BIHAR THR.COLLEC",
+    "appellant": "THE STATE OF BIHAR THR.COLLEC.",
     "respondent": "RAM NAWANI SINGH"
   },
   "FA/476/1990": {
-    "appellant": "Krishna Ballav Prasad Singh",
-    "respondent": "Most. Rina Devi"
+    "appellant": "Krishna Ballav Prasad Singh,",
+    "respondent": "Most. Rina Devi,"
   },
   "FA/503/1990": {
     "appellant": "BIJESHWAR RAI and ORS",
@@ -7533,15 +7533,15 @@ const CASES_DB = {
   },
   "FA/504/1990": {
     "appellant": "HIRA PODDAR HIRA LAL PODDAR",
-    "respondent": "BHAGWAN MOHAN and"
+    "respondent": "BHAGWAN MOHAN and ORS"
   },
   "FA/513/1990": {
     "appellant": "SUBODH DEVI",
     "respondent": "SMT SARVIU DEVI"
   },
   "FA/516/1990": {
-    "appellant": "SHRINIWAS DAS AGRAWAL and ORS",
-    "respondent": "MAHESHWAR PRASAD"
+    "appellant": "SHRINIWAS DAS AGRAWAL and ORS.",
+    "respondent": "MAHESHWAR PRASAD AGRAWAL and ANR."
   },
   "FA/518/1990": {
     "appellant": "TRIPIT NARAIN JHA",
@@ -7553,7 +7553,7 @@ const CASES_DB = {
   },
   "FA/523/1990": {
     "appellant": "SMT RADHIKA DEVI",
-    "respondent": "DURGA PD. SINGH @ DURGA PD"
+    "respondent": "DURGA PD. SINGH @ DURGA PD."
   },
   "FA/526/1990": {
     "appellant": "AKHTAR HUSSAIN",
@@ -7588,7 +7588,7 @@ const CASES_DB = {
     "respondent": "THE STATE OF BIHAR and ORS"
   },
   "FA/542/1990": {
-    "appellant": "MALAYESHWAR MISHRA AND ORS",
+    "appellant": "MALAYESHWAR MISHRA AND ORS.",
     "respondent": "STATE"
   },
   "FA/552/1990": {
@@ -7645,7 +7645,7 @@ const CASES_DB = {
   },
   "FA/653/1990": {
     "appellant": "SMT BHAGWATI DEVI and ORS",
-    "respondent": "PANJABA NATIONAL BANK"
+    "respondent": "PANJABA NATIONAL BANK and ORS"
   },
   "FA/654/1990": {
     "appellant": "BAIDYA NATH SAH and ORS",
@@ -7653,11 +7653,11 @@ const CASES_DB = {
   },
   "FA/655/1990": {
     "appellant": "MAHESHWAR NATH SINGH@ MAHESHWA",
-    "respondent": "SATYANARAIN"
+    "respondent": "SATYANARAIN SINGH"
   },
   "FA/665/1990": {
     "appellant": "JAGARNATH SHARMA",
-    "respondent": "SHEO NATH SINGH AND ORS"
+    "respondent": "SHEO NATH SINGH AND ORS."
   },
   "FA/671/1990": {
     "appellant": "BUTAN SAH and ORS",
@@ -7665,7 +7665,7 @@ const CASES_DB = {
   },
   "FA/15/1991": {
     "appellant": "CANARA BANK",
-    "respondent": "RAJ KUMAR YADAV and ORS"
+    "respondent": "RAJ KUMAR YADAV and ORS."
   },
   "FA/21/1991": {
     "appellant": "ST.OF BIHAR TH.COLL.,PURNIA",
@@ -7676,8 +7676,8 @@ const CASES_DB = {
     "respondent": "VEENA KUMARI LAL @ VEENA LAL"
   },
   "FA/32/1991": {
-    "appellant": "GULAB JHARO KUNWAR and ANR",
-    "respondent": "AWADHESH KUMAR"
+    "appellant": "GULAB JHARO KUNWAR and ANR.",
+    "respondent": "AWADHESH KUMAR SINGH and ORS"
   },
   "FA/43/1991": {
     "appellant": "SMT.GITA DEVI",
@@ -7689,34 +7689,34 @@ const CASES_DB = {
   },
   "FA/46/1991": {
     "appellant": "PUNJAB NATIONAL BANK",
-    "respondent": "LAKHAN LAL GIRI GOSWAMI and"
+    "respondent": "LAKHAN LAL GIRI GOSWAMI and ORS."
   },
   "FA/50/1991": {
     "appellant": "DINESH PANDEY",
-    "respondent": "PUNJAB NATIONAL BANK and ORS"
+    "respondent": "PUNJAB NATIONAL BANK and ORS."
   },
   "FA/52/1991": {
     "appellant": "MOST.RAM PEYARI DEVI",
-    "respondent": "MAHESH SINGH and ORS"
+    "respondent": "MAHESH SINGH and ORS."
   },
   "FA/65/1991": {
     "appellant": "KISHUN CHAND CHOUDHARY",
-    "respondent": "RAMESHWAR PD. and ORS"
+    "respondent": "RAMESHWAR PD. and ORS."
   },
   "FA/79/1991": {
-    "appellant": "MD. MEHARUDDIN and ORS",
-    "respondent": "BIBI RASOOLAN and ORS"
+    "appellant": "MD. MEHARUDDIN and ORS.",
+    "respondent": "BIBI RASOOLAN and ORS."
   },
   "FA/84/1991": {
-    "appellant": "JANAK MAHTO and ORS",
+    "appellant": "JANAK MAHTO and ORS.",
     "respondent": "RAM AGYA SINGH"
   },
   "FA/87/1991": {
     "appellant": "ST.OF BIHAR TH.COLL.,SITAMARHI",
-    "respondent": "SARVODAYA"
+    "respondent": "SARVODAYA GURU.ASHRAM and ORS."
   },
   "FA/95/1991": {
-    "appellant": "AGNU KOIRI and ORS",
+    "appellant": "AGNU KOIRI and ORS.",
     "respondent": "JAI RAM KOIRI and ORS"
   },
   "FA/97/1991": {
@@ -7728,7 +7728,7 @@ const CASES_DB = {
     "respondent": "KRISHNA KANT SINGH and ORS"
   },
   "FA/99/1991": {
-    "appellant": "RABINDRA PD",
+    "appellant": "RABINDRA PD.",
     "respondent": "SMT.SITA DEVI"
   },
   "FA/100/1991": {
@@ -7737,11 +7737,11 @@ const CASES_DB = {
   },
   "FA/102/1991": {
     "appellant": "MANISHA TIWARI and ORS",
-    "respondent": "BHUPENDRA NARAYAN SINGH"
+    "respondent": "BHUPENDRA NARAYAN SINGH and ORS"
   },
   "FA/103/1991": {
-    "appellant": "JANARDAN PRASAD and ORS",
-    "respondent": "MOST SHANTI DEVI and ORS"
+    "appellant": "JANARDAN PRASAD and ORS.",
+    "respondent": "MOST SHANTI DEVI and ORS."
   },
   "FA/106/1991": {
     "appellant": "RAGHUNATH RAI",
@@ -7760,7 +7760,7 @@ const CASES_DB = {
     "respondent": "PUNJAB NATIONAL BANK"
   },
   "FA/114/1991": {
-    "appellant": "JAGDISH PRASAD and ORS",
+    "appellant": "JAGDISH PRASAD and ORS.",
     "respondent": "STATE BANK OF INDIA"
   },
   "FA/119/1991": {
@@ -7772,7 +7772,7 @@ const CASES_DB = {
     "respondent": "RAJO SINGH"
   },
   "FA/132/1991": {
-    "appellant": "RALLIES INDIA LTD",
+    "appellant": "RALLIES INDIA LTD.",
     "respondent": "JAGESHWAR DAYAL"
   },
   "FA/135/1991": {
@@ -7784,7 +7784,7 @@ const CASES_DB = {
     "respondent": "SMT.SUSHILA DEVI"
   },
   "FA/140/1991": {
-    "appellant": "GANGA PD",
+    "appellant": "GANGA PD.",
     "respondent": "PAVITRI DEVI"
   },
   "FA/141/1991": {
@@ -7809,11 +7809,11 @@ const CASES_DB = {
   },
   "FA/200/1991": {
     "appellant": "RAMESH KUMAR YADAV @ RAJESH KR",
-    "respondent": "RENU KUMARI @"
+    "respondent": "RENU KUMARI @ RAM KUMARI"
   },
   "FA/203/1991": {
     "appellant": "LACHMI NR. SHARMA",
-    "respondent": "RAJKALI DEVI and ORS"
+    "respondent": "RAJKALI DEVI and ORS."
   },
   "FA/205/1991": {
     "appellant": "KABUTRI DEVI and ORS",
@@ -7824,7 +7824,7 @@ const CASES_DB = {
     "respondent": "INTERNATIONAL STEELS PURNEA"
   },
   "FA/209/1991": {
-    "appellant": "ST.OF BIHAR TH.COLL.,SAH.andORS",
+    "appellant": "ST.OF BIHAR TH.COLL.,SAH.andORS.",
     "respondent": "JAI NR.SINGH"
   },
   "FA/220/1991": {
@@ -7865,15 +7865,15 @@ const CASES_DB = {
   },
   "FA/343/1991": {
     "appellant": "BISHWANATH PD.BANKA @ B.BANKA",
-    "respondent": "STATE OF BIHAR and"
+    "respondent": "STATE OF BIHAR and ORS"
   },
   "FA/344/1991": {
-    "appellant": "KASHINATH TIWARI and ORS",
-    "respondent": "GANESH MISSIR and ORS"
+    "appellant": "KASHINATH TIWARI and ORS.",
+    "respondent": "GANESH MISSIR and ORS."
   },
   "FA/347/1991": {
-    "appellant": "LALITA DEVI and ORS",
-    "respondent": "KAILASHIYA DEVI and ORS"
+    "appellant": "LALITA DEVI and ORS.",
+    "respondent": "KAILASHIYA DEVI and ORS."
   },
   "FA/380/1991": {
     "appellant": "NITISH KUAMR and ORS",
@@ -7881,14 +7881,14 @@ const CASES_DB = {
   },
   "FA/388/1991": {
     "appellant": "HANS NATH CHAUDHARY",
-    "respondent": "LAL BACHAN CHAUDHARY and"
+    "respondent": "LAL BACHAN CHAUDHARY and ORS"
   },
   "FA/392/1991": {
     "appellant": "NAGINA BAITHA",
     "respondent": "SMT.KAUSHALYA DEVI"
   },
   "FA/408/1991": {
-    "appellant": "HARENDRA SINGH and ORS",
+    "appellant": "HARENDRA SINGH and ORS.",
     "respondent": "SHYAMPATI DEVI"
   },
   "FA/410/1991": {
@@ -7896,7 +7896,7 @@ const CASES_DB = {
     "respondent": "M/S ARJUN UDYOG ASHRAM"
   },
   "FA/412/1991": {
-    "appellant": "MOST. TARA DEVI and ORS",
+    "appellant": "MOST. TARA DEVI and ORS.",
     "respondent": "STATE OF BIHAR"
   },
   "FA/413/1991": {
@@ -7908,60 +7908,60 @@ const CASES_DB = {
     "respondent": "SHEO GOVIND AGRAWAL"
   },
   "FA/426/1991": {
-    "appellant": "MOSMAY KAILASIA DEVI and ORS",
-    "respondent": "MOSMAT DAULATA DEVI"
+    "appellant": "MOSMAY KAILASIA DEVI and ORS.",
+    "respondent": "MOSMAT DAULATA DEVI and ORS."
   },
   "FA/456/1991": {
-    "appellant": "RAJENDRA AGRICULTURE UNIV",
-    "respondent": "BHARTIYA ISPAT UDYOG"
+    "appellant": "RAJENDRA AGRICULTURE UNIV.",
+    "respondent": "BHARTIYA ISPAT UDYOG PVT.LTD.,"
   },
   "FA/464/1991": {
     "appellant": "BANKESHWAR PRASAD SINGH",
-    "respondent": "STATE OF BIHAR and ORS"
+    "respondent": "STATE OF BIHAR and ORS."
   },
   "FA/466/1991": {
     "appellant": "NAWAL KUMAR SHARMA",
     "respondent": "C.GEN.MAN.STATE BANK OF INDIA"
   },
   "FA/467/1991": {
-    "appellant": "BHAGWANO DEVI and ORS",
-    "respondent": "BINDESHWARI PD. and ORS"
+    "appellant": "BHAGWANO DEVI and ORS.",
+    "respondent": "BINDESHWARI PD. and ORS."
   },
   "FA/472/1991": {
-    "appellant": "RAM PYARI DEVI and ORS",
-    "respondent": "SUMITRA DEVI and ORS"
+    "appellant": "RAM PYARI DEVI and ORS.",
+    "respondent": "SUMITRA DEVI and ORS."
   },
   "FA/473/1991": {
     "appellant": "BIJOY KUMAR and ORS",
-    "respondent": "JAMUNA PRASAD SHAH and ORS"
+    "respondent": "JAMUNA PRASAD SHAH and ORS."
   },
   "FA/476/1991": {
-    "appellant": "SUSHIL KUMAR and ORS",
-    "respondent": "BISWAMOHAN SAH and ORS"
+    "appellant": "SUSHIL KUMAR and ORS.",
+    "respondent": "BISWAMOHAN SAH and ORS."
   },
   "FA/489/1991": {
-    "appellant": "SHYAM NANDAN TIWARY and ORS",
-    "respondent": "PREM NANDAN TIWARI"
+    "appellant": "SHYAM NANDAN TIWARY and ORS.",
+    "respondent": "PREM NANDAN TIWARI and ORS."
   },
   "FA/491/1991": {
-    "appellant": "NATIONAL INSURANCE CO.LTD",
+    "appellant": "NATIONAL INSURANCE CO.LTD.,",
     "respondent": "PRADEEP KUMAR"
   },
   "FA/494/1991": {
-    "appellant": "SMT. KUMARI DHANDULARI and ORS",
-    "respondent": "LAL BAHADUR SINGH"
+    "appellant": "SMT. KUMARI DHANDULARI and ORS.",
+    "respondent": "LAL BAHADUR SINGH and ORS"
   },
   "FA/500/1991": {
-    "appellant": "SULAGANA DEVI and ORS",
-    "respondent": "RAMYASH RAI and ORS"
+    "appellant": "SULAGANA DEVI and ORS.",
+    "respondent": "RAMYASH RAI and ORS."
   },
   "FA/502/1991": {
-    "appellant": "RAMNATH GUPTA @ RAMNATH PD",
+    "appellant": "RAMNATH GUPTA @ RAMNATH PD.",
     "respondent": "STATE"
   },
   "FA/509/1991": {
     "appellant": "STATE OF BIHAR",
-    "respondent": "BAJRANG JALAN and ORS"
+    "respondent": "BAJRANG JALAN and ORS."
   },
   "FA/515/1991": {
     "appellant": "USHA DEVI",
@@ -7969,15 +7969,15 @@ const CASES_DB = {
   },
   "FA/519/1991": {
     "appellant": "ISH CHANDRA NARAYAN VERMA and OTHERS",
-    "respondent": "STATE and"
+    "respondent": "STATE and ORS."
   },
   "FA/524/1991": {
-    "appellant": "BALESHWAR SINGH and ORS",
-    "respondent": "DEVENDRA SINGH and ORS"
+    "appellant": "BALESHWAR SINGH and ORS.",
+    "respondent": "DEVENDRA SINGH and ORS."
   },
   "FA/526/1991": {
     "appellant": "KEDAR TIWARI",
-    "respondent": "MOST.HIRA JHARI KUER and ORS"
+    "respondent": "MOST.HIRA JHARI KUER and ORS."
   },
   "FA/527/1991": {
     "appellant": "Giraja Devi",
@@ -7989,23 +7989,23 @@ const CASES_DB = {
   },
   "FA/545/1991": {
     "appellant": "KUNTESHWAR PD.@ RAM NR.PRASAD",
-    "respondent": "MOST.SUROTIYA"
+    "respondent": "MOST.SUROTIYA KUER and ORS."
   },
   "FA/548/1991": {
     "appellant": "M/S.ALLUMUNIUM ENTERPRISES and O",
-    "respondent": "STATE BANK OF"
+    "respondent": "STATE BANK OF INDIA,GAYA BR."
   },
   "FA/550/1991": {
-    "appellant": "CHANDRADEO CHAUDHARY and ORS",
-    "respondent": "RAM BRIKSH"
+    "appellant": "CHANDRADEO CHAUDHARY and ORS.",
+    "respondent": "RAM BRIKSH CHAUDHARY and ORS."
   },
   "FA/553/1991": {
-    "appellant": "NEW INDIA INSURANCE CO",
-    "respondent": "SARDAR SURENDRA SINGH and"
+    "appellant": "NEW INDIA INSURANCE CO.",
+    "respondent": "SARDAR SURENDRA SINGH and ORS."
   },
   "FA/558/1991": {
-    "appellant": "SMT. MEENA DEVI and ORS",
-    "respondent": "SRIPATI SINGH and ORS"
+    "appellant": "SMT. MEENA DEVI and ORS.",
+    "respondent": "SRIPATI SINGH and ORS."
   },
   "FA/559/1991": {
     "appellant": "MOST SHANKUNTALA DEVI",
@@ -8025,11 +8025,11 @@ const CASES_DB = {
   },
   "FA/571/1991": {
     "appellant": "STATE BANK OF INDIA",
-    "respondent": "SHYAMANAND MISHRA and ORS"
+    "respondent": "SHYAMANAND MISHRA and ORS."
   },
   "FA/573/1991": {
     "appellant": "RAM CHANDRA SINGH",
-    "respondent": "JUGAL KISHORE SHUKLA and ORS"
+    "respondent": "JUGAL KISHORE SHUKLA and ORS."
   },
   "FA/576/1991": {
     "appellant": "STATE OF BIHAR",
@@ -8037,26 +8037,26 @@ const CASES_DB = {
   },
   "FA/589/1991": {
     "appellant": "MOST.DANYAWTI DEVI",
-    "respondent": "PRAHLAD SAH and ORS"
+    "respondent": "PRAHLAD SAH and ORS."
   },
   "FA/590/1991": {
     "appellant": "SRI NAGESHWAR PASWAN",
     "respondent": "CANARA BANK"
   },
   "FA/593/1991": {
-    "appellant": "CHANDRAMA PANDEY and ORS",
-    "respondent": "RAJPATI PANDEY and ORS"
+    "appellant": "CHANDRAMA PANDEY and ORS.",
+    "respondent": "RAJPATI PANDEY and ORS."
   },
   "FA/595/1991": {
-    "appellant": "NAINBATI DEVI and ORS",
-    "respondent": "YOGENDRA SINGH and ORS"
+    "appellant": "NAINBATI DEVI and ORS.",
+    "respondent": "YOGENDRA SINGH and ORS."
   },
   "FA/596/1991": {
-    "appellant": "MD.YAKUB and ORS",
-    "respondent": "STATE OF BIHAR and ORS"
+    "appellant": "MD.YAKUB and ORS.",
+    "respondent": "STATE OF BIHAR and ORS."
   },
   "FA/597/1991": {
-    "appellant": "RAMSWAROOP RAI and ANR",
+    "appellant": "RAMSWAROOP RAI and ANR.",
     "respondent": "STATE"
   },
   "FA/600/1991": {
@@ -8065,11 +8065,11 @@ const CASES_DB = {
   },
   "FA/629/1991": {
     "appellant": "STATE OF BIHAR TH.COLLECTOR",
-    "respondent": "MUKESH NANDAN SAHAY"
+    "respondent": "MUKESH NANDAN SAHAY and ANR."
   },
   "FA/630/1991": {
     "appellant": "STATE OF BIHAR TH.COLLECTOR",
-    "respondent": "VIJAY NANDAN SAHAY and"
+    "respondent": "VIJAY NANDAN SAHAY and ANOTHER"
   },
   "FA/636/1991": {
     "appellant": "STATE OF BIHAR TH.COLLECTOR",
@@ -8077,7 +8077,7 @@ const CASES_DB = {
   },
   "FA/649/1991": {
     "appellant": "STATE OF BIHAR THR COLLECTOR",
-    "respondent": "BINKATESH NANDAN"
+    "respondent": "BINKATESH NANDAN SAHAY"
   },
   "FA/657/1991": {
     "appellant": "SIBENDRA RAI",
@@ -8089,11 +8089,11 @@ const CASES_DB = {
   },
   "FA/744/1991": {
     "appellant": "KRISHNA SHARMA",
-    "respondent": "ANANT BARHEE and ORS"
+    "respondent": "ANANT BARHEE and ORS."
   },
   "FA/746/1991": {
     "appellant": "LALCHAND MANI @ YADAV @ SHYAMN",
-    "respondent": "MOST.RAM KUMARI"
+    "respondent": "MOST.RAM KUMARI DEVI and ORS"
   },
   "FA/751/1991": {
     "appellant": "RAMADHAR SINGH",
@@ -8104,36 +8104,36 @@ const CASES_DB = {
     "respondent": "RAM KEWAL RAI"
   },
   "FA/758/1991": {
-    "appellant": "BIHAR STATE AGRO IND. DEV",
-    "respondent": "RAM CHANDRA KHOSLA and"
+    "appellant": "BIHAR STATE AGRO IND. DEV.",
+    "respondent": "RAM CHANDRA KHOSLA and ORS"
   },
   "FA/768/1991": {
     "appellant": "SHYAM NARAYAN CHAUDHARY",
-    "respondent": "GOPAL CHAUDHARY and"
+    "respondent": "GOPAL CHAUDHARY and ORS"
   },
   "FA/770/1991": {
-    "appellant": "AGRICULTURE PRODUCE MARK.COMM",
-    "respondent": "CHAUDHARY"
+    "appellant": "AGRICULTURE PRODUCE MARK.COMM.",
+    "respondent": "CHAUDHARY AZZEZUL HASSAN"
   },
   "FA/774/1991": {
-    "appellant": "AGRICULTURE PRODUCE MARK.COMM",
-    "respondent": "BIBI SALEHA"
+    "appellant": "AGRICULTURE PRODUCE MARK.COMM.",
+    "respondent": "BIBI SALEHA AKHTARI"
   },
   "FA/777/1991": {
-    "appellant": "AGRICULTURE PRODUCE MARK.COMM",
-    "respondent": "BIBI SALEHA"
+    "appellant": "AGRICULTURE PRODUCE MARK.COMM.",
+    "respondent": "BIBI SALEHA AKHTRI"
   },
   "FA/780/1991": {
     "appellant": "CHANDRA BHUSAN SINGH and ORS",
-    "respondent": "BHUKHAN SINGH and"
+    "respondent": "BHUKHAN SINGH and ORS"
   },
   "FA/784/1991": {
-    "appellant": "SHRI SHIV SHANKAR PD",
-    "respondent": "STATE BANK OF INDIA and ORS"
+    "appellant": "SHRI SHIV SHANKAR PD.",
+    "respondent": "STATE BANK OF INDIA and ORS."
   },
   "FA/786/1991": {
-    "appellant": "MATHURA SAHU and ORS",
-    "respondent": "STATE and ORS"
+    "appellant": "MATHURA SAHU and ORS.",
+    "respondent": "STATE and ORS."
   },
   "FA/789/1991": {
     "appellant": "SWARNA KANAL SAHA",
@@ -8144,8 +8144,8 @@ const CASES_DB = {
     "respondent": "PRADEEP KR.AGRAWAL"
   },
   "FA/798/1991": {
-    "appellant": "KUMAR BALIRAM SINGH and ORS",
-    "respondent": "CHANDRAWATI DEVI and"
+    "appellant": "KUMAR BALIRAM SINGH and ORS.",
+    "respondent": "CHANDRAWATI DEVI and ORS"
   },
   "FA/810/1991": {
     "appellant": "MAN MOHAN JHA",
@@ -8237,7 +8237,7 @@ const CASES_DB = {
   },
   "FA/984/1991": {
     "appellant": "SEIKH HAKIM and ORS",
-    "respondent": "STATE"
+    "respondent": "STATE THR.COLLECTOR,BHAGALPUR"
   },
   "FA/985/1991": {
     "appellant": "GAURI SHANKAR CHAUDHARY and ORS",
@@ -8249,7 +8249,7 @@ const CASES_DB = {
   },
   "FA/1004/1991": {
     "appellant": "STATE THR.COLLECTOR,BHAGALPUR",
-    "respondent": "JHARKANDI SINGH"
+    "respondent": "JHARKANDI SINGH and ORS"
   },
   "FA/1006/1991": {
     "appellant": "STATE BANK OF INDIA",
@@ -8305,7 +8305,7 @@ const CASES_DB = {
   },
   "FA/1143/1991": {
     "appellant": "STATE THRU.COLLLE.MADHUBANI",
-    "respondent": "BISHAWNATH"
+    "respondent": "BISHAWNATH PD.ACHARY"
   },
   "FA/1144/1991": {
     "appellant": "MD. KHALIL",
@@ -8317,15 +8317,15 @@ const CASES_DB = {
   },
   "FA/1152/1991": {
     "appellant": "BHARAT BHUSHAN SINGH and ORS",
-    "respondent": "PUNJAB NATIONAL"
+    "respondent": "PUNJAB NATIONAL BANK and ORS"
   },
   "FA/2/1992": {
     "appellant": "DENA NATH SINGH @ DEENA and ORS",
-    "respondent": "KISHORI PRASAD and"
+    "respondent": "KISHORI PRASAD and ORS"
   },
   "FA/21/1992": {
     "appellant": "STATE THR.COLLECTOR,BHOJPURandOR",
-    "respondent": "RAM DAYAL"
+    "respondent": "RAM DAYAL PRASAD and ANR"
   },
   "FA/26/1992": {
     "appellant": "M/S ALLAHABAD BANK",
@@ -8333,7 +8333,7 @@ const CASES_DB = {
   },
   "FA/27/1992": {
     "appellant": "SMT.GEETA VIDYARTHI and ORS",
-    "respondent": "GOPAL MAHTO @ SINGH"
+    "respondent": "GOPAL MAHTO @ SINGH and ORS"
   },
   "FA/34/1992": {
     "appellant": "STATE THR.COLLECTOR SITAMARHI",
@@ -8361,7 +8361,7 @@ const CASES_DB = {
   },
   "FA/139/1992": {
     "appellant": "M/S SANJAY UDYOG and ANR",
-    "respondent": "PAUNJAB NATIONAL BANK and"
+    "respondent": "PAUNJAB NATIONAL BANK and ORS"
   },
   "FA/142/1992": {
     "appellant": "RAMASHISH KUNWAR",
@@ -8373,11 +8373,11 @@ const CASES_DB = {
   },
   "FA/157/1992": {
     "appellant": "MADAN MOHAN PRASAD and ORS",
-    "respondent": "MOST.ANUSIYA KUMAR"
+    "respondent": "MOST.ANUSIYA KUMAR and ORS"
   },
   "FA/162/1992": {
     "appellant": "STATE THR.COLLECTOR,MUNGERandORS",
-    "respondent": "GODHAN"
+    "respondent": "GODHAN PRASAD SINGH and ORS"
   },
   "FA/189/1992": {
     "appellant": "SMT. CHAMPA DEVI and ORS",
@@ -8393,7 +8393,7 @@ const CASES_DB = {
   },
   "FA/235/1992": {
     "appellant": "STATE THR.COLLECTOR,NAWADAH",
-    "respondent": "BIRENDRA PRASAD"
+    "respondent": "BIRENDRA PRASAD SINGH"
   },
   "FA/269/1992": {
     "appellant": "GODAWARI DEVI and ORS",
@@ -8401,7 +8401,7 @@ const CASES_DB = {
   },
   "FA/272/1992": {
     "appellant": "HARISHANKAR PANDEY and ORS",
-    "respondent": "CHANDRAJOT KUNWAR"
+    "respondent": "CHANDRAJOT KUNWAR and ORS"
   },
   "FA/333/1992": {
     "appellant": "BIBI AISHA BEGAM and ORS",
@@ -8409,7 +8409,7 @@ const CASES_DB = {
   },
   "FA/334/1992": {
     "appellant": "GAURI SHANKAR THAKUR",
-    "respondent": "STATE"
+    "respondent": "STATE THRU.COLLECTOR,MUZAFFAR."
   },
   "FA/336/1992": {
     "appellant": "LAL CHAND BHAGAT and ORS",
@@ -8445,11 +8445,11 @@ const CASES_DB = {
   },
   "FA/380/1992": {
     "appellant": "CENTRAL BANK OF INDIA and ORS",
-    "respondent": "MOST.SUNITA JAISWAL"
+    "respondent": "MOST.SUNITA JAISWAL and ORS"
   },
   "FA/383/1992": {
     "appellant": "NATIONAL INSURANCE CO.LTD.andORS",
-    "respondent": "SRIMATI SARITA"
+    "respondent": "SRIMATI SARITA DEVI and ANR"
   },
   "FA/426/1992": {
     "appellant": "STATE THRU.COLLECTOR,MADHEPURA",
@@ -8469,7 +8469,7 @@ const CASES_DB = {
   },
   "FA/437/1992": {
     "appellant": "M/S SHARMA TRADING CO.and ORS",
-    "respondent": "FOOD CORPORATION"
+    "respondent": "FOOD CORPORATION OF INDIA"
   },
   "FA/444/1992": {
     "appellant": "Nandjee Prasad",
@@ -8477,11 +8477,11 @@ const CASES_DB = {
   },
   "FA/485/1992": {
     "appellant": "UMA SHANKAR SINHA and ORS",
-    "respondent": "SURERNDRA NATH SINHA"
+    "respondent": "SURERNDRA NATH SINHA and ORS"
   },
   "FA/486/1992": {
     "appellant": "BEGAN SINGH @ BIGAN MAHTO",
-    "respondent": "PARMANAND SINGH and"
+    "respondent": "PARMANAND SINGH and ORS"
   },
   "FA/493/1992": {
     "appellant": "GOVIND KRISHNA TRIPATHI",
@@ -8493,27 +8493,27 @@ const CASES_DB = {
   },
   "FA/3/1993": {
     "appellant": "SMT.CHANCHALA DEVI and ORS",
-    "respondent": "MOST.SHANTI KUMARI and"
+    "respondent": "MOST.SHANTI KUMARI and ORS"
   },
   "FA/107/1993": {
     "appellant": "NARAYAN PRASAD SINGH and ORS",
-    "respondent": "SHRI BRAJ KISHORE"
+    "respondent": "SHRI BRAJ KISHORE PD.SINGH andOR"
   },
   "FA/115/1993": {
     "appellant": "MAHMOOD ARSHAD",
     "respondent": "KHAIRUNISSA and ORS"
   },
   "FA/131/1993": {
-    "appellant": "SHEO PUJAN AHIR and ORS",
+    "appellant": "SHEO PUJAN AHIR and ORS.",
     "respondent": "KANGRESHI DEVI and ORS"
   },
   "FA/133/1993": {
     "appellant": "M/s Bihar State Food and Civil Supplies Corporation Limited",
-    "respondent": "Sri"
+    "respondent": "Sri Umesh Chandra Choudhary"
   },
   "FA/134/1993": {
     "appellant": "Kumari Shashikala @ Chandravati Devi",
-    "respondent": "RAMA PRASAD"
+    "respondent": "RAMA PRASAD DUSADH and ORS"
   },
   "FA/146/1993": {
     "appellant": "RAJ BAHADUR SINGH",
@@ -8529,7 +8529,7 @@ const CASES_DB = {
   },
   "FA/225/1993": {
     "appellant": "RAMJIT NATH TIWARY and ORS",
-    "respondent": "SUDAMA NATH TIWARY and"
+    "respondent": "SUDAMA NATH TIWARY and ORS"
   },
   "FA/226/1993": {
     "appellant": "SUNIL PRASAD",
@@ -8541,7 +8541,7 @@ const CASES_DB = {
   },
   "FA/388/1993": {
     "appellant": "AKHILESH KUMAR SINGH and ORS",
-    "respondent": "MOST.KABIRAJ DEVI and"
+    "respondent": "MOST.KABIRAJ DEVI and ANR"
   },
   "FA/391/1993": {
     "appellant": "ZUBAIDA KHATOON and ORS",
@@ -8557,7 +8557,7 @@ const CASES_DB = {
   },
   "FA/422/1993": {
     "appellant": "Most. Laxmi Devi @ Laxmi Kuar",
-    "respondent": "Most. Ganesha Devi and Ors"
+    "respondent": "Most. Ganesha Devi and Ors."
   },
   "FA/426/1993": {
     "appellant": "SATYENDRA NARAIN SINGH",
@@ -8573,7 +8573,7 @@ const CASES_DB = {
   },
   "FA/499/1993": {
     "appellant": "SRI MOTILAL JHUNJHUNWALA and ORS",
-    "respondent": "SRI WASI AHMAD"
+    "respondent": "SRI WASI AHMAD and ORS"
   },
   "FA/504/1993": {
     "appellant": "SYED MAHIR HUSSAIN",
@@ -8601,7 +8601,7 @@ const CASES_DB = {
   },
   "FA/516/1993": {
     "appellant": "SHRI BISHWANATH SAO and ORS",
-    "respondent": "SHRI RAMDEO RAI and"
+    "respondent": "SHRI RAMDEO RAI and ORS"
   },
   "FA/520/1993": {
     "appellant": "BANSHIDHAR SHARMA",
@@ -8625,7 +8625,7 @@ const CASES_DB = {
   },
   "FA/563/1993": {
     "appellant": "SHRI BHAWESH NARAIN SAHAY",
-    "respondent": "SHRI SHAMBHU NATH SAH"
+    "respondent": "SHRI SHAMBHU NATH SAH and ORS"
   },
   "FA/565/1993": {
     "appellant": "BIHAR STATE SUGAR COR.UNIT,MOT",
@@ -8693,11 +8693,11 @@ const CASES_DB = {
   },
   "FA/626/1993": {
     "appellant": "STATE THRU.COLLECTOR,MUZAFARPU",
-    "respondent": "RAMA NAND"
+    "respondent": "RAMA NAND THAKUR"
   },
   "FA/636/1993": {
     "appellant": "SMT.RAMPARI DEVI and ANR",
-    "respondent": "RAMANUGRAH PRASAD SINGH"
+    "respondent": "RAMANUGRAH PRASAD SINGH and ORS"
   },
   "FA/653/1993": {
     "appellant": "CENTRAL BANK OF INDIA",
@@ -8709,7 +8709,7 @@ const CASES_DB = {
   },
   "FA/669/1993": {
     "appellant": "STATE OF BIHAR through the Collector of Darbhanga",
-    "respondent": "M/S"
+    "respondent": "M/S HARISH CHANDRA HOLYANI,"
   },
   "FA/671/1993": {
     "appellant": "ASHOK KUMAR and ORS",
@@ -8729,7 +8729,7 @@ const CASES_DB = {
   },
   "FA/694/1993": {
     "appellant": "M/S PURUSHOTTAM PHARMACEUTICAL",
-    "respondent": "STATE OF BIHAR"
+    "respondent": "STATE OF BIHAR and ORS"
   },
   "FA/701/1993": {
     "appellant": "SMT.URMILA DEVI and ORS",
@@ -8745,7 +8745,7 @@ const CASES_DB = {
   },
   "FA/713/1993": {
     "appellant": "ARUN KUMAR @ ARUN KR.SINGH andOR",
-    "respondent": "BRIJ KISHORE RAY"
+    "respondent": "BRIJ KISHORE RAY and ANR"
   },
   "FA/723/1993": {
     "appellant": "THE STATE OF BIHAR",
@@ -8765,11 +8765,11 @@ const CASES_DB = {
   },
   "FA/750/1993": {
     "appellant": "SANJHA DEVI @ SANDHYA DEVI andAN",
-    "respondent": "SMT.DEOKI DEVI and"
+    "respondent": "SMT.DEOKI DEVI and ANR"
   },
   "FA/754/1993": {
     "appellant": "THE ORIENTAL FIRE AND GENERAL",
-    "respondent": "PUNJAB NATIONAL"
+    "respondent": "PUNJAB NATIONAL BANK and ORS"
   },
   "FA/755/1993": {
     "appellant": "FIRM SHAMSHUL HAQUE",
@@ -8777,7 +8777,7 @@ const CASES_DB = {
   },
   "FA/758/1993": {
     "appellant": "BHUPENDRA PRASAD SRIVASTAVA",
-    "respondent": "THE ORIENTAL"
+    "respondent": "THE ORIENTAL INSURANCE COM.LTD"
   },
   "FA/762/1993": {
     "appellant": "SITA RAM SAH",
@@ -8805,11 +8805,11 @@ const CASES_DB = {
   },
   "FA/775/1993": {
     "appellant": "SRI RAGHU NATH PRASAD",
-    "respondent": "PATNA ELECTRIC SUPPLY"
+    "respondent": "PATNA ELECTRIC SUPPLY UNDERTAK"
   },
   "FA/5/1994": {
     "appellant": "JAGANNATH BHAGAT MALI",
-    "respondent": "BHAGWAT PRASAD MALI and"
+    "respondent": "BHAGWAT PRASAD MALI and ORS"
   },
   "FA/7/1994": {
     "appellant": "RAM NARESH RAI and ORS",
@@ -8829,7 +8829,7 @@ const CASES_DB = {
   },
   "FA/25/1994": {
     "appellant": "SRI DURJODHAN SAO @JURJODHAN",
-    "respondent": "SRI GANAURI SAO and"
+    "respondent": "SRI GANAURI SAO and ORS"
   },
   "FA/26/1994": {
     "appellant": "MOST. PARVATI DEVI and ORS",
@@ -8877,7 +8877,7 @@ const CASES_DB = {
   },
   "FA/245/1994": {
     "appellant": "SHRI SHEO KUMAR and ORS",
-    "respondent": "SHRI MAHENDRA PRASAD and"
+    "respondent": "SHRI MAHENDRA PRASAD and ORS"
   },
   "FA/255/1994": {
     "appellant": "DURGA DUTTA JHA",
@@ -8893,11 +8893,11 @@ const CASES_DB = {
   },
   "FA/258/1994": {
     "appellant": "RAMNANDAN SINGH",
-    "respondent": "DEONANDAN PRASAD and ORS RAJENDRA SINGH @ KHIRU SINGH and VS. AYODHYA SINGH and"
+    "respondent": "DEONANDAN PRASAD and ORS"
   },
   "FA/261/1994": {
     "appellant": "RAJENDRA SINGH @ KHIRU SINGH and",
-    "respondent": "AYODHYA SINGH and"
+    "respondent": "AYODHYA SINGH and ORS"
   },
   "FA/264/1994": {
     "appellant": "Domi Chandra Yadav @ Domi Chandra Mandal",
@@ -8909,11 +8909,11 @@ const CASES_DB = {
   },
   "FA/273/1994": {
     "appellant": "JAI PRAKASH GUPTA and ANR",
-    "respondent": "BHUP NATH PRASAD NARAIN"
+    "respondent": "BHUP NATH PRASAD NARAIN SINGH"
   },
   "FA/274/1994": {
     "appellant": "THE STATE OF BIHAR",
-    "respondent": "GULSHAN KHATOON and ORS"
+    "respondent": "GULSHAN KHATOON and ORS."
   },
   "FA/277/1994": {
     "appellant": "THE STATE OF BIHAR",
@@ -8993,7 +8993,7 @@ const CASES_DB = {
   },
   "FA/352/1994": {
     "appellant": "SMT.CHHATHIYA DEVI",
-    "respondent": "SRI LAKSHMI NARAYAN MAHTO"
+    "respondent": "SRI LAKSHMI NARAYAN MAHTO @NAN"
   },
   "FA/355/1994": {
     "appellant": "BUDHI LAL",
@@ -9021,7 +9021,7 @@ const CASES_DB = {
   },
   "FA/430/1994": {
     "appellant": "RAJENDRA PRASAD SHARMA",
-    "respondent": "RAM RAJ PRASAD GUPTA and"
+    "respondent": "RAM RAJ PRASAD GUPTA and ORS"
   },
   "FA/431/1994": {
     "appellant": "RAM CHANDRA RAI",
@@ -9045,7 +9045,7 @@ const CASES_DB = {
   },
   "FA/459/1994": {
     "appellant": "PARAMHANSH UPADHAYA",
-    "respondent": "SUKHANANDAN UPADHAYA and"
+    "respondent": "SUKHANANDAN UPADHAYA and ORS"
   },
   "FA/464/1994": {
     "appellant": "CENTRAL BANK OF INDIA",
@@ -9057,15 +9057,15 @@ const CASES_DB = {
   },
   "FA/467/1994": {
     "appellant": "LALLAN SAH @ LALAN KUMAR GUPTA",
-    "respondent": "PARAS NATH SAH and"
+    "respondent": "PARAS NATH SAH and ORS"
   },
   "FA/486/1994": {
     "appellant": "THE ORIENTAL INSURANCE COMPANY",
-    "respondent": "RAM LAKHAN"
+    "respondent": "RAM LAKHAN MISTRY"
   },
   "FA/491/1994": {
     "appellant": "SUKHNANDAN UPADHYAYA and ORS",
-    "respondent": "PARAMHANS"
+    "respondent": "PARAMHANS UPADHYAY"
   },
   "FA/492/1994": {
     "appellant": "THE STATE OF BIHAR",
@@ -9076,8 +9076,8 @@ const CASES_DB = {
     "respondent": "VISHUNDEO SINGH and ANR"
   },
   "FA/505/1994": {
-    "appellant": "LALIT KUMAR NAHAR and ORS",
-    "respondent": "THE STATE OF BIHAR and"
+    "appellant": "LALIT KUMAR NAHAR and ORS.",
+    "respondent": "THE STATE OF BIHAR and ORS"
   },
   "FA/510/1994": {
     "appellant": "MOSTT. NITHALIA DEVI and ORS",
@@ -9093,7 +9093,7 @@ const CASES_DB = {
   },
   "FA/524/1994": {
     "appellant": "CENTRAL BANK OF INDIA",
-    "respondent": "M/S J.B.CANDLE INDUSTRIES and"
+    "respondent": "M/S J.B.CANDLE INDUSTRIES and AN"
   },
   "FA/528/1994": {
     "appellant": "THE STATE OF BIHAR",
@@ -9109,7 +9109,7 @@ const CASES_DB = {
   },
   "FA/535/1994": {
     "appellant": "ALFRED JOHN and ORS",
-    "respondent": "RAJENDRA PRASAD VERMA and"
+    "respondent": "RAJENDRA PRASAD VERMA and ORS"
   },
   "FA/539/1994": {
     "appellant": "GANESH PRASAD SHARMA",
@@ -9117,11 +9117,11 @@ const CASES_DB = {
   },
   "FA/540/1994": {
     "appellant": "AKHELESHWAR PRASAD and ORS",
-    "respondent": "SHRI NAND KISHORE"
+    "respondent": "SHRI NAND KISHORE PRASAD and ORS"
   },
   "FA/542/1994": {
     "appellant": "SHRI GOPAL KUMAR BHARATIYA andOR",
-    "respondent": "SRI DAROGA RAI"
+    "respondent": "SRI DAROGA RAI and ORS"
   },
   "FA/545/1994": {
     "appellant": "MOSMAT HAZARI KUER and ORS",
@@ -9129,23 +9129,23 @@ const CASES_DB = {
   },
   "FA/552/1994": {
     "appellant": "RAMCHARITAR MISTRY and ORS",
-    "respondent": "BASDEO SHARMA @"
+    "respondent": "BASDEO SHARMA @ BASDEO MISTRYand"
   },
   "FA/555/1994": {
     "appellant": "SRI CHANDRADEO PATHAK and ORS",
-    "respondent": "SRI RAJENDRA"
+    "respondent": "SRI RAJENDRA PATHAK and ORS"
   },
   "FA/557/1994": {
     "appellant": "SMT. MAHESHWARI DEVI and ORS",
-    "respondent": "THE STATE OF BIHAR and"
+    "respondent": "THE STATE OF BIHAR and ORS"
   },
   "FA/559/1994": {
-    "appellant": "SHANTI DEVI and ORS",
+    "appellant": "SHANTI DEVI and ORS.",
     "respondent": "PREM CHAND SAO and ORS"
   },
   "FA/563/1994": {
     "appellant": "BHOGENDRA JHA and ORS",
-    "respondent": "SHRI 108 RAM LAKHAN JANKI"
+    "respondent": "SHRI 108 RAM LAKHAN JANKI HANU"
   },
   "FA/564/1994": {
     "appellant": "MOSTT. KASHI KUER and ORS",
@@ -9157,7 +9157,7 @@ const CASES_DB = {
   },
   "FA/577/1994": {
     "appellant": "ARUN PRAKASH MISHRA and ANR",
-    "respondent": "HEMENDRA KUMAR"
+    "respondent": "HEMENDRA KUMAR MISHRA and ORS"
   },
   "FA/579/1994": {
     "appellant": "THE STATE OF BIHAR and ORS",
@@ -9165,15 +9165,15 @@ const CASES_DB = {
   },
   "FA/580/1994": {
     "appellant": "SYED AJIBUL HAQUE @ SYED AZIZU",
-    "respondent": "SKH. WALI ALAM and"
+    "respondent": "SKH. WALI ALAM and ORS"
   },
   "FA/581/1994": {
     "appellant": "INDRA MOHAN PRASAD",
     "respondent": "SURAJ MOHAN PRASAD"
   },
   "FA/582/1994": {
-    "appellant": "NALANDA RUBBER INDUSTRIES LTD",
-    "respondent": "STATE BANK OF INDIA"
+    "appellant": "NALANDA RUBBER INDUSTRIES LTD.",
+    "respondent": "STATE BANK OF INDIA and ORS"
   },
   "FA/589/1994": {
     "appellant": "SMT. KALAWATI DEVI and ORS",
@@ -9181,7 +9181,7 @@ const CASES_DB = {
   },
   "FA/590/1994": {
     "appellant": "SRI PRABIR KUMAR BHATTACHARYA",
-    "respondent": "SRI GURU CHARAN"
+    "respondent": "SRI GURU CHARAN SAMANTAGENERA"
   },
   "FA/593/1994": {
     "appellant": "SHRI 108 SHYAMAJEE",
@@ -9205,7 +9205,7 @@ const CASES_DB = {
   },
   "FA/629/1994": {
     "appellant": "THE CHAIRMAN,BIHAR STATE ELECT",
-    "respondent": ""
+    "respondent": "SECRETARYMANTRISHRI SURAJ NA"
   },
   "FA/630/1994": {
     "appellant": "HARI SHANKAR SAH and ORS",
@@ -9217,11 +9217,11 @@ const CASES_DB = {
   },
   "FA/662/1994": {
     "appellant": "SRI BISHWANATH NATHANI and ANR",
-    "respondent": "DR. MAHESH KUMAR"
+    "respondent": "DR. MAHESH KUMAR NATHANI and ANR"
   },
   "FA/663/1994": {
     "appellant": "SRI RAM ANUP ROY and ORS",
-    "respondent": "SRI RAM SWAROOP ROY and"
+    "respondent": "SRI RAM SWAROOP ROY and ORS"
   },
   "FA/665/1994": {
     "appellant": "GANESH SAO",
@@ -9229,7 +9229,7 @@ const CASES_DB = {
   },
   "FA/671/1994": {
     "appellant": "MADHUSUDAN KUMAR and ORS",
-    "respondent": "SHEONATH PRASAD"
+    "respondent": "SHEONATH PRASAD AGARWAL and ORS"
   },
   "FA/691/1994": {
     "appellant": "KHETRO MOHAN SINHA and ORS",
@@ -9241,11 +9241,11 @@ const CASES_DB = {
   },
   "FA/695/1994": {
     "appellant": "SRI MANGAL PRASAD SINGH and ANR",
-    "respondent": "SHAIL KUMARI and"
+    "respondent": "SHAIL KUMARI and ORS"
   },
   "FA/696/1994": {
-    "appellant": "The State of Bihar, through the Land Reforms Commissioner",
-    "respondent": "The"
+    "appellant": "The State of Bihar, through the Land Reforms Commissioner,",
+    "respondent": "The Court of Wards, Bihar, through the Secretary,"
   },
   "FA/697/1994": {
     "appellant": "THE STATE OF BIHAR",
@@ -9253,7 +9253,7 @@ const CASES_DB = {
   },
   "FA/703/1994": {
     "appellant": "GITA THAKUR @ GEETA THAKUR andOR",
-    "respondent": "NAND LALL"
+    "respondent": "NAND LALL THAKUR and ORS"
   },
   "FA/705/1994": {
     "appellant": "MD. ALAUDDIN AHMAD ANSARI and OR",
@@ -9261,15 +9261,15 @@ const CASES_DB = {
   },
   "FA/707/1994": {
     "appellant": "SAHDEO CHOUDHARY and ORS",
-    "respondent": "JOTISH CHANDRA"
+    "respondent": "JOTISH CHANDRA CHOUDHARY and ORS"
   },
   "FA/710/1994": {
     "appellant": "JYOTISH CHANDRA CHOUDHARY and OR",
-    "respondent": "SAHDEO"
+    "respondent": "SAHDEO CHOUDHARY and ORS"
   },
   "FA/711/1994": {
     "appellant": "THE STATE OF BIHAR and ORS",
-    "respondent": "M/S BHARAT"
+    "respondent": "M/S BHARAT CONSTRUCTION COMP."
   },
   "FA/715/1994": {
     "appellant": "BIHAR STATE ELECTRICITY BOARD",
@@ -9281,7 +9281,7 @@ const CASES_DB = {
   },
   "FA/749/1994": {
     "appellant": "RAM MURAT PRASAD CHOURASIA @",
-    "respondent": "THE STATE OF BIHAR"
+    "respondent": "THE STATE OF BIHAR and ORS"
   },
   "FA/750/1994": {
     "appellant": "SACHIDANAND ROY",
@@ -9293,7 +9293,7 @@ const CASES_DB = {
   },
   "FA/759/1994": {
     "appellant": "CENTRAL BANK OF INDIA",
-    "respondent": "M/S ZAHIRUDDIN AND BROTHERS"
+    "respondent": "M/S ZAHIRUDDIN AND BROTHERS and"
   },
   "FA/762/1994": {
     "appellant": "RAJENDRA PRASAD and ORS",
@@ -9329,14 +9329,14 @@ const CASES_DB = {
   },
   "FA/788/1994": {
     "appellant": "NAIMUL HASAN and ORS",
-    "respondent": "SHEONATH PRASAD AGRAWAL and"
+    "respondent": "SHEONATH PRASAD AGRAWAL and ORS"
   },
   "FA/789/1994": {
     "appellant": "SRI BINOD PRASAD GUPTA and ORS",
-    "respondent": "GOBIND PRASAD SAH"
+    "respondent": "GOBIND PRASAD SAH and ORS"
   },
   "FA/790/1994": {
-    "appellant": "RAM PEYAR BHAGAT and ORS",
+    "appellant": "RAM PEYAR BHAGAT and ORS.",
     "respondent": "GATILAL BHAGAT and ORS"
   },
   "FA/793/1994": {
@@ -9353,7 +9353,7 @@ const CASES_DB = {
   },
   "FA/802/1994": {
     "appellant": "Dr. Braj Mohan Prasad",
-    "respondent": "The State of Bihar through Collector,              MISCELLANEOUS"
+    "respondent": "The State of Bihar through Collector,"
   },
   "FA/806/1994": {
     "appellant": "VAKIL SINGH and ORS",
@@ -9397,7 +9397,7 @@ const CASES_DB = {
   },
   "FA/4/1995": {
     "appellant": "THE STATE OF BIHAR and ORS",
-    "respondent": "SHYAM ENTERPRISES,JAI"
+    "respondent": "SHYAM ENTERPRISES,JAI NAGAR"
   },
   "FA/5/1995": {
     "appellant": "The State of Bihar",
@@ -9417,7 +9417,7 @@ const CASES_DB = {
   },
   "FA/15/1995": {
     "appellant": "SK. MOINUDDIN @ MOINUDDIN andORS",
-    "respondent": "BIBI TASRIFAN and"
+    "respondent": "BIBI TASRIFAN and ORS"
   },
   "FA/24/1995": {
     "appellant": "BIHAR STATE ELECTRICITY BOARD",
@@ -9432,12 +9432,12 @@ const CASES_DB = {
     "respondent": "STATE BANK OF INDIA and ORS"
   },
   "FA/38/1995": {
-    "appellant": "DIST.DEPUTY DEVP.COMMISSIONER",
+    "appellant": "DIST.DEPUTY DEVP.COMMISSIONER-",
     "respondent": "SHRI KAMAL DAS"
   },
   "FA/39/1995": {
     "appellant": "ACHUTANAND PRASAD SAHU",
-    "respondent": "KESHAV PRASAD SAHU and"
+    "respondent": "KESHAV PRASAD SAHU and ORS"
   },
   "FA/40/1995": {
     "appellant": "RAMA NAND PRASAD and ORS",
@@ -9449,11 +9449,11 @@ const CASES_DB = {
   },
   "FA/42/1995": {
     "appellant": "DAHU MAHTO and ORS",
-    "respondent": "BHUNESHWAR PRASAD SINGH"
+    "respondent": "BHUNESHWAR PRASAD SINGH @BHUNI"
   },
   "FA/43/1995": {
     "appellant": "KRISHNA COLD STORAGE and INDUSTR",
-    "respondent": "STATE BANK OF"
+    "respondent": "STATE BANK OF INDIA and ORS"
   },
   "FA/44/1995": {
     "appellant": "UNION OF INDIA",
@@ -9541,7 +9541,7 @@ const CASES_DB = {
   },
   "FA/115/1995": {
     "appellant": "RAYEESA KHATOON",
-    "respondent": "MOHAMMAD FAIYAZ and ORS"
+    "respondent": "MOHAMMAD FAIYAZ and ORS."
   },
   "FA/116/1995": {
     "appellant": "THE STATE OF BIHAR",
@@ -9549,7 +9549,7 @@ const CASES_DB = {
   },
   "FA/118/1995": {
     "appellant": "HARIHAR RAM and ORS",
-    "respondent": "SHEONATH PRASAD AGRAWAL and"
+    "respondent": "SHEONATH PRASAD AGRAWAL and ORS"
   },
   "FA/119/1995": {
     "appellant": "THE STATE OF BIHAR",
@@ -9565,7 +9565,7 @@ const CASES_DB = {
   },
   "FA/208/1995": {
     "appellant": "SMT.MAHESHWARI DEVI and ORS",
-    "respondent": "THE STATE OF BIHAR and"
+    "respondent": "THE STATE OF BIHAR and ORS"
   },
   "FA/214/1995": {
     "appellant": "SMT.UMA VERMA",
@@ -9592,8 +9592,8 @@ const CASES_DB = {
     "respondent": "SANSAR MAHTO and ORS"
   },
   "FA/227/1995": {
-    "appellant": "MUSMAAT RUKMINI DEVI and ORS",
-    "respondent": "MUKTI NATH PANDEY"
+    "appellant": "MUSMAAT RUKMINI DEVI and ORS.",
+    "respondent": "MUKTI NATH PANDEY and ORS"
   },
   "FA/229/1995": {
     "appellant": "Jai Narayan Singh",
@@ -9604,8 +9604,8 @@ const CASES_DB = {
     "respondent": "UMA VERMA"
   },
   "FA/232/1995": {
-    "appellant": "SMT. USHA DEVI and ORS",
-    "respondent": "SURESH KUMAR GOENKA and"
+    "appellant": "SMT. USHA DEVI and ORS.",
+    "respondent": "SURESH KUMAR GOENKA and ORS"
   },
   "FA/235/1995": {
     "appellant": "GANGA SAO and ORS",
@@ -9617,7 +9617,7 @@ const CASES_DB = {
   },
   "FA/244/1995": {
     "appellant": "RAM BHAJAN SINGH",
-    "respondent": "PAWAN FINANCE CO"
+    "respondent": "PAWAN FINANCE CO."
   },
   "FA/347/1995": {
     "appellant": "PITAMBER SINGH",
@@ -9629,7 +9629,7 @@ const CASES_DB = {
   },
   "FA/442/1995": {
     "appellant": "NAND KASI PANDEY and ORS",
-    "respondent": "KEDAR NATH PANDEY and"
+    "respondent": "KEDAR NATH PANDEY and ORS"
   },
   "FA/445/1995": {
     "appellant": "SMT.GAYTRI DEVI",
@@ -9637,7 +9637,7 @@ const CASES_DB = {
   },
   "FA/466/1995": {
     "appellant": "SK.NOOR ALI @ MD.NOOR and ORS",
-    "respondent": "SK.MANIR UDDIN and"
+    "respondent": "SK.MANIR UDDIN and ORS"
   },
   "FA/473/1995": {
     "appellant": "Parmanand Singh",
@@ -9648,7 +9648,7 @@ const CASES_DB = {
     "respondent": "RAMJIT PRASAD and ORS"
   },
   "FA/594/1995": {
-    "appellant": "NAND LAL BISWAS and Ors",
+    "appellant": "NAND LAL BISWAS and Ors.",
     "respondent": "SADANAND BISWAS and ORS"
   },
   "FA/600/1995": {
@@ -9661,7 +9661,7 @@ const CASES_DB = {
   },
   "FA/603/1995": {
     "appellant": "UMESH PATHAK AND ANR",
-    "respondent": "BIMLA MISHRA AND ORS"
+    "respondent": "BIMLA MISHRA AND ORS."
   },
   "FA/604/1995": {
     "appellant": "Mahendra Kumar Jain",
@@ -9672,16 +9672,16 @@ const CASES_DB = {
     "respondent": "Smt. Polwa Devi"
   },
   "FA/616/1995": {
-    "appellant": "BIHAR STATE FINANCIAL CORP",
+    "appellant": "BIHAR STATE FINANCIAL CORP.",
     "respondent": "SAGIR AHMAD and ANR"
   },
   "FA/627/1995": {
     "appellant": "M/S LIGHT CORNER and ANR",
-    "respondent": "ORIENTAL INSURAMCE CO.LTD"
+    "respondent": "ORIENTAL INSURAMCE CO.LTD andORS"
   },
   "FA/638/1995": {
-    "appellant": "SMT.SARASWATI DEVI @SARATI DEVI and ANR",
-    "respondent": "CHANDO"
+    "appellant": "SMT.SARASWATI DEVI @SARATI DEVI and ANR.",
+    "respondent": "CHANDO DEVI and ORS"
   },
   "FA/640/1995": {
     "appellant": "RAJ BATI DEVI and ORS",
@@ -9689,7 +9689,7 @@ const CASES_DB = {
   },
   "FA/642/1995": {
     "appellant": "NATIONAL INSURANCE CO.LTD.andORS",
-    "respondent": "M/S BHAGAWATI"
+    "respondent": "M/S BHAGAWATI AUTO MOBILES"
   },
   "FA/645/1995": {
     "appellant": "UDHO MISHRA",
@@ -9700,16 +9700,16 @@ const CASES_DB = {
     "respondent": "JAI NARAIN LAL and ORS"
   },
   "FA/653/1995": {
-    "appellant": "Central Bank of India",
+    "appellant": "Central Bank of India,",
     "respondent": "Sanjay Kumar Rai"
   },
   "FA/654/1995": {
     "appellant": "SRI INDRADEO PRASAD and ORS",
-    "respondent": "SMT.SUMEDHA DEVI and"
+    "respondent": "SMT.SUMEDHA DEVI and ORS"
   },
   "FA/659/1995": {
-    "appellant": "RAGHUNANDAN SINGH and ORS",
-    "respondent": "SHRI MAHENDRA SINGH"
+    "appellant": "RAGHUNANDAN SINGH and ORS.",
+    "respondent": "SHRI MAHENDRA SINGH and ORS."
   },
   "FA/660/1995": {
     "appellant": "STATE BANK OF INIDA",
@@ -9721,11 +9721,11 @@ const CASES_DB = {
   },
   "FA/665/1995": {
     "appellant": "STATE OF BIHAR and ORS",
-    "respondent": "M/S INDU"
+    "respondent": "M/S INDU CONSTRUCTION,HAJIPUR"
   },
   "FA/667/1995": {
     "appellant": "SRI NATHUNI SINGH and ORS",
-    "respondent": "SRI CHANDRIKA SINGH and"
+    "respondent": "SRI CHANDRIKA SINGH and ORS"
   },
   "FA/668/1995": {
     "appellant": "Shanti Singh",
@@ -9761,7 +9761,7 @@ const CASES_DB = {
   },
   "FA/707/1995": {
     "appellant": "UCO BANK A CORPORATE BODY CONS",
-    "respondent": "SMT.AMBIKA DEVI"
+    "respondent": "SMT.AMBIKA DEVI and ANR"
   },
   "FA/718/1995": {
     "appellant": "CENTRAL BANK OF INDIA",
@@ -9777,7 +9777,7 @@ const CASES_DB = {
   },
   "FA/731/1995": {
     "appellant": "KUMAR BIRENDRA PD.SINGH @KR.BI",
-    "respondent": "UMA SHANKAR"
+    "respondent": "UMA SHANKAR PRASAD and ORS"
   },
   "FA/732/1995": {
     "appellant": "SURYA NARAIN PRASAD",
@@ -9793,7 +9793,7 @@ const CASES_DB = {
   },
   "FA/741/1995": {
     "appellant": "THE STATE OF BIHAR and ORS",
-    "respondent": "SHRI ANAND KUMAR JHA and"
+    "respondent": "SHRI ANAND KUMAR JHA and ANR"
   },
   "FA/742/1995": {
     "appellant": "SHANKAR LAL",
@@ -9801,11 +9801,11 @@ const CASES_DB = {
   },
   "FA/750/1995": {
     "appellant": "RAM DAYAL PRASAD SINGH and ANR",
-    "respondent": "MANASH CREDIT"
+    "respondent": "MANASH CREDIT LTD.and ORS"
   },
   "FA/760/1995": {
     "appellant": "M/S CHOWDHRY COLOUR CO.and ORS",
-    "respondent": "RATAN KUMAR"
+    "respondent": "RATAN KUMAR JAISWAL"
   },
   "FA/763/1995": {
     "appellant": "GULAB LAL BHAGAT",
@@ -9817,7 +9817,7 @@ const CASES_DB = {
   },
   "FA/769/1995": {
     "appellant": "AMBIKA SINGH and ORS",
-    "respondent": "GHURAHU SINGH @ GHURPHEKAN"
+    "respondent": "GHURAHU SINGH @ GHURPHEKAN SIN"
   },
   "FA/775/1995": {
     "appellant": "NAGENDRA SINGH and ORS",
@@ -9833,15 +9833,15 @@ const CASES_DB = {
   },
   "FA/796/1995": {
     "appellant": "FOOD CORPORATION OF INDIA andORS",
-    "respondent": "M/S SHANKAR"
+    "respondent": "M/S SHANKAR AGENCY"
   },
   "FA/800/1995": {
     "appellant": "HARBANSH NARAIN SINGH and ORS",
-    "respondent": "UTTAM THAKUR and"
+    "respondent": "UTTAM THAKUR and ORS"
   },
   "FA/801/1995": {
     "appellant": "CENTRAL BANK OF INDIA",
-    "respondent": "M/S BHARAT ELECTRONICS and"
+    "respondent": "M/S BHARAT ELECTRONICS and ORS"
   },
   "FA/803/1995": {
     "appellant": "TANNU MISHRA and ORS",
@@ -9857,7 +9857,7 @@ const CASES_DB = {
   },
   "FA/809/1995": {
     "appellant": "BIHAR STATE ELECTRICITY BOARD",
-    "respondent": "M/S MUZAFFARPUR"
+    "respondent": "M/S MUZAFFARPUR RE_ROLLING MIL"
   },
   "FA/815/1995": {
     "appellant": "ANUP KUMAR SINHA",
@@ -9869,7 +9869,7 @@ const CASES_DB = {
   },
   "FA/823/1995": {
     "appellant": "RAM NAGINA MISHRA and ORS",
-    "respondent": "MOSTT.RADHIKA DEVI and"
+    "respondent": "MOSTT.RADHIKA DEVI and ORS"
   },
   "FA/825/1995": {
     "appellant": "Raju Kumar",
@@ -9877,11 +9877,11 @@ const CASES_DB = {
   },
   "FA/1/1996": {
     "appellant": "SRI BIRENDRA SINGH and ANR",
-    "respondent": "THE STATE BANK OF INDIA"
+    "respondent": "THE STATE BANK OF INDIA and ORS"
   },
   "FA/7/1996": {
     "appellant": "Khairul Anam Khan",
-    "respondent": "Punhab National Bank"
+    "respondent": "Punhab National Bank,"
   },
   "FA/9/1996": {
     "appellant": "MAHANAND MAHTO and ANR",
@@ -9905,27 +9905,27 @@ const CASES_DB = {
   },
   "FA/76/1996": {
     "appellant": "BRAJ MOHAN SINGH and ANR",
-    "respondent": "BIBI SAZIDA KHATOON and"
+    "respondent": "BIBI SAZIDA KHATOON and ORS"
   },
   "FA/77/1996": {
     "appellant": "THE MANAGING DIRECTOR,CEMENT C",
-    "respondent": "SURENDRA SINGH"
+    "respondent": "SURENDRA SINGH and ORS"
   },
   "FA/81/1996": {
     "appellant": "Mohammad Qamrul Hoda Khan",
-    "respondent": "Punjab National Bank"
+    "respondent": "Punjab National Bank,"
   },
   "FA/82/1996": {
     "appellant": "MOSTT. SARLI DEVI and ORS",
-    "respondent": "MUKUL @ MUKUT YADAV and"
+    "respondent": "MUKUL @ MUKUT YADAV and ORS"
   },
   "FA/90/1996": {
-    "appellant": "Canara Bank, a body corporate",
-    "respondent": "M/s Rupa Stores"
+    "appellant": "Canara Bank, a body corporate,",
+    "respondent": "M/s Rupa Stores,"
   },
   "FA/91/1996": {
     "appellant": "KACHAHARI BHAGAT and ORS",
-    "respondent": "TRIBHUWAN BHAGAT and"
+    "respondent": "TRIBHUWAN BHAGAT and ANR"
   },
   "FA/93/1996": {
     "appellant": "LAL BAHADUR RAI and ORS",
@@ -9941,7 +9941,7 @@ const CASES_DB = {
   },
   "FA/107/1996": {
     "appellant": "BHOJPUR ROHTAS GRAMIN BANK,BRA",
-    "respondent": "CHIRANJEET SINGH"
+    "respondent": "CHIRANJEET SINGH @CHARANJEET S"
   },
   "FA/108/1996": {
     "appellant": "SHREE LALOO SHARMA",
@@ -9949,7 +9949,7 @@ const CASES_DB = {
   },
   "FA/121/1996": {
     "appellant": "MOSTT.KUSWATI DEVI @KUSMAWATI",
-    "respondent": "SMT.LALMATI DEVI and"
+    "respondent": "SMT.LALMATI DEVI and ORS"
   },
   "FA/133/1996": {
     "appellant": "MD.ANIS",
@@ -9957,7 +9957,7 @@ const CASES_DB = {
   },
   "FA/134/1996": {
     "appellant": "ASHUTOSH PRASAD NARAYAN",
-    "respondent": "RATNESHWAR PD.SINGH"
+    "respondent": "RATNESHWAR PD.SINGH and ORS"
   },
   "FA/139/1996": {
     "appellant": "Prabhat Krishna Rohatgi",
@@ -9997,11 +9997,11 @@ const CASES_DB = {
   },
   "FA/183/1996": {
     "appellant": "LALLAN CHOUDHARY and ORS",
-    "respondent": "RAJESH CHOUDHARY and"
+    "respondent": "RAJESH CHOUDHARY and ORS"
   },
   "FA/188/1996": {
     "appellant": "RAM SUNDER GUPTA and ORS",
-    "respondent": "STATE BANK OF INDIA and"
+    "respondent": "STATE BANK OF INDIA and ORS"
   },
   "FA/193/1996": {
     "appellant": "STATE BANK OF INDIA",
@@ -10021,7 +10021,7 @@ const CASES_DB = {
   },
   "FA/212/1996": {
     "appellant": "Sri Dasai Rai",
-    "respondent": "Sri Hari Kishun Rai"
+    "respondent": "Sri Hari Kishun Rai,"
   },
   "FA/223/1996": {
     "appellant": "MUNSHI LAL SAH and ORS",
@@ -10053,11 +10053,11 @@ const CASES_DB = {
   },
   "FA/271/1996": {
     "appellant": "SRI BISHWAJIT BANERJEE",
-    "respondent": "SMT.JHARNA GOSHWAMI and"
+    "respondent": "SMT.JHARNA GOSHWAMI and ORS"
   },
   "FA/277/1996": {
     "appellant": "SHYAM BABU PRASAD and ORS",
-    "respondent": "RAM LAKHAN PRASAD and"
+    "respondent": "RAM LAKHAN PRASAD and ANR"
   },
   "FA/289/1996": {
     "appellant": "UMESH TIWARI",
@@ -10065,7 +10065,7 @@ const CASES_DB = {
   },
   "FA/291/1996": {
     "appellant": "ANSU SINHA @ASHA KUMARI",
-    "respondent": "SHREE ANIL KUMAR RAKESH"
+    "respondent": "SHREE ANIL KUMAR RAKESH and ANR"
   },
   "FA/294/1996": {
     "appellant": "Kusheshwar Nath Sinha",
@@ -10081,7 +10081,7 @@ const CASES_DB = {
   },
   "FA/301/1996": {
     "appellant": "PRAMOD KUMAR SINGH and ORS",
-    "respondent": "KAMESHWAR SHARMA"
+    "respondent": "KAMESHWAR SHARMA and ORS"
   },
   "FA/304/1996": {
     "appellant": "JAI BABU SAO and ORS",
@@ -10097,7 +10097,7 @@ const CASES_DB = {
   },
   "FA/310/1996": {
     "appellant": "STATE BANK OF INDIA and ANR",
-    "respondent": "ASHOK KUMAR SINGH and"
+    "respondent": "ASHOK KUMAR SINGH and ANR"
   },
   "FA/312/1996": {
     "appellant": "BIGAN SINGH and ORS",
@@ -10109,7 +10109,7 @@ const CASES_DB = {
   },
   "FA/324/1996": {
     "appellant": "VIJAY PRASAD GUPTA and ORS",
-    "respondent": "JAGDISH PRASAD BHAGAT"
+    "respondent": "JAGDISH PRASAD BHAGAT and ORS"
   },
   "FA/338/1996": {
     "appellant": "Satya Bhama Devi",
@@ -10117,11 +10117,11 @@ const CASES_DB = {
   },
   "FA/341/1996": {
     "appellant": "ZILA PARISHAD,AURANGABAD and ORS",
-    "respondent": "BALI RAM PRASAD"
+    "respondent": "BALI RAM PRASAD SINGH"
   },
   "FA/345/1996": {
     "appellant": "M/S CHHAO PLANE BIRI COMPANY T",
-    "respondent": "M/S DO PLANE BIRI"
+    "respondent": "M/S DO PLANE BIRI COMPANY and OR"
   },
   "FA/358/1996": {
     "appellant": "STATE OF BIHAR",
@@ -10129,19 +10129,19 @@ const CASES_DB = {
   },
   "FA/361/1996": {
     "appellant": "THE FOOD CORPORATION OF INDIA",
-    "respondent": "SASA MUSA"
+    "respondent": "SASA MUSA PANCHAYAT SHARMIK SA"
   },
   "FA/370/1996": {
     "appellant": "BIMAL KUMAR KEJERIWAL and ORS",
-    "respondent": "MOST.TRIVANI DEVI and"
+    "respondent": "MOST.TRIVANI DEVI and ORS"
   },
   "FA/375/1996": {
     "appellant": "BINDESHWARI PRASAD and ORS",
-    "respondent": "SMT.CHANDRA KALI DEVI"
+    "respondent": "SMT.CHANDRA KALI DEVI and ORS"
   },
   "FA/376/1996": {
     "appellant": "MUNDRIKA GOND @ MUNDRIKA SAHandO",
-    "respondent": "GORAKH SAH and"
+    "respondent": "GORAKH SAH and ORS"
   },
   "FA/377/1996": {
     "appellant": "MANGARU SINGH",
@@ -10161,7 +10161,7 @@ const CASES_DB = {
   },
   "FA/389/1996": {
     "appellant": "BHOLA PRASAD AGARWAL @BHOLA RA",
-    "respondent": "SHAMBHU PD"
+    "respondent": "SHAMBHU PD. AGARWAL"
   },
   "FA/398/1996": {
     "appellant": "STATE BANK OF INDIA",
@@ -10169,7 +10169,7 @@ const CASES_DB = {
   },
   "FA/400/1996": {
     "appellant": "ESTATE OF RAM SAKHI CHOUDHARYand",
-    "respondent": "SUNIL KUMAR and"
+    "respondent": "SUNIL KUMAR and ORS"
   },
   "FA/402/1996": {
     "appellant": "STATE BANK OF INDIA",
@@ -10181,7 +10181,7 @@ const CASES_DB = {
   },
   "FA/405/1996": {
     "appellant": "ASHARFI NARAYAN YADAV and ORS",
-    "respondent": "MOST.RAM RATI DEVI"
+    "respondent": "MOST.RAM RATI DEVI and ORS"
   },
   "FA/406/1996": {
     "appellant": "KAPILDEO BHAGAT and ANR",
@@ -10189,11 +10189,11 @@ const CASES_DB = {
   },
   "FA/415/1996": {
     "appellant": "M/S BIHAR STATE FOOD and CIVIL S",
-    "respondent": "M/S ASHOK CATTLE"
+    "respondent": "M/S ASHOK CATTLE FOOD and POULTR"
   },
   "FA/416/1996": {
     "appellant": "M/S BIHAR STATE FOOD and CIVIL S",
-    "respondent": "M/S ASHOK CATTLE and"
+    "respondent": "M/S ASHOK CATTLE and POULTRY FOO"
   },
   "FA/426/1996": {
     "appellant": "ARUN KUMAR SINGH",
@@ -10221,11 +10221,11 @@ const CASES_DB = {
   },
   "FA/524/1996": {
     "appellant": "THE FOOD CORPORATION OF INDIAand",
-    "respondent": "SHRI PANCHA NAND"
+    "respondent": "SHRI PANCHA NAND SHARMA"
   },
   "FA/525/1996": {
     "appellant": "THE FOOD CORPORATION OF INDIA",
-    "respondent": "SRI SURESH KUMAR"
+    "respondent": "SRI SURESH KUMAR AGRAWAL and ORS"
   },
   "FA/528/1996": {
     "appellant": "KAMLESHWARI BHAGAT and ORS",
@@ -10237,7 +10237,7 @@ const CASES_DB = {
   },
   "FA/537/1996": {
     "appellant": "SUPERINTENDING ENGINEER,PWDandAN",
-    "respondent": "BHAGWAT"
+    "respondent": "BHAGWAT PRASAD and CO.and ANR"
   },
   "FA/550/1996": {
     "appellant": "BIRENDRA PATHAK",
@@ -10253,7 +10253,7 @@ const CASES_DB = {
   },
   "FA/12/1997": {
     "appellant": "BINOD KUMAR BISWAS",
-    "respondent": "KAMESHWAR PRASAD BISWAS and"
+    "respondent": "KAMESHWAR PRASAD BISWAS and ORS"
   },
   "FA/13/1997": {
     "appellant": "MOST.JASODIYA and ORS",
@@ -10269,7 +10269,7 @@ const CASES_DB = {
   },
   "FA/122/1997": {
     "appellant": "HARIHAR PRASAD @ LALA BABU",
-    "respondent": "CHANDRAWATI DEVI and"
+    "respondent": "CHANDRAWATI DEVI and ORS"
   },
   "FA/136/1997": {
     "appellant": "AWADHESH KUMAR",
@@ -10289,7 +10289,7 @@ const CASES_DB = {
   },
   "FA/157/1997": {
     "appellant": "M/S GAYATRI ENTERPRISES and ORS",
-    "respondent": "THE STATE BANK OF"
+    "respondent": "THE STATE BANK OF INDIA"
   },
   "FA/161/1997": {
     "appellant": "JITENDRA PRASAD SINGH and ANR",
@@ -10297,7 +10297,7 @@ const CASES_DB = {
   },
   "FA/162/1997": {
     "appellant": "HANUMAN MAL SHARMA",
-    "respondent": "THE BIHAR ELECTRICITY BOARD"
+    "respondent": "THE BIHAR ELECTRICITY BOARD andO"
   },
   "FA/163/1997": {
     "appellant": "MD.HAKIM and ORS",
@@ -10305,7 +10305,7 @@ const CASES_DB = {
   },
   "FA/165/1997": {
     "appellant": "PASHUPATI NATH UPADHAYAYA and AN",
-    "respondent": "JAGDAMBA"
+    "respondent": "JAGDAMBA UPADHYAYA and ORS"
   },
   "FA/182/1997": {
     "appellant": "UPENDRA SINGH",
@@ -10313,7 +10313,7 @@ const CASES_DB = {
   },
   "FA/184/1997": {
     "appellant": "MOSTT.ROOP KANTI DEVI and ORS",
-    "respondent": "RAJ NARAIN RAI and"
+    "respondent": "RAJ NARAIN RAI and ORS"
   },
   "FA/185/1997": {
     "appellant": "BALESHWAR DUBEY",
@@ -10324,8 +10324,8 @@ const CASES_DB = {
     "respondent": "M/S.ALLIED CASTING and ANCILLARY"
   },
   "FA/191/1997": {
-    "appellant": "State Bank of India, through its Branch Manager",
-    "respondent": "M/s Anil"
+    "appellant": "State Bank of India, through its Branch Manager,",
+    "respondent": "M/s Anil Tobacco Factory,"
   },
   "FA/192/1997": {
     "appellant": "BIBI SABINA KHATOON",
@@ -10333,22 +10333,22 @@ const CASES_DB = {
   },
   "FA/193/1997": {
     "appellant": "SMT.BASANTI DEVI and ORS",
-    "respondent": "SRI SANTOSH KUMAR VERMA"
+    "respondent": "SRI SANTOSH KUMAR VERMA and ORS"
   },
   "FA/201/1997": {
-    "appellant": "M/s Bihar Agro Industries",
-    "respondent": "M/s National Insurance Company"
+    "appellant": "M/s Bihar Agro Industries,",
+    "respondent": "M/s National Insurance Company Limited (subsidiary of General Insurance Company of India)"
   },
   "FA/206/1997": {
     "appellant": "RAMADHAR CHOUDHARY and ORS",
-    "respondent": "RAM NARAYAN"
+    "respondent": "RAM NARAYAN CHOUDHARY and ORS"
   },
   "FA/212/1997": {
     "appellant": "Smt. Prabhawati Devi @ Munia",
     "respondent": "Rajeev Ranjan Prasad @ Raju"
   },
   "FA/227/1997": {
-    "appellant": "M/S Vasistha Sahkari Grih Nirman Samiti Ltd",
+    "appellant": "M/S Vasistha Sahkari Grih Nirman Samiti Ltd.",
     "respondent": "Fakir Chand Rai"
   },
   "FA/229/1997": {
@@ -10357,7 +10357,7 @@ const CASES_DB = {
   },
   "FA/236/1997": {
     "appellant": "YATINDRA KUMAR JHA and ORS",
-    "respondent": "SMT.RAVINDRA PRABHA"
+    "respondent": "SMT.RAVINDRA PRABHA OJHAIN @SH"
   },
   "FA/266/1997": {
     "appellant": "DEWA NAND SAH and ORS",
@@ -10369,7 +10369,7 @@ const CASES_DB = {
   },
   "FA/302/1997": {
     "appellant": "AJAY KUMAR KUSHWAHA and ORS",
-    "respondent": "SMT.GUJESHWARI DEVI"
+    "respondent": "SMT.GUJESHWARI DEVI and ANR"
   },
   "FA/319/1997": {
     "appellant": "NAGENDRA KUMAR SINHA @ MUKUR B",
@@ -10377,7 +10377,7 @@ const CASES_DB = {
   },
   "FA/330/1997": {
     "appellant": "SHRI SITA RAM PRASAD @ SITA RA",
-    "respondent": "GRISH KALP KALP"
+    "respondent": "GRISH KALP KALP COOP.HOUS.SOCI"
   },
   "FA/335/1997": {
     "appellant": "Bhola Das",
@@ -10409,7 +10409,7 @@ const CASES_DB = {
   },
   "FA/381/1997": {
     "appellant": "SHRI MUNDRIKA PRASAD SINGH and O",
-    "respondent": "SHALIGRAM SINGH"
+    "respondent": "SHALIGRAM SINGH and ORS"
   },
   "FA/386/1997": {
     "appellant": "LAXUMAN SINGH and ORS",
@@ -10421,7 +10421,7 @@ const CASES_DB = {
   },
   "FA/395/1997": {
     "appellant": "SMT. RAM PEYARI DEVI and ANR",
-    "respondent": "RAM CHARITRA PRASAD"
+    "respondent": "RAM CHARITRA PRASAD and ORS"
   },
   "FA/396/1997": {
     "appellant": "Baleshwar Prasad alias Balo",
@@ -10429,23 +10429,23 @@ const CASES_DB = {
   },
   "FA/417/1997": {
     "appellant": "STATE OF BIHAR THRO.THE COLLEC",
-    "respondent": "DOWARIKA SINGH and"
+    "respondent": "DOWARIKA SINGH and ANR"
   },
   "FA/419/1997": {
     "appellant": "STATE OF BIHAR THRO.THE COLLEC",
-    "respondent": "DHANANJAY SINGH"
+    "respondent": "DHANANJAY SINGH and ORS"
   },
   "FA/422/1997": {
     "appellant": "STATE OF BIHAR THRO.THE COLLEC",
-    "respondent": "MOHAN PRASAD"
+    "respondent": "MOHAN PRASAD SINHA and ANR"
   },
   "FA/433/1997": {
     "appellant": "STATE OF BIHAR THRO.THE COLLEC",
-    "respondent": "SURENDRA PRASAD"
+    "respondent": "SURENDRA PRASAD SINHA andA NR"
   },
   "FA/438/1997": {
     "appellant": "THE STATE OF BIHAR THRO.THE CO",
-    "respondent": "MADHU SUDAN"
+    "respondent": "MADHU SUDAN PRASAD"
   },
   "FA/440/1997": {
     "appellant": "THE STATE OF BIHAR THRO.THE CO",
@@ -10464,12 +10464,12 @@ const CASES_DB = {
     "respondent": "OBAIDULLAH ANWAR"
   },
   "FA/520/1997": {
-    "appellant": "MOST MONAKA KUAR @ MONIKA KUAR",
+    "appellant": "MOST MONAKA KUAR @ MONIKA KUAR VS.",
     "respondent": ""
   },
   "FA/528/1997": {
     "appellant": "M/S PUNAURA OIL MILL and ANR",
-    "respondent": "CENTRAL BANK OF INDIA"
+    "respondent": "CENTRAL BANK OF INDIA and ORS"
   },
   "FA/531/1997": {
     "appellant": "MOST. PRABHA DEVI and ANR",
@@ -10493,7 +10493,7 @@ const CASES_DB = {
   },
   "FA/563/1997": {
     "appellant": "RAM KISHORE SINGH and ORS",
-    "respondent": "PUNJAB NATIONAL BANK and"
+    "respondent": "PUNJAB NATIONAL BANK and ORS"
   },
   "FA/576/1997": {
     "appellant": "BISHUNDHARI PRASAD",
@@ -10525,7 +10525,7 @@ const CASES_DB = {
   },
   "FA/601/1997": {
     "appellant": "THE NEW INDIA ASSURANCE COMPAN",
-    "respondent": "M/S RAM BHARAT"
+    "respondent": "M/S RAM BHARAT SINGH"
   },
   "FA/604/1997": {
     "appellant": "DULHIN SHEO KUMARI DEVI",
@@ -10536,12 +10536,12 @@ const CASES_DB = {
     "respondent": "Punam Kapoor"
   },
   "FA/6/1998": {
-    "appellant": "NATIONAL THERMAL POWER CORP",
-    "respondent": "MANOJ KUMAR"
+    "appellant": "NATIONAL THERMAL POWER CORP.",
+    "respondent": "MANOJ KUMAR MANDAL and ORS"
   },
   "FA/12/1998": {
     "appellant": "BALESHWAR SINGH and ORS",
-    "respondent": "SHYAM SUNDER SINGH and"
+    "respondent": "SHYAM SUNDER SINGH and ORS"
   },
   "FA/25/1998": {
     "appellant": "RAJENDRA MAHTO @ RAJENDRA PRAS",
@@ -10561,7 +10561,7 @@ const CASES_DB = {
   },
   "FA/63/1998": {
     "appellant": "INDRA DEO SINGH and ORS",
-    "respondent": "SRI RAM KAILASH SINGH and"
+    "respondent": "SRI RAM KAILASH SINGH and ORS"
   },
   "FA/67/1998": {
     "appellant": "JAG NARAYAN SAO and ORS",
@@ -10569,7 +10569,7 @@ const CASES_DB = {
   },
   "FA/77/1998": {
     "appellant": "SMT.RADHA DEVI and ORS",
-    "respondent": "SRI SHIV SHANKAR NAYAK and"
+    "respondent": "SRI SHIV SHANKAR NAYAK and ORS"
   },
   "FA/113/1998": {
     "appellant": "CENTRAL BANK OF INDIA",
@@ -10577,7 +10577,7 @@ const CASES_DB = {
   },
   "FA/118/1998": {
     "appellant": "CHANDESHWAR NARAYAN SINGH and AN",
-    "respondent": "SHRI"
+    "respondent": "SHRI NARBDESHWAR NR.SINGH andORS"
   },
   "FA/124/1998": {
     "appellant": "MAHABIR SINGH and ORS",
@@ -10585,7 +10585,7 @@ const CASES_DB = {
   },
   "FA/152/1998": {
     "appellant": "RAMAUTAR SAH and ORS",
-    "respondent": "MOST SOGARA KHATOON and"
+    "respondent": "MOST SOGARA KHATOON and ORS"
   },
   "FA/153/1998": {
     "appellant": "MD.MURTAJA",
@@ -10604,8 +10604,8 @@ const CASES_DB = {
     "respondent": "GANESH TRIPATHI and ORS"
   },
   "FA/195/1998": {
-    "appellant": "NATIONAL THERMAL POWER CORPN",
-    "respondent": "SURENDRA PRASAD"
+    "appellant": "NATIONAL THERMAL POWER CORPN.",
+    "respondent": "SURENDRA PRASAD JHA and ORS"
   },
   "FA/234/1998": {
     "appellant": "Vishwanath Sharma",
@@ -10613,7 +10613,7 @@ const CASES_DB = {
   },
   "FA/240/1998": {
     "appellant": "SATYA NARAIN MANDAL and ORS",
-    "respondent": "YOGENDRA MANDAL and"
+    "respondent": "YOGENDRA MANDAL and ORS"
   },
   "FA/243/1998": {
     "appellant": "Jawahar Lal Sah",
@@ -10645,7 +10645,7 @@ const CASES_DB = {
   },
   "FA/321/1998": {
     "appellant": "CHANDRA BINAY PRASAD SINGH",
-    "respondent": "DHANESHWAR RAI and"
+    "respondent": "DHANESHWAR RAI and ORS"
   },
   "FA/371/1998": {
     "appellant": "THE STATE OF BIHAR",
@@ -10685,7 +10685,7 @@ const CASES_DB = {
   },
   "FA/455/1998": {
     "appellant": "PARMESHWAR PRASAD SINGH",
-    "respondent": "SANJIV KUMAR SINGH and"
+    "respondent": "SANJIV KUMAR SINGH and ORS"
   },
   "FA/506/1998": {
     "appellant": "THE STATE OF BIHAR THRU DISTRI",
@@ -10701,7 +10701,7 @@ const CASES_DB = {
   },
   "FA/525/1998": {
     "appellant": "Pradip Ganguli @ Pradip Kumar Ganguly",
-    "respondent": "Hirupado @ Haripado"
+    "respondent": "Hirupado @ Haripado Ganguli"
   },
   "FA/554/1998": {
     "appellant": "YADU SINGH and ANR",
@@ -10713,11 +10713,11 @@ const CASES_DB = {
   },
   "FA/558/1998": {
     "appellant": "SRI CHANDRA SINGH and ORS",
-    "respondent": "SRI RAM SAWARATH SINGH"
+    "respondent": "SRI RAM SAWARATH SINGH and ORS"
   },
   "FA/560/1998": {
     "appellant": "SHEO NARAIN SAHO @ BHOLA SAO and",
-    "respondent": "DWARIKA SAO and"
+    "respondent": "DWARIKA SAO and ORS"
   },
   "FA/562/1998": {
     "appellant": "RAM NATH RAI",
@@ -10729,7 +10729,7 @@ const CASES_DB = {
   },
   "FA/572/1998": {
     "appellant": "ARUN KUMAR AGARWAL @ RADHA MOH",
-    "respondent": "BIHAR STATE"
+    "respondent": "BIHAR STATE FINANCIAL CORPN.andO"
   },
   "FA/575/1998": {
     "appellant": "STATE BANK OF INDIA",
@@ -10744,12 +10744,12 @@ const CASES_DB = {
     "respondent": "MAHABIR SINGH and ORS"
   },
   "FA/582/1998": {
-    "appellant": "STATE OF BIHAR THRO COLLECTOR",
+    "appellant": "STATE OF BIHAR THRO COLLECTOR,",
     "respondent": "DEODHARI PRASAD"
   },
   "FA/586/1998": {
     "appellant": "RAJENDRA PRASAD AGRAWAL @ RAJE",
-    "respondent": "TULSI PRASAD and"
+    "respondent": "TULSI PRASAD and ORS"
   },
   "FA/593/1998": {
     "appellant": "SUNIL KUMAR SAH",
@@ -10773,7 +10773,7 @@ const CASES_DB = {
   },
   "FA/627/1998": {
     "appellant": "FARAHAT HUSAIN KHAN @ FARHAT H",
-    "respondent": "REHAT HUSAIN KHAN"
+    "respondent": "REHAT HUSAIN KHAN @ REHAT"
   },
   "FA/633/1998": {
     "appellant": "KUSHESHWAR PURBEY",
@@ -10793,19 +10793,19 @@ const CASES_DB = {
   },
   "FA/682/1998": {
     "appellant": "M/s. North India Rubber Works a partnership firm",
-    "respondent": "Central Bank of"
+    "respondent": "Central Bank of India, a body corporate constituted under the Banking Companies"
   },
   "FA/703/1998": {
     "appellant": "SHIW NARAYAN TIWARI and ORS",
     "respondent": "VIKARMA TIWARI and ORS"
   },
   "FA/709/1998": {
-    "appellant": "Bihar State Electricity Board through its Chairman",
-    "respondent": "Ms. Shankar"
+    "appellant": "Bihar State Electricity Board through its Chairman,",
+    "respondent": "Ms. Shankar Re-rolling Mill Private Limited, through Dr. Anil Kumar Sinha,"
   },
   "FA/712/1998": {
     "appellant": "SURENDRA NARAYAN SINGH and ORS",
-    "respondent": "MOST.SHAKUNTALA"
+    "respondent": "MOST.SHAKUNTALA DEVI and ORS"
   },
   "FA/723/1998": {
     "appellant": "THE STATE OF BIHAR and ORS",
@@ -10825,7 +10825,7 @@ const CASES_DB = {
   },
   "FA/4/1999": {
     "appellant": "RAMESHWAR PD.SINGH and ORS",
-    "respondent": "HARIHAR PRASAD and"
+    "respondent": "HARIHAR PRASAD and ORS"
   },
   "FA/5/1999": {
     "appellant": "SIYARAM JAISWAL",
@@ -10841,7 +10841,7 @@ const CASES_DB = {
   },
   "FA/23/1999": {
     "appellant": "SUBASH PRASAD @ SUBHASH PRASAD",
-    "respondent": "STATE OF BIHAR"
+    "respondent": "STATE OF BIHAR THRO.COLLECTOR"
   },
   "FA/24/1999": {
     "appellant": "RAM MURAT SINGH and ORS",
@@ -10853,7 +10853,7 @@ const CASES_DB = {
   },
   "FA/35/1999": {
     "appellant": "SANT LALL @ SHANTI MANDAL and OR",
-    "respondent": "MALIK MANDAL and"
+    "respondent": "MALIK MANDAL and ORS"
   },
   "FA/63/1999": {
     "appellant": "STATE BANK OF INDIA",
@@ -10873,14 +10873,14 @@ const CASES_DB = {
   },
   "FA/99/1999": {
     "appellant": "Mohammad Mustaqueem",
-    "respondent": "The State Bank of India"
+    "respondent": "The State Bank of India,"
   },
   "FA/106/1999": {
     "appellant": "Sri Upendra Prasad @ Upendra Kumar",
-    "respondent": "Canara Bank Corporate"
+    "respondent": "Canara Bank Corporate,"
   },
   "FA/133/1999": {
-    "appellant": "Manoranjan and Ors",
+    "appellant": "Manoranjan and Ors.",
     "respondent": "DINESH CHANDRA SRIVASTAV and ORS"
   },
   "FA/167/1999": {
@@ -10889,15 +10889,15 @@ const CASES_DB = {
   },
   "FA/177/1999": {
     "appellant": "MOST SUMITRA DEVI and ORS",
-    "respondent": "JAI PRAKASH PODDAR and"
+    "respondent": "JAI PRAKASH PODDAR and ORS"
   },
   "FA/191/1999": {
     "appellant": "The University of Bihar",
-    "respondent": "Manisha Publishers, Booksellors and"
+    "respondent": "Manisha Publishers, Booksellors and order suppliers,"
   },
   "FA/196/1999": {
     "appellant": "DHARMENDRA CHAUDHARY @ DHARMEN",
-    "respondent": "MUNDRIKA"
+    "respondent": "MUNDRIKA CHAUDHARY and ORS"
   },
   "FA/201/1999": {
     "appellant": "BHUPAL CHANDRA SHEEL and ORS",
@@ -10905,15 +10905,15 @@ const CASES_DB = {
   },
   "FA/203/1999": {
     "appellant": "SADHU SHARAN SINGH and ORS",
-    "respondent": "JANARDAN PRASAD"
+    "respondent": "JANARDAN PRASAD SINGH and ORS"
   },
   "FA/209/1999": {
     "appellant": "MANOJ KUMAR SINGH and ORS",
     "respondent": "SHYAM BABU SINGH"
   },
   "FA/215/1999": {
-    "appellant": "Raja Rai",
-    "respondent": "Beni Singh"
+    "appellant": "Raja Rai,",
+    "respondent": "Beni Singh,"
   },
   "FA/218/1999": {
     "appellant": "AJAY KUMAR SINGH and ORS",
@@ -10929,7 +10929,7 @@ const CASES_DB = {
   },
   "FA/238/1999": {
     "appellant": "PANKAJ KUMAR @ NAVIN KUMAR and O",
-    "respondent": "MOST.PEMLI DEVI"
+    "respondent": "MOST.PEMLI DEVI and ORS"
   },
   "FA/243/1999": {
     "appellant": "RAJIV RANJAN SINGH and ORS",
@@ -10944,28 +10944,28 @@ const CASES_DB = {
     "respondent": "RAM BACHAN SINGH and ORS"
   },
   "FA/252/1999": {
-    "appellant": "National Thermal Power Corporation (N.T.P.C",
-    "respondent": "Dhirendra Prasad"
+    "appellant": "National Thermal Power Corporation (N.T.P.C.),",
+    "respondent": "Dhirendra Prasad Singh alias Dhirendra Singh"
   },
   "FA/254/1999": {
-    "appellant": "GENERAL MANAGER N.T.P.C",
-    "respondent": "SRI KRISHNA MANDAL and"
+    "appellant": "GENERAL MANAGER N.T.P.C.",
+    "respondent": "SRI KRISHNA MANDAL and ANR"
   },
   "FA/255/1999": {
     "appellant": "Lalita Jha",
     "respondent": "Mala Sheel"
   },
   "FA/258/1999": {
-    "appellant": "M/s Arun and Arun",
-    "respondent": "M/s Nalanda Sales Corporation"
+    "appellant": "M/s Arun and Arun,",
+    "respondent": "M/s Nalanda Sales Corporation,"
   },
   "FA/259/1999": {
-    "appellant": "Central Bank of India",
+    "appellant": "Central Bank of India,",
     "respondent": "Prem Shanker Singh"
   },
   "FA/261/1999": {
     "appellant": "PUNJAB NATIONAL BANK",
-    "respondent": "SURENDRA KUMAR SINGH and"
+    "respondent": "SURENDRA KUMAR SINGH and ORS"
   },
   "FA/266/1999": {
     "appellant": "MEWA LAL PRASAD",
@@ -10981,7 +10981,7 @@ const CASES_DB = {
   },
   "FA/280/1999": {
     "appellant": "PUNJAB NATIONAL BANK",
-    "respondent": "MATHURA PRASAD SINGH and"
+    "respondent": "MATHURA PRASAD SINGH and ANR"
   },
   "FA/303/1999": {
     "appellant": "MUNDRIKA SINGH",
@@ -10989,15 +10989,15 @@ const CASES_DB = {
   },
   "FA/323/1999": {
     "appellant": "STATE OF BIHAR THROUGH THE COL",
-    "respondent": "RAMESH PRASAD"
+    "respondent": "RAMESH PRASAD SINGH"
   },
   "FA/329/1999": {
     "appellant": "STATE OF BIHAR THROUGH THE COL",
-    "respondent": "SITA RAM PRASAD"
+    "respondent": "SITA RAM PRASAD SINGH"
   },
   "FA/332/1999": {
     "appellant": "STATE OF BIHAR THROUGH THE COL",
-    "respondent": "SHIVRAM PRASAD"
+    "respondent": "SHIVRAM PRASAD SINGH"
   },
   "FA/339/1999": {
     "appellant": "GOPAL UDHOG and ORS",
@@ -11025,7 +11025,7 @@ const CASES_DB = {
   },
   "FA/407/1999": {
     "appellant": "STATE OF BIHAR THROUGH THE COL",
-    "respondent": "GIRIDHARI PRASAD"
+    "respondent": "GIRIDHARI PRASAD BALODIA"
   },
   "FA/419/1999": {
     "appellant": "Baleshwar Sharma",
@@ -11033,7 +11033,7 @@ const CASES_DB = {
   },
   "FA/426/1999": {
     "appellant": "BIHAR STATE FINANCIAL CORPORAT",
-    "respondent": "KAWALJIT SINGH and"
+    "respondent": "KAWALJIT SINGH and ORS"
   },
   "FA/434/1999": {
     "appellant": "BADRI PRASAD SINGH",
@@ -11045,11 +11045,11 @@ const CASES_DB = {
   },
   "FA/444/1999": {
     "appellant": "STATE OF BIHAR THROUGH THE COL",
-    "respondent": "DEEPAK KUMAR"
+    "respondent": "DEEPAK KUMAR PANDEY"
   },
   "FA/445/1999": {
     "appellant": "STATE OF BIHAR THROUGH THE COL",
-    "respondent": "RAJ NARAIN SINGH"
+    "respondent": "RAJ NARAIN SINGH and ORS"
   },
   "FA/446/1999": {
     "appellant": "STATE OF BIHAR THROUGH THE COL",
@@ -11057,7 +11057,7 @@ const CASES_DB = {
   },
   "FA/448/1999": {
     "appellant": "MOST.SITA DEVI",
-    "respondent": "VISHWANATH VISHWAKARMA and ORS"
+    "respondent": "VISHWANATH VISHWAKARMA and ORS."
   },
   "FA/456/1999": {
     "appellant": "NORTH BIHAR INDUSTRIAL AREA DE",
@@ -11080,12 +11080,12 @@ const CASES_DB = {
     "respondent": "Smt. Phul Kumari Devi"
   },
   "FA/509/1999": {
-    "appellant": "SMT.SANJEETA DEVI and ORS",
-    "respondent": "RENU SINHA and ORS"
+    "appellant": "SMT.SANJEETA DEVI and ORS.",
+    "respondent": "RENU SINHA and ORS."
   },
   "FA/527/1999": {
     "appellant": "NAND KISHORE JHUNJHUNWALA @ NA",
-    "respondent": "SHYAM SUNDER"
+    "respondent": "SHYAM SUNDER JHUNJHUNWALA and OR"
   },
   "FA/532/1999": {
     "appellant": "YUGESHWAR PANDEY",
@@ -11109,11 +11109,11 @@ const CASES_DB = {
   },
   "FA/578/1999": {
     "appellant": "RAM BALLABH SINGH and ORS",
-    "respondent": "KRISHNA BALLAV SINGH and"
+    "respondent": "KRISHNA BALLAV SINGH and ORS"
   },
   "FA/579/1999": {
     "appellant": "THE MANAGING DIRECTOR,BIHAR ST",
-    "respondent": "M/S DURGAWATI"
+    "respondent": "M/S DURGAWATI STEEL INDUS.andPVT"
   },
   "FA/592/1999": {
     "appellant": "JITENDRA KUMAR SINGH",
@@ -11121,10 +11121,10 @@ const CASES_DB = {
   },
   "FA/597/1999": {
     "appellant": "PRADEEP KUMAR DUBEY and ORS",
-    "respondent": "KRISHNA GOPAL DUBEY"
+    "respondent": "KRISHNA GOPAL DUBEY and ORS"
   },
   "FA/601/1999": {
-    "appellant": "DASRATH PD. AND ORS",
+    "appellant": "DASRATH PD. AND ORS.",
     "respondent": "BAIDYA NATH BHAGAT and ORS"
   },
   "FA/2/2000": {
@@ -11165,7 +11165,7 @@ const CASES_DB = {
   },
   "FA/70/2000": {
     "appellant": "SANJHA DEVI @ SANDHYA DEVI",
-    "respondent": "MOST.FULO KUMARI DEVI"
+    "respondent": "MOST.FULO KUMARI DEVI and ORS"
   },
   "FA/72/2000": {
     "appellant": "M/S CHUNRI and ORS",
@@ -11177,23 +11177,23 @@ const CASES_DB = {
   },
   "FA/80/2000": {
     "appellant": "THE BRANCH MANAGER, UCO BANK and",
-    "respondent": "M/S BLUE"
+    "respondent": "M/S BLUE HEAVENS AGRO INDUSTRI"
   },
   "FA/81/2000": {
     "appellant": "SMT.KALYANI DEVI and ORS",
-    "respondent": "RAGHAO PRAKASH DWIVEDI"
+    "respondent": "RAGHAO PRAKASH DWIVEDI and ORS"
   },
   "FA/82/2000": {
     "appellant": "RAJENDRA PRASAD MAHTO and ORS",
-    "respondent": "DWARIKA PRASAD"
+    "respondent": "DWARIKA PRASAD MAHTO and ORS"
   },
   "FA/83/2000": {
     "appellant": "NATIONAL THERMAL POWER CORPORA",
-    "respondent": "SURENDRA SINGH"
+    "respondent": "SURENDRA SINGH and ANR"
   },
   "FA/86/2000": {
     "appellant": "NATIONAL THERMAL POWER CORPORA",
-    "respondent": "RAM DAS MANDAL"
+    "respondent": "RAM DAS MANDAL and ANR"
   },
   "FA/87/2000": {
     "appellant": "GYANTI DEVI",
@@ -11205,11 +11205,11 @@ const CASES_DB = {
   },
   "FA/98/2000": {
     "appellant": "RAJA RAM SINGH @ RAZA RAM SING",
-    "respondent": "MOST.KISHNA DEVI"
+    "respondent": "MOST.KISHNA DEVI and ORS"
   },
   "FA/107/2000": {
     "appellant": "SHEOPUJAN DUSADH @ SHEOPUJAN R",
-    "respondent": "KESHO DUSADH"
+    "respondent": "KESHO DUSADH and ORS"
   },
   "FA/123/2000": {
     "appellant": "JIWAN JHA",
@@ -11221,7 +11221,7 @@ const CASES_DB = {
   },
   "FA/127/2000": {
     "appellant": "SMT.SUMITRA DEVI and ORS",
-    "respondent": "JAI PRAKASH PODDAR and"
+    "respondent": "JAI PRAKASH PODDAR and ORS"
   },
   "FA/129/2000": {
     "appellant": "TEJ NARAYAN PRASAD",
@@ -11241,7 +11241,7 @@ const CASES_DB = {
   },
   "FA/152/2000": {
     "appellant": "HINDUSTAN FERTILIZER CORPORATI",
-    "respondent": "STATE OF BIHAR and"
+    "respondent": "STATE OF BIHAR and ANR"
   },
   "FA/157/2000": {
     "appellant": "STATE BANK OF INDIA",
@@ -11265,18 +11265,18 @@ const CASES_DB = {
   },
   "FA/212/2000": {
     "appellant": "BIHAR STATE ELECTRICITY BOARD",
-    "respondent": "SMT.URMILA DEVI and"
+    "respondent": "SMT.URMILA DEVI and ORS"
   },
   "FA/215/2000": {
-    "appellant": "Bharat Overseas Bank Limited",
-    "respondent": "Messina Beej Private Limited"
+    "appellant": "Bharat Overseas Bank Limited,",
+    "respondent": "Messina Beej Private Limited,"
   },
   "FA/222/2000": {
     "appellant": "RUP NARAYAN SINGH and ORS",
     "respondent": "SURENDRA SINGH and ORS"
   },
   "FA/240/2000": {
-    "appellant": "Dhiraj Kumar Thakur (Minor",
+    "appellant": "Dhiraj Kumar Thakur (Minor)",
     "respondent": "Kanhaya Thakur"
   },
   "FA/250/2000": {
@@ -11289,7 +11289,7 @@ const CASES_DB = {
   },
   "FA/252/2000": {
     "appellant": "RAMESHWAR SINGH",
-    "respondent": "SHRI AKHILESHWAR MATH"
+    "respondent": "SHRI AKHILESHWAR MATH MAHADEOand"
   },
   "FA/260/2000": {
     "appellant": "Ram Balak Singh",
@@ -11305,11 +11305,11 @@ const CASES_DB = {
   },
   "FA/267/2000": {
     "appellant": "RAMESHWAR SINGH",
-    "respondent": "AKHILESHWAR NATH MAHADEO and"
+    "respondent": "AKHILESHWAR NATH MAHADEO and ORS"
   },
   "FA/268/2000": {
     "appellant": "LAL BIHARI SINGH and ORS",
-    "respondent": "NAGENDRA KUMAR SINGH and"
+    "respondent": "NAGENDRA KUMAR SINGH and ORS"
   },
   "FA/269/2000": {
     "appellant": "BISHUN LAL MOURA and ORS",
@@ -11321,7 +11321,7 @@ const CASES_DB = {
   },
   "FA/273/2000": {
     "appellant": "VEER KISHORE SINGH and ORS",
-    "respondent": "DINESHWAR SINGH and"
+    "respondent": "DINESHWAR SINGH and ORS"
   },
   "FA/287/2000": {
     "appellant": "SMT. MANORMA DEVI and ORS",
@@ -11332,7 +11332,7 @@ const CASES_DB = {
     "respondent": "UMA DEVI and ORS"
   },
   "FA/303/2000": {
-    "appellant": "Central Bank of India",
+    "appellant": "Central Bank of India,",
     "respondent": "M/s B.S. Sales Corporation"
   },
   "FA/317/2000": {
@@ -11345,7 +11345,7 @@ const CASES_DB = {
   },
   "FA/328/2000": {
     "appellant": "THE STATE OF BIHAR THRO.COLLEC",
-    "respondent": "YOGENDRA SINGH                            COURT FEE"
+    "respondent": "YOGENDRA SINGH"
   },
   "FA/336/2000": {
     "appellant": "STATE OF BIHAR",
@@ -11365,11 +11365,11 @@ const CASES_DB = {
   },
   "FA/403/2000": {
     "appellant": "STATE OF BIHAR THROUGH THE COL",
-    "respondent": "NARESH NANDAN"
+    "respondent": "NARESH NANDAN SINGH"
   },
   "FA/410/2000": {
     "appellant": "STATE OF BIHAR THROUGH THE COL",
-    "respondent": "SHANKAR SINGH and"
+    "respondent": "SHANKAR SINGH and ORS"
   },
   "FA/428/2000": {
     "appellant": "RAMJEE SAHA",
@@ -11397,15 +11397,15 @@ const CASES_DB = {
   },
   "FA/449/2000": {
     "appellant": "NATIONAL INSURANCE CO.LTD and AN",
-    "respondent": "M/S MAYUR"
+    "respondent": "M/S MAYUR MEDICALS and ANR"
   },
   "FA/460/2000": {
     "appellant": "NAGINA RAI @ NAGINA SINGH and OR",
-    "respondent": "BIRENDRA SINGH @"
+    "respondent": "BIRENDRA SINGH @ BADAN SINGH"
   },
   "FA/472/2000": {
     "appellant": "N.T.P.C.NATIONAL THERMAL POWE",
-    "respondent": "RAM KISHUN YADAV and"
+    "respondent": "RAM KISHUN YADAV and ANR"
   },
   "FA/479/2000": {
     "appellant": "EKBAL MIYAN and ORS",
@@ -11437,7 +11437,7 @@ const CASES_DB = {
   },
   "FA/576/2000": {
     "appellant": "SYED HUMMAYUN AKHTAR",
-    "respondent": "SULTANGANJ SAHKARI GRIH"
+    "respondent": "SULTANGANJ SAHKARI GRIH NIRMAN"
   },
   "FA/584/2000": {
     "appellant": "VIVEKANAND SINGH",
@@ -11505,7 +11505,7 @@ const CASES_DB = {
   },
   "FA/743/2000": {
     "appellant": "STATE OF BIHAR THROUGH THE COL",
-    "respondent": "MOST.GAYATRI DEVI"
+    "respondent": "MOST.GAYATRI DEVI and ORS"
   },
   "FA/746/2000": {
     "appellant": "SIKANDAR PD.SINGH",
@@ -11513,15 +11513,15 @@ const CASES_DB = {
   },
   "FA/799/2000": {
     "appellant": "UNION OF INDIA and ORS",
-    "respondent": "M/S DIMPLE CONSTRUCTION BINDHYACHAL PRASAD SINHA and ORS VS. RAMA RANJAN"
+    "respondent": "M/S DIMPLE CONSTRUCTION"
   },
   "FA/800/2000": {
     "appellant": "BINDHYACHAL PRASAD SINHA and ORS",
-    "respondent": "RAMA RANJAN"
+    "respondent": "RAMA RANJAN PRASAD SINHA"
   },
   "FA/802/2000": {
     "appellant": "UNION OF INDIA and ORS",
-    "respondent": "M/S RAJESH KR.KRISHNA"
+    "respondent": "M/S RAJESH KR.KRISHNA PD.GUPTA"
   },
   "FA/805/2000": {
     "appellant": "ASHARFI LAL SAH",
@@ -11537,7 +11537,7 @@ const CASES_DB = {
   },
   "FA/809/2000": {
     "appellant": "STATE OF BIHAR THROUGH COLLECT",
-    "respondent": "RAM PADARATH RAI"
+    "respondent": "RAM PADARATH RAI and ORS"
   },
   "FA/811/2000": {
     "appellant": "RAMDEO MAHTO and ORS",
@@ -11545,11 +11545,11 @@ const CASES_DB = {
   },
   "FA/3/2001": {
     "appellant": "SATYENDRA KUMAR SINGH @ SATYEN",
-    "respondent": "SMT. URMILA DEVI"
+    "respondent": "SMT. URMILA DEVI and ORS."
   },
   "FA/34/2001": {
     "appellant": "KEDAR NATH PRASAD",
-    "respondent": "BABAN PRASAD and ORS                     MISCELLANEOUS"
+    "respondent": "BABAN PRASAD and ORS"
   },
   "FA/42/2001": {
     "appellant": "RAM DAHIN SINGH and ORS",
@@ -11557,7 +11557,7 @@ const CASES_DB = {
   },
   "FA/44/2001": {
     "appellant": "RAKESH KUMAR GUPTA and ORS",
-    "respondent": "PRADUMAN KUMAR"
+    "respondent": "PRADUMAN KUMAR GUPTA @ BABU PR"
   },
   "FA/101/2001": {
     "appellant": "SMT. SUGIA DEVI and ORS",
@@ -11569,19 +11569,19 @@ const CASES_DB = {
   },
   "FA/106/2001": {
     "appellant": "RAM BHAJAN SHARMA and ORS",
-    "respondent": "RAM NIHORA SHARMA and"
+    "respondent": "RAM NIHORA SHARMA and ORS"
   },
   "FA/128/2001": {
     "appellant": "SARJUN PRASAD SINGH and ORS",
-    "respondent": "SRI ARJUN PRASAD"
+    "respondent": "SRI ARJUN PRASAD SINGH and ORS"
   },
   "FA/129/2001": {
-    "appellant": "KAMLA DEVI and ORS",
+    "appellant": "KAMLA DEVI and ORS.",
     "respondent": "KRISHNA MAHTO and ORS"
   },
   "FA/145/2001": {
     "appellant": "GHAN SHYAM DUBEY and ANR",
-    "respondent": "CENTRAL BANK OF INDIA and"
+    "respondent": "CENTRAL BANK OF INDIA and ORS"
   },
   "FA/159/2001": {
     "appellant": "ISHWAR PRASAD and ORS",
@@ -11593,11 +11593,11 @@ const CASES_DB = {
   },
   "FA/168/2001": {
     "appellant": "LAL MANI DEVI and ORS",
-    "respondent": "POONAM KUMARI and ORS. SHRI ARUN KUMAR SINGH and ANR VS. BIHAR DISTRILLARY"
+    "respondent": "POONAM KUMARI and ORS."
   },
   "FA/173/2001": {
     "appellant": "SHRI ARUN KUMAR SINGH and ANR",
-    "respondent": "BIHAR DISTRILLARY"
+    "respondent": "BIHAR DISTRILLARY LTD. and ANR"
   },
   "FA/178/2001": {
     "appellant": "KUSUM DEVI",
@@ -11605,7 +11605,7 @@ const CASES_DB = {
   },
   "FA/185/2001": {
     "appellant": "SRI KUNJ BIHARI DUBEY",
-    "respondent": "CENTRAL BANK OF INDIA and ORS          MISCELLANEOUS"
+    "respondent": "CENTRAL BANK OF INDIA and ORS"
   },
   "FA/193/2001": {
     "appellant": "RAM NARESH SINGH",
@@ -11621,11 +11621,11 @@ const CASES_DB = {
   },
   "FA/204/2001": {
     "appellant": "CENTRAL BANK OF INDIA",
-    "respondent": "M/S MAHESHWARI INDUSTRIES"
+    "respondent": "M/S MAHESHWARI INDUSTRIES and OR"
   },
   "FA/210/2001": {
     "appellant": "PRADIP GANGULI @ PRADIP KUMAR",
-    "respondent": "HIRUPADO @"
+    "respondent": "HIRUPADO @ HARIPADO GANGULI"
   },
   "FA/211/2001": {
     "appellant": "RAJ KUMAR PRASAD",
@@ -11637,11 +11637,11 @@ const CASES_DB = {
   },
   "FA/227/2001": {
     "appellant": "STATE OF BIHAR and ORS",
-    "respondent": "M/S TRIMURTI CONSTRUCTION             MISCELLANEOUS PRAKASH KUMAR and ORS VS. DR.CHANDRA MOHAN PRASAD"
+    "respondent": "M/S TRIMURTI CONSTRUCTION"
   },
   "FA/240/2001": {
     "appellant": "PRAKASH KUMAR and ORS",
-    "respondent": "DR.CHANDRA MOHAN PRASAD"
+    "respondent": "DR.CHANDRA MOHAN PRASAD and ORS"
   },
   "FA/243/2001": {
     "appellant": "JAI PRAKASH PODDAR",
@@ -11657,11 +11657,11 @@ const CASES_DB = {
   },
   "FA/260/2001": {
     "appellant": "MOST.DEOKIDEVI and ORS",
-    "respondent": "MOST.SHEELA PANDEY and ORS            MISCELLANEOUS SRI VIJAWANT KUMAR CHOUDHARY VS. THE STATE OF BIHAR"
+    "respondent": "MOST.SHEELA PANDEY and ORS"
   },
   "FA/266/2001": {
     "appellant": "SRI VIJAWANT KUMAR CHOUDHARY",
-    "respondent": "THE STATE OF BIHAR"
+    "respondent": "THE STATE OF BIHAR and ANR"
   },
   "FA/272/2001": {
     "appellant": "LAKHAN PANDIT and ORS",
@@ -11669,15 +11669,15 @@ const CASES_DB = {
   },
   "FA/275/2001": {
     "appellant": "RAM SINGHASHAN SINGH and ORS",
-    "respondent": "JAIRAM SINGH YADAV"
+    "respondent": "JAIRAM SINGH YADAV and ORS"
   },
   "FA/285/2001": {
     "appellant": "BHARAT NARAYAN PRASAD and ORS",
-    "respondent": "SHAMBHU SHARAN"
+    "respondent": "SHAMBHU SHARAN and ORS"
   },
   "FA/286/2001": {
     "appellant": "SHASHI BHUSHAN SHARMA @ SHASHI",
-    "respondent": "MOSTT. SHEELA"
+    "respondent": "MOSTT. SHEELA PANDEY and ORS"
   },
   "FA/292/2001": {
     "appellant": "SAHEB LAL PANDIT",
@@ -11701,7 +11701,7 @@ const CASES_DB = {
   },
   "FA/310/2001": {
     "appellant": "RAJ KUMAR AWADHENDRA PRASAD NA",
-    "respondent": "SMT. UMESHWARI"
+    "respondent": "SMT. UMESHWARI KUER and ORS"
   },
   "FA/312/2001": {
     "appellant": "MD.HABIBUR RAHMAN",
@@ -11713,7 +11713,7 @@ const CASES_DB = {
   },
   "FA/317/2001": {
     "appellant": "CHAIRMAN,BIHAR STATE ELECTRICI",
-    "respondent": "SATENDRA PRASAD"
+    "respondent": "SATENDRA PRASAD SINGH"
   },
   "FA/320/2001": {
     "appellant": "RADHIKA DEVI",
@@ -11749,18 +11749,18 @@ const CASES_DB = {
   },
   "FA/368/2001": {
     "appellant": "NIRALA SAHKARI GRIH NIRNMAN L",
-    "respondent": "RAMRATI DEVI                   FORMAL"
+    "respondent": "RAMRATI DEVI"
   },
   "FA/371/2001": {
     "appellant": "NAND RAM PRASAD SINGH @ NAND R",
-    "respondent": "STATE BANK OF"
+    "respondent": "STATE BANK OF INDIA and ORS"
   },
   "FA/375/2001": {
     "appellant": "Arun Kumar",
     "respondent": "Smt. Niramal Devi"
   },
   "FA/381/2001": {
-    "appellant": "BIMLESHWAR SINGH and ORS",
+    "appellant": "BIMLESHWAR SINGH and ORS.",
     "respondent": "RAMKRIT SINGH and ORS"
   },
   "FA/423/2001": {
@@ -11769,7 +11769,7 @@ const CASES_DB = {
   },
   "FA/436/2001": {
     "appellant": "RAMA SHANKAR SINGH and ANR",
-    "respondent": "BINDHAYACHAL SINGH and"
+    "respondent": "BINDHAYACHAL SINGH and ORS"
   },
   "FA/441/2001": {
     "appellant": "ANANDI TANTI",
@@ -11777,34 +11777,34 @@ const CASES_DB = {
   },
   "FA/445/2001": {
     "appellant": "SAUKAT ALI and ORS",
-    "respondent": "RAJAB ALI NATIONAL THERMAL POWER CORPORA VS. PUNITA DEVI and"
+    "respondent": "RAJAB ALI"
   },
   "FA/449/2001": {
     "appellant": "NATIONAL THERMAL POWER CORPORA",
-    "respondent": "PUNITA DEVI and"
+    "respondent": "PUNITA DEVI and ANR"
   },
   "FA/545/2001": {
     "appellant": "NATIONAL THERMAL POWER CORPORA",
-    "respondent": "ASHIN MIAN and"
+    "respondent": "ASHIN MIAN and ANR"
   },
   "FA/546/2001": {
-    "appellant": "NATIONAL THERMAL POWER CORP",
+    "appellant": "NATIONAL THERMAL POWER CORP.",
     "respondent": "MAQBOOL ALI and ORS"
   },
   "FA/547/2001": {
     "appellant": "GENERAL MANAGER NTPC",
-    "respondent": "HARI MOHAN SINGH and ANR DHARAM NATH UPADHAYAY and ORS VS. TARKESHWAR"
+    "respondent": "HARI MOHAN SINGH and ANR"
   },
   "FA/549/2001": {
     "appellant": "DHARAM NATH UPADHAYAY and ORS",
-    "respondent": "TARKESHWAR"
+    "respondent": "TARKESHWAR UPADHAYA and ORS"
   },
   "FA/552/2001": {
     "appellant": "RAJKISHORE SINGH",
     "respondent": "KAMAL KISHORE SINGH and ORS"
   },
   "FA/553/2001": {
-    "appellant": "NATIONAL THERMAL POWER CORP",
+    "appellant": "NATIONAL THERMAL POWER CORP.",
     "respondent": "MAQBOOL ALI and ORS"
   },
   "FA/564/2001": {
@@ -11817,19 +11817,19 @@ const CASES_DB = {
   },
   "FA/574/2001": {
     "appellant": "RAM GOPALI YADAV @ RAM GOPAL Y",
-    "respondent": "RAM RATTI DEVI and"
+    "respondent": "RAM RATTI DEVI and ORS"
   },
   "FA/582/2001": {
     "appellant": "M/S LUX FOAM INDUSTRIES and ORS",
-    "respondent": "STATE BANK OF INDIA          MISCELLANEOUS SURENDRA PRASAD and ORS VS. RAM KISHORE PRASAD and"
+    "respondent": "STATE BANK OF INDIA"
   },
   "FA/597/2001": {
     "appellant": "SURENDRA PRASAD and ORS",
-    "respondent": "RAM KISHORE PRASAD and"
+    "respondent": "RAM KISHORE PRASAD and ORS"
   },
   "FA/609/2001": {
     "appellant": "GANESH PRASAD SINGH",
-    "respondent": "STATE OF BIHAR and ORS                   MISCELLANEOUS"
+    "respondent": "STATE OF BIHAR and ORS"
   },
   "FA/610/2001": {
     "appellant": "RAM NEHAL SINGH",
@@ -11837,7 +11837,7 @@ const CASES_DB = {
   },
   "FA/612/2001": {
     "appellant": "M/S MULTI ENGINEERING and SCIENT",
-    "respondent": "STATE OF BIHAR and"
+    "respondent": "STATE OF BIHAR and ORS"
   },
   "FA/614/2001": {
     "appellant": "Shatrughan Rai",
@@ -11845,7 +11845,7 @@ const CASES_DB = {
   },
   "FA/615/2001": {
     "appellant": "M/S ROHTAS MACHINERY STORE and O",
-    "respondent": "STATE BANK OF"
+    "respondent": "STATE BANK OF INDIA"
   },
   "FA/617/2001": {
     "appellant": "UNION OF INDIA and ORS",
@@ -11853,7 +11853,7 @@ const CASES_DB = {
   },
   "FA/621/2001": {
     "appellant": "PREM CHOUDHARY and ORS",
-    "respondent": "SHAILENDRA KUMAR and ANR              FORMAL"
+    "respondent": "SHAILENDRA KUMAR and ANR"
   },
   "FA/625/2001": {
     "appellant": "MANJU DEVI",
@@ -11877,11 +11877,11 @@ const CASES_DB = {
   },
   "FA/19/2002": {
     "appellant": "ATUL KISHORE",
-    "respondent": "CENTRAL BANK OF INDIA SRI RAMESHWAR SINGH and ANR VS. RAMASHRAY SINGH and"
+    "respondent": "CENTRAL BANK OF INDIA"
   },
   "FA/29/2002": {
     "appellant": "SRI RAMESHWAR SINGH and ANR",
-    "respondent": "RAMASHRAY SINGH and"
+    "respondent": "RAMASHRAY SINGH and ORS"
   },
   "FA/47/2002": {
     "appellant": "MOST.CHUNIA KUER",
@@ -11897,11 +11897,11 @@ const CASES_DB = {
   },
   "FA/97/2002": {
     "appellant": "SATENDRA SINGH and ORS",
-    "respondent": "SRI UMESH PRASAD SING and"
+    "respondent": "SRI UMESH PRASAD SING and ORS"
   },
   "FA/106/2002": {
     "appellant": "M/S NATIONAL INDUSTRIES and ANR",
-    "respondent": "SRI MOTI LAL KHATAN"
+    "respondent": "SRI MOTI LAL KHATAN and ORS"
   },
   "FA/111/2002": {
     "appellant": "BINDA SINGH",
@@ -11913,7 +11913,7 @@ const CASES_DB = {
   },
   "FA/137/2002": {
     "appellant": "PUNJAB STATE ELECTRICITY BOARD",
-    "respondent": "M/S SINGHANIA"
+    "respondent": "M/S SINGHANIA INDUSTRIES and ORS"
   },
   "FA/158/2002": {
     "appellant": "MEGHA SINGH and ORS",
@@ -11933,7 +11933,7 @@ const CASES_DB = {
   },
   "FA/192/2002": {
     "appellant": "BIHAR RAJYA PULNIRMAN NIGAM",
-    "respondent": "RAM PADARATH RAI and"
+    "respondent": "RAM PADARATH RAI and ORS"
   },
   "FA/201/2002": {
     "appellant": "BIBI ASHMA BEGUM and ORS",
@@ -11945,11 +11945,11 @@ const CASES_DB = {
   },
   "FA/211/2002": {
     "appellant": "STATE OF BIHAR and ORS",
-    "respondent": "M/S JAIN IRRIGATION SYSTEM"
+    "respondent": "M/S JAIN IRRIGATION SYSTEM LTD"
   },
   "FA/212/2002": {
     "appellant": "SHIV PUJAN DEVI and ORS",
-    "respondent": "LALITA DEVI and ORS                   MISCELLANEOUS"
+    "respondent": "LALITA DEVI and ORS"
   },
   "FA/215/2002": {
     "appellant": "Pancham Sao",
@@ -11977,7 +11977,7 @@ const CASES_DB = {
   },
   "FA/245/2002": {
     "appellant": "YASODA DEVI and ANR",
-    "respondent": "SHRIMAN NARAYAN JHA @ DOCTOR"
+    "respondent": "SHRIMAN NARAYAN JHA @ DOCTOR S"
   },
   "FA/246/2002": {
     "appellant": "VIDYANAND JHA",
@@ -12001,7 +12001,7 @@ const CASES_DB = {
   },
   "FA/263/2002": {
     "appellant": "SHATRUGHAN PRASAD SHARMA and ANR",
-    "respondent": "STATE BANK OF"
+    "respondent": "STATE BANK OF INDIA"
   },
   "FA/264/2002": {
     "appellant": "Mahendra Narayan Prasad",
@@ -12013,15 +12013,15 @@ const CASES_DB = {
   },
   "FA/269/2002": {
     "appellant": "SMT.SONIYA DEVI and ORS",
-    "respondent": "SHARASHWATI DEVI and ORS RAJ BANSHI PRASAD SUMAN and ANR VS. CENTRAL BANK OF"
+    "respondent": "SHARASHWATI DEVI and ORS"
   },
   "FA/270/2002": {
     "appellant": "RAJ BANSHI PRASAD SUMAN and ANR",
-    "respondent": "CENTRAL BANK OF"
+    "respondent": "CENTRAL BANK OF INDIA and ORS"
   },
   "FA/272/2002": {
     "appellant": "SHEO SHANKAR PRASAD KESHRI",
-    "respondent": "CENTRAL BANK OF INDIA"
+    "respondent": "CENTRAL BANK OF INDIA and ORS"
   },
   "FA/275/2002": {
     "appellant": "KHUSDIL DEVI andORS",
@@ -12041,7 +12041,7 @@ const CASES_DB = {
   },
   "FA/405/2002": {
     "appellant": "STATE OF BIHAR and ORS",
-    "respondent": "SHREE BIRENDRA KUMAR GUPTA"
+    "respondent": "SHREE BIRENDRA KUMAR GUPTA and O"
   },
   "FA/419/2002": {
     "appellant": "DEEPAK THAKUR",
@@ -12049,7 +12049,7 @@ const CASES_DB = {
   },
   "FA/424/2002": {
     "appellant": "LURI MANDAL and ORS",
-    "respondent": "ABDHESH PRASAD MANDAL and"
+    "respondent": "ABDHESH PRASAD MANDAL and ORS"
   },
   "FA/1/2003": {
     "appellant": "STATE OF BIHAR and ORS",
@@ -12069,15 +12069,15 @@ const CASES_DB = {
   },
   "FA/36/2003": {
     "appellant": "STATE OF BIHAR and ORS",
-    "respondent": "SHANKAR PRASAD SINGH and"
+    "respondent": "SHANKAR PRASAD SINGH and ORS"
   },
   "FA/37/2003": {
     "appellant": "ARTI SAHAY @ ARTI KUMARI",
-    "respondent": "PROMOD KUMAR VERMA SURISTH NARAYAN PANDEY and ORS VS. VIDYASAGAR"
+    "respondent": "PROMOD KUMAR VERMA"
   },
   "FA/39/2003": {
     "appellant": "SURISTH NARAYAN PANDEY and ORS",
-    "respondent": "VIDYASAGAR"
+    "respondent": "VIDYASAGAR UPADHYAY and ORS"
   },
   "FA/47/2003": {
     "appellant": "STATE OF BIHAR and ORS",
@@ -12101,7 +12101,7 @@ const CASES_DB = {
   },
   "FA/87/2003": {
     "appellant": "INDRADEO PRASAD SINHA and ORS",
-    "respondent": "RAJENDRA PRASAD"
+    "respondent": "RAJENDRA PRASAD SINHA and ORS"
   },
   "FA/92/2003": {
     "appellant": "BIBI AIYESHA KHATOON",
@@ -12117,7 +12117,7 @@ const CASES_DB = {
   },
   "FA/115/2003": {
     "appellant": "DHANPAT PRASAD GUPTA and ORS",
-    "respondent": "NARENDRA SINGH and"
+    "respondent": "NARENDRA SINGH and ORSS"
   },
   "FA/121/2003": {
     "appellant": "Mosmat Utimraj Devi",
@@ -12125,7 +12125,7 @@ const CASES_DB = {
   },
   "FA/127/2003": {
     "appellant": "VEER KISHORE SINGH and ORS",
-    "respondent": "DINESHWAR SINGH and"
+    "respondent": "DINESHWAR SINGH and ORS"
   },
   "FA/128/2003": {
     "appellant": "ZAHIDA BEGUM and ORS",
@@ -12133,15 +12133,15 @@ const CASES_DB = {
   },
   "FA/129/2003": {
     "appellant": "CHHABI NATH MISHRA and ORS",
-    "respondent": "MOST.PADMAWATI and ORS BALRAM CHOUDHARY VS. KRISHNA NARAYAN CHOUDHARY and"
+    "respondent": "MOST.PADMAWATI and ORS"
   },
   "FA/130/2003": {
     "appellant": "BALRAM CHOUDHARY",
-    "respondent": "KRISHNA NARAYAN CHOUDHARY and"
+    "respondent": "KRISHNA NARAYAN CHOUDHARY and OR"
   },
   "FA/137/2003": {
     "appellant": "CHANDRA SHEKHAR PRASAD SAH",
-    "respondent": "GOPAL CHANDRA SAH"
+    "respondent": "GOPAL CHANDRA SAH and ANR"
   },
   "FA/147/2003": {
     "appellant": "MOST.SONA DEVI",
@@ -12177,7 +12177,7 @@ const CASES_DB = {
   },
   "FA/189/2003": {
     "appellant": "SIDHESHWAR NATH SUMAN and ORS",
-    "respondent": "PRABHAT CHANDRA"
+    "respondent": "PRABHAT CHANDRA SINHA and ORS"
   },
   "FA/202/2003": {
     "appellant": "BIBI LAILUNNESHA",
@@ -12185,23 +12185,23 @@ const CASES_DB = {
   },
   "FA/205/2003": {
     "appellant": "SUDHIR KUMAR YADAV @ SUDHIR K",
-    "respondent": "MAHADEO PRASAD"
+    "respondent": "MAHADEO PRASAD YADAV @ MAHADEO"
   },
   "FA/207/2003": {
     "appellant": "BIBI ANGURI BEGAM and ORS",
-    "respondent": "MOST.BIBI SONI and ORS BIHAR STATE ELECTRICITY BOARD VS. AMARJEET"
+    "respondent": "MOST.BIBI SONI and ORS"
   },
   "FA/226/2003": {
     "appellant": "BIHAR STATE ELECTRICITY BOARD",
-    "respondent": "AMARJEET"
+    "respondent": "AMARJEET ENTERPRISES and ANR"
   },
   "FA/229/2003": {
     "appellant": "STATE OF BIHAR",
-    "respondent": "MANOJ KUMAR and ORS MUNNA GOPE @ MUNNA RAI and ORS VS. STATE OF BIHAR and"
+    "respondent": "MANOJ KUMAR and ORS"
   },
   "FA/239/2003": {
     "appellant": "MUNNA GOPE @ MUNNA RAI and ORS",
-    "respondent": "STATE OF BIHAR and"
+    "respondent": "STATE OF BIHAR and ORS"
   },
   "FA/246/2003": {
     "appellant": "BALIRAM TIWARY",
@@ -12225,11 +12225,11 @@ const CASES_DB = {
   },
   "FA/305/2003": {
     "appellant": "M/S GUPTA BHANDAR and ORS",
-    "respondent": "STATE BANK OF INDIA and"
+    "respondent": "STATE BANK OF INDIA and ORS"
   },
   "FA/309/2003": {
     "appellant": "SK.MAZZAMILUR RAHMAN @ SK.MUJJ",
-    "respondent": "STATE OF BIHAR and"
+    "respondent": "STATE OF BIHAR and ANR"
   },
   "FA/312/2003": {
     "appellant": "Nand Rani Devi",
@@ -12237,27 +12237,27 @@ const CASES_DB = {
   },
   "FA/320/2003": {
     "appellant": "SMT.MEENA SINGH @ MEENA KUMARI",
-    "respondent": "SMT.CHANDANI DEVI"
+    "respondent": "SMT.CHANDANI DEVI CHAUDHARY"
   },
   "FA/327/2003": {
     "appellant": "Sk. Khurshed Ali",
     "respondent": "Md. Ismail"
   },
   "FA/331/2003": {
-    "appellant": "FOR HEARING undertaking",
-    "respondent": "M/s. Associated Transport Company"
+    "appellant": "Pyrites Phosphates and Chemicals Limited (A Government of India undertaking),",
+    "respondent": "M/s. Associated Transport Company,"
   },
   "FA/332/2003": {
-    "appellant": "undertaking",
-    "respondent": "M/s. Associated Transport Company"
+    "appellant": "MOTILAL BHAGAT",
+    "respondent": "STATE OF BIHAR and ORS"
   },
   "FA/338/2003": {
     "appellant": "BIHAR HINDI RELIGIOUS TRUST BO",
-    "respondent": "RAM PRASAD YADAV"
+    "respondent": "RAM PRASAD YADAV and ORS"
   },
   "FA/342/2003": {
     "appellant": "SANDEEP KUMAR CHAND",
-    "respondent": "USHA CHAND and ORS                                MISCELLANEOUS"
+    "respondent": "USHA CHAND and ORS"
   },
   "FA/345/2003": {
     "appellant": "SUGANDHA SHARMA",
@@ -12265,7 +12265,7 @@ const CASES_DB = {
   },
   "FA/347/2003": {
     "appellant": "SANDEEP KUMAR CHAND",
-    "respondent": "USHA CHAND and ORS                                MISCELLANEOUS"
+    "respondent": "USHA CHAND and ORS"
   },
   "FA/348/2003": {
     "appellant": "RATNA DEVI and ORS",
@@ -12273,7 +12273,7 @@ const CASES_DB = {
   },
   "FA/349/2003": {
     "appellant": "SATENDRA SINGH and ORS",
-    "respondent": "UMESH PRASAD SINGH and"
+    "respondent": "UMESH PRASAD SINGH and ORS"
   },
   "FA/353/2003": {
     "appellant": "KAMINI DEVI",
@@ -12317,7 +12317,7 @@ const CASES_DB = {
   },
   "FA/382/2003": {
     "appellant": "PRINCIPAL ,PURNEA COLLEGE and OR",
-    "respondent": "LALA AMRENDRA"
+    "respondent": "LALA AMRENDRA SINHA"
   },
   "FA/1/2004": {
     "appellant": "SHRI RAM PANDIT and ANR",
@@ -12325,11 +12325,11 @@ const CASES_DB = {
   },
   "FA/5/2004": {
     "appellant": "VINOD PRASAD SAH",
-    "respondent": "SMT.DWVWATI DEVI and ORS                     MISCELLANEOUS BIHAR RENEWABLE ENERGY DEVELOP VS. M/S BHARAT"
+    "respondent": "SMT.DWVWATI DEVI and ORS"
   },
   "FA/15/2004": {
     "appellant": "BIHAR RENEWABLE ENERGY DEVELOP",
-    "respondent": "M/S BHARAT"
+    "respondent": "M/S BHARAT AGRICULTURE and MECHA"
   },
   "FA/20/2004": {
     "appellant": "NTPC KAHALGAON, BHAGALPUR",
@@ -12337,7 +12337,7 @@ const CASES_DB = {
   },
   "FA/22/2004": {
     "appellant": "NTPC, KAHALGAON",
-    "respondent": "SATYA NARAYAN YADAV and ANR                   FORMAL"
+    "respondent": "SATYA NARAYAN YADAV and ANR"
   },
   "FA/31/2004": {
     "appellant": "SARYUG BIND",
@@ -12349,7 +12349,7 @@ const CASES_DB = {
   },
   "FA/36/2004": {
     "appellant": "GENERAL MANAGER ,NTPC,KAHALGAO",
-    "respondent": "RAGHU RAVIDAS"
+    "respondent": "RAGHU RAVIDAS and ORS"
   },
   "FA/37/2004": {
     "appellant": "MOST.MAYAPATI KUER and ANR",
@@ -12365,19 +12365,19 @@ const CASES_DB = {
   },
   "FA/42/2004": {
     "appellant": "DEVENDRA PRASAD",
-    "respondent": "SMT.KUSUM KUMARI                              MISCELLANEOUS"
+    "respondent": "SMT.KUSUM KUMARI"
   },
   "FA/47/2004": {
     "appellant": "INDRA BHUSHAN TIWARI",
-    "respondent": "BABU KUMARI @ BABI KUMARI                MISCELLANEOUS BIHAR STATE SUNNI AWQF BOARD and VS. ANISH SHAH and"
+    "respondent": "BABU KUMARI @ BABI KUMARI"
   },
   "FA/48/2004": {
     "appellant": "BIHAR STATE SUNNI AWQF BOARD and",
-    "respondent": "ANISH SHAH and"
+    "respondent": "ANISH SHAH and ORS"
   },
   "FA/88/2004": {
     "appellant": "THE STATE OF BIHAR and ANR",
-    "respondent": "MOHAN LAL BHUTORIA and"
+    "respondent": "MOHAN LAL BHUTORIA and ORS"
   },
   "FA/89/2004": {
     "appellant": "ANUPLAL THAKUR and ORS",
@@ -12405,7 +12405,7 @@ const CASES_DB = {
   },
   "FA/124/2004": {
     "appellant": "NARENDRA KUMAR SINGH",
-    "respondent": "ESTATE OF LATE NAGINA SINGH"
+    "respondent": "ESTATE OF LATE NAGINA SINGH and"
   },
   "FA/125/2004": {
     "appellant": "MOST.SARASWATI DEVI and ORS",
@@ -12413,7 +12413,7 @@ const CASES_DB = {
   },
   "FA/126/2004": {
     "appellant": "BHARAT BHUSHAN VERMA and ORS",
-    "respondent": "KAMESHWAR SINGH"
+    "respondent": "KAMESHWAR SINGH and ORS"
   },
   "FA/128/2004": {
     "appellant": "STATE OF BIHAR and ORS",
@@ -12429,7 +12429,7 @@ const CASES_DB = {
   },
   "FA/146/2004": {
     "appellant": "SUSHMA CHAAURASIA @ MOST.SUSHM",
-    "respondent": "JAGDISH PRASAD"
+    "respondent": "JAGDISH PRASAD BHAGAT and ORS"
   },
   "FA/157/2004": {
     "appellant": "BAIJU PRASAD and ANR",
@@ -12437,15 +12437,15 @@ const CASES_DB = {
   },
   "FA/159/2004": {
     "appellant": "STATE OF BIHAR",
-    "respondent": "SMT.GOWNAMMA and ORS                           FORMAL"
+    "respondent": "SMT.GOWNAMMA and ORS"
   },
   "FA/160/2004": {
     "appellant": "MAHANTH SADHU SHARAN DAS",
-    "respondent": "SRI SAD GURU KABIR"
+    "respondent": "SRI SAD GURU KABIR ASHRAM and OR"
   },
   "FA/165/2004": {
     "appellant": "BAIDNATH SAH @ BAIJNATH SAH and",
-    "respondent": "MAHENDRA SAH and"
+    "respondent": "MAHENDRA SAH and ORS"
   },
   "FA/170/2004": {
     "appellant": "Jitendra Kumar Singh",
@@ -12453,11 +12453,11 @@ const CASES_DB = {
   },
   "FA/181/2004": {
     "appellant": "SRI MOTI DAS JI",
-    "respondent": "SRI SWAMI HARI NANDAN BABA and ORS"
+    "respondent": "SRI SWAMI HARI NANDAN BABA and ORS."
   },
   "FA/191/2004": {
     "appellant": "BIDYA NAND THAKUR @ BIDYA NAND",
-    "respondent": "Most. Parmila Devi and"
+    "respondent": "Most. Parmila Devi and Ors"
   },
   "FA/212/2004": {
     "appellant": "DR.UDAY KANT MISHRA",
@@ -12473,7 +12473,7 @@ const CASES_DB = {
   },
   "FA/221/2004": {
     "appellant": "BIHAR STATE ELECTRICITY BOARD",
-    "respondent": "M/S HARINAGAR SUGAR"
+    "respondent": "M/S HARINAGAR SUGAR MILLS LTD."
   },
   "FA/224/2004": {
     "appellant": "RINKI RANI SINGH and ANR",
@@ -12485,15 +12485,15 @@ const CASES_DB = {
   },
   "FA/242/2004": {
     "appellant": "RAJENDRA SINGH @ RAJENDRA SING",
-    "respondent": "GANGA PRASAD"
+    "respondent": "GANGA PRASAD SINGH and ANR"
   },
   "FA/245/2004": {
     "appellant": "AMRENDRA DHWAJ SINGH and ANR",
-    "respondent": "PREM KUMAR SINGH                  MISCELLANEOUS DAYANAND MAHTO @ DAYALUJEE and A VS. SMT. CHANDAN"
+    "respondent": "PREM KUMAR SINGH"
   },
   "FA/246/2004": {
     "appellant": "DAYANAND MAHTO @ DAYALUJEE and A",
-    "respondent": "SMT. CHANDAN"
+    "respondent": "SMT. CHANDAN MISHRA"
   },
   "FA/248/2004": {
     "appellant": "Chamak Lal Mandal",
@@ -12505,11 +12505,11 @@ const CASES_DB = {
   },
   "FA/258/2004": {
     "appellant": "GOPAL PRASAD and ORS",
-    "respondent": "KAILASH CHAND MITHILA BIHARI YADAV and ORS VS. THE STATE OF BIHAR and"
+    "respondent": "KAILASH CHAND"
   },
   "FA/265/2004": {
     "appellant": "MITHILA BIHARI YADAV and ORS",
-    "respondent": "THE STATE OF BIHAR and"
+    "respondent": "THE STATE OF BIHAR and ANR"
   },
   "FA/267/2004": {
     "appellant": "SYED QUAIS ALI and ANR",
@@ -12521,11 +12521,11 @@ const CASES_DB = {
   },
   "FA/276/2004": {
     "appellant": "SIWANI CHOUDHARY",
-    "respondent": "PANKAJ KUMAR CHOUDHARY                        MISCELLANEOUS BISHWA NATH UPADHYAY and ORS VS. TARKESHWAR"
+    "respondent": "PANKAJ KUMAR CHOUDHARY"
   },
   "FA/282/2004": {
     "appellant": "BISHWA NATH UPADHYAY and ORS",
-    "respondent": "TARKESHWAR"
+    "respondent": "TARKESHWAR UPADHYAY and ORS"
   },
   "FA/292/2004": {
     "appellant": "SMT.RAMA DEVI @ RAM RAJI DEVI",
@@ -12537,7 +12537,7 @@ const CASES_DB = {
   },
   "FA/300/2004": {
     "appellant": "RAM CHANDRA PANDEY and ANR",
-    "respondent": "KRISHNAWATI DEVI @"
+    "respondent": "KRISHNAWATI DEVI @ KUNKUN DEVI"
   },
   "FA/305/2004": {
     "appellant": "RAM SAGAR SINGH",
@@ -12557,11 +12557,11 @@ const CASES_DB = {
   },
   "FA/320/2004": {
     "appellant": "AMBIKA PRASAD",
-    "respondent": "SMT.RADHA DEVI and ORS BINDESHWARI @ BINDESHWAR TIWAR VS. JAGANNATH PATHAK"
+    "respondent": "SMT.RADHA DEVI and ORS"
   },
   "FA/330/2004": {
     "appellant": "BINDESHWARI @ BINDESHWAR TIWAR",
-    "respondent": "JAGANNATH PATHAK"
+    "respondent": "JAGANNATH PATHAK and ANR"
   },
   "FA/332/2004": {
     "appellant": "PAPPU KUMAR SINGH",
@@ -12569,11 +12569,11 @@ const CASES_DB = {
   },
   "FA/335/2004": {
     "appellant": "BHOLA PANDEY @ CHANDRA DEO PAN",
-    "respondent": "RAM NARAYAN"
+    "respondent": "RAM NARAYAN CHOUDHARY and ORS"
   },
   "FA/336/2004": {
     "appellant": "BIHAR RAJYA BEEJ NIGAM LIMITED",
-    "respondent": "M/S JAI SHREE UDYOG             MISCELLANEOUS"
+    "respondent": "M/S JAI SHREE UDYOG"
   },
   "FA/339/2004": {
     "appellant": "Mostt. Mithilesh Devi @ Ojivi",
@@ -12593,15 +12593,15 @@ const CASES_DB = {
   },
   "FA/27/2005": {
     "appellant": "SUMITRA DEVI and ORS",
-    "respondent": "SATYA NARAAN YADAV and ORS                MISCELLANEOUS DISTRICT MANAGER, P.K.ACHARJEE VS. GENERAL MANAGER"
+    "respondent": "SATYA NARAAN YADAV and ORS"
   },
   "FA/30/2005": {
     "appellant": "DISTRICT MANAGER, P.K.ACHARJEE",
-    "respondent": "GENERAL MANAGER"
+    "respondent": "GENERAL MANAGER and ORS"
   },
   "FA/34/2005": {
     "appellant": "CHUNCHUN SINGH",
-    "respondent": "PARMANAND SINGH and ORS                         MISCELLANEOUS"
+    "respondent": "PARMANAND SINGH and ORS"
   },
   "FA/40/2005": {
     "appellant": "KAPIL PRASAD",
@@ -12609,15 +12609,15 @@ const CASES_DB = {
   },
   "FA/45/2005": {
     "appellant": "PARMESHWAR SINGH @ PARMESHWAR",
-    "respondent": "HARE KRISHNA"
+    "respondent": "HARE KRISHNA SINGH and ORS"
   },
   "FA/47/2005": {
     "appellant": "SHEO PUJAN SINGH and ORS",
-    "respondent": "DULHIN PABITRA DEVI and"
+    "respondent": "DULHIN PABITRA DEVI and ORS"
   },
   "FA/50/2005": {
     "appellant": "BIHAR STATE ELECTRICITY BOARD",
-    "respondent": "RAJENDRA PRASAD"
+    "respondent": "RAJENDRA PRASAD BHAGAT"
   },
   "FA/58/2005": {
     "appellant": "ALOK KUMAR",
@@ -12641,7 +12641,7 @@ const CASES_DB = {
   },
   "FA/74/2005": {
     "appellant": "THE SECRETARY ,COMMUNIST PARTY",
-    "respondent": "ALOK KUMAR and"
+    "respondent": "ALOK KUMAR and ORS"
   },
   "FA/90/2005": {
     "appellant": "VIKARMA SINGH",
@@ -12661,11 +12661,11 @@ const CASES_DB = {
   },
   "FA/120/2005": {
     "appellant": "RAM BABU SINGH and ORS",
-    "respondent": "DEV NARAIN SINGH and ORS BALBHADRA SINGH @ BALBHADRA NA VS. RAM BINOD SINGH"
+    "respondent": "DEV NARAIN SINGH and ORS"
   },
   "FA/132/2005": {
     "appellant": "BALBHADRA SINGH @ BALBHADRA NA",
-    "respondent": "RAM BINOD SINGH"
+    "respondent": "RAM BINOD SINGH and ORS"
   },
   "FA/134/2005": {
     "appellant": "MAHENDRA RAY and ORS",
@@ -12673,23 +12673,23 @@ const CASES_DB = {
   },
   "FA/137/2005": {
     "appellant": "SMT.VEENA DEVI and ANR",
-    "respondent": "ISHWAR CHANDRA JHA                   MISCELLANEOUS NAGENDRA KUMAR YADAV @ NARENDR VS. RAJENDRA"
+    "respondent": "ISHWAR CHANDRA JHA"
   },
   "FA/138/2005": {
     "appellant": "NAGENDRA KUMAR YADAV @ NARENDR",
-    "respondent": "RAJENDRA"
+    "respondent": "RAJENDRA PRASAD YADAV and ANR"
   },
   "FA/140/2005": {
     "appellant": "AWADHESH KUMAR BARNWAL and ORS",
-    "respondent": "HARIHAR PRASAD"
+    "respondent": "HARIHAR PRASAD and ORS"
   },
   "FA/142/2005": {
     "appellant": "POONAM DEVI",
-    "respondent": "TEJ PRATAP SINGH and ORS                        FORMAL"
+    "respondent": "TEJ PRATAP SINGH and ORS"
   },
   "FA/143/2005": {
     "appellant": "NAGESHWAR PRASAD and ORS",
-    "respondent": "BHAGIRATH MAHTO and"
+    "respondent": "BHAGIRATH MAHTO and ORS"
   },
   "FA/148/2005": {
     "appellant": "JAI HIND KUMAR",
@@ -12697,27 +12697,27 @@ const CASES_DB = {
   },
   "FA/150/2005": {
     "appellant": "HARSHIT PRASAD SINGH",
-    "respondent": "MURARI PRASAD SINGH and ORS            MISCELLANEOUS"
+    "respondent": "MURARI PRASAD SINGH and ORS"
   },
   "FA/154/2005": {
     "appellant": "RAM SURESH CHOUDHARY and ORS",
     "respondent": "SMT.MANTI DEVI"
   },
   "FA/175/2005": {
-    "appellant": "M/S ESCORTS LTD",
+    "appellant": "M/S ESCORTS LTD.",
     "respondent": "PUNJAB NATION BANK and ORS"
   },
   "FA/177/2005": {
     "appellant": "UGRA NARAYAN YADAV and ORS",
-    "respondent": "PANCH LAL YADAV and"
+    "respondent": "PANCH LAL YADAV and ORS"
   },
   "FA/179/2005": {
     "appellant": "FAGUNI SAH",
-    "respondent": "STATE OF BIHAR SRI RAMESHWAR SINGH and ORS VS. SMT.LAKHMATI DEVI and"
+    "respondent": "STATE OF BIHAR"
   },
   "FA/183/2005": {
     "appellant": "SRI RAMESHWAR SINGH and ORS",
-    "respondent": "SMT.LAKHMATI DEVI and"
+    "respondent": "SMT.LAKHMATI DEVI and ORS"
   },
   "FA/186/2005": {
     "appellant": "BANARSI SINGH and ORS",
@@ -12737,15 +12737,15 @@ const CASES_DB = {
   },
   "FA/202/2005": {
     "appellant": "BIRENDRA KUMAR MEHRA and ORS",
-    "respondent": "GYANENDRA KUMAR"
+    "respondent": "GYANENDRA KUMAR MEHRA"
   },
   "FA/203/2005": {
     "appellant": "SAROJ AGWARAL",
-    "respondent": "DR.VINAY KUMAR AJAY KUMAR YADAV and ORS VS. ASHOK KUMAR YADAV and"
+    "respondent": "DR.VINAY KUMAR"
   },
   "FA/226/2005": {
     "appellant": "AJAY KUMAR YADAV and ORS",
-    "respondent": "ASHOK KUMAR YADAV and"
+    "respondent": "ASHOK KUMAR YADAV and ORS"
   },
   "FA/230/2005": {
     "appellant": "MARKANDEY PANDEY and ANR",
@@ -12757,11 +12757,11 @@ const CASES_DB = {
   },
   "FA/238/2005": {
     "appellant": "MAHTAB LAL RAI",
-    "respondent": "M/S PUNJAB NATIONAL BANK and ORS                  MISCELLANEOUS STATE OF BIHAR THROUGH THE COL VS. CHOUDHARY MAKHAN"
+    "respondent": "M/S PUNJAB NATIONAL BANK and ORS"
   },
   "FA/241/2005": {
     "appellant": "STATE OF BIHAR THROUGH THE COL",
-    "respondent": "CHOUDHARY MAKHAN"
+    "respondent": "CHOUDHARY MAKHAN PRASAD SINGH"
   },
   "FA/242/2005": {
     "appellant": "STTAE OF BIHAR and ANR",
@@ -12769,7 +12769,7 @@ const CASES_DB = {
   },
   "FA/247/2005": {
     "appellant": "BAIDYANATH RAM",
-    "respondent": "STATE OF BIHAR                                    FORMAL"
+    "respondent": "STATE OF BIHAR"
   },
   "FA/248/2005": {
     "appellant": "KAMLESHSHARMA",
@@ -12777,7 +12777,7 @@ const CASES_DB = {
   },
   "FA/251/2005": {
     "appellant": "BIBI AKHTARI BANO @ AKHTARI BA",
-    "respondent": "SAMA PARVEEN and"
+    "respondent": "SAMA PARVEEN and ORS"
   },
   "FA/265/2005": {
     "appellant": "SMT.SABITA DEVI and ORS",
@@ -12785,7 +12785,7 @@ const CASES_DB = {
   },
   "FA/268/2005": {
     "appellant": "SIYA RAM YADAV and ANR",
-    "respondent": "BINDA YADAV                               FORMAL"
+    "respondent": "BINDA YADAV"
   },
   "FA/269/2005": {
     "appellant": "CHANDRIKA SINGH and ORS",
@@ -12801,7 +12801,7 @@ const CASES_DB = {
   },
   "FA/284/2005": {
     "appellant": "SHARDA RANJAN PRASAD and ORS",
-    "respondent": "RAJIV RANJAN PRASAD"
+    "respondent": "RAJIV RANJAN PRASAD and ORS"
   },
   "FA/287/2005": {
     "appellant": "MITHILESH KUMAR",
@@ -12809,7 +12809,7 @@ const CASES_DB = {
   },
   "FA/288/2005": {
     "appellant": "Jagdish Mishra",
-    "respondent": "The State of Bihar"
+    "respondent": "The State of Bihar,"
   },
   "FA/289/2005": {
     "appellant": "THE STATE OF BIHAR THROUGH THE",
@@ -12817,7 +12817,7 @@ const CASES_DB = {
   },
   "FA/295/2005": {
     "appellant": "JASHODA DEVI",
-    "respondent": "RADHA DEVI                                          MISCELLANEOUS"
+    "respondent": "RADHA DEVI"
   },
   "FA/296/2005": {
     "appellant": "JAI KANT CHOUDHARY",
@@ -12825,15 +12825,15 @@ const CASES_DB = {
   },
   "FA/297/2005": {
     "appellant": "MD.SULTAN AHMAD and ORS",
-    "respondent": "MD.KAMALUDDIN and ORS BASUDEO PRASAD SHARMA and ANR VS. TRIPURARI MOHAN"
+    "respondent": "MD.KAMALUDDIN and ORS"
   },
   "FA/313/2005": {
     "appellant": "BASUDEO PRASAD SHARMA and ANR",
-    "respondent": "TRIPURARI MOHAN"
+    "respondent": "TRIPURARI MOHAN SHARMA and ORS"
   },
   "FA/7/2006": {
     "appellant": "GENERAL MANAGER OF RAILWAY DEP",
-    "respondent": "KRIPA SHANKAR"
+    "respondent": "KRIPA SHANKAR SHUKLA and ANR"
   },
   "FA/9/2006": {
     "appellant": "BACHCHAN DEVI",
@@ -12853,7 +12853,7 @@ const CASES_DB = {
   },
   "FA/31/2006": {
     "appellant": "AMIT KUMAR and ORS",
-    "respondent": "SANJAY KUMAR and ORS                          MISCELLANEOUS"
+    "respondent": "SANJAY KUMAR and ORS"
   },
   "FA/32/2006": {
     "appellant": "RAJESH KUMAR PRASAD",
@@ -12864,11 +12864,11 @@ const CASES_DB = {
     "respondent": "STATE OF BIHAR and ORS"
   },
   "FA/41/2006": {
-    "appellant": "Kailash Chaudhary @ Kailash Prasad Chaudhary",
-    "respondent": "Birendra"
+    "appellant": "Kailash Chaudhary @ Kailash Prasad Chaudhary,",
+    "respondent": "Birendra Chaudhary"
   },
   "FA/48/2006": {
-    "appellant": "Arjun Prasad",
+    "appellant": "Arjun Prasad,",
     "respondent": "SARYU PRASAD"
   },
   "FA/50/2006": {
@@ -12877,15 +12877,15 @@ const CASES_DB = {
   },
   "FA/54/2006": {
     "appellant": "JAGDISH YADAV and ORS",
-    "respondent": "PUNJAB NATIONAL BANK and ORS               MISCELLANEOUS"
+    "respondent": "PUNJAB NATIONAL BANK and ORS"
   },
   "FA/59/2006": {
     "appellant": "VIJAY KUMAR PRASAD and ANR",
-    "respondent": "BALESHWAR PRASAD SAH          09       UP BHOLA PRASAD SINGH and ORS VS. LALLAN KUMAR SINGH and"
+    "respondent": "BALESHWAR PRASAD SAH"
   },
   "FA/73/2006": {
     "appellant": "BHOLA PRASAD SINGH and ORS",
-    "respondent": "LALLAN KUMAR SINGH and"
+    "respondent": "LALLAN KUMAR SINGH and ORS"
   },
   "FA/74/2006": {
     "appellant": "CHANDRAGUPT MOURYA",
@@ -12905,7 +12905,7 @@ const CASES_DB = {
   },
   "FA/91/2006": {
     "appellant": "SHEO PUJAN YADAV and ANR",
-    "respondent": "PARMESHWAR YADAV and"
+    "respondent": "PARMESHWAR YADAV and ORS"
   },
   "FA/94/2006": {
     "appellant": "Kamal Deo Singh",
@@ -12913,7 +12913,7 @@ const CASES_DB = {
   },
   "FA/95/2006": {
     "appellant": "MOSTT.DHANESHWARI DEVI and ORS",
-    "respondent": "BIJAY KUMAR SAH"
+    "respondent": "BIJAY KUMAR SAH and ORS"
   },
   "FA/97/2006": {
     "appellant": "Sardar Harbhajan Singh",
@@ -12925,7 +12925,7 @@ const CASES_DB = {
   },
   "FA/101/2006": {
     "appellant": "BIHAR STATE ELECTRICITY BOARD",
-    "respondent": "M/S MAGADH WIRE"
+    "respondent": "M/S MAGADH WIRE PRODUCT and ORS"
   },
   "FA/105/2006": {
     "appellant": "CHANDESHWAR PRASAD and ORS",
@@ -12945,23 +12945,23 @@ const CASES_DB = {
   },
   "FA/129/2006": {
     "appellant": "PRINCIPAL JAWAHAR NAVODAYA VID",
-    "respondent": "RAM LAL PRASAD and"
+    "respondent": "RAM LAL PRASAD and ORS"
   },
   "FA/132/2006": {
     "appellant": "RAMDULAR SINGH @ DULAR SINGH and",
-    "respondent": "GOKULA SING and"
+    "respondent": "GOKULA SING and ORS"
   },
   "FA/133/2006": {
     "appellant": "STATE OF BIHAR",
-    "respondent": "ASHOK KUMAR GUPTA                         FORMAL"
+    "respondent": "ASHOK KUMAR GUPTA"
   },
   "FA/138/2006": {
     "appellant": "SANATAN PRAKASH SINGH and ORS",
-    "respondent": "KALI CHARAN SINGH"
+    "respondent": "KALI CHARAN SINGH and ORS"
   },
   "FA/141/2006": {
     "appellant": "AJAY CHAUDHRY and OTHERS",
-    "respondent": "JIWAN BIKASH CHOUDHARY"
+    "respondent": "JIWAN BIKASH CHOUDHARY and ORS"
   },
   "FA/151/2006": {
     "appellant": "NAND KISHORE PRASAD",
@@ -12969,7 +12969,7 @@ const CASES_DB = {
   },
   "FA/156/2006": {
     "appellant": "KRISHNA MOHAN BHAGAT",
-    "respondent": "PRAHLAD PRASAD BHAGAT and"
+    "respondent": "PRAHLAD PRASAD BHAGAT and ORS"
   },
   "FA/163/2006": {
     "appellant": "LALLAN PRASAD and ORS",
@@ -12996,7 +12996,7 @@ const CASES_DB = {
     "respondent": "M/S BABA TRADERS and ANR"
   },
   "FA/193/2006": {
-    "appellant": "Rajednra Prasad @ Rajendra Singh (Verma",
+    "appellant": "Rajednra Prasad @ Rajendra Singh (Verma)",
     "respondent": "Surji Devi"
   },
   "FA/194/2006": {
@@ -13005,7 +13005,7 @@ const CASES_DB = {
   },
   "FA/199/2006": {
     "appellant": "MOST.MANORMA KUER and ORS",
-    "respondent": "SHAMBHU SARAN DUBEY"
+    "respondent": "SHAMBHU SARAN DUBEY and ORS"
   },
   "FA/203/2006": {
     "appellant": "RAJENDRA PASWAN and ANR",
@@ -13013,19 +13013,19 @@ const CASES_DB = {
   },
   "FA/205/2006": {
     "appellant": "SMT.MANJU RANJAN and ANR",
-    "respondent": "AKHIL RANJAN PRASAD"
+    "respondent": "AKHIL RANJAN PRASAD VERMA and AN"
   },
   "FA/207/2006": {
     "appellant": "KANISHTHA SAHKARI GRIH NIRMAN",
-    "respondent": "AKHIL RANJAN PRASAD"
+    "respondent": "AKHIL RANJAN PRASAD VARMA and OR"
   },
   "FA/210/2006": {
     "appellant": "GAYATRI DEVI",
-    "respondent": "UNION OF INDIA and ORS                           FORMAL ORDER HRIDAYA RANJAN PRASAD VERMA and VS. AKHIL RANJAN"
+    "respondent": "UNION OF INDIA and ORS"
   },
   "FA/1/2007": {
     "appellant": "HRIDAYA RANJAN PRASAD VERMA and",
-    "respondent": "AKHIL RANJAN"
+    "respondent": "AKHIL RANJAN PRASAD VERMA and OR"
   },
   "FA/7/2007": {
     "appellant": "SRI GOPINATH PANDEY and ANR",
@@ -13049,27 +13049,27 @@ const CASES_DB = {
   },
   "FA/16/2007": {
     "appellant": "GATRAMUL KANODIA and ORS",
-    "respondent": "NAGARMAL AGRAWAL and"
+    "respondent": "NAGARMAL AGRAWAL and ORS"
   },
   "FA/18/2007": {
     "appellant": "NARAYAN SINGH",
-    "respondent": "RAM KRIT YADAV and ORS                           MISCELLANEOUS"
+    "respondent": "RAM KRIT YADAV and ORS"
   },
   "FA/20/2007": {
     "appellant": "SHEOJI SINGH",
-    "respondent": "SHASHI BHUSHAN SRIVASTAVA                         MISCELLANEOUS M/S ELECTONIC SYSTEMS PUNJAB L VS. BIRLA INSTITUTE OF"
+    "respondent": "SHASHI BHUSHAN SRIVASTAVA"
   },
   "FA/22/2007": {
     "appellant": "M/S ELECTONIC SYSTEMS PUNJAB L",
-    "respondent": "BIRLA INSTITUTE OF"
+    "respondent": "BIRLA INSTITUTE OF TECHNOLOGY"
   },
   "FA/31/2007": {
     "appellant": "STATE OF BIHAR and ORS",
-    "respondent": "M/S HUSSAIN AND CO"
+    "respondent": "M/S HUSSAIN AND CO."
   },
   "FA/55/2007": {
     "appellant": "NAGENDRA NATH SHUKLA and ORS",
-    "respondent": "BAHARAN SHUKLA and"
+    "respondent": "BAHARAN SHUKLA and ORS"
   },
   "FA/57/2007": {
     "appellant": "JAGDISH PRASAD SARAF and ANR",
@@ -13077,11 +13077,11 @@ const CASES_DB = {
   },
   "FA/58/2007": {
     "appellant": "JAGDISH PRASAD SARAF and ORS",
-    "respondent": "STATE OF BIHAR                    MISCELLANEOUS"
+    "respondent": "STATE OF BIHAR"
   },
   "FA/59/2007": {
     "appellant": "LACHMI CHAUDHARY and ORS",
-    "respondent": "STATE OF BIHAR and ORS                MISCELLANEOUS"
+    "respondent": "STATE OF BIHAR and ORS"
   },
   "FA/62/2007": {
     "appellant": "STATE OF BIHAR",
@@ -13089,11 +13089,11 @@ const CASES_DB = {
   },
   "FA/68/2007": {
     "appellant": "DINA NATH GOSWAMI and ORS",
-    "respondent": "GOPALJEE GOSWAMI and"
+    "respondent": "GOPALJEE GOSWAMI and ORS"
   },
   "FA/70/2007": {
     "appellant": "STATE OF BIHAR",
-    "respondent": "DINESH KUMAR and ORS                            FORMAL"
+    "respondent": "DINESH KUMAR and ORS"
   },
   "FA/71/2007": {
     "appellant": "STATE OF BIHAR",
@@ -13105,11 +13105,11 @@ const CASES_DB = {
   },
   "FA/76/2007": {
     "appellant": "BASUKI NATH SHARMA",
-    "respondent": "MOST.SARSWATI DEVI and ORS JANG BAHADUR SINGH and ORS VS. RAM DHARI SINGH and"
+    "respondent": "MOST.SARSWATI DEVI and ORS"
   },
   "FA/77/2007": {
     "appellant": "JANG BAHADUR SINGH and ORS",
-    "respondent": "RAM DHARI SINGH and"
+    "respondent": "RAM DHARI SINGH and ORS"
   },
   "FA/85/2007": {
     "appellant": "STATE OF BIHAR",
@@ -13117,7 +13117,7 @@ const CASES_DB = {
   },
   "FA/89/2007": {
     "appellant": "STATE OF BIHAR",
-    "respondent": "RAM LAKSHMAN JANKI JI                           MISCELLANEOUS"
+    "respondent": "RAM LAKSHMAN JANKI JI"
   },
   "FA/91/2007": {
     "appellant": "KABITA DEVI and ORS",
@@ -13129,11 +13129,11 @@ const CASES_DB = {
   },
   "FA/93/2007": {
     "appellant": "MOST.MUNDRIKA DEVI",
-    "respondent": "GANGA BHAGAT and ORS BINOD KUMAR @ BINOD KUMAR SING VS. MOST.SUMITRA DEVI"
+    "respondent": "GANGA BHAGAT and ORS"
   },
   "FA/99/2007": {
     "appellant": "BINOD KUMAR @ BINOD KUMAR SING",
-    "respondent": "MOST.SUMITRA DEVI"
+    "respondent": "MOST.SUMITRA DEVI and ORS"
   },
   "FA/100/2007": {
     "appellant": "SHASHI SINGH",
@@ -13153,23 +13153,23 @@ const CASES_DB = {
   },
   "FA/116/2007": {
     "appellant": "LAL BABU CHOUDHARY and ANR",
-    "respondent": "MOST.RAJ KUNWAR and"
+    "respondent": "MOST.RAJ KUNWAR and ANR"
   },
   "FA/117/2007": {
     "appellant": "RAMPRASID SINGH",
-    "respondent": "ARUN KUMAR SINGH and ORS                       MISCELLANEOUS"
+    "respondent": "ARUN KUMAR SINGH and ORS"
   },
   "FA/118/2007": {
     "appellant": "MANOJ PRASAD YADAV @ MANOJ YAD",
-    "respondent": "STATE OF BIHAR                  MISCELLANEOUS"
+    "respondent": "STATE OF BIHAR"
   },
   "FA/119/2007": {
     "appellant": "BIRESH YADAV @ BIRESH PRASAD Y",
-    "respondent": "STATE OF BIHAR                  MISCELLANEOUS SACHIDANAND PRASAD @ SACHIDANA VS. BIRENDRA KUMAR"
+    "respondent": "STATE OF BIHAR"
   },
   "FA/128/2007": {
     "appellant": "SACHIDANAND PRASAD @ SACHIDANA",
-    "respondent": "BIRENDRA KUMAR"
+    "respondent": "BIRENDRA KUMAR GUPTA and ORS"
   },
   "FA/129/2007": {
     "appellant": "MANOHAR PRASAD",
@@ -13181,7 +13181,7 @@ const CASES_DB = {
   },
   "FA/137/2007": {
     "appellant": "ARUN KUMAR SINGH and ORS",
-    "respondent": "RAM PRASIDH SINGH                     MISCELLANEOUS"
+    "respondent": "RAM PRASIDH SINGH"
   },
   "FA/138/2007": {
     "appellant": "MD.KYAMUDDIN",
@@ -13193,7 +13193,7 @@ const CASES_DB = {
   },
   "FA/150/2007": {
     "appellant": "DUDH NATH SINGH and ORS",
-    "respondent": "SATYA NARAYAN SINGH and"
+    "respondent": "SATYA NARAYAN SINGH and ORS"
   },
   "FA/152/2007": {
     "appellant": "RAJENDRA PRASAD YADAV @ RAJEND",
@@ -13221,7 +13221,7 @@ const CASES_DB = {
   },
   "FA/201/2007": {
     "appellant": "GYANENDRA PRASAD YADAV @ SHASH",
-    "respondent": "SURENDRA YADAV"
+    "respondent": "SURENDRA YADAV @ SURENDRA NATH"
   },
   "FA/209/2007": {
     "appellant": "KUSHESHWAR MISHRA and ORS",
@@ -13237,11 +13237,11 @@ const CASES_DB = {
   },
   "FA/230/2007": {
     "appellant": "SHAILENDRA PRASAD SRIVASTAVA",
-    "respondent": "BAIDYA NATH PRASAD"
+    "respondent": "BAIDYA NATH PRASAD VERMA"
   },
   "FA/231/2007": {
     "appellant": "THE STATE OF BIHAR and ORS",
-    "respondent": "MOSTT.JYOTSNA DEVI and"
+    "respondent": "MOSTT.JYOTSNA DEVI and ORS"
   },
   "FA/236/2007": {
     "appellant": "ARUN KUMAR",
@@ -13253,7 +13253,7 @@ const CASES_DB = {
   },
   "FA/240/2007": {
     "appellant": "MOST. MANORMA KUER and ORS",
-    "respondent": "SHAMBHU SARAN"
+    "respondent": "SHAMBHU SARAN CHOUBEY and ORS"
   },
   "FA/242/2007": {
     "appellant": "PARSURAM SINGH",
@@ -13269,11 +13269,11 @@ const CASES_DB = {
   },
   "FA/248/2007": {
     "appellant": "BANARSI PRASAD GUPTA @ BANARSI",
-    "respondent": "SHIVJI PRASAD"
+    "respondent": "SHIVJI PRASAD GUPTA and ANR"
   },
   "FA/250/2007": {
     "appellant": "ISHWAR DAYAL PRASAD and ORS",
-    "respondent": "DHIRENDRA KUMAR and"
+    "respondent": "DHIRENDRA KUMAR and ORS"
   },
   "FA/251/2007": {
     "appellant": "KAMLAPATI SINGH and ORS",
@@ -13281,11 +13281,11 @@ const CASES_DB = {
   },
   "FA/261/2007": {
     "appellant": "M/S SRI MAHALAXMI GENERAL STOR",
-    "respondent": "CENTRAL BANK OF              LOKADALAT"
+    "respondent": "CENTRAL BANK OF INDIA"
   },
   "FA/266/2007": {
     "appellant": "DR. VIJAY KUMAR SINGH and ORS",
-    "respondent": "RADHEY SHYAM SINGH"
+    "respondent": "RADHEY SHYAM SINGH and ANR"
   },
   "FA/267/2007": {
     "appellant": "STATE OF BIHAR and ORS",
@@ -13293,11 +13293,11 @@ const CASES_DB = {
   },
   "FA/275/2007": {
     "appellant": "INDRA CHAND PRASAD",
-    "respondent": "MOST. SHANTI KUAR @"
+    "respondent": "MOST. SHANTI KUAR @ TETARIandORS"
   },
   "FA/284/2007": {
     "appellant": "SAMPAT KUMAR TRIPATHI @ MEENA",
-    "respondent": "KRISHNA KUMAR"
+    "respondent": "KRISHNA KUMAR TRIPATHI @LALLAN"
   },
   "FA/4/2008": {
     "appellant": "Kailash Chaudhary",
@@ -13313,15 +13313,15 @@ const CASES_DB = {
   },
   "FA/16/2008": {
     "appellant": "KARTIK SHARMA and ORS",
-    "respondent": "PUNJAB NATIONAL BANK and"
+    "respondent": "PUNJAB NATIONAL BANK and ORS"
   },
   "FA/18/2008": {
     "appellant": "VEENA KHAITAN and ANR",
-    "respondent": "INDIAN BANK and ORS                   MISCELLANEOUS"
+    "respondent": "INDIAN BANK and ORS"
   },
   "FA/27/2008": {
     "appellant": "Nagendra Kumar",
-    "respondent": "Arbind Tanti                         21       UP"
+    "respondent": "Arbind Tanti"
   },
   "FA/29/2008": {
     "appellant": "RAMJEE PRASAD and ORS",
@@ -13337,19 +13337,19 @@ const CASES_DB = {
   },
   "FA/36/2008": {
     "appellant": "SRI RAJ KUMAR SINGH",
-    "respondent": "SHYAM NANDAN SINGH and ORS NAGESHWAR PRASAD SAH VS. TARKESHWAR PRASAD and"
+    "respondent": "SHYAM NANDAN SINGH and ORS"
   },
   "FA/37/2008": {
     "appellant": "NAGESHWAR PRASAD SAH",
-    "respondent": "TARKESHWAR PRASAD and"
+    "respondent": "TARKESHWAR PRASAD and ORS"
   },
   "FA/43/2008": {
     "appellant": "MOSTT. FOOLMATI KUER and ANR",
-    "respondent": "YASHODA DEVI and ORS           MISCELLANEOUS MRIGANKA RANJAN @ MRIGAKARANJU VS. VIVEK KUMAR"
+    "respondent": "YASHODA DEVI and ORS"
   },
   "FA/46/2008": {
     "appellant": "MRIGANKA RANJAN @ MRIGAKARANJU",
-    "respondent": "VIVEK KUMAR"
+    "respondent": "VIVEK KUMAR SINGH"
   },
   "FA/47/2008": {
     "appellant": "RUKSHANA KHATOON @ ROKHSANA KH",
@@ -13365,11 +13365,11 @@ const CASES_DB = {
   },
   "FA/57/2008": {
     "appellant": "RAM SUDHIST SHARMA and ORS",
-    "respondent": "GANGA SAGAR BHAGAT"
+    "respondent": "GANGA SAGAR BHAGAT and ORS"
   },
   "FA/64/2008": {
     "appellant": "THE STATE OF BIHAR THRU. THE C",
-    "respondent": "RAMESHWAR SINGH and"
+    "respondent": "RAMESHWAR SINGH and ORS"
   },
   "FA/66/2008": {
     "appellant": "PRITAMA KAUR",
@@ -13380,12 +13380,12 @@ const CASES_DB = {
     "respondent": "Santosh Kumar"
   },
   "FA/69/2008": {
-    "appellant": "Kishore Prasad",
+    "appellant": "Murti Ram, Laxman, Janki, Mahabirji, Shankarji etc. through Raj Kishore Prasad,",
     "respondent": "Brij Mohan Pandey"
   },
   "FA/70/2008": {
-    "appellant": "Kishore Prasad",
-    "respondent": "Brij Mohan Pandey"
+    "appellant": "BIBHA DEVI and ANR",
+    "respondent": "MOSTT.GAYATRI DEVI and ORS"
   },
   "FA/92/2008": {
     "appellant": "Saket Krishna",
@@ -13405,15 +13405,15 @@ const CASES_DB = {
   },
   "FA/136/2008": {
     "appellant": "SUSHRI SUDHA KHAITAN and ANR",
-    "respondent": "SHYAMDEO PASWAN and"
+    "respondent": "SHYAMDEO PASWAN and ORS"
   },
   "FA/137/2008": {
     "appellant": "M/S RAJENDRA PRASAD SINGH and CO",
-    "respondent": "THE STATE OF"
+    "respondent": "THE STATE OF BIHAR and ORS"
   },
   "FA/145/2008": {
     "appellant": "THE STATE OF BIHAR and ORS",
-    "respondent": "AWADH KISHORE SHARMA                       MISCELLANEOUS"
+    "respondent": "AWADH KISHORE SHARMA"
   },
   "FA/146/2008": {
     "appellant": "YADU NANDAN THAKUR",
@@ -13449,15 +13449,15 @@ const CASES_DB = {
   },
   "FA/167/2008": {
     "appellant": "SADANAND SINGH @ SADANAND MAND",
-    "respondent": "MOSOMMAT"
+    "respondent": "MOSOMMAT SUMITRA DEVI and ORS"
   },
   "FA/171/2008": {
     "appellant": "SMT. SHYAMA CHOUDHARY",
-    "respondent": "SHIV NATH SINGH                                 MISCELLANEOUS RAM SUBHAG SINGH @ RAM SUBHAG VS. PUNJAB NATIONAL"
+    "respondent": "SHIV NATH SINGH"
   },
   "FA/179/2008": {
     "appellant": "RAM SUBHAG SINGH @ RAM SUBHAG",
-    "respondent": "PUNJAB NATIONAL"
+    "respondent": "PUNJAB NATIONAL BANK and ANR"
   },
   "FA/182/2008": {
     "appellant": "BINOD KUMAR",
@@ -13473,7 +13473,7 @@ const CASES_DB = {
   },
   "FA/188/2008": {
     "appellant": "SIDH NATH SINGH",
-    "respondent": "KUNDAN KUMAR SINGH and ORS                    09       UP"
+    "respondent": "KUNDAN KUMAR SINGH and ORS"
   },
   "FA/189/2008": {
     "appellant": "Mukhiya Devi",
@@ -13505,7 +13505,7 @@ const CASES_DB = {
   },
   "FA/216/2008": {
     "appellant": "JAI PRAKASH KUMAR and ORS",
-    "respondent": "ASHOK PRASAD SAH                   MISCELLANEOUS"
+    "respondent": "ASHOK PRASAD SAH"
   },
   "FA/219/2008": {
     "appellant": "ASHOK KUMAR YADAV",
@@ -13513,7 +13513,7 @@ const CASES_DB = {
   },
   "FA/230/2008": {
     "appellant": "PRAHLAD NARAYAN MEHTA",
-    "respondent": "SHRI ASHOK NARAYAN MEHTA"
+    "respondent": "SHRI ASHOK NARAYAN MEHTA and ORS"
   },
   "FA/232/2008": {
     "appellant": "ANIL KUMAR SINGH and ANR",
@@ -13541,11 +13541,11 @@ const CASES_DB = {
   },
   "FA/244/2008": {
     "appellant": "MAHENDRA PRATAP SINGH and ANR",
-    "respondent": "SURENDRA NATH"
+    "respondent": "SURENDRA NATH CHAUBEY and ORS"
   },
   "FA/245/2008": {
     "appellant": "SURENDRA NATH CHOUBEY",
-    "respondent": "MAHENDRA PRATAP SINGH and"
+    "respondent": "MAHENDRA PRATAP SINGH and ORS"
   },
   "FA/247/2008": {
     "appellant": "SMT. AMAR KAUR and ANR",
@@ -13577,7 +13577,7 @@ const CASES_DB = {
   },
   "FA/269/2008": {
     "appellant": "THE STATE OF BIHAR THRU COLLEC",
-    "respondent": "CROWN"
+    "respondent": "CROWN CONSTRUCTION PVT. LTD"
   },
   "FA/274/2008": {
     "appellant": "ABDUL HAI KHAN and ANR",
@@ -13585,7 +13585,7 @@ const CASES_DB = {
   },
   "FA/276/2008": {
     "appellant": "THAKUR SHAMBHU PRASAD SINGH @",
-    "respondent": "KRISHNA KUMAR"
+    "respondent": "KRISHNA KUMAR SINGH and ORS"
   },
   "FA/277/2008": {
     "appellant": "THE STATE OF BIHAR THRU.THE CO",
@@ -13597,19 +13597,19 @@ const CASES_DB = {
   },
   "FA/3/2009": {
     "appellant": "JADDU TANTI and ORS",
-    "respondent": "RAMRUP TANTI and ORS                     COURT FEE BECHAN SINGH @ BAWAN DAS and ORS VS. SHEO PUJAN"
+    "respondent": "RAMRUP TANTI and ORS"
   },
   "FA/7/2009": {
     "appellant": "BECHAN SINGH @ BAWAN DAS and ORS",
-    "respondent": "SHEO PUJAN"
+    "respondent": "SHEO PUJAN SINGH and ORS"
   },
   "FA/11/2009": {
     "appellant": "THE NEW INDIA ASSURANCE CO. LT",
-    "respondent": "JAY NARAIN JHA and"
+    "respondent": "JAY NARAIN JHA and ORS"
   },
   "FA/21/2009": {
     "appellant": "RAMADHAR SINGH @ RAM ADHAR SIN",
-    "respondent": "CHAMPA KUNWAR"
+    "respondent": "CHAMPA KUNWAR and ORS"
   },
   "FA/23/2009": {
     "appellant": "CHANDESHWAR YADAV and ORS",
@@ -13617,7 +13617,7 @@ const CASES_DB = {
   },
   "FA/29/2009": {
     "appellant": "NIRAJ KUMAR and ORS",
-    "respondent": "SUDAMA DEVI@SUDAMIA DEVIand"
+    "respondent": "SUDAMA DEVI@SUDAMIA DEVIand ORS"
   },
   "FA/34/2009": {
     "appellant": "Sheo Ratan Prasad",
@@ -13625,7 +13625,7 @@ const CASES_DB = {
   },
   "FA/37/2009": {
     "appellant": "UMESH PASWAN",
-    "respondent": "PUNJAB NATIONAL BANK and ORS                    MISCELLANEOUS"
+    "respondent": "PUNJAB NATIONAL BANK and ORS"
   },
   "FA/40/2009": {
     "appellant": "SANTU KUMARI",
@@ -13633,23 +13633,23 @@ const CASES_DB = {
   },
   "FA/42/2009": {
     "appellant": "BRAJNANDAN SINGH @ RAM VIJAY S",
-    "respondent": "SITARAM SINGH and"
+    "respondent": "SITARAM SINGH and ORS"
   },
   "FA/43/2009": {
     "appellant": "ISHWAR DAYAL PRASAD and ORS",
-    "respondent": "DHIRENDRA KUMAR and"
+    "respondent": "DHIRENDRA KUMAR and ORS"
   },
   "FA/44/2009": {
     "appellant": "RAM BHAJAN MAHTO and ORS",
-    "respondent": "RAM NARAYAN SINGH and"
+    "respondent": "RAM NARAYAN SINGH and ORS"
   },
   "FA/46/2009": {
-    "appellant": "SURENDRA THAKUR and ANR",
-    "respondent": "JAGARNATH THAKUR and"
+    "appellant": "SURENDRA THAKUR and ANR.",
+    "respondent": "JAGARNATH THAKUR and ORS"
   },
   "FA/51/2009": {
-    "appellant": "MANGNU MISHRA and COMPANY THRU",
-    "respondent": "THE STATE OF"
+    "appellant": "MANGNU MISHRA and COMPANY THRU.",
+    "respondent": "THE STATE OF BIHAR and ORS"
   },
   "FA/53/2009": {
     "appellant": "SMT. RAM SAKHI DEVI and ORS",
@@ -13661,7 +13661,7 @@ const CASES_DB = {
   },
   "FA/58/2009": {
     "appellant": "BADRI PRASAD CHAUDHARY",
-    "respondent": "THE STATE OF BIHAR and ORS                    COURT FEE"
+    "respondent": "THE STATE OF BIHAR and ORS"
   },
   "FA/59/2009": {
     "appellant": "JAGDISH PRASAD and ORS",
@@ -13669,23 +13669,23 @@ const CASES_DB = {
   },
   "FA/62/2009": {
     "appellant": "RAJ KISHORE PRASAD SINGH",
-    "respondent": "THE STATE OF BIHAR and"
+    "respondent": "THE STATE OF BIHAR and ORS"
   },
   "FA/66/2009": {
     "appellant": "UMESH KUMAR SINGH and ORS",
-    "respondent": "ARUN KUMAR SINGH and"
+    "respondent": "ARUN KUMAR SINGH and ORS"
   },
   "FA/77/2009": {
     "appellant": "JUGAL KISHORE KHETAN and ORS",
-    "respondent": "MOHAN LAL KHETAN and"
+    "respondent": "MOHAN LAL KHETAN and ORS"
   },
   "FA/91/2009": {
     "appellant": "SURESH PRASAD SINGH and ORS",
-    "respondent": "SHRI NIWAS SINGH and"
+    "respondent": "SHRI NIWAS SINGH and ORS"
   },
   "FA/94/2009": {
     "appellant": "DILIP KUMAR SINGH and ORS",
-    "respondent": "THE STATE OF BIHAR                         FORMAL"
+    "respondent": "THE STATE OF BIHAR"
   },
   "FA/96/2009": {
     "appellant": "DHANMATIYA DEVI",
@@ -13697,15 +13697,15 @@ const CASES_DB = {
   },
   "FA/98/2009": {
     "appellant": "THE STATE OF BIHAR and ANR",
-    "respondent": "VIJAY PRASAD AGRAWAL            MISCELLANEOUS SHIV SHANKAR SARRAF VS. SHRI ARUN KUMAR SARRAF and"
+    "respondent": "VIJAY PRASAD AGRAWAL"
   },
   "FA/101/2009": {
     "appellant": "SHIV SHANKAR SARRAF",
-    "respondent": "SHRI ARUN KUMAR SARRAF and"
+    "respondent": "SHRI ARUN KUMAR SARRAF and ORS"
   },
   "FA/103/2009": {
     "appellant": "THE STATE OF BIHAR and ORS",
-    "respondent": "M/S MAHESH METAL WORKS"
+    "respondent": "M/S MAHESH METAL WORKS and ANR"
   },
   "FA/104/2009": {
     "appellant": "MAITHALI SHARAN KUMAR",
@@ -13713,27 +13713,27 @@ const CASES_DB = {
   },
   "FA/105/2009": {
     "appellant": "SMT. MADHU DEVI",
-    "respondent": "SMT.SALINI DEVI                                      FORMAL"
+    "respondent": "SMT.SALINI DEVI"
   },
   "FA/106/2009": {
     "appellant": "THE STATE OF BIHAR THRU. THE C",
-    "respondent": "AJIT KUMAR SINGH and"
+    "respondent": "AJIT KUMAR SINGH and ORS"
   },
   "FA/116/2009": {
     "appellant": "GAURI SHANKAR PASWAN and ORS",
-    "respondent": "UMA SHANKAR"
+    "respondent": "UMA SHANKAR PASWAN and ORS"
   },
   "FA/117/2009": {
     "appellant": "KALAWATI DEVI and ANR",
     "respondent": "ANJORIA DEVI and ANR"
   },
   "FA/120/2009": {
-    "appellant": "M/S METRO WOOD CRAFT PVT.LTD",
-    "respondent": "BIHAR STATE"
+    "appellant": "M/S METRO WOOD CRAFT PVT.LTD.",
+    "respondent": "BIHAR STATE ELECTRICITY BOARD"
   },
   "FA/122/2009": {
     "appellant": "VIJAY SINGH @ AMRESH KUMAR SIN",
-    "respondent": "SACHIDA NAND SINGH"
+    "respondent": "SACHIDA NAND SINGH and ORS"
   },
   "FA/126/2009": {
     "appellant": "ANIRUDH SINGH and ORS",
@@ -13741,7 +13741,7 @@ const CASES_DB = {
   },
   "FA/128/2009": {
     "appellant": "SUSMA DEVI",
-    "respondent": "SHEO NANDAN PRASAD and ORS                        25       RECORD/REPORTS ETC"
+    "respondent": "SHEO NANDAN PRASAD and ORS"
   },
   "FA/133/2009": {
     "appellant": "BUNILAL GADDI",
@@ -13756,16 +13756,16 @@ const CASES_DB = {
     "respondent": "ZAINUL HAQUE and ORS"
   },
   "FA/141/2009": {
-    "appellant": "24.11.2023",
-    "respondent": "Smt. Urmila Devi @ Chulhani Devi"
+    "appellant": "Babu Chandrika Singh @ Chandrika Singh (Deleted vide order dated 24.11.2023)",
+    "respondent": "Smt. Urmila Devi @ Chulhani Devi,"
   },
   "FA/149/2009": {
-    "appellant": "11.2023",
-    "respondent": "Smt. Urmila Devi @ Chulhani Devi"
+    "appellant": "THE STATE OF BIHAR and ORS",
+    "respondent": "RAMBILASH SINGH"
   },
   "FA/150/2009": {
     "appellant": "THE STATE OF BIHAR and ORS",
-    "respondent": "RAMBILASH SINGH                            FORMAL"
+    "respondent": "RAMBILASH SINGH"
   },
   "FA/151/2009": {
     "appellant": "PURUSHOTTAM MISHRA",
@@ -13773,10 +13773,10 @@ const CASES_DB = {
   },
   "FA/154/2009": {
     "appellant": "THE STATE OF BIHAR and ORS",
-    "respondent": "JAWED AKHTAR                              FORMAL"
+    "respondent": "JAWED AKHTAR"
   },
   "FA/155/2009": {
-    "appellant": "MOSTT. CHAMELI DEVI and ORS",
+    "appellant": "MOSTT. CHAMELI DEVI and ORS.",
     "respondent": "GAYATRI DEVI and ORS"
   },
   "FA/156/2009": {
@@ -13793,19 +13793,19 @@ const CASES_DB = {
   },
   "FA/165/2009": {
     "appellant": "M/S NEW INDIA ASSURANCE COMPAN",
-    "respondent": "M/S PAWAN TRADING"
+    "respondent": "M/S PAWAN TRADING COMPANY and OR"
   },
   "FA/166/2009": {
     "appellant": "ADARSHA BOLTS AND NUTS",
-    "respondent": "THE BIHAR STATE"
+    "respondent": "THE BIHAR STATE ELECTRICITY BD"
   },
   "FA/171/2009": {
     "appellant": "AMIT KUMAR @ PUTULJI",
-    "respondent": "KANHAIYA LAL GUPTA and ORS"
+    "respondent": "KANHAIYA LAL GUPTA and ORS."
   },
   "FA/176/2009": {
     "appellant": "THE EASTERN RAILWAY",
-    "respondent": "TEJ NARAYAN SINGH and ORS"
+    "respondent": "TEJ NARAYAN SINGH and ORS."
   },
   "FA/177/2009": {
     "appellant": "RAJO MAHTON and ORS",
@@ -13813,46 +13813,46 @@ const CASES_DB = {
   },
   "FA/178/2009": {
     "appellant": "BIHAR SCHOOL EXAMINATION BOARD",
-    "respondent": "SRI PRAMOD KUMAR"
+    "respondent": "SRI PRAMOD KUMAR CHOUDHARY"
   },
   "FA/179/2009": {
     "appellant": "Janak Singh",
     "respondent": "The State of Bihar"
   },
   "FA/180/2009": {
-    "appellant": "SMT. SUKHIYA DEVI and ANR",
-    "respondent": "SRI UDAY CHOUDHARY and"
+    "appellant": "SMT. SUKHIYA DEVI and ANR.",
+    "respondent": "SRI UDAY CHOUDHARY and ANR."
   },
   "FA/181/2009": {
-    "appellant": "PRAMILA SIGH YADAV and ORS",
-    "respondent": "THE STATE OF BIHAR and"
+    "appellant": "PRAMILA SIGH YADAV and ORS.",
+    "respondent": "THE STATE OF BIHAR and ORS."
   },
   "FA/182/2009": {
     "appellant": "KRISHNA MURARI YADAV",
-    "respondent": "THE STATE OF BIHAR and ORS"
+    "respondent": "THE STATE OF BIHAR and ORS."
   },
   "FA/184/2009": {
     "appellant": "DR. SURENDRA NATH BANERJI and OR",
-    "respondent": "PRATUL CHANDRA"
+    "respondent": "PRATUL CHANDRA BANERJI and ORS."
   },
   "FA/185/2009": {
-    "appellant": "ANIL MISTRY and ORS",
-    "respondent": "NATHUN MISHRRY and ORS"
+    "appellant": "ANIL MISTRY and ORS.",
+    "respondent": "NATHUN MISHRRY and ORS."
   },
   "FA/186/2009": {
-    "appellant": "Manorma Devi and Ors",
-    "respondent": "THE STATE OF BIHAR and ANR"
+    "appellant": "Manorma Devi and Ors.",
+    "respondent": "THE STATE OF BIHAR and ANR."
   },
   "FA/188/2009": {
-    "appellant": "SHIV NATH PATHAK and ANR",
-    "respondent": "GHANSHYAM PATHAK and"
+    "appellant": "SHIV NATH PATHAK and ANR.",
+    "respondent": "GHANSHYAM PATHAK and ORS."
   },
   "FA/190/2009": {
     "appellant": "MD. SOHAIL AHMAD",
-    "respondent": "IRSHAD AHMAD and ORS"
+    "respondent": "IRSHAD AHMAD and ORS."
   },
   "FA/191/2009": {
-    "appellant": "KUSUM DEVI and ORS",
+    "appellant": "KUSUM DEVI and ORS.",
     "respondent": "SMT. CHINTA SHARMA @ CHINTA"
   },
   "FA/192/2009": {
@@ -13860,60 +13860,60 @@ const CASES_DB = {
     "respondent": "ASHOK KUMAR SINGH"
   },
   "FA/193/2009": {
-    "appellant": "SURENDRA PRASAD SHARMA and ORS",
-    "respondent": "YOGENDRA"
+    "appellant": "SURENDRA PRASAD SHARMA and ORS.",
+    "respondent": "YOGENDRA PRASAD SHARMA and ORS."
   },
   "FA/195/2009": {
     "appellant": "THE NEW INDIA ASSURANCE COMPAN",
-    "respondent": "THE MOTILAL"
+    "respondent": "THE MOTILAL PADAMPATT CHINI IN"
   },
   "FA/199/2009": {
     "appellant": "MALHU SAHNI",
-    "respondent": "JALESHWAR SAHNI and ORS"
+    "respondent": "JALESHWAR SAHNI and ORS."
   },
   "FA/200/2009": {
-    "appellant": "SHRI NARENDRA DEO and ORS",
-    "respondent": "THE STATE OF BIHAR and"
+    "appellant": "SHRI NARENDRA DEO and ORS.",
+    "respondent": "THE STATE OF BIHAR and ORS."
   },
   "FA/201/2009": {
-    "appellant": "SHYAM PRASAD SINGH and ORS",
-    "respondent": "LUTAN SAHI and ORS.              MISCELLANEOUS"
+    "appellant": "SHYAM PRASAD SINGH and ORS.",
+    "respondent": "LUTAN SAHI and ORS."
   },
   "FA/203/2009": {
     "appellant": "SRIMATI RANKI KUMARI @ RANKI D",
-    "respondent": "SRI KRISHNA PD"
+    "respondent": "SRI KRISHNA PD."
   },
   "FA/205/2009": {
     "appellant": "SHRI JANAK NANDAN MAHTO @ JANA",
-    "respondent": "SRI MATI SHARMILA"
+    "respondent": "SRI MATI SHARMILA DEVI and ORS."
   },
   "FA/206/2009": {
     "appellant": "BANPHOOL AYURVEDIO BHAWAN PRIV",
-    "respondent": "RANJAN KUMAR"
+    "respondent": "RANJAN KUMAR ROY and ORS."
   },
   "FA/208/2009": {
     "appellant": "THE BIHAR STATE ELECTRICITY BO",
-    "respondent": "RAM SHARAN MAHTO"
+    "respondent": "RAM SHARAN MAHTO and ORS."
   },
   "FA/210/2009": {
     "appellant": "MANOJ KUMAR VISHWAKARMA",
-    "respondent": "RUDALI DEVI and ORS"
+    "respondent": "RUDALI DEVI and ORS."
   },
   "FA/214/2009": {
     "appellant": "CHANDRAMAN SINGH",
-    "respondent": "LAL MATI DEVI and ORS"
+    "respondent": "LAL MATI DEVI and ORS."
   },
   "FA/215/2009": {
-    "appellant": "KRIPS NARAYAN SINGH and ORS",
-    "respondent": "VIDYAVASINI SINGH @"
+    "appellant": "KRIPS NARAYAN SINGH and ORS.",
+    "respondent": "VIDYAVASINI SINGH @ MUNNA SING"
   },
   "FA/217/2009": {
-    "appellant": "MOST. TETARA KUAR and ANR",
-    "respondent": "VISHWANATH TRIPATHI and"
+    "appellant": "MOST. TETARA KUAR and ANR.",
+    "respondent": "VISHWANATH TRIPATHI and ORS."
   },
   "FA/218/2009": {
-    "appellant": "MOST. LALMATI DEVI and ANR",
-    "respondent": "RAVI KANT PRASAD                 FORMAL"
+    "appellant": "MOST. LALMATI DEVI and ANR.",
+    "respondent": "RAVI KANT PRASAD"
   },
   "FA/219/2009": {
     "appellant": "RAJENDRA RAI",
@@ -13921,71 +13921,71 @@ const CASES_DB = {
   },
   "FA/224/2009": {
     "appellant": "SHANTI DEVI",
-    "respondent": "THE STATE OF BIHAR and ANR"
+    "respondent": "THE STATE OF BIHAR and ANR."
   },
   "FA/231/2009": {
     "appellant": "CHANDRAKET NARAYAN SINGH",
-    "respondent": "CHANDRA SHEKHAR SINGH"
+    "respondent": "CHANDRA SHEKHAR SINGH and ORS."
   },
   "FA/232/2009": {
-    "appellant": "THE STATE OF BIHAR and ORS",
-    "respondent": "M/S INDO CONSTRUCTION"
+    "appellant": "THE STATE OF BIHAR and ORS.",
+    "respondent": "M/S INDO CONSTRUCTION, HAJIPUR"
   },
   "FA/233/2009": {
     "appellant": "HARI NARAYAN SINGH and ORS",
     "respondent": "RAMNAUMI SINGH and ORS"
   },
   "FA/234/2009": {
-    "appellant": "SURESH MAHTON and ORS",
-    "respondent": "RINKU DEVI and ORS"
+    "appellant": "SURESH MAHTON and ORS.",
+    "respondent": "RINKU DEVI and ORS."
   },
   "FA/235/2009": {
     "appellant": "PURUSHOTTAM CHAUDHARY",
-    "respondent": "SMT.GAYATRI DEVI and ORS                        FORMAL"
+    "respondent": "SMT.GAYATRI DEVI and ORS"
   },
   "FA/238/2009": {
     "appellant": "BIR BAHADUR SINGH",
-    "respondent": "KAMLAWATI DEVI and ORS"
+    "respondent": "KAMLAWATI DEVI and ORS."
   },
   "FA/4/2010": {
     "appellant": "USHA KUMARI @ USHA DEVI",
-    "respondent": "SUNIL KUMAR                                   MISCELLANEOUS"
+    "respondent": "SUNIL KUMAR"
   },
   "FA/6/2010": {
     "appellant": "Dineshwar Choudhary",
     "respondent": "Jiwan Bikash Choudhary"
   },
   "FA/8/2010": {
-    "appellant": "THE STATE OF BIHAR and ORS",
+    "appellant": "THE STATE OF BIHAR and ORS.",
     "respondent": "MANGAL SINGH"
   },
   "FA/9/2010": {
     "appellant": "SRINATH SINGH",
-    "respondent": "RAJ NARAIN RAI and ORS"
+    "respondent": "RAJ NARAIN RAI and ORS."
   },
   "FA/16/2010": {
-    "appellant": "HARI NARAIN SINGH and ORS",
-    "respondent": "STATE OF BIHAR and ANR.          FORMAL"
+    "appellant": "HARI NARAIN SINGH and ORS.",
+    "respondent": "STATE OF BIHAR and ANR."
   },
   "FA/19/2010": {
     "appellant": "BIBI NOORUN NISAN @ BAKRIDAN and",
-    "respondent": "ABU ZAFFAR ANSARI"
+    "respondent": "ABU ZAFFAR ANSARI and ORS."
   },
   "FA/21/2010": {
     "appellant": "UNION OF INDIA THROUGH NORTH E",
-    "respondent": "GOPI KISHAN MISHRA"
+    "respondent": "GOPI KISHAN MISHRA and ANR."
   },
   "FA/24/2010": {
     "appellant": "UNITED INDIA INSURANCE COMPANY",
-    "respondent": "SRI SURENDRA"
+    "respondent": "SRI SURENDRA PRASAD and ANR."
   },
   "FA/27/2010": {
     "appellant": "MAHANTH RAJENDRA GIRI",
-    "respondent": "ASHWINI KUMAR TIWARY and"
+    "respondent": "ASHWINI KUMAR TIWARY and ORS."
   },
   "FA/28/2010": {
     "appellant": "RANJIT MAHTO",
-    "respondent": "BIRENDRA KUMAR and ORS"
+    "respondent": "BIRENDRA KUMAR and ORS."
   },
   "FA/29/2010": {
     "appellant": "ARUN KUMAR VERMA",
@@ -13993,123 +13993,123 @@ const CASES_DB = {
   },
   "FA/30/2010": {
     "appellant": "PANSUNARI KUER and ORS",
-    "respondent": "BIHARI AHIR and ORS"
+    "respondent": "BIHARI AHIR and ORS."
   },
   "FA/31/2010": {
-    "appellant": "RAM NAGINA CHOUDHARI and ANR",
-    "respondent": "PUJA CHOUDHARI and"
+    "appellant": "RAM NAGINA CHOUDHARI and ANR.",
+    "respondent": "PUJA CHOUDHARI and ORS."
   },
   "FA/33/2010": {
-    "appellant": "SATYENDRA KUMAR and ANR",
-    "respondent": "BINDA PRASAD @"
+    "appellant": "SATYENDRA KUMAR and ANR.",
+    "respondent": "BINDA PRASAD @ BINDESHWARI PRA"
   },
   "FA/36/2010": {
     "appellant": "STATE OF BIHAR THROUGH COLLECT",
-    "respondent": "LAXAMAN MAHTO and"
+    "respondent": "LAXAMAN MAHTO and ORS."
   },
   "FA/37/2010": {
-    "appellant": "VIJAY LAL and ORS",
-    "respondent": "MOST. RADHIKA KUER and ORS"
+    "appellant": "VIJAY LAL and ORS.",
+    "respondent": "MOST. RADHIKA KUER and ORS."
   },
   "FA/39/2010": {
-    "appellant": "JOKHAN PASWAN and ANR",
-    "respondent": "GANGARATO DEVI and ORS"
+    "appellant": "JOKHAN PASWAN and ANR.",
+    "respondent": "GANGARATO DEVI and ORS."
   },
   "FA/42/2010": {
-    "appellant": "CHAMPA DEVI and ANR",
-    "respondent": "BHAGRAZAN BHAGAT and ORS"
+    "appellant": "CHAMPA DEVI and ANR.",
+    "respondent": "BHAGRAZAN BHAGAT and ORS."
   },
   "FA/43/2010": {
-    "appellant": "BRAHAMDEO MAHTO and ORS",
-    "respondent": "RAVINDRA MAHTO and ORS"
+    "appellant": "BRAHAMDEO MAHTO and ORS.",
+    "respondent": "RAVINDRA MAHTO and ORS."
   },
   "FA/44/2010": {
     "appellant": "SMT. DHANAWATI DEVI",
-    "respondent": "JANARDAN PRATAP SINGH and ANR"
+    "respondent": "JANARDAN PRATAP SINGH and ANR."
   },
   "FA/45/2010": {
-    "appellant": "NIRAHU BIND and ORS",
-    "respondent": "MAHADEO BIND and ORS"
+    "appellant": "NIRAHU BIND and ORS.",
+    "respondent": "MAHADEO BIND and ORS."
   },
   "FA/47/2010": {
     "appellant": "MEHER UNNISA BEGUM AND ORS",
-    "respondent": "JANAK SINGH and ORS"
+    "respondent": "JANAK SINGH and ORS."
   },
   "FA/51/2010": {
-    "appellant": "MD. BARIK and ANR",
-    "respondent": "KARU CHAOUDHARY HAREKRISHNA CHAUDHARY and ORS. VS. RAM BIRAJ"
+    "appellant": "MD. BARIK and ANR.",
+    "respondent": "KARU CHAOUDHARY"
   },
   "FA/52/2010": {
-    "appellant": "HAREKRISHNA CHAUDHARY and ORS",
-    "respondent": "RAM BIRAJ"
+    "appellant": "HAREKRISHNA CHAUDHARY and ORS.",
+    "respondent": "RAM BIRAJ CHAUDHARY and ORS."
   },
   "FA/54/2010": {
-    "appellant": "LAXMAN PASWAN and ORS",
-    "respondent": "KUSHUM SAH and ORS"
+    "appellant": "LAXMAN PASWAN and ORS.",
+    "respondent": "KUSHUM SAH and ORS."
   },
   "FA/56/2010": {
-    "appellant": "STATE OF BIHAR and ANR",
-    "respondent": "MAHENDRA NARAYAN PANDEY"
+    "appellant": "STATE OF BIHAR and ANR.",
+    "respondent": "MAHENDRA NARAYAN PANDEY and ORS."
   },
   "FA/58/2010": {
-    "appellant": "Akhil Bhartiya Paryavaran Evam Gramin Vikas Sansthan",
-    "respondent": "Janak"
+    "appellant": "Akhil Bhartiya Paryavaran Evam Gramin Vikas Sansthan,",
+    "respondent": "Janak Singh,"
   },
   "FA/63/2010": {
-    "appellant": "MUKHRAM and ORS",
-    "respondent": "NIRHU BIND and ORS"
+    "appellant": "MUKHRAM and ORS.",
+    "respondent": "NIRHU BIND and ORS."
   },
   "FA/64/2010": {
     "appellant": "BIHARSHARIF IRON FOUNDARY and EN",
-    "respondent": "STATE OF BIHAR"
+    "respondent": "STATE OF BIHAR and ORS."
   },
   "FA/65/2010": {
-    "appellant": "SUKH NANDAN RAI and ANR",
-    "respondent": "M/S PREMIER SYNTHETICS"
+    "appellant": "SUKH NANDAN RAI and ANR.",
+    "respondent": "M/S PREMIER SYNTHETICS and ANR."
   },
   "FA/69/2010": {
     "appellant": "DAYA SHANKAR PANDEY",
-    "respondent": "STATE OF BIHAR and ORS"
+    "respondent": "STATE OF BIHAR and ORS."
   },
   "FA/70/2010": {
     "appellant": "NIRMALA DEVI",
-    "respondent": "BACHANI DEVI and ORS.                                    FORMAL"
+    "respondent": "BACHANI DEVI and ORS."
   },
   "FA/73/2010": {
     "appellant": "SANNY KUMAR SINGH",
-    "respondent": "MADHULIKA SINGH and ORS"
+    "respondent": "MADHULIKA SINGH and ORS."
   },
   "FA/74/2010": {
-    "appellant": "JITENDRA TIWARY and ORS",
-    "respondent": "NARBADESHWAR TIWARY and"
+    "appellant": "JITENDRA TIWARY and ORS.",
+    "respondent": "NARBADESHWAR TIWARY and ORS."
   },
   "FA/75/2010": {
-    "appellant": "MOHAN LAL KHATORE and ORS",
-    "respondent": "SATYA NARAIN PD"
+    "appellant": "MOHAN LAL KHATORE and ORS.",
+    "respondent": "SATYA NARAIN PD. KHATORE and ORS"
   },
   "FA/77/2010": {
     "appellant": "DR. MURLIDHAR AGRAWAL",
-    "respondent": "STATE OF BIHAR and ORS"
+    "respondent": "STATE OF BIHAR and ORS."
   },
   "FA/78/2010": {
     "appellant": "SAMPAT KUMAR TRIPATHI @ MUNNA",
-    "respondent": "KRISHNA KUMAR"
+    "respondent": "KRISHNA KUMAR TRIPATHY @ LALLA"
   },
   "FA/79/2010": {
-    "appellant": "GHAN SHYAM SHARMA and ANR",
-    "respondent": "RADHIKA DEVI and ANR"
+    "appellant": "GHAN SHYAM SHARMA and ANR.",
+    "respondent": "RADHIKA DEVI and ANR."
   },
   "FA/81/2010": {
-    "appellant": "SHRIKANT PANDEY and ORS",
-    "respondent": "LAKSHMI KANT PANDEY and"
+    "appellant": "SHRIKANT PANDEY and ORS.",
+    "respondent": "LAKSHMI KANT PANDEY and ORS."
   },
   "FA/84/2010": {
     "appellant": "RAM DULAR DUBEY",
-    "respondent": "ARUN DUBEY and ORS. MOST. PARWATI KUAR and ORS. VS. RAM CHANDRA DUBEY and"
+    "respondent": "ARUN DUBEY and ORS."
   },
   "FA/85/2010": {
-    "appellant": "MOST. PARWATI KUAR and ORS",
-    "respondent": "RAM CHANDRA DUBEY and"
+    "appellant": "MOST. PARWATI KUAR and ORS.",
+    "respondent": "RAM CHANDRA DUBEY and ORS."
   },
   "FA/86/2010": {
     "appellant": "HARENDRA AHIR",
@@ -14120,68 +14120,68 @@ const CASES_DB = {
     "respondent": "SAKALDEO PRASAD"
   },
   "FA/89/2010": {
-    "appellant": "MUKESH KUMAR SINGH and ORS",
-    "respondent": "BAL KARAN SINGH and"
+    "appellant": "MUKESH KUMAR SINGH and ORS.",
+    "respondent": "BAL KARAN SINGH and ORS."
   },
   "FA/90/2010": {
     "appellant": "MANIK CHAND SAH",
-    "respondent": "USHA DEVI and ORS"
+    "respondent": "USHA DEVI and ORS."
   },
   "FA/91/2010": {
     "appellant": "DHAMSHILA DEVI",
-    "respondent": "BRAHMDEO MAHTO and ORS. SUDARSHAN YADAV and ORS. VS. BHUNESHWAR YADAV and"
+    "respondent": "BRAHMDEO MAHTO and ORS."
   },
   "FA/92/2010": {
-    "appellant": "SUDARSHAN YADAV and ORS",
-    "respondent": "BHUNESHWAR YADAV and"
+    "appellant": "SUDARSHAN YADAV and ORS.",
+    "respondent": "BHUNESHWAR YADAV and ORS."
   },
   "FA/96/2010": {
-    "appellant": "DAROGA BHAGAT and ANR",
-    "respondent": "NATHUNI BHAGAT and ORS"
+    "appellant": "DAROGA BHAGAT and ANR.",
+    "respondent": "NATHUNI BHAGAT and ORS."
   },
   "FA/99/2010": {
     "appellant": "Rajendra Prasad Singh and ors",
-    "respondent": "SMT. BIRA DEVIL and ORS"
+    "respondent": "SMT. BIRA DEVIL and ORS."
   },
   "FA/103/2010": {
     "appellant": "AKHILESH KR. DUBEY @ AKHILESH",
-    "respondent": "ARUN DUBEY and ORS"
+    "respondent": "ARUN DUBEY and ORS."
   },
   "FA/105/2010": {
     "appellant": "MOHAMMED SHAMSHER MIAN",
-    "respondent": "ISLAMUDDIN MIAN @"
+    "respondent": "ISLAMUDDIN MIAN @ NATHUNI MIAN"
   },
   "FA/108/2010": {
-    "appellant": "SANYOGA DEVI and ORS",
-    "respondent": "CHANDRA SHEKHAR RAVI and"
+    "appellant": "SANYOGA DEVI and ORS.",
+    "respondent": "CHANDRA SHEKHAR RAVI and ORS."
   },
   "FA/109/2010": {
-    "appellant": "SHANTI DEVI and ORS",
+    "appellant": "SHANTI DEVI and ORS.",
     "respondent": "MOSTT. BUND KUWAR"
   },
   "FA/110/2010": {
     "appellant": "BINOD KUMAR",
-    "respondent": "STATE OF BIHAR and ORS"
+    "respondent": "STATE OF BIHAR and ORS."
   },
   "FA/111/2010": {
-    "appellant": "DHARAMDEO SINGH and ANR",
-    "respondent": "RAM SINGHASAN SINGH and"
+    "appellant": "DHARAMDEO SINGH and ANR.",
+    "respondent": "RAM SINGHASAN SINGH and ORS."
   },
   "FA/112/2010": {
-    "appellant": "M/s Noisy Recording Centre, Datta Mansions",
-    "respondent": "Union of India"
+    "appellant": "M/s Noisy Recording Centre, Datta Mansions,",
+    "respondent": "Union of India, through the Director of Sales Unit,"
   },
   "FA/113/2010": {
     "appellant": "BARMESHWAR NARAYAN SINGH @ BAR",
-    "respondent": "SHEO SHANKAR"
+    "respondent": "SHEO SHANKAR SAH and ANR."
   },
   "FA/114/2010": {
-    "appellant": "SIKANDRA MANDAL and ANR",
-    "respondent": "RUPA DEVI and ORS"
+    "appellant": "SIKANDRA MANDAL and ANR.",
+    "respondent": "RUPA DEVI and ORS."
   },
   "FA/116/2010": {
-    "appellant": "GAURI SHANAKR PASWAN and ORS",
-    "respondent": "UMA SHANKAR"
+    "appellant": "GAURI SHANAKR PASWAN and ORS.",
+    "respondent": "UMA SHANKAR PASWAN and ORS."
   },
   "FA/118/2010": {
     "appellant": "REKHA DEVI",
@@ -14193,7 +14193,7 @@ const CASES_DB = {
   },
   "FA/125/2010": {
     "appellant": "STATE OF BIHAR THROUGH THE COL",
-    "respondent": "MADAN SINGH                    21       UP"
+    "respondent": "MADAN SINGH"
   },
   "FA/128/2010": {
     "appellant": "SMT. CHANDRA DEVI",
@@ -14201,15 +14201,15 @@ const CASES_DB = {
   },
   "FA/129/2010": {
     "appellant": "SHEO SHANKAR PRASAD",
-    "respondent": "RAJESH KUMAR and ORS"
+    "respondent": "RAJESH KUMAR and ORS."
   },
   "FA/130/2010": {
-    "appellant": "DR. BRAJ KISHORE KUMAR and ORS",
-    "respondent": "CHANDRA KISHORE"
+    "appellant": "DR. BRAJ KISHORE KUMAR and ORS.",
+    "respondent": "CHANDRA KISHORE KUMAR and ORS."
   },
   "FA/133/2010": {
-    "appellant": "RAM SHANKAR CHAUDHARY and ORS",
-    "respondent": "STATE OF BIHAR and"
+    "appellant": "RAM SHANKAR CHAUDHARY and ORS.",
+    "respondent": "STATE OF BIHAR and ORS."
   },
   "FA/134/2010": {
     "appellant": "Md. Shakil",
@@ -14221,34 +14221,34 @@ const CASES_DB = {
   },
   "FA/137/2010": {
     "appellant": "SURESH SAH",
-    "respondent": "MOSTT. REETA DEVI and ORS.                      MISCELLANEOUS"
+    "respondent": "MOSTT. REETA DEVI and ORS."
   },
   "FA/138/2010": {
     "appellant": "OM PRAKASH PANDEY",
-    "respondent": "TIRYOGI NARAYAN PANDEY and ANR"
+    "respondent": "TIRYOGI NARAYAN PANDEY and ANR."
   },
   "FA/141/2010": {
     "appellant": "Md. Shakil",
     "respondent": "Arbind Kumar Sahu"
   },
   "FA/142/2010": {
-    "appellant": "MD. KAISER and ORS",
-    "respondent": "SMT. SUNAINA DEVI and ORS"
+    "appellant": "MD. KAISER and ORS.",
+    "respondent": "SMT. SUNAINA DEVI and ORS."
   },
   "FA/146/2010": {
-    "appellant": "KAPILDEO SINGH and ORS",
-    "respondent": "RAMCHANDRA SINGH and ORS"
+    "appellant": "KAPILDEO SINGH and ORS.",
+    "respondent": "RAMCHANDRA SINGH and ORS."
   },
   "FA/147/2010": {
     "appellant": "RADHA DEVI",
-    "respondent": "RAGHU NANDAN PRASAD and ORS.                 04 GENERAL"
+    "respondent": "RAGHU NANDAN PRASAD and ORS."
   },
   "FA/148/2010": {
     "appellant": "THE BIHAR STATE ELECTRICITY BO",
     "respondent": "SHIV SHANKAR PD. SAH"
   },
   "FA/149/2010": {
-    "appellant": "STATE OF BIHAR and ORS",
+    "appellant": "STATE OF BIHAR and ORS.",
     "respondent": "YOGENDRA SINGH"
   },
   "FA/150/2010": {
@@ -14256,12 +14256,12 @@ const CASES_DB = {
     "respondent": "Kameshwar Singh"
   },
   "FA/152/2010": {
-    "appellant": "AMAR GOPE and ORS",
-    "respondent": "MOST. LADHIYA DEVI and ORS"
+    "appellant": "AMAR GOPE and ORS.",
+    "respondent": "MOST. LADHIYA DEVI and ORS."
   },
   "FA/154/2010": {
-    "appellant": "SMT. KANTI DEVI and ORS",
-    "respondent": "SRI MAHENDRA RAI and ORS.              FORMAL"
+    "appellant": "SMT. KANTI DEVI and ORS.",
+    "respondent": "SRI MAHENDRA RAI and ORS."
   },
   "FA/155/2010": {
     "appellant": "Uday Kumr Sinha @ Lalanjee",
@@ -14273,43 +14273,43 @@ const CASES_DB = {
   },
   "FA/159/2010": {
     "appellant": "SMT. NIRMALA SINGH",
-    "respondent": "RAJESHWAR SINGH and ORS"
+    "respondent": "RAJESHWAR SINGH and ORS."
   },
   "FA/160/2010": {
     "appellant": "RAJ KUMAR PRASAD",
-    "respondent": "SANJAY KUMAR PRASAD and ORS. RAM NARESH CHOUDHARY and ORS. VS. MOST. KAUSHALYA"
+    "respondent": "SANJAY KUMAR PRASAD and ORS."
   },
   "FA/164/2010": {
-    "appellant": "RAM NARESH CHOUDHARY and ORS",
-    "respondent": "MOST. KAUSHALYA"
+    "appellant": "RAM NARESH CHOUDHARY and ORS.",
+    "respondent": "MOST. KAUSHALYA DEVI and ORS."
   },
   "FA/167/2010": {
-    "appellant": "ANCHAL KUMAR PANDEY and ANR",
+    "appellant": "ANCHAL KUMAR PANDEY and ANR.",
     "respondent": "RAMAYAN SINGH"
   },
   "FA/170/2010": {
-    "appellant": "SRI NATH JHA and ANR",
-    "respondent": "BADA NAND JHA and ANR"
+    "appellant": "SRI NATH JHA and ANR.",
+    "respondent": "BADA NAND JHA and ANR."
   },
   "FA/171/2010": {
     "appellant": "HARI NARAYAN YADAV",
-    "respondent": "RAM NARAYAN SAH and ORS                      MISCELLANEOUS"
+    "respondent": "RAM NARAYAN SAH and ORS"
   },
   "FA/179/2010": {
     "appellant": "VISHAL KESARI",
-    "respondent": "BHARAT SANCHAR NIGAM LTD"
+    "respondent": "BHARAT SANCHAR NIGAM LTD."
   },
   "FA/182/2010": {
     "appellant": "BANKE RAM",
-    "respondent": "ASARFI RAM and ORS"
+    "respondent": "ASARFI RAM and ORS."
   },
   "FA/184/2010": {
     "appellant": "SRI RAJNANDAN SINGH",
-    "respondent": "SRI SATISH KUMAAR GUPTA and"
+    "respondent": "SRI SATISH KUMAAR GUPTA and ORS."
   },
   "FA/187/2010": {
     "appellant": "SHANKAR PRASAD YADAV",
-    "respondent": "OM PRAKASH and ORS"
+    "respondent": "OM PRAKASH and ORS."
   },
   "FA/188/2010": {
     "appellant": "RAJ KUMAR SINGH",
@@ -14317,7 +14317,7 @@ const CASES_DB = {
   },
   "FA/195/2010": {
     "appellant": "SR. KRISHNA KANT TIWARY",
-    "respondent": "R.L.SAH MAHAVIDYALAY                    MISCELLANEOUS"
+    "respondent": "R.L.SAH MAHAVIDYALAY"
   },
   "FA/196/2010": {
     "appellant": "RAMASHISH RAI",
@@ -14325,27 +14325,27 @@ const CASES_DB = {
   },
   "FA/203/2010": {
     "appellant": "ASHALATA SINGH",
-    "respondent": "DASHRATH PRASAD SINGH and ORS"
+    "respondent": "DASHRATH PRASAD SINGH and ORS."
   },
   "FA/206/2010": {
     "appellant": "SUDHIR KUMAR @ SUDHIR KUMAR MA",
-    "respondent": "THE STATE OF"
+    "respondent": "THE STATE OF BIHAR and ANR."
   },
   "FA/207/2010": {
     "appellant": "SACHI KUMAR",
-    "respondent": "SURENDRA KUMAR SINHA and ORS"
+    "respondent": "SURENDRA KUMAR SINHA and ORS."
   },
   "FA/212/2010": {
-    "appellant": "BHEDI YADAV and ORS",
-    "respondent": "CHANDESHWARI YADAV and ORS"
+    "appellant": "BHEDI YADAV and ORS.",
+    "respondent": "CHANDESHWARI YADAV and ORS."
   },
   "FA/214/2010": {
     "appellant": "SHARWAN KUMAR",
-    "respondent": "MUKESH KUMAR and ORS.                             MISCELLANEOUS M/S ECLAT INDUSTRIES LTD. and AN VS. M/S PATLIPUTRA"
+    "respondent": "MUKESH KUMAR and ORS."
   },
   "FA/215/2010": {
     "appellant": "M/S ECLAT INDUSTRIES LTD. and AN",
-    "respondent": "M/S PATLIPUTRA"
+    "respondent": "M/S PATLIPUTRA SERVICE STATION"
   },
   "FA/219/2010": {
     "appellant": "SHRI ARUN KUMAR",
@@ -14353,11 +14353,11 @@ const CASES_DB = {
   },
   "FA/222/2010": {
     "appellant": "SMT. MANORMA DEVI",
-    "respondent": "RAJ KISHORE LAL @ VIJAY and ORS"
+    "respondent": "RAJ KISHORE LAL @ VIJAY and ORS."
   },
   "FA/223/2010": {
     "appellant": "BRIJ BIHARI RAI",
-    "respondent": "MANKESARI DEVI and ORS"
+    "respondent": "MANKESARI DEVI and ORS."
   },
   "FA/224/2010": {
     "appellant": "NAPALI RAJAK",
@@ -14385,7 +14385,7 @@ const CASES_DB = {
   },
   "FA/235/2010": {
     "appellant": "SRI NARAYAN SINGH and ORS",
-    "respondent": "NAND KISHORE SINGH and"
+    "respondent": "NAND KISHORE SINGH and ORS"
   },
   "FA/236/2010": {
     "appellant": "SRI KRISHNA PD",
@@ -14396,16 +14396,16 @@ const CASES_DB = {
     "respondent": "RAJ NARAYAN TIWARY and ORS"
   },
   "FA/7/2011": {
-    "appellant": "SRI RAM RAI and ORS",
-    "respondent": "MOSTT. SUSHILA RAI and ORS"
+    "appellant": "SRI RAM RAI and ORS.",
+    "respondent": "MOSTT. SUSHILA RAI and ORS."
   },
   "FA/8/2011": {
-    "appellant": "RAMASHRAY BHAGAT and ORS",
-    "respondent": "RAM SUNDER BHAGAT and"
+    "appellant": "RAMASHRAY BHAGAT and ORS.",
+    "respondent": "RAM SUNDER BHAGAT and ORS."
   },
   "FA/11/2011": {
-    "appellant": "BASISTH SAHI and ORS",
-    "respondent": "NAGENDRA SAHI and ORS"
+    "appellant": "BASISTH SAHI and ORS.",
+    "respondent": "NAGENDRA SAHI and ORS."
   },
   "FA/14/2011": {
     "appellant": "SHRI BALDEO RAI and ORS",
@@ -14421,31 +14421,31 @@ const CASES_DB = {
   },
   "FA/21/2011": {
     "appellant": "MUKESH KUMAR and ORS",
-    "respondent": "SHARWAN KUMAR and ORS                     MISCELLANEOUS BIHAR STATE HOUSING COOPERATI VS. M/S JAY CHITRAKUT"
+    "respondent": "SHARWAN KUMAR and ORS"
   },
   "FA/23/2011": {
     "appellant": "BIHAR STATE HOUSING COOPERATI",
-    "respondent": "M/S JAY CHITRAKUT"
+    "respondent": "M/S JAY CHITRAKUT COOPERATIVE"
   },
   "FA/24/2011": {
     "appellant": "RAJNI KANT SINGH and ORS",
-    "respondent": "THE STATE OF BIHAR and ORS"
+    "respondent": "THE STATE OF BIHAR and ORS."
   },
   "FA/25/2011": {
     "appellant": "MOHAMMAD MUMTAZ ALI",
-    "respondent": "MOHAMMAD AMIN HUSSAIN and"
+    "respondent": "MOHAMMAD AMIN HUSSAIN and ORS"
   },
   "FA/27/2011": {
     "appellant": "BAIJNATH PD. DAS",
-    "respondent": "DR. GOPAL KUMAR SEN and ORS Shambhu Sharan Singh @ Shambhu Nath Singh VS. Gaya Nath"
+    "respondent": "DR. GOPAL KUMAR SEN and ORS"
   },
   "FA/29/2011": {
     "appellant": "Shambhu Sharan Singh @ Shambhu Nath Singh",
-    "respondent": "Gaya Nath"
+    "respondent": "Gaya Nath Singh"
   },
   "FA/30/2011": {
     "appellant": "BHOLA NATH SINGH and ORS",
-    "respondent": "SATYA NARAIN SINGH and"
+    "respondent": "SATYA NARAIN SINGH and ORS"
   },
   "FA/31/2011": {
     "appellant": "SMT. CHAMPA DEVI and ORS",
@@ -14453,7 +14453,7 @@ const CASES_DB = {
   },
   "FA/32/2011": {
     "appellant": "SMT. NEELAM MISHRA and ORS",
-    "respondent": "SHIBANAND @ BHIKHARI"
+    "respondent": "SHIBANAND @ BHIKHARI MISHRA and"
   },
   "FA/33/2011": {
     "appellant": "Shailesh Kumar Sinha",
@@ -14465,14 +14465,14 @@ const CASES_DB = {
   },
   "FA/36/2011": {
     "appellant": "RAMAUTAR SINGH",
-    "respondent": "KRISHNANDAN SINGH @ BHOLA SING                  FORMAL"
+    "respondent": "KRISHNANDAN SINGH @ BHOLA SING"
   },
   "FA/38/2011": {
     "appellant": "ARUN KUMAR MUKHERJEE and ORS",
-    "respondent": "SRI KUMAR"
+    "respondent": "SRI KUMAR MUKHERJEE and ORS"
   },
   "FA/40/2011": {
-    "appellant": "Brajesh Rai (Roy",
+    "appellant": "Brajesh Rai (Roy)",
     "respondent": "The State of Bihar"
   },
   "FA/45/2011": {
@@ -14481,15 +14481,15 @@ const CASES_DB = {
   },
   "FA/47/2011": {
     "appellant": "JAINARAYAN PRASAD SINGH",
-    "respondent": "SMT. PARWATI DEVI and ORS"
+    "respondent": "SMT. PARWATI DEVI and ORS."
   },
   "FA/50/2011": {
     "appellant": "MOSTT. PRAMILA KUNWAR",
-    "respondent": "GOPAL GIRI and ANR"
+    "respondent": "GOPAL GIRI and ANR."
   },
   "FA/51/2011": {
     "appellant": "LAALTPR UADAV@ KALAKTOR SINGH",
-    "respondent": "MOST MARACHHIYA"
+    "respondent": "MOST MARACHHIYA DEVI"
   },
   "FA/54/2011": {
     "appellant": "BIKARMA RAI",
@@ -14501,7 +14501,7 @@ const CASES_DB = {
   },
   "FA/56/2011": {
     "appellant": "MOST. RAMKALI DEVI and ORS",
-    "respondent": "THE STATE OF BIHAR and"
+    "respondent": "THE STATE OF BIHAR and ORS"
   },
   "FA/57/2011": {
     "appellant": "Sabita Devi",
@@ -14509,7 +14509,7 @@ const CASES_DB = {
   },
   "FA/58/2011": {
     "appellant": "HRIDYANAND YADAV and ORS",
-    "respondent": "RAM NARESH YADAV and"
+    "respondent": "RAM NARESH YADAV and ORS"
   },
   "FA/59/2011": {
     "appellant": "Ramanand Tiwari",
@@ -14517,11 +14517,11 @@ const CASES_DB = {
   },
   "FA/60/2011": {
     "appellant": "DHANRAJ MANDAL and ORS",
-    "respondent": "KHOKHA @ NARENU MANDAL"
+    "respondent": "KHOKHA @ NARENU MANDAL and ORS"
   },
   "FA/61/2011": {
     "appellant": "RANA GUPTESHWAR SINGH @ LAL MO",
-    "respondent": "RANA UPENDRA"
+    "respondent": "RANA UPENDRA SINGH and ORS"
   },
   "FA/63/2011": {
     "appellant": "Anant Bhagwan Jaiswal",
@@ -14529,7 +14529,7 @@ const CASES_DB = {
   },
   "FA/64/2011": {
     "appellant": "NITYANAND SINGH",
-    "respondent": "BISHRAS SEHKARI GRIH NIRMAN SA                        COURT FEE"
+    "respondent": "BISHRAS SEHKARI GRIH NIRMAN SA"
   },
   "FA/65/2011": {
     "appellant": "Pappu Prasad",
@@ -14537,7 +14537,7 @@ const CASES_DB = {
   },
   "FA/66/2011": {
     "appellant": "SHUBH NARAIN SINGH and ORS",
-    "respondent": "SMT. KAUSHALYA DEVI and"
+    "respondent": "SMT. KAUSHALYA DEVI and ORS"
   },
   "FA/67/2011": {
     "appellant": "MANDEO PD. CHOUDHARY",
@@ -14549,11 +14549,11 @@ const CASES_DB = {
   },
   "FA/72/2011": {
     "appellant": "RAMESHWAR SAH and ORS",
-    "respondent": "SANTOSH KUMAR GUPTA and"
+    "respondent": "SANTOSH KUMAR GUPTA and ORS"
   },
   "FA/73/2011": {
     "appellant": "Diwankar Prasad",
-    "respondent": "The State of Bihar through the Accquisition"
+    "respondent": "The State of Bihar through the Accquisition Officer,"
   },
   "FA/77/2011": {
     "appellant": "ANWARUL HAQUE",
@@ -14565,11 +14565,11 @@ const CASES_DB = {
   },
   "FA/79/2011": {
     "appellant": "SURESH RAM",
-    "respondent": "DEONANDAN PD"
+    "respondent": "DEONANDAN PD."
   },
   "FA/80/2011": {
     "appellant": "OM PRAKASH SINGH",
-    "respondent": "RAM PD. SINGH and ORS                                COURT FEE"
+    "respondent": "RAM PD. SINGH and ORS"
   },
   "FA/81/2011": {
     "appellant": "Md. Kitabuddin @ Md. Kitabuddin Mia",
@@ -14581,7 +14581,7 @@ const CASES_DB = {
   },
   "FA/85/2011": {
     "appellant": "M/S THE HOWRAH MOTOR COMPANY L",
-    "respondent": "M/S APARNA"
+    "respondent": "M/S APARNA DEVELOPERS INDIA P"
   },
   "FA/88/2011": {
     "appellant": "RAM PRASAD MAHTO and ORS",
@@ -14589,31 +14589,31 @@ const CASES_DB = {
   },
   "FA/90/2011": {
     "appellant": "GAURI SHANKAR SINGH",
-    "respondent": "ARUN SINGH and ORS                                MISCELLANEOUS RAM CHARITAR SINGH @ CHARITAR VS. BHAGIRATHI SINGH"
+    "respondent": "ARUN SINGH and ORS"
   },
   "FA/91/2011": {
     "appellant": "RAM CHARITAR SINGH @ CHARITAR",
-    "respondent": "BHAGIRATHI SINGH"
+    "respondent": "BHAGIRATHI SINGH and ORS"
   },
   "FA/92/2011": {
     "appellant": "BALDEV SINGH and ORS",
-    "respondent": "SHANKAR PD. SINGH @ SHIV"
+    "respondent": "SHANKAR PD. SINGH @ SHIV SHANK"
   },
   "FA/93/2011": {
     "appellant": "BIDHA DEVI @ VIDYA DEVI and ORS",
-    "respondent": "SONA KUNWAR and ORS                   MISCELLANEOUS AWADHRAJO KUNWER and ORS VS. THE COLLECTOR THE"
+    "respondent": "SONA KUNWAR and ORS"
   },
   "FA/94/2011": {
     "appellant": "AWADHRAJO KUNWER and ORS",
-    "respondent": "THE COLLECTOR THE"
+    "respondent": "THE COLLECTOR THE REPRESENTAT"
   },
   "FA/95/2011": {
     "appellant": "PARMESHWAR THAKUR and ORS",
-    "respondent": "MOSSAMAT PARWATI DEVI"
+    "respondent": "MOSSAMAT PARWATI DEVI and ORS"
   },
   "FA/96/2011": {
     "appellant": "NIRMAL KUMAR YADAV and ORS",
-    "respondent": "ARUN KUMAR SINGH                           MISCELLANEOUS"
+    "respondent": "ARUN KUMAR SINGH"
   },
   "FA/97/2011": {
     "appellant": "Smt. Aishwarya Rani",
@@ -14625,7 +14625,7 @@ const CASES_DB = {
   },
   "FA/101/2011": {
     "appellant": "MOST KUSUM DEVI and ORS",
-    "respondent": "PREMA DEVI and ORS                            MISCELLANEOUS"
+    "respondent": "PREMA DEVI and ORS"
   },
   "FA/102/2011": {
     "appellant": "JAWAHAR RAI and ORS",
@@ -14633,7 +14633,7 @@ const CASES_DB = {
   },
   "FA/103/2011": {
     "appellant": "SUMITRA DEVI",
-    "respondent": "NIRATINA DEVI and ORS                                    MISCELLANEOUS"
+    "respondent": "NIRATINA DEVI and ORS"
   },
   "FA/105/2011": {
     "appellant": "GIRJA NANDAN PD. and ORS",
@@ -14641,19 +14641,19 @@ const CASES_DB = {
   },
   "FA/107/2011": {
     "appellant": "M/S MAHA MIRTUNJAY PLASTIC IND",
-    "respondent": "STATE BANK OF INDIA BALDEV SINGH and ORS VS. SHANKAR PD. SINGH @ SHIV"
+    "respondent": "STATE BANK OF INDIA"
   },
   "FA/109/2011": {
     "appellant": "BALDEV SINGH and ORS",
-    "respondent": "SHANKAR PD. SINGH @ SHIV"
+    "respondent": "SHANKAR PD. SINGH @ SHIV SHANK"
   },
   "FA/110/2011": {
     "appellant": "SHEO NARAYAN MANDAL",
-    "respondent": "SRIKANT MANDAL and ORS.                           COURT FEE"
+    "respondent": "SRIKANT MANDAL and ORS."
   },
   "FA/113/2011": {
     "appellant": "BAIDYANATH SINGH",
-    "respondent": "CHHABINATH SINGH and ORS.                            MISCELLANEOUS"
+    "respondent": "CHHABINATH SINGH and ORS."
   },
   "FA/116/2011": {
     "appellant": "SMT. KIRAN DEVI",
@@ -14665,23 +14665,23 @@ const CASES_DB = {
   },
   "FA/120/2011": {
     "appellant": "KEDAR NATH FATEHPURIA VOLUNT",
-    "respondent": "THE STATE OF BIHAR"
+    "respondent": "THE STATE OF BIHAR and ORS"
   },
   "FA/121/2011": {
     "appellant": "MANOJ KUMAR",
-    "respondent": "VIJAY SINGH and ORS                          MISCELLANEOUS M/S OMKAR ENTERPRISES THROUGH VS. FOOD CORPORATION"
+    "respondent": "VIJAY SINGH and ORS"
   },
   "FA/122/2011": {
     "appellant": "M/S OMKAR ENTERPRISES THROUGH",
-    "respondent": "FOOD CORPORATION"
+    "respondent": "FOOD CORPORATION OF INDIA THRO"
   },
   "FA/124/2011": {
     "appellant": "BHUPENDRA SINGH and ORS",
-    "respondent": "SHAILENDRA KUMAR SINGH"
+    "respondent": "SHAILENDRA KUMAR SINGH and ORS"
   },
   "FA/125/2011": {
     "appellant": "CHANDRASEN PD. SINGH",
-    "respondent": "MOST. RAMESHWARI DEVI @"
+    "respondent": "MOST. RAMESHWARI DEVI @ RAJESHWARI DEVI"
   },
   "FA/126/2011": {
     "appellant": "RAM KHELAWAN SINGH",
@@ -14693,27 +14693,27 @@ const CASES_DB = {
   },
   "FA/128/2011": {
     "appellant": "Md. Basir Mian",
-    "respondent": "SMT. SONA DEVI and ORS"
+    "respondent": "SMT. SONA DEVI and ORS."
   },
   "FA/129/2011": {
     "appellant": "MAHESH PRASAD SINGH CHAUHAN",
-    "respondent": "FOOD CORPORATION"
+    "respondent": "FOOD CORPORATION OF INDIA and OR"
   },
   "FA/130/2011": {
     "appellant": "BINDA SINGH",
     "respondent": "BABAN SINGH"
   },
   "FA/131/2011": {
-    "appellant": "DINANATH JAISWAL and ANR",
+    "appellant": "DINANATH JAISWAL and ANR.",
     "respondent": "VIKASH KUMAR CHAUDHARY"
   },
   "FA/133/2011": {
     "appellant": "NAGENDRI DEVIand ANR",
-    "respondent": "BISHRAM PRASAD VERMA and"
+    "respondent": "BISHRAM PRASAD VERMA and ORS."
   },
   "FA/135/2011": {
-    "appellant": "MALVENDRA NATH and ORS",
-    "respondent": "SANJAY KUMAR GUPTA and"
+    "appellant": "MALVENDRA NATH and ORS.",
+    "respondent": "SANJAY KUMAR GUPTA and ORS."
   },
   "FA/136/2011": {
     "appellant": "MD. TAUHID and ORS",
@@ -14729,7 +14729,7 @@ const CASES_DB = {
   },
   "FA/140/2011": {
     "appellant": "NISHI BHUSHAN SINGH",
-    "respondent": "BIRENDRA PD. SINGH                       MISCELLANEOUS"
+    "respondent": "BIRENDRA PD. SINGH"
   },
   "FA/141/2011": {
     "appellant": "RAJBALLAM KUMAR SINGH",
@@ -14737,11 +14737,11 @@ const CASES_DB = {
   },
   "FA/142/2011": {
     "appellant": "BIHAR STATE SCHEDULE CASTE COO",
-    "respondent": "MAHA LAKSHMI"
+    "respondent": "MAHA LAKSHMI ENTERPRISES"
   },
   "FA/143/2011": {
     "appellant": "RAJNI KANT LAL @ RAJNI KANT LA",
-    "respondent": "KRISHNA KANT LAL DAS"
+    "respondent": "KRISHNA KANT LAL DAS @ KRISHNA"
   },
   "FA/145/2011": {
     "appellant": "AVDHESH SINHA",
@@ -14753,35 +14753,35 @@ const CASES_DB = {
   },
   "FA/148/2011": {
     "appellant": "SRI AWADHESH KUMAR SINGH",
-    "respondent": "UNION OF INDIA and ORS              MISCELLANEOUS DHANANJAY KUMAR SINGH @ PAPPU VS. RAM KISHORE SINGH"
+    "respondent": "UNION OF INDIA and ORS"
   },
   "FA/150/2011": {
     "appellant": "DHANANJAY KUMAR SINGH @ PAPPU",
-    "respondent": "RAM KISHORE SINGH"
+    "respondent": "RAM KISHORE SINGH @ BACHCHA BA"
   },
   "FA/151/2011": {
     "appellant": "VISHWANTH SINGH and ORS",
-    "respondent": "MADAN SINGH and ORS                  MISCELLANEOUS DR. BINAY KUMAR SINGH and ORS VS. M/S SARVOTTAM"
+    "respondent": "MADAN SINGH and ORS"
   },
   "FA/152/2011": {
     "appellant": "DR. BINAY KUMAR SINGH and ORS",
-    "respondent": "M/S SARVOTTAM"
+    "respondent": "M/S SARVOTTAM NIRMAN PVT. LTD"
   },
   "FA/155/2011": {
     "appellant": "MANORANJAN PD. GUPTA",
-    "respondent": "THE CHAIRMAN,BIHAR STATE"
+    "respondent": "THE CHAIRMAN,BIHAR STATE ELECT"
   },
   "FA/156/2011": {
     "appellant": "Parwej Alam",
-    "respondent": "Dr. Nasim Ahmad                                  FORMAL"
+    "respondent": "Dr. Nasim Ahmad"
   },
   "FA/158/2011": {
     "appellant": "ON MAASUMI",
-    "respondent": "SMT. MANNA RANI SINGH                             MISCELLANEOUS MOST. SINGARIA DEVI and ORS VS. SK. MD. SABDULLAH and"
+    "respondent": "SMT. MANNA RANI SINGH"
   },
   "FA/159/2011": {
     "appellant": "MOST. SINGARIA DEVI and ORS",
-    "respondent": "SK. MD. SABDULLAH and"
+    "respondent": "SK. MD. SABDULLAH and ORS"
   },
   "FA/161/2011": {
     "appellant": "SRI BHOLA PD. SINGH",
@@ -14789,19 +14789,19 @@ const CASES_DB = {
   },
   "FA/162/2011": {
     "appellant": "JAG MOHAN PD. SINGH @ MADAN SI",
-    "respondent": "MANOJ KUMAR"
+    "respondent": "MANOJ KUMAR MISHRA"
   },
   "FA/163/2011": {
     "appellant": "SHAMIM ANWAR @ MD. SHAMIM ANWA",
-    "respondent": "UDAY CHANDRA"
+    "respondent": "UDAY CHANDRA SINGH and ORS"
   },
   "FA/164/2011": {
     "appellant": "SRI RAM NARESH PD.SINGH @ RAM",
-    "respondent": "SRI YOGENDRA JHA"
+    "respondent": "SRI YOGENDRA JHA and ORS"
   },
   "FA/168/2011": {
     "appellant": "CHANDRASHEKHAR CHOUDHARY",
-    "respondent": "JAIMANGAL THAKUR and"
+    "respondent": "JAIMANGAL THAKUR and ORS"
   },
   "FA/169/2011": {
     "appellant": "SHRI KAMESHWAR PD. and ORS",
@@ -14813,7 +14813,7 @@ const CASES_DB = {
   },
   "FA/183/2011": {
     "appellant": "RAMLAL SINGH and ORS",
-    "respondent": "BIRENDRA PD. AGRAWAL and ORS            MISCELLANEOUS"
+    "respondent": "BIRENDRA PD. AGRAWAL and ORS"
   },
   "FA/184/2011": {
     "appellant": "RAMA PD. YADAV and ORS",
@@ -14829,11 +14829,11 @@ const CASES_DB = {
   },
   "FA/193/2011": {
     "appellant": "UMESH RAI and ORS",
-    "respondent": "THE STATE OF BIHAR                         MISCELLANEOUS THE CHAIRMAN CUM MANAGING DIRE VS. MAJHAULIA VYPAR"
+    "respondent": "THE STATE OF BIHAR"
   },
   "FA/197/2011": {
     "appellant": "THE CHAIRMAN CUM MANAGING DIRE",
-    "respondent": "MAJHAULIA VYPAR"
+    "respondent": "MAJHAULIA VYPAR MANDAL SAHYOG"
   },
   "FA/198/2011": {
     "appellant": "KEDAR SINGH and ORS",
@@ -14844,16 +14844,16 @@ const CASES_DB = {
     "respondent": "AJAY KUMAR and ORS"
   },
   "FA/202/2011": {
-    "appellant": "KAMESHWAR PD",
+    "appellant": "KAMESHWAR PD.",
     "respondent": "JHAMMAN PD. and ORS"
   },
   "FA/206/2011": {
     "appellant": "KHUBLAL SAH and ORS",
-    "respondent": "MANRAJ SAH and ORS                       MISCELLANEOUS DR. ZAKIR HUSSAIN INSTITUTE FO VS. SMT. NIRANJANA"
+    "respondent": "MANRAJ SAH and ORS"
   },
   "FA/208/2011": {
     "appellant": "DR. ZAKIR HUSSAIN INSTITUTE FO",
-    "respondent": "SMT. NIRANJANA"
+    "respondent": "SMT. NIRANJANA MISHRA and ORS"
   },
   "FA/209/2011": {
     "appellant": "RAMA NATH DUBEY and ORS",
@@ -14877,7 +14877,7 @@ const CASES_DB = {
   },
   "FA/217/2011": {
     "appellant": "THE STATE OF BIHAR THROUGH COL",
-    "respondent": "RANDHIR KUMAR"
+    "respondent": "RANDHIR KUMAR SINGH"
   },
   "FA/218/2011": {
     "appellant": "BIMLA DEVI",
@@ -14889,26 +14889,26 @@ const CASES_DB = {
   },
   "FA/220/2011": {
     "appellant": "KUMAR NAGENDRA",
-    "respondent": "Rang Lal Prasad @ Rang Lal Chain"
+    "respondent": "Rang Lal Prasad @ Rang Lal Chain,"
   },
   "FA/221/2011": {
     "appellant": "HARENDRA KUMAR DUBEY @ MADAN J",
-    "respondent": "RABINDRA NATH"
+    "respondent": "RABINDRA NATH DUBEY @ KANHAIYA"
   },
   "FA/224/2011": {
     "appellant": "MAHENDRA TIWARY",
     "respondent": "DHARMDEO TIWARY and ORS"
   },
   "FA/226/2011": {
-    "appellant": "VIJAY RAI and ORS",
-    "respondent": "THE STATE OF BIHAR and ORS"
+    "appellant": "VIJAY RAI and ORS.",
+    "respondent": "THE STATE OF BIHAR and ORS."
   },
   "FA/227/2011": {
-    "appellant": "GANGA RAI and ORS",
+    "appellant": "GANGA RAI and ORS.",
     "respondent": "THE STATE OF BIHAR"
   },
   "FA/228/2011": {
-    "appellant": "MAHENDRA RAI and ORS",
+    "appellant": "MAHENDRA RAI and ORS.",
     "respondent": "THE STATE OF BIHAR"
   },
   "FA/229/2011": {
@@ -14925,7 +14925,7 @@ const CASES_DB = {
   },
   "FA/234/2011": {
     "appellant": "RAM RASH CHAUDHARY and ORS",
-    "respondent": "RADHESHYAM"
+    "respondent": "RADHESHYAM CHAUDHARY and ORS"
   },
   "FA/235/2011": {
     "appellant": "SMT. REKHA SARKAR",
@@ -14933,7 +14933,7 @@ const CASES_DB = {
   },
   "FA/237/2011": {
     "appellant": "BABULAL PASWAN",
-    "respondent": "DHARI PASWAN and ORS                          FORMAL"
+    "respondent": "DHARI PASWAN and ORS"
   },
   "FA/241/2011": {
     "appellant": "TAZID ANSARI",
@@ -14941,11 +14941,11 @@ const CASES_DB = {
   },
   "FA/1/2012": {
     "appellant": "AWADHESH KUMAR MISHRA and ORS",
-    "respondent": "DIPAK KR. MISHRA"
+    "respondent": "DIPAK KR. MISHRA and ORS"
   },
   "FA/6/2012": {
     "appellant": "URMILA DEVI",
-    "respondent": "RAM NARESH PD"
+    "respondent": "RAM NARESH PD."
   },
   "FA/8/2012": {
     "appellant": "Chanda Kuer",
@@ -14953,7 +14953,7 @@ const CASES_DB = {
   },
   "FA/9/2012": {
     "appellant": "SMT. MURAHI DEVI and ORS",
-    "respondent": "MOST. SRINGARI KUNWAR and"
+    "respondent": "MOST. SRINGARI KUNWAR and ORS"
   },
   "FA/10/2012": {
     "appellant": "Sita Ram Mishra",
@@ -14965,11 +14965,11 @@ const CASES_DB = {
   },
   "FA/12/2012": {
     "appellant": "Ramesh Singh",
-    "respondent": "Kalawati Devi"
+    "respondent": "Kalawati Devi,"
   },
   "FA/15/2012": {
     "appellant": "SHRI RAJ NARAYAN RAI",
-    "respondent": "SHRI SATYADEO SINGH and ORS            MISCELLANEOUS"
+    "respondent": "SHRI SATYADEO SINGH and ORS"
   },
   "FA/16/2012": {
     "appellant": "SHRI VIVEKA NAND SINGH",
@@ -14977,11 +14977,11 @@ const CASES_DB = {
   },
   "FA/17/2012": {
     "appellant": "BRAJ KISHORE SHAHI",
-    "respondent": "BIHAR SARKAR THROUGH THE"
+    "respondent": "BIHAR SARKAR THROUGH THE COLLE"
   },
   "FA/19/2012": {
     "appellant": "VIDYA NAND PD. CHOUDHARY and ORS",
-    "respondent": "ASHOK KUMAR and"
+    "respondent": "ASHOK KUMAR and ORS"
   },
   "FA/20/2012": {
     "appellant": "MISHRI LAL SHARMA",
@@ -14997,18 +14997,18 @@ const CASES_DB = {
   },
   "FA/25/2012": {
     "appellant": "KAPIL SINGH @ KAPILMUNI SINGH",
-    "respondent": "SUMITRA KUNWAR and"
+    "respondent": "SUMITRA KUNWAR and ORS"
   },
   "FA/27/2012": {
     "appellant": "M/S NIRANJAN CONSTRUCTION COMP",
-    "respondent": "THE STATE OF"
+    "respondent": "THE STATE OF BIHAR and ORS"
   },
   "FA/28/2012": {
     "appellant": "ASHOK KUMAR and ORS",
     "respondent": "JAI NANDAN PD. and ORS"
   },
   "FA/30/2012": {
-    "appellant": "BRIJESH PD",
+    "appellant": "BRIJESH PD.",
     "respondent": "MANKESHWAR PD. and ORS"
   },
   "FA/32/2012": {
@@ -15017,7 +15017,7 @@ const CASES_DB = {
   },
   "FA/33/2012": {
     "appellant": "SHIVA RANI DEVI and LANR",
-    "respondent": "CHIEF MANAGING DIRECTOR"
+    "respondent": "CHIEF MANAGING DIRECTOR BANK O"
   },
   "FA/35/2012": {
     "appellant": "RANJEET KUMAR VERMA",
@@ -15033,7 +15033,7 @@ const CASES_DB = {
   },
   "FA/38/2012": {
     "appellant": "YOGENDRA PRASAD AMBASGTHA",
-    "respondent": "BIHAR STATE HOUSING"
+    "respondent": "BIHAR STATE HOUSING CO-OPERATI"
   },
   "FA/39/2012": {
     "appellant": "MAIMON NISHA and ORS",
@@ -15049,10 +15049,10 @@ const CASES_DB = {
   },
   "FA/43/2012": {
     "appellant": "DINESH PD. JAISWAL and ORS",
-    "respondent": "THE STATE OF BIHAR and"
+    "respondent": "THE STATE OF BIHAR and ORS"
   },
   "FA/45/2012": {
-    "appellant": "RAJESH KUMAR PD",
+    "appellant": "RAJESH KUMAR PD.",
     "respondent": "NAWAL KISHOR PD. and ORS"
   },
   "FA/47/2012": {
@@ -15061,11 +15061,11 @@ const CASES_DB = {
   },
   "FA/49/2012": {
     "appellant": "RAM NAKSHTRA DUBEY and ORS",
-    "respondent": "SURYA NARAIN DUBEY"
+    "respondent": "SURYA NARAIN DUBEY and ORS"
   },
   "FA/52/2012": {
     "appellant": "DINESH NARAYAN JHA @ DINESH NA",
-    "respondent": "THE STATE OF BIHAR"
+    "respondent": "THE STATE OF BIHAR and ORS"
   },
   "FA/53/2012": {
     "appellant": "MAHADEO SINGH and ANR",
@@ -15089,7 +15089,7 @@ const CASES_DB = {
   },
   "FA/62/2012": {
     "appellant": "RAJENDRA SINGH and ORS",
-    "respondent": "JANAK KUMAR SINGH and ORS            MISCELLANEOUS"
+    "respondent": "JANAK KUMAR SINGH and ORS"
   },
   "FA/65/2012": {
     "appellant": "Chandrika Singh",
@@ -15097,7 +15097,7 @@ const CASES_DB = {
   },
   "FA/66/2012": {
     "appellant": "CHIEF MANAGER POWER GRID CORPO",
-    "respondent": "CHANDRA PRABHA"
+    "respondent": "CHANDRA PRABHA DEVI and ORS"
   },
   "FA/68/2012": {
     "appellant": "MOST. SONAMATI DEVI",
@@ -15105,15 +15105,15 @@ const CASES_DB = {
   },
   "FA/70/2012": {
     "appellant": "YOGENDRA PD. SAH and ANR",
-    "respondent": "THE STATE OF BIHAR and"
+    "respondent": "THE STATE OF BIHAR and ORS"
   },
   "FA/72/2012": {
     "appellant": "SANJAY KUMAR GUPTA",
-    "respondent": "MANOJ KUMAR and ORS                   FORMAL"
+    "respondent": "MANOJ KUMAR and ORS"
   },
   "FA/73/2012": {
     "appellant": "NARBADESHWAR PATHAK and ORS",
-    "respondent": "GANESH CHOUBEY and"
+    "respondent": "GANESH CHOUBEY and ORS"
   },
   "FA/75/2012": {
     "appellant": "ANANT SINGH",
@@ -15129,11 +15129,11 @@ const CASES_DB = {
   },
   "FA/81/2012": {
     "appellant": "MD. SULTAN",
-    "respondent": "THE STATE OF BIHAR and ORS                                MISCELLANEOUS"
+    "respondent": "THE STATE OF BIHAR and ORS"
   },
   "FA/86/2012": {
     "appellant": "Mosmat Manju Devi and Ors",
-    "respondent": "Praduman Das and Ors                       MISCELLANEOUS"
+    "respondent": "Praduman Das and Ors"
   },
   "FA/89/2012": {
     "appellant": "Anirudh Sao",
@@ -15152,7 +15152,7 @@ const CASES_DB = {
     "respondent": "Rabindra Nath Singh and Ors"
   },
   "FA/100/2012": {
-    "appellant": "Om Shankar Pd",
+    "appellant": "Om Shankar Pd.",
     "respondent": "Smt. Binda Devi and Ors"
   },
   "FA/101/2012": {
@@ -15165,7 +15165,7 @@ const CASES_DB = {
   },
   "FA/104/2012": {
     "appellant": "Smt. Anita Devi and Ors",
-    "respondent": "Jagarnath Mahto and Ors                      MISCELLANEOUS"
+    "respondent": "Jagarnath Mahto and Ors"
   },
   "FA/105/2012": {
     "appellant": "Sushil Choudhary and Ors",
@@ -15181,15 +15181,15 @@ const CASES_DB = {
   },
   "FA/110/2012": {
     "appellant": "Prabhat Kumar Karn",
-    "respondent": "The Chairman Cum Managing Director, Uco"
+    "respondent": "The Chairman Cum Managing Director, Uco Bank and Ors"
   },
   "FA/113/2012": {
     "appellant": "Sanjay Singh and Ors",
-    "respondent": "BALMIKI SINGH and ORS"
+    "respondent": "BALMIKI SINGH and ORS."
   },
   "FA/114/2012": {
     "appellant": "Shanti Devi",
-    "respondent": "Jang Bahadur Singh and Ors                               MISCELLANEOUS"
+    "respondent": "Jang Bahadur Singh and Ors"
   },
   "FA/117/2012": {
     "appellant": "Md. Rafi Ahmad",
@@ -15197,7 +15197,7 @@ const CASES_DB = {
   },
   "FA/118/2012": {
     "appellant": "Ranjeet Kumar",
-    "respondent": "Srimati Basanti Devi and Ors                           MISCELLANEOUS"
+    "respondent": "Srimati Basanti Devi and Ors"
   },
   "FA/119/2012": {
     "appellant": "Sudarshan Paswan",
@@ -15205,7 +15205,7 @@ const CASES_DB = {
   },
   "FA/120/2012": {
     "appellant": "SHAHZAHAN BIBI",
-    "respondent": "Taukeer Alam and Ors                                  MISCELLANEOUS"
+    "respondent": "Taukeer Alam and Ors"
   },
   "FA/122/2012": {
     "appellant": "Gujaratee Devi and Anr",
@@ -15217,7 +15217,7 @@ const CASES_DB = {
   },
   "FA/126/2012": {
     "appellant": "Humaira Khatoon",
-    "respondent": "Kaisar Alam @ Feku Mian and Ors                      MISCELLANEOUS"
+    "respondent": "Kaisar Alam @ Feku Mian and Ors"
   },
   "FA/128/2012": {
     "appellant": "Sulochana Sinha @ Sulochana Devi",
@@ -15225,43 +15225,43 @@ const CASES_DB = {
   },
   "FA/130/2012": {
     "appellant": "Rewati Raman Sinha",
-    "respondent": "Sri Rajni Raman Kumar Sinha and Ors"
+    "respondent": "Sri Rajni Raman Kumar Sinha and Ors."
   },
   "FA/131/2012": {
     "appellant": "Jageshwar Yadav",
-    "respondent": "Shankar Yadav and Ors.                               MISCELLANEOUS Vishnu Gopal @ Vishnu Kumar and Anr. VS. Canara Bank At Lalbag"
+    "respondent": "Shankar Yadav and Ors."
   },
   "FA/132/2012": {
-    "appellant": "Vishnu Gopal @ Vishnu Kumar and Anr",
-    "respondent": "Canara Bank At Lalbag"
+    "appellant": "Vishnu Gopal @ Vishnu Kumar and Anr.",
+    "respondent": "Canara Bank At Lalbag and Ors."
   },
   "FA/133/2012": {
-    "appellant": "Vishw Karma Sharma and Anr",
-    "respondent": "Most. Phulmati Kunwar and Ors"
+    "appellant": "Vishw Karma Sharma and Anr.",
+    "respondent": "Most. Phulmati Kunwar and Ors."
   },
   "FA/135/2012": {
-    "appellant": "Mahesh Rai and Anr",
-    "respondent": "Upendra Kumar and Ors"
+    "appellant": "Mahesh Rai and Anr.",
+    "respondent": "Upendra Kumar and Ors."
   },
   "FA/139/2012": {
     "appellant": "Sant Gurudeo Singh @ Sant Kuamr",
-    "respondent": "Puspa Devi and Ors"
+    "respondent": "Puspa Devi and Ors."
   },
   "FA/140/2012": {
-    "appellant": "Ghan Shyam Sharma and Anr",
-    "respondent": "Radhika Devi and Anr.                     FORMAL"
+    "appellant": "Ghan Shyam Sharma and Anr.",
+    "respondent": "Radhika Devi and Anr."
   },
   "FA/142/2012": {
-    "appellant": "Shrikant Yadav and Ors",
-    "respondent": "Bashishtha Narayan Tiwary and Ors"
+    "appellant": "Shrikant Yadav and Ors.",
+    "respondent": "Bashishtha Narayan Tiwary and Ors."
   },
   "FA/145/2012": {
-    "appellant": "Kusheshwar Mahto and Ors",
-    "respondent": "Ramakant Mahto and Ors"
+    "appellant": "Kusheshwar Mahto and Ors.",
+    "respondent": "Ramakant Mahto and Ors."
   },
   "FA/146/2012": {
-    "appellant": "Sujit Bose and Anr",
-    "respondent": "Laxmi Sarkar and Ors.                              FORMAL"
+    "appellant": "Sujit Bose and Anr.",
+    "respondent": "Laxmi Sarkar and Ors."
   },
   "FA/148/2012": {
     "appellant": "Suniti Kumar",
@@ -15276,100 +15276,100 @@ const CASES_DB = {
     "respondent": "The State Of Bihar and Ors"
   },
   "FA/154/2012": {
-    "appellant": "Md. Akhtar Hussain and Ors",
-    "respondent": "Md. Jahangir and Ors"
+    "appellant": "Md. Akhtar Hussain and Ors.",
+    "respondent": "Md. Jahangir and Ors."
   },
   "FA/155/2012": {
-    "appellant": "Hirdaya Nand Upadhyay and Ors",
-    "respondent": "Dulhin Kaushalya Devi and"
+    "appellant": "Hirdaya Nand Upadhyay and Ors.",
+    "respondent": "Dulhin Kaushalya Devi and Ors."
   },
   "FA/157/2012": {
     "appellant": "Smt. Sandhya Devi",
-    "respondent": "Md. Israil and Ors.                                  MISCELLANEOUS"
+    "respondent": "Md. Israil and Ors."
   },
   "FA/160/2012": {
     "appellant": "Md. Bashir Beg",
-    "respondent": "Shamshar Khan and Ors"
+    "respondent": "Shamshar Khan and Ors."
   },
   "FA/163/2012": {
-    "appellant": "Anil Kumar Soni and Ors",
+    "appellant": "Anil Kumar Soni and Ors.",
     "respondent": "The State Of Bihar and Ors"
   },
   "FA/165/2012": {
-    "appellant": "Ganesh Prasad and Ors",
-    "respondent": "Amaresh Prasad and Anr"
+    "appellant": "Ganesh Prasad and Ors.",
+    "respondent": "Amaresh Prasad and Anr."
   },
   "FA/166/2012": {
-    "appellant": "Abhimanue Raut and Anr",
-    "respondent": "The Special Land Acquisition Officer"
+    "appellant": "Abhimanue Raut and Anr.",
+    "respondent": "The Special Land Acquisition Officer No. 1 and Ors."
   },
   "FA/168/2012": {
-    "appellant": "M/s Green Gold Construction india Pvt. and Anr",
-    "respondent": "The State Of"
+    "appellant": "M/s Green Gold Construction india Pvt. and Anr.",
+    "respondent": "The State Of Bihar and Ors"
   },
   "FA/169/2012": {
     "appellant": "Shikha Kumari",
-    "respondent": "Smt. Indrapari Devi and Ors"
+    "respondent": "Smt. Indrapari Devi and Ors."
   },
   "FA/173/2012": {
-    "appellant": "Prahlad Prasad @ Prahlad Dhanuk and Ors",
-    "respondent": "Ganesh Prasad @"
+    "appellant": "Prahlad Prasad @ Prahlad Dhanuk and Ors.",
+    "respondent": "Ganesh Prasad @ Ganesh Dhanuk"
   },
   "FA/175/2012": {
-    "appellant": "Gayatri Devi and Ors",
-    "respondent": "Manju Devi and Ors.                              MISCELLANEOUS"
+    "appellant": "Gayatri Devi and Ors.",
+    "respondent": "Manju Devi and Ors."
   },
   "FA/177/2012": {
-    "appellant": "Dhurandhar Rai and Ors",
-    "respondent": "Raghwendra Sharma and Ors.                     FORMAL"
+    "appellant": "Dhurandhar Rai and Ors.",
+    "respondent": "Raghwendra Sharma and Ors."
   },
   "FA/179/2012": {
     "appellant": "Smt. Sanghmitra Singh",
     "respondent": "Binod Kumar Sinha"
   },
   "FA/180/2012": {
-    "appellant": "Suresh Prasad Agrawal and Anr",
-    "respondent": "DEPUTY DEVELOPMENT"
+    "appellant": "Suresh Prasad Agrawal and Anr.",
+    "respondent": "DEPUTY DEVELOPMENT COMMISSIONER CUM AD, NAWADA"
   },
   "FA/181/2012": {
     "appellant": "Niranjan Kumar and Ors",
-    "respondent": "Shrimati Uma Devi and Ors.                      FORMAL"
+    "respondent": "Shrimati Uma Devi and Ors."
   },
   "FA/182/2012": {
-    "appellant": "Chanmano Kuer and Ors",
-    "respondent": "Bijoy Tiwary and Ors"
+    "appellant": "Chanmano Kuer and Ors.",
+    "respondent": "Bijoy Tiwary and Ors."
   },
   "FA/183/2012": {
-    "appellant": "Bharat Prasad and Ors",
-    "respondent": "Ramnath Suman and Ors"
+    "appellant": "Bharat Prasad and Ors.",
+    "respondent": "Ramnath Suman and Ors."
   },
   "FA/184/2012": {
     "appellant": "Smt. Ranju Singh",
-    "respondent": "Satyendra Kumar Singh and Ors"
+    "respondent": "Satyendra Kumar Singh and Ors."
   },
   "FA/187/2012": {
     "appellant": "Chameli Devi",
     "respondent": "Ful Kumari Devi"
   },
   "FA/188/2012": {
-    "appellant": "Radhika Devi and Ors",
-    "respondent": "Santosh Chaudhary and Anr"
+    "appellant": "Radhika Devi and Ors.",
+    "respondent": "Santosh Chaudhary and Anr."
   },
   "FA/189/2012": {
-    "appellant": "Sheo Shankar Pd. and Ors",
-    "respondent": "Dhrub Nandan Lall and Ors"
+    "appellant": "Sheo Shankar Pd. and Ors.",
+    "respondent": "Dhrub Nandan Lall and Ors."
   },
   "FA/190/2012": {
-    "appellant": "Ram Chandra Singh and Ors",
-    "respondent": "Bharat Sah and Ors"
+    "appellant": "Ram Chandra Singh and Ors.",
+    "respondent": "Bharat Sah and Ors."
   },
   "FA/191/2012": {
     "appellant": "Jhalaku Devi",
-    "respondent": "Ambika Singh and Ors"
+    "respondent": "Ambika Singh and Ors."
   },
   "FA/193/2012": {
-    "appellant": "Brijnandan Prasad and Anr",
-    "respondent": "Sonma Devi and Ors"
+    "appellant": "Brijnandan Prasad and Anr.",
+    "respondent": "Sonma Devi and Ors."
   },
   "FA/194/2012": {
     "appellant": "Akhila Nand Singh",
@@ -15377,75 +15377,75 @@ const CASES_DB = {
   },
   "FA/196/2012": {
     "appellant": "Ranvijay Kumar",
-    "respondent": "Ajit Singh @ Mantu                                      MISCELLANEOUS"
+    "respondent": "Ajit Singh @ Mantu"
   },
   "FA/197/2012": {
-    "appellant": "Md. Anwar and Anr",
+    "appellant": "Md. Anwar and Anr.",
     "respondent": "Md. Halim"
   },
   "FA/198/2012": {
     "appellant": "Ram Chabila Singh",
-    "respondent": "Sheo Das and Anr"
+    "respondent": "Sheo Das and Anr."
   },
   "FA/201/2012": {
     "appellant": "Jai Prakash Bharti",
-    "respondent": "Parmila Kunwar and Ors"
+    "respondent": "Parmila Kunwar and Ors."
   },
   "FA/202/2012": {
     "appellant": "Ranjana Singh",
     "respondent": "Ganesh Prasad"
   },
   "FA/203/2012": {
-    "appellant": "RAJIV KR. SINGH and ORS",
-    "respondent": "Ram Bachan Singh and Anr.                     FORMAL ORDER"
+    "appellant": "RAJIV KR. SINGH and ORS.",
+    "respondent": "Ram Bachan Singh and Anr."
   },
   "FA/204/2012": {
     "appellant": "Jwala Ojha",
     "respondent": "Batuki Devi"
   },
   "FA/205/2012": {
-    "appellant": "Upendra Kumar and Ors",
+    "appellant": "Upendra Kumar and Ors.",
     "respondent": "Naveneet Nishchal"
   },
   "FA/208/2012": {
-    "appellant": "Sri Raghwendra Sharma and Ors",
-    "respondent": "Sri Surender Rai and Ors"
+    "appellant": "Sri Raghwendra Sharma and Ors.",
+    "respondent": "Sri Surender Rai and Ors."
   },
   "FA/209/2012": {
-    "appellant": "Geeta Rai and Ors",
-    "respondent": "Sagar Rai and Ors"
+    "appellant": "Geeta Rai and Ors.",
+    "respondent": "Sagar Rai and Ors."
   },
   "FA/210/2012": {
     "appellant": "Jitendra Kumar",
     "respondent": "Ranjeet Kumar Jha"
   },
   "FA/211/2012": {
-    "appellant": "Sri Lala Sao and Anr",
+    "appellant": "Sri Lala Sao and Anr.",
     "respondent": "Smt/ Chandrakala Devi"
   },
   "FA/213/2012": {
-    "appellant": "Most. Parbati Kuawar and Ors",
-    "respondent": "Nawal Kishore Singh and Ors.                FORMAL"
+    "appellant": "Most. Parbati Kuawar and Ors.",
+    "respondent": "Nawal Kishore Singh and Ors."
   },
   "FA/214/2012": {
     "appellant": "Smt Sunila Kumari and ors",
     "respondent": "Most. Sumitra Devi"
   },
   "FA/215/2012": {
-    "appellant": "Jagat Nandan Singh and Anr",
-    "respondent": "Khush Nandan Singh and Ors. M/s A.b. Enterprises and A.b.t.v.s. Motor Through Its Proprietor Sri"
+    "appellant": "Jagat Nandan Singh and Anr.",
+    "respondent": "Khush Nandan Singh and Ors."
   },
   "FA/216/2012": {
-    "appellant": "Akhauri Bishwanath and Anr",
+    "appellant": "M/s A.b. Enterprises and A.b.t.v.s. Motor Through Its Proprietor Sri Akhauri Bishwanath and Anr.",
     "respondent": "Upendra Kumar"
   },
   "FA/217/2012": {
-    "appellant": "Akhauri Bishwanath and Anr",
-    "respondent": "Upendra Kumar"
+    "appellant": "Mahendra Ray",
+    "respondent": "Shyama Kuar and Ors."
   },
   "FA/218/2012": {
-    "appellant": "Manindra Prasad @ Than Singh Prasad and Ors",
-    "respondent": "Santosh"
+    "appellant": "Manindra Prasad @ Than Singh Prasad and Ors.",
+    "respondent": "Santosh Prasad and Ors."
   },
   "FA/223/2012": {
     "appellant": "Uttamraj Singh",
@@ -15453,47 +15453,47 @@ const CASES_DB = {
   },
   "FA/225/2012": {
     "appellant": "Smt. Supriya Mishra",
-    "respondent": "Santosh Sultaniya and Ors"
+    "respondent": "Santosh Sultaniya and Ors."
   },
   "FA/231/2012": {
-    "appellant": "Bimal Kishore Singh and Ors",
-    "respondent": "Usha Devi and Ors"
+    "appellant": "Bimal Kishore Singh and Ors.",
+    "respondent": "Usha Devi and Ors."
   },
   "FA/232/2012": {
     "appellant": "Shanti Devi",
-    "respondent": "Smt. Lakshmi Jha and Ors"
+    "respondent": "Smt. Lakshmi Jha and Ors."
   },
   "FA/233/2012": {
-    "appellant": "Smt. Ramawati Devi and Ors",
-    "respondent": "Laxmina Devi and Ors"
+    "appellant": "Smt. Ramawati Devi and Ors.",
+    "respondent": "Laxmina Devi and Ors."
   },
   "FA/237/2012": {
     "appellant": "Devendra Kumar Singh",
     "respondent": "Binod Kumar Mehta"
   },
   "FA/239/2012": {
-    "appellant": "Smt. Krishna Devi and Anr",
-    "respondent": "Smt. Ranjan Devi and Anr"
+    "appellant": "Smt. Krishna Devi and Anr.",
+    "respondent": "Smt. Ranjan Devi and Anr."
   },
   "FA/240/2012": {
     "appellant": "Dev Muni Ray",
-    "respondent": "Am Ikbal Ray                                                 COURT FEE"
+    "respondent": "Am Ikbal Ray"
   },
   "FA/241/2012": {
-    "appellant": "Bharat Nonia and Ors",
-    "respondent": "Shukar Nonia and Anr"
+    "appellant": "Bharat Nonia and Ors.",
+    "respondent": "Shukar Nonia and Anr."
   },
   "FA/3/2013": {
     "appellant": "Raghuvir Prasad",
-    "respondent": "Dharmendra Kumar and Ors"
+    "respondent": "Dharmendra Kumar and Ors."
   },
   "FA/4/2013": {
-    "appellant": "Bhikhari Singh and Ors",
-    "respondent": "Sri Amarnath Singh and Ors"
+    "appellant": "Bhikhari Singh and Ors.",
+    "respondent": "Sri Amarnath Singh and Ors."
   },
   "FA/5/2013": {
-    "appellant": "Birender Choudhary and Ors",
-    "respondent": "Ramashray Rai and Ors"
+    "appellant": "Birender Choudhary and Ors.",
+    "respondent": "Ramashray Rai and Ors."
   },
   "FA/10/2013": {
     "appellant": "The State Of Bihar Through Collector Of Nawada",
@@ -15501,7 +15501,7 @@ const CASES_DB = {
   },
   "FA/13/2013": {
     "appellant": "The State Of Bihar Through Collector Of Nawada",
-    "respondent": "Blaeshwar"
+    "respondent": "Blaeshwar Rajwanshi"
   },
   "FA/14/2013": {
     "appellant": "The State Of Bihar Through Collector Of Nawada",
@@ -15509,106 +15509,106 @@ const CASES_DB = {
   },
   "FA/18/2013": {
     "appellant": "The State Of Bihar Through Collector Of Nawada",
-    "respondent": "Mahesh Lal and"
+    "respondent": "Mahesh Lal and Anr."
   },
   "FA/20/2013": {
     "appellant": "The State Of Bihar Through Collector Of Nawada",
-    "respondent": "Jitender Kumar"
+    "respondent": "Jitender Kumar and Ors."
   },
   "FA/23/2013": {
-    "appellant": "Royal India House Finerest Ltd. Anr",
-    "respondent": "Ajit Kumar Sharma and Ors.           MISCELLANEOUS"
+    "appellant": "Royal India House Finerest Ltd. Anr.",
+    "respondent": "Ajit Kumar Sharma and Ors."
   },
   "FA/24/2013": {
     "appellant": "Kumari Deepmala",
-    "respondent": "Rajaram and Ors"
+    "respondent": "Rajaram and Ors."
   },
   "FA/26/2013": {
-    "appellant": "Hariyali Tractor Sadha Mathiyan Sardha Road and Anr",
-    "respondent": "Dadan"
+    "appellant": "Hariyali Tractor Sadha Mathiyan Sardha Road and Anr.",
+    "respondent": "Dadan Singh"
   },
   "FA/27/2013": {
-    "appellant": "Chandrika Rai and Anr",
-    "respondent": "Brahmadeo Prasad Rai and Anr.                      FORMAL"
+    "appellant": "Chandrika Rai and Anr.",
+    "respondent": "Brahmadeo Prasad Rai and Anr."
   },
   "FA/29/2013": {
-    "appellant": "Ramjharo Kunwar and Anr",
-    "respondent": "Sunil Kumar and Ors"
+    "appellant": "Ramjharo Kunwar and Anr.",
+    "respondent": "Sunil Kumar and Ors."
   },
   "FA/31/2013": {
     "appellant": "Sheo Shankar Singh @ Shankar Singh",
-    "respondent": "Khudi Singh @ Ashok"
+    "respondent": "Khudi Singh @ Ashok Singh and Anr."
   },
   "FA/32/2013": {
     "appellant": "Lalan Singh",
-    "respondent": "Mantora Devi and Ors"
+    "respondent": "Mantora Devi and Ors."
   },
   "FA/33/2013": {
     "appellant": "Dr. Mohammad Sahaon",
-    "respondent": "Abdul Samad Khan                                      FORMAL"
+    "respondent": "Abdul Samad Khan"
   },
   "FA/35/2013": {
-    "appellant": "Jangalu Paswan and Ors",
-    "respondent": "Ganesh Paswan and Ors"
+    "appellant": "Jangalu Paswan and Ors.",
+    "respondent": "Ganesh Paswan and Ors."
   },
   "FA/37/2013": {
     "appellant": "Sri Anand Kumar Jha",
-    "respondent": "Hem Narain Jha and Ors"
+    "respondent": "Hem Narain Jha and Ors."
   },
   "FA/38/2013": {
-    "appellant": "The State Of Bihar Through The Chief Secretary and Ors",
-    "respondent": "M/s"
+    "appellant": "The State Of Bihar Through The Chief Secretary and Ors.",
+    "respondent": "M/s Ashoka Textile Mills Propertory Concern Of Shri A.k. Thakur"
   },
   "FA/39/2013": {
-    "appellant": "Nirbhay Kumar and Anr",
-    "respondent": "Shiva Devi and Ors"
+    "appellant": "Nirbhay Kumar and Anr.",
+    "respondent": "Shiva Devi and Ors."
   },
   "FA/41/2013": {
     "appellant": "Parwati Devi",
-    "respondent": "Lalan Turha @ Lalan Yadav and Ors"
+    "respondent": "Lalan Turha @ Lalan Yadav and Ors."
   },
   "FA/43/2013": {
-    "appellant": "Birendra Rajbansi and Ors",
-    "respondent": "Smt. Meena Devi and Ors"
+    "appellant": "Birendra Rajbansi and Ors.",
+    "respondent": "Smt. Meena Devi and Ors."
   },
   "FA/44/2013": {
     "appellant": "Shiv Darshan Singh",
-    "respondent": "Suresh Prasad Sah and Ors"
+    "respondent": "Suresh Prasad Sah and Ors."
   },
   "FA/47/2013": {
-    "appellant": "Asha Devi and Ors",
-    "respondent": "Janardan Singh and Ors.                               FORMAL"
+    "appellant": "Asha Devi and Ors.",
+    "respondent": "Janardan Singh and Ors."
   },
   "FA/48/2013": {
-    "appellant": "Uma Nath Pandey and Ors",
-    "respondent": "Dharm Nath Pandey and Anr.                      MISCELLANEOUS"
+    "appellant": "Uma Nath Pandey and Ors.",
+    "respondent": "Dharm Nath Pandey and Anr."
   },
   "FA/50/2013": {
     "appellant": "Surendra Kunwar",
-    "respondent": "Vishwa Ram Singh and Anr"
+    "respondent": "Vishwa Ram Singh and Anr."
   },
   "FA/51/2013": {
     "appellant": "Surendra Kunwar",
-    "respondent": "Janardan Singh and Ors.                                  FORMAL"
+    "respondent": "Janardan Singh and Ors."
   },
   "FA/53/2013": {
-    "appellant": "Mosmat Shanti Kunwar @ Shanti Devi and Ors",
-    "respondent": "Sri Narayan"
+    "appellant": "Mosmat Shanti Kunwar @ Shanti Devi and Ors.",
+    "respondent": "Sri Narayan Mishra"
   },
   "FA/54/2013": {
     "appellant": "Smt. Kadmi Devi",
     "respondent": "Jamuna Sah"
   },
   "FA/55/2013": {
-    "appellant": "Girija Devi and Ors",
-    "respondent": "Smt. Kiran Devi and Anr"
+    "appellant": "Girija Devi and Ors.",
+    "respondent": "Smt. Kiran Devi and Anr."
   },
   "FA/56/2013": {
-    "appellant": "Kanhaiya Lal Kumar and Ors",
-    "respondent": "Chandeshwar Thakur and Ors"
+    "appellant": "Kanhaiya Lal Kumar and Ors.",
+    "respondent": "Chandeshwar Thakur and Ors."
   },
   "FA/58/2013": {
-    "appellant": "Ambika Singh and Ors",
+    "appellant": "Ambika Singh and Ors.",
     "respondent": "The State Of Bihar and Ors"
   },
   "FA/59/2013": {
@@ -15616,20 +15616,20 @@ const CASES_DB = {
     "respondent": "Md. Ozair"
   },
   "FA/60/2013": {
-    "appellant": "Rama Mishra @ Rama Shankar Mishra and Anr",
-    "respondent": "Smt. Kishori"
+    "appellant": "Rama Mishra @ Rama Shankar Mishra and Anr.",
+    "respondent": "Smt. Kishori Devi and Ors."
   },
   "FA/62/2013": {
     "appellant": "Ram Nath Sah",
-    "respondent": "Kamleshwar Giri and Ors.                                    MISCELLANEOUS"
+    "respondent": "Kamleshwar Giri and Ors."
   },
   "FA/63/2013": {
     "appellant": "Urmila Devi",
-    "respondent": "Baccha Singh @ Ramji Singh and Ors"
+    "respondent": "Baccha Singh @ Ramji Singh and Ors."
   },
   "FA/64/2013": {
     "appellant": "Madan Kumar",
-    "respondent": "Chandra Shekhar Paswan                                       FORMAL"
+    "respondent": "Chandra Shekhar Paswan"
   },
   "FA/65/2013": {
     "appellant": "Shri Ram Singh",
@@ -15637,66 +15637,66 @@ const CASES_DB = {
   },
   "FA/66/2013": {
     "appellant": "Kedar Singh",
-    "respondent": "Ram Kera Singh and Ors"
+    "respondent": "Ram Kera Singh and Ors."
   },
   "FA/67/2013": {
-    "appellant": "Kesho Singh and Anr",
+    "appellant": "Kesho Singh and Anr.",
     "respondent": "Ram Nath Singh"
   },
   "FA/68/2013": {
     "appellant": "Mani Bhushan Prasad Singh @ Nagmani Prasad Singh",
-    "respondent": "Kapildeo"
+    "respondent": "Kapildeo Singh"
   },
   "FA/69/2013": {
-    "appellant": "Bibi Aisha Begam and Ors",
-    "respondent": "Bibi Shahnaj Begum and Anr"
+    "appellant": "Bibi Aisha Begam and Ors.",
+    "respondent": "Bibi Shahnaj Begum and Anr."
   },
   "FA/71/2013": {
     "appellant": "Sonfi Devi",
-    "respondent": "Arvind Kumar and Ors.                              24 GENERAL  Kameshwar Mistri @ Bishwakarma and Anr. VS. Banarsi Prasad"
+    "respondent": "Arvind Kumar and Ors."
   },
   "FA/72/2013": {
-    "appellant": "Kameshwar Mistri @ Bishwakarma and Anr",
-    "respondent": "Banarsi Prasad"
+    "appellant": "Kameshwar Mistri @ Bishwakarma and Anr.",
+    "respondent": "Banarsi Prasad Bishwakarma and Ors."
   },
   "FA/74/2013": {
-    "appellant": "Harihar Singh and Ors",
-    "respondent": "Suruj Singh and Ors"
+    "appellant": "Harihar Singh and Ors.",
+    "respondent": "Suruj Singh and Ors."
   },
   "FA/75/2013": {
-    "appellant": "Sita Ram Ram and Anr",
-    "respondent": "Radha Kishun Prasad and Ors"
+    "appellant": "Sita Ram Ram and Anr.",
+    "respondent": "Radha Kishun Prasad and Ors."
   },
   "FA/76/2013": {
-    "appellant": "Syed Sultan Ahmad Rasti and Ors",
+    "appellant": "Syed Sultan Ahmad Rasti and Ors.",
     "respondent": "The State Of Bihar and Ors"
   },
   "FA/77/2013": {
     "appellant": "Lallan Tiwary",
-    "respondent": "The State of Bihar through Collector"
+    "respondent": "The State of Bihar through Collector,"
   },
   "FA/78/2013": {
-    "appellant": "Bhukhal Miyan and Ors",
-    "respondent": "Mohammad Alam and Ors"
+    "appellant": "Bhukhal Miyan and Ors.",
+    "respondent": "Mohammad Alam and Ors."
   },
   "FA/79/2013": {
-    "appellant": "Bireshwar Prasad Thakur @ Bireshwar Thakur and Ors",
-    "respondent": ""
+    "appellant": "Bireshwar Prasad Thakur @ Bireshwar Thakur and Ors.",
+    "respondent": "Chandeshwar Thakur and Ors."
   },
   "FA/80/2013": {
-    "appellant": "Anita Sinha and Anr",
-    "respondent": "Niraj Kumar Sinha                                   FORMAL"
+    "appellant": "Anita Sinha and Anr.",
+    "respondent": "Niraj Kumar Sinha"
   },
   "FA/83/2013": {
-    "appellant": "Shri Vimal Kumar Singh and Ors",
-    "respondent": "Rajiv Kumar Singh and Ors.               MISCELLANEOUS"
+    "appellant": "Shri Vimal Kumar Singh and Ors.",
+    "respondent": "Rajiv Kumar Singh and Ors."
   },
   "FA/84/2013": {
     "appellant": "Tripurari Prasad Shahi",
-    "respondent": "Murari Prasad Shahi and Ors"
+    "respondent": "Murari Prasad Shahi and Ors."
   },
   "FA/85/2013": {
-    "appellant": "Md. Shafi Alam @ Safi Alam and Ors",
+    "appellant": "Md. Shafi Alam @ Safi Alam and Ors.",
     "respondent": "Ataur Rahman"
   },
   "FA/86/2013": {
@@ -15704,12 +15704,12 @@ const CASES_DB = {
     "respondent": "Jiendra Kumar Choudhary"
   },
   "FA/87/2013": {
-    "appellant": "Babloo Choudhary and Ors",
-    "respondent": "Jitendra Kumar Choudhary and Ors"
+    "appellant": "Babloo Choudhary and Ors.",
+    "respondent": "Jitendra Kumar Choudhary and Ors."
   },
   "FA/88/2013": {
     "appellant": "Masoom Ali",
-    "respondent": "Sheikh Abdul Majeed and Ors"
+    "respondent": "Sheikh Abdul Majeed and Ors."
   },
   "FA/89/2013": {
     "appellant": "Vimal Kumar Singh",
@@ -15717,259 +15717,259 @@ const CASES_DB = {
   },
   "FA/90/2013": {
     "appellant": "Smt. Meena Devi",
-    "respondent": "Most. Meena Devi and Ors.                                MISCELLANEOUS"
+    "respondent": "Most. Meena Devi and Ors."
   },
   "FA/93/2013": {
     "appellant": "Manorama Devi",
-    "respondent": "Mst. Pavitri Devi Anr"
+    "respondent": "Mst. Pavitri Devi Anr."
   },
   "FA/94/2013": {
-    "appellant": "Smt. Veena Devi Ors",
-    "respondent": "Kanhai Singh and Ors"
+    "appellant": "Smt. Veena Devi Ors.",
+    "respondent": "Kanhai Singh and Ors."
   },
   "FA/95/2013": {
     "appellant": "Smt. Dhano Devi",
-    "respondent": "Smt. Moni Devi and Ors"
+    "respondent": "Smt. Moni Devi and Ors."
   },
   "FA/97/2013": {
-    "appellant": "Smt. Bijaya Sinha @ Bijay Sinha and Anr",
+    "appellant": "Smt. Bijaya Sinha @ Bijay Sinha and Anr.",
     "respondent": "Most. Shanti Devi"
   },
   "FA/99/2013": {
     "appellant": "Ram Chandra Issar",
-    "respondent": "Mostt. Sogra and Ors"
+    "respondent": "Mostt. Sogra and Ors."
   },
   "FA/100/2013": {
     "appellant": "Smt. Kumari Veena",
-    "respondent": "Om Prakash Narayan Sinha @ Babuajee @"
+    "respondent": "Om Prakash Narayan Sinha @ Babuajee @ Opns Ashok Tejendra Dhar and Ors."
   },
   "FA/102/2013": {
     "appellant": "Dinesh Prasad Choudhary",
-    "respondent": "Yogendra Prasad Choudahry and Ors.                 MISCELLANEOUS"
+    "respondent": "Yogendra Prasad Choudahry and Ors."
   },
   "FA/103/2013": {
     "appellant": "Kiran Kumari",
-    "respondent": "Miss Pooja and Ors"
+    "respondent": "Miss Pooja and Ors."
   },
   "FA/104/2013": {
     "appellant": "Devendra Prasad Jaiswal Varun",
     "respondent": "Arvind Kumar Jaiswal"
   },
   "FA/105/2013": {
-    "appellant": "Ratan Kumar Singh and Anr",
-    "respondent": "Gouri Shankar Singh and Ors"
+    "appellant": "Ratan Kumar Singh and Anr.",
+    "respondent": "Gouri Shankar Singh and Ors."
   },
   "FA/107/2013": {
-    "appellant": "Bishwa Mohan Kumar Sinha @ Poon-poon and Ors",
-    "respondent": "Pashupati"
+    "appellant": "Bishwa Mohan Kumar Sinha @ Poon-poon and Ors.",
+    "respondent": "Pashupati Nath Prasad and Ors."
   },
   "FA/109/2013": {
-    "appellant": "Kailash Kuer @ Kailash Devi and Ors",
-    "respondent": "Tara Mani Sinha and Ors"
+    "appellant": "Kailash Kuer @ Kailash Devi and Ors.",
+    "respondent": "Tara Mani Sinha and Ors."
   },
   "FA/110/2013": {
-    "appellant": "Budh Ram and Ors",
-    "respondent": "Rajai Yadav and Ors"
+    "appellant": "Budh Ram and Ors.",
+    "respondent": "Rajai Yadav and Ors."
   },
   "FA/111/2013": {
-    "appellant": "Mahadeo Bind",
-    "respondent": "Etwari Devi                                                  FORMAL"
+    "appellant": "Mahadeo Bind,",
+    "respondent": "Etwari Devi"
   },
   "FA/113/2013": {
     "appellant": "Spana Kumari @ Supana Devi",
-    "respondent": "Prem Vikash @ Mintu and Ors"
+    "respondent": "Prem Vikash @ Mintu and Ors."
   },
   "FA/114/2013": {
     "appellant": "Kusum Devi",
     "respondent": "Pallavi Kumari"
   },
   "FA/115/2013": {
-    "appellant": "Nandu Sah and Anr",
-    "respondent": "Bhola Mahto and Ors.                                    FORMAL"
+    "appellant": "Nandu Sah and Anr.",
+    "respondent": "Bhola Mahto and Ors."
   },
   "FA/116/2013": {
-    "appellant": "Razia Khatoon and Anr",
-    "respondent": "Shah Yunus and Ors.                                 FORMAL"
+    "appellant": "Razia Khatoon and Anr.",
+    "respondent": "Shah Yunus and Ors."
   },
   "FA/117/2013": {
     "appellant": "Ram Ran Vijay Prasad Singh @ Dhaja Singh",
-    "respondent": "Manak Kunwar and"
+    "respondent": "Manak Kunwar and Ors."
   },
   "FA/118/2013": {
     "appellant": "Girija Devi",
-    "respondent": "Sheela Kuwar and Ors.                                          MISCELLANEOUS"
+    "respondent": "Sheela Kuwar and Ors."
   },
   "FA/119/2013": {
-    "appellant": "Ram Karan Prasad Singh and Ors",
+    "appellant": "Ram Karan Prasad Singh and Ors.",
     "respondent": "Sri Prabhat Kumar"
   },
   "FA/122/2013": {
-    "appellant": "Sri Girijesh Sharma and Anr",
-    "respondent": "Smt. Daulat Devi and Ors"
+    "appellant": "Sri Girijesh Sharma and Anr.",
+    "respondent": "Smt. Daulat Devi and Ors."
   },
   "FA/123/2013": {
     "appellant": "Smt. Sushila Devi",
-    "respondent": "Ram Nath Sharma and Ors"
+    "respondent": "Ram Nath Sharma and Ors."
   },
   "FA/124/2013": {
-    "appellant": "Satya Narayan Prasad and Anr",
-    "respondent": "Narayan Kumar and Anr.                       MISCELLANEOUS"
+    "appellant": "Satya Narayan Prasad and Anr.",
+    "respondent": "Narayan Kumar and Anr."
   },
   "FA/125/2013": {
-    "appellant": "Kedar Tiwari and Ors",
-    "respondent": "Laxmi Tiwari kuwar and Ors"
+    "appellant": "Kedar Tiwari and Ors.",
+    "respondent": "Laxmi Tiwari kuwar and Ors."
   },
   "FA/126/2013": {
     "appellant": "Shri Sohan Kumar",
-    "respondent": "Smt. Ashalata and Ors.                                    FORMAL ORDER"
+    "respondent": "Smt. Ashalata and Ors."
   },
   "FA/127/2013": {
-    "appellant": "Prabhu Chandra Das and Ors",
-    "respondent": "Bhagwat Chandra Das and Ors"
+    "appellant": "Prabhu Chandra Das and Ors.",
+    "respondent": "Bhagwat Chandra Das and Ors."
   },
   "FA/128/2013": {
     "appellant": "Parasnath Singh",
-    "respondent": "Manish Kumar Singh and Ors"
+    "respondent": "Manish Kumar Singh and Ors."
   },
   "FA/130/2013": {
     "appellant": "Binod Kumar Mishra @ Binod Mishra",
-    "respondent": "Pankaj Mishra and Ors"
+    "respondent": "Pankaj Mishra and Ors."
   },
   "FA/131/2013": {
     "appellant": "Suresh Kumar Sharma",
-    "respondent": "Garjan Sharma and Ors.                                 MISCELLANEOUS"
+    "respondent": "Garjan Sharma and Ors."
   },
   "FA/132/2013": {
     "appellant": "Jugeshwar Prasad @ Yugshwar Prasad",
-    "respondent": "Sudhir Kumar and Ors"
+    "respondent": "Sudhir Kumar and Ors."
   },
   "FA/133/2013": {
     "appellant": "Sri Gupteshwar Singh",
-    "respondent": "Most. Radhika Kuer and Ors.                           MISCELLANEOUS"
+    "respondent": "Most. Radhika Kuer and Ors."
   },
   "FA/134/2013": {
     "appellant": "Tarkeshwar Singh",
-    "respondent": "Ajay Singh and Ors.                                       MISCELLANEOUS"
+    "respondent": "Ajay Singh and Ors."
   },
   "FA/135/2013": {
     "appellant": "Tarkeshwar Singh",
-    "respondent": "Satish Kumar Singh and Ors.                               MISCELLANEOUS"
+    "respondent": "Satish Kumar Singh and Ors."
   },
   "FA/136/2013": {
     "appellant": "Sonawa Devi",
-    "respondent": "Shashi Kant Nonia and Ors"
+    "respondent": "Shashi Kant Nonia and Ors."
   },
   "FA/137/2013": {
     "appellant": "The State Of Bihar Through The Collector, Samastipur",
-    "respondent": "Suraj"
+    "respondent": "Suraj Narain Sinha"
   },
   "FA/139/2013": {
     "appellant": "Dhrub Kumar Lal",
-    "respondent": "Nathur Tatwa and Ors. Smt. Rekha Kumari @ Rekha Vimal and Ors. VS. Smt. Dhano Devi"
+    "respondent": "Nathur Tatwa and Ors."
   },
   "FA/141/2013": {
-    "appellant": "Smt. Rekha Kumari @ Rekha Vimal and Ors",
-    "respondent": "Smt. Dhano Devi"
+    "appellant": "Smt. Rekha Kumari @ Rekha Vimal and Ors.",
+    "respondent": "Smt. Dhano Devi and Ors."
   },
   "FA/142/2013": {
-    "appellant": "Arbind Kumar and Ors",
-    "respondent": "Janak Prasad and Ors"
+    "appellant": "Arbind Kumar and Ors.",
+    "respondent": "Janak Prasad and Ors."
   },
   "FA/143/2013": {
     "appellant": "Hansh Lal Singh",
-    "respondent": "The Government Of Bihar Through The"
+    "respondent": "The Government Of Bihar Through The Collector, Kaimur and Anr."
   },
   "FA/144/2013": {
     "appellant": "Kesh Nath Singh",
-    "respondent": "The Government Of Bihar Through The"
+    "respondent": "The Government Of Bihar Through The Collector, Kaimur and Anr."
   },
   "FA/145/2013": {
-    "appellant": "Raj Kumar Yadav and Ors",
-    "respondent": "Ram Ratti Devi and Ors"
+    "appellant": "Raj Kumar Yadav and Ors.",
+    "respondent": "Ram Ratti Devi and Ors."
   },
   "FA/146/2013": {
-    "appellant": "GYANESHWAR SHARMA and ORS",
-    "respondent": "Ram Pravesh Singh and"
+    "appellant": "GYANESHWAR SHARMA and ORS.",
+    "respondent": "Ram Pravesh Singh and Anr."
   },
   "FA/147/2013": {
-    "appellant": "Ram Ashish Singh and Ors",
-    "respondent": "The State Of Bihar and Ors        12       RECORD/REPORTS ETC AWAITING RECEIPT OF"
+    "appellant": "Ram Ashish Singh and Ors.",
+    "respondent": "The State Of Bihar and Ors"
   },
   "FA/148/2013": {
-    "appellant": "Lallan Singh and Ors",
-    "respondent": "The State Of Bihar and Ors            12       RECORD/REPORTS ETC AWAITING"
+    "appellant": "Lallan Singh and Ors.",
+    "respondent": "The State Of Bihar and Ors"
   },
   "FA/149/2013": {
-    "appellant": "Radheshyam and Ors",
-    "respondent": "The State Of Bihar and Ors              12       ORDER OF LAWAZIMA BOARD Om Prakash Narayan Sinha @ Babuaji @ Pons Ashok Tendradhar"
+    "appellant": "Radheshyam and Ors.",
+    "respondent": "The State Of Bihar and Ors"
   },
   "FA/150/2013": {
-    "appellant": "Patna",
-    "respondent": "Ram Chandra Prasad and Anr"
+    "appellant": "Om Prakash Narayan Sinha @ Babuaji @ Pons Ashok Tendradhar, Patna",
+    "respondent": "Ram Chandra Prasad and Anr."
   },
   "FA/151/2013": {
-    "appellant": "Vipin Thakur @ Vipin Kumar Thakur @ Vipin Sharma and Anr",
-    "respondent": ""
+    "appellant": "Vipin Thakur @ Vipin Kumar Thakur @ Vipin Sharma and Anr.",
+    "respondent": "Ram Pukar Chaudhary and Anr."
   },
   "FA/152/2013": {
     "appellant": "Brij Nandan Bhagat",
-    "respondent": "Badhi Bhagat and Ors.                            MISCELLANEOUS"
+    "respondent": "Badhi Bhagat and Ors."
   },
   "FA/153/2013": {
     "appellant": "Raju Ram",
-    "respondent": "Indradeo Mahto and Ors"
+    "respondent": "Indradeo Mahto and Ors."
   },
   "FA/154/2013": {
-    "appellant": "Omprakash Pandey and Ors",
-    "respondent": "Sheo Nath Pandey and Ors"
+    "appellant": "Omprakash Pandey and Ors.",
+    "respondent": "Sheo Nath Pandey and Ors."
   },
   "FA/155/2013": {
-    "appellant": "Baleshwar Prasad and Ors",
-    "respondent": "Binod Kumar Prasad and Ors"
+    "appellant": "Baleshwar Prasad and Ors.",
+    "respondent": "Binod Kumar Prasad and Ors."
   },
   "FA/156/2013": {
     "appellant": "Most. Rasool Janat",
     "respondent": "The State Of Bihar"
   },
   "FA/158/2013": {
-    "appellant": "Ram Suchit Singh and Ors",
-    "respondent": "Most. Bigan Devi and Ors"
+    "appellant": "Ram Suchit Singh and Ors.",
+    "respondent": "Most. Bigan Devi and Ors."
   },
   "FA/159/2013": {
     "appellant": "Vishwanath Singh",
-    "respondent": "Sandeep Kumar and Ors.                             FORMAL"
+    "respondent": "Sandeep Kumar and Ors."
   },
   "FA/160/2013": {
     "appellant": "Ranjit Sharma",
-    "respondent": "Rana Sharma and Anr.                                  FORMAL"
+    "respondent": "Rana Sharma and Anr."
   },
   "FA/161/2013": {
-    "appellant": "Smt. Sharmila Sah and Anr",
-    "respondent": "Puspita Mitra and Ors.                   MISCELLANEOUS"
+    "appellant": "Smt. Sharmila Sah and Anr.",
+    "respondent": "Puspita Mitra and Ors."
   },
   "FA/163/2013": {
-    "appellant": "Sri Kirshna Prasad Yadav and Ors",
-    "respondent": "Rita Devi and Ors"
+    "appellant": "Sri Kirshna Prasad Yadav and Ors.",
+    "respondent": "Rita Devi and Ors."
   },
   "FA/164/2013": {
-    "appellant": "Umarawati Kunwar @ Umarawati Devi and Ors",
-    "respondent": "Krishna Dubey"
+    "appellant": "Umarawati Kunwar @ Umarawati Devi and Ors.",
+    "respondent": "Krishna Dubey and Anr."
   },
   "FA/165/2013": {
     "appellant": "Ramanand Choudhary",
-    "respondent": "Smt. Lakho Devi                                  MISCELLANEOUS"
+    "respondent": "Smt. Lakho Devi"
   },
   "FA/166/2013": {
     "appellant": "Manoranjan Singh",
-    "respondent": "Chairman, Indian Railway and Ors"
+    "respondent": "Chairman, Indian Railway and Ors."
   },
   "FA/167/2013": {
-    "appellant": "Satish Singh and Anr",
-    "respondent": "Balloo Kumar Singh                            FORMAL"
+    "appellant": "Satish Singh and Anr.",
+    "respondent": "Balloo Kumar Singh"
   },
   "FA/168/2013": {
     "appellant": "Naveen Kumar Ojha",
-    "respondent": "Most. Ram Dulari Devi Ors.                        FORMAL"
+    "respondent": "Most. Ram Dulari Devi Ors."
   },
   "FA/169/2013": {
     "appellant": "Ram Pravesh Mahto",
@@ -15977,239 +15977,239 @@ const CASES_DB = {
   },
   "FA/170/2013": {
     "appellant": "Ashok Singh",
-    "respondent": "Chinta Kuar and Ors"
+    "respondent": "Chinta Kuar and Ors."
   },
   "FA/171/2013": {
     "appellant": "Yugal Kishore Prasad Sinha",
-    "respondent": "Bachha Prasad and Anr"
+    "respondent": "Bachha Prasad and Anr."
   },
   "FA/172/2013": {
-    "appellant": "Lakhandeo Yadav and Ors",
-    "respondent": "Suresh Prasad Yadav and Anr.               MISCELLANEOUS Md. Salim Mansuri and Ors. VS. The District Development"
+    "appellant": "Lakhandeo Yadav and Ors.",
+    "respondent": "Suresh Prasad Yadav and Anr."
   },
   "FA/173/2013": {
-    "appellant": "Md. Salim Mansuri and Ors",
-    "respondent": "The District Development"
+    "appellant": "Md. Salim Mansuri and Ors.",
+    "respondent": "The District Development Commissioner, East Champaran and Ors."
   },
   "FA/174/2013": {
     "appellant": "Binod Mehta @ Binod Kumar @ Surya Bhusan Pd. Sinha",
-    "respondent": "Ram"
+    "respondent": "Ram Jeevan Prasad @ Ram Jee Prasad and Ors."
   },
   "FA/176/2013": {
     "appellant": "Kanto Singh",
-    "respondent": "Suresh Singh and Ors.                                   MISCELLANEOUS"
+    "respondent": "Suresh Singh and Ors."
   },
   "FA/178/2013": {
-    "appellant": "Gaya Sah and Ors",
-    "respondent": "Daulat Khan and Ors.                              MISCELLANEOUS"
+    "appellant": "Gaya Sah and Ors.",
+    "respondent": "Daulat Khan and Ors."
   },
   "FA/179/2013": {
-    "appellant": "Jagdish Prasad Singh and Ors",
-    "respondent": "The State Of Bihar and Ors            MISCELLANEOUS"
+    "appellant": "Jagdish Prasad Singh and Ors.",
+    "respondent": "The State Of Bihar and Ors"
   },
   "FA/180/2013": {
-    "appellant": "Surendra Singh and Anr",
-    "respondent": "Mahendra Singh and Ors"
+    "appellant": "Surendra Singh and Anr.",
+    "respondent": "Mahendra Singh and Ors."
   },
   "FA/181/2013": {
     "appellant": "Raj Kumar Keshari",
-    "respondent": "Uday Prasad Gupta @ Munna and Ors"
+    "respondent": "Uday Prasad Gupta @ Munna and Ors."
   },
   "FA/183/2013": {
-    "appellant": "Baccha Prsasad and Ors",
-    "respondent": "Ramadhar Prasad and Ors.                    MISCELLANEOUS"
+    "appellant": "Baccha Prsasad and Ors.",
+    "respondent": "Ramadhar Prasad and Ors."
   },
   "FA/185/2013": {
-    "appellant": "Jhuri Sharma and Ors",
-    "respondent": "Badami Devi and Anr"
+    "appellant": "Jhuri Sharma and Ors.",
+    "respondent": "Badami Devi and Anr."
   },
   "FA/187/2013": {
-    "appellant": "Smt. Sonajhari Devi and Ors",
-    "respondent": "Smt. Shobha Devi and Ors"
+    "appellant": "Smt. Sonajhari Devi and Ors.",
+    "respondent": "Smt. Shobha Devi and Ors."
   },
   "FA/189/2013": {
-    "appellant": "Jagdeo Mahto and Ors",
-    "respondent": "Saroj Devi and Ors.                             FORMAL"
+    "appellant": "Jagdeo Mahto and Ors.",
+    "respondent": "Saroj Devi and Ors."
   },
   "FA/190/2013": {
     "appellant": "Surendra Kumar Mahto",
-    "respondent": "Chandra Bhushan Ram and Anr.                     MISCELLANEOUS"
+    "respondent": "Chandra Bhushan Ram and Anr."
   },
   "FA/191/2013": {
-    "appellant": "Ram Babu Mahto and Ors",
-    "respondent": "Raushan Kumar and Ors.                        MISCELLANEOUS Chief Manager, Power Grid Corporation Of India Ltd., Bhabhua VS"
+    "appellant": "Ram Babu Mahto and Ors.",
+    "respondent": "Raushan Kumar and Ors."
   },
   "FA/192/2013": {
     "appellant": "Chief Manager, Power Grid Corporation Of India Ltd., Bhabhua",
-    "respondent": ""
+    "respondent": "Ram Dular Singh and Ors."
   },
   "FA/193/2013": {
     "appellant": "Chief Manager, Power Grid Corporation Of India Ltd., Bhabhua",
-    "respondent": ""
+    "respondent": "Mulala Kuwar and Ors."
   },
   "FA/194/2013": {
     "appellant": "Chief Manager, Power Grid Corporation Of India Ltd., Bhabhua",
-    "respondent": ""
+    "respondent": "Ram Ashish Singh and Ors."
   },
   "FA/195/2013": {
     "appellant": "Chief Manager, Power Grid Corporation Of India Ltd., Bhabhua",
-    "respondent": ""
+    "respondent": "Ram Awadhesh Pal and Ors."
   },
   "FA/196/2013": {
     "appellant": "Chief Manager, Power Grid Corporation Of India Ltd., Bhabhua",
-    "respondent": ""
+    "respondent": "Suryanath Singh and Anr."
   },
   "FA/197/2013": {
     "appellant": "Chief Manager, Power Grid Corporation Of India Ltd., Bhabhua",
-    "respondent": ""
+    "respondent": "Sitaram Singh and Ors."
   },
   "FA/198/2013": {
     "appellant": "Chief Manager, Power Grid Corporation Of India Ltd., Bhabhua",
-    "respondent": ""
+    "respondent": "Shivmurat Pal and Ors."
   },
   "FA/199/2013": {
     "appellant": "Chief Manager, Power Grid Corporation Of India Ltd., Bhabhua",
-    "respondent": ""
+    "respondent": "Fula Kuwar and Ors."
   },
   "FA/200/2013": {
     "appellant": "Chief Manager, Power Grid Corporation Of India Ltd., Bhabhua",
-    "respondent": ""
+    "respondent": "Ramjee Dusadh and Anr."
   },
   "FA/201/2013": {
     "appellant": "Chief Manager, Power Grid Corporation Of India Ltd., Bhabhua",
-    "respondent": ""
+    "respondent": "Urmila Kuwar 7 Ors."
   },
   "FA/203/2013": {
     "appellant": "Chief Manager, Power Grid Corporation Of India Ltd., Bhabhua",
-    "respondent": ""
+    "respondent": "Shamsher Singh and Ors."
   },
   "FA/204/2013": {
     "appellant": "Chief Manager, Power Grid Corporation Of India Ltd., Bhabhua",
-    "respondent": ""
+    "respondent": "Surya Devi and Ors."
   },
   "FA/205/2013": {
     "appellant": "Chief Manager, Power Grid Corporation Of India Ltd., Bhabhua",
-    "respondent": ""
+    "respondent": "Mahavir Singh and Anr."
   },
   "FA/206/2013": {
     "appellant": "Chief Manager, Power Grid Corporation Of India Ltd., Bhabhua",
-    "respondent": ""
+    "respondent": "Khobhari Ram and Anr."
   },
   "FA/207/2013": {
     "appellant": "Chief Manager, Power Grid Corporation Of India Ltd., Bhabhua",
-    "respondent": ""
+    "respondent": "Surya Kumar Singh @ Ravi Prakash Singh and Ors."
   },
   "FA/208/2013": {
     "appellant": "Chief Manager, Power Grid Corporation Of India Ltd., Bhabhua",
-    "respondent": ""
+    "respondent": "Ram Raj Chaubey and Anr."
   },
   "FA/209/2013": {
     "appellant": "Chief Manager, Power Grid Corporation Of India Ltd., Bhabhua",
-    "respondent": ""
+    "respondent": "Dina Nath Tiwari and Anr."
   },
   "FA/210/2013": {
     "appellant": "Chief Manager, Power Grid Corporation Of India Ltd., Bhabhua",
-    "respondent": ""
+    "respondent": "Radha Prasad Singh and Ors."
   },
   "FA/211/2013": {
     "appellant": "Chief Manager, Power Grid Corporation Of India Ltd., Bhabhua",
-    "respondent": ""
+    "respondent": "Keshav Prasad and Ors."
   },
   "FA/212/2013": {
     "appellant": "Chief Manager, Power Grid Corporation Of India Ltd., Bhabhua",
-    "respondent": ""
+    "respondent": "Hans Lal Singh and Anr."
   },
   "FA/214/2013": {
     "appellant": "Chief Manager, Power Grid Corporation Of India Ltd., Bhabhua",
-    "respondent": ""
+    "respondent": "Haribansh Singh and Ors. S"
   },
   "FA/215/2013": {
     "appellant": "Chief Manager, Power Grid Corporation Of India Ltd., Bhabhua",
-    "respondent": ""
+    "respondent": "Gaura Kuwar and Ors."
   },
   "FA/216/2013": {
     "appellant": "Chief Manager, Power Grid Corporation Of India Ltd., Bhabhua",
-    "respondent": ""
+    "respondent": "Rajeshwar Kuwar and Ors."
   },
   "FA/217/2013": {
     "appellant": "Chief Manager, Power Grid Corporation Of India Ltd., Bhabhua",
-    "respondent": ""
+    "respondent": "Chhatra Dhari Chaubey and Ors."
   },
   "FA/218/2013": {
     "appellant": "Chief Manager, Power Grid Corporation Of India Ltd., Bhabhua",
-    "respondent": ""
+    "respondent": "Shiv Shanker Singh and Ors."
   },
   "FA/219/2013": {
     "appellant": "Chief Manager, Power Grid Corporation Of India Ltd., Bhabhua",
-    "respondent": ""
+    "respondent": "Ram Surat Singh and Ors."
   },
   "FA/220/2013": {
     "appellant": "Chief Manager, Power Grid Corporation Of India Ltd., Bhabhua",
-    "respondent": ""
+    "respondent": "Jai Kumar Pal and Ors."
   },
   "FA/221/2013": {
     "appellant": "Chief Manager, Power Grid Corporation Of India Ltd., Bhabhua",
-    "respondent": ""
+    "respondent": "Ram Swaroop Singh and Ors."
   },
   "FA/222/2013": {
     "appellant": "Chief Manager, Power Grid Corporation Of India Ltd., Bhabhua",
-    "respondent": ""
+    "respondent": "Jokhan Pal and Ors."
   },
   "FA/223/2013": {
     "appellant": "Chief Manager, Power Grid Corporation Of India Ltd., Bhabhua",
-    "respondent": ""
+    "respondent": "Lallan Singh and Ors."
   },
   "FA/224/2013": {
     "appellant": "Chief Manager, Power Grid Corporation Of India Ltd., Bhabhua",
-    "respondent": ""
+    "respondent": "Ram Nath Sah and Ors."
   },
   "FA/225/2013": {
     "appellant": "Chief Manager, Power Grid Corporation Of India Ltd., Bhabhua",
-    "respondent": ""
+    "respondent": "Bashishth Chaubey and Ors."
   },
   "FA/226/2013": {
     "appellant": "Chief Manager, Power Grid Corporation Of India Ltd., Bhabhua",
-    "respondent": ""
+    "respondent": "Rama Shanker Singh and Ors."
   },
   "FA/227/2013": {
     "appellant": "Chief Manager, Power Grid Corporation Of India Ltd., Bhabhua",
-    "respondent": ""
+    "respondent": "Lallan Singh and Ors."
   },
   "FA/228/2013": {
     "appellant": "Chief Manager, Power Grid Corporation Of India Ltd., Bhabhua",
-    "respondent": ""
+    "respondent": "Anhat Kuwar and Ors."
   },
   "FA/230/2013": {
     "appellant": "Chief Manager, Power Grid Corporation Of India Ltd., Bhabhua",
-    "respondent": ""
+    "respondent": "Suresh Bahadur Singh and Ors."
   },
   "FA/231/2013": {
     "appellant": "Chief Manager, Power Grid Corporation Of India Ltd., Bhabhua",
-    "respondent": ""
+    "respondent": "Shyamu Sah and Ors."
   },
   "FA/232/2013": {
     "appellant": "Chief Manager, Power Grid Corporation Of India Ltd., Bhabhua",
-    "respondent": ""
+    "respondent": "Murtuza Bibi and Ors."
   },
   "FA/233/2013": {
     "appellant": "Chief Manager, Power Grid Corporation Of India Ltd., Bhabhua",
-    "respondent": ""
+    "respondent": "Rabindra Nath Chaubey and Ors."
   },
   "FA/234/2013": {
     "appellant": "Chief Manager, Power Grid Corporation Of India Ltd., Bhabhua",
-    "respondent": ""
+    "respondent": "Chaturgun Singh and Anr."
   },
   "FA/235/2013": {
     "appellant": "Jawahar Lal Sah",
-    "respondent": "Sri Satyanarayan Prasad @ Satyanarayan"
+    "respondent": "Sri Satyanarayan Prasad @ Satyanarayan Prasad Sah"
   },
   "FA/236/2013": {
     "appellant": "Bijoy Singh",
-    "respondent": "Niraj Kumar Singh and Anr.                                  MISCELLANEOUS"
+    "respondent": "Niraj Kumar Singh and Anr."
   },
   "FA/238/2013": {
     "appellant": "Ritesh Singh",
-    "respondent": "Sangeeta Kumari and Ors"
+    "respondent": "Sangeeta Kumari and Ors."
   },
   "FA/239/2013": {
     "appellant": "Bishwanath Prasad",
@@ -16217,51 +16217,51 @@ const CASES_DB = {
   },
   "FA/240/2013": {
     "appellant": "Ajay Kumar Singh",
-    "respondent": "Punjab National Bank B.o. Chouk Ara and Ors"
+    "respondent": "Punjab National Bank B.o. Chouk Ara and Ors."
   },
   "FA/242/2013": {
-    "appellant": "Andip Kumar and Ors",
-    "respondent": "Ramjee Prasad @ Ramjee Prasad Mahto"
+    "appellant": "Andip Kumar and Ors.",
+    "respondent": "Ramjee Prasad @ Ramjee Prasad Mahto and Ors."
   },
   "FA/243/2013": {
-    "appellant": "Md. Shamim and Ors",
-    "respondent": "Ejaj Ahmad and Anr"
+    "appellant": "Md. Shamim and Ors.",
+    "respondent": "Ejaj Ahmad and Anr."
   },
   "FA/244/2013": {
-    "appellant": "Upendra Nath Pandey and Anr",
+    "appellant": "Upendra Nath Pandey and Anr.",
     "respondent": "Banke Bihari Pandey"
   },
   "FA/245/2013": {
-    "appellant": "Bibi Tanjeela and Ors",
-    "respondent": "Abdul Kalim and Ors.                             MISCELLANEOUS"
+    "appellant": "Bibi Tanjeela and Ors.",
+    "respondent": "Abdul Kalim and Ors."
   },
   "FA/248/2013": {
-    "appellant": "Sobratan Khatoon and Ors",
-    "respondent": "Najbunisha and Ors"
+    "appellant": "Sobratan Khatoon and Ors.",
+    "respondent": "Najbunisha and Ors."
   },
   "FA/249/2013": {
     "appellant": "Uma Shankar Singh",
-    "respondent": "Binod Singh and Ors"
+    "respondent": "Binod Singh and Ors."
   },
   "FA/250/2013": {
     "appellant": "Paras Nath Singh",
-    "respondent": "Kedar Nath Singh and Ors"
+    "respondent": "Kedar Nath Singh and Ors."
   },
   "FA/251/2013": {
-    "appellant": "Ratiya @ Fulmatiya Devi and Anr",
-    "respondent": "Jainul Mian and Ors.                   FORMAL"
+    "appellant": "Ratiya @ Fulmatiya Devi and Anr.",
+    "respondent": "Jainul Mian and Ors."
   },
   "FA/254/2013": {
     "appellant": "Ashok Kumar Jha",
-    "respondent": "Sri Anil Kumar Mishra and Ors"
+    "respondent": "Sri Anil Kumar Mishra and Ors."
   },
   "FA/255/2013": {
-    "appellant": "The State Of Bihar Through Collector, Nalanda and Ors",
-    "respondent": "Ramjee"
+    "appellant": "The State Of Bihar Through Collector, Nalanda and Ors.",
+    "respondent": "Ramjee Paswan @ Rewat Paswan"
   },
   "FA/257/2013": {
     "appellant": "The State Of Bihar Through Collector, Nawada",
-    "respondent": "Rameshwar"
+    "respondent": "Rameshwar Prasad and Anr."
   },
   "FA/259/2013": {
     "appellant": "The State of Bihar through Collector, Nawada",
@@ -16269,23 +16269,23 @@ const CASES_DB = {
   },
   "FA/261/2013": {
     "appellant": "KISHORI DEVI and ORS",
-    "respondent": "BISHUN SHARMA and ORS"
+    "respondent": "BISHUN SHARMA and ORS."
   },
   "FA/262/2013": {
-    "appellant": "Jitendra Pratap Singh and Anr",
-    "respondent": "The State Of Bihar and Ors               FORMAL"
+    "appellant": "Jitendra Pratap Singh and Anr.",
+    "respondent": "The State Of Bihar and Ors"
   },
   "FA/264/2013": {
     "appellant": "M/s Mahesh Enterprises, Gaya",
-    "respondent": "The Collector, Gaya and Ors"
+    "respondent": "The Collector, Gaya and Ors."
   },
   "FA/266/2013": {
-    "appellant": "Hena Kausar and Anr",
-    "respondent": "Shashi Kant Sinha and Ors"
+    "appellant": "Hena Kausar and Anr.",
+    "respondent": "Shashi Kant Sinha and Ors."
   },
   "FA/267/2013": {
     "appellant": "Ashok Kumar Jha",
-    "respondent": "Sri Anil Kumar Mishra and Ors"
+    "respondent": "Sri Anil Kumar Mishra and Ors."
   },
   "FA/269/2013": {
     "appellant": "Most. Manju Sinha",
@@ -16297,147 +16297,147 @@ const CASES_DB = {
   },
   "FA/273/2013": {
     "appellant": "Chandrama Pandey",
-    "respondent": "Kalawati Devi @ Kalawati Kuari and Ors"
+    "respondent": "Kalawati Devi @ Kalawati Kuari and Ors."
   },
   "FA/274/2013": {
-    "appellant": "Vijay Kumar and Anr",
+    "appellant": "Vijay Kumar and Anr.",
     "respondent": "The State Of Bihar and Ors"
   },
   "FA/276/2013": {
     "appellant": "Swapan Lok Sahkari Grih Nirman Samiti, Patna",
-    "respondent": "Danvanti Devi"
+    "respondent": "Danvanti Devi and Ors."
   },
   "FA/279/2013": {
-    "appellant": "Smt. Sharda Devi @ Sumitra Devi and Ors",
-    "respondent": "Devi Chand Prasad"
+    "appellant": "Smt. Sharda Devi @ Sumitra Devi and Ors.",
+    "respondent": "Devi Chand Prasad Gupta and Ors."
   },
   "FA/280/2013": {
     "appellant": "Smt. Ranjana Devi @ Ranjana Devi",
-    "respondent": "Prem Late Devi and Ors"
+    "respondent": "Prem Late Devi and Ors."
   },
   "FA/281/2013": {
     "appellant": "Md. Imamuddin",
-    "respondent": "The Kirwin International Relief Foundation"
+    "respondent": "The Kirwin International Relief Foundation Thorugh Its Secretary, Gaya"
   },
   "FA/283/2013": {
-    "appellant": "Ajay Kumar and Ors",
-    "respondent": "Shakuntala Devi and Ors"
+    "appellant": "Ajay Kumar and Ors.",
+    "respondent": "Shakuntala Devi and Ors."
   },
   "FA/284/2013": {
     "appellant": "Smt. Nilu Devi",
     "respondent": "Tripati Narayan Thakur"
   },
   "FA/286/2013": {
-    "appellant": "Horil Rai and Anr",
-    "respondent": "Krishnandan Trhakur and Ors"
+    "appellant": "Horil Rai and Anr.",
+    "respondent": "Krishnandan Trhakur and Ors."
   },
   "FA/288/2013": {
     "appellant": "Umesh Kumar Singh",
-    "respondent": "Sri Pati Singh and Ors.                               MISCELLANEOUS"
+    "respondent": "Sri Pati Singh and Ors."
   },
   "FA/289/2013": {
-    "appellant": "Raziuddin Mallick and Ors",
-    "respondent": "Hesamuddin and Ors"
+    "appellant": "Raziuddin Mallick and Ors.",
+    "respondent": "Hesamuddin and Ors."
   },
   "FA/291/2013": {
     "appellant": "Smt. Manjoo Sinha",
-    "respondent": "Smt. Manorma Devi and Ors"
+    "respondent": "Smt. Manorma Devi and Ors."
   },
   "FA/293/2013": {
-    "appellant": "Baboolal Yadav and Anr",
-    "respondent": "Girdhari Yadav and Ors"
+    "appellant": "Baboolal Yadav and Anr.",
+    "respondent": "Girdhari Yadav and Ors."
   },
   "FA/294/2013": {
     "appellant": "Chandrawati Devi",
-    "respondent": "Smt. Daropadi Devi and Ors.                            FORMAL"
+    "respondent": "Smt. Daropadi Devi and Ors."
   },
   "FA/295/2013": {
     "appellant": "Ashok Ray @ Ashok Kumar Roy",
-    "respondent": "Braj Kishor Roy @ Braj Kishor"
+    "respondent": "Braj Kishor Roy @ Braj Kishor Rai and Ors."
   },
   "FA/296/2013": {
     "appellant": "Arun Yagnik",
-    "respondent": "Sudhanshu Yagnik and Ors"
+    "respondent": "Sudhanshu Yagnik and Ors."
   },
   "FA/297/2013": {
     "appellant": "Smt. Sunahali Devi",
-    "respondent": "Sh. Sanjay A. Latekar i.p.s. A.s.p. Ara At"
+    "respondent": "Sh. Sanjay A. Latekar i.p.s. A.s.p. Ara At Bhojpur and Ors."
   },
   "FA/299/2013": {
-    "appellant": "Sayeeda Khatoon and Ors",
-    "respondent": "Sayeeda Khatoon and Ors"
+    "appellant": "Sayeeda Khatoon and Ors.",
+    "respondent": "Sayeeda Khatoon and Ors."
   },
   "FA/300/2013": {
-    "appellant": "Prabhu Yadav and Anr",
+    "appellant": "Prabhu Yadav and Anr.",
     "respondent": "The State Of Bihar and Ors"
   },
   "FA/301/2013": {
     "appellant": "Prabhu Yadav",
-    "respondent": "The State of Bihar"
+    "respondent": "The State of Bihar,"
   },
   "FA/305/2013": {
     "appellant": "Sri Yogendra Prasad",
-    "respondent": "Sru Anuj Prasad                                     MISCELLANEOUS"
+    "respondent": "Sru Anuj Prasad"
   },
   "FA/307/2013": {
-    "appellant": "Shushma Devi and Ors",
-    "respondent": "Sheo Narayan Yadav and Ors"
+    "appellant": "Shushma Devi and Ors.",
+    "respondent": "Sheo Narayan Yadav and Ors."
   },
   "FA/308/2013": {
-    "appellant": "Ram Ran Vijay Prasad Pal and Ors",
-    "respondent": "Santosh Narayan Pal and"
+    "appellant": "Ram Ran Vijay Prasad Pal and Ors.",
+    "respondent": "Santosh Narayan Pal and Ors."
   },
   "FA/309/2013": {
     "appellant": "Rajendra Prasad",
-    "respondent": "Punia Devi and Ors"
+    "respondent": "Punia Devi and Ors."
   },
   "FA/310/2013": {
     "appellant": "Paramhans Singh",
-    "respondent": "Shivjag Singh and Ors"
+    "respondent": "Shivjag Singh and Ors."
   },
   "FA/312/2013": {
-    "appellant": "Raj Bansh Singh and Ors",
-    "respondent": "Paramhans Singh and Ors"
+    "appellant": "Raj Bansh Singh and Ors.",
+    "respondent": "Paramhans Singh and Ors."
   },
   "FA/315/2013": {
-    "appellant": "Bharti Sinha and Anr",
+    "appellant": "Bharti Sinha and Anr.",
     "respondent": "Arun Kumar Pathak"
   },
   "FA/316/2013": {
-    "appellant": "Ashok Kumar Singh and Ors",
-    "respondent": "The State Of Bihar and Ors                   MISCELLANEOUS"
+    "appellant": "Ashok Kumar Singh and Ors.",
+    "respondent": "The State Of Bihar and Ors"
   },
   "FA/317/2013": {
-    "appellant": "Ashok Kumar Singh and Ors",
-    "respondent": "The State Of Bihar and Ors                   FORMAL"
+    "appellant": "Ashok Kumar Singh and Ors.",
+    "respondent": "The State Of Bihar and Ors"
   },
   "FA/318/2013": {
     "appellant": "The State Of Bihar Through Collector, Nawada",
-    "respondent": "Srichand Prasad            MISCELLANEOUS"
+    "respondent": "Srichand Prasad"
   },
   "FA/319/2013": {
     "appellant": "The State Of Bihar Through Collector, Nawada",
-    "respondent": "Bahadur Singh              MISCELLANEOUS"
+    "respondent": "Bahadur Singh"
   },
   "FA/320/2013": {
     "appellant": "The State Of Bihar Collector, Nawada",
     "respondent": "Ram Jatan Singh"
   },
   "FA/321/2013": {
-    "appellant": "Raghunandan Mahto @ Bhola Mahto and Ors",
-    "respondent": "Sita Mahto and"
+    "appellant": "Raghunandan Mahto @ Bhola Mahto and Ors.",
+    "respondent": "Sita Mahto and Ors."
   },
   "FA/322/2013": {
-    "appellant": "Ajmullah Ansari and Ors",
-    "respondent": "Prabhu Giri and Ors"
+    "appellant": "Ajmullah Ansari and Ors.",
+    "respondent": "Prabhu Giri and Ors."
   },
   "FA/323/2013": {
-    "appellant": "Ganesh Kumar Singh and Ors",
-    "respondent": "Sanjay Kumar Singh and Ors"
+    "appellant": "Ganesh Kumar Singh and Ors.",
+    "respondent": "Sanjay Kumar Singh and Ors."
   },
   "FA/325/2013": {
-    "appellant": "State Of Bihar Through Collector, Jehanabad and Anr",
-    "respondent": "Rashmi"
+    "appellant": "State Of Bihar Through Collector, Jehanabad and Anr.",
+    "respondent": "Rashmi Ranjan and Anr."
   },
   "FA/329/2013": {
     "appellant": "Md. Mustujabuddin Ahmad Ansari",
@@ -16452,40 +16452,40 @@ const CASES_DB = {
     "respondent": "Dinesh Kumar Verma"
   },
   "FA/334/2013": {
-    "appellant": "The State Of Bihar Through The Collector, Darbhanga and Anr",
-    "respondent": ""
+    "appellant": "The State Of Bihar Through The Collector, Darbhanga and Anr.",
+    "respondent": "Sri Dinesh Narayan Jha and Ors."
   },
   "FA/1/2014": {
-    "appellant": "Smt. Geeta Singh and Anr",
+    "appellant": "Smt. Geeta Singh and Anr.",
     "respondent": "The Union Of India and Ors"
   },
   "FA/2/2014": {
-    "appellant": "",
-    "respondent": "The Union of India through the General manager"
+    "appellant": "M/s Geeta Mechanical works Pvt. Ltd. (Now Garg Rerollers Pvt. Ltd.",
+    "respondent": "The Union of India through the General manager,"
   },
   "FA/3/2014": {
     "appellant": "Bindeshwari Prasad",
-    "respondent": "Pramod Ji Prasad and Ors"
+    "respondent": "Pramod Ji Prasad and Ors."
   },
   "FA/6/2014": {
-    "appellant": "Gopaljee Prasad and Anr",
+    "appellant": "Gopaljee Prasad and Anr.",
     "respondent": "Mostt. Urmila Devi Kuer"
   },
   "FA/7/2014": {
-    "appellant": "Sobha Devi and Ors",
-    "respondent": "Ashok Kumar Sinha and Ors"
+    "appellant": "Sobha Devi and Ors.",
+    "respondent": "Ashok Kumar Sinha and Ors."
   },
   "FA/9/2014": {
-    "appellant": "Chote Lal Chauhan and Anr",
-    "respondent": "Jagdish Mishra Shashtri and Anr.              MISCELLANEOUS"
+    "appellant": "Chote Lal Chauhan and Anr.",
+    "respondent": "Jagdish Mishra Shashtri and Anr."
   },
   "FA/10/2014": {
     "appellant": "Rajiv Kumar",
-    "respondent": "Vishwa Mohan Singh and Ors"
+    "respondent": "Vishwa Mohan Singh and Ors."
   },
   "FA/11/2014": {
-    "appellant": "Kumkum Kuar and Anr",
-    "respondent": "Dinesh Pandey and Ors"
+    "appellant": "Kumkum Kuar and Anr.",
+    "respondent": "Dinesh Pandey and Ors."
   },
   "FA/12/2014": {
     "appellant": "Shashi Shekhar Thakur",
@@ -16493,7 +16493,7 @@ const CASES_DB = {
   },
   "FA/14/2014": {
     "appellant": "The State Of Bihar Through Collector, Muzaffarpur",
-    "respondent": "Aashish"
+    "respondent": "Aashish Ranjan"
   },
   "FA/15/2014": {
     "appellant": "The State Of Bihar Through Collector, Muzaffarpur",
@@ -16501,11 +16501,11 @@ const CASES_DB = {
   },
   "FA/16/2014": {
     "appellant": "The State Of Bihar Through Collector, Muzaffarpur",
-    "respondent": "Smt. Manju"
+    "respondent": "Smt. Manju Verma"
   },
   "FA/17/2014": {
     "appellant": "The State Of Bihar Through Collector, Muzaffarpur",
-    "respondent": "Prabhat"
+    "respondent": "Prabhat Ranjan"
   },
   "FA/18/2014": {
     "appellant": "Smt. Sangita Jaiswal",
@@ -16517,7 +16517,7 @@ const CASES_DB = {
   },
   "FA/20/2014": {
     "appellant": "The State Of Bihar Through Collector, Muzaffarpur",
-    "respondent": "Vinam"
+    "respondent": "Vinam Srivastava"
   },
   "FA/21/2014": {
     "appellant": "The State Of Bihar Through Collector, Muzaffarpur",
@@ -16525,7 +16525,7 @@ const CASES_DB = {
   },
   "FA/22/2014": {
     "appellant": "The State Of Bihar Through Collector, Muzaffarpur",
-    "respondent": "Manish"
+    "respondent": "Manish Ranjan"
   },
   "FA/23/2014": {
     "appellant": "The State Of Bihar Through Collector, Muzaffarpur",
@@ -16533,15 +16533,15 @@ const CASES_DB = {
   },
   "FA/24/2014": {
     "appellant": "The State Of Bihar Through Collector, Muzaffarpur",
-    "respondent": "Ashok Kumar"
+    "respondent": "Ashok Kumar Verma"
   },
   "FA/25/2014": {
-    "appellant": "Jangali Poddar and Anr",
-    "respondent": "Puran Poddar and Ors"
+    "appellant": "Jangali Poddar and Anr.",
+    "respondent": "Puran Poddar and Ors."
   },
   "FA/27/2014": {
     "appellant": "Syed Haris Zafar and Ors",
-    "respondent": "The State Of Bihar and Ors                      MISCELLANEOUS"
+    "respondent": "The State Of Bihar and Ors"
   },
   "FA/29/2014": {
     "appellant": "Ratnesh Prasad Singh",
@@ -16549,23 +16549,23 @@ const CASES_DB = {
   },
   "FA/30/2014": {
     "appellant": "Chhote Lal Rai",
-    "respondent": "Ashish Nandan Rai and Ors.                                FORMAL"
+    "respondent": "Ashish Nandan Rai and Ors."
   },
   "FA/33/2014": {
-    "appellant": "Dinesh Kumar Gupta and Anr",
-    "respondent": "Suresh Kumar and Ors.                        MISCELLANEOUS"
+    "appellant": "Dinesh Kumar Gupta and Anr.",
+    "respondent": "Suresh Kumar and Ors."
   },
   "FA/35/2014": {
-    "appellant": "Rajeshwar Yadav and Ors",
-    "respondent": "Sri Rajendra Yadav and Ors.                     MISCELLANEOUS"
+    "appellant": "Rajeshwar Yadav and Ors.",
+    "respondent": "Sri Rajendra Yadav and Ors."
   },
   "FA/37/2014": {
     "appellant": "Vyasdeo Singh",
-    "respondent": "Sri Lal Babu Singh and Ors"
+    "respondent": "Sri Lal Babu Singh and Ors."
   },
   "FA/40/2014": {
-    "appellant": "Kameshwari Prasad Kesri and Ors",
-    "respondent": "Ranjeet Kumar and Anr"
+    "appellant": "Kameshwari Prasad Kesri and Ors.",
+    "respondent": "Ranjeet Kumar and Anr."
   },
   "FA/41/2014": {
     "appellant": "Sri Bahadur Sah",
@@ -16573,51 +16573,51 @@ const CASES_DB = {
   },
   "FA/42/2014": {
     "appellant": "Sri Om Prakash Narain",
-    "respondent": "Smt. Sumitra Devi and Ors"
+    "respondent": "Smt. Sumitra Devi and Ors."
   },
   "FA/43/2014": {
-    "appellant": "Shashi Yogik @ Shashi Yagyk and Ors",
-    "respondent": "Shanti Yagik @ Renu"
+    "appellant": "Shashi Yogik @ Shashi Yagyk and Ors.",
+    "respondent": "Shanti Yagik @ Renu Yagik and Ors."
   },
   "FA/46/2014": {
     "appellant": "Yogendra Singh",
     "respondent": "Anand Bihari Singh"
   },
   "FA/47/2014": {
-    "appellant": "Anjani Kumar Pandey and Ors",
-    "respondent": "Shivji Singh and Ors.                       FORMAL"
+    "appellant": "Anjani Kumar Pandey and Ors.",
+    "respondent": "Shivji Singh and Ors."
   },
   "FA/48/2014": {
     "appellant": "Mohan Rai",
-    "respondent": "Mahendra Rai and Ors"
+    "respondent": "Mahendra Rai and Ors."
   },
   "FA/49/2014": {
-    "appellant": "Reena Devi and Anr",
-    "respondent": "Ram Kumari Devi and Anr"
+    "appellant": "Reena Devi and Anr.",
+    "respondent": "Ram Kumari Devi and Anr."
   },
   "FA/50/2014": {
     "appellant": "Dr. Ramaballabh Singh",
-    "respondent": "Bachcha Prasad Singh and Ors.                     MISCELLANEOUS"
+    "respondent": "Bachcha Prasad Singh and Ors."
   },
   "FA/51/2014": {
     "appellant": "Smt. Kiran Devi",
-    "respondent": "Rajendra Prasad Gupta and Anr"
+    "respondent": "Rajendra Prasad Gupta and Anr."
   },
   "FA/52/2014": {
     "appellant": "Smt. Chandani Devi @ Chandni Devi",
-    "respondent": "Smt. Sushila Devi and Anr"
+    "respondent": "Smt. Sushila Devi and Anr."
   },
   "FA/53/2014": {
-    "appellant": "Satyadeo Prasad and Ors",
+    "appellant": "Satyadeo Prasad and Ors.",
     "respondent": "The State Of Bihar and Ors"
   },
   "FA/55/2014": {
-    "appellant": "Jaimangal Prasad and Anr",
-    "respondent": "Funnu Nath Sahay @ Prabhat Ranjan"
+    "appellant": "Jaimangal Prasad and Anr.",
+    "respondent": "Funnu Nath Sahay @ Prabhat Ranjan Sahay and Anr."
   },
   "FA/56/2014": {
-    "appellant": "Ganga Prasad Yadav and Anr",
-    "respondent": "Smt. Hansa Devi and Ors.                    MISCELLANEOUS"
+    "appellant": "Ganga Prasad Yadav and Anr.",
+    "respondent": "Smt. Hansa Devi and Ors."
   },
   "FA/57/2014": {
     "appellant": "Kapildeo Prasad",
@@ -16625,51 +16625,51 @@ const CASES_DB = {
   },
   "FA/59/2014": {
     "appellant": "Sindhu Devi",
-    "respondent": "Ramashish Kumar and Anr"
+    "respondent": "Ramashish Kumar and Anr."
   },
   "FA/60/2014": {
     "appellant": "Hari Mohan Pandey",
-    "respondent": "Sudama Prasad and Ors.                                FORMAL"
+    "respondent": "Sudama Prasad and Ors."
   },
   "FA/61/2014": {
     "appellant": "Parmeshwar Paswan",
-    "respondent": "Krishna Paswan and Ors"
+    "respondent": "Krishna Paswan and Ors."
   },
   "FA/62/2014": {
     "appellant": "Rabindra Kumar",
-    "respondent": "Shri Maharana Pratap Singh and Ors"
+    "respondent": "Shri Maharana Pratap Singh and Ors."
   },
   "FA/63/2014": {
-    "appellant": "Nirbhay Kumar and Ors",
-    "respondent": "Shiva Devi and Ors"
+    "appellant": "Nirbhay Kumar and Ors.",
+    "respondent": "Shiva Devi and Ors."
   },
   "FA/64/2014": {
-    "appellant": "Tabarak Hussain and Ors",
+    "appellant": "Tabarak Hussain and Ors.",
     "respondent": "Sri Mati Usha Devi"
   },
   "FA/66/2014": {
     "appellant": "Sachchidanand Jha",
-    "respondent": "Indranand Jha and Anr"
+    "respondent": "Indranand Jha and Anr."
   },
   "FA/67/2014": {
     "appellant": "Imteyaz Khan",
-    "respondent": "Chandra Mohan Narayan and Ors"
+    "respondent": "Chandra Mohan Narayan and Ors."
   },
   "FA/68/2014": {
     "appellant": "Binod Kumar Singh",
-    "respondent": "Smt. Nibha Devi and Anr"
+    "respondent": "Smt. Nibha Devi and Anr."
   },
   "FA/69/2014": {
-    "appellant": "Rajendra Kunwar and Ors",
-    "respondent": "Nathuni Kunwar and Ors"
+    "appellant": "Rajendra Kunwar and Ors.",
+    "respondent": "Nathuni Kunwar and Ors."
   },
   "FA/71/2014": {
-    "appellant": "Ramji Sah and Anr",
-    "respondent": "Manju Kumari and Ors"
+    "appellant": "Ramji Sah and Anr.",
+    "respondent": "Manju Kumari and Ors."
   },
   "FA/72/2014": {
     "appellant": "Bhimal Singh @ Bhola Singh",
-    "respondent": "Hari Narayan Singh                           COURT FEE"
+    "respondent": "Hari Narayan Singh"
   },
   "FA/73/2014": {
     "appellant": "Surendra Singh",
@@ -16677,31 +16677,31 @@ const CASES_DB = {
   },
   "FA/74/2014": {
     "appellant": "Kapil Deo Prasad",
-    "respondent": "Smt. Chinta Devi and Ors.                              MISCELLANEOUS"
+    "respondent": "Smt. Chinta Devi and Ors."
   },
   "FA/75/2014": {
-    "appellant": "Most. Ingurwasiya Kuer and Ors",
-    "respondent": "Indu Devi and Ors"
+    "appellant": "Most. Ingurwasiya Kuer and Ors.",
+    "respondent": "Indu Devi and Ors."
   },
   "FA/76/2014": {
-    "appellant": "Wajihan Khatoon and Anr",
-    "respondent": "Kamal Ahmad and Ors.                           MISCELLANEOUS"
+    "appellant": "Wajihan Khatoon and Anr.",
+    "respondent": "Kamal Ahmad and Ors."
   },
   "FA/78/2014": {
     "appellant": "Anil Kumar Singh",
-    "respondent": "Prabhat Kumar Singh and Ors"
+    "respondent": "Prabhat Kumar Singh and Ors."
   },
   "FA/79/2014": {
     "appellant": "The State Of Bihar Through The Collector Nawada",
-    "respondent": "Lakhan Sao"
+    "respondent": "Lakhan Sao and Anr."
   },
   "FA/82/2014": {
     "appellant": "Ram Bilash Yadav",
-    "respondent": "Rama Shish Yadav and Ors"
+    "respondent": "Rama Shish Yadav and Ors."
   },
   "FA/83/2014": {
-    "appellant": "Islam Mian and Ors",
-    "respondent": "Md. Shahid and Ors.                                 FORMAL"
+    "appellant": "Islam Mian and Ors.",
+    "respondent": "Md. Shahid and Ors."
   },
   "FA/85/2014": {
     "appellant": "Arbind Kumar Yadav",
@@ -16709,11 +16709,11 @@ const CASES_DB = {
   },
   "FA/87/2014": {
     "appellant": "Md. Sikander",
-    "respondent": "Rafat Jahan                                       17       TIED UP"
+    "respondent": "Rafat Jahan"
   },
   "FA/90/2014": {
     "appellant": "Taza Khan",
-    "respondent": "Vihar Vidhya Pith Situated and Anr.                           MISCELLANEOUS"
+    "respondent": "Vihar Vidhya Pith Situated and Anr."
   },
   "FA/91/2014": {
     "appellant": "Bhupendra Kumar, Pralayankar",
@@ -16721,39 +16721,39 @@ const CASES_DB = {
   },
   "FA/92/2014": {
     "appellant": "Shashi Bhushan Prasad",
-    "respondent": "Sri Arbind Kumar Thakur and Ors"
+    "respondent": "Sri Arbind Kumar Thakur and Ors."
   },
   "FA/93/2014": {
-    "appellant": "Birbal Singh and Ors",
-    "respondent": "Jay Ram Singh and Ors"
+    "appellant": "Birbal Singh and Ors.",
+    "respondent": "Jay Ram Singh and Ors."
   },
   "FA/95/2014": {
-    "appellant": "Nagendra Singh and Ors",
-    "respondent": "Ajay Kumar Singh and Ors"
+    "appellant": "Nagendra Singh and Ors.",
+    "respondent": "Ajay Kumar Singh and Ors."
   },
   "FA/97/2014": {
-    "appellant": "Mauzi Lal Choudhary and Ors",
-    "respondent": "Laxmi Choudhary and Ors"
+    "appellant": "Mauzi Lal Choudhary and Ors.",
+    "respondent": "Laxmi Choudhary and Ors."
   },
   "FA/98/2014": {
     "appellant": "Shivdani Prasad Singh",
-    "respondent": "Asha Devi and Ors"
+    "respondent": "Asha Devi and Ors."
   },
   "FA/99/2014": {
     "appellant": "Ram Pukar Rai",
     "respondent": "Jai Narain Chaudhary"
   },
   "FA/100/2014": {
-    "appellant": "Ajay Shankar Sharma and Ors",
+    "appellant": "Ajay Shankar Sharma and Ors.",
     "respondent": "State Of Bihar and Anr"
   },
   "FA/101/2014": {
     "appellant": "Shambhu Prasad Choudhary",
-    "respondent": "Chamak Lal Mandal and Anr"
+    "respondent": "Chamak Lal Mandal and Anr."
   },
   "FA/103/2014": {
     "appellant": "Bimla Devi",
-    "respondent": "Malti Devi and Ors.                                          MISCELLANEOUS"
+    "respondent": "Malti Devi and Ors."
   },
   "FA/104/2014": {
     "appellant": "Shiv Kumari Kunwar andanr",
@@ -16768,164 +16768,164 @@ const CASES_DB = {
     "respondent": "Kashav Prasad Singh"
   },
   "FA/109/2014": {
-    "appellant": "Nishant Gunjan and Ors",
-    "respondent": "Urmila Singh and Ors.                           MISCELLANEOUS"
+    "appellant": "Nishant Gunjan and Ors.",
+    "respondent": "Urmila Singh and Ors."
   },
   "FA/110/2014": {
-    "appellant": "Gajendra Prasad Singh and Ors",
-    "respondent": "Mamta Devi and Ors"
+    "appellant": "Gajendra Prasad Singh and Ors.",
+    "respondent": "Mamta Devi and Ors."
   },
   "FA/111/2014": {
     "appellant": "Kanousi Yadav",
-    "respondent": "Tej Narayan Yadav and Ors.                                MISCELLANEOUS"
+    "respondent": "Tej Narayan Yadav and Ors."
   },
   "FA/113/2014": {
     "appellant": "Rang Bahadur Singh",
-    "respondent": "Vinod Kumar Singh and Ors"
+    "respondent": "Vinod Kumar Singh and Ors."
   },
   "FA/114/2014": {
     "appellant": "Suresh Prasad Sharma",
-    "respondent": "Asharfi Devi and Anr"
+    "respondent": "Asharfi Devi and Anr."
   },
   "FA/115/2014": {
     "appellant": "Smt. Pramila Devi",
-    "respondent": "Subodh Kumar Sah and Ors.                             MISCELLANEOUS The Oriental Insurance Company Ltd., New Delhi and Ors. VS. Smt"
+    "respondent": "Subodh Kumar Sah and Ors."
   },
   "FA/116/2014": {
-    "appellant": "The Oriental Insurance Company Ltd., New Delhi and Ors",
-    "respondent": "Smt"
+    "appellant": "The Oriental Insurance Company Ltd., New Delhi and Ors.",
+    "respondent": "Smt. Prabha Devi and Anr."
   },
   "FA/117/2014": {
     "appellant": "The State Of Bihar and Ors",
     "respondent": "Vijay Kumar"
   },
   "FA/118/2014": {
-    "appellant": "Basmati Devi @ Basia Devi and Ors",
-    "respondent": "Madan Singh and Ors"
+    "appellant": "Basmati Devi @ Basia Devi and Ors.",
+    "respondent": "Madan Singh and Ors."
   },
   "FA/119/2014": {
-    "appellant": "Vibhuti Narain Pandey Ors",
+    "appellant": "Vibhuti Narain Pandey Ors.",
     "respondent": "State Of Bihar and Anr"
   },
   "FA/120/2014": {
     "appellant": "Vijjay Kumar Sah jaiswal, Buxar",
-    "respondent": "Ganesh Prasad Sah jaiswal"
+    "respondent": "Ganesh Prasad Sah jaiswal, Buxar and Ors."
   },
   "FA/121/2014": {
     "appellant": "Bashistha Narayan Dwivedi",
-    "respondent": "Musmat Chandrawati Kuwar and Ors"
+    "respondent": "Musmat Chandrawati Kuwar and Ors."
   },
   "FA/122/2014": {
     "appellant": "Prakesh Choudhary",
-    "respondent": "Mithilesh Kumar Pandey and Anr.                       MISCELLANEOUS"
+    "respondent": "Mithilesh Kumar Pandey and Anr."
   },
   "FA/123/2014": {
     "appellant": "Shree Niwas Sah",
-    "respondent": "Chinta Devi and Ors"
+    "respondent": "Chinta Devi and Ors."
   },
   "FA/124/2014": {
-    "appellant": "Dilip Kumar and Ors",
-    "respondent": "Most. Dropadi Devi and Ors"
+    "appellant": "Dilip Kumar and Ors.",
+    "respondent": "Most. Dropadi Devi and Ors."
   },
   "FA/125/2014": {
-    "appellant": "Shri Mahavir Mavesi Mela and Ors",
-    "respondent": "Shri Mahavir Mavesi"
+    "appellant": "Shri Mahavir Mavesi Mela and Ors.",
+    "respondent": "Shri Mahavir Mavesi Mela/bazar, Gopalganj and Anr."
   },
   "FA/126/2014": {
     "appellant": "M/s Namira Construction pvt. Ltd., Patna",
-    "respondent": "M/s Scorpion Express"
+    "respondent": "M/s Scorpion Express Pvt. Ltd. and Ors."
   },
   "FA/127/2014": {
     "appellant": "Ram Narayan Mishra",
-    "respondent": "Vijay Kumar Gupta and Ors"
+    "respondent": "Vijay Kumar Gupta and Ors."
   },
   "FA/129/2014": {
-    "appellant": "Ramjee Singh and Ors",
-    "respondent": "Binod Kumar Singh and Anr"
+    "appellant": "Ramjee Singh and Ors.",
+    "respondent": "Binod Kumar Singh and Anr."
   },
   "FA/130/2014": {
     "appellant": "Kamlesh Kumar Singh",
-    "respondent": "Smt. Nisha Devi                                     MISCELLANEOUS"
+    "respondent": "Smt. Nisha Devi"
   },
   "FA/132/2014": {
     "appellant": "Arshad Ali",
     "respondent": "Abdul Aziz"
   },
   "FA/133/2014": {
-    "appellant": "Deo Nandan Prasad and Ors",
-    "respondent": "Bangali Yadav and Ors"
+    "appellant": "Deo Nandan Prasad and Ors.",
+    "respondent": "Bangali Yadav and Ors."
   },
   "FA/134/2014": {
     "appellant": "The State Of Bihar Through Collector, Nawada",
-    "respondent": "Gauri Sah and"
+    "respondent": "Gauri Sah and Ors."
   },
   "FA/135/2014": {
     "appellant": "Devendra Kumar Singh",
-    "respondent": "Anil Kumar Singh and Ors"
+    "respondent": "Anil Kumar Singh and Ors."
   },
   "FA/136/2014": {
     "appellant": "Mayanand Mandal",
-    "respondent": "Singeshwar Mandal and Ors"
+    "respondent": "Singeshwar Mandal and Ors."
   },
   "FA/137/2014": {
     "appellant": "Meena Devi",
-    "respondent": "Sujit Kumar Singh                                            FORMAL"
+    "respondent": "Sujit Kumar Singh"
   },
   "FA/139/2014": {
-    "appellant": "Dharnidhar Sah and Ors",
-    "respondent": "Subodh Kumar Sah and Ors"
+    "appellant": "Dharnidhar Sah and Ors.",
+    "respondent": "Subodh Kumar Sah and Ors."
   },
   "FA/141/2014": {
-    "appellant": "Jyoti Prasad and Ors",
-    "respondent": "Most. Vidyawati Devi and Anr.                     MISCELLANEOUS"
+    "appellant": "Jyoti Prasad and Ors.",
+    "respondent": "Most. Vidyawati Devi and Anr."
   },
   "FA/142/2014": {
-    "appellant": "Ashok Thakur and Ors",
-    "respondent": "Ram Sagar Thakur and Ors"
+    "appellant": "Ashok Thakur and Ors.",
+    "respondent": "Ram Sagar Thakur and Ors."
   },
   "FA/143/2014": {
     "appellant": "Sanjay Kumar Singh",
-    "respondent": "Akhileshwar Prasad Signh                             MISCELLANEOUS"
+    "respondent": "Akhileshwar Prasad Signh"
   },
   "FA/144/2014": {
     "appellant": "Kamata Mahto",
-    "respondent": "Most. Nageshwari Kuer and Ors.                             FORMAL"
+    "respondent": "Most. Nageshwari Kuer and Ors."
   },
   "FA/145/2014": {
     "appellant": "SMT. PRABHA SINHA and ORS",
-    "respondent": "Smt. Kamla Devi and Anr"
+    "respondent": "Smt. Kamla Devi and Anr."
   },
   "FA/146/2014": {
     "appellant": "Dinanath Singh",
-    "respondent": "Gopal Sao                                                MISCELLANEOUS"
+    "respondent": "Gopal Sao"
   },
   "FA/147/2014": {
     "appellant": "Nagina Singh",
-    "respondent": "Sakaldip Singh and Ors.                                    COURT FEE"
+    "respondent": "Sakaldip Singh and Ors."
   },
   "FA/149/2014": {
     "appellant": "Keshow Gode",
-    "respondent": "Sugambar Gode and Ors"
+    "respondent": "Sugambar Gode and Ors."
   },
   "FA/150/2014": {
-    "appellant": "Lalti Devi and Anr",
-    "respondent": "Rajnandan Prasad and Anr"
+    "appellant": "Lalti Devi and Anr.",
+    "respondent": "Rajnandan Prasad and Anr."
   },
   "FA/151/2014": {
-    "appellant": "Smt. Rinku Devi and Ors",
-    "respondent": "Sri Rajesh Kumar and Anr"
+    "appellant": "Smt. Rinku Devi and Ors.",
+    "respondent": "Sri Rajesh Kumar and Anr."
   },
   "FA/152/2014": {
-    "appellant": "Jai Prakash Singh and Ors",
-    "respondent": "Mosmat Sarda Devi and Ors"
+    "appellant": "Jai Prakash Singh and Ors.",
+    "respondent": "Mosmat Sarda Devi and Ors."
   },
   "FA/153/2014": {
     "appellant": "Ramji Singh",
-    "respondent": "Suresh Singh and Ors"
+    "respondent": "Suresh Singh and Ors."
   },
   "FA/154/2014": {
-    "appellant": "Om Prakash Singh and Ors",
-    "respondent": "Arato Kuwar and Ors"
+    "appellant": "Om Prakash Singh and Ors.",
+    "respondent": "Arato Kuwar and Ors."
   },
   "FA/155/2014": {
     "appellant": "The State Of Bihar and Ors",
@@ -16933,43 +16933,43 @@ const CASES_DB = {
   },
   "FA/156/2014": {
     "appellant": "Krishna Prasad",
-    "respondent": "Lila Devi and Ors"
+    "respondent": "Lila Devi and Ors."
   },
   "FA/157/2014": {
-    "appellant": "Smt. Anpurna Devi and Anr",
-    "respondent": "Mostt. Manturna Devi and Ors"
+    "appellant": "Smt. Anpurna Devi and Anr.",
+    "respondent": "Mostt. Manturna Devi and Ors."
   },
   "FA/158/2014": {
-    "appellant": "Lilawatee Devi and Anr",
-    "respondent": "Umashankar Singh and Ors.                          MISCELLANEOUS Osihar Prasad Singh and Ors. VS. The State Of Bihar Through The"
+    "appellant": "Lilawatee Devi and Anr.",
+    "respondent": "Umashankar Singh and Ors."
   },
   "FA/161/2014": {
-    "appellant": "Osihar Prasad Singh and Ors",
-    "respondent": "The State Of Bihar Through The"
+    "appellant": "Osihar Prasad Singh and Ors.",
+    "respondent": "The State Of Bihar Through The Collector, Saran"
   },
   "FA/162/2014": {
     "appellant": "Smt. Gayatri Devi",
-    "respondent": "Smt. Kamla Devi and Anr"
+    "respondent": "Smt. Kamla Devi and Anr."
   },
   "FA/164/2014": {
     "appellant": "The State Of Bihar Through Collector, Nawada",
-    "respondent": "Moti Sao                      COURT FEE"
+    "respondent": "Moti Sao"
   },
   "FA/165/2014": {
     "appellant": "The State Of Bihar Through Collector, Nawada",
     "respondent": "Chamani Devi"
   },
   "FA/166/2014": {
-    "appellant": "Bimala Kuar and Ors",
+    "appellant": "Bimala Kuar and Ors.",
     "respondent": "DADAN PANDEY and ORS"
   },
   "FA/167/2014": {
-    "appellant": "Vijadhar Choudhary and Anr",
-    "respondent": "Smt. Batishi Devi and Ors.                     MISCELLANEOUS"
+    "appellant": "Vijadhar Choudhary and Anr.",
+    "respondent": "Smt. Batishi Devi and Ors."
   },
   "FA/168/2014": {
-    "appellant": "Bijay Sharma and Ors",
-    "respondent": "Umesh Sharma and Ors"
+    "appellant": "Bijay Sharma and Ors.",
+    "respondent": "Umesh Sharma and Ors."
   },
   "FA/169/2014": {
     "appellant": "Dwarika Prasad Kashyap, and Ors",
@@ -16984,112 +16984,112 @@ const CASES_DB = {
     "respondent": "Paras Nath Mishra and Ors"
   },
   "FA/173/2014": {
-    "appellant": "The Bihar State Electricity Board Through Its Chairman and Anr",
-    "respondent": ""
+    "appellant": "The Bihar State Electricity Board Through Its Chairman and Anr.",
+    "respondent": "Rajani Kant Shriastava and Ors."
   },
   "FA/174/2014": {
-    "appellant": "Kabita Devi and Ors",
-    "respondent": "Krishna Mohan Kumar and Ors"
+    "appellant": "Kabita Devi and Ors.",
+    "respondent": "Krishna Mohan Kumar and Ors."
   },
   "FA/175/2014": {
     "appellant": "Sri Preman Yadav",
-    "respondent": "Sri Birju Prasad                                 17       TIED UP"
+    "respondent": "Sri Birju Prasad"
   },
   "FA/176/2014": {
     "appellant": "The State Of Bihar Through Collector, Nawada",
-    "respondent": "Chhotelal Sao                 MISCELLANEOUS"
+    "respondent": "Chhotelal Sao"
   },
   "FA/177/2014": {
     "appellant": "Raghav Singh",
     "respondent": "Kumar Mayank"
   },
   "FA/178/2014": {
-    "appellant": "Ramjharo Kunwar and Anr",
-    "respondent": "Sunil Kumar and Ors"
+    "appellant": "Ramjharo Kunwar and Anr.",
+    "respondent": "Sunil Kumar and Ors."
   },
   "FA/179/2014": {
-    "appellant": "Most. Rita Sharma and Ors",
-    "respondent": "Sri Jai Vardhan and Anr"
+    "appellant": "Most. Rita Sharma and Ors.",
+    "respondent": "Sri Jai Vardhan and Anr."
   },
   "FA/180/2014": {
     "appellant": "The State Of Bihar Through Collector, Banka",
-    "respondent": "Deo Narain Gain                MISCELLANEOUS"
+    "respondent": "Deo Narain Gain"
   },
   "FA/181/2014": {
-    "appellant": "Harishchandra Sah and Ors",
-    "respondent": "Umashankar Sah and Ors"
+    "appellant": "Harishchandra Sah and Ors.",
+    "respondent": "Umashankar Sah and Ors."
   },
   "FA/182/2014": {
     "appellant": "Umesh Agrawal and Ors",
-    "respondent": "The State Of Bihar and Anr                  12       RECORD/REPORTS ETC Jai Nandan Choudhary and Anr. VS. Surendra Prasad Choudhary and"
+    "respondent": "The State Of Bihar and Anr"
   },
   "FA/183/2014": {
-    "appellant": "Jai Nandan Choudhary and Anr",
-    "respondent": "Surendra Prasad Choudhary and"
+    "appellant": "Jai Nandan Choudhary and Anr.",
+    "respondent": "Surendra Prasad Choudhary and Ors."
   },
   "FA/184/2014": {
-    "appellant": "Dev Narayan Yadav and Ors",
-    "respondent": "Mahadevi and Ors"
+    "appellant": "Dev Narayan Yadav and Ors.",
+    "respondent": "Mahadevi and Ors."
   },
   "FA/185/2014": {
     "appellant": "Indu Devi",
-    "respondent": "Bhola Sah and Ors.                                               MISCELLANEOUS"
+    "respondent": "Bhola Sah and Ors."
   },
   "FA/186/2014": {
     "appellant": "Md. Khursid Alam",
-    "respondent": "Md. Zafar Waheed Jahan and Anr.                           MISCELLANEOUS"
+    "respondent": "Md. Zafar Waheed Jahan and Anr."
   },
   "FA/187/2014": {
-    "appellant": "Ramesh Yadav and Ors",
-    "respondent": "Ram Pyarey Kurami and Ors"
+    "appellant": "Ramesh Yadav and Ors.",
+    "respondent": "Ram Pyarey Kurami and Ors."
   },
   "FA/188/2014": {
     "appellant": "Manohar Sah",
-    "respondent": "Surendra Prasad Sah Ors.                                       MISCELLANEOUS"
+    "respondent": "Surendra Prasad Sah Ors."
   },
   "FA/189/2014": {
     "appellant": "Ajay Kumar Pandey",
     "respondent": "Ramchandra Pandey"
   },
   "FA/190/2014": {
-    "appellant": "Indu Devi and Ors",
-    "respondent": "Kunti Devi and Ors"
+    "appellant": "Indu Devi and Ors.",
+    "respondent": "Kunti Devi and Ors."
   },
   "FA/191/2014": {
-    "appellant": "Ajay Kumar and Ors",
-    "respondent": "Pratap Shankar Agrawal and Anr"
+    "appellant": "Ajay Kumar and Ors.",
+    "respondent": "Pratap Shankar Agrawal and Anr."
   },
   "FA/192/2014": {
     "appellant": "Smt. Kiran Devi",
-    "respondent": "Anil Kumar and Ors.                                        MISCELLANEOUS"
+    "respondent": "Anil Kumar and Ors."
   },
   "FA/193/2014": {
     "appellant": "Kashmira Kunwar @ Kashmira Devi",
-    "respondent": "Akhila Nand Singh and Ors"
+    "respondent": "Akhila Nand Singh and Ors."
   },
   "FA/194/2014": {
     "appellant": "Sri Krishna Prasad Sharma",
-    "respondent": "Raj Kumar Vishkarma and Ors"
+    "respondent": "Raj Kumar Vishkarma and Ors."
   },
   "FA/195/2014": {
     "appellant": "Manoj Kumar Gupta",
-    "respondent": "Bhagwan Lal Gupta and Ors.                              MISCELLANEOUS"
+    "respondent": "Bhagwan Lal Gupta and Ors."
   },
   "FA/196/2014": {
-    "appellant": "Chandrabhan Singh and Ors",
-    "respondent": "Sita Ram Singh and Ors"
+    "appellant": "Chandrabhan Singh and Ors.",
+    "respondent": "Sita Ram Singh and Ors."
   },
   "FA/197/2014": {
-    "appellant": "Chandrabhan Singh and Ors",
-    "respondent": "Sita Ram Singh and Ors.                        MISCELLANEOUS"
+    "appellant": "Chandrabhan Singh and Ors.",
+    "respondent": "Sita Ram Singh and Ors."
   },
   "FA/199/2014": {
     "appellant": "Ram Singar Sinha",
-    "respondent": "Awadh Bihari Singh and Ors.                              MISCELLANEOUS Mithilesh Kumar Singh VS. M/s Housing And Urban Development"
+    "respondent": "Awadh Bihari Singh and Ors."
   },
   "FA/200/2014": {
     "appellant": "Mithilesh Kumar Singh",
-    "respondent": "M/s Housing And Urban Development"
+    "respondent": "M/s Housing And Urban Development Corporation Limited, Patna"
   },
   "FA/201/2014": {
     "appellant": "Raghubir Kumar @ Raghubansh Sharma",
@@ -17100,8 +17100,8 @@ const CASES_DB = {
     "respondent": "Dasarath Mallah and Ors"
   },
   "FA/209/2014": {
-    "appellant": "Smt. Subhadra Devi and Ors",
-    "respondent": "Satya Narayan Burnwal and Ors"
+    "appellant": "Smt. Subhadra Devi and Ors.",
+    "respondent": "Satya Narayan Burnwal and Ors."
   },
   "FA/210/2014": {
     "appellant": "The State Of Bihar Through The Collector, Nawada",
@@ -17109,19 +17109,19 @@ const CASES_DB = {
   },
   "FA/211/2014": {
     "appellant": "The State Of Bihar Through The Collector, Nawada",
-    "respondent": "Dulari Devi              MISCELLANEOUS"
+    "respondent": "Dulari Devi"
   },
   "FA/223/2014": {
-    "appellant": "Smt. Gurubachan Kaur and Anr",
-    "respondent": "Smt. Harjeet Kaur and Ors"
+    "appellant": "Smt. Gurubachan Kaur and Anr.",
+    "respondent": "Smt. Harjeet Kaur and Ors."
   },
   "FA/224/2014": {
     "appellant": "M/s Haritwal Printing Press, Lakhisarai",
-    "respondent": "The State Of Bihar and"
+    "respondent": "The State Of Bihar and Ors"
   },
   "FA/225/2014": {
     "appellant": "Arbind Kumar Singh",
-    "respondent": "The State Of Bihar Through The Collector"
+    "respondent": "The State Of Bihar Through The Collector, East Champaran, Motihari. and Ors"
   },
   "FA/227/2014": {
     "appellant": "Shakuntala Devi and Anr",
@@ -17133,11 +17133,11 @@ const CASES_DB = {
   },
   "FA/5/2015": {
     "appellant": "The State Of Bihar Through Collector, Nawada",
-    "respondent": "Bibi Kaliman                 MISCELLANEOUS"
+    "respondent": "Bibi Kaliman"
   },
   "FA/7/2015": {
     "appellant": "Premlata Devi",
-    "respondent": "Amit Kumar Albela And Another                               (DEFECTIVE CASES"
+    "respondent": "Amit Kumar Albela And Another"
   },
   "FA/9/2015": {
     "appellant": "Raghunath Singh",
@@ -17149,11 +17149,11 @@ const CASES_DB = {
   },
   "FA/13/2015": {
     "appellant": "Raghunath Singh",
-    "respondent": "The State Of Bihar, Through Collector, Vaishali           FORMAL"
+    "respondent": "The State Of Bihar, Through Collector, Vaishali"
   },
   "FA/14/2015": {
     "appellant": "Upendar Rai",
-    "respondent": "Naresh Ram and Ors                                            FORMAL"
+    "respondent": "Naresh Ram and Ors"
   },
   "FA/16/2015": {
     "appellant": "Jamil Ahmed",
@@ -17161,7 +17161,7 @@ const CASES_DB = {
   },
   "FA/17/2015": {
     "appellant": "Kumar Keshari Digya Vijai @ Santosh Kumar and Ors",
-    "respondent": "Manindra"
+    "respondent": "Manindra Prasad @ Munna Prasad and Ors"
   },
   "FA/18/2015": {
     "appellant": "Alisher Khan and Ors",
@@ -17173,11 +17173,11 @@ const CASES_DB = {
   },
   "FA/20/2015": {
     "appellant": "Ram Prasad Singh and Ors",
-    "respondent": "Raghuvar Pandey and Anr                          MISCELLANEOUS Puneshwar Prasad Sinha and Ors VS. Sri Vinay Kumar Mouar and"
+    "respondent": "Raghuvar Pandey and Anr"
   },
   "FA/21/2015": {
     "appellant": "Puneshwar Prasad Sinha and Ors",
-    "respondent": "Sri Vinay Kumar Mouar and"
+    "respondent": "Sri Vinay Kumar Mouar and Ors"
   },
   "FA/22/2015": {
     "appellant": "Dr. Shri Chandra Bhawnani and Ors",
@@ -17189,7 +17189,7 @@ const CASES_DB = {
   },
   "FA/24/2015": {
     "appellant": "Rajesh Kumar",
-    "respondent": "Ashok Kumar and Ors                                          FORMAL"
+    "respondent": "Ashok Kumar and Ors"
   },
   "FA/27/2015": {
     "appellant": "Sharda Devi",
@@ -17197,15 +17197,15 @@ const CASES_DB = {
   },
   "FA/28/2015": {
     "appellant": "The State Of Bihar Through Collector, and Anr",
-    "respondent": "Sri Dinesh"
+    "respondent": "Sri Dinesh Narayan Jha and Ors"
   },
   "FA/29/2015": {
     "appellant": "Smt. Vibha Kumari @ Bibha Kumari",
-    "respondent": "Pravin Kumar Gautam                      FORMAL"
+    "respondent": "Pravin Kumar Gautam"
   },
   "FA/1/2016": {
     "appellant": "Sanyukta Kumari @ Sunita Rani @ Sumita Kumari",
-    "respondent": "Balbant"
+    "respondent": "Balbant Kumar"
   },
   "FA/2/2016": {
     "appellant": "Ramesh Chandra Manjhi and Ors",
@@ -17225,11 +17225,11 @@ const CASES_DB = {
   },
   "FA/6/2016": {
     "appellant": "Amar Nath Singh",
-    "respondent": "Ishwar Jan Rai and Ors                                    MISCELLANEOUS Shashi Bhushan Prasad Singh and Ors VS. The State Of Bihar and"
+    "respondent": "Ishwar Jan Rai and Ors"
   },
   "FA/9/2016": {
     "appellant": "Shashi Bhushan Prasad Singh and Ors",
-    "respondent": "The State Of Bihar and"
+    "respondent": "The State Of Bihar and Ors"
   },
   "FA/11/2016": {
     "appellant": "Nitu Singh @ Nitu and Anr",
@@ -17249,7 +17249,7 @@ const CASES_DB = {
   },
   "FA/17/2016": {
     "appellant": "Md. Shamsuddin",
-    "respondent": "Bibi Nujhat and Ors                                        MISCELLANEOUS"
+    "respondent": "Bibi Nujhat and Ors"
   },
   "FA/21/2016": {
     "appellant": "Hiralal Singh and Ors",
@@ -17257,43 +17257,43 @@ const CASES_DB = {
   },
   "FA/23/2016": {
     "appellant": "Shiv Kumar Singh and Anr",
-    "respondent": "Reena Singh                                      FORMAL"
+    "respondent": "Reena Singh"
   },
   "FA/24/2016": {
     "appellant": "The State Of Bihar and Ors",
-    "respondent": "M/s Suraj Contruction Through Its"
+    "respondent": "M/s Suraj Contruction Through Its Partner"
   },
   "FA/25/2016": {
     "appellant": "The State Of Bihar and Ors",
-    "respondent": "M/s Suraj Contruction Through Its"
+    "respondent": "M/s Suraj Contruction Through Its Partner Jagarnath Singh"
   },
   "FA/26/2016": {
-    "appellant": "Project Director, National Highways Authority Of India",
-    "respondent": "Durga"
+    "appellant": "Project Director, National Highways Authority Of India,",
+    "respondent": "Durga Prasad Singh and Ors."
   },
   "FA/28/2016": {
     "appellant": "Hazari Lal Prasad",
-    "respondent": "Sri Jogindar Prasad and Ors"
+    "respondent": "Sri Jogindar Prasad and Ors."
   },
   "FA/31/2016": {
     "appellant": "Bhagwat Prasad Sharma",
-    "respondent": "Raghu Nath Singh and Ors"
+    "respondent": "Raghu Nath Singh and Ors."
   },
   "FA/32/2016": {
     "appellant": "Kiran Sahu",
-    "respondent": "Miss. Sweeti Kumari @ Sweta Kalyani and Ors"
+    "respondent": "Miss. Sweeti Kumari @ Sweta Kalyani and Ors."
   },
   "FA/33/2016": {
-    "appellant": "Raj Kishore Prasad and Ors",
-    "respondent": "Murli Manohar Alias Mandal and"
+    "appellant": "Raj Kishore Prasad and Ors.",
+    "respondent": "Murli Manohar Alias Mandal and Anr."
   },
   "FA/35/2016": {
-    "appellant": "Kumar Sahkari Grih Nirman Samittee Ltd. Patna",
-    "respondent": "Deo Sakhi"
+    "appellant": "Kumar Sahkari Grih Nirman Samittee Ltd. Patna.",
+    "respondent": "Deo Sakhi Chandra Devi and Ors."
   },
   "FA/40/2016": {
-    "appellant": "Satya Deo Singh Coal Company Pvt. Ltd. and Ors",
-    "respondent": "Pareek Iron"
+    "appellant": "Satya Deo Singh Coal Company Pvt. Ltd. and Ors.",
+    "respondent": "Pareek Iron and Steels Company Pvt. Ltd., and Ors."
   },
   "FA/42/2016": {
     "appellant": "Jeetendra Kumar Sinha and Anr",
@@ -17301,23 +17301,23 @@ const CASES_DB = {
   },
   "FA/43/2016": {
     "appellant": "The State Of Bihar Through The Collector, Vaishali",
-    "respondent": "Mostt. Jasiya"
+    "respondent": "Mostt. Jasiya Devi and Ors"
   },
   "FA/47/2016": {
     "appellant": "M/s Abhishek Pharmaceutical Pvt. Ltd. and Ors",
-    "respondent": "Punjab National"
+    "respondent": "Punjab National Bank Through Its Chairman Cum Director and Ors"
   },
   "FA/49/2016": {
-    "appellant": "Railway and Anr",
+    "appellant": "The Union Of India Through The General Manager East Central Railway and Anr",
     "respondent": "Vibhuti Narayan Pandey and Ors"
   },
   "FA/51/2016": {
-    "appellant": "Railway and Anr",
-    "respondent": "Vibhuti Narayan Pandey and Ors"
+    "appellant": "Gyaneshwar Sharma and Ors",
+    "respondent": "Ram Pravesh Singh and Ors"
   },
   "FA/52/2016": {
     "appellant": "Binod Kumar and Anr",
-    "respondent": "Punjab National Bank, Through Regional"
+    "respondent": "Punjab National Bank, Through Regional Branch Manager, Regional Office, Darbhanga. and Ors"
   },
   "FA/53/2016": {
     "appellant": "Govind Prasad Kedia and Ors",
@@ -17325,7 +17325,7 @@ const CASES_DB = {
   },
   "FA/57/2016": {
     "appellant": "Rajeshwar Prasad Sah",
-    "respondent": "The State Of Bihar Through The Collector"
+    "respondent": "The State Of Bihar Through The Collector, Muzaffarpur"
   },
   "FA/59/2016": {
     "appellant": "Usha Devi",
@@ -17333,7 +17333,7 @@ const CASES_DB = {
   },
   "FA/60/2016": {
     "appellant": "Narayan Sah and Anr",
-    "respondent": "Shakila Rafat Praveen @ Shabanam"
+    "respondent": "Shakila Rafat Praveen @ Shabanam Praveen and Ors"
   },
   "FA/61/2016": {
     "appellant": "Rakesh Chandra Barnwal",
@@ -17341,7 +17341,7 @@ const CASES_DB = {
   },
   "FA/62/2016": {
     "appellant": "Prashant Kumar Bashishta @ Prashant Kumar @ Prashant",
-    "respondent": "Ranjit"
+    "respondent": "Ranjit Kumar and Ors"
   },
   "FA/67/2016": {
     "appellant": "The State of Bihar through the Collector Nalanda",
@@ -17389,7 +17389,7 @@ const CASES_DB = {
   },
   "FA/78/2016": {
     "appellant": "The State Of Bihar and Anr",
-    "respondent": "Naresh Prasad Singh and Anr                  MISCELLANEOUS"
+    "respondent": "Naresh Prasad Singh and Anr"
   },
   "FA/79/2016": {
     "appellant": "The State Of Bihar and Anr",
@@ -17445,19 +17445,19 @@ const CASES_DB = {
   },
   "FA/95/2016": {
     "appellant": "Bihar Industrial Area Development Authority",
-    "respondent": "The State Of Bihar"
+    "respondent": "The State Of Bihar and Ors"
   },
   "FA/96/2016": {
     "appellant": "Bihar Industrial Area Development Authority",
-    "respondent": "The State Of Bihar"
+    "respondent": "The State Of Bihar The Collector, Patna and Ors"
   },
   "FA/97/2016": {
     "appellant": "Bihar Industrial Area Development Authority",
-    "respondent": "The State Of Bihar"
+    "respondent": "The State Of Bihar The Collector, Patna and Ors"
   },
   "FA/98/2016": {
     "appellant": "Ashok Prasad and Ors",
-    "respondent": "Manindra Prasad @ Than Singh Prasad"
+    "respondent": "Manindra Prasad @ Than Singh Prasad and Ors"
   },
   "FA/99/2016": {
     "appellant": "Lalit Narayan Mishra",
@@ -17477,7 +17477,7 @@ const CASES_DB = {
   },
   "FA/105/2016": {
     "appellant": "Ramjee Singh and Ors",
-    "respondent": "The State Of Bihar Through The Collector"
+    "respondent": "The State Of Bihar Through The Collector, Aurangabad and Anr"
   },
   "FA/106/2016": {
     "appellant": "Umesh Ram",
@@ -17485,39 +17485,39 @@ const CASES_DB = {
   },
   "FA/108/2016": {
     "appellant": "Bihar Industrial Area Development Authority",
-    "respondent": "The State Of Bihar"
+    "respondent": "The State Of Bihar and Ors"
   },
   "FA/109/2016": {
     "appellant": "Bihar Industrial Area Development Authority",
-    "respondent": "The State Of Bihar"
+    "respondent": "The State Of Bihar and Ors"
   },
   "FA/110/2016": {
     "appellant": "Bihar Industrial Area Development Authority",
-    "respondent": "The State Of Bihar"
+    "respondent": "The State Of Bihar and Ors"
   },
   "FA/111/2016": {
     "appellant": "Bihar Industrial Area Development Authority",
-    "respondent": "The State Of Bihar"
+    "respondent": "The State Of Bihar and Ors"
   },
   "FA/112/2016": {
     "appellant": "Bihar Industrial Area Development Authority",
-    "respondent": "The State Of Bihar"
+    "respondent": "The State Of Bihar and Ors"
   },
   "FA/113/2016": {
     "appellant": "Bihar Industrial Area Development Authority",
-    "respondent": "The State Of Bihar"
+    "respondent": "The State Of Bihar and Ors"
   },
   "FA/114/2016": {
     "appellant": "Bihar Industrial Area Development Authority",
-    "respondent": "The State Of Bihar"
+    "respondent": "The State Of Bihar and Ors"
   },
   "FA/115/2016": {
     "appellant": "Bihar Industrial Area Development Authority",
-    "respondent": "The State Of Bihar"
+    "respondent": "The State Of Bihar and Ors"
   },
   "FA/116/2016": {
     "appellant": "Ajay Singh @ Ajay Kumar Singh and Ors",
-    "respondent": "The State Of Bihar                 COURT FEE LOKADALAT ( FOR"
+    "respondent": "The State Of Bihar"
   },
   "FA/117/2016": {
     "appellant": "Ajay Singh @ Ajay Kumar Singh and Ors",
@@ -17525,19 +17525,19 @@ const CASES_DB = {
   },
   "FA/118/2016": {
     "appellant": "Bihar Industrial Area Development Authority",
-    "respondent": "The State Of Bihar"
+    "respondent": "The State Of Bihar and Ors"
   },
   "FA/119/2016": {
     "appellant": "Bihar Industrial Area Development Authority",
-    "respondent": "The State Of Bihar"
+    "respondent": "The State Of Bihar and Ors"
   },
   "FA/120/2016": {
     "appellant": "Bihar Industrial Area Development Authority",
-    "respondent": "The State Of Bihar"
+    "respondent": "The State Of Bihar and Ors"
   },
   "FA/121/2016": {
     "appellant": "Bihar Industrial Area Development Authority",
-    "respondent": "The State Of Bihar"
+    "respondent": "The State Of Bihar and Ors"
   },
   "FA/122/2016": {
     "appellant": "Madan Kumar Singh and Ors",
@@ -17549,14 +17549,14 @@ const CASES_DB = {
   },
   "FA/124/2016": {
     "appellant": "Shyam Lal Yadav",
-    "respondent": "The State Of Bihar and Ors                               FORMAL"
+    "respondent": "The State Of Bihar and Ors"
   },
   "FA/127/2016": {
     "appellant": "The State Of Bihar and Ors",
     "respondent": "Shree Panchanan Sharma and Ors"
   },
   "FA/128/2016": {
-    "appellant": "M/s Shaswat Printers Pvt. Ltd",
+    "appellant": "M/s Shaswat Printers Pvt. Ltd.",
     "respondent": "Subhash Jayaswal and Ors"
   },
   "FA/129/2016": {
@@ -17565,7 +17565,7 @@ const CASES_DB = {
   },
   "FA/130/2016": {
     "appellant": "Pintu Kumar and Anr",
-    "respondent": "Lal Bahadur Singh                                    MISCELLANEOUS"
+    "respondent": "Lal Bahadur Singh"
   },
   "FA/131/2016": {
     "appellant": "Mr. Sunit Kumar Sinha",
@@ -17573,7 +17573,7 @@ const CASES_DB = {
   },
   "FA/133/2016": {
     "appellant": "Sri Chandra Bhushan Kumar and Ors",
-    "respondent": "Sri Lakhan Mahto and Ors               MISCELLANEOUS"
+    "respondent": "Sri Lakhan Mahto and Ors"
   },
   "FA/135/2016": {
     "appellant": "Most. Samira Khatoon and Ors",
@@ -17597,14 +17597,14 @@ const CASES_DB = {
   },
   "FA/4/2017": {
     "appellant": "M/s Controller Of Defence Accounts Employes Co- Operative Ltd",
-    "respondent": ""
+    "respondent": "Mata Bhagwati The Deity and Ors"
   },
   "FA/5/2017": {
     "appellant": "Om Prakash Sharma",
     "respondent": "Badri Ram Marwari"
   },
   "FA/6/2017": {
-    "appellant": "",
+    "appellant": "Vimal Kumar Dikshit @ Mithu Babu @ Vimal Prasad Dikshit and Ors",
     "respondent": "Mithileshwar Prasad Dikshit and Ors"
   },
   "FA/7/2017": {
@@ -17661,15 +17661,15 @@ const CASES_DB = {
   },
   "FA/25/2017": {
     "appellant": "Bihar Industrial Area Development Authority",
-    "respondent": "The State Of Bihar"
+    "respondent": "The State Of Bihar and Ors"
   },
   "FA/26/2017": {
     "appellant": "Bihar Industrial Area Development Authority",
-    "respondent": "The State Of Bihar"
+    "respondent": "The State Of Bihar and Ors"
   },
   "FA/27/2017": {
     "appellant": "Bihar Industrial Area Development Authority",
-    "respondent": "The State Of Bihar"
+    "respondent": "The State Of Bihar and Ors"
   },
   "FA/28/2017": {
     "appellant": "Janardan Prasad and Ors",
@@ -17725,7 +17725,7 @@ const CASES_DB = {
   },
   "FA/47/2017": {
     "appellant": "The State Of Bihar Through The Collector, Begusarai",
-    "respondent": "Ramagyan"
+    "respondent": "Ramagyan Singh"
   },
   "FA/49/2017": {
     "appellant": "Sri Chandra Shekhar Singh",
@@ -17784,12 +17784,12 @@ const CASES_DB = {
     "respondent": "Mostt. Manju Ghosh"
   },
   "FA/72/2017": {
-    "appellant": "Smt. Manju Sinha",
-    "respondent": "Sri Prakash @ Prakash Prasad Narayan"
+    "appellant": "Smt. Manju Sinha,",
+    "respondent": "Sri Prakash @ Prakash Prasad Narayan Sinha,"
   },
   "FA/73/2017": {
     "appellant": "Manager, United Bank Of India and Anr",
-    "respondent": "M/s Baba Baidyanath"
+    "respondent": "M/s Baba Baidyanath Sheetgrih Pvt. Ltd. and Ors"
   },
   "FA/76/2017": {
     "appellant": "Harendra Rai and Ors",
@@ -17797,7 +17797,7 @@ const CASES_DB = {
   },
   "FA/78/2017": {
     "appellant": "Bihar State Co Operative Marketing Union Ltd. and Anr",
-    "respondent": "M/s"
+    "respondent": "M/s Fertilizer Corporation Of India Pvt. Ltd."
   },
   "FA/80/2017": {
     "appellant": "Smt. Neha and Anr",
@@ -17805,7 +17805,7 @@ const CASES_DB = {
   },
   "FA/82/2017": {
     "appellant": "Smt. Asha Mishra",
-    "respondent": "Shri Prakash @ Prakash Prasad Narayan"
+    "respondent": "Shri Prakash @ Prakash Prasad Narayan Sinha and Ors"
   },
   "FA/84/2017": {
     "appellant": "Dr. Dina Nath Prasad Verma",
@@ -17817,7 +17817,7 @@ const CASES_DB = {
   },
   "FA/87/2017": {
     "appellant": "The State Of Bihar and Ors",
-    "respondent": "M/s Pushpak Enterrises, Through Its"
+    "respondent": "M/s Pushpak Enterrises, Through Its Proprietor Paras Nath Singh and Anr"
   },
   "FA/88/2017": {
     "appellant": "Sarita Das @ Sabita Das and Anr",
@@ -17845,7 +17845,7 @@ const CASES_DB = {
   },
   "FA/102/2017": {
     "appellant": "Birendra Kumar Choudhary and Ors",
-    "respondent": "Shambhu Kumar Choudhary"
+    "respondent": "Shambhu Kumar Choudhary and Ors"
   },
   "FA/103/2017": {
     "appellant": "The State Of Bihar Through Collector",
@@ -17856,7 +17856,7 @@ const CASES_DB = {
     "respondent": "Smt. Bacheshwari Devi and Ors"
   },
   "FA/105/2017": {
-    "appellant": "",
+    "appellant": "Uday Prasad Narayan Singh @ Ramender Prasad Narayan Singh",
     "respondent": "Faizan Ahmad"
   },
   "FA/107/2017": {
@@ -17897,7 +17897,7 @@ const CASES_DB = {
   },
   "FA/117/2017": {
     "appellant": "Gulam Mustafa",
-    "respondent": "Md. Badruddin @ Mushan                                      FORMAL"
+    "respondent": "Md. Badruddin @ Mushan"
   },
   "FA/118/2017": {
     "appellant": "Indrajeet Sao @ Chakku Sao",
@@ -17920,12 +17920,12 @@ const CASES_DB = {
     "respondent": "Malti Devi and Ors"
   },
   "FA/125/2017": {
-    "appellant": "ADMISSION Kumar",
+    "appellant": "A C M E Institute Of Information and Technology Through Mr. Ranjeet Kumar",
     "respondent": "Sri Shriniwas Kumar Verma"
   },
   "FA/128/2017": {
-    "appellant": "Kumar",
-    "respondent": "Sri Shriniwas Kumar Verma"
+    "appellant": "Shanta Sinha",
+    "respondent": "Ruma Devi and Anr"
   },
   "FA/129/2017": {
     "appellant": "Abid Hussain",
@@ -17945,7 +17945,7 @@ const CASES_DB = {
   },
   "FA/135/2017": {
     "appellant": "Md. Fahim Alias Md. Shahid",
-    "respondent": "Md. Anwar Hussain and Ors                    FORMAL"
+    "respondent": "Md. Anwar Hussain and Ors"
   },
   "FA/136/2017": {
     "appellant": "Shambhu Prasad Singh and Ors",
@@ -17961,15 +17961,15 @@ const CASES_DB = {
   },
   "FA/142/2017": {
     "appellant": "The State Of Bihar and Anr",
-    "respondent": "Arrah Sasaram Light Railway"
+    "respondent": "Arrah Sasaram Light Railway Company Limited and Ors"
   },
   "FA/143/2017": {
     "appellant": "The State Of Bihar Through Collector and Anr",
-    "respondent": "Arrah Sasaram"
+    "respondent": "Arrah Sasaram Light Railway Company Limited and Ors"
   },
   "FA/144/2017": {
     "appellant": "The State of Bihar",
-    "respondent": "Arrah-Sasaram Light Railway Company"
+    "respondent": "Arrah-Sasaram Light Railway Company Limited (in Voluntary Liquidation)"
   },
   "FA/145/2017": {
     "appellant": "Anju Kumari",
@@ -17984,64 +17984,64 @@ const CASES_DB = {
     "respondent": "Smt. Anjani Devi"
   },
   "FA/151/2017": {
-    "appellant": "Rehabilitation and Anr",
+    "appellant": "The State Of Bihar Through The Director, Land Acquisition And Rehabilitation and Anr",
     "respondent": "Mr. Rajendra Sao"
   },
   "FA/152/2017": {
-    "appellant": "Rehabilitation and Anr",
-    "respondent": "Mr. Rajendra Sao"
-  },
-  "FA/153/2017": {
-    "appellant": "Rehabilitation and Anr",
+    "appellant": "The State Of Bihar Through The Director, Land Acquisition And Rehabilitation and Anr",
     "respondent": "Bandhu Mian"
   },
-  "FA/154/2017": {
-    "appellant": "Rehabilitation and Anr",
-    "respondent": "Mukesh Kumar Singh and Anr            16 The State Of Bihar Through The Director, Land Acquisition And"
+  "FA/153/2017": {
+    "appellant": "The State Of Bihar Through The Director, Land Acquisition And Rehabilitation and Anr",
+    "respondent": "Mukesh Kumar Singh and Anr"
   },
-  "FA/155/2017": {
-    "appellant": "Rehabilitation and Anr",
+  "FA/154/2017": {
+    "appellant": "The State Of Bihar Through The Director, Land Acquisition And Rehabilitation and Anr",
     "respondent": "Jhari Mistry And Krishna Mistry"
   },
-  "FA/156/2017": {
-    "appellant": "Rehabilitation and Anr",
+  "FA/155/2017": {
+    "appellant": "The State Of Bihar Through The Director, Land Acquisition And Rehabilitation and Anr",
     "respondent": "Ishwar Sao"
   },
-  "FA/157/2017": {
-    "appellant": "Rehabilitation and Anr",
+  "FA/156/2017": {
+    "appellant": "The State Of Bihar Through The Director, Land Acquisition And Rehabilitation and Anr",
     "respondent": "Bhola Singh"
   },
-  "FA/158/2017": {
-    "appellant": "Rehabilitation and Anr",
-    "respondent": "Mrs. Julekha Khatoon                  16 The State Of Bihar Through The Director, Land Acquisition And"
+  "FA/157/2017": {
+    "appellant": "The State Of Bihar Through The Director, Land Acquisition And Rehabilitation and Anr",
+    "respondent": "Mrs. Julekha Khatoon"
   },
-  "FA/159/2017": {
-    "appellant": "Rehabilitation and Anr",
+  "FA/158/2017": {
+    "appellant": "The State Of Bihar Through The Director, Land Acquisition And Rehabilitation and Anr",
     "respondent": "Arjun Sao"
   },
-  "FA/160/2017": {
-    "appellant": "Rehabilitation and Anr",
+  "FA/159/2017": {
+    "appellant": "The State Of Bihar Through The Director, Land Acquisition And Rehabilitation and Anr",
     "respondent": "Mr. Arjun Singh And Mr. Umesh Singh"
   },
-  "FA/161/2017": {
-    "appellant": "Rehabilitation and Anr",
+  "FA/160/2017": {
+    "appellant": "The State Of Bihar Through The Director, Land Acquisition And Rehabilitation and Anr",
     "respondent": "Latif Mian"
   },
-  "FA/163/2017": {
-    "appellant": "Rehabilitation and Anr",
+  "FA/161/2017": {
+    "appellant": "The State Of Bihar Through The Director, Land Acquisition And Rehabilitation and Anr",
     "respondent": "Mr. Bundi Pandit"
   },
-  "FA/164/2017": {
-    "appellant": "Rehabilitation and Anr",
+  "FA/163/2017": {
+    "appellant": "The State Of Bihar Through The Director, Land Acquisition And Rehabilitation and Anr",
     "respondent": "Mohammed Jamaaluddin"
   },
-  "FA/165/2017": {
-    "appellant": "Rehabilitation and Anr",
+  "FA/164/2017": {
+    "appellant": "The State Of Bihar Through The Director, Land Acquisition And Rehabilitation and Anr",
     "respondent": "Nizamuddin"
   },
-  "FA/166/2017": {
-    "appellant": "Rehabilitation and Anr",
+  "FA/165/2017": {
+    "appellant": "The State Of Bihar Through The Director, Land Acquisition And Rehabilitation and Anr",
     "respondent": "Deo Lal Sharma"
+  },
+  "FA/166/2017": {
+    "appellant": "Om Prakash and Ors",
+    "respondent": "Smt. Nilima Sinha and Ors"
   },
   "FA/167/2017": {
     "appellant": "The State Of Bihar and Anr",
@@ -18109,7 +18109,7 @@ const CASES_DB = {
   },
   "FA/183/2017": {
     "appellant": "The State Of Bihar and Anr",
-    "respondent": "Ghulam Ki Biriya                             COURT FEE"
+    "respondent": "Ghulam Ki Biriya"
   },
   "FA/184/2017": {
     "appellant": "Najbun Khaton",
@@ -18157,75 +18157,75 @@ const CASES_DB = {
   },
   "FA/199/2017": {
     "appellant": "Bihar Industrial Area Development Authority",
-    "respondent": "Santosh Kumar"
+    "respondent": "Santosh Kumar Singh and Ors"
   },
   "FA/200/2017": {
     "appellant": "Bihar Industrial Area Development Authority",
-    "respondent": "Santosh Kumar"
+    "respondent": "Santosh Kumar Singh and Ors"
   },
   "FA/201/2017": {
     "appellant": "Bihar Industrial Area Development Authority",
-    "respondent": "Santosh Kumar"
+    "respondent": "Santosh Kumar Singh and Ors"
   },
   "FA/202/2017": {
     "appellant": "Bihar Industrial Area Development Authority",
-    "respondent": "Baban Kumar and"
+    "respondent": "Baban Kumar and Ors"
   },
   "FA/203/2017": {
     "appellant": "Bihar Industrial Area Development Authority",
-    "respondent": "Sadan Kumar and"
+    "respondent": "Sadan Kumar and Ors"
   },
   "FA/204/2017": {
     "appellant": "Bihar Industrial Area Development Authority",
-    "respondent": "Kaushal Kumar and"
+    "respondent": "Kaushal Kumar and Ors"
   },
   "FA/205/2017": {
     "appellant": "Bihar Industrial Area Development Authority",
-    "respondent": "Sadan Kumar and"
+    "respondent": "Sadan Kumar and Ors"
   },
   "FA/206/2017": {
     "appellant": "Bihar Industrial Area Development Authority",
-    "respondent": "Santosh Kumar"
+    "respondent": "Santosh Kumar Singh and Ors"
   },
   "FA/207/2017": {
     "appellant": "Bihar Industrial Area Development Authority",
-    "respondent": "Santosh Kumar"
+    "respondent": "Santosh Kumar Singh and Ors"
   },
   "FA/208/2017": {
     "appellant": "Bihar Industrial Area Development Authority",
-    "respondent": "Baban Kumar and"
+    "respondent": "Baban Kumar and Ors"
   },
   "FA/209/2017": {
     "appellant": "Bihar Industrial Area Development Authority",
-    "respondent": "Santosh Kumar"
+    "respondent": "Santosh Kumar Singh and Ors"
   },
   "FA/210/2017": {
     "appellant": "Bihar Industrial Area Development Authority",
-    "respondent": "Baban Kumar and"
+    "respondent": "Baban Kumar and Ors"
   },
   "FA/211/2017": {
     "appellant": "Bihar Industrial Area Development Authority",
-    "respondent": "Baban Kumar and"
+    "respondent": "Baban Kumar and Ors"
   },
   "FA/212/2017": {
     "appellant": "Bihar Industrial Area Development Authority",
-    "respondent": "Sadan Kumar and"
+    "respondent": "Sadan Kumar and Ors"
   },
   "FA/213/2017": {
     "appellant": "Bihar Industrial Area Development Authority",
-    "respondent": "Santosh Kumar"
+    "respondent": "Santosh Kumar Singh and Ors"
   },
   "FA/215/2017": {
     "appellant": "Md. Abul Qasim Ansari Alias Md. Abdul Kasim Ansari",
-    "respondent": "Bibi Raimun"
+    "respondent": "Bibi Raimun Nisha Alias Khadiya Khatoon and Ors"
   },
   "FA/217/2017": {
     "appellant": "Shahwar Rasheed",
-    "respondent": "The Managing Director, Namira Constructions"
+    "respondent": "The Managing Director, Namira Constructions Pvt. Ltd"
   },
   "FA/218/2017": {
     "appellant": "Atma Singh",
-    "respondent": "Arjun Singh                                               FORMAL"
+    "respondent": "Arjun Singh"
   },
   "FA/2/2018": {
     "appellant": "Samarth Singh",
@@ -18237,11 +18237,11 @@ const CASES_DB = {
   },
   "FA/4/2018": {
     "appellant": "Surajdeo Kumar @ Prince Kumar and Ors",
-    "respondent": "Rakesh Kumar and"
+    "respondent": "Rakesh Kumar and Ors"
   },
   "FA/5/2018": {
     "appellant": "Bihar State Ware Housing Corporation",
-    "respondent": "Sri Viswa Bhushan Prasad"
+    "respondent": "Sri Viswa Bhushan Prasad Sinha"
   },
   "FA/6/2018": {
     "appellant": "Abdul Rab",
@@ -18253,11 +18253,11 @@ const CASES_DB = {
   },
   "FA/10/2018": {
     "appellant": "The Executive Engineer, Jalpath Pramandal, Jehanabad",
-    "respondent": "M/s"
+    "respondent": "M/s Ranjeet Construction and Anr"
   },
   "FA/11/2018": {
     "appellant": "Santosh Kumar Singh Alias Chintu Singh and Ors",
-    "respondent": "Kanti Singh"
+    "respondent": "Kanti Singh and Ors"
   },
   "FA/12/2018": {
     "appellant": "Madan Jha",
@@ -18285,7 +18285,7 @@ const CASES_DB = {
   },
   "FA/24/2018": {
     "appellant": "Sutikshan Sharma and Ors",
-    "respondent": "Lal Muni Singh @ Judagi Singh and"
+    "respondent": "Lal Muni Singh @ Judagi Singh and Ors"
   },
   "FA/25/2018": {
     "appellant": "Laxman Singh and Anr",
@@ -18328,12 +18328,12 @@ const CASES_DB = {
     "respondent": "Smt. Meena Devi and Ors"
   },
   "FA/50/2018": {
-    "appellant": "FOR HEARING General Manager",
+    "appellant": "Bihar State Road Development Corporation Ltd. Through The Chief General Manager",
     "respondent": "Brij Nandan Thakur"
   },
   "FA/51/2018": {
-    "appellant": "General Manager",
-    "respondent": "Brij Nandan Thakur"
+    "appellant": "Sita Ram Pandey",
+    "respondent": "Rakesh Kumar Pandey"
   },
   "FA/52/2018": {
     "appellant": "Budhan Mian",
@@ -18349,15 +18349,15 @@ const CASES_DB = {
   },
   "FA/55/2018": {
     "appellant": "Parmatma Singh and Ors",
-    "respondent": "Most. Malti Devi and Ors                      FORMAL"
+    "respondent": "Most. Malti Devi and Ors"
   },
   "FA/56/2018": {
-    "appellant": "FOR HEARING General Manager",
+    "appellant": "Bihar State Road Development Corporation Ltd. Through The Chief General Manager",
     "respondent": "Sudama Devi and Ors"
   },
   "FA/57/2018": {
-    "appellant": "General Manager",
-    "respondent": "Sudama Devi and Ors"
+    "appellant": "Subh Narain Singh,",
+    "respondent": "Smt. Nagina Devi,"
   },
   "FA/58/2018": {
     "appellant": "Vinod Kumar Singh",
@@ -18365,11 +18365,11 @@ const CASES_DB = {
   },
   "FA/60/2018": {
     "appellant": "Smt. Vidyawati Devi @ Vidyawati Singh",
-    "respondent": "Sri Raju Singh @ Raju"
+    "respondent": "Sri Raju Singh @ Raju Kumar Singh"
   },
   "FA/61/2018": {
     "appellant": "Dr. Hari Krishna Singh and Anr",
-    "respondent": "Krishna Kant Singh and Ors              FORMAL"
+    "respondent": "Krishna Kant Singh and Ors"
   },
   "FA/62/2018": {
     "appellant": "Dr. Ashok Kumar Singh",
@@ -18409,15 +18409,15 @@ const CASES_DB = {
   },
   "FA/74/2018": {
     "appellant": "Md. Imtiyaz Ahmad Alias Imtiyaz Ahmad Khan",
-    "respondent": "State Of Bihar and"
+    "respondent": "State Of Bihar and Ors"
   },
   "FA/75/2018": {
-    "appellant": "FOR HEARING General Manager",
+    "appellant": "Bihar State Road Development Corporation Ltd. through The Chief General Manager",
     "respondent": "Umesh Prasad Singh"
   },
   "FA/76/2018": {
-    "appellant": "General Manager",
-    "respondent": "Umesh Prasad Singh"
+    "appellant": "The State Of Bihar and Anr",
+    "respondent": "Umesh Prasad Singh and Ors"
   },
   "FA/77/2018": {
     "appellant": "Pawan Kumar and Anr",
@@ -18425,23 +18425,23 @@ const CASES_DB = {
   },
   "FA/78/2018": {
     "appellant": "Sheo Shankar Prasad Singh @ Shankar Prasad Singh and Anr",
-    "respondent": ""
+    "respondent": "M/s Shakti Modern Rice Mill and Ors"
   },
   "FA/79/2018": {
     "appellant": "Krishna Kant Sharma @ Arvind Singh",
-    "respondent": "Ashok Kumar Singh                   FORMAL"
+    "respondent": "Ashok Kumar Singh"
   },
   "FA/84/2018": {
     "appellant": "Satya Narayan Singh",
-    "respondent": "Sharda Devi                                        FORMAL"
+    "respondent": "Sharda Devi"
   },
   "FA/85/2018": {
     "appellant": "Smt. Laxmi Devi @ Laxmi Kumari @ Lakshmi Kumari",
-    "respondent": "Sri Manoj"
+    "respondent": "Sri Manoj Prasad Mandal and Anr"
   },
   "FA/86/2018": {
     "appellant": "Prabhat Kumar @ Kumar Prabhat Chandra and Ors",
-    "respondent": "Vijay Krishna"
+    "respondent": "Vijay Krishna Gupta and Ors"
   },
   "FA/87/2018": {
     "appellant": "Dr. Ramashish Prasad",
@@ -18457,15 +18457,15 @@ const CASES_DB = {
   },
   "FA/90/2018": {
     "appellant": "Bachawa Devi",
-    "respondent": "Gangia Devi and Ors                                       FORMAL"
+    "respondent": "Gangia Devi and Ors"
   },
   "FA/91/2018": {
-    "appellant": "ADMISSION and Ors",
+    "appellant": "Puneydev Chaudhur @ Punyadev Chaudhur @ Punadev Chaudhary and Ors",
     "respondent": "Shri Narain Chaudhur and Ors"
   },
   "FA/95/2018": {
-    "appellant": "and Ors",
-    "respondent": "Shri Narain Chaudhur and Ors"
+    "appellant": "Krishna Prasad",
+    "respondent": "Estate Of Late Tekani Devi"
   },
   "FA/96/2018": {
     "appellant": "Ajit Mahto",
@@ -18473,7 +18473,7 @@ const CASES_DB = {
   },
   "FA/97/2018": {
     "appellant": "Sayed Md. Sanaullah",
-    "respondent": "Dipak Kumar Banerjee                               FORMAL"
+    "respondent": "Dipak Kumar Banerjee"
   },
   "FA/98/2018": {
     "appellant": "Krishna Kant Gupta and Anr",
@@ -18481,7 +18481,7 @@ const CASES_DB = {
   },
   "FA/99/2018": {
     "appellant": "The State Of Bihar through the Collector, Nalanda",
-    "respondent": "Lato"
+    "respondent": "Lato Choudhary"
   },
   "FA/100/2018": {
     "appellant": "The State Of Bihar",
@@ -18505,7 +18505,7 @@ const CASES_DB = {
   },
   "FA/105/2018": {
     "appellant": "Vijay Bahadur Singh",
-    "respondent": "Rambilash Badai                                      FORMAL"
+    "respondent": "Rambilash Badai"
   },
   "FA/106/2018": {
     "appellant": "Smt. Iffat Khanam and Ors",
@@ -18513,7 +18513,7 @@ const CASES_DB = {
   },
   "FA/107/2018": {
     "appellant": "Birendra Kumar",
-    "respondent": "Sumit Raj Ranjan                                          FORMAL"
+    "respondent": "Sumit Raj Ranjan"
   },
   "FA/108/2018": {
     "appellant": "Runa and Ors",
@@ -18532,16 +18532,16 @@ const CASES_DB = {
     "respondent": "Subodh Kumar"
   },
   "FA/113/2018": {
-    "appellant": "",
+    "appellant": "Patliputra Tobacco Company Through Its Proprietor Sri Prakash Singh",
     "respondent": "Gyanendra Jha and Ors"
   },
   "FA/114/2018": {
     "appellant": "Shambhu Sharan Choubey and Ors",
-    "respondent": "Kalawati Kuer and Ors                     FORMAL"
+    "respondent": "Kalawati Kuer and Ors"
   },
   "FA/116/2018": {
     "appellant": "M/s Shakti Modern Rice Mill and Ors",
-    "respondent": "Bihar State Finance"
+    "respondent": "Bihar State Finance Corporation and Ors"
   },
   "FA/117/2018": {
     "appellant": "Pramod Sah @ Pramod Gupta",
@@ -18549,7 +18549,7 @@ const CASES_DB = {
   },
   "FA/118/2018": {
     "appellant": "Ravindra Prasad @ Birendra Kumar Malakar",
-    "respondent": "Surendra Bhagat"
+    "respondent": "Surendra Bhagat and Ors"
   },
   "FA/119/2018": {
     "appellant": "Satyendra Tiwary and Ors",
@@ -18557,7 +18557,7 @@ const CASES_DB = {
   },
   "FA/121/2018": {
     "appellant": "Janardan Prasad Sah",
-    "respondent": "Dhirendra Yadav and Ors                              MISCELLANEOUS"
+    "respondent": "Dhirendra Yadav and Ors"
   },
   "FA/122/2018": {
     "appellant": "Prabha Devi",
@@ -18565,31 +18565,31 @@ const CASES_DB = {
   },
   "FA/123/2018": {
     "appellant": "Urmila Devi",
-    "respondent": "Parmeshwar Sah and Ors                                       MISCELLANEOUS M/s Arunalay Through Its Proprietor Sri Arun Kumar VS. The Director"
+    "respondent": "Parmeshwar Sah and Ors"
   },
   "FA/124/2018": {
     "appellant": "M/s Arunalay Through Its Proprietor Sri Arun Kumar",
-    "respondent": "The Director"
+    "respondent": "The Director Primary Education And Litracy National Litracy Mission"
   },
   "FA/125/2018": {
-    "appellant": "Anr",
+    "appellant": "Bihar State Board Of Religious Trust Through Its Administrator and Anr",
     "respondent": "Vimal Das and Ors"
   },
   "FA/126/2018": {
-    "appellant": "Anr",
-    "respondent": "Vimal Das and Ors"
+    "appellant": "Bihar State Board Of Religious Trust Through Its Administrator and Anr",
+    "respondent": "Shree Jay Narayan Das and Ors"
   },
   "FA/127/2018": {
-    "appellant": "Anr",
-    "respondent": "Shree Jay Narayan Das and Ors"
+    "appellant": "Bharti Dalmiya",
+    "respondent": "Raghvendra Kumar Daruka and Ors"
   },
   "FA/128/2018": {
     "appellant": "Kishore Kumar",
-    "respondent": "Ashok Kumar Yadav @ Ashok Arnav and Ors                    MISCELLANEOUS"
+    "respondent": "Ashok Kumar Yadav @ Ashok Arnav and Ors"
   },
   "FA/129/2018": {
     "appellant": "Mukhram Pandey",
-    "respondent": "Krishnanand Pandey and Ors                                MISCELLANEOUS"
+    "respondent": "Krishnanand Pandey and Ors"
   },
   "FA/132/2018": {
     "appellant": "Ramji Pandit and Ors",
@@ -18597,7 +18597,7 @@ const CASES_DB = {
   },
   "FA/133/2018": {
     "appellant": "Pinki Devi",
-    "respondent": "Gemdhari Singh and Ors                                        COURT FEE"
+    "respondent": "Gemdhari Singh and Ors"
   },
   "FA/134/2018": {
     "appellant": "Manoj Kumar Yadav and Anr",
@@ -18605,7 +18605,7 @@ const CASES_DB = {
   },
   "FA/135/2018": {
     "appellant": "Jagdish Prasad and Ors",
-    "respondent": "Shivji Prasad and Ors                             FORMAL"
+    "respondent": "Shivji Prasad and Ors"
   },
   "FA/136/2018": {
     "appellant": "Kusuma Devi @ Kusma Devi and Ors",
@@ -18621,7 +18621,7 @@ const CASES_DB = {
   },
   "FA/140/2018": {
     "appellant": "Sri Krishna Kant Sinha",
-    "respondent": "Smt. Nanda Sinha                                  MISCELLANEOUS"
+    "respondent": "Smt. Nanda Sinha"
   },
   "FA/141/2018": {
     "appellant": "Hridyanand Tiwari and Ors",
@@ -18629,7 +18629,7 @@ const CASES_DB = {
   },
   "FA/142/2018": {
     "appellant": "Chandeshwar Prasad Singh",
-    "respondent": "Arvind Kumar Chaudhary"
+    "respondent": "Arvind Kumar Chaudhary,"
   },
   "FA/143/2018": {
     "appellant": "Jitendra Mohan Mishra",
@@ -18644,8 +18644,8 @@ const CASES_DB = {
     "respondent": "Raghwendra Kumar Daruka"
   },
   "FA/148/2018": {
-    "appellant": "Smt. Leela Devi",
-    "respondent": "Munna Prasad"
+    "appellant": "Smt. Leela Devi,",
+    "respondent": "Munna Prasad,"
   },
   "FA/149/2018": {
     "appellant": "Prem Kumar Tiwari",
@@ -18653,7 +18653,7 @@ const CASES_DB = {
   },
   "FA/150/2018": {
     "appellant": "Biresh Chaudhary",
-    "respondent": "Suresh Chaudhary                                        FORMAL"
+    "respondent": "Suresh Chaudhary"
   },
   "FA/152/2018": {
     "appellant": "Rama Shankar Dubey",
@@ -18672,7 +18672,7 @@ const CASES_DB = {
     "respondent": "Ramnandan Singh and Anr"
   },
   "FA/158/2018": {
-    "appellant": "Krishnandan Pandey",
+    "appellant": "Krishnandan Pandey,",
     "respondent": "Mostt. Lalan Devi"
   },
   "FA/159/2018": {
@@ -18688,31 +18688,31 @@ const CASES_DB = {
     "respondent": "Kamaldeo Prasad Singh and Anr"
   },
   "FA/163/2018": {
-    "appellant": "Sri Sidharth Khemka",
-    "respondent": "Sri Sunil Paswan"
+    "appellant": "Sri Sidharth Khemka,",
+    "respondent": "Sri Sunil Paswan,"
   },
   "FA/164/2018": {
-    "appellant": "Chandeshwar Bhagat",
-    "respondent": "Geeta Devi"
+    "appellant": "Chandeshwar Bhagat,",
+    "respondent": "Geeta Devi,"
   },
   "FA/165/2018": {
     "appellant": "Jawahir Yadav",
     "respondent": "Budhiya Devi and Ors"
   },
   "FA/167/2018": {
-    "appellant": "Uday Bhanu",
-    "respondent": "Amit Kumar"
+    "appellant": "Uday Bhanu,",
+    "respondent": "Amit Kumar,"
   },
   "FA/168/2018": {
     "appellant": "Laxmi Kapair",
     "respondent": "Basant Kumar Madhogadiya"
   },
   "FA/169/2018": {
-    "appellant": "Maharana Pratap Singh @ Maharana Pratap Rai",
-    "respondent": "Chandan"
+    "appellant": "Maharana Pratap Singh @ Maharana Pratap Rai,",
+    "respondent": "Chandan Singh,"
   },
   "FA/170/2018": {
-    "appellant": "Md. Touhid",
+    "appellant": "Md. Touhid,",
     "respondent": "Bibi Jubaida Khatoon"
   },
   "FA/171/2018": {
@@ -18740,12 +18740,12 @@ const CASES_DB = {
     "respondent": "Sri Shashi Shekhar Prasad"
   },
   "FA/178/2018": {
-    "appellant": "Bihar Industrial Area Development Authority",
-    "respondent": "Suresh Prasad"
+    "appellant": "Bihar Industrial Area Development Authority,",
+    "respondent": "Suresh Prasad Sharma"
   },
   "FA/179/2018": {
-    "appellant": "Bihar Industrial Area Development Authority",
-    "respondent": "Suresh Prasad"
+    "appellant": "Bihar Industrial Area Development Authority,",
+    "respondent": "Suresh Prasad Sharma"
   },
   "FA/1/2019": {
     "appellant": "Pranava Nandan Sharma",
@@ -18753,7 +18753,7 @@ const CASES_DB = {
   },
   "FA/2/2019": {
     "appellant": "Sri Tuntun Lal@ Shivananad Gupta",
-    "respondent": "Shri Sheo Chandra Singh"
+    "respondent": "Shri Sheo Chandra Singh,"
   },
   "FA/6/2019": {
     "appellant": "S. Masudool Hassan",
@@ -18761,15 +18761,15 @@ const CASES_DB = {
   },
   "FA/7/2019": {
     "appellant": "Anant Pandey And Anr",
-    "respondent": "Brij Mohan Pandey and Ors                    17       TIED UP M/s Genus Power Infra Structure Ltd. and Anr VS. Dr. Ramashish"
+    "respondent": "Brij Mohan Pandey and Ors"
   },
   "FA/8/2019": {
     "appellant": "M/s Genus Power Infra Structure Ltd. and Anr",
-    "respondent": "Dr. Ramashish"
+    "respondent": "Dr. Ramashish Singh and Ors"
   },
   "FA/9/2019": {
-    "appellant": "Mundrika Bhagatm and Ors",
-    "respondent": "Harkesh Bhagat and Ors"
+    "appellant": "Mundrika Bhagatm and Ors.",
+    "respondent": "Harkesh Bhagat and Ors."
   },
   "FA/10/2019": {
     "appellant": "Binod Kumar singh And Ors",
@@ -18785,7 +18785,7 @@ const CASES_DB = {
   },
   "FA/15/2019": {
     "appellant": "Gyan Infrabuild Pvt. Ltd. and anr",
-    "respondent": "Smt. Mamta Sinha @ Rupam"
+    "respondent": "Smt. Mamta Sinha @ Rupam and ors"
   },
   "FA/16/2019": {
     "appellant": "Arun Kumar Gyani",
@@ -18793,7 +18793,7 @@ const CASES_DB = {
   },
   "FA/17/2019": {
     "appellant": "The State of Bihar through Collector, Patna and anr",
-    "respondent": "Brij Nandan"
+    "respondent": "Brij Nandan Thakur"
   },
   "FA/19/2019": {
     "appellant": "Ratan Prasad and ors",
@@ -18813,7 +18813,7 @@ const CASES_DB = {
   },
   "FA/23/2019": {
     "appellant": "Shiv Kumari Kunwar and anr",
-    "respondent": "Shail Kumari                               FORMAL"
+    "respondent": "Shail Kumari"
   },
   "FA/24/2019": {
     "appellant": "Mohammad Moinuddin",
@@ -18821,15 +18821,15 @@ const CASES_DB = {
   },
   "FA/25/2019": {
     "appellant": "Ramesh Kumar @ Ramesh Singh and Ors",
-    "respondent": "Indradeo Singh and"
+    "respondent": "Indradeo Singh and Ors"
   },
   "FA/26/2019": {
-    "appellant": "General Manager",
+    "appellant": "Bihar State Road Development Corporation Ltd., through the Chief General Manager",
     "respondent": "Binod Kumar Singh"
   },
   "FA/28/2019": {
-    "appellant": "General Manager",
-    "respondent": "Binod Kumar Singh"
+    "appellant": "Meena Devi",
+    "respondent": "Upendra Yadav and Ors"
   },
   "FA/29/2019": {
     "appellant": "Chandra Shekhar Pathak",
@@ -18837,15 +18837,15 @@ const CASES_DB = {
   },
   "FA/30/2019": {
     "appellant": "Yashwant Singh @ Lali Mahto and Anr",
-    "respondent": "Prem Lata Kumari and"
+    "respondent": "Prem Lata Kumari and Ors"
   },
   "FA/32/2019": {
     "appellant": "Md. Taiyab",
-    "respondent": "Bibi Rukhsana Khatoon and Ors                              MISCELLANEOUS"
+    "respondent": "Bibi Rukhsana Khatoon and Ors"
   },
   "FA/33/2019": {
     "appellant": "Satyendra Mishra",
-    "respondent": "Most. Shanti Devi                                    FORMAL"
+    "respondent": "Most. Shanti Devi"
   },
   "FA/34/2019": {
     "appellant": "Bibi Sazda Khatoon",
@@ -18860,20 +18860,20 @@ const CASES_DB = {
     "respondent": "Sudarshan Thakur"
   },
   "FA/37/2019": {
-    "appellant": "The Chief General Manager Telecom",
-    "respondent": "M/s Kanhai Engineering"
+    "appellant": "The Chief General Manager Telecom,",
+    "respondent": "M/s Kanhai Engineering ( Towers ) Pvt. Ltd."
   },
   "FA/39/2019": {
     "appellant": "Raghuvansh Sah",
-    "respondent": "Dip Lal Sah                                            COURT FEE"
+    "respondent": "Dip Lal Sah"
   },
   "FA/41/2019": {
     "appellant": "Aashutosh Tiwary @ Asutosh Kumar Tiwari",
-    "respondent": "Kanhaiya Tiwary               MISCELLANEOUS"
+    "respondent": "Kanhaiya Tiwary"
   },
   "FA/43/2019": {
     "appellant": "Gajadhar Rai",
-    "respondent": "Kabindra Rai                                             COURT FEE"
+    "respondent": "Kabindra Rai"
   },
   "FA/44/2019": {
     "appellant": "Hamid Miyan",
@@ -18885,23 +18885,23 @@ const CASES_DB = {
   },
   "FA/46/2019": {
     "appellant": "Karmendra Prasad alias Karmendra Singh",
-    "respondent": "Smt. Asha Sinha                FORMAL"
+    "respondent": "Smt. Asha Sinha"
   },
   "FA/47/2019": {
     "appellant": "Abhishek Kumar Mahto",
-    "respondent": "Baleshwar Prasad Mahton                          COURT FEE Sri Baikunth Prasad Manjhi @ Baikunt Prasad Manjhi VS. Dr"
+    "respondent": "Baleshwar Prasad Mahton"
   },
   "FA/48/2019": {
     "appellant": "Sri Baikunth Prasad Manjhi @ Baikunt Prasad Manjhi",
-    "respondent": "Dr"
+    "respondent": "Dr. Randheer Bahadur Singh"
   },
   "FA/49/2019": {
     "appellant": "Babi Sinha @ Babi Devi",
-    "respondent": "Sant Singh @ Sant Sharma                       MISCELLANEOUS"
+    "respondent": "Sant Singh @ Sant Sharma"
   },
   "FA/50/2019": {
     "appellant": "Jai Kishun Sah @ Jaikishor Sah",
-    "respondent": "Smt. Sushila Devi                      FORMAL"
+    "respondent": "Smt. Sushila Devi"
   },
   "FA/51/2019": {
     "appellant": "Narendra Sharma",
@@ -18917,11 +18917,11 @@ const CASES_DB = {
   },
   "FA/54/2019": {
     "appellant": "Ragho Singh",
-    "respondent": "Ajay Kumar Singh                                          FORMAL"
+    "respondent": "Ajay Kumar Singh"
   },
   "FA/56/2019": {
-    "appellant": "The Bihar State Power (Holding) Company Ltd",
-    "respondent": "Dinesh Kumar"
+    "appellant": "The Bihar State Power (Holding) Company Ltd.",
+    "respondent": "Dinesh Kumar Sharma"
   },
   "FA/57/2019": {
     "appellant": "Sabour College",
@@ -18929,19 +18929,19 @@ const CASES_DB = {
   },
   "FA/58/2019": {
     "appellant": "Ajit Kumar Sah",
-    "respondent": "Uma Shankar Singh                                      FORMAL"
+    "respondent": "Uma Shankar Singh"
   },
   "FA/59/2019": {
     "appellant": "Chanda Verma",
     "respondent": "Roma Prasad"
   },
   "FA/60/2019": {
-    "appellant": "Bihar State Road Development Corporation Ltd",
-    "respondent": "Binod Kumar"
+    "appellant": "Bihar State Road Development Corporation Ltd.",
+    "respondent": "Binod Kumar Singh"
   },
   "FA/61/2019": {
-    "appellant": "Bihar State Road Development Corporation Ltd",
-    "respondent": "Smt. Hiramani"
+    "appellant": "Bihar State Road Development Corporation Ltd.",
+    "respondent": "Smt. Hiramani Devi"
   },
   "FA/62/2019": {
     "appellant": "Srikant Jha",
@@ -18957,14 +18957,14 @@ const CASES_DB = {
   },
   "FA/65/2019": {
     "appellant": "Smt. Manisha Kumari @ Manisha Pandey",
-    "respondent": "Shri Ram Shanker"
+    "respondent": "Shri Ram Shanker Mani Tripathi"
   },
   "FA/66/2019": {
     "appellant": "The State of Bihar",
     "respondent": "Shiv Kant Singh"
   },
   "FA/67/2019": {
-    "appellant": "Koshi Educational Institute Pvt. Ltd",
+    "appellant": "Koshi Educational Institute Pvt. Ltd.",
     "respondent": "Sri Anil Kumar Roy"
   },
   "FA/68/2019": {
@@ -18981,11 +18981,11 @@ const CASES_DB = {
   },
   "FA/71/2019": {
     "appellant": "Bihar Industrial Area Development Authority",
-    "respondent": "Meena Devi                  FORMAL"
+    "respondent": "Meena Devi"
   },
   "FA/72/2019": {
     "appellant": "Gandiv Builder and Engineers Private Limited",
-    "respondent": "P. A. C. L. Ltd"
+    "respondent": "P. A. C. L. Ltd."
   },
   "FA/73/2019": {
     "appellant": "Rajiya Devi @ Raj kumari",
@@ -18997,18 +18997,18 @@ const CASES_DB = {
   },
   "FA/75/2019": {
     "appellant": "Bihar State Financial Corporation",
-    "respondent": "M/s Shakti Modern Rice Mills (a"
+    "respondent": "M/s Shakti Modern Rice Mills (a Partnership Firm)"
   },
   "FA/76/2019": {
     "appellant": "Bhagya Narayan Mishra",
-    "respondent": "Ram Dayal Mishra                                     MISCELLANEOUS"
+    "respondent": "Ram Dayal Mishra"
   },
   "FA/78/2019": {
     "appellant": "Ravindra Pratap Singh",
     "respondent": "Dr. Smt. Chandralata Jha"
   },
   "FA/79/2019": {
-    "appellant": "Madhuri Sinha",
+    "appellant": "Madhuri Sinha,",
     "respondent": "The State of Bihar"
   },
   "FA/80/2019": {
@@ -19028,67 +19028,67 @@ const CASES_DB = {
     "respondent": "Dinanath Paswan"
   },
   "FA/86/2019": {
-    "appellant": "Bihar State Road Development Corporation Ltd",
+    "appellant": "Bihar State Road Development Corporation Ltd.",
     "respondent": "Balmiki Kumar"
   },
   "FA/87/2019": {
-    "appellant": "Bihar State Road Development Corporation Ltd",
-    "respondent": "Rampukar Rai              FORMAL"
+    "appellant": "Bihar State Road Development Corporation Ltd.",
+    "respondent": "Rampukar Rai"
   },
   "FA/88/2019": {
-    "appellant": "Bihar State Road Development Corporation Ltd",
+    "appellant": "Bihar State Road Development Corporation Ltd.",
     "respondent": "Madhuri Sinha"
   },
   "FA/89/2019": {
-    "appellant": "Bihar State Road Development Corporation Ltd",
-    "respondent": "Most. Fula Devi           FORMAL"
+    "appellant": "Bihar State Road Development Corporation Ltd.",
+    "respondent": "Most. Fula Devi"
   },
   "FA/90/2019": {
-    "appellant": "Bihar State Road Development Corporation Ltd",
+    "appellant": "Bihar State Road Development Corporation Ltd.",
     "respondent": "Satish Kumar"
   },
   "FA/91/2019": {
-    "appellant": "Bihar State Road Development Corporation Ltd",
+    "appellant": "Bihar State Road Development Corporation Ltd.",
     "respondent": "Balmiki Kumar"
   },
   "FA/92/2019": {
-    "appellant": "Bihar State Road Development Corporation Ltd",
-    "respondent": "Satish Kumar              FORMAL"
+    "appellant": "Bihar State Road Development Corporation Ltd.",
+    "respondent": "Satish Kumar"
   },
   "FA/93/2019": {
-    "appellant": "Bihar State Road Development Corporation Ltd",
+    "appellant": "Bihar State Road Development Corporation Ltd.",
     "respondent": "Durga Prasad"
   },
   "FA/94/2019": {
-    "appellant": "Bihar State Road Development Corporation Ltd",
-    "respondent": "Nilam Kumari              FORMAL"
+    "appellant": "Bihar State Road Development Corporation Ltd.",
+    "respondent": "Nilam Kumari"
   },
   "FA/95/2019": {
-    "appellant": "Bihar State Road Development Corporation Ltd",
-    "respondent": "ShyamBabu"
+    "appellant": "Bihar State Road Development Corporation Ltd.",
+    "respondent": "ShyamBabu Singh"
   },
   "FA/96/2019": {
-    "appellant": "Bihar State Road Development Corporation Ltd",
-    "respondent": "Shambhu Rai               FORMAL"
+    "appellant": "Bihar State Road Development Corporation Ltd.",
+    "respondent": "Shambhu Rai"
   },
   "FA/97/2019": {
-    "appellant": "Bihar State Road Development Corporation Ltd",
-    "respondent": "Shiv Ji Rai,              FORMAL"
+    "appellant": "Bihar State Road Development Corporation Ltd.",
+    "respondent": "Shiv Ji Rai,"
   },
   "FA/98/2019": {
-    "appellant": "Bihar State Road Development Corporation Ltd",
-    "respondent": "Saryug Prasad"
+    "appellant": "Bihar State Road Development Corporation Ltd.",
+    "respondent": "Saryug Prasad,"
   },
   "FA/99/2019": {
-    "appellant": "Bihar State Road Development Corporation Ltd",
-    "respondent": "Yatish Kumar @"
+    "appellant": "Bihar State Road Development Corporation Ltd.",
+    "respondent": "Yatish Kumar @ Shankar Prasad Yadav"
   },
   "FA/100/2019": {
-    "appellant": "Bihar State Road Development Corporation Ltd",
-    "respondent": "Madhuri Sinha             FORMAL"
+    "appellant": "Bihar State Road Development Corporation Ltd.",
+    "respondent": "Madhuri Sinha"
   },
   "FA/101/2019": {
-    "appellant": "Bihar State Road Development Corporation Ltd",
+    "appellant": "Bihar State Road Development Corporation Ltd.",
     "respondent": "Ram Babu Singh"
   },
   "FA/103/2019": {
@@ -19116,8 +19116,8 @@ const CASES_DB = {
     "respondent": "Simppy Kumari ( Minor )"
   },
   "FA/111/2019": {
-    "appellant": "Smt. Pratibha Kumari",
-    "respondent": "Gaya Devi"
+    "appellant": "Smt. Pratibha Kumari,",
+    "respondent": "Gaya Devi,"
   },
   "FA/112/2019": {
     "appellant": "Manik Shah",
@@ -19125,7 +19125,7 @@ const CASES_DB = {
   },
   "FA/113/2019": {
     "appellant": "Most. Saroj Kuer @ Saroj Kuer",
-    "respondent": "Shiv Shankar Prasad Ray                   MISCELLANEOUS"
+    "respondent": "Shiv Shankar Prasad Ray"
   },
   "FA/114/2019": {
     "appellant": "Ambika Jha @ Memdai Devi",
@@ -19141,7 +19141,7 @@ const CASES_DB = {
   },
   "FA/117/2019": {
     "appellant": "Sri Dhirendra Kumar Jaiswal @ Sri Ganesh Prasad",
-    "respondent": "Mostt. Geeta"
+    "respondent": "Mostt. Geeta Devi"
   },
   "FA/118/2019": {
     "appellant": "Srimati Panpati Devi",
@@ -19157,7 +19157,7 @@ const CASES_DB = {
   },
   "FA/121/2019": {
     "appellant": "Kewal Devi",
-    "respondent": "Raj Kishore Singh                                         MISCELLANEOUS"
+    "respondent": "Raj Kishore Singh"
   },
   "FA/122/2019": {
     "appellant": "Ranjeet Mishra",
@@ -19177,7 +19177,7 @@ const CASES_DB = {
   },
   "FA/126/2019": {
     "appellant": "The State of Bihar",
-    "respondent": "Shiv Kant Singh                                   FORMAL"
+    "respondent": "Shiv Kant Singh"
   },
   "FA/127/2019": {
     "appellant": "The State of Bihar",
@@ -19189,7 +19189,7 @@ const CASES_DB = {
   },
   "FA/131/2019": {
     "appellant": "The State of Bihar",
-    "respondent": "Balmiki Kumar Singh"
+    "respondent": "Balmiki Kumar Singh,"
   },
   "FA/132/2019": {
     "appellant": "The State of Bihar",
@@ -19213,7 +19213,7 @@ const CASES_DB = {
   },
   "FA/139/2019": {
     "appellant": "The State of Bihar",
-    "respondent": "Shyam Babu Singh"
+    "respondent": "Shyam Babu Singh,"
   },
   "FA/140/2019": {
     "appellant": "The State of Bihar",
@@ -19261,7 +19261,7 @@ const CASES_DB = {
   },
   "FA/151/2019": {
     "appellant": "Janakdulari Devi",
-    "respondent": "Bablu Singh                                         MISCELLANEOUS"
+    "respondent": "Bablu Singh"
   },
   "FA/152/2019": {
     "appellant": "Bihar State Board of Religious Trust",
@@ -19269,7 +19269,7 @@ const CASES_DB = {
   },
   "FA/153/2019": {
     "appellant": "Jawahir Sah",
-    "respondent": "Bhagmani Devi                                            FORMAL"
+    "respondent": "Bhagmani Devi"
   },
   "FA/154/2019": {
     "appellant": "The State of Bihar",
@@ -19277,50 +19277,50 @@ const CASES_DB = {
   },
   "FA/157/2019": {
     "appellant": "Rajendra Tanti",
-    "respondent": "Sarswati Devi                                         FORMAL"
+    "respondent": "Sarswati Devi"
   },
   "FA/158/2019": {
     "appellant": "Bindeshwar Ravidas",
-    "respondent": "The Estate of Late Jhotan Das @ Sakaldeo"
+    "respondent": "The Estate of Late Jhotan Das @ Sakaldeo das"
   },
   "FA/160/2019": {
     "appellant": "Arun Kumar Yadav",
-    "respondent": "Chandra Kishore Yadav                                 FORMAL"
+    "respondent": "Chandra Kishore Yadav"
   },
   "FA/161/2019": {
-    "appellant": "Sushil Kumari",
-    "respondent": "Anita Devi,                                             FORMAL"
+    "appellant": "Sushil Kumari,",
+    "respondent": "Anita Devi,"
   },
   "FA/162/2019": {
     "appellant": "Bindeshwari Prasad",
-    "respondent": "Awadh Kishore Prasad                                FORMAL"
+    "respondent": "Awadh Kishore Prasad"
   },
   "FA/163/2019": {
     "appellant": "Pandey Kapileshwar Kumar",
-    "respondent": "Ajit Kumar @ Pinku                            FORMAL"
+    "respondent": "Ajit Kumar @ Pinku"
   },
   "FA/164/2019": {
-    "appellant": "Dular Chandra Sah",
-    "respondent": "Rajendra Prasad Sah"
+    "appellant": "Dular Chandra Sah,",
+    "respondent": "Rajendra Prasad Sah,"
   },
   "FA/165/2019": {
     "appellant": "Vimal Kumar Dikshit @ Mithu Babu",
-    "respondent": "Mithileshwar Prasad Dikshit"
+    "respondent": "Mithileshwar Prasad Dikshit,"
   },
   "FA/166/2019": {
-    "appellant": "Md. Idris Khan",
-    "respondent": "Vinit Kumar Gupta"
+    "appellant": "Md. Idris Khan,",
+    "respondent": "Vinit Kumar Gupta,"
   },
   "FA/167/2019": {
     "appellant": "Smt. Rina Vishwakarma @ Rina Kumari @ Rina Sharma",
-    "respondent": "Smt"
+    "respondent": "Smt. Neelam Sharma"
   },
   "FA/168/2019": {
     "appellant": "Jagdish Tiwari",
     "respondent": "Sri Niwas Chaubey"
   },
   "FA/169/2019": {
-    "appellant": "Prahlad Kumar",
+    "appellant": "Prahlad Kumar,",
     "respondent": "Deepak Kumar"
   },
   "FA/170/2019": {
@@ -19328,16 +19328,16 @@ const CASES_DB = {
     "respondent": "National Education Development Trust"
   },
   "FA/171/2019": {
-    "appellant": "Badri Narain Singh",
-    "respondent": "Shankar Dayal Rai"
+    "appellant": "Badri Narain Singh,",
+    "respondent": "Shankar Dayal Rai,"
   },
   "FA/172/2019": {
     "appellant": "Ram Babu Singh",
-    "respondent": "The State of Bihar                                      FORMAL"
+    "respondent": "The State of Bihar"
   },
   "FA/173/2019": {
-    "appellant": "Nilu Kumari @ Nilu Prasad",
-    "respondent": "Mukesh Kumar Singh @ Munna,                 FORMAL"
+    "appellant": "Nilu Kumari @ Nilu Prasad,",
+    "respondent": "Mukesh Kumar Singh @ Munna,"
   },
   "FA/174/2019": {
     "appellant": "Geeta Devi",
@@ -19348,12 +19348,12 @@ const CASES_DB = {
     "respondent": "Binod Giri @ Binod Thakur"
   },
   "FA/177/2019": {
-    "appellant": "Saroj Rani Singh",
+    "appellant": "Saroj Rani Singh,",
     "respondent": "Shivesh Nandan Singh alias Mukta Babu"
   },
   "FA/178/2019": {
-    "appellant": "Girija Devi",
-    "respondent": "Jagdish Mahto"
+    "appellant": "Girija Devi,",
+    "respondent": "Jagdish Mahto,"
   },
   "FA/179/2019": {
     "appellant": "Jugal Kishor Khetan",
@@ -19365,7 +19365,7 @@ const CASES_DB = {
   },
   "FA/183/2019": {
     "appellant": "The State of Bihar",
-    "respondent": "Madan Mohan Prasad Singh"
+    "respondent": "Madan Mohan Prasad Singh,"
   },
   "FA/184/2019": {
     "appellant": "The State of Bihar",
@@ -19376,12 +19376,12 @@ const CASES_DB = {
     "respondent": "Shiv Kant Singh"
   },
   "FA/186/2019": {
-    "appellant": "Sumitra Kumari",
-    "respondent": "The Estate of Late Tor Narain Singh"
+    "appellant": "Sumitra Kumari,",
+    "respondent": "The Estate of Late Tor Narain Singh,"
   },
   "FA/187/2019": {
     "appellant": "Nunu Pathak, Alias Mani Kant Pathak",
-    "respondent": "Kamni Devi                         MISCELLANEOUS"
+    "respondent": "Kamni Devi"
   },
   "FA/188/2019": {
     "appellant": "Kamal Sah",
@@ -19389,59 +19389,59 @@ const CASES_DB = {
   },
   "FA/189/2019": {
     "appellant": "Chandan Roy",
-    "respondent": "Mostt. Raj Kumari Devi"
+    "respondent": "Mostt. Raj Kumari Devi,"
   },
   "FA/190/2019": {
     "appellant": "Manju Devi",
-    "respondent": "Shushila Devi                                               MISCELLANEOUS"
+    "respondent": "Shushila Devi"
   },
   "FA/191/2019": {
-    "appellant": "Bageshwar Prasad Gupta",
-    "respondent": "Vikramaditya Bharti"
+    "appellant": "Bageshwar Prasad Gupta,",
+    "respondent": "Vikramaditya Bharti,"
   },
   "FA/193/2019": {
     "appellant": "Ramesh Kumar Singh",
     "respondent": "Ram Niwas Singh"
   },
   "FA/194/2019": {
-    "appellant": "Malti Devi",
-    "respondent": "Rajendra Dubey"
+    "appellant": "Malti Devi,",
+    "respondent": "Rajendra Dubey,"
   },
   "FA/195/2019": {
-    "appellant": "The State of Bihar through Collector",
-    "respondent": "Dinesh Chandra Thakur"
+    "appellant": "The State of Bihar through Collector,",
+    "respondent": "Dinesh Chandra Thakur,"
   },
   "FA/196/2019": {
     "appellant": "The State of Bihar",
     "respondent": "Dilip Mahto"
   },
   "FA/198/2019": {
-    "appellant": "Dinesh Mishtri @ Dinesh Kumar",
-    "respondent": "Baiju Mishtri"
+    "appellant": "Dinesh Mishtri @ Dinesh Kumar,",
+    "respondent": "Baiju Mishtri,"
   },
   "FA/199/2019": {
     "appellant": "Rakesh Singh",
     "respondent": "Umesh Sah"
   },
   "FA/200/2019": {
-    "appellant": "Smt. Leelawati Devi",
-    "respondent": "Chandradeep Rai"
+    "appellant": "Smt. Leelawati Devi,",
+    "respondent": "Chandradeep Rai,"
   },
   "FA/201/2019": {
     "appellant": "Most. Dewanti Kuar",
     "respondent": "Sunil Prasad"
   },
   "FA/204/2019": {
-    "appellant": "Ram Kumari Devi",
-    "respondent": "Birendra Bhagat"
+    "appellant": "Ram Kumari Devi,",
+    "respondent": "Birendra Bhagat,"
   },
   "FA/205/2019": {
-    "appellant": "Rajiv Sinha",
+    "appellant": "Rajiv Sinha,",
     "respondent": "Allahabad Bank"
   },
   "FA/206/2019": {
     "appellant": "Ram Jatan Kumar Choudhary @ Ram Jatan Kumar",
-    "respondent": "Chotey Lal"
+    "respondent": "Chotey Lal Choudhary"
   },
   "FA/207/2019": {
     "appellant": "Estate of Late Hiramani Devi",
@@ -19456,12 +19456,12 @@ const CASES_DB = {
     "respondent": "The State of Bihar"
   },
   "FA/213/2019": {
-    "appellant": "Sumed Lal Yadav",
-    "respondent": "The State of Bihar"
+    "appellant": "Sumed Lal Yadav,",
+    "respondent": "The State of Bihar."
   },
   "FA/214/2019": {
     "appellant": "Madan Mohan Prasad Singh",
-    "respondent": "The State of Bihar                        FORMAL"
+    "respondent": "The State of Bihar"
   },
   "FA/215/2019": {
     "appellant": "Maharam Yadav",
@@ -19472,16 +19472,16 @@ const CASES_DB = {
     "respondent": "Sri Mati Rajeshwari Devi"
   },
   "FA/219/2019": {
-    "appellant": "Saudagar Sah",
-    "respondent": "Sudhir Sah"
+    "appellant": "Saudagar Sah,",
+    "respondent": "Sudhir Sah,"
   },
   "FA/220/2019": {
-    "appellant": "Rinku Devi",
-    "respondent": "Bhola Ray"
+    "appellant": "Rinku Devi,",
+    "respondent": "Bhola Ray,"
   },
   "FA/221/2019": {
     "appellant": "Sanjay Kumar Singh @ Sanjai Kumar Singh",
-    "respondent": "Narendra Pratap"
+    "respondent": "Narendra Pratap Narayan Singh,"
   },
   "FA/222/2019": {
     "appellant": "Mukul Raj Dubey @ Khokhan Dubey",
@@ -19496,23 +19496,23 @@ const CASES_DB = {
     "respondent": "Santosh Kumar"
   },
   "FA/225/2019": {
-    "appellant": "Smt. Sushila Singh @ Sushila Devi",
-    "respondent": "Smt. Sheo Kumari Devi"
+    "appellant": "Smt. Sushila Singh @ Sushila Devi,",
+    "respondent": "Smt. Sheo Kumari Devi,"
   },
   "FA/226/2019": {
-    "appellant": "Smt. Meena Kumari",
+    "appellant": "Smt. Meena Kumari,",
     "respondent": "Estate of Late Bedamo Kuer"
   },
   "FA/227/2019": {
     "appellant": "The State of Bihar",
-    "respondent": "M/s Indu Construction"
+    "respondent": "M/s Indu Construction,"
   },
   "FA/228/2019": {
-    "appellant": "Sudama Devi",
+    "appellant": "Sudama Devi,",
     "respondent": "Estate of Indramani Kuer"
   },
   "FA/229/2019": {
-    "appellant": "Satish Kumar",
+    "appellant": "Satish Kumar,",
     "respondent": "The State of Bihar"
   },
   "FA/230/2019": {
@@ -19520,15 +19520,15 @@ const CASES_DB = {
     "respondent": "The State of Bihar"
   },
   "FA/232/2019": {
-    "appellant": "Smt. Rekha Devi @ Rekha Devi",
-    "respondent": "Gurudeo Prasad Mandal"
+    "appellant": "Smt. Rekha Devi @ Rekha Devi,",
+    "respondent": "Gurudeo Prasad Mandal,"
   },
   "FA/233/2019": {
     "appellant": "Md. Shahid Alam",
     "respondent": "Smt. Munni Devi"
   },
   "FA/234/2019": {
-    "appellant": "Dr. Bishwa Mohan Kumar Sinha",
+    "appellant": "Dr. Bishwa Mohan Kumar Sinha,",
     "respondent": "The State of Bihar"
   },
   "FA/236/2019": {
@@ -19540,24 +19540,24 @@ const CASES_DB = {
     "respondent": "Nand Devi"
   },
   "FA/238/2019": {
-    "appellant": "Gopal Prasad Sah",
-    "respondent": "Muni Devi"
+    "appellant": "Gopal Prasad Sah,",
+    "respondent": "Muni Devi,"
   },
   "FA/239/2019": {
-    "appellant": "Ram Naresh Sharma",
-    "respondent": "Ranjit Kaur"
+    "appellant": "Ram Naresh Sharma,",
+    "respondent": "Ranjit Kaur,"
   },
   "FA/240/2019": {
     "appellant": "Vinod Kumar Sharma",
     "respondent": "Braj Mohan Ram"
   },
   "FA/241/2019": {
-    "appellant": "Kailash Singh",
-    "respondent": "Smt. Sunita Singh"
+    "appellant": "Kailash Singh,",
+    "respondent": "Smt. Sunita Singh,"
   },
   "FA/242/2019": {
-    "appellant": "Devendra Kumar Singh",
-    "respondent": "Umesh Singh"
+    "appellant": "Devendra Kumar Singh,",
+    "respondent": "Umesh Singh,"
   },
   "FA/243/2019": {
     "appellant": "Kunti Devi",
@@ -19569,27 +19569,27 @@ const CASES_DB = {
   },
   "FA/245/2019": {
     "appellant": "The State of Bihar",
-    "respondent": "Suresh Prasad @ Suresh Yadav                    FORMAL"
+    "respondent": "Suresh Prasad @ Suresh Yadav"
   },
   "FA/247/2019": {
-    "appellant": "Saroj Devi",
-    "respondent": "Bindeshwari Singh"
+    "appellant": "Saroj Devi,",
+    "respondent": "Bindeshwari Singh,"
   },
   "FA/1/2020": {
     "appellant": "Rakesh Kumar @ Jaimangal Singh",
     "respondent": "Nagendra Prasad Singh"
   },
   "FA/2/2020": {
-    "appellant": "Nawal Kishore Tiwari",
-    "respondent": "Most. Lal Pari Devi"
+    "appellant": "Nawal Kishore Tiwari,",
+    "respondent": "Most. Lal Pari Devi,"
   },
   "FA/3/2020": {
     "appellant": "Mohan Rai",
     "respondent": "Siyapati Devi"
   },
   "FA/4/2020": {
-    "appellant": "Seema Kumari",
-    "respondent": "Dewanti Devi"
+    "appellant": "Seema Kumari,",
+    "respondent": "Dewanti Devi,"
   },
   "FA/5/2020": {
     "appellant": "Gauri Shankar Pandey @ Gaurishankar Pandey",
@@ -19597,7 +19597,7 @@ const CASES_DB = {
   },
   "FA/9/2020": {
     "appellant": "Rathindra Nath Bagchi",
-    "respondent": "Smt. Bandana Sarkar                             UP"
+    "respondent": "Smt. Bandana Sarkar"
   },
   "FA/11/2020": {
     "appellant": "Smt. Preeti Singh @ Pritti Singh",
@@ -19605,10 +19605,10 @@ const CASES_DB = {
   },
   "FA/12/2020": {
     "appellant": "Devendra Kushwaha",
-    "respondent": "Poonam Sinha                                        FORMAL"
+    "respondent": "Poonam Sinha"
   },
   "FA/13/2020": {
-    "appellant": "Smt. Punita Kumari",
+    "appellant": "Smt. Punita Kumari,",
     "respondent": "The Estate of Late Chhotoo Mahto"
   },
   "FA/15/2020": {
@@ -19629,11 +19629,11 @@ const CASES_DB = {
   },
   "FA/23/2020": {
     "appellant": "The State of Bihar",
-    "respondent": "Suresh Prasad Sharma"
+    "respondent": "Suresh Prasad Sharma,"
   },
   "FA/25/2020": {
     "appellant": "Amar Kumar Singh",
-    "respondent": "Anita Devi                                           FORMAL"
+    "respondent": "Anita Devi"
   },
   "FA/26/2020": {
     "appellant": "Sachchida Nand Jha",
@@ -19644,44 +19644,44 @@ const CASES_DB = {
     "respondent": "Mrs. Poonam Prakash"
   },
   "FA/28/2020": {
-    "appellant": "Umashankar Prasad",
+    "appellant": "Umashankar Prasad,",
     "respondent": "Estate of Late Ganesh Prasad"
   },
   "FA/29/2020": {
-    "appellant": "Dinesh Sah",
-    "respondent": "The Shivdulari Devi"
+    "appellant": "Dinesh Sah,",
+    "respondent": "The Shivdulari Devi,"
   },
   "FA/31/2020": {
     "appellant": "Ramkeshwar Prajapati @ Ramkeshwar Prasad Prajapati",
-    "respondent": "Mohan"
+    "respondent": "Mohan Prasad Prajapati"
   },
   "FA/34/2020": {
     "appellant": "Sri Devendra Kumar Rai @ Devendra Kumar Ray",
-    "respondent": "Sri Dina Nath"
+    "respondent": "Sri Dina Nath Singh Yadav @ Dina Nath Yadav"
   },
   "FA/35/2020": {
     "appellant": "Krishna Nandan Pandey",
-    "respondent": "Most. Lalan Devi                                COURT FEE"
+    "respondent": "Most. Lalan Devi"
   },
   "FA/36/2020": {
     "appellant": "Ramjanam Prajapati",
     "respondent": "Mohan Prasad Prajapati"
   },
   "FA/37/2020": {
-    "appellant": "Thakur",
+    "appellant": "Chairman, Nagar Panchayat Ghoghardiha through Shrawan Kumar Thakur",
     "respondent": "Anand Kumar Jha @ Buch Jha"
   },
   "FA/39/2020": {
-    "appellant": "Ramkeshwar Prajapati @ Ramkeshwar Prasad Prajapati",
-    "respondent": "Mohan"
+    "appellant": "Ramkeshwar Prajapati @ Ramkeshwar Prasad Prajapati,",
+    "respondent": "Mohan Prasad Prajapati,"
   },
   "FA/40/2020": {
-    "appellant": "Most. Kalawati Devi",
+    "appellant": "Most. Kalawati Devi,",
     "respondent": "The State of Bihar"
   },
   "FA/41/2020": {
     "appellant": "Amresh Singh",
-    "respondent": "Prabhawati Devi                                          FORMAL"
+    "respondent": "Prabhawati Devi"
   },
   "FA/42/2020": {
     "appellant": "Rameshwar Singh",
@@ -19693,7 +19693,7 @@ const CASES_DB = {
   },
   "FA/47/2020": {
     "appellant": "Baidhyanath Prasad",
-    "respondent": "Rajendra Rai                                       FORMAL"
+    "respondent": "Rajendra Rai"
   },
   "FA/49/2020": {
     "appellant": "Rajesh Kumar Jagnani",
@@ -19716,12 +19716,12 @@ const CASES_DB = {
     "respondent": "Niranjan Roy"
   },
   "FA/7/2021": {
-    "appellant": "Lakho Devi @ Laxmi Devi",
+    "appellant": "Lakho Devi @ Laxmi Devi,",
     "respondent": "Ramjee Singh"
   },
   "FA/8/2021": {
     "appellant": "Nirmala Choudhary",
-    "respondent": "Prem Shankar Prasad Choudhary"
+    "respondent": "Prem Shankar Prasad Choudhary,"
   },
   "FA/9/2021": {
     "appellant": "Manish Kumar Singh",
@@ -19729,19 +19729,19 @@ const CASES_DB = {
   },
   "FA/10/2021": {
     "appellant": "Raju Kumar Singh",
-    "respondent": "Munni Devi                                           FORMAL"
+    "respondent": "Munni Devi"
   },
   "FA/12/2021": {
-    "appellant": "Kumar Shankar Singh",
-    "respondent": "Kumar Sunil Singh,                               MISCELLANEOUS Birendra Narayan Singh @ Birendra Narain Singh VS. The Estate of"
+    "appellant": "Kumar Shankar Singh,",
+    "respondent": "Kumar Sunil Singh,"
   },
   "FA/13/2021": {
     "appellant": "Birendra Narayan Singh @ Birendra Narain Singh",
-    "respondent": "The Estate of"
+    "respondent": "The Estate of Late Satywati Singh @ Satavati Singh"
   },
   "FA/14/2021": {
-    "appellant": "Sarswati Devi",
-    "respondent": "Renu Devi"
+    "appellant": "Sarswati Devi,",
+    "respondent": "Renu Devi,"
   },
   "FA/15/2021": {
     "appellant": "Neena Singh",
@@ -19749,27 +19749,27 @@ const CASES_DB = {
   },
   "FA/16/2021": {
     "appellant": "Balram Kumar Chaudhary alias Prabhakar Kumar",
-    "respondent": "Most. Urmila"
+    "respondent": "Most. Urmila Devi"
   },
   "FA/18/2021": {
     "appellant": "MD. TAIYAB",
     "respondent": "BIBI HAZRA KHATOON"
   },
   "FA/20/2021": {
-    "appellant": "Abhijeet Kumar @ Abhijeet Kumar",
-    "respondent": "Srimati Madhuri Devi"
+    "appellant": "Abhijeet Kumar @ Abhijeet Kumar,",
+    "respondent": "Srimati Madhuri Devi,"
   },
   "FA/21/2021": {
     "appellant": "ANIL KUMAR MISHRA",
-    "respondent": "SMT. SINDHU DEVI                                      FORMAL"
+    "respondent": "SMT. SINDHU DEVI"
   },
   "FA/24/2021": {
     "appellant": "Dilip Kumar Singh @ Dilip Kumar Shahi @ Dilip Shahi",
-    "respondent": ""
+    "respondent": "Krishnanandan Prasad Singh @ Gopal Shahi"
   },
   "FA/25/2021": {
     "appellant": "Ranjeet Singh",
-    "respondent": "Estate of Late Vikramaditya Singh                         FORMAL"
+    "respondent": "Estate of Late Vikramaditya Singh"
   },
   "FA/29/2021": {
     "appellant": "Ashok Kumar Singh",
@@ -19777,11 +19777,11 @@ const CASES_DB = {
   },
   "FA/30/2021": {
     "appellant": "Rajshri, minor",
-    "respondent": "Most. Laxmi Jaiswal,                                     FORMAL"
+    "respondent": "Most. Laxmi Jaiswal,"
   },
   "FA/31/2021": {
-    "appellant": "Savitri Devi",
-    "respondent": "Sangram Singh                                             FORMAL"
+    "appellant": "Savitri Devi,",
+    "respondent": "Sangram Singh"
   },
   "FA/32/2021": {
     "appellant": "Suresh Chandra Thakur",
@@ -19789,11 +19789,11 @@ const CASES_DB = {
   },
   "FA/33/2021": {
     "appellant": "Anandi Prasad",
-    "respondent": "Mostt. Sudha Kumari                                       FORMAL"
+    "respondent": "Mostt. Sudha Kumari"
   },
   "FA/34/2021": {
     "appellant": "Maldhan Paswan",
-    "respondent": "Suresh Prasad                                            FORMAL"
+    "respondent": "Suresh Prasad"
   },
   "FA/35/2021": {
     "appellant": "Rahul Kumar Choudhary",
@@ -19801,19 +19801,19 @@ const CASES_DB = {
   },
   "FA/37/2021": {
     "appellant": "Sanjeev Kumar Sandwar @ Sanjeev Kumar Sandhwar",
-    "respondent": "Renu"
+    "respondent": "Renu Sandwar @ Ranu Sandhwar"
   },
   "FA/38/2021": {
     "appellant": "Anita Devi",
     "respondent": "Smt. Meena Kumari"
   },
   "FA/39/2021": {
-    "appellant": "Pramod Kumar Sah @ Pramod Sah",
-    "respondent": "Sushila Devi,                            COURT FEE"
+    "appellant": "Pramod Kumar Sah @ Pramod Sah,",
+    "respondent": "Sushila Devi,"
   },
   "FA/40/2021": {
     "appellant": "Ram Lakhan Sah",
-    "respondent": "Yogendra Prasad Sah                                      FORMAL"
+    "respondent": "Yogendra Prasad Sah"
   },
   "FA/42/2021": {
     "appellant": "Punam Dubey",
@@ -19824,32 +19824,32 @@ const CASES_DB = {
     "respondent": "Arvind Kumar Singh"
   },
   "FA/45/2021": {
-    "appellant": "Upendra Pandit",
-    "respondent": "Bhagwan Pandit"
+    "appellant": "Upendra Pandit,",
+    "respondent": "Bhagwan Pandit,"
   },
   "FA/46/2021": {
     "appellant": "Smt. Divya Bharti",
     "respondent": "Saraswati Devi"
   },
   "FA/47/2021": {
-    "appellant": "Brajnandan Rai",
-    "respondent": "Rajeev Ranjan @ Babloo                                  FORMAL"
+    "appellant": "Brajnandan Rai,",
+    "respondent": "Rajeev Ranjan @ Babloo"
   },
   "FA/48/2021": {
     "appellant": "Brajnandan Rai",
     "respondent": "Sadanand Rai"
   },
   "FA/49/2021": {
-    "appellant": "The State of Bihar through the Collector, Sitamarhi now Sheohar",
-    "respondent": ""
+    "appellant": "The State of Bihar through the Collector, Sitamarhi now Sheohar.",
+    "respondent": "Sunil Kumar Patel"
   },
   "FA/50/2021": {
-    "appellant": "Shambhu Sah",
-    "respondent": "Parma Nand Prasad"
+    "appellant": "Shambhu Sah,",
+    "respondent": "Parma Nand Prasad,"
   },
   "FA/51/2021": {
-    "appellant": "The State of Bihar through Chief Secretary",
-    "respondent": "Ajoy Kumar Roy"
+    "appellant": "The State of Bihar through Chief Secretary,",
+    "respondent": "Ajoy Kumar Roy,"
   },
   "FA/53/2021": {
     "appellant": "Edwin Anthony Cyrill",
@@ -19860,20 +19860,20 @@ const CASES_DB = {
     "respondent": "Pankaj Kumar Singh"
   },
   "FA/56/2021": {
-    "appellant": "Rajiv Kumar Jha",
-    "respondent": "Shiwesh Chandra Jha"
+    "appellant": "Rajiv Kumar Jha,",
+    "respondent": "Shiwesh Chandra Jha,"
   },
   "FA/57/2021": {
     "appellant": "Devendra Kumar Singh",
     "respondent": "Smt. Chandrakanti Devi"
   },
   "FA/58/2021": {
-    "appellant": "The State of Bihar through Land Acquisition Officer",
-    "respondent": "Saurabh"
+    "appellant": "The State of Bihar through Land Acquisition Officer,",
+    "respondent": "Saurabh Kumar,"
   },
   "FA/59/2021": {
     "appellant": "The State of Bihar through Land Acquisition Officer",
-    "respondent": "Amar Kumar"
+    "respondent": "Amar Kumar Mishra"
   },
   "FA/60/2021": {
     "appellant": "Sheo Kumari Devi",
@@ -19885,7 +19885,7 @@ const CASES_DB = {
   },
   "FA/62/2021": {
     "appellant": "Durga Prasad",
-    "respondent": "The State of Bihar                                         FORMAL"
+    "respondent": "The State of Bihar"
   },
   "FA/63/2021": {
     "appellant": "Mithila Sharma",
@@ -19893,10 +19893,10 @@ const CASES_DB = {
   },
   "FA/65/2021": {
     "appellant": "Satish Kumar",
-    "respondent": "The State of Bihar through the Collector"
+    "respondent": "The State of Bihar through the Collector,"
   },
   "FA/66/2021": {
-    "appellant": "Patrika Devi @ Ram Patrika Devi",
+    "appellant": "Patrika Devi @ Ram Patrika Devi,",
     "respondent": "Nand Kishore Singh"
   },
   "FA/67/2021": {
@@ -19905,7 +19905,7 @@ const CASES_DB = {
   },
   "FA/68/2021": {
     "appellant": "Arvind Kumar",
-    "respondent": "Estate of Late Ajhola Devi"
+    "respondent": "Estate of Late Ajhola Devi,"
   },
   "FA/69/2021": {
     "appellant": "Ram Sundar Pandey",
@@ -19913,7 +19913,7 @@ const CASES_DB = {
   },
   "FA/70/2021": {
     "appellant": "Saryug Prasd",
-    "respondent": "The State of Bihar through the Collector"
+    "respondent": "The State of Bihar through the Collector,"
   },
   "FA/71/2021": {
     "appellant": "Mozibur Rahman",
@@ -19925,15 +19925,15 @@ const CASES_DB = {
   },
   "FA/73/2021": {
     "appellant": "Kushum Devi",
-    "respondent": "Shaila Devi                                               FORMAL"
+    "respondent": "Shaila Devi"
   },
   "FA/74/2021": {
-    "appellant": "The Engineer in Chief",
-    "respondent": "M/s Shiva Shankar Construction Circle"
+    "appellant": "The Engineer in Chief,",
+    "respondent": "M/s Shiva Shankar Construction Circle Officer."
   },
   "FA/75/2021": {
     "appellant": "Sant Kumar Singh",
-    "respondent": "Pushpa Devi                                          FORMAL"
+    "respondent": "Pushpa Devi"
   },
   "FA/76/2021": {
     "appellant": "Smt. Asha Devi @ Asha Rani",
@@ -19941,19 +19941,19 @@ const CASES_DB = {
   },
   "FA/77/2021": {
     "appellant": "Veni Madhava Noniya @ Beni Madhava Prasad",
-    "respondent": "Jain Bala"
+    "respondent": "Jain Bala Vishram"
   },
   "FA/78/2021": {
     "appellant": "Rajnath Tiwari",
-    "respondent": "Amar Nath Tiwari                                       FORMAL"
+    "respondent": "Amar Nath Tiwari"
   },
   "FA/79/2021": {
     "appellant": "Smt. Punam Devi",
-    "respondent": "Shiv Nandan Mahto                                     MISCELLANEOUS"
+    "respondent": "Shiv Nandan Mahto"
   },
   "FA/1/2022": {
     "appellant": "Mauji Ram",
-    "respondent": "Smt. Malti Devi                                             FORMAL"
+    "respondent": "Smt. Malti Devi"
   },
   "FA/2/2022": {
     "appellant": "Bharti Dalmiya",
@@ -19961,19 +19961,19 @@ const CASES_DB = {
   },
   "FA/3/2022": {
     "appellant": "Kanti Devi",
-    "respondent": "Estate of deceased Khublal Pasi @ Khublal"
+    "respondent": "Estate of deceased Khublal Pasi @ Khublal Choudhary"
   },
   "FA/4/2022": {
     "appellant": "Rudal Singh",
-    "respondent": "Rekha Devi                                                FORMAL"
+    "respondent": "Rekha Devi"
   },
   "FA/5/2022": {
     "appellant": "Sri Mukesh Kumar",
     "respondent": "Sri Sanjay Kumar Singh @ Sanjay Singh"
   },
   "FA/6/2022": {
-    "appellant": "Sona Devi",
-    "respondent": "Champa Devi"
+    "appellant": "Sona Devi,",
+    "respondent": "Champa Devi,"
   },
   "FA/7/2022": {
     "appellant": "Saumitra Singh",
@@ -19984,19 +19984,19 @@ const CASES_DB = {
     "respondent": "Bihari Tiwari"
   },
   "FA/9/2022": {
-    "appellant": "Sheodas Singh",
-    "respondent": "Radha Singh Yadav"
+    "appellant": "Sheodas Singh,",
+    "respondent": "Radha Singh Yadav,"
   },
   "FA/10/2022": {
-    "appellant": "Smt. Kali Jha",
-    "respondent": "Smt. Sunita Jha,                                       COURT FEE"
+    "appellant": "Smt. Kali Jha,",
+    "respondent": "Smt. Sunita Jha,"
   },
   "FA/13/2022": {
     "appellant": "Kumar Kashwendra @ Baban Singh",
     "respondent": "Ramesh Kumar Singh"
   },
   "FA/14/2022": {
-    "appellant": "Sri Brij Kumar Gupta",
+    "appellant": "Sri Brij Kumar Gupta,",
     "respondent": "The Estate of Late Sri Madan Sah"
   },
   "FA/15/2022": {
@@ -20005,19 +20005,19 @@ const CASES_DB = {
   },
   "FA/16/2022": {
     "appellant": "The State of Bihar",
-    "respondent": "Praveen Kumar                                      MISCELLANEOUS"
+    "respondent": "Praveen Kumar"
   },
   "FA/17/2022": {
-    "appellant": "Umesh Mishra",
-    "respondent": "Dip Narain Singh"
+    "appellant": "Umesh Mishra,",
+    "respondent": "Dip Narain Singh,"
   },
   "FA/18/2022": {
     "appellant": "Subas Yadav",
-    "respondent": "Babu Ram Yadav"
+    "respondent": "Babu Ram Yadav,"
   },
   "FA/19/2022": {
-    "appellant": "Kelwa Devi",
-    "respondent": "Domini Devi"
+    "appellant": "Kelwa Devi,",
+    "respondent": "Domini Devi,"
   },
   "FA/20/2022": {
     "appellant": "Punam Devi",
@@ -20033,11 +20033,11 @@ const CASES_DB = {
   },
   "FA/25/2022": {
     "appellant": "Bela Devi @ Bela Kuwar",
-    "respondent": "Shashi Nath Pandey"
+    "respondent": "Shashi Nath Pandey,"
   },
   "FA/26/2022": {
-    "appellant": "LalPari Devi",
-    "respondent": "Brij Bhushan Pandey,                                    FORMAL"
+    "appellant": "LalPari Devi,",
+    "respondent": "Brij Bhushan Pandey,"
   },
   "FA/28/2022": {
     "appellant": "Markandey Singh",
@@ -20045,11 +20045,11 @@ const CASES_DB = {
   },
   "FA/29/2022": {
     "appellant": "Asha Devi",
-    "respondent": "Renu Devi                                                   FORMAL"
+    "respondent": "Renu Devi"
   },
   "FA/30/2022": {
-    "appellant": "Chandrabhushan Chaturvedi",
-    "respondent": "Mosomat Usha Kunwar"
+    "appellant": "Chandrabhushan Chaturvedi,",
+    "respondent": "Mosomat Usha Kunwar,"
   },
   "FA/31/2022": {
     "appellant": "Prem Ranjan Sinha",
@@ -20065,15 +20065,15 @@ const CASES_DB = {
   },
   "FA/35/2022": {
     "appellant": "Ashok Paswan",
-    "respondent": "Mahanth Ramesh Goswami                                    FORMAL"
+    "respondent": "Mahanth Ramesh Goswami"
   },
   "FA/36/2022": {
     "appellant": "Shambhu Sharan Singh",
-    "respondent": "Phulo Devi                                        FORMAL"
+    "respondent": "Phulo Devi"
   },
   "FA/37/2022": {
     "appellant": "Malti Devi",
-    "respondent": "Smt. Sumitra Devi                                           FORMAL"
+    "respondent": "Smt. Sumitra Devi"
   },
   "FA/38/2022": {
     "appellant": "Ajit Kumar Singh",
@@ -20093,7 +20093,7 @@ const CASES_DB = {
   },
   "FA/45/2022": {
     "appellant": "Satya Narayan Yadav",
-    "respondent": "Ram Ekbal Yadav                                    FORMAL"
+    "respondent": "Ram Ekbal Yadav"
   },
   "FA/46/2022": {
     "appellant": "Raja Ram Mahto",
@@ -20101,11 +20101,11 @@ const CASES_DB = {
   },
   "FA/47/2022": {
     "appellant": "Ram Awadh Singh",
-    "respondent": "Nathuni Singh                                          FORMAL"
+    "respondent": "Nathuni Singh"
   },
   "FA/48/2022": {
     "appellant": "Smt. Geeta Devi",
-    "respondent": "Most Sikashi Devi                                      FORMAL"
+    "respondent": "Most Sikashi Devi"
   },
   "FA/51/2022": {
     "appellant": "Uday Narayan Singh",
@@ -20133,7 +20133,7 @@ const CASES_DB = {
   },
   "FA/59/2022": {
     "appellant": "Prashant Chaurasiya",
-    "respondent": "Badri Prasad Chaurasiya,                           FORMAL"
+    "respondent": "Badri Prasad Chaurasiya,"
   },
   "FA/60/2022": {
     "appellant": "Musmat Urmila Kuer @ Urmila Devi",
@@ -20161,7 +20161,7 @@ const CASES_DB = {
   },
   "FA/68/2022": {
     "appellant": "Sharda Devi",
-    "respondent": "The Estate of late Ramrati Devi                            COURT FEE"
+    "respondent": "The Estate of late Ramrati Devi"
   },
   "FA/69/2022": {
     "appellant": "Md. Manjar",
@@ -20184,8 +20184,8 @@ const CASES_DB = {
     "respondent": "Manoj Kumar Singh"
   },
   "FA/75/2022": {
-    "appellant": "Bachchan Pandey @ Bechan Pandey @ Birendra Nath Pandey",
-    "respondent": ""
+    "appellant": "Bachchan Pandey @ Bechan Pandey @ Birendra Nath Pandey,",
+    "respondent": "Akhileshwar Chaubey"
   },
   "FA/76/2022": {
     "appellant": "Nagendra Rai",
@@ -20201,7 +20201,7 @@ const CASES_DB = {
   },
   "FA/81/2022": {
     "appellant": "Gyanti Devi",
-    "respondent": "Estate of Vijay Kumar Singh (Deceased)                     FORMAL"
+    "respondent": "Estate of Vijay Kumar Singh (Deceased)"
   },
   "FA/82/2022": {
     "appellant": "Manoj Kumar Mandal",
@@ -20209,7 +20209,7 @@ const CASES_DB = {
   },
   "FA/83/2022": {
     "appellant": "Umesh Singh",
-    "respondent": "Maha Prabhandhak Bhartiya Rail Purv Madhya Rail            FORMAL"
+    "respondent": "Maha Prabhandhak Bhartiya Rail Purv Madhya Rail"
   },
   "FA/84/2022": {
     "appellant": "Ravi Kumar",
@@ -20221,7 +20221,7 @@ const CASES_DB = {
   },
   "FA/86/2022": {
     "appellant": "Triloki Parasad Gupta @ Triloki Prasad",
-    "respondent": "In the Goods of Late"
+    "respondent": "In the Goods of Late Akshaibar Prasad,"
   },
   "FA/87/2022": {
     "appellant": "Rajesh Kumar Pankaj",
@@ -20241,19 +20241,19 @@ const CASES_DB = {
   },
   "FA/92/2022": {
     "appellant": "Bihar State Housing Board through its Managing Director",
-    "respondent": "Most"
+    "respondent": "Most. Sunari Devi"
   },
   "FA/93/2022": {
     "appellant": "Baijnath Singh",
-    "respondent": "Shakuntala Devi                                             FORMAL"
+    "respondent": "Shakuntala Devi"
   },
   "FA/94/2022": {
     "appellant": "Most. Uma Devi",
-    "respondent": "Sat Narayan Prasad @ Satya Narayan Prasad"
+    "respondent": "Sat Narayan Prasad @ Satya Narayan Prasad Yadav"
   },
   "FA/95/2022": {
     "appellant": "Hasan Mahmood Ahmad @ Hassan Mahmood",
-    "respondent": "Md. Javed                             FORMAL"
+    "respondent": "Md. Javed"
   },
   "FA/96/2022": {
     "appellant": "Kamla Pati Dubey",
@@ -20313,35 +20313,35 @@ const CASES_DB = {
   },
   "FA/7/2023": {
     "appellant": "Sulochna Devi @ Sunaina Devi",
-    "respondent": "Santosh Kumar Das                             FORMAL"
+    "respondent": "Santosh Kumar Das"
   },
   "FA/8/2023": {
     "appellant": "Md. Naseem Akhtar",
-    "respondent": "Arun Kumar Agrawal                                       FORMAL"
+    "respondent": "Arun Kumar Agrawal"
   },
   "FA/10/2023": {
     "appellant": "Indradeep Singh",
-    "respondent": "Jamuna singh                                               FORMAL"
+    "respondent": "Jamuna singh"
   },
   "FA/11/2023": {
     "appellant": "Suryadeo Pandey",
-    "respondent": "Diwakar Pandey                                             FORMAL"
+    "respondent": "Diwakar Pandey"
   },
   "FA/12/2023": {
     "appellant": "Chakravarti singh",
-    "respondent": "Laxmi Singh                                              MISCELLANEOUS"
+    "respondent": "Laxmi Singh"
   },
   "FA/13/2023": {
     "appellant": "Vijay Kumar Sharma",
     "respondent": "Smt. Shyama Singh"
   },
   "FA/14/2023": {
-    "appellant": "Jai Sri Shyam Home Pvt. Ltd",
+    "appellant": "Jai Sri Shyam Home Pvt. Ltd.",
     "respondent": "Smt. Shyama Singh"
   },
   "FA/15/2023": {
     "appellant": "Balmiki Kumar @ Balmikee Kumar",
-    "respondent": "The State of Bihar                          FORMAL"
+    "respondent": "The State of Bihar"
   },
   "FA/16/2023": {
     "appellant": "Jugal Kishore Agarwal",
@@ -20357,35 +20357,35 @@ const CASES_DB = {
   },
   "FA/19/2023": {
     "appellant": "Rajesh Kumar",
-    "respondent": "Urmila Kumari                                                 COURT FEE Mrityunjay Kumar Choudhary @ Mityunjay Choudhary VS. Dr. Vijay"
+    "respondent": "Urmila Kumari"
   },
   "FA/20/2023": {
     "appellant": "Mrityunjay Kumar Choudhary @ Mityunjay Choudhary",
-    "respondent": "Dr. Vijay"
+    "respondent": "Dr. Vijay Kumar Choudhary"
   },
   "FA/21/2023": {
     "appellant": "Smt. Sumitra Devi @ Sumitra Devi",
     "respondent": "Rekha Devi"
   },
   "FA/22/2023": {
-    "appellant": "Kishnath Singh",
-    "respondent": "Sugandhi Devi,                                             FORMAL"
+    "appellant": "Kishnath Singh,",
+    "respondent": "Sugandhi Devi,"
   },
   "FA/23/2023": {
     "appellant": "Nageshwar Singh",
-    "respondent": "Manorma Devi                                               FORMAL"
+    "respondent": "Manorma Devi"
   },
   "FA/24/2023": {
     "appellant": "Bimla Devi",
-    "respondent": "Lalti Devi                                                      FORMAL"
+    "respondent": "Lalti Devi"
   },
   "FA/25/2023": {
     "appellant": "Noorul Hasan",
-    "respondent": "Shambhu Kumar Choudhary                                    MISCELLANEOUS Chandeshwar Prasad Singh @ Chandreshwar Singh VS. Upendra"
+    "respondent": "Shambhu Kumar Choudhary"
   },
   "FA/27/2023": {
     "appellant": "Chandeshwar Prasad Singh @ Chandreshwar Singh",
-    "respondent": "Upendra"
+    "respondent": "Upendra Tiwary"
   },
   "FA/28/2023": {
     "appellant": "Ajay Singh",
@@ -20400,20 +20400,20 @@ const CASES_DB = {
     "respondent": "Estate of Late Awadh Singh"
   },
   "FA/32/2023": {
-    "appellant": "Sudhir Kumar",
-    "respondent": "Estate of Srimati Prabhawati Sinha,                       FORMAL"
+    "appellant": "Sudhir Kumar,",
+    "respondent": "Estate of Srimati Prabhawati Sinha,"
   },
   "FA/33/2023": {
     "appellant": "Kameshwar Rai @ Kameshwar Ray",
-    "respondent": "Krishna Rai,                              FORMAL"
+    "respondent": "Krishna Rai,"
   },
   "FA/34/2023": {
     "appellant": "Harendra Prasad Chaurasiya @ Harendra Chaurasia",
-    "respondent": "Sangeeta"
+    "respondent": "Sangeeta Kumar @ Sangeeta Devi @ Gunjan Lata @ Gunjan Sinha"
   },
   "FA/36/2023": {
     "appellant": "Om Prakash Yadav @ Jay Prakash Yadav @ Prakash Yadav",
-    "respondent": ""
+    "respondent": "Sikandar Yadav"
   },
   "FA/37/2023": {
     "appellant": "Lalu Kumar alias lallu Yadav",
@@ -20425,15 +20425,15 @@ const CASES_DB = {
   },
   "FA/40/2023": {
     "appellant": "Gulsan Kumar Yadav",
-    "respondent": "Mritunjay Kumar Yadav                                COURT FEE"
+    "respondent": "Mritunjay Kumar Yadav"
   },
   "FA/41/2023": {
     "appellant": "Lallan Prasad Singh",
-    "respondent": "Estate of Late ShashiShekhar Prasad Singh,          FORMAL"
+    "respondent": "Estate of Late ShashiShekhar Prasad Singh,"
   },
   "FA/42/2023": {
     "appellant": "Manish Priyadarshi",
-    "respondent": "Wakil Yadav                                          COURT FEE"
+    "respondent": "Wakil Yadav"
   },
   "FA/43/2023": {
     "appellant": "Byash Singh",
@@ -20441,7 +20441,7 @@ const CASES_DB = {
   },
   "FA/44/2023": {
     "appellant": "Md. Zaheer @ Md. Jahir @ Zaheer",
-    "respondent": "Sheikh Jauwad                           COURT FEE"
+    "respondent": "Sheikh Jauwad"
   },
   "FA/45/2023": {
     "appellant": "Dinesh Kumar @ Dinesh Kumar Gupta",
@@ -20449,7 +20449,7 @@ const CASES_DB = {
   },
   "FA/46/2023": {
     "appellant": "Pramila Devi Pandey",
-    "respondent": "Usha Devi                                           MISCELLANEOUS"
+    "respondent": "Usha Devi"
   },
   "FA/48/2023": {
     "appellant": "The State of Bihar",
@@ -20457,7 +20457,7 @@ const CASES_DB = {
   },
   "FA/49/2023": {
     "appellant": "Santosh Kumar",
-    "respondent": "Sakaldeo Singh                                            FORMAL"
+    "respondent": "Sakaldeo Singh"
   },
   "FA/50/2023": {
     "appellant": "SubhashSah",
@@ -20540,7 +20540,7 @@ const CASES_DB = {
     "respondent": "Ankita Bharti"
   },
   "FA/73/2023": {
-    "appellant": "Chandra Mohan Bosak",
+    "appellant": "Chandra Mohan Bosak,",
     "respondent": "Smt. Mijbani Devi and Ors"
   },
   "FA/75/2023": {
@@ -20569,11 +20569,11 @@ const CASES_DB = {
   },
   "FA/81/2023": {
     "appellant": "Kunj Raj Yogendra Mohan Nagar @ Jogendra Mohan Nagar",
-    "respondent": "The"
+    "respondent": "The State of Bihar"
   },
   "FA/83/2023": {
     "appellant": "Rukmani Devi @ Rukmani Kumari @ Rukmini Devi",
-    "respondent": "Most. Manju"
+    "respondent": "Most. Manju Devi"
   },
   "FA/84/2023": {
     "appellant": "Jaideep Kumar",
@@ -20585,7 +20585,7 @@ const CASES_DB = {
   },
   "FA/86/2023": {
     "appellant": "Birendra Rai",
-    "respondent": "Vikash Kumar                                            FORMAL"
+    "respondent": "Vikash Kumar"
   },
   "FA/87/2023": {
     "appellant": "Paras Nath Pandey",
@@ -20652,7 +20652,7 @@ const CASES_DB = {
     "respondent": "In the Estate of Late Ramjhari Kuer"
   },
   "FA/103/2023": {
-    "appellant": "Ramkrit Sahani @ Ramkrit Singh",
+    "appellant": "Ramkrit Sahani @ Ramkrit Singh,",
     "respondent": "Phuleshwari Devi"
   },
   "FA/104/2023": {
@@ -20661,7 +20661,7 @@ const CASES_DB = {
   },
   "FA/105/2023": {
     "appellant": "Kamla Kant Pandey",
-    "respondent": "Baldau Pandey                                      COURT FEE"
+    "respondent": "Baldau Pandey"
   },
   "FA/106/2023": {
     "appellant": "Meena Singh",
@@ -20673,7 +20673,7 @@ const CASES_DB = {
   },
   "FA/108/2023": {
     "appellant": "Ramashankar Singh",
-    "respondent": "Ashok Kumar Singh                                  FORMAL"
+    "respondent": "Ashok Kumar Singh"
   },
   "FA/109/2023": {
     "appellant": "Archana Mukherjee @ Archana Mukherji",
@@ -20693,11 +20693,11 @@ const CASES_DB = {
   },
   "FA/113/2023": {
     "appellant": "Yar Mohammad Khan @ Yar Mohmamd",
-    "respondent": "Md. Naushad Alam Khan                  FORMAL"
+    "respondent": "Md. Naushad Alam Khan"
   },
   "FA/114/2023": {
     "appellant": "Ratan Prasad @ Ratan Prasad Gupta",
-    "respondent": "Sushila Devi                         FORMAL"
+    "respondent": "Sushila Devi"
   },
   "FA/115/2023": {
     "appellant": "Md. Sultan Ahmad @ Md Sultan",
@@ -20709,11 +20709,11 @@ const CASES_DB = {
   },
   "FA/119/2023": {
     "appellant": "Ashok Das @ Ashok Kumar Das",
-    "respondent": "Meena Singh                                FORMAL"
+    "respondent": "Meena Singh"
   },
   "FA/120/2023": {
-    "appellant": "Durga Devi Mandir (Matar) Sewat Laxmi Devi",
-    "respondent": "Ram Pravesh"
+    "appellant": "Durga Devi Mandir (Matar) Sewat Laxmi Devi,",
+    "respondent": "Ram Pravesh Singh"
   },
   "FA/121/2023": {
     "appellant": "Arvind Kumar Sinha @ Arvind Kumar Singh",
@@ -20721,7 +20721,7 @@ const CASES_DB = {
   },
   "FA/122/2023": {
     "appellant": "Hira Lal Pandey",
-    "respondent": "Bachha Ojha                                            FORMAL"
+    "respondent": "Bachha Ojha"
   },
   "FA/123/2023": {
     "appellant": "Dharmendra Kumar",
@@ -20729,71 +20729,71 @@ const CASES_DB = {
   },
   "FA/126/2023": {
     "appellant": "Krishna Kumar Mishra",
-    "respondent": "Sharda Missir @ sharda Devi                       COURT FEE"
+    "respondent": "Sharda Missir @ sharda Devi"
   },
   "FA/127/2023": {
     "appellant": "Bishwanath Singh",
-    "respondent": "Smt. Tanuja Singh                                     COURT FEE"
+    "respondent": "Smt. Tanuja Singh"
   },
   "FA/129/2023": {
     "appellant": "Sidheshwar Prasad",
-    "respondent": "The State of Bihar                                   MISCELLANEOUS"
+    "respondent": "The State of Bihar"
   },
   "FA/130/2023": {
     "appellant": "Suresh Prasad",
-    "respondent": "The State of Bihar                                       MISCELLANEOUS Mahesh Yadav VS. The State of Bihar through Chief Secretary"
+    "respondent": "The State of Bihar"
   },
   "FA/131/2023": {
     "appellant": "Mahesh Yadav",
-    "respondent": "The State of Bihar through Chief Secretary"
+    "respondent": "The State of Bihar through Chief Secretary, Government of Bihar"
   },
   "FA/132/2023": {
     "appellant": "Viresh Kumar Sinha",
-    "respondent": "The State of Bihar through Chief Secretary"
+    "respondent": "The State of Bihar through Chief Secretary Government of Bihar"
   },
   "FA/133/2023": {
     "appellant": "Vinesh Prasad",
-    "respondent": "The State of Bihar through Chief Secretary"
+    "respondent": "The State of Bihar through Chief Secretary Government of Bihar"
   },
   "FA/134/2023": {
     "appellant": "Rajendra Prasad",
-    "respondent": "The State of Bihar through Chief Secretary"
+    "respondent": "The State of Bihar through Chief Secretary Government of Bihar"
   },
   "FA/135/2023": {
     "appellant": "Chandeshwar Yadav @ Chandeshwar Mahto",
-    "respondent": "The State of Bihar"
+    "respondent": "The State of Bihar through Chief Secretary Government of Bihar"
   },
   "FA/136/2023": {
     "appellant": "Arvind Prasad",
-    "respondent": "The State of Bihar through Chief Secretary"
+    "respondent": "The State of Bihar through Chief Secretary Government of Bihar"
   },
   "FA/137/2023": {
     "appellant": "Sudhir Prasad",
-    "respondent": "The State of Bihar through Chief Secretary"
+    "respondent": "The State of Bihar through Chief Secretary Government of Bihar"
   },
   "FA/138/2023": {
     "appellant": "Laxmi Devi",
-    "respondent": "The State of Bihar through Chief Secretary"
+    "respondent": "The State of Bihar through Chief Secretary, Government of Bihar"
   },
   "FA/139/2023": {
     "appellant": "Ajit Kumar",
-    "respondent": "The State of Bihar through Chief Secretary"
+    "respondent": "The State of Bihar through Chief Secretary Government of Bihar"
   },
   "FA/140/2023": {
     "appellant": "Sukhdev Prasad @ Nand Kishor Prasad Verma",
-    "respondent": "The State of"
+    "respondent": "The State of Bihar through Chief Secretary Government of Bihar"
   },
   "FA/141/2023": {
     "appellant": "Shishupal Kumar",
-    "respondent": "The State of Bihar through Chief Secretary"
+    "respondent": "The State of Bihar through Chief Secretary Government of Bihar"
   },
   "FA/142/2023": {
     "appellant": "Nand Kumar Prasad",
-    "respondent": "The State of Bihar through Chief Secretary"
+    "respondent": "The State of Bihar through Chief Secretary Government of Bihar"
   },
   "FA/143/2023": {
     "appellant": "Bishunpat Singh",
-    "respondent": "The Estate of deceased Most. Subhagiya Kuer            COURT FEE"
+    "respondent": "The Estate of deceased Most. Subhagiya Kuer"
   },
   "FA/144/2023": {
     "appellant": "Sheikh Dilkash",
@@ -20801,23 +20801,23 @@ const CASES_DB = {
   },
   "FA/145/2023": {
     "appellant": "Shambhu Nath Singh",
-    "respondent": "Veena Singh                                         COURT FEE"
+    "respondent": "Veena Singh"
   },
   "FA/146/2023": {
     "appellant": "Prashant Kumar Mishra @ Prashant Kumar",
-    "respondent": "Smt. Priti Sharma               COURT FEE"
+    "respondent": "Smt. Priti Sharma"
   },
   "FA/147/2023": {
     "appellant": "Prashant Kumar Mishra @ Prashant Kumar",
-    "respondent": "Smt. Preeti Sharma              COURT FEE"
+    "respondent": "Smt. Preeti Sharma"
   },
   "FA/148/2023": {
     "appellant": "Subhas Prasad Mehta",
-    "respondent": "In-Re The Estate Of Late Badri Mahto               COURT FEE"
+    "respondent": "In-Re The Estate Of Late Badri Mahto"
   },
   "FA/149/2023": {
     "appellant": "Maheshwar Prasad Singh",
-    "respondent": "Kabir Premi                                     FORMAL"
+    "respondent": "Kabir Premi"
   },
   "FA/150/2023": {
     "appellant": "Gena Rai",
@@ -20825,15 +20825,15 @@ const CASES_DB = {
   },
   "FA/151/2023": {
     "appellant": "Jagdish Kumar @ Jagdish Prasad",
-    "respondent": "Estate of Ram Lakhan Prasad             COURT FEE"
+    "respondent": "Estate of Ram Lakhan Prasad"
   },
   "FA/152/2023": {
     "appellant": "Hemanti Devi",
-    "respondent": "Domini Devi                                               COURT FEE"
+    "respondent": "Domini Devi"
   },
   "FA/153/2023": {
-    "appellant": "Smt. Kumud Chaudhary @ Kumud Sah",
-    "respondent": "Rameshwar Prasad                     MISCELLANEOUS"
+    "appellant": "Smt. Kumud Chaudhary @ Kumud Sah,",
+    "respondent": "Rameshwar Prasad"
   },
   "FA/1/2024": {
     "appellant": "Dr Sarita Sinha",
@@ -20849,11 +20849,11 @@ const CASES_DB = {
   },
   "FA/4/2024": {
     "appellant": "Mohammad Kalam Ansari @ Md Kalam Ansari",
-    "respondent": "Musmat Nagia"
+    "respondent": "Musmat Nagia Khatoon"
   },
   "FA/5/2024": {
     "appellant": "Rajeshwar Prasad @ Rajeshwar @ Rajeshwar Raj",
-    "respondent": "Smt. Pavitri"
+    "respondent": "Smt. Pavitri Devi"
   },
   "FA/6/2024": {
     "appellant": "Most Siyapati Kunwar @ Siya Kunwar",
@@ -20873,15 +20873,15 @@ const CASES_DB = {
   },
   "FA/11/2024": {
     "appellant": "Smt. Mamta Kumari",
-    "respondent": "Proprietor National Educational Development"
+    "respondent": "Proprietor National Educational Development Trust"
   },
   "FA/12/2024": {
     "appellant": "Shivji Sharma",
-    "respondent": "Sri Sahdeo Sharma,                                       FORMAL"
+    "respondent": "Sri Sahdeo Sharma,"
   },
   "FA/13/2024": {
     "appellant": "Ganga Devi",
-    "respondent": "Bindeshwari Yadav                                           COURT FEE"
+    "respondent": "Bindeshwari Yadav"
   },
   "FA/14/2024": {
     "appellant": "Lav Kush Singh @ Vijay Singh",
@@ -20893,7 +20893,7 @@ const CASES_DB = {
   },
   "FA/16/2024": {
     "appellant": "Brij Mohan Singh",
-    "respondent": "Srimati Bimala Devi                                        FORMAL"
+    "respondent": "Srimati Bimala Devi"
   },
   "FA/17/2024": {
     "appellant": "Bimla Devi",
@@ -20905,7 +20905,7 @@ const CASES_DB = {
   },
   "FA/19/2024": {
     "appellant": "Dhirendra Yadav",
-    "respondent": "The State through Land Acquisition Officer"
+    "respondent": "The State through Land Acquisition Officer Madhepura"
   },
   "FA/20/2024": {
     "appellant": "Nurahasan Mian",
@@ -20917,15 +20917,15 @@ const CASES_DB = {
   },
   "FA/22/2024": {
     "appellant": "Subodh Kumar Singh",
-    "respondent": "Shivang Kumar                                            MISCELLANEOUS"
+    "respondent": "Shivang Kumar"
   },
   "FA/23/2024": {
     "appellant": "Tapan Kumar Sinha",
-    "respondent": "Dr. Swapan Kumar Singh                                    FORMAL"
+    "respondent": "Dr. Swapan Kumar Singh"
   },
   "FA/24/2024": {
-    "appellant": "Rajbir Kumar Mandal @ Rajveer Kumar Mandal",
-    "respondent": "The Estate of"
+    "appellant": "Rajbir Kumar Mandal @ Rajveer Kumar Mandal,",
+    "respondent": "The Estate of Late Raghubir Mandal,"
   },
   "FA/25/2024": {
     "appellant": "Yogendra Singh",
@@ -20933,19 +20933,19 @@ const CASES_DB = {
   },
   "FA/26/2024": {
     "appellant": "Manoj Kumar Chandel",
-    "respondent": "Assistant General Manager, State Bank of"
+    "respondent": "Assistant General Manager, State Bank of India,"
   },
   "FA/27/2024": {
     "appellant": "Meghan Rai",
-    "respondent": "Bechu Rai                                                        MISCELLANEOUS"
+    "respondent": "Bechu Rai"
   },
   "FA/28/2024": {
     "appellant": "Ushman Khan",
-    "respondent": "Most Basmati Devi                                               MISCELLANEOUS"
+    "respondent": "Most Basmati Devi"
   },
   "FA/29/2024": {
     "appellant": "Jitendra Kumar",
-    "respondent": "Narendra Lal                                                 FORMAL"
+    "respondent": "Narendra Lal"
   },
   "FA/30/2024": {
     "appellant": "Krishna Kumar Dokania",
@@ -20953,11 +20953,11 @@ const CASES_DB = {
   },
   "FA/31/2024": {
     "appellant": "Hari Charan Mahto",
-    "respondent": "Saroj Kumar                                               COURT FEE"
+    "respondent": "Saroj Kumar"
   },
   "FA/32/2024": {
     "appellant": "Ravi Singh",
-    "respondent": "Ritwik Shreyas                                                   COURT FEE"
+    "respondent": "Ritwik Shreyas"
   },
   "FA/33/2024": {
     "appellant": "Bhagamaniya Devi",
@@ -20965,11 +20965,11 @@ const CASES_DB = {
   },
   "FA/34/2024": {
     "appellant": "Sheo Chandra Pandey",
-    "respondent": "Sakaldeo Rai                                            FORMAL"
+    "respondent": "Sakaldeo Rai"
   },
   "FA/35/2024": {
     "appellant": "Ashok Kumar",
-    "respondent": "Mir Kazim Ali                                                   COURT FEE"
+    "respondent": "Mir Kazim Ali"
   },
   "FA/36/2024": {
     "appellant": "Sri Krishna Singh",
@@ -20977,19 +20977,19 @@ const CASES_DB = {
   },
   "FA/37/2024": {
     "appellant": "Saryug Sah",
-    "respondent": "Hari Shankar Prasad                                              MISCELLANEOUS Ranjit Kumar @ Sadhu Yadav VS. The Estate of deceased Sarvanand"
+    "respondent": "Hari Shankar Prasad"
   },
   "FA/38/2024": {
     "appellant": "Ranjit Kumar @ Sadhu Yadav",
-    "respondent": "The Estate of deceased Sarvanand"
+    "respondent": "The Estate of deceased Sarvanand Rai"
   },
   "FA/39/2024": {
     "appellant": "Uday Prakash Mishra",
-    "respondent": "Sunil Kumar Singh                                       MISCELLANEOUS"
+    "respondent": "Sunil Kumar Singh"
   },
   "FA/40/2024": {
     "appellant": "Awinash Singh",
-    "respondent": "The State of Bihar through the Principal Secretary"
+    "respondent": "The State of Bihar through the Principal Secretary,"
   },
   "FA/41/2024": {
     "appellant": "Abhijit Kashyap",
@@ -21001,7 +21001,7 @@ const CASES_DB = {
   },
   "FA/43/2024": {
     "appellant": "Sanjay Pathak @ Sanjay Kumar Pathak",
-    "respondent": "Maheshwar Jha                           FORMAL"
+    "respondent": "Maheshwar Jha"
   },
   "FA/44/2024": {
     "appellant": "Mahabir Singh @ Mahabir Mahto",
@@ -21021,7 +21021,7 @@ const CASES_DB = {
   },
   "FA/48/2024": {
     "appellant": "Manoj Prasad",
-    "respondent": "Shriniwas Ojha                                                FORMAL"
+    "respondent": "Shriniwas Ojha"
   },
   "FA/49/2024": {
     "appellant": "Rama Devi",
@@ -21029,7 +21029,7 @@ const CASES_DB = {
   },
   "FA/50/2024": {
     "appellant": "Amit Kumar",
-    "respondent": "Sushant Prasad                                                  FORMAL"
+    "respondent": "Sushant Prasad"
   },
   "FA/51/2024": {
     "appellant": "Manish Saree Emporium",
@@ -21041,7 +21041,7 @@ const CASES_DB = {
   },
   "FA/53/2024": {
     "appellant": "Chote Lal Prasad @ Chote Lal",
-    "respondent": "Mankeshwar Prasad                             COURT FEE"
+    "respondent": "Mankeshwar Prasad"
   },
   "FA/54/2024": {
     "appellant": "Rajeshwar Singh",
@@ -21049,10 +21049,10 @@ const CASES_DB = {
   },
   "FA/55/2024": {
     "appellant": "Bina Devi",
-    "respondent": "Bhibhuti Bhushan Singh @ Bibhuti Bhushan Singh And"
+    "respondent": "Bhibhuti Bhushan Singh @ Bibhuti Bhushan Singh And Others"
   },
   "FA/56/2024": {
-    "appellant": "",
+    "appellant": "Shri Krishna Kumar Nayak@ Krishna Kumar Nayak@ Krishna Nayak",
     "respondent": "Uma Shankar Nayak"
   },
   "FA/58/2024": {
@@ -21061,19 +21061,19 @@ const CASES_DB = {
   },
   "FA/59/2024": {
     "appellant": "Binod Kumar Gupta",
-    "respondent": "Ram Babu Srivastava                                      MISCELLANEOUS"
+    "respondent": "Ram Babu Srivastava"
   },
   "FA/60/2024": {
     "appellant": "Bechan Devi",
-    "respondent": "Vijay Sah                                                      MISCELLANEOUS"
+    "respondent": "Vijay Sah"
   },
   "FA/61/2024": {
-    "appellant": "Dharambir Singh @ Dharamveer Singh",
-    "respondent": "Smt. Bandana Kumari"
+    "appellant": "Dharambir Singh @ Dharamveer Singh,",
+    "respondent": "Smt. Bandana Kumari,"
   },
   "FA/62/2024": {
     "appellant": "Mukesh Chaudhary",
-    "respondent": "Mr Devendra Chaudhary                                     FORMAL"
+    "respondent": "Mr Devendra Chaudhary"
   },
   "FA/63/2024": {
     "appellant": "Sanjay Kumar",
@@ -21085,7 +21085,7 @@ const CASES_DB = {
   },
   "FA/65/2024": {
     "appellant": "Suryadeo Singh",
-    "respondent": "Digvijay Singh @ Digvijay Narayan Singh                     FORMAL"
+    "respondent": "Digvijay Singh @ Digvijay Narayan Singh"
   },
   "FA/66/2024": {
     "appellant": "Umesh Kumar Khetan @ Umesh Prasad Khetan",
@@ -21105,23 +21105,23 @@ const CASES_DB = {
   },
   "FA/70/2024": {
     "appellant": "Raj Kumar Sharma",
-    "respondent": "The Estate of Late Kailash Pati Devi                      FORMAL"
+    "respondent": "The Estate of Late Kailash Pati Devi"
   },
   "FA/71/2024": {
     "appellant": "Amarjeet Alias Chottu",
-    "respondent": "Ramesh Chandra Agrawal                               FORMAL"
+    "respondent": "Ramesh Chandra Agrawal"
   },
   "FA/72/2024": {
     "appellant": "Bimlesh Ray @ Vashishth Rai",
-    "respondent": "Rajendra Ray                                   FORMAL"
+    "respondent": "Rajendra Ray"
   },
   "FA/73/2024": {
-    "appellant": "FEE office Bihar State of Housing",
+    "appellant": "Bihar State of Housing Board through its Managing Director having its office Bihar State of Housing",
     "respondent": "Sunari Devi"
   },
   "FA/74/2024": {
-    "appellant": "Bihar State of Housing",
-    "respondent": "Sunari Devi"
+    "appellant": "Leshma Dutt",
+    "respondent": "Shree Durga Design Pvt. Ltd."
   },
   "FA/76/2024": {
     "appellant": "Rabindra Rai",
@@ -21145,7 +21145,7 @@ const CASES_DB = {
   },
   "FA/85/2024": {
     "appellant": "Urmila Devi",
-    "respondent": "Laxmi Devi,                                                    FORMAL"
+    "respondent": "Laxmi Devi,"
   },
   "FA/87/2024": {
     "appellant": "Pawan Kumar Sinha",
@@ -21157,11 +21157,11 @@ const CASES_DB = {
   },
   "FA/89/2024": {
     "appellant": "Ashok Singh",
-    "respondent": "Shiv Pujan Singh                                               COURT FEE"
+    "respondent": "Shiv Pujan Singh"
   },
   "FA/90/2024": {
     "appellant": "Ramchandra Sahani",
-    "respondent": "Laxmi Sahani                                             FORMAL"
+    "respondent": "Laxmi Sahani"
   },
   "FA/91/2024": {
     "appellant": "Smt. Chandrakanti Devi",
@@ -21169,7 +21169,7 @@ const CASES_DB = {
   },
   "FA/92/2024": {
     "appellant": "Pushpa Devi",
-    "respondent": "Suresh Prasad Gupta                                            FORMAL"
+    "respondent": "Suresh Prasad Gupta"
   },
   "FA/93/2024": {
     "appellant": "Sulkshana Sinha",
@@ -21181,15 +21181,15 @@ const CASES_DB = {
   },
   "FA/98/2024": {
     "appellant": "Shashi Bhushan",
-    "respondent": "District Magistrate, Bhojpur Ara"
+    "respondent": "District Magistrate, Bhojpur Ara."
   },
   "FA/99/2024": {
     "appellant": "Shashi Bhushan",
-    "respondent": "District Magistrate, Bhojpur"
+    "respondent": "District Magistrate, Bhojpur,"
   },
   "FA/100/2024": {
     "appellant": "Chandra Bhushan",
-    "respondent": "District Magistrate, Bhojpur, Ara"
+    "respondent": "District Magistrate, Bhojpur, Ara."
   },
   "FA/101/2024": {
     "appellant": "Surendra Prasad Yadav",
@@ -21197,7 +21197,7 @@ const CASES_DB = {
   },
   "FA/102/2024": {
     "appellant": "Chandra Mohan Choudhary",
-    "respondent": "The State of Bihar through the"
+    "respondent": "The State of Bihar through the Secretary, Human Resources Department, Bihar"
   },
   "FA/103/2024": {
     "appellant": "Rajesh Kumar",
@@ -21208,12 +21208,12 @@ const CASES_DB = {
     "respondent": "Sunita Singh"
   },
   "FA/106/2024": {
-    "appellant": "Kumar",
+    "appellant": "Suryabansh @ Suryabansh Kumar @ Sri Suryabansh @ Suraj Vansh Kumar",
     "respondent": "Rajnandan Singh"
   },
   "FA/108/2024": {
     "appellant": "Gulam Kibiriya @ Gulam Kabiriya",
-    "respondent": "The State of Bihar, through the"
+    "respondent": "The State of Bihar, through the Collector, Nawada"
   },
   "FA/110/2024": {
     "appellant": "Akabir Hussain @ Syed Akabir Hussain",
@@ -21241,7 +21241,7 @@ const CASES_DB = {
   },
   "FA/117/2024": {
     "appellant": "Shailendra Kumar Singh",
-    "respondent": "Smt. Sumitra Devi                                  FORMAL"
+    "respondent": "Smt. Sumitra Devi"
   },
   "FA/118/2024": {
     "appellant": "Mithlesh Kumar Sah",
@@ -21249,7 +21249,7 @@ const CASES_DB = {
   },
   "FA/119/2024": {
     "appellant": "Vishwanath Bhagat",
-    "respondent": "Rameshwar Bhagat                                        COURT FEE"
+    "respondent": "Rameshwar Bhagat"
   },
   "FA/120/2024": {
     "appellant": "Subol Chandra Mandal",
@@ -21261,7 +21261,7 @@ const CASES_DB = {
   },
   "FA/122/2024": {
     "appellant": "Shahnaz Ali",
-    "respondent": "Syed Askari Hadi Ali Augustine Imam @ Tootoo"
+    "respondent": "Syed Askari Hadi Ali Augustine Imam @ Tootoo Imam (Since Deceased), through LR's"
   },
   "FA/123/2024": {
     "appellant": "Umesh Singh",
@@ -21269,7 +21269,7 @@ const CASES_DB = {
   },
   "FA/124/2024": {
     "appellant": "Vinod Kumar Pandey @ Binod Kumar Pandey @ Vinod Pandey",
-    "respondent": ""
+    "respondent": "Vimal Narayan Pandey"
   },
   "FA/125/2024": {
     "appellant": "Amrit Kumar",
@@ -21292,12 +21292,12 @@ const CASES_DB = {
     "respondent": "Rajesh Kumar Mandal"
   },
   "FA/131/2024": {
-    "appellant": "(Husband",
+    "appellant": "Kanti Devi @ Sikanti Devi (substituted) in place of Late Rajendra Ram (Husband)",
     "respondent": "Dilip Kumar Ram"
   },
   "FA/133/2024": {
-    "appellant": "Husband",
-    "respondent": "Dilip Kumar Ram"
+    "appellant": "Naresh Singh",
+    "respondent": "Sandip Kumar @ Shambhu Kumar"
   },
   "FA/134/2024": {
     "appellant": "Binod Kumar Bittu @ Vinod Kumar Bittu",
@@ -21305,19 +21305,19 @@ const CASES_DB = {
   },
   "FA/136/2024": {
     "appellant": "Shakuntala Devi",
-    "respondent": "Asha Devi                                                 FORMAL"
+    "respondent": "Asha Devi"
   },
   "FA/137/2024": {
     "appellant": "Gyanti Devi",
-    "respondent": "Renu Singh                                                    FORMAL"
+    "respondent": "Renu Singh"
   },
   "FA/138/2024": {
     "appellant": "Vishwanath Singh",
-    "respondent": "The State of Bihar through the Collector"
+    "respondent": "The State of Bihar through the Collector,"
   },
   "FA/139/2024": {
     "appellant": "The State of Bihar through District Land Acquisition Officer, Patna",
-    "respondent": ""
+    "respondent": "Smt. Shobha Singh"
   },
   "FA/140/2024": {
     "appellant": "Anubhav Thakur",
@@ -21337,15 +21337,15 @@ const CASES_DB = {
   },
   "FA/145/2024": {
     "appellant": "Mohammad Amiruddin",
-    "respondent": "Mehrun Nisa                                            FORMAL"
+    "respondent": "Mehrun Nisa"
   },
   "FA/146/2024": {
-    "appellant": "Smt. Kalindi Singh",
-    "respondent": "The Estate of Late Radha Krishna Sharma               FORMAL"
+    "appellant": "Smt. Kalindi Singh,",
+    "respondent": "The Estate of Late Radha Krishna Sharma"
   },
   "FA/147/2024": {
-    "appellant": "Bharat Engineering through its proprietor Manoj Kumar",
-    "respondent": "The State"
+    "appellant": "Bharat Engineering through its proprietor Manoj Kumar.",
+    "respondent": "The State of Bihar through Secretary, Bhawan Nirman Bibhag, Energy Department,"
   },
   "FA/148/2024": {
     "appellant": "Rakesh Kumar Upadhyay",
@@ -21353,7 +21353,7 @@ const CASES_DB = {
   },
   "FA/149/2024": {
     "appellant": "Ram Tapasya Tiwari",
-    "respondent": "Renu Devi                                             FORMAL"
+    "respondent": "Renu Devi"
   },
   "FA/151/2024": {
     "appellant": "Smt. Vidya Kumari",
@@ -21361,11 +21361,11 @@ const CASES_DB = {
   },
   "FA/152/2024": {
     "appellant": "Jitender Kumar Sharma @ Jitendra Kumar @ Dilip Maharaj",
-    "respondent": ""
+    "respondent": "Kaushalya Devi"
   },
   "FA/153/2024": {
-    "appellant": "The Bihar State Board of Hindu Religious Trust",
-    "respondent": "Abhay Kumar"
+    "appellant": "The Bihar State Board of Hindu Religious Trust,",
+    "respondent": "Abhay Kumar Singh"
   },
   "FA/154/2024": {
     "appellant": "The State of Bihar",
@@ -21380,28 +21380,28 @@ const CASES_DB = {
     "respondent": "Pradip Kumar Biswas"
   },
   "FA/158/2024": {
-    "appellant": "Department",
+    "appellant": "The State of Bihar through the Principal Secretary, Road Construction Department,",
     "respondent": "Tripurari Prasad Singh"
   },
   "FA/159/2024": {
-    "appellant": "Department",
-    "respondent": "Tripurari Prasad Singh"
+    "appellant": "Prakash Mishra",
+    "respondent": "Smt. Pratima Mishra"
   },
   "FA/161/2024": {
     "appellant": "Soma Saha @ Soma Sah",
-    "respondent": "Bharat Chandra Saha @ Bharat"
+    "respondent": "Bharat Chandra Saha @ Bharat Chandra Sah"
   },
   "FA/162/2024": {
     "appellant": "Arvind Kumar Yadav",
     "respondent": "Smt. Meera Devi"
   },
   "FA/163/2024": {
-    "appellant": "Bhuneshwar Mahto and Ors",
-    "respondent": "Suresh Mahto and Anr"
+    "appellant": "Bhuneshwar Mahto and Ors.",
+    "respondent": "Suresh Mahto and Anr."
   },
   "FA/1/2025": {
     "appellant": "Smt. Jagmatiya Devi",
-    "respondent": "The Estate of Mosst. Jamuni Devi                     FORMAL"
+    "respondent": "The Estate of Mosst. Jamuni Devi"
   },
   "FA/2/2025": {
     "appellant": "Akshat Raj @ Amit Kumar Raj",
@@ -21417,11 +21417,11 @@ const CASES_DB = {
   },
   "FA/6/2025": {
     "appellant": "Brigadier Ramnandan Prasad Singh",
-    "respondent": "The State of Bihar, through"
+    "respondent": "The State of Bihar, through District Magistrate, Begusarai and Ors."
   },
   "FA/7/2025": {
     "appellant": "Satyendra Singh",
-    "respondent": "Arnav Abhijit @ Golden Kumar Singh @ Avinav"
+    "respondent": "Arnav Abhijit @ Golden Kumar Singh @ Avinav Abhijit"
   },
   "FA/8/2025": {
     "appellant": "Dinesh Mukhiya",
@@ -21445,7 +21445,7 @@ const CASES_DB = {
   },
   "FA/14/2025": {
     "appellant": "Jamuna Prasad @ Jamuna Sao",
-    "respondent": "The State of Bihar through the"
+    "respondent": "The State of Bihar through the Additional Chief Secretary,"
   },
   "FA/15/2025": {
     "appellant": "Mira Devi",
@@ -21453,7 +21453,7 @@ const CASES_DB = {
   },
   "FA/16/2025": {
     "appellant": "Parmendra Kumar Singh",
-    "respondent": "The Estate of Late Ram Deo Rai son of"
+    "respondent": "The Estate of Late Ram Deo Rai son of Late Chhavi Rai"
   },
   "FA/18/2025": {
     "appellant": "Sri Nawal Kishore Das",
@@ -21461,19 +21461,19 @@ const CASES_DB = {
   },
   "FA/19/2025": {
     "appellant": "Kameshwar Mahto alias Kameshwar Singh",
-    "respondent": "Ramkali Devi"
+    "respondent": "Ramkali Devi,"
   },
   "FA/20/2025": {
-    "appellant": "Union of India through the Director General",
-    "respondent": "The State of Bihar"
+    "appellant": "Union of India through the Director General,",
+    "respondent": "The State of Bihar through the Additional Chief Secretary,"
   },
   "FA/22/2025": {
     "appellant": "Radha Banam Prabhakaram",
-    "respondent": "Sri Ram Lagan Rai @ Satya Narain"
+    "respondent": "Sri Ram Lagan Rai @ Satya Narain Prasad"
   },
   "FA/23/2025": {
     "appellant": "Krishna Prasad",
-    "respondent": "The Estate of late Ramanand Singh"
+    "respondent": "The Estate of late Ramanand Singh,"
   },
   "FA/24/2025": {
     "appellant": "Shanti Devi",
@@ -21493,7 +21493,7 @@ const CASES_DB = {
   },
   "FA/28/2025": {
     "appellant": "Madan Mohan Prasad",
-    "respondent": "Suresh Prasad Sah                                 MISCELLANEOUS"
+    "respondent": "Suresh Prasad Sah"
   },
   "FA/29/2025": {
     "appellant": "Nirmala Devi @ Bhikhani",
@@ -21501,7 +21501,7 @@ const CASES_DB = {
   },
   "FA/30/2025": {
     "appellant": "Krishana Venkatesh @ Krishna Venktesh @ Krishana Vankatesh",
-    "respondent": ""
+    "respondent": "Vishwanath Chaudhary"
   },
   "FA/31/2025": {
     "appellant": "Moina Khatoon",
@@ -21517,7 +21517,7 @@ const CASES_DB = {
   },
   "FA/36/2025": {
     "appellant": "Smt. Babita Singh @ Baby",
-    "respondent": "Smt. Kanti Devi                             FORMAL"
+    "respondent": "Smt. Kanti Devi"
   },
   "FA/37/2025": {
     "appellant": "Rajmani Devi",
@@ -21529,7 +21529,7 @@ const CASES_DB = {
   },
   "FA/39/2025": {
     "appellant": "Amitabh Kumar Sinha",
-    "respondent": "Avinash Kumar Sinha                              FORMAL"
+    "respondent": "Avinash Kumar Sinha"
   },
   "FA/40/2025": {
     "appellant": "Himanshu Kumar Singh",
@@ -21541,15 +21541,15 @@ const CASES_DB = {
   },
   "FA/42/2025": {
     "appellant": "Amerika Devi",
-    "respondent": "Subhash Chandra @ Pintu                                 FORMAL"
+    "respondent": "Subhash Chandra @ Pintu"
   },
   "FA/43/2025": {
     "appellant": "Girja Devi",
-    "respondent": "Dilip Kumar Pandey, Shiv Mandir Pandey alias Sheo Mandir Pandey, VS. Babudhan"
+    "respondent": "Dilip Kumar Pandey,"
   },
   "FA/44/2025": {
-    "appellant": "Shiv Mandir Pandey alias Sheo Mandir Pandey",
-    "respondent": "Babudhan"
+    "appellant": "Shiv Mandir Pandey alias Sheo Mandir Pandey,",
+    "respondent": "Babudhan Pandey"
   },
   "FA/45/2025": {
     "appellant": "Sri Niraj Kumar Chaudhary",
@@ -21569,7 +21569,7 @@ const CASES_DB = {
   },
   "FA/49/2025": {
     "appellant": "Sadan Ram",
-    "respondent": "Bishun Ram                                                 FORMAL"
+    "respondent": "Bishun Ram"
   },
   "FA/50/2025": {
     "appellant": "Shiv Pukar Singh",
@@ -21585,11 +21585,11 @@ const CASES_DB = {
   },
   "FA/53/2025": {
     "appellant": "Bandana Nag",
-    "respondent": "Tushar Kanti Nag                                         FORMAL"
+    "respondent": "Tushar Kanti Nag"
   },
   "FA/54/2025": {
     "appellant": "Hrida Mani Devi @ Rhdayamani Devi @ Hridyamani Devi",
-    "respondent": "Binod"
+    "respondent": "Binod Pandey"
   },
   "FA/55/2025": {
     "appellant": "Munna Kumar Jha",
@@ -21597,7 +21597,7 @@ const CASES_DB = {
   },
   "FA/56/2025": {
     "appellant": "Manoj Kumar",
-    "respondent": "Sushila Devi                                             COURT FEE"
+    "respondent": "Sushila Devi"
   },
   "FA/57/2025": {
     "appellant": "Bajrang Bali Pandey",
@@ -21616,7 +21616,7 @@ const CASES_DB = {
     "respondent": "Manoj Kumar Singh"
   },
   "FA/62/2025": {
-    "appellant": "The Commandant, 19th Battalion, S.S.B",
+    "appellant": "The Commandant, 19th Battalion, S.S.B.,",
     "respondent": "Manik Chand Agarwal"
   },
   "FA/63/2025": {
@@ -21633,7 +21633,7 @@ const CASES_DB = {
   },
   "FA/66/2025": {
     "appellant": "Jai Shankar Prasad @ Bithal",
-    "respondent": "Avinash Kumar                              COURT FEE"
+    "respondent": "Avinash Kumar"
   },
   "FA/67/2025": {
     "appellant": "Md. Ziaur Rahman",
@@ -21653,7 +21653,7 @@ const CASES_DB = {
   },
   "FA/72/2025": {
     "appellant": "Binod Kumar Choudhary @ B. K. Chaudhary",
-    "respondent": "Mahesh Dutta"
+    "respondent": "Mahesh Dutta Pathak"
   },
   "FA/73/2025": {
     "appellant": "Manoj Pandit",
@@ -21661,11 +21661,11 @@ const CASES_DB = {
   },
   "FA/75/2025": {
     "appellant": "Priyanandan Trivedi",
-    "respondent": "Rahul Kanhaiya                                     FORMAL"
+    "respondent": "Rahul Kanhaiya"
   },
   "FA/76/2025": {
     "appellant": "Jawahar Yadav",
-    "respondent": "Sudip Singh,                                             FORMAL"
+    "respondent": "Sudip Singh,"
   },
   "FA/77/2025": {
     "appellant": "Bodhnarayan Singh",
@@ -21676,8 +21676,8 @@ const CASES_DB = {
     "respondent": "Urmila Devi"
   },
   "FA/80/2025": {
-    "appellant": "Rajni Kant Sinha",
-    "respondent": "Rameswar Prasad Sinha @ Lal Babu"
+    "appellant": "Rajni Kant Sinha,",
+    "respondent": "Rameswar Prasad Sinha @ Lal Babu,"
   },
   "FA/81/2025": {
     "appellant": "Avadhesh Shah",
@@ -21692,8 +21692,8 @@ const CASES_DB = {
     "respondent": "Reshama Kuer"
   },
   "FA/85/2025": {
-    "appellant": "Arjun Prasad",
-    "respondent": "Ashok Kumar"
+    "appellant": "Arjun Prasad,",
+    "respondent": "Ashok Kumar,"
   },
   "FA/87/2025": {
     "appellant": "Prem Narayan Yadav",
@@ -21713,15 +21713,15 @@ const CASES_DB = {
   },
   "FA/91/2025": {
     "appellant": "Nawal Kishore Prasad",
-    "respondent": "Shyam Upadhyay                                    COURT FEE"
+    "respondent": "Shyam Upadhyay"
   },
   "FA/92/2025": {
     "appellant": "Pramod Kumar @ Pramod Prasad",
-    "respondent": "Savitri Devi                              FORMAL"
+    "respondent": "Savitri Devi"
   },
   "FA/93/2025": {
     "appellant": "The State of Bihar through District Magistrate, Madhepura",
-    "respondent": "Md"
+    "respondent": "Md. Ezaj Alam"
   },
   "FA/95/2025": {
     "appellant": "Bharat Mauar",
@@ -21733,7 +21733,7 @@ const CASES_DB = {
   },
   "FA/97/2025": {
     "appellant": "Ram Singari Devi @ Ram Singaro Devi",
-    "respondent": "Sushila Devi                       FORMAL"
+    "respondent": "Sushila Devi"
   },
   "FA/98/2025": {
     "appellant": "Md. Firoj Alam",
@@ -21745,7 +21745,7 @@ const CASES_DB = {
   },
   "FA/100/2025": {
     "appellant": "Vishal Gupta",
-    "respondent": "Amar Nath Prasad"
+    "respondent": "Amar Nath Prasad,"
   },
   "FA/101/2025": {
     "appellant": "M/s Vijayam Education Trust",
@@ -21753,11 +21753,11 @@ const CASES_DB = {
   },
   "FA/102/2025": {
     "appellant": "Hridayanarayan Choubey",
-    "respondent": "Aam Janta (General Public)                      MISCELLANEOUS"
+    "respondent": "Aam Janta (General Public)"
   },
   "FA/103/2025": {
     "appellant": "Lakshman Sah",
-    "respondent": "Smt. Chandra Kala Devi                                    MISCELLANEOUS"
+    "respondent": "Smt. Chandra Kala Devi"
   },
   "FA/104/2025": {
     "appellant": "Sunil Kumar",
@@ -21765,15 +21765,15 @@ const CASES_DB = {
   },
   "FA/105/2025": {
     "appellant": "Mukesh Kumar Pandey",
-    "respondent": "Srimati Sobha Devi,                                FORMAL"
+    "respondent": "Srimati Sobha Devi,"
   },
   "FA/106/2025": {
     "appellant": "Arun Pyasa",
-    "respondent": "Most. Rampukari Devi                                        MISCELLANEOUS"
+    "respondent": "Most. Rampukari Devi"
   },
   "FA/107/2025": {
     "appellant": "Rajendra Sah @ Rajendra Sahu",
-    "respondent": "Kiran Kumari                              COURT FEE"
+    "respondent": "Kiran Kumari"
   },
   "FA/108/2025": {
     "appellant": "The State of Bihar",
@@ -21781,51 +21781,51 @@ const CASES_DB = {
   },
   "FA/110/2025": {
     "appellant": "Vidya Baitha",
-    "respondent": "Paspat Sah                                                COURT FEE"
+    "respondent": "Paspat Sah"
   },
   "FA/111/2025": {
     "appellant": "Man Mahesh Prasad Singh",
-    "respondent": "Umesh Prasad Singh                             FORMAL"
+    "respondent": "Umesh Prasad Singh"
   },
   "FA/112/2025": {
     "appellant": "Sudhir Kumar @ Sudhir Prasad Singh",
-    "respondent": "Urmila Devi                         FORMAL"
+    "respondent": "Urmila Devi"
   },
   "FA/113/2025": {
     "appellant": "Ranjan Kumar Singh @ Rajan Singh",
-    "respondent": "Most Prabha Devi                      COURT FEE"
+    "respondent": "Most Prabha Devi"
   },
   "FA/114/2025": {
     "appellant": "Samsuddin Mian",
-    "respondent": "The State of Bihar                                      FORMAL"
+    "respondent": "The State of Bihar"
   },
   "FA/115/2025": {
     "appellant": "Rajendra Prasad",
-    "respondent": "Lakshmi Verma                                          MISCELLANEOUS Harishchandra Singh, VS. Binod Kumar Singh (L.R. of original"
+    "respondent": "Lakshmi Verma"
   },
   "FA/116/2025": {
-    "appellant": "Harishchandra Singh",
-    "respondent": "Binod Kumar Singh (L.R. of original"
+    "appellant": "Harishchandra Singh,",
+    "respondent": "Binod Kumar Singh (L.R. of original applicant Dinesh Prasad Singh)"
   },
   "FA/117/2025": {
     "appellant": "Shashi Singh",
-    "respondent": "Laxmi Kumari                                              FORMAL"
+    "respondent": "Laxmi Kumari"
   },
   "FA/118/2025": {
     "appellant": "Smt. Rinki Devi alias Rinki Kumari",
-    "respondent": "The Estate of Late"
+    "respondent": "The Estate of Late Dharmendra Prasad Singh,"
   },
   "FA/120/2025": {
     "appellant": "Padmini Sharma",
-    "respondent": "Pramod Kumar Singh                                      COURT FEE"
+    "respondent": "Pramod Kumar Singh"
   },
   "FA/121/2025": {
-    "appellant": "Ratan Kumar",
+    "appellant": "Ratan Kumar,",
     "respondent": "Parsuram Prasad (Dead)"
   },
   "FA/122/2025": {
     "appellant": "Ramswarup Singh",
-    "respondent": "Ram Kumar Singh                                        COURT FEE"
+    "respondent": "Ram Kumar Singh"
   },
   "FA/123/2025": {
     "appellant": "SJVN Thermal (P) Limited",
@@ -21841,59 +21841,59 @@ const CASES_DB = {
   },
   "FA/126/2025": {
     "appellant": "SJVN Thermal (P) Limited",
-    "respondent": "Mostt. Shabnam Sinha                          MISCELLANEOUS"
+    "respondent": "Mostt. Shabnam Sinha"
   },
   "FA/127/2025": {
     "appellant": "SJVN Thermal (P) Limited",
-    "respondent": "Mostt. Suman Devi                             MISCELLANEOUS"
+    "respondent": "Mostt. Suman Devi"
   },
   "FA/128/2025": {
-    "appellant": "SJVN Thermal (P) Limited",
-    "respondent": "Mostt. Premlata Sinha                       MISCELLANEOUS"
+    "appellant": "SJVN Thermal (P) Limited.,",
+    "respondent": "Mostt. Premlata Sinha"
   },
   "FA/129/2025": {
-    "appellant": "SJVN Thermal (P) Limited",
-    "respondent": "Ramcheej Singh                               MISCELLANEOUS"
+    "appellant": "SJVN Thermal (P) Limited.",
+    "respondent": "Ramcheej Singh"
   },
   "FA/130/2025": {
-    "appellant": "SJVN Thermal (P) Limited",
-    "respondent": "Ajay Kumar Sinha                             MISCELLANEOUS"
+    "appellant": "SJVN Thermal (P) Limited.",
+    "respondent": "Ajay Kumar Sinha"
   },
   "FA/131/2025": {
-    "appellant": "SJVN Thermal (P) Limited",
-    "respondent": "Hareram Singh                                MISCELLANEOUS"
+    "appellant": "SJVN Thermal (P) Limited.",
+    "respondent": "Hareram Singh"
   },
   "FA/132/2025": {
-    "appellant": "SJVN Thermal (P) Limited",
-    "respondent": "Parmeshwar Singh                             MISCELLANEOUS"
+    "appellant": "SJVN Thermal (P) Limited.",
+    "respondent": "Parmeshwar Singh"
   },
   "FA/133/2025": {
-    "appellant": "SJVN Thermal (P) Limited",
-    "respondent": "Banshidhar Prasad                            MISCELLANEOUS"
+    "appellant": "SJVN Thermal (P) Limited.",
+    "respondent": "Banshidhar Prasad"
   },
   "FA/134/2025": {
-    "appellant": "SJVN Thermal (P) Limited",
-    "respondent": "Rampravesh Singh                             MISCELLANEOUS"
+    "appellant": "SJVN Thermal (P) Limited.",
+    "respondent": "Rampravesh Singh"
   },
   "FA/135/2025": {
-    "appellant": "SJVN Thermal (P) Limited",
-    "respondent": "Seshnath                                    MISCELLANEOUS"
+    "appellant": "SJVN Thermal (P) Limited.,",
+    "respondent": "Seshnath"
   },
   "FA/136/2025": {
     "appellant": "SJVN Thermal (P) Limited",
-    "respondent": "Sushil Kumar Srivastava                       MISCELLANEOUS"
+    "respondent": "Sushil Kumar Srivastava"
   },
   "FA/137/2025": {
     "appellant": "SJVN Thermal (P) Limited",
-    "respondent": "Ramjhalak Ahir                                MISCELLANEOUS"
+    "respondent": "Ramjhalak Ahir"
   },
   "FA/138/2025": {
     "appellant": "SJVN Thermal (P) Limited",
-    "respondent": "Shyamrathi Singh                              MISCELLANEOUS Dr. Arvind Kumar Sinha VS. The Principal Secretary, Department of"
+    "respondent": "Shyamrathi Singh"
   },
   "FA/140/2025": {
     "appellant": "Dr. Arvind Kumar Sinha",
-    "respondent": "The Principal Secretary, Department of"
+    "respondent": "The Principal Secretary, Department of Health Govt. of Bihar,"
   },
   "FA/141/2025": {
     "appellant": "Smt. Shibha Devi",
@@ -21905,23 +21905,23 @@ const CASES_DB = {
   },
   "FA/143/2025": {
     "appellant": "Gopal Tiwari",
-    "respondent": "Rameshwar Upadhyay Upendra Sahni VS. The Competent Authority cum Land Acquisition"
+    "respondent": "Rameshwar Upadhyay"
   },
   "FA/144/2025": {
     "appellant": "Upendra Sahni",
-    "respondent": "The Competent Authority cum Land Acquisition"
+    "respondent": "The Competent Authority cum Land Acquisition Officer, Munger"
   },
   "FA/145/2025": {
     "appellant": "Md. Imam Ansari @ Md. Imran Ansari",
-    "respondent": "The State of Bihar through"
+    "respondent": "The State of Bihar through the Collector, Bhagalpur."
   },
   "FA/146/2025": {
     "appellant": "Shri Bhagwanji Jha",
-    "respondent": "Jay Bhadra Jha                                      FORMAL"
+    "respondent": "Jay Bhadra Jha"
   },
   "FA/147/2025": {
     "appellant": "Kailash Pandit",
-    "respondent": "Ashutosh Kumar Bharti                                   COURT FEE"
+    "respondent": "Ashutosh Kumar Bharti"
   },
   "FA/148/2025": {
     "appellant": "Rajmuni Devi",
@@ -21937,27 +21937,27 @@ const CASES_DB = {
   },
   "FA/151/2025": {
     "appellant": "Md. Rizwan",
-    "respondent": "Sk. Sajjad"
+    "respondent": "Sk. Sajjad,"
   },
   "FA/152/2025": {
     "appellant": "Md. Khurshid Akram",
-    "respondent": "The State of Bihar through the Collector"
+    "respondent": "The State of Bihar through the Collector, Bhagalpur."
   },
   "FA/153/2025": {
     "appellant": "Md. Khurshid Akram",
-    "respondent": "The State of Bihar through the Collector"
+    "respondent": "The State of Bihar through the Collector, Bhagalpur."
   },
   "FA/154/2025": {
     "appellant": "Md. Khurshid Akram",
-    "respondent": "The State of Bihar through the Collector"
+    "respondent": "The State of Bihar through the Collector, Bhagalpur."
   },
   "FA/155/2025": {
     "appellant": "Yugeshwar Prasad Verma",
-    "respondent": "Estate of Late Yasodha Devi                     FORMAL"
+    "respondent": "Estate of Late Yasodha Devi"
   },
   "FA/156/2025": {
     "appellant": "Jagtaran Kuer",
-    "respondent": "Ram Chandra Sah                                          FORMAL"
+    "respondent": "Ram Chandra Sah"
   },
   "FA/157/2025": {
     "appellant": "Rishi Narayan",
@@ -21969,15 +21969,15 @@ const CASES_DB = {
   },
   "FA/160/2025": {
     "appellant": "Sweta Bhattacharjee",
-    "respondent": "Shyamli Bhattacharjee"
+    "respondent": "Shyamli Bhattacharjee,"
   },
   "FA/161/2025": {
     "appellant": "Pawan Chaudhary @ Pawan Kumar Yadav",
-    "respondent": "Sheikh Majrul @"
+    "respondent": "Sheikh Majrul @ Majharul Haque"
   },
   "FA/162/2025": {
     "appellant": "Manish Kumar",
-    "respondent": "The State of Bihar through the Additional Chief"
+    "respondent": "The State of Bihar through the Additional Chief Secretary, Revenue and Land Reforms"
   },
   "FA/163/2025": {
     "appellant": "Snehlata Rajgarhia @ Snehlata",
@@ -21997,15 +21997,15 @@ const CASES_DB = {
   },
   "FA/167/2025": {
     "appellant": "Ishan International Public School, Kankar Bagh, Patna-800020",
-    "respondent": ""
+    "respondent": "The State of Bihar through Collector, Patna."
   },
   "FA/168/2025": {
-    "appellant": "Nalanda",
-    "respondent": "Hazrat Makhdum Jahan Sheikh Sharfuddin Ahmad"
+    "appellant": "The State of Bihar through the Collector cum District Magistrate, Nalanda",
+    "respondent": "Hazrat Makhdum Jahan Sheikh Sharfuddin Ahmad, Yahiya Maneri Wakf Estate No.-"
   },
   "FA/169/2025": {
     "appellant": "Gita Devi",
-    "respondent": "Jai Ram Prasad                                               FORMAL"
+    "respondent": "Jai Ram Prasad"
   },
   "FA/170/2025": {
     "appellant": "Upendra Singh",
@@ -22017,19 +22017,19 @@ const CASES_DB = {
   },
   "FA/174/2025": {
     "appellant": "Smt. Sudha Kumari",
-    "respondent": "Most. Krishna Devi                                   FORMAL"
+    "respondent": "Most. Krishna Devi"
   },
   "FA/175/2025": {
     "appellant": "Sri Birendra Paswan",
-    "respondent": "Sri Robind Kumar Singh                             MISCELLANEOUS Patna Metro Rail Corporation Limited through its General Manager"
+    "respondent": "Sri Robind Kumar Singh"
   },
   "FA/176/2025": {
-    "appellant": "(Works",
+    "appellant": "Patna Metro Rail Corporation Limited through its General Manager (Works),",
     "respondent": "The State of Bihar through the Collector, Patna"
   },
   "FA/177/2025": {
-    "appellant": "Works",
-    "respondent": "The State of Bihar through the Collector, Patna"
+    "appellant": "Ashok Thakur",
+    "respondent": "Arun Kumar Thakur"
   },
   "FA/179/2025": {
     "appellant": "Vivek Kumar",
@@ -22041,19 +22041,19 @@ const CASES_DB = {
   },
   "FA/182/2025": {
     "appellant": "Rameshwar Prasad",
-    "respondent": "Yogendra Prasad @ Yogendra Sah                        COURT FEE"
+    "respondent": "Yogendra Prasad @ Yogendra Sah"
   },
   "FA/183/2025": {
     "appellant": "Sanjay Kumar",
-    "respondent": "Uma Shankar Prasad                                        MISCELLANEOUS Rinku Kumar @ Manish Kumar @ Manish Kumar Sinha @ Manish"
+    "respondent": "Uma Shankar Prasad"
   },
   "FA/184/2025": {
-    "appellant": "Sinha",
+    "appellant": "Rinku Kumar @ Manish Kumar @ Manish Kumar Sinha @ Manish Sinha",
     "respondent": "Shashi Sinha"
   },
   "FA/185/2025": {
-    "appellant": "Sinha",
-    "respondent": "Shashi Sinha"
+    "appellant": "Salendra Singh @ Shailendra Kumar Singh",
+    "respondent": "Arun Kumar Singh"
   },
   "FA/186/2025": {
     "appellant": "Sagar Jaiswal @ Sagar Prasad",
@@ -22061,15 +22061,15 @@ const CASES_DB = {
   },
   "FA/187/2025": {
     "appellant": "Chameli Devi",
-    "respondent": "Udai Kumar                                                MISCELLANEOUS Moti Devi @ Moti Kunwar VS. The State of Bihar through District"
+    "respondent": "Udai Kumar"
   },
   "FA/188/2025": {
     "appellant": "Moti Devi @ Moti Kunwar",
-    "respondent": "The State of Bihar through District"
+    "respondent": "The State of Bihar through District Magistrate Gopalganj,"
   },
   "FA/189/2025": {
     "appellant": "Sandesh Prasad Singh",
-    "respondent": "Dr. Sri Chandra Bhawnani"
+    "respondent": "Dr. Sri Chandra Bhawnani,"
   },
   "FA/190/2025": {
     "appellant": "Arun Kumar Asthana",
@@ -22077,27 +22077,27 @@ const CASES_DB = {
   },
   "FA/191/2025": {
     "appellant": "Dhananjay Kumar",
-    "respondent": "Dr. Shri Chandra Bhawnani                              FORMAL"
+    "respondent": "Dr. Shri Chandra Bhawnani"
   },
   "FA/192/2025": {
     "appellant": "Sadanand Kumar @ Sonu",
-    "respondent": "Yamuna Prasad Singh                              COURT FEE"
+    "respondent": "Yamuna Prasad Singh"
   },
   "FA/193/2025": {
     "appellant": "Rambriksh Prasad @ Ram Briksha Prasad",
-    "respondent": "Naresh Kumar                     FORMAL"
+    "respondent": "Naresh Kumar"
   },
   "FA/194/2025": {
     "appellant": "Smt. Renu Devi",
-    "respondent": "Smt. Madhuri Devi                                       MISCELLANEOUS The State of Bihar through the Collector cum District Magistrate"
+    "respondent": "Smt. Madhuri Devi"
   },
   "FA/195/2025": {
-    "appellant": "Muzaffarpur",
+    "appellant": "The State of Bihar through the Collector cum District Magistrate, Muzaffarpur",
     "respondent": "Navin Kumar"
   },
   "FA/196/2025": {
     "appellant": "Smt. Manju Devi @ Manju Devi",
-    "respondent": "Smt. Moti Jhari Devi @ Smt. Moti"
+    "respondent": "Smt. Moti Jhari Devi @ Smt. Moti Jhari Kuer@Smt. Motijhari Kuar@Smt. Bhusula Devi@Smt. Bhushila Devi"
   },
   "FA/197/2025": {
     "appellant": "Rajendra Chaudhary",
@@ -22113,35 +22113,35 @@ const CASES_DB = {
   },
   "FA/201/2025": {
     "appellant": "Jamil Akhatar Khan",
-    "respondent": "Md. Shamimullah Khan                                FORMAL"
+    "respondent": "Md. Shamimullah Khan"
   },
   "FA/202/2025": {
     "appellant": "Bihar State Road Development Corporation Ltd",
-    "respondent": "Manoj Kumar"
+    "respondent": "Manoj Kumar Jaiswal And Another"
   },
   "FA/203/2025": {
     "appellant": "Bihar State Road Development Corporation Ltd",
-    "respondent": "Pawan Kumar"
+    "respondent": "Pawan Kumar Jaiswal And Another"
   },
   "FA/204/2025": {
-    "appellant": "Bihar State Road Development Corporation Ltd",
-    "respondent": "Anup Kumar"
+    "appellant": "Bihar State Road Development Corporation Ltd.",
+    "respondent": "Anup Kumar Jaiswal"
   },
   "FA/205/2025": {
     "appellant": "Sri Anup Kumar Jaiswal",
-    "respondent": "The State of Bihar through the Collector"
+    "respondent": "The State of Bihar through the Collector, Patna."
   },
   "FA/206/2025": {
     "appellant": "Vinay Kumar",
-    "respondent": "Kripesh Ranjan                                                 MISCELLANEOUS Sri Pawan Kumar Jaiswal VS. The State of Bihar through the"
+    "respondent": "Kripesh Ranjan"
   },
   "FA/207/2025": {
     "appellant": "Sri Pawan Kumar Jaiswal",
-    "respondent": "The State of Bihar through the"
+    "respondent": "The State of Bihar through the Collector, Patna."
   },
   "FA/208/2025": {
     "appellant": "Sri Manoj Kumar Jaiswal",
-    "respondent": "The State of Bihar through the Collector"
+    "respondent": "The State of Bihar through the Collector, Patna."
   },
   "FA/209/2025": {
     "appellant": "Srimati Saroj Devi",
@@ -22153,27 +22153,27 @@ const CASES_DB = {
   },
   "FA/211/2025": {
     "appellant": "Parma Nand Chaubey",
-    "respondent": "Bijay Kumar Chaubey @ Raju Kumar"
+    "respondent": "Bijay Kumar Chaubey @ Raju Kumar Chaubey"
   },
   "FA/212/2025": {
     "appellant": "Kedar Mistri",
-    "respondent": "Meena Devi                                                    FORMAL"
+    "respondent": "Meena Devi"
   },
   "FA/213/2025": {
-    "appellant": "The State of Bihar through Collector, West Champaran (Bettiah",
-    "respondent": ""
+    "appellant": "The State of Bihar through Collector, West Champaran (Bettiah)",
+    "respondent": "Prayag Rai"
   },
   "FA/214/2025": {
     "appellant": "Surajdeo Singh @ Suryadeo Singh",
-    "respondent": "Mahendra Singh                             COURT FEE"
+    "respondent": "Mahendra Singh"
   },
   "FA/215/2025": {
     "appellant": "Smt. Meena Prasad",
-    "respondent": "Smt. Seema Prasad                                        COURT FEE"
+    "respondent": "Smt. Seema Prasad"
   },
   "FA/216/2025": {
     "appellant": "Nirmala Mishra",
-    "respondent": "Smt. Ruby Mishra                                            COURT FEE"
+    "respondent": "Smt. Ruby Mishra"
   },
   "FA/217/2025": {
     "appellant": "Bifan Yadav",
@@ -22185,15 +22185,15 @@ const CASES_DB = {
   },
   "FA/219/2025": {
     "appellant": "The State of Bihar through Collector, Madhepura",
-    "respondent": "Shri Umakant"
+    "respondent": "Shri Umakant Saha"
   },
   "FA/221/2025": {
     "appellant": "Raju Chaudhary",
-    "respondent": "Kaleshwar Mandal                                            COURT FEE"
+    "respondent": "Kaleshwar Mandal"
   },
   "FA/222/2025": {
     "appellant": "Manju Devi",
-    "respondent": "Dr. Atul Kumar                                                  FORMAL"
+    "respondent": "Dr. Atul Kumar"
   },
   "FA/223/2025": {
     "appellant": "Kiran Devi",
@@ -22201,7 +22201,7 @@ const CASES_DB = {
   },
   "FA/224/2025": {
     "appellant": "Parwez Alam",
-    "respondent": "Sri Vijay Kumar                                                COURT FEE"
+    "respondent": "Sri Vijay Kumar"
   },
   "FA/225/2025": {
     "appellant": "Jitendra Bhagat",
@@ -22209,7 +22209,7 @@ const CASES_DB = {
   },
   "FA/226/2025": {
     "appellant": "Prince Raj",
-    "respondent": "Sukesh Kumar Tiwary                                             COURT FEE"
+    "respondent": "Sukesh Kumar Tiwary"
   },
   "FA/227/2025": {
     "appellant": "Taramuni Kunwar",
@@ -22225,11 +22225,11 @@ const CASES_DB = {
   },
   "FA/2/2026": {
     "appellant": "Sumant Sharma",
-    "respondent": "Santosh Kumar                                                FORMAL"
+    "respondent": "Santosh Kumar"
   },
   "FA/3/2026": {
     "appellant": "Dinesh Kumar Pal",
-    "respondent": "Vijay Singh                                               FORMAL"
+    "respondent": "Vijay Singh"
   },
   "FA/4/2026": {
     "appellant": "Sarvesh Kumar Sahani",
@@ -22237,7 +22237,7 @@ const CASES_DB = {
   },
   "FA/5/2026": {
     "appellant": "Md. Mojibur Rahman",
-    "respondent": "Md. Hasib Alam                                          MISCELLANEOUS"
+    "respondent": "Md. Hasib Alam"
   },
   "FA/6/2026": {
     "appellant": "Gauri Paswan",
@@ -22245,119 +22245,119 @@ const CASES_DB = {
   },
   "FA/7/2026": {
     "appellant": "Bipin Bihari Prasad",
-    "respondent": "Estate of Late Krishna Kumar Lal                       COURT FEE"
+    "respondent": "Estate of Late Krishna Kumar Lal"
   },
   "FA/8/2026": {
     "appellant": "Karn Prasad Singh @ Karna Prasad Singh",
-    "respondent": "Manoj Kumar                         FORMAL"
+    "respondent": "Manoj Kumar"
   },
   "FA/9/2026": {
     "appellant": "Reeta Sharma",
-    "respondent": "Savita Sharma                                                 FORMAL"
+    "respondent": "Savita Sharma"
   },
   "FA/10/2026": {
     "appellant": "Awnish Kumar",
-    "respondent": "Mayarani Mitra                                                COURT FEE Shakuntala Kumari VS. The Estate of Late Mulhai Mochi and Kulhai"
+    "respondent": "Mayarani Mitra"
   },
   "FA/12/2026": {
     "appellant": "Shakuntala Kumari",
-    "respondent": "The Estate of Late Mulhai Mochi and Kulhai"
+    "respondent": "The Estate of Late Mulhai Mochi and Kulhai Mochi"
   },
   "FA/14/2026": {
     "appellant": "The State of Bihar",
-    "respondent": "Arhula Devi                                             MISCELLANEOUS"
+    "respondent": "Arhula Devi"
   },
   "FA/15/2026": {
     "appellant": "The State of Bihar",
-    "respondent": "Sukumariya Devi                                         MISCELLANEOUS Sarita Sah VS. The Branch Manager, Allahabad Bank cum Indian"
+    "respondent": "Sukumariya Devi"
   },
   "FA/17/2026": {
     "appellant": "Sarita Sah",
-    "respondent": "The Branch Manager, Allahabad Bank cum Indian"
+    "respondent": "The Branch Manager, Allahabad Bank cum Indian Bank"
   },
   "FA/18/2026": {
     "appellant": "Narendra Kumar Jha @ Ram Kumar Jha",
-    "respondent": "Gita Devi                               COURT FEE"
+    "respondent": "Gita Devi"
   },
   "FA/19/2026": {
     "appellant": "Arvind Kumar",
-    "respondent": "Mulhiya Devi                                                  COURT FEE"
+    "respondent": "Mulhiya Devi"
   },
   "FA/20/2026": {
     "appellant": "Smt. Satyabhama Devi",
-    "respondent": "Mostt. Asha Devi,                                     MISCELLANEOUS"
+    "respondent": "Mostt. Asha Devi,"
   },
   "FA/22/2026": {
     "appellant": "Prabha Devi",
-    "respondent": "Sri Jitendra Kumar                                             COURT FEE"
+    "respondent": "Sri Jitendra Kumar"
   },
   "FA/23/2026": {
     "appellant": "Jagtarini Devi",
-    "respondent": "Virendra Sharma                                             MISCELLANEOUS"
+    "respondent": "Virendra Sharma"
   },
   "FA/24/2026": {
     "appellant": "Rakesh Kumar Singh",
-    "respondent": "Praveen Kumar                                           COURT FEE"
+    "respondent": "Praveen Kumar"
   },
   "FA/25/2026": {
     "appellant": "Kanchan Kumar Singh",
-    "respondent": "Dr. Swapan Kumar Singh                                 COURT FEE"
+    "respondent": "Dr. Swapan Kumar Singh"
   },
   "FA/26/2026": {
     "appellant": "Lotni Devi @ Lutan Devi",
-    "respondent": "Runa Devi                                          COURT FEE The State of Bihar through District Land Acquisition Officer, Nalanda"
+    "respondent": "Runa Devi"
   },
   "FA/27/2026": {
-    "appellant": "",
+    "appellant": "The State of Bihar through District Land Acquisition Officer, Nalanda",
     "respondent": "Bhanu Pratap Singh"
   },
   "FA/28/2026": {
     "appellant": "Ambika Devi",
-    "respondent": "The State of Bihar                                             MISCELLANEOUS"
+    "respondent": "The State of Bihar"
   },
   "FA/29/2026": {
     "appellant": "Anil Kumar Yadav",
-    "respondent": "Suman Kumar Suman                                         COURT FEE"
+    "respondent": "Suman Kumar Suman"
   },
   "FA/30/2026": {
     "appellant": "Sameer @ Manish Kumar",
-    "respondent": "Lal Babu Yadav                                       MISCELLANEOUS"
+    "respondent": "Lal Babu Yadav"
   },
   "FA/31/2026": {
     "appellant": "Jalandhar Sah @ Jalendra Kumar",
-    "respondent": "Md. Molazim Mia                             COURT FEE"
+    "respondent": "Md. Molazim Mia"
   },
   "FA/32/2026": {
     "appellant": "Rohit Kumar",
-    "respondent": "The Estate of Late Bhishma Pratap Singh                        COURT FEE"
+    "respondent": "The Estate of Late Bhishma Pratap Singh"
   },
   "FA/34/2026": {
     "appellant": "Shri Raj Kapoor Sharma",
-    "respondent": "Sri Ram Briksha Sharma                              MISCELLANEOUS"
+    "respondent": "Sri Ram Briksha Sharma"
   },
   "FA/35/2026": {
     "appellant": "Saurabh Kumar",
-    "respondent": "Vidhya Singh                                                 MISCELLANEOUS"
+    "respondent": "Vidhya Singh"
   },
   "FA/36/2026": {
     "appellant": "Jai Prakash Mishra",
-    "respondent": "Mani Shankar Shukla                                     MISCELLANEOUS Krishna Chandra Prasad Singh @ Anil Kumar Singh VS. Shabat"
+    "respondent": "Mani Shankar Shukla"
   },
   "FA/37/2026": {
     "appellant": "Krishna Chandra Prasad Singh @ Anil Kumar Singh",
-    "respondent": "Shabat"
+    "respondent": "Shabat Imam, widow"
   },
   "FA/38/2026": {
     "appellant": "Ram Dayal Sharma",
-    "respondent": "The Estate of Late Asturni                                MISCELLANEOUS"
+    "respondent": "The Estate of Late Asturni"
   },
   "FA/40/2026": {
     "appellant": "Indu Devi",
-    "respondent": "Nawal Kumar Pathak                                               COURT FEE"
+    "respondent": "Nawal Kumar Pathak"
   },
   "FA/41/2026": {
     "appellant": "Lakshmi Narayan Prasad",
-    "respondent": "Smt. Radha Muni Devi,                               COURT FEE"
+    "respondent": "Smt. Radha Muni Devi,"
   },
   "FA/42/2026": {
     "appellant": "Kameshwar Prasad Singh",
@@ -22365,27 +22365,27 @@ const CASES_DB = {
   },
   "FA/43/2026": {
     "appellant": "Sigasan Singh Kushvaha",
-    "respondent": "Bahadur Mahto                                       MISCELLANEOUS"
+    "respondent": "Bahadur Mahto"
   },
   "FA/44/2026": {
     "appellant": "Ram Kumari @ Ram Kumari Devi",
-    "respondent": "Estate of Ram Briksha Rai                     COURT FEE Satyendra Narayan Singh VS. The Estate of Late Vishwamitra"
+    "respondent": "Estate of Ram Briksha Rai"
   },
   "FA/45/2026": {
     "appellant": "Satyendra Narayan Singh",
-    "respondent": "The Estate of Late Vishwamitra"
+    "respondent": "The Estate of Late Vishwamitra Sharma"
   },
   "FA/46/2026": {
     "appellant": "Smt. Saraswati Devi",
-    "respondent": "Tarkeshwar Singh                                       MISCELLANEOUS"
+    "respondent": "Tarkeshwar Singh"
   },
   "FA/47/2026": {
     "appellant": "Sitaram Jhunjhunwala",
-    "respondent": "Rajesh Jhunjhunwala,                                  MISCELLANEOUS"
+    "respondent": "Rajesh Jhunjhunwala,"
   },
   "FA/48/2026": {
     "appellant": "Awadhesh Kumar",
-    "respondent": "Mst. Mehru Nesha,                                           COURT FEE"
+    "respondent": "Mst. Mehru Nesha,"
   },
   "FA/49/2026": {
     "appellant": "Smt. Tanuja Kumari @ Pummy",
@@ -22397,7 +22397,7 @@ const CASES_DB = {
   },
   "FA/52/2026": {
     "appellant": "Rajeev Ranjan Roy",
-    "respondent": "Suresh Kumar Singh                                       COURT FEE"
+    "respondent": "Suresh Kumar Singh"
   },
   "FA/53/2026": {
     "appellant": "Merazul Haque",
@@ -22405,7 +22405,7 @@ const CASES_DB = {
   },
   "FA/54/2026": {
     "appellant": "Sangeeta Rai",
-    "respondent": "Smt. Shailja Karji                                            COURT FEE"
+    "respondent": "Smt. Shailja Karji"
   },
   "FA/55/2026": {
     "appellant": "Massomat Meena Devi",
@@ -22413,19 +22413,19 @@ const CASES_DB = {
   },
   "FA/56/2026": {
     "appellant": "Sanjay Tiwari",
-    "respondent": "Yasodha Devi                                                 MISCELLANEOUS"
+    "respondent": "Yasodha Devi"
   },
   "FA/58/2026": {
     "appellant": "Ajay Kumar Ojha",
-    "respondent": "Shashikant Pandey Arun Kumar Pandey @ Chandra Kant Pandey VS. Murli Manohar"
+    "respondent": "Shashikant Pandey"
   },
   "FA/59/2026": {
     "appellant": "Arun Kumar Pandey @ Chandra Kant Pandey",
-    "respondent": "Murli Manohar"
+    "respondent": "Murli Manohar Sharma @ Murli Pandey"
   },
   "FA/60/2026": {
     "appellant": "Rameshwar Singh",
-    "respondent": "Estate of Late Ramkali Devi"
+    "respondent": "Estate of Late Ramkali Devi,"
   },
   "FA/61/2026": {
     "appellant": "Balkrishna Choudhary",
@@ -22433,7 +22433,7 @@ const CASES_DB = {
   },
   "FA/63/2026": {
     "appellant": "Surendra Kumar",
-    "respondent": "The State of Bihar through the Principal"
+    "respondent": "The State of Bihar through the Principal Secretary,"
   },
   "FA/64/2026": {
     "appellant": "Manoranjan Kumar",
@@ -22449,15 +22449,15 @@ const CASES_DB = {
   },
   "FA/67/2026": {
     "appellant": "Ambuj Kant",
-    "respondent": "Kumari Rinki Aatiya Khatoon Nuresha @ Bibi Noor Aisha Khatoon VS. Shahnawaz"
+    "respondent": "Kumari Rinki"
   },
   "FA/68/2026": {
     "appellant": "Aatiya Khatoon Nuresha @ Bibi Noor Aisha Khatoon",
-    "respondent": "Shahnawaz"
+    "respondent": "Shahnawaz Alam"
   },
   "FA/69/2026": {
     "appellant": "Dinesh Kumar Pandey",
-    "respondent": "Samir Kumar Pandey                                     MISCELLANEOUS"
+    "respondent": "Samir Kumar Pandey"
   },
   "FA/70/2026": {
     "appellant": "Yogendra Raut",
@@ -22473,11 +22473,11 @@ const CASES_DB = {
   },
   "FA/73/2026": {
     "appellant": "M/S Britannia Industries Limited",
-    "respondent": "Smt. Shakuntala Binjraika Mithilesh Kumar @ Mithlesh Kumar @ Mithlesh Ray VS. Smt. Jipsi"
+    "respondent": "Smt. Shakuntala Binjraika"
   },
   "FA/74/2026": {
     "appellant": "Mithilesh Kumar @ Mithlesh Kumar @ Mithlesh Ray",
-    "respondent": "Smt. Jipsi"
+    "respondent": "Smt. Jipsi Devi"
   },
   "FA/75/2026": {
     "appellant": "Md. Anish",
@@ -22497,10 +22497,10 @@ const CASES_DB = {
   },
   "FA/79/2026": {
     "appellant": "Surya Kumar Verma",
-    "respondent": "The Estate of Late Tetri Devi Murtee Shree Ram Laxman Janki and Murtee Shree Mahabeer Jee"
+    "respondent": "The Estate of Late Tetri Devi"
   },
   "FA/80/2026": {
-    "appellant": "",
+    "appellant": "Murtee Shree Ram Laxman Janki and Murtee Shree Mahabeer Jee",
     "respondent": "Rajesh Kumar"
   },
   "FA/81/2026": {
@@ -22509,7 +22509,7 @@ const CASES_DB = {
   },
   "FA/82/2026": {
     "appellant": "Upendra Singh",
-    "respondent": "Rajendra Singh                                   MISCELLANEOUS"
+    "respondent": "Rajendra Singh"
   },
   "FA/83/2026": {
     "appellant": "Tara Devi",
@@ -22517,19 +22517,19 @@ const CASES_DB = {
   },
   "FA/84/2026": {
     "appellant": "Ram Kripal Singh",
-    "respondent": "Smt. Shakuntala Singh"
+    "respondent": "Smt. Shakuntala Singh,"
   },
   "FA/85/2026": {
     "appellant": "Savita Devi @ Sabita Devi",
-    "respondent": "Bindu Devi                           COURT FEE"
+    "respondent": "Bindu Devi"
   },
   "FA/86/2026": {
     "appellant": "Mosomat Binda Devi",
-    "respondent": "Sikandar Sah                                COURT FEE Neeroo Devi VS. The Estate of Late Sona Devi, Wife of Late"
+    "respondent": "Sikandar Sah"
   },
   "FA/87/2026": {
     "appellant": "Neeroo Devi",
-    "respondent": "The Estate of Late Sona Devi, Wife of Late"
+    "respondent": "The Estate of Late Sona Devi, Wife of Late Jagarnath Roy"
   },
   "FA/88/2026": {
     "appellant": "Sudhir Kumar",
@@ -22561,19 +22561,19 @@ const CASES_DB = {
   },
   "FA/96/2026": {
     "appellant": "Anjana Kumari Lal",
-    "respondent": "Amarchand Lal Navlesh Kumar VS. The Estate of deceased Ganga Dayal Singh alias"
+    "respondent": "Amarchand Lal"
   },
   "FA/97/2026": {
     "appellant": "Navlesh Kumar",
-    "respondent": "The Estate of deceased Ganga Dayal Singh alias"
+    "respondent": "The Estate of deceased Ganga Dayal Singh alias Ganga Dayal Yadav"
   },
   "FA/98/2026": {
     "appellant": "Gupteshwar Singh",
-    "respondent": "Vijay Singh                                   MISCELLANEOUS Ghanshyam Rawat @ Ghanshyam Rout VS. The State of Bihar"
+    "respondent": "Vijay Singh"
   },
   "FA/99/2026": {
     "appellant": "Ghanshyam Rawat @ Ghanshyam Rout",
-    "respondent": "The State of Bihar"
+    "respondent": "The State of Bihar through the Collector, Jamui"
   },
   "FA/100/2026": {
     "appellant": "Arun Kumar Singh",
@@ -22581,15 +22581,15 @@ const CASES_DB = {
   },
   "FA/101/2026": {
     "appellant": "Satish Prasad Agrawal",
-    "respondent": "Keshav Prasad Agrawal The State of Bihar through the Collector/ Additional Collector"
+    "respondent": "Keshav Prasad Agrawal"
   },
   "FA/102/2026": {
-    "appellant": "Muzaffarpur",
+    "appellant": "The State of Bihar through the Collector/ Additional Collector, Muzaffarpur",
     "respondent": "Ashok Kumar Sharma"
   },
   "FA/103/2026": {
-    "appellant": "Muzaffarpur",
-    "respondent": "Ashok Kumar Sharma"
+    "appellant": "Alok Kumar",
+    "respondent": "Raj Kumar Thakur"
   },
   "FA/104/2026": {
     "appellant": "Madhu Anand",
@@ -22609,11 +22609,11 @@ const CASES_DB = {
   },
   "FA/108/2026": {
     "appellant": "Baleshwar Prasad",
-    "respondent": "The Estate of Late Basant Singh Manoj Prasad VS. Smt. Archana Prasad @ Kumari Archana Sinha @"
+    "respondent": "The Estate of Late Basant Singh"
   },
   "FA/109/2026": {
     "appellant": "Manoj Prasad",
-    "respondent": "Smt. Archana Prasad @ Kumari Archana Sinha @"
+    "respondent": "Smt. Archana Prasad @ Kumari Archana Sinha @ Guddi"
   },
   "FA/110/2026": {
     "appellant": "Ramhit Mahton",
@@ -22633,19 +22633,19 @@ const CASES_DB = {
   },
   "FA/114/2026": {
     "appellant": "Ramdev Bhagat",
-    "respondent": "Vijay Bhagat"
+    "respondent": "Vijay Bhagat,"
   },
   "FA/115/2026": {
-    "appellant": "M/s Poonam Engicons Pvt. Ltd",
-    "respondent": "Nazrul Hasan Khan Jay Karni Tea Pvt. Ltd. through the Managing Director Raj Karn"
+    "appellant": "M/s Poonam Engicons Pvt. Ltd.",
+    "respondent": "Nazrul Hasan Khan"
   },
   "FA/116/2026": {
-    "appellant": "Daftari",
+    "appellant": "Jay Karni Tea Pvt. Ltd. through the Managing Director Raj Karn Daftari",
     "respondent": "Vasim Raja Khan"
   },
   "FA/117/2026": {
-    "appellant": "Daftari",
-    "respondent": "Vasim Raja Khan"
+    "appellant": "Munna Kumar @ Amit Kumar",
+    "respondent": "Estate of Late Lal Bihari Sah"
   },
   "FA/118/2026": {
     "appellant": "Gaya Muni Singh",
@@ -22657,19 +22657,19 @@ const CASES_DB = {
   },
   "FA/120/2026": {
     "appellant": "Vimala Devi",
-    "respondent": "Kashi Nath Pandey Sri Mahesh Kumar VS. The Estate of Late Dina Nath Yadav, Son of"
+    "respondent": "Kashi Nath Pandey"
   },
   "FA/121/2026": {
     "appellant": "Sri Mahesh Kumar",
-    "respondent": "The Estate of Late Dina Nath Yadav, Son of"
+    "respondent": "The Estate of Late Dina Nath Yadav, Son of- Late Beni Yadav"
   },
   "FA/122/2026": {
     "appellant": "Smt. Meena Kumari Sinha",
-    "respondent": "Sri Binod Kumar Sinha, Iffrat Ara @ Khairun Nisa VS. The State of Bihar through Chief"
+    "respondent": "Sri Binod Kumar Sinha,"
   },
   "FA/123/2026": {
     "appellant": "Iffrat Ara @ Khairun Nisa",
-    "respondent": "The State of Bihar through Chief"
+    "respondent": "The State of Bihar through Chief Secretary, Government of Bihar,"
   },
   "FA/124/2026": {
     "appellant": "Budhan Singh",
@@ -22677,47 +22677,47 @@ const CASES_DB = {
   },
   "FA/125/2026": {
     "appellant": "Kamal Deo Prasad",
-    "respondent": "Dev Kuar Devi @ Smt. Raj Kuar Devi, Sultana Khatun VS. The State of Bihar through Chief Secretary"
+    "respondent": "Dev Kuar Devi @ Smt. Raj Kuar Devi,"
   },
   "FA/126/2026": {
     "appellant": "Sultana Khatun",
-    "respondent": "The State of Bihar through Chief Secretary"
+    "respondent": "The State of Bihar through Chief Secretary, Government of Bihar,"
   },
   "FA/127/2026": {
     "appellant": "Qudsia Bano",
-    "respondent": "The State of Bihar through Chief Secretary"
+    "respondent": "The State of Bihar through Chief Secretary, Government of Bihar"
   },
   "FA/128/2026": {
     "appellant": "Reyaz Miya @ Jalim Miya",
-    "respondent": "Abdullah Miya                             MISCELLANEOUS Rakesh Ranjan Prasad @ Rakesh Ranjan Kumar VS. Ram Briksh"
+    "respondent": "Abdullah Miya"
   },
   "FA/129/2026": {
     "appellant": "Rakesh Ranjan Prasad @ Rakesh Ranjan Kumar",
-    "respondent": "Ram Briksh"
+    "respondent": "Ram Briksh Sahu"
   },
   "FA/130/2026": {
     "appellant": "Mukalesh Yadav",
-    "respondent": "Mannu Yadav                                        COURT FEE Satyendra Kumar Maurya @ Satyen Anand VS. Smt. Ramawati"
+    "respondent": "Mannu Yadav"
   },
   "FA/131/2026": {
     "appellant": "Satyendra Kumar Maurya @ Satyen Anand",
-    "respondent": "Smt. Ramawati"
+    "respondent": "Smt. Ramawati Kumari @ Rama Maurya"
   },
   "FA/132/2026": {
     "appellant": "Baban Singh",
     "respondent": "Om Prakash Singh"
   },
   "FA/133/2026": {
-    "appellant": "Piyush Kumar (Minor",
-    "respondent": "Anita Devi Syed Shakir @ Shakir Ahamad VS. The State of Bihar through Chief"
+    "appellant": "Piyush Kumar (Minor)",
+    "respondent": "Anita Devi"
   },
   "FA/134/2026": {
     "appellant": "Syed Shakir @ Shakir Ahamad",
-    "respondent": "The State of Bihar through Chief"
+    "respondent": "The State of Bihar through Chief Secretary, Government of Bihar"
   },
   "FA/135/2026": {
     "appellant": "Syed Jamal Hassan @ S. Jamal Hasan",
-    "respondent": "The State of Bihar"
+    "respondent": "The State of Bihar through Chief Secretary, Government of Bihar"
   },
   "FA/136/2026": {
     "appellant": "Dr. Arun Prasad",
@@ -22725,7 +22725,7 @@ const CASES_DB = {
   },
   "FA/137/2026": {
     "appellant": "Mahesh Kumar Singh",
-    "respondent": "The State of Bihar                             MISCELLANEOUS"
+    "respondent": "The State of Bihar"
   },
   "FA/138/2026": {
     "appellant": "Rampati Devi",
@@ -22733,23 +22733,23 @@ const CASES_DB = {
   },
   "FA/139/2026": {
     "appellant": "Ajay Prasad",
-    "respondent": "Vasim Raja Khan                                       MISCELLANEOUS"
+    "respondent": "Vasim Raja Khan"
   },
   "FA/140/2026": {
     "appellant": "Parmatma Kumar Mishra",
-    "respondent": "Mosmt. Parvati Devi                         COURT FEE Syed Nasir Ali VS. The State of Bihar through Chief Secretary"
+    "respondent": "Mosmt. Parvati Devi"
   },
   "FA/141/2026": {
     "appellant": "Syed Nasir Ali",
-    "respondent": "The State of Bihar through Chief Secretary"
+    "respondent": "The State of Bihar through Chief Secretary, Government of Bihar"
   },
   "FA/142/2026": {
     "appellant": "Sudhir Kumar Upadhaya",
-    "respondent": "Santosh Kumar Upadhaya                      MISCELLANEOUS"
+    "respondent": "Santosh Kumar Upadhaya"
   },
   "FA/143/2026": {
     "appellant": "Parwati Devi",
-    "respondent": "Lal Mani Devi                                        MISCELLANEOUS"
+    "respondent": "Lal Mani Devi"
   },
   "FA/144/2026": {
     "appellant": "Seema Rani",
@@ -22757,23 +22757,23 @@ const CASES_DB = {
   },
   "FA/145/2026": {
     "appellant": "Dhanma Devi",
-    "respondent": "Sobha Devi Mahendra Kishore Prasad Singh VS. Krishnandan Singh @ Bhola"
+    "respondent": "Sobha Devi"
   },
   "FA/146/2026": {
     "appellant": "Mahendra Kishore Prasad Singh",
-    "respondent": "Krishnandan Singh @ Bhola"
+    "respondent": "Krishnandan Singh @ Bhola Singh"
   },
   "FA/147/2026": {
     "appellant": "Jyoti Bramaha Chakarbarti",
-    "respondent": "Ajay Kumar Rai                          COURT FEE"
+    "respondent": "Ajay Kumar Rai"
   },
   "FA/148/2026": {
     "appellant": "Smt.Nivedita Sinha",
-    "respondent": "Sri Jugeshwar Sinha Bihar State Financial Corporation VS. M/s Janki Mill Paper Private"
+    "respondent": "Sri Jugeshwar Sinha"
   },
   "FA/149/2026": {
     "appellant": "Bihar State Financial Corporation",
-    "respondent": "M/s Janki Mill Paper Private"
+    "respondent": "M/s Janki Mill Paper Private Limited CIN U21010BR1980PTC001479"
   },
   "FA/150/2026": {
     "appellant": "Satya Narayan Singh",
@@ -22781,31 +22781,31 @@ const CASES_DB = {
   },
   "FA/151/2026": {
     "appellant": "Sushila Devi",
-    "respondent": "Ramsundar Rai                                        COURT FEE"
+    "respondent": "Ramsundar Rai"
   },
   "FA/152/2026": {
     "appellant": "Seema Naz",
-    "respondent": "Md. Asazad Raza The State of Bihar through the Collector VS. Shiv ji Singh @ Shivji"
+    "respondent": "Md. Asazad Raza"
   },
   "FA/153/2026": {
     "appellant": "The State of Bihar through the Collector",
-    "respondent": "Shiv ji Singh @ Shivji"
+    "respondent": "Shiv ji Singh @ Shivji Singh"
   },
   "FA/154/2026": {
     "appellant": "Nathuni Mahto",
-    "respondent": "Lilawati Devi                                       MISCELLANEOUS"
+    "respondent": "Lilawati Devi"
   },
   "FA/155/2026": {
     "appellant": "Vipul Kumar Rai",
-    "respondent": "Shailesh Kumar Rai                                COURT FEE"
+    "respondent": "Shailesh Kumar Rai"
   },
   "FA/156/2026": {
     "appellant": "Suraj Prasad Saha",
-    "respondent": "Lakshmi Devi                                    MISCELLANEOUS"
+    "respondent": "Lakshmi Devi"
   },
   "FA/157/2026": {
     "appellant": "Raj Kumar",
-    "respondent": "Raj Kumari Devi                                         COURT FEE"
+    "respondent": "Raj Kumari Devi"
   },
   "FA/158/2026": {
     "appellant": "Surjit Kumar",
@@ -22821,15 +22821,15 @@ const CASES_DB = {
   },
   "FA/161/2026": {
     "appellant": "Nandkishore Singh",
-    "respondent": "Radha Devi Birendra Singh alias Birendra Kumar Singh VS. Ansh Kumar Maurya"
+    "respondent": "Radha Devi"
   },
   "FA/162/2026": {
     "appellant": "Birendra Singh alias Birendra Kumar Singh",
-    "respondent": "Ansh Kumar Maurya"
+    "respondent": "Ansh Kumar Maurya, (Minor)"
   },
   "FA/163/2026": {
     "appellant": "Prushottam Kumar Singh",
-    "respondent": "Navneet Kumar Singh @ Dinesh Kumar"
+    "respondent": "Navneet Kumar Singh @ Dinesh Kumar Singh"
   },
   "FA/164/2026": {
     "appellant": "Chandra Bibhuti Agrawal",
@@ -22837,7 +22837,7 @@ const CASES_DB = {
   },
   "FA/165/2026": {
     "appellant": "Motijhari Devi",
-    "respondent": "The Estate of late Ram Sagar Singh"
+    "respondent": "The Estate of late Ram Sagar Singh,"
   },
   "FA/166/2026": {
     "appellant": "Basant Kumar Singh",
@@ -22845,34 +22845,34 @@ const CASES_DB = {
   },
   "FA/167/2026": {
     "appellant": "Ashok Kumar",
-    "respondent": "Brij Bihari Lal Vedsen Amarendra Dhari Singh VS. Mata Bhagwati through self proclaimed"
+    "respondent": "Brij Bihari Lal Vedsen"
   },
   "FA/168/2026": {
     "appellant": "Amarendra Dhari Singh",
-    "respondent": "Mata Bhagwati through self proclaimed"
+    "respondent": "Mata Bhagwati through self proclaimed alleged Shebait, Maksudpur Raj Mandir Palace Garh,"
   },
   "FA/169/2026": {
     "appellant": "Kameshwar Prasad Singh",
-    "respondent": "In the estate of Ram Dahin Singh Bihar Industrial Area Development Authority (BIADA) VS. Competent"
+    "respondent": "In the estate of Ram Dahin Singh"
   },
   "FA/170/2026": {
-    "appellant": "Bihar Industrial Area Development Authority (BIADA",
-    "respondent": "Competent"
+    "appellant": "Bihar Industrial Area Development Authority (BIADA)",
+    "respondent": "Competent Authority cum Land Acquisition Officer Munger and Anr"
   },
   "FA/171/2026": {
     "appellant": "Basant Kumar Singh",
     "respondent": "Ram Pravesh Rai"
   },
   "FA/172/2026": {
-    "appellant": "Veermani Singh",
-    "respondent": "Kalyan Kumar"
+    "appellant": "Veermani Singh,",
+    "respondent": "Kalyan Kumar,"
   },
   "FA/173/2026": {
-    "appellant": "Sri Vrij Nandan Singh",
+    "appellant": "Sri Vrij Nandan Singh,",
     "respondent": "The Estate of Late Most. Jiwaso Kuer"
   },
   "FA/174/2026": {
     "appellant": "Bhawani Devi",
-    "respondent": "Yogedra Tiwary  ICT SUPPORT:NIC BIHAR"
+    "respondent": "Yogedra Tiwary"
   }
 };
