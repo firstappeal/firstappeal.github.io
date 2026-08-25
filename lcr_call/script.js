@@ -509,34 +509,95 @@ document.addEventListener('DOMContentLoaded', () => {
     saveBtn.addEventListener('click', () => saveToCloud(false));
   }
 
-  if (viewBtn) {
-    viewBtn.addEventListener('click', async () => {
-      const searchCaseNo = prompt('Enter Case Number to fetch LCR Call (e.g., 3):');
-      if (!searchCaseNo) return;
-      try {
-        const data = await window.PortalDB.getLcrCalls();
-        const matches = data.filter(l => (l.case_no || '').toString().toLowerCase().trim() === searchCaseNo.toString().toLowerCase().trim());
-        if (matches.length === 0) { alert('No LCR Call found for Case Number: ' + searchCaseNo); return; }
-        let lcrCall = matches[0];
-        if (matches.length > 1) {
-          let listMsg = `Multiple saved LCR Calls found for '${searchCaseNo}':\n\n`;
-          matches.forEach((m, idx) => { const d = m.saved_at ? m.saved_at.slice(0,10) : 'Saved'; listMsg += `${idx+1}. ${d}\n`; });
-          const choice = prompt(listMsg + `\nEnter number (1-${matches.length}):`, '1');
-          const idx = parseInt(choice,10) - 1;
-          if (!isNaN(idx) && matches[idx]) lcrCall = matches[idx];
-        }
-        for (const editorId of Object.keys(FIELD_MAP)) {
-          const input = document.getElementById(editorId);
-          if (input && lcrCall[editorId] !== undefined) input.value = lcrCall[editorId];
-        }
-        syncFields();
-        alert('LCR Call loaded successfully!');
-      } catch (error) {
-        console.error('Error fetching LCR Call:', error);
-        alert('Error loading LCR Call.');
-      }
+  // ── Load Saved LCRs Modal ─────────────────────────────────────
+  let allLcrRecords = []; // cached fetch
+
+  function fmtDate(str) {
+    if (!str) return '—';
+    try { return new Date(str).toLocaleDateString('en-IN', { day:'2-digit', month:'short', year:'numeric' }); }
+    catch { return str; }
+  }
+
+  function renderLcrModal(query = '') {
+    const tbody = document.getElementById('lcrModalBody');
+    if (!tbody) return;
+    const q = query.toLowerCase().trim();
+    const filtered = allLcrRecords.filter(r => {
+      const haystack = `${r.case_no || ''} ${r.case_year || ''} ${r.appellant || ''} ${r.respondent || ''} ${r.court_of_the || ''}`.toLowerCase();
+      return !q || haystack.includes(q);
     });
-  } // Fix for missing closing brace
+
+    const countEl = document.getElementById('lcrModalCount');
+    if (countEl) countEl.textContent = `${filtered.length} record${filtered.length === 1 ? '' : 's'} found`;
+
+    if (filtered.length === 0) {
+      tbody.innerHTML = `<tr><td colspan="4" style="padding:24px;text-align:center;color:var(--text-muted);">No records found.</td></tr>`;
+      return;
+    }
+
+    tbody.innerHTML = filtered.map(r => {
+      const caseLabel = `FA No. ${r.case_no || '—'} / ${r.case_year || '—'}`;
+      const saved = fmtDate(r.saved_at);
+      return `<tr data-id="${r.id}" style="cursor:pointer;border-bottom:1px solid rgba(51,65,85,0.5);transition:background 0.15s;"
+                onmouseover="this.style.background='rgba(255,255,255,0.04)'"
+                onmouseout="this.style.background=''"
+                onclick="loadLcrRecord(${r.id})">
+        <td style="padding:10px 14px;font-weight:700;color:#60a5fa;">${caseLabel}</td>
+        <td style="padding:10px 14px;color:var(--text-light);">${r.appellant || '—'}</td>
+        <td style="padding:10px 14px;color:var(--text-muted);">${r.respondent || '—'}</td>
+        <td style="padding:10px 14px;color:var(--text-muted);white-space:nowrap;">${saved}</td>
+      </tr>`;
+    }).join('');
+  }
+
+  window.loadLcrRecord = function(id) {
+    const record = allLcrRecords.find(r => r.id === id);
+    if (!record) return;
+    for (const editorId of Object.keys(FIELD_MAP)) {
+      const input = document.getElementById(editorId);
+      if (input && record[editorId] !== undefined) input.value = record[editorId];
+    }
+    syncFields();
+    // Close modal
+    const modal = document.getElementById('loadLcrModal');
+    if (modal) { modal.classList.remove('active'); setTimeout(() => { modal.style.display = 'none'; }, 200); }
+  };
+
+  const lcrModalEl      = document.getElementById('loadLcrModal');
+  const lcrModalSearch  = document.getElementById('lcrModalSearch');
+  const closeLcrModal   = document.getElementById('closeLcrModal');
+  const closeLcrModalBtn= document.getElementById('closeLcrModalBtn');
+
+  async function openLcrModal() {
+    if (!lcrModalEl) return;
+    lcrModalEl.style.display = 'flex';
+    setTimeout(() => lcrModalEl.classList.add('active'), 10);
+
+    // Fetch (or use cache)
+    if (allLcrRecords.length === 0) {
+      try {
+        allLcrRecords = window.PortalDB ? await window.PortalDB.getLcrCalls() : [];
+      } catch(e) {
+        console.error('Failed to fetch LCR calls:', e);
+        allLcrRecords = [];
+      }
+    }
+    if (lcrModalSearch) lcrModalSearch.value = '';
+    renderLcrModal('');
+  }
+
+  function closeLcrModalFn() {
+    if (!lcrModalEl) return;
+    lcrModalEl.classList.remove('active');
+    setTimeout(() => { lcrModalEl.style.display = 'none'; }, 200);
+  }
+
+  if (viewBtn)          viewBtn.addEventListener('click', openLcrModal);
+  if (closeLcrModal)    closeLcrModal.addEventListener('click', closeLcrModalFn);
+  if (closeLcrModalBtn) closeLcrModalBtn.addEventListener('click', closeLcrModalFn);
+  if (lcrModalEl)       lcrModalEl.addEventListener('click', e => { if (e.target === lcrModalEl) closeLcrModalFn(); });
+  if (lcrModalSearch)   lcrModalSearch.addEventListener('input', () => renderLcrModal(lcrModalSearch.value));
+
 
   const letterTypeSelect = document.getElementById('letter_type');
   const prevDateInput = document.getElementById('prev_call_date');

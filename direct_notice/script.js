@@ -546,75 +546,113 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   if (viewCloudBtn) {
-    viewCloudBtn.addEventListener('click', async () => {
-      const searchCaseNo = prompt("Enter Case Number to fetch notices (e.g., 1233):");
-      if (!searchCaseNo) return;
-
-      try {
-        let data = [];
-        if (window.PortalDB) {
-          data = await window.PortalDB.getDirectNotices();
-        } else {
-          throw new Error('PortalDB not available');
-        }
-
-        if (data.length === 0) {
-          alert("No notice found in cloud.");
-          return;
-        }
-
-        const matches = data.filter(n => (n.caseNo || '').toString().toLowerCase().trim() === searchCaseNo.toString().toLowerCase().trim());
-        if (matches.length === 0) {
-          alert("No notice found for Case Number: " + searchCaseNo);
-          return;
-        }
-
-        let notice = matches[0];
-        if (matches.length > 1) {
-          let listMsg = `Multiple saved notices found for Case '${searchCaseNo}':\n\n`;
-          matches.forEach((m, idx) => {
-            const dateStr = m.saved_at ? m.saved_at.split('.')[0] : 'Saved Record';
-            listMsg += `${idx + 1}. Saved on: ${dateStr} ${idx === 0 ? '(Latest)' : ''}\n`;
-          });
-          listMsg += `\nEnter number (1-${matches.length}) to load (Default = 1):`;
-          const choice = prompt(listMsg, "1");
-          if (!choice) return;
-          const choiceIdx = parseInt(choice, 10) - 1;
-          if (!isNaN(choiceIdx) && matches[choiceIdx]) {
-            notice = matches[choiceIdx];
-          }
-        }
-        
-        document.getElementById('in_appeal_type').value = notice.appealType || '';
-        document.getElementById('in_case_no').value = notice.caseNo || '';
-        document.getElementById('in_case_year').value = notice.caseYear || '';
-        document.getElementById('in_arising_out_of').value = notice.arisingOutOf || '';
-        document.getElementById('in_arising_court').value = notice.arisingCourt || '';
-        document.getElementById('in_connected_case').value = notice.connectedCase || '';
-        document.getElementById('in_connected_year').value = notice.connectedYear || '';
-        document.getElementById('in_connected_court').value = notice.connectedCourt || '';
-        document.getElementById('in_appellant').value = notice.appellant || '';
-        document.getElementById('in_respondent').value = notice.respondent || '';
-        document.getElementById('in_advocate_name').value = notice.advocateName || '';
-        document.getElementById('in_appearance_period').value = notice.appearancePeriod || '';
-        document.getElementById('in_date_day').value = notice.dateDay || '';
-        document.getElementById('in_date_month').value = notice.dateMonth || '';
-        document.getElementById('in_date_year').value = notice.dateYear || '';
-
-        if (notice.recipients && Array.isArray(notice.recipients)) {
-          recipients = notice.recipients;
-        } else {
-          recipients = [""];
-        }
-
-        renderRecipientInputs();
-        renderPages();
-
-        alert("Notice loaded from cloud successfully!");
-      } catch (error) {
-        console.error("Error fetching notice from Supabase:", error);
-        alert("Error loading notice from cloud.");
-      }
-    });
+    viewCloudBtn.addEventListener('click', openNoticesModal);
   }
+
+  // ── Load Saved Notices Modal ──────────────────────────────────
+  let allNoticeRecords = [];
+
+  function fmtNoticeDate(str) {
+    if (!str) return '—';
+    try { return new Date(str).toLocaleDateString('en-IN', { day:'2-digit', month:'short', year:'numeric' }); }
+    catch { return str; }
+  }
+
+  function renderNoticesModal(query = '') {
+    const tbody = document.getElementById('noticesModalBody');
+    if (!tbody) return;
+    const q = query.toLowerCase().trim();
+    const filtered = allNoticeRecords.filter(r => {
+      // data may be stored inside r.data (JSON column) or flat
+      const d = r.data || r;
+      const haystack = `${d.caseNo || r.caseNo || ''} ${d.caseYear || r.caseYear || ''} ${d.appellant || r.appellant || ''} ${d.respondent || r.respondent || ''}`.toLowerCase();
+      return !q || haystack.includes(q);
+    });
+
+    const countEl = document.getElementById('noticesModalCount');
+    if (countEl) countEl.textContent = `${filtered.length} record${filtered.length === 1 ? '' : 's'} found`;
+
+    if (filtered.length === 0) {
+      tbody.innerHTML = `<tr><td colspan="4" style="padding:24px;text-align:center;color:#94a3b8;">No records found.</td></tr>`;
+      return;
+    }
+
+    tbody.innerHTML = filtered.map(r => {
+      const d = r.data || r;
+      const caseLabel = `${d.appealType || 'FA'} No. ${d.caseNo || '—'} / ${d.caseYear || '—'}`;
+      const saved = fmtNoticeDate(r.saved_at || r.created_at);
+      return `<tr data-id="${r.id}" style="cursor:pointer;border-bottom:1px solid rgba(51,65,85,0.5);transition:background 0.15s;"
+                onmouseover="this.style.background='rgba(255,255,255,0.04)'"
+                onmouseout="this.style.background=''"
+                onclick="loadNoticeRecord(${r.id})">
+        <td style="padding:10px 14px;font-weight:700;color:#60a5fa;">${caseLabel}</td>
+        <td style="padding:10px 14px;color:#f8fafc;">${d.appellant || '—'}</td>
+        <td style="padding:10px 14px;color:#94a3b8;">${d.respondent || '—'}</td>
+        <td style="padding:10px 14px;color:#94a3b8;white-space:nowrap;">${saved}</td>
+      </tr>`;
+    }).join('');
+  }
+
+  window.loadNoticeRecord = function(id) {
+    const row = allNoticeRecords.find(r => r.id === id);
+    if (!row) return;
+    const notice = row.data || row;
+
+    document.getElementById('in_appeal_type').value = notice.appealType || '';
+    document.getElementById('in_case_no').value = notice.caseNo || '';
+    document.getElementById('in_case_year').value = notice.caseYear || '';
+    document.getElementById('in_arising_out_of').value = notice.arisingOutOf || '';
+    document.getElementById('in_arising_court').value = notice.arisingCourt || '';
+    document.getElementById('in_connected_case').value = notice.connectedCase || '';
+    document.getElementById('in_connected_year').value = notice.connectedYear || '';
+    document.getElementById('in_connected_court').value = notice.connectedCourt || '';
+    document.getElementById('in_appellant').value = notice.appellant || '';
+    document.getElementById('in_respondent').value = notice.respondent || '';
+    document.getElementById('in_advocate_name').value = notice.advocateName || '';
+    document.getElementById('in_appearance_period').value = notice.appearancePeriod || '';
+    document.getElementById('in_date_day').value = notice.dateDay || '';
+    document.getElementById('in_date_month').value = notice.dateMonth || '';
+    document.getElementById('in_date_year').value = notice.dateYear || '';
+
+    if (notice.recipients && Array.isArray(notice.recipients)) {
+      recipients = notice.recipients;
+    } else { recipients = ['']; }
+
+    renderRecipientInputs();
+    renderPages();
+
+    // Close modal
+    const modal = document.getElementById('loadNoticesModal');
+    if (modal) modal.style.display = 'none';
+  };
+
+  const noticesModalEl      = document.getElementById('loadNoticesModal');
+  const noticesModalSearch  = document.getElementById('noticesModalSearch');
+  const closeNoticesModal   = document.getElementById('closeNoticesModal');
+  const closeNoticesModalBtn= document.getElementById('closeNoticesModalBtn');
+
+  async function openNoticesModal() {
+    if (!noticesModalEl) return;
+    noticesModalEl.style.display = 'flex';
+
+    if (allNoticeRecords.length === 0) {
+      try {
+        allNoticeRecords = window.PortalDB ? await window.PortalDB.getDirectNotices() : [];
+      } catch(e) {
+        console.error('Failed to fetch notices:', e);
+        allNoticeRecords = [];
+      }
+    }
+    if (noticesModalSearch) noticesModalSearch.value = '';
+    renderNoticesModal('');
+  }
+
+  function closeNoticesModalFn() {
+    if (noticesModalEl) noticesModalEl.style.display = 'none';
+  }
+
+  if (closeNoticesModal)    closeNoticesModal.addEventListener('click', closeNoticesModalFn);
+  if (closeNoticesModalBtn) closeNoticesModalBtn.addEventListener('click', closeNoticesModalFn);
+  if (noticesModalEl)       noticesModalEl.addEventListener('click', e => { if (e.target === noticesModalEl) closeNoticesModalFn(); });
+  if (noticesModalSearch)   noticesModalSearch.addEventListener('input', () => renderNoticesModal(noticesModalSearch.value));
 });

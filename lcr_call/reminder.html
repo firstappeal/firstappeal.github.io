@@ -65,10 +65,22 @@
             <input type="text" id="rem_date">
           </div>
           <div class="input-group">
-            <label for="rem_prev_date">Original Call Date (Requisition Date)</label>
-            <input type="text" id="rem_prev_date" placeholder="e.g. 15th May, 2026">
-            <small class="help-text">Date when LCR was first called for.</small>
+            <label for="rem_deadline">Deadline for Compliance</label>
+            <input type="text" id="rem_deadline" placeholder="e.g. 15 days / 10th September, 2026">
+            <small class="help-text">This will appear in the last paragraph of the letter.</small>
           </div>
+        </div>
+
+        <!-- Dynamic Previous LCR Letter References -->
+        <div class="input-group" style="margin-top: 4px;">
+          <label style="display:flex; align-items:center; justify-content:space-between;">
+            <span>Previous LCR Letter References</span>
+            <button type="button" id="addRefBtn" style="background:rgba(201,162,39,0.15);color:#f0d97a;border:1px solid rgba(201,162,39,0.3);padding:3px 10px;border-radius:5px;cursor:pointer;font-size:0.78rem;font-weight:600;">
+              + Add Reference
+            </button>
+          </label>
+          <small class="help-text">Enter Memo No. and date for each previous LCR call letter issued to this court.</small>
+          <div id="refListContainer" style="display:flex;flex-direction:column;gap:8px;margin-top:6px;"></div>
         </div>
       </div>
 
@@ -180,14 +192,14 @@
             Sir,
           </div>
 
-          <!-- Body Text (Explicit 30-Day Lapse and 15-Day Deadline Protocol) -->
-          <!-- Applied 'Verdana' size 13 and line spacing 1.50 as per Uniform Letter System guidelines for Judicial Sections -->
+          <!-- Body Text -->
           <div style="font-family: 'Verdana', sans-serif; font-size: 13pt; line-height: 1.5; text-align: justify; margin-bottom: 24pt;" id="p_rem_body">
-            With reference to the subject cited above, I am directed to invite your kind attention to this Court's requisition letter dated <strong id="p_rem_prev_date_val">[Requisition Date]</strong>, whereby the Lower Court Records (L.C.R.) connected with <strong id="p_rem_case_title">First Appeal No. 3 of 1973</strong> (Arising out of <em id="p_rem_arising">Land Acquisition Case No. 12 of 1971</em>, Court of the <em id="p_rem_court">Subordinate Judge I, Patna</em>) were called for transmission to this Court.
+            With reference to the subject cited above, I am directed to invite your kind attention to this Court's LCR Call Letter(s), details of which are given below:
             <br><br>
-            It is brought to your notice that despite the lapse of <strong>more than 30 days</strong> since the issuance of the aforementioned LCR call form, the connected Lower Court Records have not yet been received by this Court, causing delay in the proceedings of the instant appeal.
+            <div id="p_rem_refs_list" style="padding-left: 20pt; line-height: 1.8;"></div>
+            whereby the Lower Court Records (L.C.R.) connected with <strong id="p_rem_case_title">First Appeal No. 3 of 1973</strong> (Arising out of <em id="p_rem_arising">Land Acquisition Case No. 12 of 1971</em>, Court of the <em id="p_rem_court">Subordinate Judge I, Patna</em>) were called for transmission to this Court, the connected Lower Court Records have not yet been received by this Court, causing delay in the proceedings of the instant appeal.
             <br><br>
-            I am, therefore, directed to request you to kindly look into the matter personally and ensure that the connected Lower Court Records are transmitted to this Court positively <strong>within 15 days</strong> from the date of receipt of this <strong>REMINDER</strong> letter, failing which the matter may be placed before the Hon'ble Court for appropriate orders.
+            I am, therefore, directed to request you to kindly look into the matter personally and ensure that the connected Lower Court Records are transmitted to this Court positively <strong id="p_rem_deadline">within 15 days</strong> from the date of receipt of this <strong>REMINDER</strong> letter, failing which the matter may be placed before the Hon'ble Court for appropriate orders.
           </div>
 
           <!-- Sign-off -->
@@ -202,98 +214,204 @@
   </div>
 
   <script>
+    /* ── Helpers ─────────────────────────────────────── */
     function getFormattedCurrentDate() {
       const now = new Date();
       const day = now.getDate();
       const year = now.getFullYear();
-      const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+      const months = ["January","February","March","April","May","June",
+                      "July","August","September","October","November","December"];
       const monthName = months[now.getMonth()];
       let suffix = "th";
       if (day === 1 || day === 21 || day === 31) suffix = "st";
       else if (day === 2 || day === 22) suffix = "nd";
       else if (day === 3 || day === 23) suffix = "rd";
-      return `${String(day).padStart(2, '0')}${suffix} ${monthName} , ${year}`;
+      return `${String(day).padStart(2,'0')}${suffix} ${monthName} , ${year}`;
     }
 
+    /* ── Reference Row Management ────────────────────── */
+    let refCounter = 0;
+
+    function addRefRow(memoNo = '', dateVal = '') {
+      refCounter++;
+      const id = refCounter;
+      const container = document.getElementById('refListContainer');
+      const row = document.createElement('div');
+      row.id = `ref-row-${id}`;
+      row.style.cssText = 'display:flex;gap:8px;align-items:center;';
+      row.innerHTML = `
+        <input type="text"
+               id="ref_memo_${id}"
+               class="ref-input"
+               placeholder="Memo No. (e.g. 1234/2026)"
+               value="${esc(memoNo)}"
+               style="flex:1;background:var(--input-bg,#1e293b);border:1.5px solid #475569;color:#f8fafc;padding:8px 12px;border-radius:6px;font-family:inherit;font-size:0.88rem;outline:none;">
+        <input type="text"
+               id="ref_date_${id}"
+               class="ref-input"
+               placeholder="Date (e.g. 10th June, 2026)"
+               value="${esc(dateVal)}"
+               style="flex:1;background:var(--input-bg,#1e293b);border:1.5px solid #475569;color:#f8fafc;padding:8px 12px;border-radius:6px;font-family:inherit;font-size:0.88rem;outline:none;">
+        <button type="button"
+                onclick="removeRef(${id})"
+                style="background:rgba(239,68,68,0.12);color:#ef4444;border:1px solid rgba(239,68,68,0.3);padding:6px 10px;border-radius:6px;cursor:pointer;font-size:0.85rem;flex-shrink:0;"
+                title="Remove this reference">✕</button>
+      `;
+      container.appendChild(row);
+
+      // Bind live-sync
+      row.querySelectorAll('.ref-input').forEach(inp => {
+        inp.addEventListener('input',  syncReminderFields);
+        inp.addEventListener('change', syncReminderFields);
+      });
+
+      syncReminderFields();
+    }
+
+    function removeRef(id) {
+      const row = document.getElementById(`ref-row-${id}`);
+      if (row) row.remove();
+      syncReminderFields();
+    }
+
+    function esc(s) {
+      return String(s || '').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    }
+
+    /* Roman numerals for reference list */
+    const ROMAN = ['i','ii','iii','iv','v','vi','vii','viii','ix','x'];
+
+    function getRefRows() {
+      const rows = document.querySelectorAll('#refListContainer > div[id^="ref-row-"]');
+      const refs = [];
+      rows.forEach((row, idx) => {
+        const id = row.id.replace('ref-row-', '');
+        const memo = (document.getElementById(`ref_memo_${id}`)?.value || '').trim();
+        const date = (document.getElementById(`ref_date_${id}`)?.value || '').trim();
+        if (memo || date) refs.push({ memo, date, idx });
+      });
+      return refs;
+    }
+
+    /* ── Main Sync ───────────────────────────────────── */
     function syncReminderFields() {
       const getVal = (id, def = '') => (document.getElementById(id)?.value || def).trim();
-      
-      const caseType = getVal('rem_case_type', 'First Appeal');
-      const caseNo = getVal('rem_case_no', '___');
-      const caseYear = getVal('rem_case_year', '___');
-      const arising = getVal('rem_arising_out_of', '___');
-      const court = getVal('rem_court_of_the', '___');
-      const app = getVal('rem_appellant');
-      const resp = getVal('rem_respondent');
-      const prevDate = getVal('rem_prev_date', '[Requisition Date]');
 
-      document.getElementById('p_rem_letter_no').textContent = getVal('rem_letter_no', '……');
-      document.getElementById('p_rem_file_no').textContent = getVal('rem_file_no', '……');
-      document.getElementById('p_rem_section').textContent = getVal('rem_section', 'First Appeal Section');
-      document.getElementById('p_rem_date').textContent = getVal('rem_date', getFormattedCurrentDate());
-      document.getElementById('p_rem_to_title').textContent = getVal('rem_to_title', 'District and Sessions Judge');
+      const caseType = getVal('rem_case_type', 'First Appeal');
+      const caseNo   = getVal('rem_case_no',   '___');
+      const caseYear = getVal('rem_case_year',  '___');
+      const arising  = getVal('rem_arising_out_of', '___');
+      const court    = getVal('rem_court_of_the',   '___');
+      const app      = getVal('rem_appellant');
+      const resp     = getVal('rem_respondent');
+
+      document.getElementById('p_rem_letter_no').textContent  = getVal('rem_letter_no', '……');
+      document.getElementById('p_rem_file_no').textContent    = getVal('rem_file_no',    '……');
+      document.getElementById('p_rem_section').textContent    = getVal('rem_section', 'First Appeal Section');
+      document.getElementById('p_rem_date').textContent       = getVal('rem_date', getFormattedCurrentDate());
+      document.getElementById('p_rem_to_title').textContent   = getVal('rem_to_title',   'District and Sessions Judge');
       document.getElementById('p_rem_to_address').textContent = getVal('rem_to_address', 'Patna');
 
       const versusStr = (app && resp) ? ` (${app} Vs ${resp})` : '';
-      document.getElementById('p_rem_subject_text').innerHTML = `REMINDER regarding non-receipt of Lower Court Records (L.C.R.) in connection with <strong>${caseType} No. ${caseNo} of ${caseYear}</strong>${versusStr}.`;
+      document.getElementById('p_rem_subject_text').innerHTML =
+        `REMINDER regarding non-receipt of Lower Court Records (L.C.R.) in connection with ` +
+        `<strong>${caseType} No. ${caseNo} of ${caseYear}</strong>${versusStr}.`;
 
-      document.getElementById('p_rem_prev_date_val').textContent = prevDate;
       document.getElementById('p_rem_case_title').textContent = `${caseType} No. ${caseNo} of ${caseYear}`;
-      document.getElementById('p_rem_arising').textContent = arising;
-      document.getElementById('p_rem_court').textContent = court;
+      document.getElementById('p_rem_arising').textContent    = arising;
+      document.getElementById('p_rem_court').textContent      = court;
+
+      // Deadline
+      const deadlineEl = document.getElementById('p_rem_deadline');
+      if (deadlineEl) {
+        deadlineEl.textContent = getVal('rem_deadline', '15 days');
+      }
+
+      /* Build reference list HTML */
+      const refs = getRefRows();
+      const refsEl = document.getElementById('p_rem_refs_list');
+      if (!refsEl) return;
+
+      if (refs.length === 0) {
+        refsEl.innerHTML = `<em style="color:#888;">[No reference letters added yet]</em><br>`;
+      } else if (refs.length === 1) {
+        const r = refs[0];
+        const memoStr = r.memo ? `Memo No. <strong>${r.memo}</strong>, ` : '';
+        const dateStr = r.date ? `dated <strong>${r.date}</strong>` : '';
+        refsEl.innerHTML = `${memoStr}${dateStr}<br>`;
+      } else {
+        // Multiple references — numbered list with Roman numerals
+        refsEl.innerHTML = refs.map((r, i) => {
+          const roman  = ROMAN[i] || (i + 1);
+          const memoStr = r.memo ? `Memo No. <strong>${r.memo}</strong>, ` : '';
+          const dateStr = r.date ? `dated <strong>${r.date}</strong>` : '';
+          return `(${roman}) ${memoStr}${dateStr}<br>`;
+        }).join('');
+      }
     }
 
+    /* ── Print ───────────────────────────────────────── */
     function printReminder() {
       syncReminderFields();
       const extractedData = {
-        case_type: document.getElementById('rem_case_type')?.value || 'First Appeal',
-        case_no: document.getElementById('rem_case_no')?.value || '',
-        case_year: document.getElementById('rem_case_year')?.value || '',
-        appellant: document.getElementById('rem_appellant')?.value || '',
-        respondent: document.getElementById('rem_respondent')?.value || '',
-        lc_court: document.getElementById('rem_court_of_the')?.value || document.getElementById('rem_to_title')?.value || '',
+        case_type:    document.getElementById('rem_case_type')?.value  || 'First Appeal',
+        case_no:      document.getElementById('rem_case_no')?.value    || '',
+        case_year:    document.getElementById('rem_case_year')?.value  || '',
+        appellant:    document.getElementById('rem_appellant')?.value  || '',
+        respondent:   document.getElementById('rem_respondent')?.value || '',
+        lc_court:     document.getElementById('rem_court_of_the')?.value ||
+                      document.getElementById('rem_to_title')?.value   || '',
         lc_case_type: document.getElementById('rem_arising_out_of')?.value || '',
       };
 
       const doPrint = () => window.print();
 
-      if (typeof window.promptSaveCaseRecord === 'function' && (extractedData.case_no || extractedData.appellant)) {
+      if (typeof window.promptSaveCaseRecord === 'function' &&
+          (extractedData.case_no || extractedData.appellant)) {
         window.promptSaveCaseRecord(extractedData, doPrint, doPrint);
       } else {
         doPrint();
       }
     }
 
+    /* ── Boot ────────────────────────────────────────── */
     document.addEventListener('DOMContentLoaded', () => {
       // 1. Auto date
       const remDateInput = document.getElementById('rem_date');
       if (remDateInput) remDateInput.value = getFormattedCurrentDate();
 
-      // 2. Parse URL parameters from LCR Alerts dashboard button
+      // 2. Parse URL parameters
       const urlParams = new URLSearchParams(window.location.search);
-      if (urlParams.get('case_type')) document.getElementById('rem_case_type').value = urlParams.get('case_type');
-      if (urlParams.get('case_no')) document.getElementById('rem_case_no').value = urlParams.get('case_no');
-      if (urlParams.get('case_year')) document.getElementById('rem_case_year').value = urlParams.get('case_year');
-      if (urlParams.get('appeal_from')) document.getElementById('rem_to_title').value = urlParams.get('appeal_from');
-      if (urlParams.get('court_of_the')) document.getElementById('rem_court_of_the').value = urlParams.get('court_of_the');
-      if (urlParams.get('arising_out_of')) document.getElementById('rem_arising_out_of').value = urlParams.get('arising_out_of');
-      if (urlParams.get('appellant')) document.getElementById('rem_appellant').value = urlParams.get('appellant');
-      if (urlParams.get('respondent')) document.getElementById('rem_respondent').value = urlParams.get('respondent');
-      if (urlParams.get('recipient_address')) document.getElementById('rem_to_address').value = urlParams.get('recipient_address');
+      if (urlParams.get('case_type'))        document.getElementById('rem_case_type').value        = urlParams.get('case_type');
+      if (urlParams.get('case_no'))          document.getElementById('rem_case_no').value          = urlParams.get('case_no');
+      if (urlParams.get('case_year'))        document.getElementById('rem_case_year').value        = urlParams.get('case_year');
+      if (urlParams.get('appeal_from'))      document.getElementById('rem_to_title').value         = urlParams.get('appeal_from');
+      if (urlParams.get('court_of_the'))     document.getElementById('rem_court_of_the').value     = urlParams.get('court_of_the');
+      if (urlParams.get('arising_out_of'))   document.getElementById('rem_arising_out_of').value   = urlParams.get('arising_out_of');
+      if (urlParams.get('appellant'))        document.getElementById('rem_appellant').value         = urlParams.get('appellant');
+      if (urlParams.get('respondent'))       document.getElementById('rem_respondent').value        = urlParams.get('respondent');
+      if (urlParams.get('recipient_address'))document.getElementById('rem_to_address').value       = urlParams.get('recipient_address');
+
+      // 3. Seed first reference row from prev_date URL param (original LCR call date)
+      let seedDate = '';
       if (urlParams.get('prev_date')) {
         let dtStr = urlParams.get('prev_date');
-        if (dtStr.includes('T') || dtStr.includes('-')) {
+        if (dtStr.includes('T') || (dtStr.includes('-') && dtStr.length === 10)) {
           const dt = new Date(dtStr);
           if (!isNaN(dt.getTime())) dtStr = dt.toLocaleDateString('en-GB');
         }
-        document.getElementById('rem_prev_date').value = dtStr;
+        seedDate = dtStr;
       }
+      // Always add at least one empty reference row
+      addRefRow('', seedDate);
 
-      // Add change listeners
-      const inputs = document.querySelectorAll('.editor-panel input');
-      inputs.forEach(input => {
-        input.addEventListener('input', syncReminderFields);
-        input.addEventListener('change', syncReminderFields);
+      // 4. Add Reference button
+      document.getElementById('addRefBtn').addEventListener('click', () => addRefRow());
+
+      // 5. Listeners for all static inputs
+      document.querySelectorAll('.editor-panel input').forEach(inp => {
+        inp.addEventListener('input',  syncReminderFields);
+        inp.addEventListener('change', syncReminderFields);
       });
 
       syncReminderFields();
