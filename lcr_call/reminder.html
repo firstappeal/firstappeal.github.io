@@ -193,13 +193,11 @@
           </div>
 
           <!-- Body Text -->
-          <div style="font-family: 'Verdana', sans-serif; font-size: 13pt; line-height: 1.5; text-align: justify; margin-bottom: 24pt;" id="p_rem_body">
-            With reference to the subject cited above, I am directed to invite your kind attention to the Hon'ble Court's earlier communication(s) with regards to sending of Trial Court Records, details of which are given below:
-            <br><br>
-            <div id="p_rem_refs_list" style="padding-left: 20pt; line-height: 1.8;"></div>
-            whereby the Trial Court Records connected with <strong id="p_rem_case_title">First Appeal No. 3 of 1973</strong> (Arising out of <em id="p_rem_arising">Land Acquisition Case No. 12 of 1971</em>, Court of the <em id="p_rem_court">Subordinate Judge I, Patna</em>) were called for transmission to this Court, the connected Trial Court Records have not yet been received by this Court, causing delay in the proceedings of the instant appeal.
-            <br><br>
-            I am, therefore, directed to request you to kindly look into the matter personally and ensure that the connected Trial Court Records are transmitted to this Court positively <strong id="p_rem_deadline">within 15 days</strong> from the date of receipt of this <strong>REMINDER</strong> letter, failing which the matter may be placed before the Hon'ble Court for appropriate orders.
+          <div style="font-family: 'Times New Roman', Times, serif; font-size: 12pt; line-height: 1.7; text-align: justify; margin-bottom: 24pt;" id="p_rem_body">
+            <p style="margin: 0 0 10pt 0;">I am directed to refer to the Hon'ble Court's earlier communication(s) regarding the sending of Trial Court Records in the above-noted matter, the particulars whereof are as hereunder:</p>
+            <div id="p_rem_refs_list" style="padding-left: 24pt; margin: 0 0 10pt 0; line-height: 1.8;"></div>
+            <p style="margin: 0 0 10pt 0;">That the Trial Court Records connected with <strong id="p_rem_case_title">First Appeal No. 3 of 1973</strong> (Arising out of <em id="p_rem_arising">Land Acquisition Case No. 12 of 1971</em>, Court of the <em id="p_rem_court">Subordinate Judge I, Patna</em>) were requisitioned for transmission to this Court vide the aforesaid communication(s). However, the Trial Court Records have not been received by this Court till date, causing undue delay in the proceedings of the instant appeal.</p>
+            <p style="margin: 0;">I am, therefore, directed to request you to kindly look into the matter personally and ensure that the connected Trial Court Records are transmitted to this Court positively <strong id="p_rem_deadline">within 15 days</strong> from the date of receipt of this <strong>REMINDER</strong>, failing which the matter may be placed before the Hon'ble Court for appropriate orders.</p>
           </div>
 
           <!-- Sign-off -->
@@ -226,7 +224,7 @@
       if (day === 1 || day === 21 || day === 31) suffix = "st";
       else if (day === 2 || day === 22) suffix = "nd";
       else if (day === 3 || day === 23) suffix = "rd";
-      return `${String(day).padStart(2,'0')}${suffix} ${monthName} , ${year}`;
+      return `${day}${suffix} ${monthName}, ${year}`;
     }
 
     /* ── Reference Row Management ────────────────────── */
@@ -334,20 +332,15 @@
 
       if (refs.length === 0) {
         refsEl.innerHTML = `<em style="color:#888;">[No reference communications added yet]</em>`;
-      } else if (refs.length === 1) {
-        const r = refs[0];
-        const memoStr = r.memo ? `Memo No. <strong>${r.memo}</strong>` : '';
-        const dateStr = r.date ? ` dated <strong>${r.date}</strong>` : '';
-        refsEl.innerHTML = `${memoStr}${dateStr}`;
       } else {
-        // Multiple references — continuous comma-separated list with Roman numerals
+        // Always use Roman numeral format — one entry per line
         const parts = refs.map((r, i) => {
           const roman   = ROMAN[i] || (i + 1);
           const memoStr = r.memo ? `Memo No. <strong>${r.memo}</strong>` : '';
           const dateStr = r.date ? ` dated <strong>${r.date}</strong>` : '';
           return `(${roman}) ${memoStr}${dateStr}`;
         });
-        refsEl.innerHTML = parts.join(', ');
+        refsEl.innerHTML = parts.join('<br>');
       }
     }
 
