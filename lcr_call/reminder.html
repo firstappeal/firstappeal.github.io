@@ -79,7 +79,7 @@
               + Add Reference
             </button>
           </label>
-          <small class="help-text">Enter Memo No. and date for each previous LCR call letter issued to this court.</small>
+          <small class="help-text">Enter Memo No. and date for each previous communication regarding Trial Court Records issued to this court.</small>
           <div id="refListContainer" style="display:flex;flex-direction:column;gap:8px;margin-top:6px;"></div>
         </div>
       </div>
@@ -184,7 +184,7 @@
           <!-- Subject Line (Bold and Well Aligned) -->
           <div style="margin-bottom: 16pt; font-size: 12pt; line-height: 1.5; font-weight: bold; display: flex; align-items: flex-start;">
             <span style="white-space: nowrap; margin-right: 8px;">SUBJECT:</span>
-            <span id="p_rem_subject_text" style="font-weight: bold;">REMINDER regarding non-receipt of Lower Court Records (L.C.R.)</span>
+            <span id="p_rem_subject_text" style="font-weight: bold;">REMINDER regarding non-receipt of Trial Court Records (L.C.R.)</span>
           </div>
 
           <!-- Salutation -->
@@ -194,12 +194,12 @@
 
           <!-- Body Text -->
           <div style="font-family: 'Verdana', sans-serif; font-size: 13pt; line-height: 1.5; text-align: justify; margin-bottom: 24pt;" id="p_rem_body">
-            With reference to the subject cited above, I am directed to invite your kind attention to this Court's LCR Call Letter(s), details of which are given below:
+            With reference to the subject cited above, I am directed to invite your kind attention to the Hon'ble Court's earlier communication(s) with regards to sending of Trial Court Records, details of which are given below:
             <br><br>
             <div id="p_rem_refs_list" style="padding-left: 20pt; line-height: 1.8;"></div>
-            whereby the Lower Court Records (L.C.R.) connected with <strong id="p_rem_case_title">First Appeal No. 3 of 1973</strong> (Arising out of <em id="p_rem_arising">Land Acquisition Case No. 12 of 1971</em>, Court of the <em id="p_rem_court">Subordinate Judge I, Patna</em>) were called for transmission to this Court, the connected Lower Court Records have not yet been received by this Court, causing delay in the proceedings of the instant appeal.
+            whereby the Trial Court Records connected with <strong id="p_rem_case_title">First Appeal No. 3 of 1973</strong> (Arising out of <em id="p_rem_arising">Land Acquisition Case No. 12 of 1971</em>, Court of the <em id="p_rem_court">Subordinate Judge I, Patna</em>) were called for transmission to this Court, the connected Trial Court Records have not yet been received by this Court, causing delay in the proceedings of the instant appeal.
             <br><br>
-            I am, therefore, directed to request you to kindly look into the matter personally and ensure that the connected Lower Court Records are transmitted to this Court positively <strong id="p_rem_deadline">within 15 days</strong> from the date of receipt of this <strong>REMINDER</strong> letter, failing which the matter may be placed before the Hon'ble Court for appropriate orders.
+            I am, therefore, directed to request you to kindly look into the matter personally and ensure that the connected Trial Court Records are transmitted to this Court positively <strong id="p_rem_deadline">within 15 days</strong> from the date of receipt of this <strong>REMINDER</strong> letter, failing which the matter may be placed before the Hon'ble Court for appropriate orders.
           </div>
 
           <!-- Sign-off -->
@@ -314,7 +314,7 @@
 
       const versusStr = (app && resp) ? ` (${app} Vs ${resp})` : '';
       document.getElementById('p_rem_subject_text').innerHTML =
-        `REMINDER regarding non-receipt of Lower Court Records (L.C.R.) in connection with ` +
+        `REMINDER regarding non-receipt of Trial Court Records (L.C.R.) in connection with ` +
         `<strong>${caseType} No. ${caseNo} of ${caseYear}</strong>${versusStr}.`;
 
       document.getElementById('p_rem_case_title').textContent = `${caseType} No. ${caseNo} of ${caseYear}`;
@@ -333,20 +333,21 @@
       if (!refsEl) return;
 
       if (refs.length === 0) {
-        refsEl.innerHTML = `<em style="color:#888;">[No reference letters added yet]</em><br>`;
+        refsEl.innerHTML = `<em style="color:#888;">[No reference communications added yet]</em>`;
       } else if (refs.length === 1) {
         const r = refs[0];
-        const memoStr = r.memo ? `Memo No. <strong>${r.memo}</strong>, ` : '';
-        const dateStr = r.date ? `dated <strong>${r.date}</strong>` : '';
-        refsEl.innerHTML = `${memoStr}${dateStr}<br>`;
+        const memoStr = r.memo ? `Memo No. <strong>${r.memo}</strong>` : '';
+        const dateStr = r.date ? ` dated <strong>${r.date}</strong>` : '';
+        refsEl.innerHTML = `${memoStr}${dateStr}`;
       } else {
-        // Multiple references — numbered list with Roman numerals
-        refsEl.innerHTML = refs.map((r, i) => {
-          const roman  = ROMAN[i] || (i + 1);
-          const memoStr = r.memo ? `Memo No. <strong>${r.memo}</strong>, ` : '';
-          const dateStr = r.date ? `dated <strong>${r.date}</strong>` : '';
-          return `(${roman}) ${memoStr}${dateStr}<br>`;
-        }).join('');
+        // Multiple references — continuous comma-separated list with Roman numerals
+        const parts = refs.map((r, i) => {
+          const roman   = ROMAN[i] || (i + 1);
+          const memoStr = r.memo ? `Memo No. <strong>${r.memo}</strong>` : '';
+          const dateStr = r.date ? ` dated <strong>${r.date}</strong>` : '';
+          return `(${roman}) ${memoStr}${dateStr}`;
+        });
+        refsEl.innerHTML = parts.join(', ');
       }
     }
 
