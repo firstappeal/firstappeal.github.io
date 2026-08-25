@@ -125,6 +125,43 @@ body {
   transform: translateY(-1.5px);
 }
 
+.btn-info {
+  background-color: #1d4ed8;
+  color: #fff;
+  border: 1px solid #2563eb;
+}
+
+.btn-info:hover {
+  background-color: #2563eb;
+  transform: translateY(-1.5px);
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
+}
+
+.btn-success {
+  background-color: #15803d;
+  color: #fff;
+  border: 1px solid #16a34a;
+}
+
+.btn-success:hover {
+  background-color: #16a34a;
+  transform: translateY(-1.5px);
+  box-shadow: 0 4px 14px rgba(22, 163, 74, 0.35);
+}
+
+.btn-warning {
+  background: linear-gradient(135deg, #d97706 0%, #f59e0b 100%);
+  color: #1c1917;
+  border: none;
+  box-shadow: 0 4px 14px rgba(217, 119, 6, 0.3);
+}
+
+.btn-warning:hover {
+  transform: translateY(-1.5px);
+  box-shadow: 0 6px 20px rgba(217, 119, 6, 0.45);
+  filter: brightness(1.08);
+}
+
 .btn:active {
   transform: translateY(0);
 }

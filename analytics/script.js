@@ -114,7 +114,6 @@ document.addEventListener('DOMContentLoaded', () => {
     renderCompleteness();
     renderDecades();
     renderDAs();
-    renderLCR();
     renderActivity();
   }
 
@@ -123,14 +122,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const das = buildDAs();
     const totalCases = typeof CASES_DB !== 'undefined' ? Object.keys(CASES_DB).length : crCount;
 
-    const now = Date.now();
-    const pending  = lcrCalls.filter(c => (c.lcr_status || c.status) !== 'received').length;
-    const overdue  = lcrCalls.filter(c => {
-      if ((c.lcr_status || c.status) === 'received') return false;
-      const dt = new Date(c.saved_at || '');
-      return !isNaN(dt) && Math.floor((now - dt) / 86400000) >= 30;
-    }).length;
-
     // Records with LC court filled (from case_records data_json)
     const withLC = caseRecords.filter(r => r.lc_court && r.lc_court.trim()).length;
 
@@ -138,8 +129,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     setText('kpiTotalCases',    totalCases.toLocaleString('en-IN'));
     setText('kpiDAs',           das.filter(d => !d.name.includes('/')).length);
-    setText('kpiLcrPending',    pending);
-    setText('kpiLcrOverdue',    overdue);
     setText('kpiRecordsFilled', withLC.toLocaleString('en-IN'));
     setText('kpiDocsGenerated', totalDocs.toLocaleString('en-IN'));
   }
@@ -341,80 +330,7 @@ document.addEventListener('DOMContentLoaded', () => {
           <td><span class="badge ${listedCount > 0 ? 'badge-blue' : ''}" style="${listedCount === 0 ? 'background:transparent;color:var(--text-muted);' : ''}">${listedCount}</span></td>
           <td><span class="badge ${directCount > 0 ? 'badge-purple' : ''}" style="${directCount === 0 ? 'background:transparent;color:var(--text-muted);' : ''}">${directCount}</span></td>
           <td><span class="badge ${noticeCount > 0 ? 'badge-green' : ''}" style="${noticeCount === 0 ? 'background:transparent;color:var(--text-muted);' : ''}">${noticeCount}</span></td>
-          <td><span class="badge ${lcrCount > 0 ? 'badge-orange' : ''}" style="${lcrCount === 0 ? 'background:transparent;color:var(--text-muted);' : ''}">${lcrCount}</span></td>
           <td><span class="badge ${filesCount > 0 ? 'badge-teal' : ''}" style="${filesCount === 0 ? 'background:transparent;color:var(--text-muted);' : ''}">${filesCount}</span></td>
-        </tr>
-      `;
-    }).join('') || `<tr><td colspan="9" style="text-align:center;color:var(--text-muted);">No results.</td></tr>`;
-  }
-
-  /* ── LCR Pipeline ─────────────────────────────────────────── */
-  function renderLCR() {
-    const badge = document.getElementById('lcrBadge');
-    const empty = document.getElementById('lcrEmpty');
-    const wrap  = document.getElementById('lcrTableWrapper');
-    const tbody = document.getElementById('lcrTableBody');
-    if (!tbody) return;
-
-    badge.textContent = `${lcrCalls.length} Call${lcrCalls.length !== 1 ? 's' : ''} Logged`;
-
-    if (lcrCalls.length === 0) {
-      empty.style.display = 'block';
-      wrap.style.display  = 'none';
-      return;
-    }
-    empty.style.display = 'none';
-    wrap.style.display  = 'block';
-
-    const now = Date.now();
-    const sorted = [...lcrCalls].sort((a, b) => {
-      // Overdue first, then pending, then received
-      const statusScore = c => (c.lcr_status || c.status) === 'received' ? 2 : 1;
-      return statusScore(a) - statusScore(b);
-    });
-
-    tbody.innerHTML = sorted.map(c => {
-      const caseNo   = c.case_no   || '-';
-      const caseYear = c.case_year || '-';
-      const status   = c.lcr_status || c.status || 'pending';
-      const received = status === 'received';
-      const rowId    = c.id || '';
-      let days = 0;
-      if (c.saved_at) {
-        const dt = new Date(c.saved_at);
-        if (!isNaN(dt)) days = Math.floor((now - dt) / 86400000);
-      }
-      const overdue = !received && days >= 30;
-
-      return `
-        <tr>
-          <td><strong style="color:var(--primary-blue);">F.A. No. ${esc(caseNo)} / ${esc(caseYear)}</strong></td>
-          <td style="font-size:0.83rem;">
-            ${esc(c.appellant || '—')}
-            <span style="color:var(--accent-orange);font-weight:700;"> VS </span>
-            ${esc(c.respondent || '—')}
-          </td>
-          <td style="font-size:0.83rem;">${c.custom_date || (c.saved_at ? c.saved_at.slice(0,10) : '—')}</td>
-          <td>
-            <span style="font-weight:700;color:${overdue ? '#ef4444' : days > 15 ? '#f59e0b' : 'var(--text-main)'};">${days}</span>
-            <span style="font-size:0.8rem;color:var(--text-muted);"> days</span>
-          </td>
-          <td>
-            <span class="badge ${received ? 'badge-green' : overdue ? 'badge-red' : 'badge-orange'}">
-              ${received ? '✓ Received' : overdue ? '⚠ Overdue' : '⏳ Pending'}
-            </span>
-          </td>
-          <td class="no-print">
-            ${!received
-              ? `<div style="display:flex;gap:6px;align-items:center;">
-                   <button onclick="markLcrReceived('${rowId}', this)" class="btn-link-action" style="background:rgba(34,197,94,0.12);color:#16a34a;border:1px solid rgba(34,197,94,0.3);padding:4px 10px;border-radius:6px;cursor:pointer;font-size:0.78rem;font-weight:600;white-space:nowrap;">
-                     <i class="fa-solid fa-circle-check"></i> Mark Received
-                   </button>
-                   ${overdue ? `<a href="../lcr_call/reminder.html?case_type=${encodeURIComponent(c.case_type||'First Appeal')}&case_no=${encodeURIComponent(caseNo)}&case_year=${encodeURIComponent(caseYear)}&appeal_from=${encodeURIComponent(c.recipient_title||'')}&court_of_the=${encodeURIComponent(c.court_of_the||'')}&arising_out_of=${encodeURIComponent(c.arising_out_of||'')}&appellant=${encodeURIComponent(c.appellant||'')}&respondent=${encodeURIComponent(c.respondent||'')}&recipient_address=${encodeURIComponent(c.recipient_address||'')}&prev_date=${encodeURIComponent(c.custom_date||c.saved_at||'')}" class="btn-link-action" style="background:rgba(245,158,11,0.12);color:#d97706;border:1px solid rgba(245,158,11,0.3);padding:4px 10px;border-radius:6px;cursor:pointer;font-size:0.78rem;font-weight:600;text-decoration:none;white-space:nowrap;"><i class="fa-solid fa-envelope"></i> Reminder</a>` : ''}
-                 </div>`
-              : `<span style="font-size:0.8rem;color:var(--text-muted);">—</span>`
-            }
-          </td>
         </tr>
       `;
     }).join('');
@@ -484,24 +400,4 @@ document.addEventListener('DOMContentLoaded', () => {
   fetchAll();
 });
 
-/* ── Global: Mark LCR as Received (called from inline onclick) ── */
-window.markLcrReceived = async function(id, btn) {
-  if (!id || !window.PortalDB) return;
-  btn.disabled = true;
-  btn.textContent = 'Saving…';
-  try {
-    await window.PortalDB.updateLcrStatus(id, 'received');
-    // Update the row visually
-    const row = btn.closest('tr');
-    if (row) {
-      const statusCell = row.querySelector('.badge');
-      if (statusCell) { statusCell.className = 'badge badge-green'; statusCell.textContent = '✓ Received'; }
-    }
-    btn.closest('td').innerHTML = '<span style="font-size:0.8rem;color:var(--text-muted);">—</span>';
-  } catch (e) {
-    console.error('Failed to mark LCR received:', e);
-    btn.disabled = false;
-    btn.innerHTML = '<i class="fa-solid fa-circle-check"></i> Mark Received';
-    alert('Error updating status. Please try again.');
-  }
-};
+

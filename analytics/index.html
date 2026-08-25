@@ -50,20 +50,7 @@
           <span class="kpi-label">Dealing Assistants</span>
         </div>
       </div>
-      <div class="kpi-card orange">
-        <div class="kpi-icon"><i class="fa-solid fa-phone-volume"></i></div>
-        <div class="kpi-data">
-          <span class="kpi-value" id="kpiLcrPending">—</span>
-          <span class="kpi-label">LCR Calls Pending</span>
-        </div>
-      </div>
-      <div class="kpi-card red">
-        <div class="kpi-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
-        <div class="kpi-data">
-          <span class="kpi-value" id="kpiLcrOverdue">—</span>
-          <span class="kpi-label">LCR Overdue (&gt;30 Days)</span>
-        </div>
-      </div>
+
       <div class="kpi-card teal">
         <div class="kpi-icon"><i class="fa-solid fa-circle-check"></i></div>
         <div class="kpi-data">
@@ -122,42 +109,11 @@
               <th>Cases Listed (7d)</th>
               <th>Direct Notices (7d)</th>
               <th>Notices Forwarded (7d)</th>
-              <th>LCR Generated (7d)</th>
               <th>Files In Movement</th>
             </tr>
           </thead>
           <tbody id="daTableBody">
-            <tr><td colspan="9" style="text-align:center;color:var(--text-muted);">Loading…</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-
-    <!-- ── LCR PIPELINE ─────────────────────────────────────── -->
-    <section class="analytics-card">
-      <div class="card-header-bar">
-        <h2><i class="fa-solid fa-clock-rotate-left"></i> LCR Call Pipeline & Overdue Tracker</h2>
-        <span class="badge badge-orange" id="lcrBadge">0 Calls Logged</span>
-      </div>
-      <div id="lcrEmpty" class="empty-state" style="display:none;">
-        <i class="fa-solid fa-inbox empty-icon"></i>
-        <h3>No LCR Calls Generated Yet</h3>
-        <p>Go to the <a href="../lcr_call/index.html">LCR Call Form</a> to generate your first LCR requisition letter.</p>
-      </div>
-      <div class="table-responsive" id="lcrTableWrapper">
-        <table class="data-table">
-          <thead>
-            <tr>
-              <th>Case</th>
-              <th>Parties</th>
-              <th>Requisition Date</th>
-              <th>Days Elapsed</th>
-              <th>Status</th>
-              <th class="no-print">Action</th>
-            </tr>
-          </thead>
-          <tbody id="lcrTableBody">
-            <tr><td colspan="6" style="text-align:center;color:var(--text-muted);">Loading…</td></tr>
+            <tr><td colspan="8" style="text-align:center;color:var(--text-muted);">Loading…</td></tr>
           </tbody>
         </table>
       </div>

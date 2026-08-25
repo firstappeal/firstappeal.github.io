@@ -573,4 +573,123 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
   syncFields();
+
+  // ── Issue Reminder Button ─────────────────────────────────────
+  const reminderBtn = document.getElementById('issueReminderBtn');
+  if (reminderBtn) {
+    reminderBtn.addEventListener('click', openReminderFromMaster);
+  }
 });
+
+/* ──────────────────────────────────────────────────────────────
+   openReminderFromMaster()
+   Fetches Lower Court details from the master case_records table
+   and the original LCR call date from lcr_calls, then opens
+   reminder.html with all fields pre-populated via URL params.
+   ────────────────────────────────────────────────────────────── */
+async function openReminderFromMaster() {
+  const btn = document.getElementById('issueReminderBtn');
+
+  // Read case identity from the form
+  const caseType = (document.getElementById('case_type')?.value || 'First Appeal').trim();
+  const caseNo   = (document.getElementById('case_no')?.value   || '').trim();
+  const caseYear = (document.getElementById('case_year')?.value || '').trim();
+
+  if (!caseNo || !caseYear) {
+    alert('Please load a case first using the Case Search box before issuing a Reminder.');
+    return;
+  }
+
+  // Show loading state
+  const origLabel = btn.innerHTML;
+  btn.disabled = true;
+  btn.innerHTML = '⏳ Fetching Records…';
+
+  try {
+    // ── 1. Fetch master case record (lower court details) ────────
+    let masterRecord = null;
+    if (window.PortalDB && typeof window.PortalDB.getSingleCaseRecord === 'function') {
+      masterRecord = await window.PortalDB.getSingleCaseRecord(caseType, caseNo, caseYear);
+    }
+
+    // ── 2. Fetch the original LCR call date ──────────────────────
+    let originalLcrDate = '';
+    if (window.PortalDB && typeof window.PortalDB.getLcrCalls === 'function') {
+      try {
+        const allLcr = await window.PortalDB.getLcrCalls();
+        // Match by case_no and case_year, get the oldest (first issued)
+        const matches = allLcr
+          .filter(l =>
+            String(l.case_no || '').trim()   === caseNo &&
+            String(l.case_year || '').trim() === caseYear
+          )
+          .sort((a, b) => new Date(a.saved_at) - new Date(b.saved_at));
+
+        if (matches.length > 0) {
+          const oldest = matches[0];
+          // Prefer custom_date (formatted) over raw saved_at
+          if (oldest.custom_date) {
+            originalLcrDate = oldest.custom_date;
+          } else if (oldest.saved_at) {
+            // Format raw ISO date to DD-MM-YYYY
+            const d = new Date(oldest.saved_at);
+            if (!isNaN(d.getTime())) {
+              const day   = String(d.getDate()).padStart(2, '0');
+              const month = String(d.getMonth() + 1).padStart(2, '0');
+              originalLcrDate = `${day}-${month}-${d.getFullYear()}`;
+            }
+          }
+        }
+      } catch (lcrErr) {
+        console.warn('Could not fetch LCR call history:', lcrErr);
+      }
+    }
+
+    // ── 3. Resolve lower court fields ────────────────────────────
+    // Priority: master record from Supabase → form fields already typed in
+    const lcCourt     = masterRecord?.lc_court      || document.getElementById('court_of_the')?.value  || '';
+    const lcCaseType  = masterRecord?.lc_case_type  || document.getElementById('appeal_from')?.value    || '';
+    const lcCaseNo    = masterRecord?.lc_case_no    || document.getElementById('appeal_from_no')?.value || '';
+    const lcCaseYear  = masterRecord?.lc_case_year  || document.getElementById('appeal_from_year')?.value || '';
+    const appellant   = masterRecord?.appellant     || document.getElementById('appellant')?.value       || '';
+    const respondent  = masterRecord?.respondent    || document.getElementById('respondent')?.value      || '';
+
+    // Build "Arising Out Of" string for the reminder body
+    let arisingOutOf = document.getElementById('arising_out_of')?.value || '';
+    if (!arisingOutOf && lcCaseType && lcCaseNo && lcCaseYear) {
+      arisingOutOf = `${lcCaseType} No. ${lcCaseNo} of ${lcCaseYear}`;
+    }
+
+    // Derive recipient title/address from lc_court
+    let recipientTitle   = document.getElementById('recipient_title')?.value   || '';
+    let recipientAddress = document.getElementById('recipient_address')?.value || '';
+    if (lcCourt && (!recipientTitle || recipientTitle === 'District and Sessions Judge')) {
+      const parts = lcCourt.split(',');
+      recipientTitle   = parts[0].trim();
+      recipientAddress = parts.slice(1).join(',').trim() || recipientAddress;
+    }
+
+    // ── 4. Build reminder.html URL with all params ───────────────
+    const params = new URLSearchParams({
+      case_type:        caseType,
+      case_no:          caseNo,
+      case_year:        caseYear,
+      appellant:        appellant,
+      respondent:       respondent,
+      appeal_from:      recipientTitle,         // maps to rem_to_title
+      court_of_the:     lcCourt,                // maps to rem_court_of_the
+      arising_out_of:   arisingOutOf,           // maps to rem_arising_out_of
+      recipient_address: recipientAddress,      // maps to rem_to_address
+      prev_date:        originalLcrDate,        // original requisition date
+    });
+
+    const reminderUrl = `../lcr_call/reminder.html?${params.toString()}`;
+    window.location.href = reminderUrl;
+
+  } catch (err) {
+    console.error('Error opening reminder:', err);
+    alert('Could not open Reminder Letter. Please check your connection and try again.');
+    btn.disabled = false;
+    btn.innerHTML = origLabel;
+  }
+}
