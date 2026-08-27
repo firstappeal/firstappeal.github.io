@@ -435,6 +435,9 @@ async function saveToCloud(silent = false) {
       if (window.PortalDB) {
         await window.PortalDB.insertNoticeForm(noticeData);
         if (!silent) alert('Notice successfully saved!');
+      } else {
+        if (!silent) alert('Cannot save: database connection is unavailable.');
+        console.warn('doSaveNotice: PortalDB not available');
       }
     } catch (error) {
       console.error('Error saving Notice:', error);

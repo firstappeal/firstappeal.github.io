@@ -306,7 +306,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const listedCount = stat.listed7d.size;
       const directCount = stat.direct7d.size;
       const noticeCount = stat.notice7d.size;
-      const lcrCount = stat.lcr7d.size;
+      const lcrStatCount = stat.lcr7d.size;
       const filesCount = stat.files7d.size;
       
       const isShared = d.name.includes('/');
@@ -343,9 +343,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!feed) return;
 
     const allDocs = [
-      ...lcrCalls.map(d    => ({ type: 'LCR Call',     icon: 'fa-phone-volume',       color: '#f59e0b', label: `F.A. No. ${d.case_no}/${d.case_year}`, saved_at: d.saved_at })),
-      ...noticeForms.map(d => ({ type: 'Notice Form',  icon: 'fa-envelope-open-text', color: '#22c55e', label: `Case ${d.caseNo || d.case_no || 'Unknown'}`,        saved_at: d.saved_at })),
-      ...directNotes.map(d => ({ type: 'Direct Notice',icon: 'fa-paper-plane',        color: '#a855f7', label: `Case ${d.caseNo || d.case_no || 'Unknown'}`,        saved_at: d.saved_at })),
+      ...lcrCalls.map(d    => ({ type: 'LCR Call',      icon: 'fa-phone-volume',       color: '#f59e0b', label: `F.A. No. ${d.case_no}/${d.case_year}`,        saved_at: d.saved_at })),
+      ...noticeForms.map(d => ({ type: 'Notice Form',   icon: 'fa-envelope-open-text', color: '#22c55e', label: `Case ${d.caseNo || d.case_no || 'Unknown'}`,  saved_at: d.saved_at })),
+      ...directNotes.map(d => ({ type: 'Direct Notice', icon: 'fa-paper-plane',        color: '#a855f7', label: `Case ${d.caseNo || d.case_no || 'Unknown'}`,  saved_at: d.saved_at })),
+      ...causeLists.map(d  => ({ type: 'Cause List',    icon: 'fa-list-check',         color: '#3b82f6', label: d.header?.date ? `Date: ${d.header.date}` : 'Cause List', saved_at: d.saved_at })),
     ]
     .filter(d => d.saved_at)
     .sort((a, b) => new Date(b.saved_at) - new Date(a.saved_at))

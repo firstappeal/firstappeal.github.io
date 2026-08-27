@@ -198,7 +198,7 @@ function renderPages() {
           <div class="sign-off-block">
             <div class="sign-off-by">By order of the High Court</div>
             <div class="sign-off-space"></div>
-            <div class="sign-off-title">Deputy Registrar.</div>
+            <div class="sign-off-title">Assistant Registrar.</div>
           </div>
         </div>
       </div>

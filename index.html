@@ -108,8 +108,8 @@
         const gResults = document.getElementById('globalSearchResults');
 
         function normalizeQuery(q) {
-            // Convert natural "FA 152" or "FA 152 2025" to the DB key format "FA/152" or "FA/152/2025"
-            return q.trim().replace(/^(FA)\s+(\d+)(?:\s+(\d+))?$/i, (_, type, no, yr) => {
+            // Convert natural "FA 152", "MA 10", "SA 5 2020" to DB key format
+            return q.trim().replace(/^(FA|MA|CA|SA)\s+(\d+)(?:\s+(\d+))?$/i, (_, type, no, yr) => {
                 return yr ? `${type.toUpperCase()}/${no}/${yr}` : `${type.toUpperCase()}/${no}`;
             }).toLowerCase();
         }
@@ -148,8 +148,8 @@
         document.addEventListener('click', (e) => { if (!gInput.contains(e.target)) gResults.style.display = 'none'; });
     </script>
     <script src="shared/db.js?v=3"></script>
-    <script src="shared/cases_db.js"></script>
-    
+    <script src="shared/cases_db.js?v=3"></script>
+
     <!-- SYNC RECENT CASES FROM SUPABASE -->
     <script>
       document.addEventListener('DOMContentLoaded', async () => {
