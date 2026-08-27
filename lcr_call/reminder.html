@@ -107,8 +107,14 @@
         </div>
 
         <div class="input-group">
-          <label for="rem_arising_out_of">Arising Out Of</label>
-          <input type="text" id="rem_arising_out_of" placeholder="e.g. Land Acquisition Case No. 12 of 1971">
+          <label for="rem_arising_out_of" style="display:flex;align-items:center;justify-content:space-between;">
+            <span>Arising Out Of</span>
+            <button type="button" id="rem_fetchMasterBtn" style="background:rgba(96,165,250,0.15);color:#60a5fa;border:1px solid rgba(96,165,250,0.35);padding:3px 10px;border-radius:5px;cursor:pointer;font-size:0.78rem;font-weight:600;" title="Auto-fetch LC details from master records">
+              🔄 Fetch from Master
+            </button>
+          </label>
+          <input type="text" id="rem_arising_out_of" placeholder="Auto-fetched from master records or enter manually">
+          <small class="help-text" id="rem_lcFetchStatus" style="color:#60a5fa;"></small>
         </div>
 
         <div class="grid-2">
@@ -344,7 +350,7 @@
       }
     }
 
-    /* ── Print ───────────────────────────────────────── */
+    /* ── Print / Save ────────────────────────────────── */
     function printReminder() {
       syncReminderFields();
       const extractedData = {
@@ -358,14 +364,108 @@
         lc_case_type: document.getElementById('rem_arising_out_of')?.value || '',
       };
 
-      const doPrint = () => window.print();
+      const doPrint    = () => window.print();
+      const doSaveOnly = () => { /* save reminder record if needed — no print */ };
 
       if (typeof window.promptSaveCaseRecord === 'function' &&
           (extractedData.case_no || extractedData.appellant)) {
-        window.promptSaveCaseRecord(extractedData, doPrint, doPrint);
+        // Pass all three action callbacks
+        window.promptSaveCaseRecord(extractedData, doPrint, doPrint, doSaveOnly);
       } else {
         doPrint();
       }
+    }
+
+    /* ── Master Record Auto-Fetch ────────────────────── */
+    async function fetchArisingOutOfFromMaster(forceOverwrite = false) {
+      const caseType = (document.getElementById('rem_case_type')?.value || 'First Appeal').trim();
+      const caseNo   = (document.getElementById('rem_case_no')?.value   || '').trim();
+      const caseYear = (document.getElementById('rem_case_year')?.value || '').trim();
+      const statusEl = document.getElementById('rem_lcFetchStatus');
+
+      if (!caseNo || !caseYear) return;
+
+      if (statusEl) statusEl.textContent = '⏳ Fetching from master records…';
+
+      try {
+        if (window.PortalDB && typeof window.PortalDB.getSingleCaseRecord === 'function') {
+          const match = await window.PortalDB.getSingleCaseRecord(caseType, caseNo, caseYear);
+          if (match) {
+            // -- Arising Out Of ------------------------------------------------
+            const arisingField = document.getElementById('rem_arising_out_of');
+            if (arisingField && (forceOverwrite || !arisingField.value.trim())) {
+              let arisingText = '';
+              const formatDate = (dateStr) => {
+                if (!dateStr) return '';
+                const parts = dateStr.split('-');
+                if (parts.length === 3) {
+                  if (parts[0].length === 4) return `${parts[2]}-${parts[1]}-${parts[0]}`;
+                  if (parts[2].length === 4) return dateStr;
+                }
+                const d = new Date(dateStr);
+                if (!isNaN(d.getTime())) {
+                  return `${String(d.getDate()).padStart(2,'0')}-${String(d.getMonth()+1).padStart(2,'0')}-${d.getFullYear()}`;
+                }
+                return dateStr;
+              };
+              const fmtJ = formatDate(match.date_of_judgment);
+              const fmtD = formatDate(match.date_of_decree_award);
+              if (match.date_of_judgment || match.date_of_decree_award) {
+                if (match.date_of_judgment && match.date_of_decree_award) {
+                  arisingText = fmtJ === fmtD
+                    ? `Judgment and Decree/Award dated ${fmtJ}`
+                    : `Judgment dated ${fmtJ} and Decree/Award dated ${fmtD}`;
+                } else if (match.date_of_judgment) {
+                  arisingText = `Judgment dated ${fmtJ}`;
+                } else {
+                  arisingText = `Decree/Award dated ${fmtD}`;
+                }
+              } else if (match.lc_case_type && match.lc_case_no && match.lc_case_year) {
+                arisingText = `${match.lc_case_type} No. ${match.lc_case_no} of ${match.lc_case_year}`;
+              } else {
+                arisingText = 'Judgment and Decree';
+              }
+              arisingField.value = arisingText;
+            }
+
+            // -- Court of the --------------------------------------------------
+            const courtField = document.getElementById('rem_court_of_the');
+            if (match.lc_court && courtField && (forceOverwrite || !courtField.value.trim())) {
+              courtField.value = match.lc_court;
+              // Also update recipient title/address
+              const parts = match.lc_court.split(',');
+              const titleField = document.getElementById('rem_to_title');
+              const addrField  = document.getElementById('rem_to_address');
+              if (titleField && (forceOverwrite || titleField.value === 'District and Sessions Judge'))
+                titleField.value = parts[0].trim();
+              if (addrField && parts.length > 1 && (forceOverwrite || addrField.value.trim().toLowerCase() === 'patna'))
+                addrField.value = parts.slice(1).join(',').trim();
+            }
+
+            // -- LC case no / year for reference (populate appeal_from_* shadow fields) --
+            const lcNoField   = document.getElementById('rem_lc_case_no');
+            const lcYearField = document.getElementById('rem_lc_case_year');
+            if (lcNoField   && match.lc_case_no   && (forceOverwrite || !lcNoField.value.trim()))   lcNoField.value   = match.lc_case_no;
+            if (lcYearField && match.lc_case_year && (forceOverwrite || !lcYearField.value.trim())) lcYearField.value = match.lc_case_year;
+
+            // -- Appellant / Respondent ----------------------------------------
+            const appField  = document.getElementById('rem_appellant');
+            const respField = document.getElementById('rem_respondent');
+            if (appField  && match.appellant  && (forceOverwrite || !appField.value.trim()))  appField.value  = match.appellant;
+            if (respField && match.respondent && (forceOverwrite || !respField.value.trim())) respField.value = match.respondent;
+
+            if (statusEl) statusEl.textContent = '✅ Details fetched from master records.';
+          } else {
+            if (statusEl) statusEl.textContent = '⚠️ No master record found for this case.';
+          }
+        } else {
+          if (statusEl) statusEl.textContent = '';
+        }
+      } catch (err) {
+        console.warn('Reminder: Could not fetch master record:', err);
+        if (statusEl) statusEl.textContent = '⚠️ Could not connect to master records.';
+      }
+      syncReminderFields();
     }
 
     /* ── Boot ────────────────────────────────────────── */
@@ -407,6 +507,23 @@
         inp.addEventListener('input',  syncReminderFields);
         inp.addEventListener('change', syncReminderFields);
       });
+
+      // 6. Auto-fetch from master on page load if case params present
+      //    (only fills fields that aren't already populated from URL)
+      if (urlParams.get('case_no') && urlParams.get('case_year')) {
+        // Defer slightly to let PortalDB initialise
+        setTimeout(() => fetchArisingOutOfFromMaster(false), 800);
+      }
+
+      // 7. Blur listeners for manual case entry
+      const caseNoField   = document.getElementById('rem_case_no');
+      const caseYearField = document.getElementById('rem_case_year');
+      if (caseNoField)   caseNoField.addEventListener('blur',   () => fetchArisingOutOfFromMaster(false));
+      if (caseYearField) caseYearField.addEventListener('blur',  () => fetchArisingOutOfFromMaster(false));
+
+      // 8. Manual fetch button
+      const fetchBtn = document.getElementById('rem_fetchMasterBtn');
+      if (fetchBtn) fetchBtn.addEventListener('click', () => fetchArisingOutOfFromMaster(true));
 
       syncReminderFields();
     });

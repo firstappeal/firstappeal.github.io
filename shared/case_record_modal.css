@@ -162,3 +162,5 @@
 .cr-btn-secondary:hover { background: rgba(255,255,255,0.15); }
 .cr-btn-cancel { background: transparent; color: #94a3b8; border: 1px solid #334155; }
 .cr-btn-cancel:hover { background: rgba(255,255,255,0.05); color: #fff; }
+.cr-btn-print { background: rgba(245,158,11,0.15); color: #f59e0b; border: 1px solid rgba(245,158,11,0.4); }
+.cr-btn-print:hover { background: rgba(245,158,11,0.25); color: #fbbf24; }

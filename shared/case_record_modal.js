@@ -14,11 +14,13 @@
 
   /**
    * Prompts user with a Case Record completion modal before printing/saving.
-   * @param {Object} extractedData - Data parsed from the current form (LCR, Notice, etc.)
-   * @param {Function} onSaveSuccess - Callback invoked after saving record (or user confirms)
-   * @param {Function} onSkip - Callback if user skips saving record
+   * @param {Object} extractedData  - Data parsed from the current form (LCR, Notice, etc.)
+   * @param {Function} onSaveSuccess - Callback invoked after saving record to master DB
+   * @param {Function} onSkip        - Callback if user clicks Skip (no DB update, no action)
+   * @param {Function} onPrintOnly   - Callback for "Print Only" / "Save Only" (no DB update)
+   *                                   Falls back to onSaveSuccess if not provided.
    */
-  window.promptSaveCaseRecord = async function(extractedData, onSaveSuccess, onSkip) {
+  window.promptSaveCaseRecord = async function(extractedData, onSaveSuccess, onSkip, onPrintOnly) {
     // Check if record already exists in backend database
     let existingRecord = null;
     let lcrCallRecord = null;
@@ -199,9 +201,14 @@
         </div>
 
         <div class="cr-modal-footer">
-          <button type="button" class="cr-btn cr-btn-cancel" id="crSkipBtn">Skip & Print / Save Only</button>
+          <button type="button" class="cr-btn cr-btn-cancel" id="crSkipBtn" title="Close this dialog without any action">
+            ✕ Skip
+          </button>
+          <button type="button" class="cr-btn cr-btn-print" id="crPrintOnlyBtn" title="Proceed without updating master records">
+            <i class="fa-solid fa-print"></i> Print Only / Save Only
+          </button>
           <button type="button" class="cr-btn cr-btn-primary" id="crSaveSubmitBtn">
-            <i class="fa-solid fa-floppy-disk"></i> Save Master Record (Even if Blank) & Proceed
+            <i class="fa-solid fa-floppy-disk"></i> Update Master Records &amp; Proceed
           </button>
         </div>
       </div>
@@ -217,10 +224,18 @@
     }
 
     document.getElementById('crCloseBtn').addEventListener('click', closeModal);
+
+    // Skip – close without doing anything
     document.getElementById('crSkipBtn').addEventListener('click', () => {
       closeModal();
-      if (typeof onSkip === 'function') onSkip();
-      else if (typeof onSaveSuccess === 'function') onSaveSuccess();
+      // No callback — truly skip all actions
+    });
+
+    // Print Only / Save Only – proceed without updating master records
+    document.getElementById('crPrintOnlyBtn').addEventListener('click', () => {
+      closeModal();
+      const cb = typeof onPrintOnly === 'function' ? onPrintOnly : (typeof onSaveSuccess === 'function' ? onSaveSuccess : null);
+      if (cb) cb();
     });
 
     document.getElementById('crSaveSubmitBtn').addEventListener('click', async () => {
