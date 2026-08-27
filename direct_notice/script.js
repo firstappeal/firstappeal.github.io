@@ -32,6 +32,14 @@ const APPEAL_TYPES = {
   'SA': 'Second Appeal'
 };
 
+// ── Ordinal Suffix Helper ─────────────────────────────────────
+function ordinalSuffix(day) {
+  if (day === 1 || day === 21 || day === 31) return 'st';
+  if (day === 2 || day === 22) return 'nd';
+  if (day === 3 || day === 23) return 'rd';
+  return 'th';
+}
+
 // ── Date Parts Population ────────────────────────────────────
 function populateCurrentDateParts() {
   const now = new Date();
@@ -42,18 +50,7 @@ function populateCurrentDateParts() {
     "July", "August", "September", "October", "November", "December"
   ];
   const monthName = months[now.getMonth()];
-  
-  // Calculate ordinal suffix
-  let suffix = "th";
-  if (day === 1 || day === 21 || day === 31) {
-    suffix = "st";
-  } else if (day === 2 || day === 22) {
-    suffix = "nd";
-  } else if (day === 3 || day === 23) {
-    suffix = "rd";
-  }
-  
-  const paddedDay = String(day).padStart(2, '0') + suffix;
+  const paddedDay = String(day).padStart(2, '0') + ordinalSuffix(day);
   
   const dayInput = document.getElementById('in_date_day');
   const monthInput = document.getElementById('in_date_month');
@@ -62,6 +59,24 @@ function populateCurrentDateParts() {
   if (dayInput && !dayInput.value) dayInput.value = paddedDay;
   if (monthInput && !monthInput.value) monthInput.value = monthName;
   if (yearInput && !yearInput.value) yearInput.value = year;
+}
+
+// ── 30-Days-From-Today Date String (skips weekends) ──────────
+function getThirtyDaysFromToday() {
+  const months = [
+    "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+  ];
+  const future = new Date();
+  future.setDate(future.getDate() + 30);
+  // If Saturday (6) → move to Monday (+2); if Sunday (0) → move to Monday (+1)
+  const dow = future.getDay();
+  if (dow === 6) future.setDate(future.getDate() + 2);
+  else if (dow === 0) future.setDate(future.getDate() + 1);
+  const d = future.getDate();
+  const m = months[future.getMonth()];
+  const y = future.getFullYear();
+  return `${d}${ordinalSuffix(d)} ${m}, ${y}`;
 }
 
 // ── Sync Editor Fields to Print Preview ───────────────────────
@@ -249,10 +264,10 @@ document.addEventListener('DOMContentLoaded', () => {
   // 1. Auto-populate current date parts
   populateCurrentDateParts();
 
-  // 2. Set default values for appearance period to assist user
+  // 2. Auto-populate appearance period with date 30 days from today
   const appearanceInput = document.getElementById('in_appearance_period');
   if (appearanceInput && !appearanceInput.value) {
-    appearanceInput.value = "15 days";
+    appearanceInput.value = getThirtyDaysFromToday();
   }
 
   // 3. Render initial recipient list inputs
@@ -472,7 +487,7 @@ document.addEventListener('DOMContentLoaded', () => {
       
       const appearanceInput = document.getElementById('in_appearance_period');
       if (appearanceInput) {
-        appearanceInput.value = "15 days";
+        appearanceInput.value = getThirtyDaysFromToday();
       }
 
       // Reset recipients list
