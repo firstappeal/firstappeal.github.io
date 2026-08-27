@@ -351,22 +351,48 @@ function togglePreview() {
 }
 
 // ── Print ─────────────────────────────────────────────────────
-function printForm() {
+async function printForm() {
   syncFields();
   document.body.classList.add('preview-active');
 
-  const doPrint = () => {
-    if (typeof saveToCloud === 'function') saveToCloud(true);
-    setTimeout(() => {
-      window.print();
-      if (!previewActive) {
-        document.body.classList.remove('preview-active');
-      }
-    }, 200);
-  };
+  const caseNo = document.getElementById('sankhya')?.value.trim();
+  if (caseNo && typeof saveToCloud === 'function') {
+    try {
+      await saveToCloud(true);
+      showToast('✅ Record saved automatically.');
+    } catch (e) {
+      console.warn('Auto-save on print failed:', e);
+    }
+  }
 
-  doPrint();
+  setTimeout(() => {
+    window.print();
+    if (!previewActive) {
+      document.body.classList.remove('preview-active');
+    }
+  }, 200);
 }
+
+function showToast(msg) {
+  let toast = document.getElementById('_autoSaveToast');
+  if (!toast) {
+    toast = document.createElement('div');
+    toast.id = '_autoSaveToast';
+    Object.assign(toast.style, {
+      position: 'fixed', bottom: '28px', right: '28px', zIndex: '99999',
+      background: '#166534', color: '#dcfce7', padding: '10px 18px',
+      borderRadius: '8px', fontFamily: 'inherit', fontSize: '0.88rem',
+      fontWeight: '600', boxShadow: '0 4px 16px rgba(0,0,0,0.4)',
+      transition: 'opacity 0.4s', opacity: '0', pointerEvents: 'none'
+    });
+    document.body.appendChild(toast);
+  }
+  toast.textContent = msg;
+  toast.style.opacity = '1';
+  clearTimeout(toast._hideTimer);
+  toast._hideTimer = setTimeout(() => { toast.style.opacity = '0'; }, 3000);
+}
+
 
 // ── Clear form ────────────────────────────────────────────────
 function clearForm() {

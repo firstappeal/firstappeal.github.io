@@ -504,11 +504,40 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   if (printBtn) {
-    printBtn.addEventListener('click', () => {
+    printBtn.addEventListener('click', async () => {
       renderPages();
-      saveToCloud(true);
+      const caseNo = document.getElementById('in_case_no').value.trim();
+      const caseYear = document.getElementById('in_case_year').value.trim();
+      if (caseNo && caseYear) {
+        try {
+          await saveToCloud(true);
+          showToast('✅ Record saved automatically.');
+        } catch (e) {
+          console.warn('Auto-save on print failed:', e);
+        }
+      }
       window.print();
     });
+  }
+
+  function showToast(msg) {
+    let toast = document.getElementById('_autoSaveToast');
+    if (!toast) {
+      toast = document.createElement('div');
+      toast.id = '_autoSaveToast';
+      Object.assign(toast.style, {
+        position: 'fixed', bottom: '28px', right: '28px', zIndex: '99999',
+        background: '#166534', color: '#dcfce7', padding: '10px 18px',
+        borderRadius: '8px', fontFamily: 'inherit', fontSize: '0.88rem',
+        fontWeight: '600', boxShadow: '0 4px 16px rgba(0,0,0,0.4)',
+        transition: 'opacity 0.4s', opacity: '0', pointerEvents: 'none'
+      });
+      document.body.appendChild(toast);
+    }
+    toast.textContent = msg;
+    toast.style.opacity = '1';
+    clearTimeout(toast._hideTimer);
+    toast._hideTimer = setTimeout(() => { toast.style.opacity = '0'; }, 3000);
   }
 
   // 9. Supabase Cloud Buttons
