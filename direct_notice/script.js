@@ -190,7 +190,7 @@ function renderPages() {
         </div>
 
         <div class="doc-body-paragraph date-row">
-          Given under my hand and the seal of this Court this the <span class="val-date-day">${dateDay}</span> day of <span class="val-date-month">${dateMonth}</span> 20<span class="val-date-year">${dateYear}</span>
+          Given under my hand and the seal of this Court this the <span class="val-date-day">${dateDay}</span> day of <span class="val-date-month">${dateMonth}</span> <span class="val-date-year">${dateYear}</span>
         </div>
 
         <!-- Sign-Off Section -->
