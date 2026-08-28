@@ -428,8 +428,27 @@ document.addEventListener('DOMContentLoaded', () => {
 // ── Actions ──────────────────────────────────────────────────
 function printForm() {
   syncFields();
-  if (typeof saveToCloud === 'function') saveToCloud(true);
   window.print();
+}
+
+function showToast(msg) {
+  let toast = document.getElementById('_autoSaveToast');
+  if (!toast) {
+    toast = document.createElement('div');
+    toast.id = '_autoSaveToast';
+    Object.assign(toast.style, {
+      position: 'fixed', bottom: '28px', right: '28px', zIndex: '99999',
+      background: '#166534', color: '#dcfce7', padding: '10px 18px',
+      borderRadius: '8px', fontFamily: 'inherit', fontSize: '0.88rem',
+      fontWeight: '600', boxShadow: '0 4px 16px rgba(0,0,0,0.4)',
+      transition: 'opacity 0.4s', opacity: '0', pointerEvents: 'none'
+    });
+    document.body.appendChild(toast);
+  }
+  toast.textContent = msg;
+  toast.style.opacity = '1';
+  clearTimeout(toast._hideTimer);
+  toast._hideTimer = setTimeout(() => { toast.style.opacity = '0'; }, 3000);
 }
 
 function clearForm() {
@@ -509,34 +528,113 @@ document.addEventListener('DOMContentLoaded', () => {
     saveBtn.addEventListener('click', () => saveToCloud(false));
   }
 
-  if (viewBtn) {
-    viewBtn.addEventListener('click', async () => {
-      const searchCaseNo = prompt('Enter Case Number to fetch LCR Call (e.g., 3):');
-      if (!searchCaseNo) return;
-      try {
-        const data = await window.PortalDB.getLcrCalls();
-        const matches = data.filter(l => (l.case_no || '').toString().toLowerCase().trim() === searchCaseNo.toString().toLowerCase().trim());
-        if (matches.length === 0) { alert('No LCR Call found for Case Number: ' + searchCaseNo); return; }
-        let lcrCall = matches[0];
-        if (matches.length > 1) {
-          let listMsg = `Multiple saved LCR Calls found for '${searchCaseNo}':\n\n`;
-          matches.forEach((m, idx) => { const d = m.saved_at ? m.saved_at.slice(0,10) : 'Saved'; listMsg += `${idx+1}. ${d}\n`; });
-          const choice = prompt(listMsg + `\nEnter number (1-${matches.length}):`, '1');
-          const idx = parseInt(choice,10) - 1;
-          if (!isNaN(idx) && matches[idx]) lcrCall = matches[idx];
-        }
-        for (const editorId of Object.keys(FIELD_MAP)) {
-          const input = document.getElementById(editorId);
-          if (input && lcrCall[editorId] !== undefined) input.value = lcrCall[editorId];
-        }
-        syncFields();
-        alert('LCR Call loaded successfully!');
-      } catch (error) {
-        console.error('Error fetching LCR Call:', error);
-        alert('Error loading LCR Call.');
-      }
+  // ── Load Saved LCRs Modal ─────────────────────────────────────
+  let allLcrRecords = []; // cached fetch
+
+  function fmtDate(str) {
+    if (!str) return '—';
+    try { return new Date(str).toLocaleDateString('en-IN', { day:'2-digit', month:'short', year:'numeric' }); }
+    catch { return str; }
+  }
+
+  function renderLcrModal(query = '') {
+    const tbody = document.getElementById('lcrModalBody');
+    if (!tbody) return;
+    const q = query.toLowerCase().trim();
+    const filtered = allLcrRecords.filter(r => {
+      const haystack = `${r.case_no || ''} ${r.case_year || ''} ${r.appellant || ''} ${r.respondent || ''} ${r.court_of_the || ''}`.toLowerCase();
+      return !q || haystack.includes(q);
     });
-  } // Fix for missing closing brace
+
+    const countEl = document.getElementById('lcrModalCount');
+    if (countEl) countEl.textContent = `${filtered.length} record${filtered.length === 1 ? '' : 's'} found`;
+
+    if (filtered.length === 0) {
+      tbody.innerHTML = `<tr><td colspan="5" style="padding:24px;text-align:center;color:var(--text-muted);">No records found.</td></tr>`;
+      return;
+    }
+
+    tbody.innerHTML = filtered.map(r => {
+      const caseLabel = `FA No. ${r.case_no || '—'} / ${r.case_year || '—'}`;
+      const saved = fmtDate(r.saved_at);
+      return `<tr data-id="${r.id}" style="border-bottom:1px solid rgba(51,65,85,0.5);transition:background 0.15s;">
+        <td style="padding:10px 14px;font-weight:700;color:#60a5fa;cursor:pointer;" onclick="loadLcrRecord(${r.id})">${caseLabel}</td>
+        <td style="padding:10px 14px;color:var(--text-light);cursor:pointer;" onclick="loadLcrRecord(${r.id})">${r.appellant || '—'}</td>
+        <td style="padding:10px 14px;color:var(--text-muted);cursor:pointer;" onclick="loadLcrRecord(${r.id})">${r.respondent || '—'}</td>
+        <td style="padding:10px 14px;color:var(--text-muted);white-space:nowrap;cursor:pointer;" onclick="loadLcrRecord(${r.id})">${saved}</td>
+        <td style="padding:6px 10px;text-align:center;">
+          <button onclick="deleteLcrRecord(${r.id})" title="Delete record" style="background:#7f1d1d;color:#fca5a5;border:1px solid #ef4444;border-radius:5px;padding:3px 10px;cursor:pointer;font-size:0.8rem;transition:background 0.2s;" onmouseover="this.style.background='#991b1b'" onmouseout="this.style.background='#7f1d1d'">🗑 Delete</button>
+        </td>
+      </tr>`;
+    }).join('');
+  }
+
+  window.loadLcrRecord = function(id) {
+    const record = allLcrRecords.find(r => r.id === id);
+    if (!record) return;
+    for (const editorId of Object.keys(FIELD_MAP)) {
+      const input = document.getElementById(editorId);
+      if (input && record[editorId] !== undefined) input.value = record[editorId];
+    }
+    syncFields();
+    // Close modal
+    const modal = document.getElementById('loadLcrModal');
+    if (modal) { modal.classList.remove('active'); setTimeout(() => { modal.style.display = 'none'; }, 200); }
+  };
+
+  const lcrModalEl      = document.getElementById('loadLcrModal');
+  const lcrModalSearch  = document.getElementById('lcrModalSearch');
+  const closeLcrModal   = document.getElementById('closeLcrModal');
+  const closeLcrModalBtn= document.getElementById('closeLcrModalBtn');
+
+  async function openLcrModal() {
+    if (!lcrModalEl) return;
+    lcrModalEl.style.display = 'flex';
+    setTimeout(() => lcrModalEl.classList.add('active'), 10);
+
+    // Fetch (or use cache)
+    if (allLcrRecords.length === 0) {
+      try {
+        allLcrRecords = window.PortalDB ? await window.PortalDB.getLcrCalls() : [];
+      } catch(e) {
+        console.error('Failed to fetch LCR calls:', e);
+        allLcrRecords = [];
+      }
+    }
+    if (lcrModalSearch) lcrModalSearch.value = '';
+    renderLcrModal('');
+  }
+
+  function closeLcrModalFn() {
+    if (!lcrModalEl) return;
+    lcrModalEl.classList.remove('active');
+    setTimeout(() => { lcrModalEl.style.display = 'none'; }, 200);
+  }
+
+  if (viewBtn)          viewBtn.addEventListener('click', openLcrModal);
+  if (closeLcrModal)    closeLcrModal.addEventListener('click', closeLcrModalFn);
+  if (closeLcrModalBtn) closeLcrModalBtn.addEventListener('click', closeLcrModalFn);
+  if (lcrModalEl)       lcrModalEl.addEventListener('click', e => { if (e.target === lcrModalEl) closeLcrModalFn(); });
+  if (lcrModalSearch)   lcrModalSearch.addEventListener('input', () => renderLcrModal(lcrModalSearch.value));
+
+  // Delete a saved LCR Call record
+  window.deleteLcrRecord = async function(id) {
+    if (!confirm('Delete this saved LCR Call record? This cannot be undone.')) return;
+    try {
+      if (window.PortalDB && typeof window.PortalDB.deleteLcrCall === 'function') {
+        await window.PortalDB.deleteLcrCall(id);
+        allLcrRecords = allLcrRecords.filter(r => r.id !== id);
+        renderLcrModal(lcrModalSearch ? lcrModalSearch.value : '');
+        showToast('🗑 LCR Call record deleted.');
+      } else {
+        alert('Delete function not available.');
+      }
+    } catch (e) {
+      console.error('Delete failed:', e);
+      alert('Error deleting record.');
+    }
+  };
+
 
   const letterTypeSelect = document.getElementById('letter_type');
   const prevDateInput = document.getElementById('prev_call_date');
@@ -573,4 +671,123 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
   syncFields();
+
+  // ── Issue Reminder Button ─────────────────────────────────────
+  const reminderBtn = document.getElementById('issueReminderBtn');
+  if (reminderBtn) {
+    reminderBtn.addEventListener('click', openReminderFromMaster);
+  }
 });
+
+/* ──────────────────────────────────────────────────────────────
+   openReminderFromMaster()
+   Fetches Lower Court details from the master case_records table
+   and the original LCR call date from lcr_calls, then opens
+   reminder.html with all fields pre-populated via URL params.
+   ────────────────────────────────────────────────────────────── */
+async function openReminderFromMaster() {
+  const btn = document.getElementById('issueReminderBtn');
+
+  // Read case identity from the form
+  const caseType = (document.getElementById('case_type')?.value || 'First Appeal').trim();
+  const caseNo   = (document.getElementById('case_no')?.value   || '').trim();
+  const caseYear = (document.getElementById('case_year')?.value || '').trim();
+
+  if (!caseNo || !caseYear) {
+    alert('Please load a case first using the Case Search box before issuing a Reminder.');
+    return;
+  }
+
+  // Show loading state
+  const origLabel = btn.innerHTML;
+  btn.disabled = true;
+  btn.innerHTML = '⏳ Fetching Records…';
+
+  try {
+    // ── 1. Fetch master case record (lower court details) ────────
+    let masterRecord = null;
+    if (window.PortalDB && typeof window.PortalDB.getSingleCaseRecord === 'function') {
+      masterRecord = await window.PortalDB.getSingleCaseRecord(caseType, caseNo, caseYear);
+    }
+
+    // ── 2. Fetch the original LCR call date ──────────────────────
+    let originalLcrDate = '';
+    if (window.PortalDB && typeof window.PortalDB.getLcrCalls === 'function') {
+      try {
+        const allLcr = await window.PortalDB.getLcrCalls();
+        // Match by case_no and case_year, get the oldest (first issued)
+        const matches = allLcr
+          .filter(l =>
+            String(l.case_no || '').trim()   === caseNo &&
+            String(l.case_year || '').trim() === caseYear
+          )
+          .sort((a, b) => new Date(a.saved_at) - new Date(b.saved_at));
+
+        if (matches.length > 0) {
+          const oldest = matches[0];
+          // Prefer custom_date (formatted) over raw saved_at
+          if (oldest.custom_date) {
+            originalLcrDate = oldest.custom_date;
+          } else if (oldest.saved_at) {
+            // Format raw ISO date to DD-MM-YYYY
+            const d = new Date(oldest.saved_at);
+            if (!isNaN(d.getTime())) {
+              const day   = String(d.getDate()).padStart(2, '0');
+              const month = String(d.getMonth() + 1).padStart(2, '0');
+              originalLcrDate = `${day}-${month}-${d.getFullYear()}`;
+            }
+          }
+        }
+      } catch (lcrErr) {
+        console.warn('Could not fetch LCR call history:', lcrErr);
+      }
+    }
+
+    // ── 3. Resolve lower court fields ────────────────────────────
+    // Priority: master record from Supabase → form fields already typed in
+    const lcCourt     = masterRecord?.lc_court      || document.getElementById('court_of_the')?.value  || '';
+    const lcCaseType  = masterRecord?.lc_case_type  || document.getElementById('appeal_from')?.value    || '';
+    const lcCaseNo    = masterRecord?.lc_case_no    || document.getElementById('appeal_from_no')?.value || '';
+    const lcCaseYear  = masterRecord?.lc_case_year  || document.getElementById('appeal_from_year')?.value || '';
+    const appellant   = masterRecord?.appellant     || document.getElementById('appellant')?.value       || '';
+    const respondent  = masterRecord?.respondent    || document.getElementById('respondent')?.value      || '';
+
+    // Build "Arising Out Of" string for the reminder body
+    let arisingOutOf = document.getElementById('arising_out_of')?.value || '';
+    if (!arisingOutOf && lcCaseType && lcCaseNo && lcCaseYear) {
+      arisingOutOf = `${lcCaseType} No. ${lcCaseNo} of ${lcCaseYear}`;
+    }
+
+    // Derive recipient title/address from lc_court
+    let recipientTitle   = document.getElementById('recipient_title')?.value   || '';
+    let recipientAddress = document.getElementById('recipient_address')?.value || '';
+    if (lcCourt && (!recipientTitle || recipientTitle === 'District and Sessions Judge')) {
+      const parts = lcCourt.split(',');
+      recipientTitle   = parts[0].trim();
+      recipientAddress = parts.slice(1).join(',').trim() || recipientAddress;
+    }
+
+    // ── 4. Build reminder.html URL with all params ───────────────
+    const params = new URLSearchParams({
+      case_type:        caseType,
+      case_no:          caseNo,
+      case_year:        caseYear,
+      appellant:        appellant,
+      respondent:       respondent,
+      appeal_from:      recipientTitle,         // maps to rem_to_title
+      court_of_the:     lcCourt,                // maps to rem_court_of_the
+      arising_out_of:   arisingOutOf,           // maps to rem_arising_out_of
+      recipient_address: recipientAddress,      // maps to rem_to_address
+      prev_date:        originalLcrDate,        // original requisition date
+    });
+
+    const reminderUrl = `../lcr_call/reminder.html?${params.toString()}`;
+    window.location.href = reminderUrl;
+
+  } catch (err) {
+    console.error('Error opening reminder:', err);
+    alert('Could not open Reminder Letter. Please check your connection and try again.');
+    btn.disabled = false;
+    btn.innerHTML = origLabel;
+  }
+}

@@ -32,6 +32,14 @@ const APPEAL_TYPES = {
   'SA': 'Second Appeal'
 };
 
+// ── Ordinal Suffix Helper ─────────────────────────────────────
+function ordinalSuffix(day) {
+  if (day === 1 || day === 21 || day === 31) return 'st';
+  if (day === 2 || day === 22) return 'nd';
+  if (day === 3 || day === 23) return 'rd';
+  return 'th';
+}
+
 // ── Date Parts Population ────────────────────────────────────
 function populateCurrentDateParts() {
   const now = new Date();
@@ -42,18 +50,7 @@ function populateCurrentDateParts() {
     "July", "August", "September", "October", "November", "December"
   ];
   const monthName = months[now.getMonth()];
-  
-  // Calculate ordinal suffix
-  let suffix = "th";
-  if (day === 1 || day === 21 || day === 31) {
-    suffix = "st";
-  } else if (day === 2 || day === 22) {
-    suffix = "nd";
-  } else if (day === 3 || day === 23) {
-    suffix = "rd";
-  }
-  
-  const paddedDay = String(day).padStart(2, '0') + suffix;
+  const paddedDay = String(day).padStart(2, '0') + ordinalSuffix(day);
   
   const dayInput = document.getElementById('in_date_day');
   const monthInput = document.getElementById('in_date_month');
@@ -62,6 +59,24 @@ function populateCurrentDateParts() {
   if (dayInput && !dayInput.value) dayInput.value = paddedDay;
   if (monthInput && !monthInput.value) monthInput.value = monthName;
   if (yearInput && !yearInput.value) yearInput.value = year;
+}
+
+// ── 30-Days-From-Today Date String (skips weekends) ──────────
+function getThirtyDaysFromToday() {
+  const months = [
+    "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+  ];
+  const future = new Date();
+  future.setDate(future.getDate() + 30);
+  // If Saturday (6) → move to Monday (+2); if Sunday (0) → move to Monday (+1)
+  const dow = future.getDay();
+  if (dow === 6) future.setDate(future.getDate() + 2);
+  else if (dow === 0) future.setDate(future.getDate() + 1);
+  const d = future.getDate();
+  const m = months[future.getMonth()];
+  const y = future.getFullYear();
+  return `${d}${ordinalSuffix(d)} ${m}, ${y}`;
 }
 
 // ── Sync Editor Fields to Print Preview ───────────────────────
@@ -175,7 +190,7 @@ function renderPages() {
         </div>
 
         <div class="doc-body-paragraph date-row">
-          Given under my hand and the seal of this Court this the <span class="val-date-day">${dateDay}</span> day of <span class="val-date-month">${dateMonth}</span> 20<span class="val-date-year">${dateYear}</span>
+          Given under my hand and the seal of this Court this the <span class="val-date-day">${dateDay}</span> day of <span class="val-date-month">${dateMonth}</span> <span class="val-date-year">${dateYear}</span>
         </div>
 
         <!-- Sign-Off Section -->
@@ -183,7 +198,7 @@ function renderPages() {
           <div class="sign-off-block">
             <div class="sign-off-by">By order of the High Court</div>
             <div class="sign-off-space"></div>
-            <div class="sign-off-title">Deputy Registrar.</div>
+            <div class="sign-off-title">Assistant Registrar.</div>
           </div>
         </div>
       </div>
@@ -249,10 +264,10 @@ document.addEventListener('DOMContentLoaded', () => {
   // 1. Auto-populate current date parts
   populateCurrentDateParts();
 
-  // 2. Set default values for appearance period to assist user
+  // 2. Auto-populate appearance period with date 30 days from today
   const appearanceInput = document.getElementById('in_appearance_period');
   if (appearanceInput && !appearanceInput.value) {
-    appearanceInput.value = "15 days";
+    appearanceInput.value = getThirtyDaysFromToday();
   }
 
   // 3. Render initial recipient list inputs
@@ -472,7 +487,7 @@ document.addEventListener('DOMContentLoaded', () => {
       
       const appearanceInput = document.getElementById('in_appearance_period');
       if (appearanceInput) {
-        appearanceInput.value = "15 days";
+        appearanceInput.value = getThirtyDaysFromToday();
       }
 
       // Reset recipients list
@@ -491,9 +506,28 @@ document.addEventListener('DOMContentLoaded', () => {
   if (printBtn) {
     printBtn.addEventListener('click', () => {
       renderPages();
-      saveToCloud(true);
       window.print();
     });
+  }
+
+  function showToast(msg) {
+    let toast = document.getElementById('_autoSaveToast');
+    if (!toast) {
+      toast = document.createElement('div');
+      toast.id = '_autoSaveToast';
+      Object.assign(toast.style, {
+        position: 'fixed', bottom: '28px', right: '28px', zIndex: '99999',
+        background: '#166534', color: '#dcfce7', padding: '10px 18px',
+        borderRadius: '8px', fontFamily: 'inherit', fontSize: '0.88rem',
+        fontWeight: '600', boxShadow: '0 4px 16px rgba(0,0,0,0.4)',
+        transition: 'opacity 0.4s', opacity: '0', pointerEvents: 'none'
+      });
+      document.body.appendChild(toast);
+    }
+    toast.textContent = msg;
+    toast.style.opacity = '1';
+    clearTimeout(toast._hideTimer);
+    toast._hideTimer = setTimeout(() => { toast.style.opacity = '0'; }, 3000);
   }
 
   // 9. Supabase Cloud Buttons
@@ -546,75 +580,131 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   if (viewCloudBtn) {
-    viewCloudBtn.addEventListener('click', async () => {
-      const searchCaseNo = prompt("Enter Case Number to fetch notices (e.g., 1233):");
-      if (!searchCaseNo) return;
-
-      try {
-        let data = [];
-        if (window.PortalDB) {
-          data = await window.PortalDB.getDirectNotices();
-        } else {
-          throw new Error('PortalDB not available');
-        }
-
-        if (data.length === 0) {
-          alert("No notice found in cloud.");
-          return;
-        }
-
-        const matches = data.filter(n => (n.caseNo || '').toString().toLowerCase().trim() === searchCaseNo.toString().toLowerCase().trim());
-        if (matches.length === 0) {
-          alert("No notice found for Case Number: " + searchCaseNo);
-          return;
-        }
-
-        let notice = matches[0];
-        if (matches.length > 1) {
-          let listMsg = `Multiple saved notices found for Case '${searchCaseNo}':\n\n`;
-          matches.forEach((m, idx) => {
-            const dateStr = m.saved_at ? m.saved_at.split('.')[0] : 'Saved Record';
-            listMsg += `${idx + 1}. Saved on: ${dateStr} ${idx === 0 ? '(Latest)' : ''}\n`;
-          });
-          listMsg += `\nEnter number (1-${matches.length}) to load (Default = 1):`;
-          const choice = prompt(listMsg, "1");
-          if (!choice) return;
-          const choiceIdx = parseInt(choice, 10) - 1;
-          if (!isNaN(choiceIdx) && matches[choiceIdx]) {
-            notice = matches[choiceIdx];
-          }
-        }
-        
-        document.getElementById('in_appeal_type').value = notice.appealType || '';
-        document.getElementById('in_case_no').value = notice.caseNo || '';
-        document.getElementById('in_case_year').value = notice.caseYear || '';
-        document.getElementById('in_arising_out_of').value = notice.arisingOutOf || '';
-        document.getElementById('in_arising_court').value = notice.arisingCourt || '';
-        document.getElementById('in_connected_case').value = notice.connectedCase || '';
-        document.getElementById('in_connected_year').value = notice.connectedYear || '';
-        document.getElementById('in_connected_court').value = notice.connectedCourt || '';
-        document.getElementById('in_appellant').value = notice.appellant || '';
-        document.getElementById('in_respondent').value = notice.respondent || '';
-        document.getElementById('in_advocate_name').value = notice.advocateName || '';
-        document.getElementById('in_appearance_period').value = notice.appearancePeriod || '';
-        document.getElementById('in_date_day').value = notice.dateDay || '';
-        document.getElementById('in_date_month').value = notice.dateMonth || '';
-        document.getElementById('in_date_year').value = notice.dateYear || '';
-
-        if (notice.recipients && Array.isArray(notice.recipients)) {
-          recipients = notice.recipients;
-        } else {
-          recipients = [""];
-        }
-
-        renderRecipientInputs();
-        renderPages();
-
-        alert("Notice loaded from cloud successfully!");
-      } catch (error) {
-        console.error("Error fetching notice from Supabase:", error);
-        alert("Error loading notice from cloud.");
-      }
-    });
+    viewCloudBtn.addEventListener('click', openNoticesModal);
   }
+
+  // ── Load Saved Notices Modal ──────────────────────────────────
+  let allNoticeRecords = [];
+
+  function fmtNoticeDate(str) {
+    if (!str) return '—';
+    try { return new Date(str).toLocaleDateString('en-IN', { day:'2-digit', month:'short', year:'numeric' }); }
+    catch { return str; }
+  }
+
+  function renderNoticesModal(query = '') {
+    const tbody = document.getElementById('noticesModalBody');
+    if (!tbody) return;
+    const q = query.toLowerCase().trim();
+    const filtered = allNoticeRecords.filter(r => {
+      // data may be stored inside r.data (JSON column) or flat
+      const d = r.data || r;
+      const haystack = `${d.caseNo || r.caseNo || ''} ${d.caseYear || r.caseYear || ''} ${d.appellant || r.appellant || ''} ${d.respondent || r.respondent || ''}`.toLowerCase();
+      return !q || haystack.includes(q);
+    });
+
+    const countEl = document.getElementById('noticesModalCount');
+    if (countEl) countEl.textContent = `${filtered.length} record${filtered.length === 1 ? '' : 's'} found`;
+
+    if (filtered.length === 0) {
+      tbody.innerHTML = `<tr><td colspan="5" style="padding:24px;text-align:center;color:#94a3b8;">No records found.</td></tr>`;
+      return;
+    }
+
+    tbody.innerHTML = filtered.map(r => {
+      const d = r.data || r;
+      const caseLabel = `${d.appealType || 'FA'} No. ${d.caseNo || '—'} / ${d.caseYear || '—'}`;
+      const saved = fmtNoticeDate(r.saved_at || r.created_at);
+      return `<tr data-id="${r.id}" style="border-bottom:1px solid rgba(51,65,85,0.5);transition:background 0.15s;">
+        <td style="padding:10px 14px;font-weight:700;color:#60a5fa;cursor:pointer;" onclick="loadNoticeRecord(${r.id})">${caseLabel}</td>
+        <td style="padding:10px 14px;color:#f8fafc;cursor:pointer;" onclick="loadNoticeRecord(${r.id})">${d.appellant || '—'}</td>
+        <td style="padding:10px 14px;color:#94a3b8;cursor:pointer;" onclick="loadNoticeRecord(${r.id})">${d.respondent || '—'}</td>
+        <td style="padding:10px 14px;color:#94a3b8;white-space:nowrap;cursor:pointer;" onclick="loadNoticeRecord(${r.id})">${saved}</td>
+        <td style="padding:6px 10px;text-align:center;">
+          <button onclick="deleteNoticeRecord(${r.id})" title="Delete record" style="background:#7f1d1d;color:#fca5a5;border:1px solid #ef4444;border-radius:5px;padding:3px 10px;cursor:pointer;font-size:0.8rem;transition:background 0.2s;" onmouseover="this.style.background='#991b1b'" onmouseout="this.style.background='#7f1d1d'">🗑 Delete</button>
+        </td>
+      </tr>`;
+    }).join('');
+  }
+
+  window.loadNoticeRecord = function(id) {
+    const row = allNoticeRecords.find(r => r.id === id);
+    if (!row) return;
+    const notice = row.data || row;
+
+    document.getElementById('in_appeal_type').value = notice.appealType || '';
+    document.getElementById('in_case_no').value = notice.caseNo || '';
+    document.getElementById('in_case_year').value = notice.caseYear || '';
+    document.getElementById('in_arising_out_of').value = notice.arisingOutOf || '';
+    document.getElementById('in_arising_court').value = notice.arisingCourt || '';
+    document.getElementById('in_connected_case').value = notice.connectedCase || '';
+    document.getElementById('in_connected_year').value = notice.connectedYear || '';
+    document.getElementById('in_connected_court').value = notice.connectedCourt || '';
+    document.getElementById('in_appellant').value = notice.appellant || '';
+    document.getElementById('in_respondent').value = notice.respondent || '';
+    document.getElementById('in_advocate_name').value = notice.advocateName || '';
+    document.getElementById('in_appearance_period').value = notice.appearancePeriod || '';
+    document.getElementById('in_date_day').value = notice.dateDay || '';
+    document.getElementById('in_date_month').value = notice.dateMonth || '';
+    document.getElementById('in_date_year').value = notice.dateYear || '';
+
+    if (notice.recipients && Array.isArray(notice.recipients)) {
+      recipients = notice.recipients;
+    } else { recipients = ['']; }
+
+    renderRecipientInputs();
+    renderPages();
+
+    // Close modal
+    const modal = document.getElementById('loadNoticesModal');
+    if (modal) modal.style.display = 'none';
+  };
+
+  const noticesModalEl      = document.getElementById('loadNoticesModal');
+  const noticesModalSearch  = document.getElementById('noticesModalSearch');
+  const closeNoticesModal   = document.getElementById('closeNoticesModal');
+  const closeNoticesModalBtn= document.getElementById('closeNoticesModalBtn');
+
+  async function openNoticesModal() {
+    if (!noticesModalEl) return;
+    noticesModalEl.style.display = 'flex';
+
+    if (allNoticeRecords.length === 0) {
+      try {
+        allNoticeRecords = window.PortalDB ? await window.PortalDB.getDirectNotices() : [];
+      } catch(e) {
+        console.error('Failed to fetch notices:', e);
+        allNoticeRecords = [];
+      }
+    }
+    if (noticesModalSearch) noticesModalSearch.value = '';
+    renderNoticesModal('');
+  }
+
+  function closeNoticesModalFn() {
+    if (noticesModalEl) noticesModalEl.style.display = 'none';
+  }
+
+  if (closeNoticesModal)    closeNoticesModal.addEventListener('click', closeNoticesModalFn);
+  if (closeNoticesModalBtn) closeNoticesModalBtn.addEventListener('click', closeNoticesModalFn);
+  if (noticesModalEl)       noticesModalEl.addEventListener('click', e => { if (e.target === noticesModalEl) closeNoticesModalFn(); });
+  if (noticesModalSearch)   noticesModalSearch.addEventListener('input', () => renderNoticesModal(noticesModalSearch.value));
+
+  // Delete a saved notice record
+  window.deleteNoticeRecord = async function(id) {
+    if (!confirm('Delete this saved notice record? This cannot be undone.')) return;
+    try {
+      if (window.PortalDB && typeof window.PortalDB.deleteDirectNotice === 'function') {
+        await window.PortalDB.deleteDirectNotice(id);
+        allNoticeRecords = allNoticeRecords.filter(r => r.id !== id);
+        renderNoticesModal(noticesModalSearch ? noticesModalSearch.value : '');
+        showToast('🗑 Record deleted.');
+      } else {
+        alert('Delete function not available.');
+      }
+    } catch (e) {
+      console.error('Delete failed:', e);
+      alert('Error deleting record.');
+    }
+  };
 });

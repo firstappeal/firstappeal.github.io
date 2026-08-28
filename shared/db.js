@@ -233,6 +233,10 @@
       }
     },
 
+    async deleteLcrCall(id) {
+      return sbDelete('lcr_calls', { id });
+    },
+
     async checkCaseExists(caseType, caseNo, caseYear) {
       const r = await fetch(`${SUPA_URL}/rest/v1/case_records?case_type=eq.${encodeURIComponent(caseType)}&case_no=eq.${encodeURIComponent(caseNo)}&case_year=eq.${encodeURIComponent(caseYear)}&select=id`, {
         headers: { ...HEADERS, 'Prefer': 'count=exact', 'Range': '0-0', 'Range-Unit': 'items' }
@@ -261,6 +265,10 @@
       return sbInsert('direct_notices', body);
     },
 
+    async deleteDirectNotice(id) {
+      return sbDelete('direct_notices', { id });
+    },
+
     // ── CAUSE LISTS ──────────────────────────────────────────
     async getCauseLists() {
       const rows = await sbGet('cause_lists', 'limit=100');
@@ -274,6 +282,10 @@
 
     async insertCauseList(header, cases) {
       return sbInsert('cause_lists', { header: header, cases: cases, date: header.date || null });
+    },
+
+    async deleteCauseList(id) {
+      return sbDelete('cause_lists', { id });
     },
 
     // ── FILE TRACKING ────────────────────────────────────────

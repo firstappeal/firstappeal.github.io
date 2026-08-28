@@ -14,6 +14,7 @@
   </style>
   <!-- Stylesheet -->
   <link rel="stylesheet" href="style.css?v=7">
+  <link rel="stylesheet" href="../shared/case_record_modal.css">
 </head>
 <body>
     <div style="position: absolute; top: 10px; left: 10px; z-index: 1000;" class="no-print">
@@ -32,6 +33,7 @@
     <div class="nav-actions">
       <button type="button" class="btn btn-info" id="viewCloudLcrBtn">📂 Load Saved LCRs</button>
       <button type="button" class="btn btn-success" id="saveToCloudBtn">💾 Save Record</button>
+      <button type="button" class="btn btn-warning" id="issueReminderBtn" title="Fetch lower court records from master and open Reminder Letter">📨 Issue Reminder</button>
       <button type="button" class="btn btn-secondary" onclick="clearForm()">🗑 Clear Form</button>
       <button type="button" class="btn btn-primary" onclick="printForm()">🖨 Print / Save PDF</button>
     </div>
@@ -262,11 +264,48 @@
     </div>
   </div>
 
+  <!-- ── LOAD SAVED LCRs MODAL ──────────────────────────────── -->
+  <div id="loadLcrModal" class="modal-overlay no-print" style="display:none;">
+    <div class="modal-card" style="width:720px;max-width:95vw;max-height:85vh;display:flex;flex-direction:column;">
+      <div class="modal-header" style="display:flex;align-items:center;justify-content:space-between;padding:18px 24px;border-bottom:1px solid var(--border-slate);">
+        <h3 style="font-size:1.1rem;font-weight:700;color:var(--text-light);"><span style="margin-right:8px;">📂</span> Load Saved LCR Call</h3>
+        <button type="button" id="closeLcrModal" style="background:none;border:none;color:var(--text-muted);font-size:1.4rem;cursor:pointer;line-height:1;">&times;</button>
+      </div>
+      <div style="padding:16px 24px;border-bottom:1px solid var(--border-slate);">
+        <input type="text" id="lcrModalSearch" placeholder="Search by case number, year, or party name…"
+          style="width:100%;background:var(--input-bg);border:1.5px solid var(--input-border);color:var(--text-light);padding:9px 14px;border-radius:8px;font-family:inherit;font-size:0.9rem;outline:none;">
+      </div>
+      <div style="overflow-y:auto;flex:1;">
+        <table style="width:100%;border-collapse:collapse;font-size:0.84rem;">
+          <thead style="position:sticky;top:0;background:var(--navy-dark);">
+            <tr>
+              <th style="padding:10px 14px;text-align:left;color:var(--text-muted);font-size:0.75rem;text-transform:uppercase;letter-spacing:0.5px;border-bottom:1px solid var(--border-slate);">Case</th>
+              <th style="padding:10px 14px;text-align:left;color:var(--text-muted);font-size:0.75rem;text-transform:uppercase;letter-spacing:0.5px;border-bottom:1px solid var(--border-slate);">Appellant</th>
+              <th style="padding:10px 14px;text-align:left;color:var(--text-muted);font-size:0.75rem;text-transform:uppercase;letter-spacing:0.5px;border-bottom:1px solid var(--border-slate);">Respondent</th>
+              <th style="padding:10px 14px;text-align:left;color:var(--text-muted);font-size:0.75rem;text-transform:uppercase;letter-spacing:0.5px;border-bottom:1px solid var(--border-slate);">Saved On</th>
+              <th style="padding:10px 14px;text-align:center;color:var(--text-muted);font-size:0.75rem;text-transform:uppercase;letter-spacing:0.5px;border-bottom:1px solid var(--border-slate);">Action</th>
+            </tr>
+          </thead>
+          <tbody id="lcrModalBody">
+            <tr><td colspan="5" style="padding:24px;text-align:center;color:var(--text-muted);">Loading…</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div style="padding:12px 24px;border-top:1px solid var(--border-slate);display:flex;align-items:center;gap:10px;">
+        <span id="lcrModalCount" style="font-size:0.8rem;color:var(--text-muted);"></span>
+        <button type="button" id="closeLcrModalBtn" class="btn btn-secondary" style="margin-left:auto;">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Supabase DB Adapter (load first) -->
+  <script src="../shared/db.js?v=3"></script>
+
   <!-- Shared Case Record Sync Script -->
   <script src="../shared/case_record_modal.js"></script>
 
   <!-- Master Cases Database -->
-  <script src="../shared/cases_db.js?v=2"></script>
+  <script src="../shared/cases_db.js?v=3"></script>
   <script>
     document.addEventListener('DOMContentLoaded', async () => {
        if (typeof CASES_DB !== 'undefined' && window.PortalDB) {
@@ -284,11 +323,10 @@
                console.warn("Failed to sync recent cases from Supabase", e);
            }
        }
-    });
+     });
   </script>
 
-  <!-- JavaScript Logic -->
-    <script src="../shared/db.js?v=2"></script>
+  <!-- Application Logic -->
   <script src="script.js"></script>
 </body>
 </html>
