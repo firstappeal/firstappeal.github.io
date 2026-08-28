@@ -21,14 +21,12 @@ let currentPrintMode = 'full'; // 'full' or 'short'
 async function printShort() {
   currentPrintMode = 'short';
   syncPrintTable();
-  try { await saveToCloud(true); showToast('✅ Record saved automatically.'); } catch(e) { console.warn('Auto-save on print failed:', e); }
   window.print();
 }
 
 async function printFull() {
   currentPrintMode = 'full';
   syncPrintTable();
-  try { await saveToCloud(true); showToast('✅ Record saved automatically.'); } catch(e) { console.warn('Auto-save on print failed:', e); }
   window.print();
 }
 
@@ -884,33 +882,90 @@ async function saveToCloud(silent = false) {
 }
 
 async function viewCloudLists() {
-  const datePrompt = prompt("जिस दिनांक की सूची देखनी है उसे दर्ज करें (e.g. 24-07-2026):", document.getElementById('head_date').value.trim());
-  if (!datePrompt) return;
-  
+  // Open modal to view and manage saved cause lists
+  let allCauseLists = [];
   try {
-    let data = [];
     if (window.PortalDB) {
-      data = await window.PortalDB.getCauseLists();
+      allCauseLists = await window.PortalDB.getCauseLists();
     } else {
       throw new Error('PortalDB not available');
     }
+  } catch (error) {
+    console.error('Error fetching cause lists:', error);
+    alert('प्राप्त करने में त्रुटि हुई। (Error loading lists.)');
+    return;
+  }
 
-    if (data.length === 0) {
-      alert("इस दिनांक के लिए कोई सूची नहीं मिली। (No list found for this date.)");
-      return;
-    }
-    
-    const listData = data.find(d => (d.header && d.header.date === datePrompt) || d.date === datePrompt) || data[0];
-    
+  if (allCauseLists.length === 0) {
+    alert('कोई सहेजी गई सूची नहीं मिली। (No saved lists found.)');
+    return;
+  }
+
+  // Build modal overlay
+  let existing = document.getElementById('_causeListModal');
+  if (existing) existing.remove();
+
+  const overlay = document.createElement('div');
+  overlay.id = '_causeListModal';
+  overlay.style.cssText = 'position:fixed;inset:0;z-index:9000;background:rgba(0,0,0,0.7);display:flex;align-items:center;justify-content:center;';
+
+  function renderCauseListTable() {
+    const rows = allCauseLists.map(item => {
+      const dateStr = item.header?.date || item.date || (item.created_at ? item.created_at.split('T')[0] : '—');
+      const count = Array.isArray(item.cases) ? item.cases.length : 0;
+      const saved = item.created_at ? new Date(item.created_at).toLocaleDateString('en-IN', { day:'2-digit', month:'short', year:'numeric' }) : '—';
+      return `<tr style="border-bottom:1px solid rgba(51,65,85,0.5);">
+        <td style="padding:10px 14px;font-weight:700;color:#60a5fa;cursor:pointer;" onclick="window._loadCauseListById(${item.id})">${dateStr}</td>
+        <td style="padding:10px 14px;color:#f8fafc;cursor:pointer;" onclick="window._loadCauseListById(${item.id})">${count} cases</td>
+        <td style="padding:10px 14px;color:#94a3b8;white-space:nowrap;cursor:pointer;" onclick="window._loadCauseListById(${item.id})">${saved}</td>
+        <td style="padding:6px 10px;text-align:center;">
+          <button onclick="window._deleteCauseList(${item.id})" style="background:#7f1d1d;color:#fca5a5;border:1px solid #ef4444;border-radius:5px;padding:3px 10px;cursor:pointer;font-size:0.8rem;transition:background 0.2s;" onmouseover="this.style.background='#991b1b'" onmouseout="this.style.background='#7f1d1d'">🗑 Delete</button>
+        </td>
+      </tr>`;
+    }).join('');
+
+    return `
+    <div style="background:#1e293b;border-radius:12px;width:700px;max-width:95vw;max-height:80vh;display:flex;flex-direction:column;box-shadow:0 20px 60px rgba(0,0,0,0.6);overflow:hidden;">
+      <div style="padding:18px 24px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,0.08);">
+        <div>
+          <div style="font-size:1.1rem;font-weight:700;color:#f8fafc">📂 Saved Cause Lists</div>
+          <div style="font-size:0.8rem;color:#94a3b8;margin-top:2px;">${allCauseLists.length} list${allCauseLists.length === 1 ? '' : 's'} found — click a row to load it</div>
+        </div>
+        <button id="_closeCauseModal" style="background:rgba(255,255,255,0.08);border:none;color:#f8fafc;border-radius:6px;padding:6px 12px;cursor:pointer;font-size:0.85rem;">✕ Close</button>
+      </div>
+      <div style="overflow-y:auto;flex:1;">
+        <table style="width:100%;border-collapse:collapse;">
+          <thead>
+            <tr style="background:rgba(255,255,255,0.04);">
+              <th style="padding:10px 14px;text-align:left;color:#94a3b8;font-size:0.78rem;text-transform:uppercase;">Date</th>
+              <th style="padding:10px 14px;text-align:left;color:#94a3b8;font-size:0.78rem;text-transform:uppercase;">Cases</th>
+              <th style="padding:10px 14px;text-align:left;color:#94a3b8;font-size:0.78rem;text-transform:uppercase;">Saved On</th>
+              <th style="padding:10px 14px;text-align:center;color:#94a3b8;font-size:0.78rem;text-transform:uppercase;">Action</th>
+            </tr>
+          </thead>
+          <tbody id="_causeListTbody">${rows}</tbody>
+        </table>
+      </div>
+    </div>`;
+  }
+
+  overlay.innerHTML = renderCauseListTable();
+  document.body.appendChild(overlay);
+
+  overlay.addEventListener('click', e => { if (e.target === overlay) overlay.remove(); });
+  document.getElementById('_closeCauseModal').addEventListener('click', () => overlay.remove());
+
+  window._loadCauseListById = function(id) {
+    const listData = allCauseLists.find(l => l.id === id);
+    if (!listData) return;
     if (listData.header) {
       document.getElementById('head_court').value = listData.header.head_court || '';
       document.getElementById('head_bench').value = listData.header.head_bench || '';
     }
-    if (listData.date) {
-      document.getElementById('head_date').value = listData.date;
+    if (listData.header?.date || listData.date) {
+      document.getElementById('head_date').value = listData.header?.date || listData.date;
     }
     syncHeaders();
-    
     document.getElementById('editorTableBody').innerHTML = '';
     if (listData.cases && Array.isArray(listData.cases)) {
       listData.cases.forEach(caseData => {
@@ -920,20 +975,47 @@ async function viewCloudLists() {
         if (lastRow) {
           const judgeSelect = lastRow.querySelector('.judge-field');
           if (judgeSelect && caseData.judge) {
-             judgeSelect.value = caseData.judge;
-             judgeSelect.dataset.manual = 'true';
+            judgeSelect.value = caseData.judge;
+            judgeSelect.dataset.manual = 'true';
           }
         }
       });
     }
-    
     syncPrintTable();
-    alert("Cause list successfully loaded from cloud!");
-    
-  } catch (error) {
-    console.error("Error fetching from local server:", error);
-    alert("Error loading cause list from cloud. Please try again.");
-  }
+    overlay.remove();
+    showToast('✅ Cause list loaded!');
+  };
+
+  window._deleteCauseList = async function(id) {
+    if (!confirm('क्या आप इस सूची को हटाना चाहते हैं? (Delete this cause list? Cannot be undone.)')) return;
+    try {
+      if (window.PortalDB && typeof window.PortalDB.deleteCauseList === 'function') {
+        await window.PortalDB.deleteCauseList(id);
+        allCauseLists = allCauseLists.filter(l => l.id !== id);
+        const tbody = document.getElementById('_causeListTbody');
+        if (tbody) tbody.innerHTML = allCauseLists.map(item => {
+          const dateStr = item.header?.date || item.date || '—';
+          const count = Array.isArray(item.cases) ? item.cases.length : 0;
+          const saved = item.created_at ? new Date(item.created_at).toLocaleDateString('en-IN', { day:'2-digit', month:'short', year:'numeric' }) : '—';
+          return `<tr style="border-bottom:1px solid rgba(51,65,85,0.5);">
+            <td style="padding:10px 14px;font-weight:700;color:#60a5fa;cursor:pointer;" onclick="window._loadCauseListById(${item.id})">${dateStr}</td>
+            <td style="padding:10px 14px;color:#f8fafc;cursor:pointer;" onclick="window._loadCauseListById(${item.id})">${count} cases</td>
+            <td style="padding:10px 14px;color:#94a3b8;white-space:nowrap;cursor:pointer;" onclick="window._loadCauseListById(${item.id})">${saved}</td>
+            <td style="padding:6px 10px;text-align:center;">
+              <button onclick="window._deleteCauseList(${item.id})" style="background:#7f1d1d;color:#fca5a5;border:1px solid #ef4444;border-radius:5px;padding:3px 10px;cursor:pointer;font-size:0.8rem;" onmouseover="this.style.background='#991b1b'" onmouseout="this.style.background='#7f1d1d'">🗑 Delete</button>
+            </td>
+          </tr>`;
+        }).join('');
+        if (allCauseLists.length === 0) overlay.remove();
+        showToast('🗑 Cause list deleted.');
+      } else {
+        alert('Delete function not available.');
+      }
+    } catch (e) {
+      console.error('Delete failed:', e);
+      alert('हटाने में त्रुटि। (Error deleting list.)');
+    }
+  };
 }
 
 // ── Search History ──────────────────────────────────────────────

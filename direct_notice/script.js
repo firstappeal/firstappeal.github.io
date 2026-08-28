@@ -504,18 +504,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   if (printBtn) {
-    printBtn.addEventListener('click', async () => {
+    printBtn.addEventListener('click', () => {
       renderPages();
-      const caseNo = document.getElementById('in_case_no').value.trim();
-      const caseYear = document.getElementById('in_case_year').value.trim();
-      if (caseNo && caseYear) {
-        try {
-          await saveToCloud(true);
-          showToast('✅ Record saved automatically.');
-        } catch (e) {
-          console.warn('Auto-save on print failed:', e);
-        }
-      }
       window.print();
     });
   }
@@ -617,7 +607,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (countEl) countEl.textContent = `${filtered.length} record${filtered.length === 1 ? '' : 's'} found`;
 
     if (filtered.length === 0) {
-      tbody.innerHTML = `<tr><td colspan="4" style="padding:24px;text-align:center;color:#94a3b8;">No records found.</td></tr>`;
+      tbody.innerHTML = `<tr><td colspan="5" style="padding:24px;text-align:center;color:#94a3b8;">No records found.</td></tr>`;
       return;
     }
 
@@ -625,14 +615,14 @@ document.addEventListener('DOMContentLoaded', () => {
       const d = r.data || r;
       const caseLabel = `${d.appealType || 'FA'} No. ${d.caseNo || '—'} / ${d.caseYear || '—'}`;
       const saved = fmtNoticeDate(r.saved_at || r.created_at);
-      return `<tr data-id="${r.id}" style="cursor:pointer;border-bottom:1px solid rgba(51,65,85,0.5);transition:background 0.15s;"
-                onmouseover="this.style.background='rgba(255,255,255,0.04)'"
-                onmouseout="this.style.background=''"
-                onclick="loadNoticeRecord(${r.id})">
-        <td style="padding:10px 14px;font-weight:700;color:#60a5fa;">${caseLabel}</td>
-        <td style="padding:10px 14px;color:#f8fafc;">${d.appellant || '—'}</td>
-        <td style="padding:10px 14px;color:#94a3b8;">${d.respondent || '—'}</td>
-        <td style="padding:10px 14px;color:#94a3b8;white-space:nowrap;">${saved}</td>
+      return `<tr data-id="${r.id}" style="border-bottom:1px solid rgba(51,65,85,0.5);transition:background 0.15s;">
+        <td style="padding:10px 14px;font-weight:700;color:#60a5fa;cursor:pointer;" onclick="loadNoticeRecord(${r.id})">${caseLabel}</td>
+        <td style="padding:10px 14px;color:#f8fafc;cursor:pointer;" onclick="loadNoticeRecord(${r.id})">${d.appellant || '—'}</td>
+        <td style="padding:10px 14px;color:#94a3b8;cursor:pointer;" onclick="loadNoticeRecord(${r.id})">${d.respondent || '—'}</td>
+        <td style="padding:10px 14px;color:#94a3b8;white-space:nowrap;cursor:pointer;" onclick="loadNoticeRecord(${r.id})">${saved}</td>
+        <td style="padding:6px 10px;text-align:center;">
+          <button onclick="deleteNoticeRecord(${r.id})" title="Delete record" style="background:#7f1d1d;color:#fca5a5;border:1px solid #ef4444;border-radius:5px;padding:3px 10px;cursor:pointer;font-size:0.8rem;transition:background 0.2s;" onmouseover="this.style.background='#991b1b'" onmouseout="this.style.background='#7f1d1d'">🗑 Delete</button>
+        </td>
       </tr>`;
     }).join('');
   }
@@ -699,4 +689,22 @@ document.addEventListener('DOMContentLoaded', () => {
   if (closeNoticesModalBtn) closeNoticesModalBtn.addEventListener('click', closeNoticesModalFn);
   if (noticesModalEl)       noticesModalEl.addEventListener('click', e => { if (e.target === noticesModalEl) closeNoticesModalFn(); });
   if (noticesModalSearch)   noticesModalSearch.addEventListener('input', () => renderNoticesModal(noticesModalSearch.value));
+
+  // Delete a saved notice record
+  window.deleteNoticeRecord = async function(id) {
+    if (!confirm('Delete this saved notice record? This cannot be undone.')) return;
+    try {
+      if (window.PortalDB && typeof window.PortalDB.deleteDirectNotice === 'function') {
+        await window.PortalDB.deleteDirectNotice(id);
+        allNoticeRecords = allNoticeRecords.filter(r => r.id !== id);
+        renderNoticesModal(noticesModalSearch ? noticesModalSearch.value : '');
+        showToast('🗑 Record deleted.');
+      } else {
+        alert('Delete function not available.');
+      }
+    } catch (e) {
+      console.error('Delete failed:', e);
+      alert('Error deleting record.');
+    }
+  };
 });

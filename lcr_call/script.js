@@ -426,18 +426,8 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ── Actions ──────────────────────────────────────────────────
-async function printForm() {
+function printForm() {
   syncFields();
-  const caseNo = document.getElementById('case_no')?.value.trim();
-  const caseYear = document.getElementById('case_year')?.value.trim();
-  if (caseNo && caseYear && typeof saveToCloud === 'function') {
-    try {
-      await saveToCloud(true);
-      showToast('✅ Record saved automatically.');
-    } catch (e) {
-      console.warn('Auto-save on print failed:', e);
-    }
-  }
   window.print();
 }
 
@@ -560,21 +550,21 @@ document.addEventListener('DOMContentLoaded', () => {
     if (countEl) countEl.textContent = `${filtered.length} record${filtered.length === 1 ? '' : 's'} found`;
 
     if (filtered.length === 0) {
-      tbody.innerHTML = `<tr><td colspan="4" style="padding:24px;text-align:center;color:var(--text-muted);">No records found.</td></tr>`;
+      tbody.innerHTML = `<tr><td colspan="5" style="padding:24px;text-align:center;color:var(--text-muted);">No records found.</td></tr>`;
       return;
     }
 
     tbody.innerHTML = filtered.map(r => {
       const caseLabel = `FA No. ${r.case_no || '—'} / ${r.case_year || '—'}`;
       const saved = fmtDate(r.saved_at);
-      return `<tr data-id="${r.id}" style="cursor:pointer;border-bottom:1px solid rgba(51,65,85,0.5);transition:background 0.15s;"
-                onmouseover="this.style.background='rgba(255,255,255,0.04)'"
-                onmouseout="this.style.background=''"
-                onclick="loadLcrRecord(${r.id})">
-        <td style="padding:10px 14px;font-weight:700;color:#60a5fa;">${caseLabel}</td>
-        <td style="padding:10px 14px;color:var(--text-light);">${r.appellant || '—'}</td>
-        <td style="padding:10px 14px;color:var(--text-muted);">${r.respondent || '—'}</td>
-        <td style="padding:10px 14px;color:var(--text-muted);white-space:nowrap;">${saved}</td>
+      return `<tr data-id="${r.id}" style="border-bottom:1px solid rgba(51,65,85,0.5);transition:background 0.15s;">
+        <td style="padding:10px 14px;font-weight:700;color:#60a5fa;cursor:pointer;" onclick="loadLcrRecord(${r.id})">${caseLabel}</td>
+        <td style="padding:10px 14px;color:var(--text-light);cursor:pointer;" onclick="loadLcrRecord(${r.id})">${r.appellant || '—'}</td>
+        <td style="padding:10px 14px;color:var(--text-muted);cursor:pointer;" onclick="loadLcrRecord(${r.id})">${r.respondent || '—'}</td>
+        <td style="padding:10px 14px;color:var(--text-muted);white-space:nowrap;cursor:pointer;" onclick="loadLcrRecord(${r.id})">${saved}</td>
+        <td style="padding:6px 10px;text-align:center;">
+          <button onclick="deleteLcrRecord(${r.id})" title="Delete record" style="background:#7f1d1d;color:#fca5a5;border:1px solid #ef4444;border-radius:5px;padding:3px 10px;cursor:pointer;font-size:0.8rem;transition:background 0.2s;" onmouseover="this.style.background='#991b1b'" onmouseout="this.style.background='#7f1d1d'">🗑 Delete</button>
+        </td>
       </tr>`;
     }).join('');
   }
@@ -626,6 +616,24 @@ document.addEventListener('DOMContentLoaded', () => {
   if (closeLcrModalBtn) closeLcrModalBtn.addEventListener('click', closeLcrModalFn);
   if (lcrModalEl)       lcrModalEl.addEventListener('click', e => { if (e.target === lcrModalEl) closeLcrModalFn(); });
   if (lcrModalSearch)   lcrModalSearch.addEventListener('input', () => renderLcrModal(lcrModalSearch.value));
+
+  // Delete a saved LCR Call record
+  window.deleteLcrRecord = async function(id) {
+    if (!confirm('Delete this saved LCR Call record? This cannot be undone.')) return;
+    try {
+      if (window.PortalDB && typeof window.PortalDB.deleteLcrCall === 'function') {
+        await window.PortalDB.deleteLcrCall(id);
+        allLcrRecords = allLcrRecords.filter(r => r.id !== id);
+        renderLcrModal(lcrModalSearch ? lcrModalSearch.value : '');
+        showToast('🗑 LCR Call record deleted.');
+      } else {
+        alert('Delete function not available.');
+      }
+    } catch (e) {
+      console.error('Delete failed:', e);
+      alert('Error deleting record.');
+    }
+  };
 
 
   const letterTypeSelect = document.getElementById('letter_type');
