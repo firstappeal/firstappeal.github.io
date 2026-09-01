@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Patna High Court – Official Letter Writer</title>
+  <style>
+    :root { --font-ui: 'Segoe UI', 'Ubuntu', 'Helvetica Neue', Arial, sans-serif; }
+    body { font-family: var(--font-ui); }
+  </style>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Back button -->
+  <div style="position:absolute;top:10px;left:10px;z-index:1000;" class="no-print">
+    <a href="../index.html" style="text-decoration:none;font-family:sans-serif;background:#2563eb;color:white;padding:8px 14px;border-radius:6px;font-size:14px;box-shadow:0 2px 4px rgba(0,0,0,0.1);font-weight:600;">&#8592; Dashboard</a>
+  </div>
+
+  <!-- Navbar -->
+  <header class="navbar no-print">
+    <div class="nav-logo">
+      <div class="nav-icon">✉️</div>
+      <div>
+        <h1>Official Letter Writer</h1>
+        <p>High Court of Judicature at Patna – Compose &amp; Preview</p>
+      </div>
+    </div>
+    <div class="nav-actions">
+      <button type="button" class="btn btn-secondary" id="clearBtn">🗑 Clear</button>
+      <button type="button" class="btn btn-primary" onclick="printLetter()">🖨 Print / Save PDF</button>
+    </div>
+  </header>
+
+  <!-- Split Workspace -->
+  <div class="workspace no-print">
+
+    <!-- LEFT: Editor Panel -->
+    <aside class="editor-panel">
+
+      <!-- Header Fields -->
+      <div class="editor-section">
+        <h2>📋 Letter Header</h2>
+        <div class="grid-3">
+          <div class="input-group">
+            <label for="letter_no">Letter No.</label>
+            <input type="text" id="letter_no" placeholder="e.g. 1234/2026">
+          </div>
+          <div class="input-group">
+            <label for="file_no">File No.</label>
+            <input type="text" id="file_no" placeholder="e.g. FA-3/1973">
+          </div>
+          <div class="input-group">
+            <label for="section_dept">Section / Deptt.</label>
+            <input type="text" id="section_dept" value="First Appeal Section">
+          </div>
+        </div>
+        <div class="grid-2">
+          <div class="input-group">
+            <label for="letter_date">Letter Date</label>
+            <input type="text" id="letter_date" placeholder="e.g. 1st September, 2026">
+          </div>
+          <div class="input-group">
+            <label for="sender_title">Sender Designation</label>
+            <input type="text" id="sender_title" value="Assistant Registrar">
+          </div>
+        </div>
+      </div>
+
+      <!-- Recipient -->
+      <div class="editor-section">
+        <h2>🏛 Recipient</h2>
+        <div class="input-group">
+          <label for="to_title">To: Recipient Title</label>
+          <input type="text" id="to_title" placeholder="e.g. District and Sessions Judge">
+        </div>
+        <div class="input-group">
+          <label for="to_address">Recipient Address / Location</label>
+          <input type="text" id="to_address" placeholder="e.g. Patna">
+        </div>
+      </div>
+
+      <!-- Subject -->
+      <div class="editor-section">
+        <h2>📌 Subject</h2>
+        <div class="input-group">
+          <label for="subject_text">Subject Line</label>
+          <input type="text" id="subject_text" placeholder="e.g. Requisition for Lower Court Records (L.C.R.)">
+        </div>
+      </div>
+
+      <!-- Body -->
+      <div class="editor-section body-section">
+        <h2>📝 Letter Body</h2>
+        <div class="input-group" style="flex:1;">
+          <label for="salutation">Salutation</label>
+          <input type="text" id="salutation" value="Sir,">
+        </div>
+
+        <div class="input-group body-input-group">
+          <label for="body_text">
+            Body Content
+            <span class="char-counter" id="charCounter">0 chars</span>
+          </label>
+          <textarea id="body_text" rows="12"
+            placeholder="Type the body of your official letter here…&#10;&#10;The text will auto-preview on the right in real-time, rendered in the official Patna High Court letterhead format."></textarea>
+          <small class="help-text">Tip: Press Enter for new paragraphs. Each paragraph will be indented in the preview.</small>
+        </div>
+
+        <div class="input-group">
+          <label for="closing">Closing</label>
+          <input type="text" id="closing" value="Yours faithfully,">
+        </div>
+        <div class="input-group">
+          <label for="signatory">Signatory Designation</label>
+          <input type="text" id="signatory" value="Assistant Registrar">
+        </div>
+      </div>
+
+      <!-- Auto-adjust options -->
+      <div class="editor-section">
+        <h2>⚙️ Auto-Adjust Options</h2>
+
+        <div class="toggle-row">
+          <label class="toggle-label" for="opt_justify">Justify text alignment</label>
+          <label class="toggle-switch">
+            <input type="checkbox" id="opt_justify" checked>
+            <span class="slider"></span>
+          </label>
+        </div>
+
+        <div class="toggle-row">
+          <label class="toggle-label" for="opt_indent">Indent paragraphs</label>
+          <label class="toggle-switch">
+            <input type="checkbox" id="opt_indent" checked>
+            <span class="slider"></span>
+          </label>
+        </div>
+
+        <div class="toggle-row">
+          <label class="toggle-label" for="opt_spacing">Increase line spacing</label>
+          <label class="toggle-switch">
+            <input type="checkbox" id="opt_spacing">
+            <span class="slider"></span>
+          </label>
+        </div>
+
+        <div class="toggle-row">
+          <label class="toggle-label" for="opt_bold_subject">Bold subject line</label>
+          <label class="toggle-switch">
+            <input type="checkbox" id="opt_bold_subject" checked>
+            <span class="slider"></span>
+          </label>
+        </div>
+
+        <div class="toggle-row">
+          <label class="toggle-label" for="opt_watermark">Show watermark emblem</label>
+          <label class="toggle-switch">
+            <input type="checkbox" id="opt_watermark" checked>
+            <span class="slider"></span>
+          </label>
+        </div>
+
+        <div class="input-group" style="margin-top:4px;">
+          <label for="font_size_select">Body Font Size</label>
+          <select id="font_size_select">
+            <option value="11pt">11pt – Compact</option>
+            <option value="12pt" selected>12pt – Standard</option>
+            <option value="13pt">13pt – Large</option>
+            <option value="14pt">14pt – Extra Large</option>
+          </select>
+        </div>
+      </div>
+
+    </aside>
+
+    <!-- RIGHT: Live A4 Preview -->
+    <main class="preview-panel">
+      <div class="preview-card">
+        <div class="print-page" id="printPage">
+
+          <!-- Watermark -->
+          <div id="watermarkDiv" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);opacity:0.08;z-index:0;pointer-events:none;">
+            <img src="emblem.png" alt="Watermark" style="width:380px;height:auto;">
+          </div>
+
+          <!-- Letterhead header row -->
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14pt;position:relative;z-index:1;">
+            <!-- Left: English -->
+            <div style="text-align:left;font-size:11pt;line-height:1.35;width:33%;">
+              <strong id="p_sender_title" style="font-size:11.5pt;">Assistant Registrar</strong>,<br>
+              First Appeal Section,<br>
+              High Court of Judicature<br>
+              at Patna.
+            </div>
+            <!-- Centre: Emblem -->
+            <div style="text-align:center;width:34%;">
+              <img src="emblem.png" alt="Patna High Court Emblem" style="height:72px;width:auto;"><br>
+              <span style="font-size:10pt;font-weight:bold;text-decoration:underline;">Through E-mail / Fax / Post</span>
+            </div>
+            <!-- Right: Hindi -->
+            <div style="text-align:right;font-size:11pt;line-height:1.35;width:33%;font-family:'Noto Sans Devanagari','Mangal','Arial Unicode MS',sans-serif;">
+              <strong style="font-size:11.5pt;">सहायक निबंधक</strong>,<br>
+              प्रथम अपील अनुभाग,<br>
+              पटना उच्च न्यायालय,<br>
+              पटना ।
+            </div>
+          </div>
+
+          <!-- Metadata bar -->
+          <div style="display:flex;justify-content:space-between;align-items:baseline;font-size:11pt;border-top:1px solid #000;border-bottom:1px solid #000;padding:5pt 0;margin-bottom:14pt;position:relative;z-index:1;">
+            <div>Letter No. <strong id="p_letter_no">………</strong> / File No. <strong id="p_file_no">…………</strong> / <strong id="p_section_dept">First Appeal Section</strong></div>
+            <div>Dated, Patna the <strong id="p_letter_date">………… 20……</strong></div>
+          </div>
+
+          <!-- To (Addressee) -->
+          <div style="font-size:12pt;margin-bottom:14pt;line-height:1.5;position:relative;z-index:1;">
+            To,<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;The <strong id="p_to_title">_______________________</strong>,<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<strong id="p_to_address">_______________________</strong>.
+          </div>
+
+          <!-- Subject -->
+          <div id="p_subject_row" style="margin-bottom:14pt;font-size:12pt;line-height:1.5;display:flex;align-items:flex-start;position:relative;z-index:1;">
+            <span style="white-space:nowrap;margin-right:8px;font-weight:bold;">SUBJECT:</span>
+            <span id="p_subject_text" style="font-weight:bold;">&nbsp;</span>
+          </div>
+
+          <!-- Salutation -->
+          <div id="p_salutation" style="font-size:12pt;margin-bottom:10pt;position:relative;z-index:1;">Sir,</div>
+
+          <!-- Body -->
+          <div id="p_body" style="font-size:12pt;line-height:1.7;text-align:justify;margin-bottom:24pt;position:relative;z-index:1;font-family:'Times New Roman',Times,serif;">
+            <p style="margin:0;color:#aaa;font-style:italic;">Start typing your letter body on the left…</p>
+          </div>
+
+          <!-- Sign-off -->
+          <div style="margin-top:28pt;margin-left:auto;width:250px;text-align:center;display:flex;flex-direction:column;gap:32pt;position:relative;z-index:1;">
+            <div id="p_closing" style="font-size:12pt;">Yours faithfully,</div>
+            <div id="p_signatory" style="font-size:12pt;font-weight:bold;">Assistant Registrar</div>
+          </div>
+
+        </div><!-- /print-page -->
+      </div><!-- /preview-card -->
+    </main>
+  </div><!-- /workspace -->
+
+  <!-- Clear Confirm Modal -->
+  <div id="clearModal" class="modal-overlay no-print" style="display:none;">
+    <div class="modal-card">
+      <h3>Clear Letter?</h3>
+      <p>Are you sure you want to clear all fields? This cannot be undone.</p>
+      <div class="modal-actions">
+        <button type="button" id="clearCancel" class="btn btn-cancel">Cancel</button>
+        <button type="button" id="clearOk" class="btn btn-danger-action">Clear</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
