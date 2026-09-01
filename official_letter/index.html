@@ -12,18 +12,16 @@
 </head>
 <body>
 
-  <!-- Back button -->
   <div style="position:absolute;top:10px;left:10px;z-index:1000;" class="no-print">
-    <a href="../index.html" style="text-decoration:none;font-family:sans-serif;background:#2563eb;color:white;padding:8px 14px;border-radius:6px;font-size:14px;box-shadow:0 2px 4px rgba(0,0,0,0.1);font-weight:600;">&#8592; Dashboard</a>
+    <a href="../index.html" style="text-decoration:none;font-family:sans-serif;background:#2563eb;color:white;padding:8px 14px;border-radius:6px;font-size:14px;font-weight:600;">&#8592; Dashboard</a>
   </div>
 
-  <!-- Navbar -->
   <header class="navbar no-print">
     <div class="nav-logo">
       <div class="nav-icon">✉️</div>
       <div>
         <h1>Official Letter Writer</h1>
-        <p>High Court of Judicature at Patna – Compose &amp; Preview</p>
+        <p>High Court of Judicature at Patna – Type directly on the letterhead</p>
       </div>
     </div>
     <div class="nav-actions">
@@ -32,13 +30,12 @@
     </div>
   </header>
 
-  <!-- Split Workspace -->
   <div class="workspace no-print">
 
-    <!-- LEFT: Editor Panel -->
+    <!-- LEFT: Metadata + Controls -->
     <aside class="editor-panel">
 
-      <!-- Header Fields -->
+      <!-- Letter Header -->
       <div class="editor-section">
         <h2>📋 Letter Header</h2>
         <div class="grid-3">
@@ -71,45 +68,31 @@
       <div class="editor-section">
         <h2>🏛 Recipient</h2>
         <div class="input-group">
-          <label for="to_title">To: Recipient Title</label>
+          <label for="to_title">Recipient Title</label>
           <input type="text" id="to_title" placeholder="e.g. District and Sessions Judge">
         </div>
         <div class="input-group">
-          <label for="to_address">Recipient Address / Location</label>
+          <label for="to_address">Recipient Address</label>
           <input type="text" id="to_address" placeholder="e.g. Patna">
         </div>
       </div>
 
-      <!-- Subject -->
+      <!-- Subject + Salutation -->
       <div class="editor-section">
-        <h2>📌 Subject</h2>
+        <h2>📌 Subject &amp; Salutation</h2>
         <div class="input-group">
           <label for="subject_text">Subject Line</label>
-          <input type="text" id="subject_text" placeholder="e.g. Requisition for Lower Court Records (L.C.R.)">
+          <input type="text" id="subject_text" placeholder="e.g. Requisition for records…">
         </div>
-      </div>
-
-      <!-- Body -->
-      <div class="editor-section body-section">
-        <h2>📝 Letter Body</h2>
-        <div class="input-group" style="flex:1;">
-          <label for="salutation">Salutation</label>
-          <input type="text" id="salutation" value="Sir,">
-        </div>
-
-        <div class="input-group body-input-group">
-          <label for="body_text">
-            Body Content
-            <span class="char-counter" id="charCounter">0 chars</span>
-          </label>
-          <textarea id="body_text" rows="12"
-            placeholder="Type the body of your official letter here…&#10;&#10;The text will auto-preview on the right in real-time, rendered in the official Patna High Court letterhead format."></textarea>
-          <small class="help-text">Tip: Press Enter for new paragraphs. Each paragraph will be indented in the preview.</small>
-        </div>
-
-        <div class="input-group">
-          <label for="closing">Closing</label>
-          <input type="text" id="closing" value="Yours faithfully,">
+        <div class="grid-2">
+          <div class="input-group">
+            <label for="salutation">Salutation</label>
+            <input type="text" id="salutation" value="Sir,">
+          </div>
+          <div class="input-group">
+            <label for="closing">Closing</label>
+            <input type="text" id="closing" value="Yours faithfully,">
+          </div>
         </div>
         <div class="input-group">
           <label for="signatory">Signatory Designation</label>
@@ -117,50 +100,37 @@
         </div>
       </div>
 
-      <!-- Auto-adjust options -->
+      <!-- Formatting Toolbar -->
+      <div class="editor-section">
+        <h2>✍️ Text Formatting</h2>
+        <p class="section-hint">Select text in the letter body (right), then click a button below.</p>
+        <div class="fmt-toolbar">
+          <button type="button" class="fmt-btn" id="fmtBold" title="Bold (Ctrl+B)"><strong>B</strong></button>
+          <button type="button" class="fmt-btn" id="fmtItalic" title="Italic (Ctrl+I)"><em>I</em></button>
+          <button type="button" class="fmt-btn" id="fmtUnderline" title="Underline (Ctrl+U)"><span style="text-decoration:underline;">U</span></button>
+          <div class="fmt-divider"></div>
+          <button type="button" class="fmt-btn" id="fmtClearFmt" title="Clear Formatting">T&#x336;</button>
+          <div class="fmt-divider"></div>
+          <button type="button" class="fmt-btn fmt-btn-sm" id="fmtAlignLeft" title="Align Left">⬅</button>
+          <button type="button" class="fmt-btn fmt-btn-sm" id="fmtAlignCenter" title="Center">⇔</button>
+          <button type="button" class="fmt-btn fmt-btn-sm" id="fmtAlignRight" title="Align Right">➡</button>
+        </div>
+        <small class="help-text" style="margin-top:4px;">
+          💡 Type <strong style="color:var(--gold-light);">FA No. 182/1980</strong> in the letter body — party names will be auto-fetched and inserted.
+        </small>
+      </div>
+
+      <!-- Auto-Adjust -->
       <div class="editor-section">
         <h2>⚙️ Auto-Adjust Options</h2>
-
-        <div class="toggle-row">
-          <label class="toggle-label" for="opt_justify">Justify text alignment</label>
-          <label class="toggle-switch">
-            <input type="checkbox" id="opt_justify" checked>
-            <span class="slider"></span>
-          </label>
-        </div>
-
-        <div class="toggle-row">
-          <label class="toggle-label" for="opt_indent">Indent paragraphs</label>
-          <label class="toggle-switch">
-            <input type="checkbox" id="opt_indent" checked>
-            <span class="slider"></span>
-          </label>
-        </div>
-
-        <div class="toggle-row">
-          <label class="toggle-label" for="opt_spacing">Increase line spacing</label>
-          <label class="toggle-switch">
-            <input type="checkbox" id="opt_spacing">
-            <span class="slider"></span>
-          </label>
-        </div>
-
         <div class="toggle-row">
           <label class="toggle-label" for="opt_bold_subject">Bold subject line</label>
-          <label class="toggle-switch">
-            <input type="checkbox" id="opt_bold_subject" checked>
-            <span class="slider"></span>
-          </label>
+          <label class="toggle-switch"><input type="checkbox" id="opt_bold_subject" checked><span class="slider"></span></label>
         </div>
-
         <div class="toggle-row">
           <label class="toggle-label" for="opt_watermark">Show watermark emblem</label>
-          <label class="toggle-switch">
-            <input type="checkbox" id="opt_watermark" checked>
-            <span class="slider"></span>
-          </label>
+          <label class="toggle-switch"><input type="checkbox" id="opt_watermark" checked><span class="slider"></span></label>
         </div>
-
         <div class="input-group" style="margin-top:4px;">
           <label for="font_size_select">Body Font Size</label>
           <select id="font_size_select">
@@ -174,7 +144,7 @@
 
     </aside>
 
-    <!-- RIGHT: Live A4 Preview -->
+    <!-- RIGHT: Live A4 Letterhead (body is typed here) -->
     <main class="preview-panel">
       <div class="preview-card">
         <div class="print-page" id="printPage">
@@ -184,21 +154,18 @@
             <img src="emblem.png" alt="Watermark" style="width:380px;height:auto;">
           </div>
 
-          <!-- Letterhead header row -->
+          <!-- Letterhead Header -->
           <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14pt;position:relative;z-index:1;">
-            <!-- Left: English -->
             <div style="text-align:left;font-size:11pt;line-height:1.35;width:33%;">
               <strong id="p_sender_title" style="font-size:11.5pt;">Assistant Registrar</strong>,<br>
               First Appeal Section,<br>
               High Court of Judicature<br>
               at Patna.
             </div>
-            <!-- Centre: Emblem -->
             <div style="text-align:center;width:34%;">
               <img src="emblem.png" alt="Patna High Court Emblem" style="height:72px;width:auto;"><br>
               <span style="font-size:10pt;font-weight:bold;text-decoration:underline;">Through E-mail / Fax / Post</span>
             </div>
-            <!-- Right: Hindi -->
             <div style="text-align:right;font-size:11pt;line-height:1.35;width:33%;font-family:'Noto Sans Devanagari','Mangal','Arial Unicode MS',sans-serif;">
               <strong style="font-size:11.5pt;">सहायक निबंधक</strong>,<br>
               प्रथम अपील अनुभाग,<br>
@@ -207,13 +174,13 @@
             </div>
           </div>
 
-          <!-- Metadata bar -->
+          <!-- Metadata Bar -->
           <div style="display:flex;justify-content:space-between;align-items:baseline;font-size:11pt;border-top:1px solid #000;border-bottom:1px solid #000;padding:5pt 0;margin-bottom:14pt;position:relative;z-index:1;">
             <div>Letter No. <strong id="p_letter_no">………</strong> / File No. <strong id="p_file_no">…………</strong> / <strong id="p_section_dept">First Appeal Section</strong></div>
             <div>Dated, Patna the <strong id="p_letter_date">………… 20……</strong></div>
           </div>
 
-          <!-- To (Addressee) -->
+          <!-- To -->
           <div style="font-size:12pt;margin-bottom:14pt;line-height:1.5;position:relative;z-index:1;">
             To,<br>
             &nbsp;&nbsp;&nbsp;&nbsp;The <strong id="p_to_title">_______________________</strong>,<br>
@@ -221,7 +188,7 @@
           </div>
 
           <!-- Subject -->
-          <div id="p_subject_row" style="margin-bottom:14pt;font-size:12pt;line-height:1.5;display:flex;align-items:flex-start;position:relative;z-index:1;">
+          <div style="margin-bottom:14pt;font-size:12pt;line-height:1.5;display:flex;align-items:flex-start;position:relative;z-index:1;">
             <span style="white-space:nowrap;margin-right:8px;font-weight:bold;">SUBJECT:</span>
             <span id="p_subject_text" style="font-weight:bold;">&nbsp;</span>
           </div>
@@ -229,10 +196,12 @@
           <!-- Salutation -->
           <div id="p_salutation" style="font-size:12pt;margin-bottom:10pt;position:relative;z-index:1;">Sir,</div>
 
-          <!-- Body -->
-          <div id="p_body" style="font-size:12pt;line-height:1.7;text-align:justify;margin-bottom:24pt;position:relative;z-index:1;font-family:'Times New Roman',Times,serif;">
-            <p style="margin:0;color:#aaa;font-style:italic;">Start typing your letter body on the left…</p>
-          </div>
+          <!-- BODY — type directly here -->
+          <div id="p_body"
+               contenteditable="true"
+               spellcheck="true"
+               data-placeholder="Click here and start typing your letter…&#10;&#10;Tip: Type FA No. 182/1980 and party names will be auto-fetched."
+               style="font-size:12pt;font-family:'Times New Roman',Times,serif;line-height:1.75;text-align:justify;margin-bottom:24pt;position:relative;z-index:1;min-height:60pt;outline:none;"></div>
 
           <!-- Sign-off -->
           <div style="margin-top:28pt;margin-left:auto;width:250px;text-align:center;display:flex;flex-direction:column;gap:32pt;position:relative;z-index:1;">
@@ -240,10 +209,10 @@
             <div id="p_signatory" style="font-size:12pt;font-weight:bold;">Assistant Registrar</div>
           </div>
 
-        </div><!-- /print-page -->
-      </div><!-- /preview-card -->
+        </div>
+      </div>
     </main>
-  </div><!-- /workspace -->
+  </div>
 
   <!-- Clear Confirm Modal -->
   <div id="clearModal" class="modal-overlay no-print" style="display:none;">
@@ -257,6 +226,24 @@
     </div>
   </div>
 
+  <!-- DB + Cases for FA auto-fetch -->
+  <script src="../shared/db.js?v=3"></script>
+  <script src="../shared/cases_db.js?v=3"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      if (typeof CASES_DB !== 'undefined' && window.PortalDB) {
+        try {
+          const recentCases = await window.PortalDB.getRecentCaseRecords(1000);
+          recentCases.forEach(c => {
+            if (c.case_no && c.case_year) {
+              const key = `FA/${c.case_no}/${c.case_year}`;
+              if (!CASES_DB[key]) CASES_DB[key] = { appellant: c.appellant, respondent: c.respondent };
+            }
+          });
+        } catch(e) { console.warn('Could not sync cases:', e); }
+      }
+    });
+  </script>
   <script src="script.js"></script>
 </body>
 </html>
