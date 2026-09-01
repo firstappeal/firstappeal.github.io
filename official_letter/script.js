@@ -18,8 +18,6 @@ function getFormattedCurrentDate() {
 // ── Plain-text field sync (header/metadata fields only) ───────
 const FIELD_MAP = {
   letter_no    : 'p_letter_no',
-  file_no      : 'p_file_no',
-  section_dept : 'p_section_dept',
   letter_date  : 'p_letter_date',
   sender_title : 'p_sender_title',
   to_title     : 'p_to_title',
@@ -81,14 +79,57 @@ function updateToolbarState() {
 }
 
 // ── FA Case Auto-Expansion ────────────────────────────────────
-// Matches: FA No. 182/1980 or FA No. 182 / 1980 (not already expanded with party names)
+// Matches: FA No. 182/1980 (not already expanded with party names)
 const FA_RE = /\bFA\s+No\.?\s+(\d+)\s*\/\s*(\d{4})(?!\s*\()/g;
 
 let expandTimer = null;
+let subjectExpandTimer = null;
 
 function scheduleExpansion() {
   clearTimeout(expandTimer);
   expandTimer = setTimeout(expandCaseReferences, 900);
+}
+
+// FA expansion for the plain-text subject input
+function scheduleSubjectExpansion() {
+  clearTimeout(subjectExpandTimer);
+  subjectExpandTimer = setTimeout(expandSubjectCaseRef, 900);
+}
+
+async function expandSubjectCaseRef() {
+  const inp = document.getElementById('subject_text');
+  if (!inp) return;
+  const text = inp.value;
+  FA_RE.lastIndex = 0;
+  const match = FA_RE.exec(text);
+  if (!match) return;
+
+  const caseNo = match[1], caseYear = match[2];
+  const key = `FA/${caseNo}/${caseYear}`;
+  let appellant = '', respondent = '';
+
+  if (typeof CASES_DB !== 'undefined' && CASES_DB[key]) {
+    appellant  = CASES_DB[key].appellant  || '';
+    respondent = CASES_DB[key].respondent || '';
+  }
+  if (!appellant && window.PortalDB && typeof window.PortalDB.getSingleCaseRecord === 'function') {
+    try {
+      const rec = await window.PortalDB.getSingleCaseRecord('First Appeal', caseNo, caseYear);
+      if (rec) { appellant = rec.appellant||''; respondent = rec.respondent||''; }
+    } catch(e) {}
+  }
+  if (!appellant && !respondent) return;
+
+  const parties = appellant && respondent
+    ? `${appellant} Vs ${respondent}` : (appellant || respondent);
+
+  // Replace pattern in input value (plain text — no bold here, just brackets)
+  FA_RE.lastIndex = 0;
+  inp.value = text.replace(
+    /\bFA\s+No\.?\s+(\d+)\s*\/\s*(\d{4})(?!\s*\()/g,
+    (_, no, yr) => `FA No. ${no}/${yr} (${parties})`
+  );
+  syncFields(); // refresh preview
 }
 
 // Save & restore cursor offset (character index from start of p_body text)
@@ -236,8 +277,6 @@ function printLetter() {
 // ── Clear ─────────────────────────────────────────────────────
 function clearAllFields() {
   document.getElementById('letter_no').value    = '';
-  document.getElementById('file_no').value      = '';
-  document.getElementById('section_dept').value = 'First Appeal Section';
   document.getElementById('letter_date').value  = getFormattedCurrentDate();
   document.getElementById('sender_title').value = 'Assistant Registrar';
   document.getElementById('to_title').value     = '';
@@ -262,6 +301,12 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.editor-panel input, .editor-panel select').forEach(el => {
     el.addEventListener('input',  syncFields);
     el.addEventListener('change', syncFields);
+  });
+
+  // FA expansion in subject field
+  document.getElementById('subject_text')?.addEventListener('input', () => {
+    syncFields();
+    scheduleSubjectExpansion();
   });
 
   // FA expansion on body input
