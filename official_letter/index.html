@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Patna High Court – Official Letter Writer</title>
+  <style>
+    :root { --font-ui: 'Segoe UI', 'Ubuntu', 'Helvetica Neue', Arial, sans-serif; }
+    body { font-family: var(--font-ui); }
+  </style>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div style="position:absolute;top:10px;left:10px;z-index:1000;" class="no-print">
+    <a href="../index.html" style="text-decoration:none;font-family:sans-serif;background:#2563eb;color:white;padding:8px 14px;border-radius:6px;font-size:14px;font-weight:600;">&#8592; Dashboard</a>
+  </div>
+
+  <header class="navbar no-print">
+    <div class="nav-logo">
+      <div class="nav-icon">✉️</div>
+      <div>
+        <h1>Official Letter Writer</h1>
+        <p>High Court of Judicature at Patna – Type directly on the letterhead</p>
+      </div>
+    </div>
+    <div class="nav-actions">
+      <button type="button" class="btn btn-info"    id="loadLettersBtn">📂 Load Letters</button>
+      <button type="button" class="btn btn-success" id="saveLetterBtn" >💾 Save Letter</button>
+      <button type="button" class="btn btn-secondary" id="clearBtn">🗑 Clear</button>
+      <button type="button" class="btn btn-primary" onclick="printLetter()">🖨 Print / Save PDF</button>
+    </div>
+  </header>
+
+  <div class="workspace no-print">
+
+    <!-- LEFT: Metadata + Controls -->
+    <aside class="editor-panel">
+
+      <!-- Letter Header -->
+      <div class="editor-section">
+        <h2>📋 Letter Header</h2>
+        <div class="input-group">
+          <label for="letter_no">Letter No.</label>
+          <input type="text" id="letter_no" placeholder="e.g. 1234/2026">
+        </div>
+        <div class="grid-2">
+          <div class="input-group">
+            <label for="letter_date">Letter Date</label>
+            <input type="text" id="letter_date" placeholder="e.g. 1st September, 2026">
+          </div>
+          <div class="input-group">
+            <label for="sender_title">Sender Designation</label>
+            <input type="text" id="sender_title" value="Assistant Registrar">
+          </div>
+        </div>
+      </div>
+
+      <!-- Recipient -->
+      <div class="editor-section">
+        <h2>🏛 Recipient</h2>
+        <div class="input-group">
+          <label for="to_title">Recipient Title</label>
+          <input type="text" id="to_title" placeholder="e.g. District and Sessions Judge">
+        </div>
+        <div class="input-group">
+          <label for="to_address">Recipient Address</label>
+          <input type="text" id="to_address" placeholder="e.g. Patna">
+        </div>
+      </div>
+
+      <!-- Subject + Salutation -->
+      <div class="editor-section">
+        <h2>📌 Subject &amp; Salutation</h2>
+        <div class="input-group">
+          <label for="subject_text">Subject Line</label>
+          <input type="text" id="subject_text" placeholder="e.g. Requisition for records…">
+        </div>
+        <div class="grid-2">
+          <div class="input-group">
+            <label for="salutation">Salutation</label>
+            <input type="text" id="salutation" value="Sir/Madam,">
+          </div>
+          <div class="input-group">
+            <label for="closing">Closing</label>
+            <input type="text" id="closing" value="Yours faithfully,">
+          </div>
+        </div>
+        <div class="input-group">
+          <label for="signatory">Signatory Designation</label>
+          <input type="text" id="signatory" value="Assistant Registrar">
+        </div>
+      </div>
+
+      <!-- Formatting Toolbar -->
+      <div class="editor-section">
+        <h2>✍️ Text Formatting</h2>
+        <p class="section-hint">Select text in the letter body (right), then click a button below.</p>
+        <div class="fmt-toolbar" style="flex-wrap:wrap; gap:4px;">
+          <button type="button" class="fmt-btn" id="fmtBold" title="Bold (Ctrl+B)"><strong>B</strong></button>
+          <button type="button" class="fmt-btn" id="fmtItalic" title="Italic (Ctrl+I)"><em>I</em></button>
+          <button type="button" class="fmt-btn" id="fmtUnderline" title="Underline (Ctrl+U)"><span style="text-decoration:underline;">U</span></button>
+          <button type="button" class="fmt-btn" id="fmtStrike" title="Strikethrough"><s>S</s></button>
+          <div class="fmt-divider"></div>
+          <button type="button" class="fmt-btn fmt-btn-sm" id="fmtAlignLeft" title="Align Left">⬅</button>
+          <button type="button" class="fmt-btn fmt-btn-sm" id="fmtAlignCenter" title="Center">⇔</button>
+          <button type="button" class="fmt-btn fmt-btn-sm" id="fmtAlignRight" title="Align Right">➡</button>
+          <button type="button" class="fmt-btn fmt-btn-sm" id="fmtAlignJustify" title="Justify">≡</button>
+          <div class="fmt-divider"></div>
+          <button type="button" class="fmt-btn fmt-btn-sm" id="fmtBulletedList" title="Bulleted List">•</button>
+          <button type="button" class="fmt-btn fmt-btn-sm" id="fmtNumberedList" title="Numbered List">1.</button>
+          <div class="fmt-divider"></div>
+          <button type="button" class="fmt-btn fmt-btn-sm" id="fmtOutdent" title="Decrease Indent">⇥|</button>
+          <button type="button" class="fmt-btn fmt-btn-sm" id="fmtIndent" title="Increase Indent">|↦</button>
+          <div class="fmt-divider"></div>
+          <button type="button" class="fmt-btn" id="fmtClearFmt" title="Clear Formatting">T&#x336;</button>
+        </div>
+        <small class="help-text" style="margin-top:4px;">
+          💡 Type <strong style="color:var(--gold-light);">FA No. 182/1980</strong> in the letter body — party names will be auto-fetched and inserted.
+        </small>
+      </div>
+
+      <!-- Auto-Adjust -->
+      <div class="editor-section">
+        <h2>⚙️ Auto-Adjust Options</h2>
+        <div class="toggle-row">
+          <label class="toggle-label" for="opt_bold_subject">Bold subject line</label>
+          <label class="toggle-switch"><input type="checkbox" id="opt_bold_subject" checked><span class="slider"></span></label>
+        </div>
+        <div class="toggle-row">
+          <label class="toggle-label" for="opt_watermark">Show watermark emblem</label>
+          <label class="toggle-switch"><input type="checkbox" id="opt_watermark" checked><span class="slider"></span></label>
+        </div>
+        <div class="input-group" style="margin-top:4px;">
+          <label for="font_size_select">Body Font Size</label>
+          <select id="font_size_select">
+            <option value="11pt">11pt – Compact</option>
+            <option value="12pt" selected>12pt – Standard</option>
+            <option value="13pt">13pt – Large</option>
+            <option value="14pt">14pt – Extra Large</option>
+          </select>
+        </div>
+      </div>
+
+    </aside>
+
+    <!-- RIGHT: Live A4 Letterhead (body is typed here) -->
+    <main class="preview-panel">
+      <div class="preview-card">
+        <div class="print-page" id="printPage">
+
+          <!-- Watermark -->
+          <div id="watermarkDiv" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);opacity:0.08;z-index:0;pointer-events:none;">
+            <img src="emblem.png" alt="Watermark" style="width:380px;height:auto;">
+          </div>
+
+          <!-- Letterhead Header -->
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14pt;position:relative;z-index:1;">
+            <div style="text-align:left;font-size:11pt;line-height:1.35;width:33%;">
+              <strong id="p_sender_title" style="font-size:11.5pt;">Assistant Registrar</strong>,<br>
+              First Appeal Section,<br>
+              High Court of Judicature<br>
+              at Patna.
+            </div>
+            <div style="text-align:center;width:34%;">
+              <img src="emblem.png" alt="Patna High Court Emblem" style="height:72px;width:auto;"><br>
+              <span style="font-size:10pt;font-weight:bold;text-decoration:underline;">Through E-mail / Fax / Post</span>
+            </div>
+            <div style="text-align:right;font-size:11pt;line-height:1.35;width:33%;font-family:'Noto Sans Devanagari','Mangal','Arial Unicode MS',sans-serif;">
+              <strong style="font-size:11.5pt;">सहायक निबंधक</strong>,<br>
+              प्रथम अपील अनुभाग,<br>
+              पटना उच्च न्यायालय,<br>
+              पटना ।
+            </div>
+          </div>
+
+          <!-- Metadata Bar -->
+          <div style="display:flex;justify-content:space-between;align-items:baseline;font-size:11pt;border-top:1px solid #000;border-bottom:1px solid #000;padding:5pt 0;margin-bottom:14pt;position:relative;z-index:1;">
+            <div>Letter No. <strong id="p_letter_no">………</strong></div>
+            <div>Dated, Patna the <strong id="p_letter_date">………… 20……</strong></div>
+          </div>
+
+          <!-- To -->
+          <div style="font-size:12pt;margin-bottom:14pt;line-height:1.5;position:relative;z-index:1;">
+            To,<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<strong>The</strong> <strong id="p_to_title">_______________________</strong>,<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<strong id="p_to_address">_______________________</strong>.
+          </div>
+
+          <!-- Subject -->
+          <div style="margin-bottom:14pt;font-size:12pt;line-height:1.5;display:flex;align-items:flex-start;position:relative;z-index:1;">
+            <span style="white-space:nowrap;margin-right:8px;font-weight:bold;">SUBJECT:</span>
+            <span id="p_subject_text" style="font-weight:bold;">&nbsp;</span>
+          </div>
+
+          <!-- Salutation -->
+          <div id="p_salutation" style="font-size:12pt;margin-bottom:10pt;position:relative;z-index:1;">Sir,</div>
+
+          <!-- BODY — type directly here -->
+          <div id="p_body"
+               contenteditable="true"
+               spellcheck="true"
+               data-placeholder="Click here and start typing your letter…&#10;&#10;Tip: Type FA No. 182/1980 and party names will be auto-fetched."
+               style="font-size:12pt;font-family:'Times New Roman',Times,serif;line-height:1.75;text-align:justify;margin-bottom:24pt;position:relative;z-index:1;min-height:60pt;outline:none;"></div>
+
+          <!-- Sign-off -->
+          <div style="margin-top:28pt;margin-left:auto;width:250px;text-align:center;display:flex;flex-direction:column;gap:32pt;position:relative;z-index:1;">
+            <div id="p_closing" style="font-size:12pt;">Yours faithfully,</div>
+            <div id="p_signatory" style="font-size:12pt;font-weight:bold;">Assistant Registrar</div>
+          </div>
+
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Clear Confirm Modal -->
+  <div id="clearModal" class="modal-overlay no-print" style="display:none;">
+    <div class="modal-card">
+      <h3>Clear Letter?</h3>
+      <p>Are you sure you want to clear all fields? This cannot be undone.</p>
+      <div class="modal-actions">
+        <button type="button" id="clearCancel" class="btn btn-cancel">Cancel</button>
+        <button type="button" id="clearOk" class="btn btn-danger-action">Clear</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- DB + Cases for FA auto-fetch -->
+  <!-- ── LOAD LETTERS MODAL ──────────────────────────────────── -->
+  <div id="loadLettersModal" class="modal-overlay no-print" style="display:none;">
+    <div class="modal-card" style="width:780px;max-width:96vw;max-height:88vh;display:flex;flex-direction:column;padding:0;">
+
+      <!-- Modal Header -->
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:18px 24px;border-bottom:1px solid var(--border-slate);flex-shrink:0;">
+        <h3 style="font-size:1.05rem;font-weight:700;color:var(--text-light);margin:0;">📂 Saved Official Letters</h3>
+        <button type="button" id="closeLettersModal" style="background:none;border:none;color:var(--text-muted);font-size:1.5rem;cursor:pointer;line-height:1;">&times;</button>
+      </div>
+
+      <!-- Search -->
+      <div style="padding:12px 24px;border-bottom:1px solid var(--border-slate);flex-shrink:0;">
+        <input type="text" id="lettersModalSearch"
+          placeholder="Search by subject, recipient, letter no…"
+          style="width:100%;background:var(--input-bg);border:1.5px solid var(--input-border);color:var(--text-light);padding:9px 14px;border-radius:8px;font-family:inherit;font-size:0.88rem;outline:none;">
+      </div>
+
+      <!-- Table -->
+      <div style="overflow-y:auto;flex:1;">
+        <table style="width:100%;border-collapse:collapse;font-size:0.83rem;">
+          <thead style="position:sticky;top:0;background:var(--navy-dark);">
+            <tr>
+              <th style="padding:10px 14px;text-align:left;color:var(--text-muted);font-size:0.72rem;text-transform:uppercase;letter-spacing:0.5px;border-bottom:1px solid var(--border-slate);">Letter No.</th>
+              <th style="padding:10px 14px;text-align:left;color:var(--text-muted);font-size:0.72rem;text-transform:uppercase;letter-spacing:0.5px;border-bottom:1px solid var(--border-slate);">To</th>
+              <th style="padding:10px 14px;text-align:left;color:var(--text-muted);font-size:0.72rem;text-transform:uppercase;letter-spacing:0.5px;border-bottom:1px solid var(--border-slate);">Subject</th>
+              <th style="padding:10px 14px;text-align:left;color:var(--text-muted);font-size:0.72rem;text-transform:uppercase;letter-spacing:0.5px;border-bottom:1px solid var(--border-slate);">Saved On</th>
+              <th style="padding:10px 14px;text-align:center;color:var(--text-muted);font-size:0.72rem;text-transform:uppercase;letter-spacing:0.5px;border-bottom:1px solid var(--border-slate);">Action</th>
+            </tr>
+          </thead>
+          <tbody id="lettersModalBody">
+            <tr><td colspan="5" style="padding:24px;text-align:center;color:var(--text-muted);">No saved letters yet.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Footer -->
+      <div style="padding:12px 24px;border-top:1px solid var(--border-slate);display:flex;align-items:center;gap:10px;flex-shrink:0;">
+        <span id="lettersModalCount" style="font-size:0.8rem;color:var(--text-muted);"></span>
+        <button type="button" id="closeLettersModalBtn" class="btn btn-secondary" style="margin-left:auto;">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../shared/db.js?v=3"></script>
+  <script src="../shared/cases_db.js?v=3"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      if (typeof CASES_DB !== 'undefined' && window.PortalDB) {
+        try {
+          const recentCases = await window.PortalDB.getRecentCaseRecords(1000);
+          recentCases.forEach(c => {
+            if (c.case_no && c.case_year) {
+              const key = `FA/${c.case_no}/${c.case_year}`;
+              if (!CASES_DB[key]) CASES_DB[key] = { appellant: c.appellant, respondent: c.respondent };
+            }
+          });
+        } catch(e) { console.warn('Could not sync cases:', e); }
+      }
+    });
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>

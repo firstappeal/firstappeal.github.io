@@ -77,12 +77,28 @@
                 <p>Master register for case details, lower court judgments, valuations, and bundle numbers.</p>
             </a>
 
+            <a href="import_cases/index.html" class="portal-card">
+                <div class="card-icon" style="background: rgba(168, 85, 247, 0.15); color: #a855f7;">
+                    <i class="fa-solid fa-file-import"></i>
+                </div>
+                <h2>Import Cases from PDF</h2>
+                <p>Bulk-import year-wise First Appeal cases from court PDFs into the master database safely.</p>
+            </a>
+
+            <a href="official_letter/index.html" class="portal-card">
+                <div class="card-icon" style="background: rgba(201, 162, 39, 0.15); color: #c9a227;">
+                    <i class="fa-solid fa-envelope-open-text"></i>
+                </div>
+                <h2>Official Letter Writer</h2>
+                <p>Compose and preview official letters on Patna High Court letterhead with live side-by-side editing.</p>
+            </a>
+
             <a href="analytics/index.html" class="portal-card">
                 <div class="card-icon" style="background: rgba(99, 102, 241, 0.15); color: #6366f1;">
                     <i class="fa-solid fa-chart-pie"></i>
                 </div>
                 <h2>Section Analytics</h2>
-                <p>DA workload, LCR pipeline, case records completeness, decade distribution &amp; recent activity.</p>
+                <p>DA workload, case records completeness, decade distribution &amp; recent activity.</p>
             </a>
 
         </main>
@@ -100,8 +116,8 @@
         const gResults = document.getElementById('globalSearchResults');
 
         function normalizeQuery(q) {
-            // Convert natural "FA 152" or "FA 152 2025" to the DB key format "FA/152" or "FA/152/2025"
-            return q.trim().replace(/^(FA)\s+(\d+)(?:\s+(\d+))?$/i, (_, type, no, yr) => {
+            // Convert natural "FA 152", "MA 10", "SA 5 2020" to DB key format
+            return q.trim().replace(/^(FA|MA|CA|SA)\s+(\d+)(?:\s+(\d+))?$/i, (_, type, no, yr) => {
                 return yr ? `${type.toUpperCase()}/${no}/${yr}` : `${type.toUpperCase()}/${no}`;
             }).toLowerCase();
         }
@@ -140,8 +156,8 @@
         document.addEventListener('click', (e) => { if (!gInput.contains(e.target)) gResults.style.display = 'none'; });
     </script>
     <script src="shared/db.js?v=3"></script>
-    <script src="shared/cases_db.js"></script>
-    
+    <script src="shared/cases_db.js?v=3"></script>
+
     <!-- SYNC RECENT CASES FROM SUPABASE -->
     <script>
       document.addEventListener('DOMContentLoaded', async () => {

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cleanup Ghost Records</title>
+</head>
+<body>
+    <h1>Cleanup Ghost Records</h1>
+    <div id="log" style="font-family: monospace; white-space: pre-wrap;"></div>
+    <script src="shared/db.js"></script>
+    <script>
+        function logMsg(msg) {
+            const div = document.getElementById('log');
+            div.innerHTML += msg + '\n';
+        }
+
+        async function cleanup() {
+            logMsg("Fetching all case records from Supabase to find ghost records...");
+            try {
+                const records = await window.PortalDB.getCaseRecords('id,case_no');
+                logMsg(`Total records fetched: ${records.length}`);
+                
+                const ghostRecords = records.filter(r => !r.case_no || r.case_no.trim() === '');
+                logMsg(`Found ${ghostRecords.length} ghost records with empty case numbers.`);
+                
+                if (ghostRecords.length > 0) {
+                    logMsg("Deleting ghost records...");
+                    let deletedCount = 0;
+                    for (const record of ghostRecords) {
+                        try {
+                            await window.PortalDB.deleteCaseRecord(record.id);
+                            deletedCount++;
+                        } catch(e) {
+                            logMsg(`Error deleting ID ${record.id}: ${e.message}`);
+                        }
+                    }
+                    logMsg(`Successfully deleted ${deletedCount} ghost records.`);
+                }
+                
+                logMsg("DONE");
+            } catch(e) {
+                logMsg("Error: " + e.message);
+                logMsg("DONE");
+            }
+        }
+        cleanup();
+    </script>
+</body>
+</html>
