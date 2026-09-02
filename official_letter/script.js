@@ -282,7 +282,7 @@ function clearAllFields() {
   document.getElementById('to_title').value     = '';
   document.getElementById('to_address').value   = '';
   document.getElementById('subject_text').value = '';
-  document.getElementById('salutation').value   = 'Sir,';
+  document.getElementById('salutation').value   = 'Sir/Madam,';
   document.getElementById('closing').value      = 'Yours faithfully,';
   document.getElementById('signatory').value    = 'Assistant Registrar';
   const bodyEl = document.getElementById('p_body');
