@@ -96,16 +96,24 @@
       <div class="editor-section">
         <h2>✍️ Text Formatting</h2>
         <p class="section-hint">Select text in the letter body (right), then click a button below.</p>
-        <div class="fmt-toolbar">
+        <div class="fmt-toolbar" style="flex-wrap:wrap; gap:4px;">
           <button type="button" class="fmt-btn" id="fmtBold" title="Bold (Ctrl+B)"><strong>B</strong></button>
           <button type="button" class="fmt-btn" id="fmtItalic" title="Italic (Ctrl+I)"><em>I</em></button>
           <button type="button" class="fmt-btn" id="fmtUnderline" title="Underline (Ctrl+U)"><span style="text-decoration:underline;">U</span></button>
-          <div class="fmt-divider"></div>
-          <button type="button" class="fmt-btn" id="fmtClearFmt" title="Clear Formatting">T&#x336;</button>
+          <button type="button" class="fmt-btn" id="fmtStrike" title="Strikethrough"><s>S</s></button>
           <div class="fmt-divider"></div>
           <button type="button" class="fmt-btn fmt-btn-sm" id="fmtAlignLeft" title="Align Left">⬅</button>
           <button type="button" class="fmt-btn fmt-btn-sm" id="fmtAlignCenter" title="Center">⇔</button>
           <button type="button" class="fmt-btn fmt-btn-sm" id="fmtAlignRight" title="Align Right">➡</button>
+          <button type="button" class="fmt-btn fmt-btn-sm" id="fmtAlignJustify" title="Justify">≡</button>
+          <div class="fmt-divider"></div>
+          <button type="button" class="fmt-btn fmt-btn-sm" id="fmtBulletedList" title="Bulleted List">•</button>
+          <button type="button" class="fmt-btn fmt-btn-sm" id="fmtNumberedList" title="Numbered List">1.</button>
+          <div class="fmt-divider"></div>
+          <button type="button" class="fmt-btn fmt-btn-sm" id="fmtOutdent" title="Decrease Indent">⇥|</button>
+          <button type="button" class="fmt-btn fmt-btn-sm" id="fmtIndent" title="Increase Indent">|↦</button>
+          <div class="fmt-divider"></div>
+          <button type="button" class="fmt-btn" id="fmtClearFmt" title="Clear Formatting">T&#x336;</button>
         </div>
         <small class="help-text" style="margin-top:4px;">
           💡 Type <strong style="color:var(--gold-light);">FA No. 182/1980</strong> in the letter body — party names will be auto-fetched and inserted.

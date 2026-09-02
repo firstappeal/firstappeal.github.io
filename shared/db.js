@@ -332,7 +332,8 @@
         case_records:        [],   // don't load all 5k for analytics
         case_records_count:  crCount
       };
-    }
+    },
+
     // ── OFFICIAL LETTERS ─────────────────────────────────────
     async getOfficialLetters() {
       const rows = await sbGet('official_letters', 'limit=500');
