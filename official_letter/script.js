@@ -312,44 +312,59 @@ document.addEventListener('DOMContentLoaded', () => {
   // FA expansion on body input + Tab/Enter key handling
   const bodyEl = document.getElementById('p_body');
   if (bodyEl) {
-    // Make Enter create <p> elements instead of bare <div> or <br>
+    // Ensure paragraph separator is always <p>
     document.execCommand('defaultParagraphSeparator', false, 'p');
 
+    // On first focus: wrap any bare text / empty state in a <p>
+    // so the very first character typed is always inside a paragraph.
+    bodyEl.addEventListener('focus', () => {
+      // If there are no block-level children yet, wrap content in <p>
+      const hasBlock = bodyEl.querySelector('p, div');
+      if (!hasBlock) {
+        const text = bodyEl.innerText.trim();
+        bodyEl.innerHTML = '';
+        const p = document.createElement('p');
+        p.textContent = text;
+        bodyEl.appendChild(p);
+        // Move cursor to end of the new paragraph
+        const range = document.createRange();
+        range.selectNodeContents(p);
+        range.collapse(false);
+        const sel = window.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(range);
+      }
+    });
+
     bodyEl.addEventListener('keydown', (e) => {
-      // ── Tab → insert 4 non-breaking spaces (paragraph indent) ─
+      // ── Tab → insert paragraph indent (4 non-breaking spaces) ─
       if (e.key === 'Tab') {
         e.preventDefault();
         document.execCommand('insertText', false, '\u00A0\u00A0\u00A0\u00A0');
         return;
       }
 
-      // ── Enter → insert a new <p> with identical alignment ─────
+      // ── Enter → new <p> inheriting current alignment ──────────
       if (e.key === 'Enter' && !e.shiftKey) {
         e.preventDefault();
 
-        // Detect current paragraph's alignment so we can carry it over
-        const sel   = window.getSelection();
-        let alignCmd = 'justifyLeft';
+        // Read current block's text-align before inserting
+        const sel = window.getSelection();
+        let alignCmd = 'justifyFull'; // justify by default
         if (sel.rangeCount) {
-          const block = sel.getRangeAt(0).startContainer.parentElement?.closest('p,div,[contenteditable]');
+          const block = sel.getRangeAt(0).startContainer.parentElement
+                          ?.closest('p, div, [contenteditable]');
           if (block) {
-            const ta = block.style.textAlign || window.getComputedStyle(block).textAlign;
-            if (ta === 'justify') alignCmd = 'justifyFull';
-            else if (ta === 'center') alignCmd = 'justifyCenter';
-            else if (ta === 'right')  alignCmd = 'justifyRight';
+            const ta = (block.style.textAlign ||
+                        window.getComputedStyle(block).textAlign || '').toLowerCase();
+            if (ta === 'center') alignCmd = 'justifyCenter';
+            else if (ta === 'right') alignCmd = 'justifyRight';
+            else if (ta === 'left')  alignCmd = 'justifyLeft';
           }
         }
 
         document.execCommand('insertParagraph', false, null);
-
-        // Re-apply alignment so new paragraph matches the previous one
         document.execCommand(alignCmd, false, null);
-
-        // Ensure the new <p> gets the paragraph-spacing class
-        const newBlock = window.getSelection()?.getRangeAt(0)?.startContainer?.parentElement;
-        if (newBlock && (newBlock.tagName === 'P' || newBlock.tagName === 'DIV')) {
-          newBlock.classList.add('letter-para');
-        }
         return;
       }
     });
