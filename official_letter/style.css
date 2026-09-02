@@ -68,6 +68,10 @@ body {
 .btn-primary:hover { transform:translateY(-1.5px); filter:brightness(1.06); box-shadow:0 6px 20px rgba(201,162,39,0.45); }
 .btn-secondary { background-color:var(--navy-light); color:var(--text-light); border:1px solid var(--border-slate); }
 .btn-secondary:hover { background-color:#475569; transform:translateY(-1.5px); }
+.btn-success { background:linear-gradient(135deg,#16a34a,#15803d); color:#fff; box-shadow:0 4px 14px rgba(22,163,74,0.3); }
+.btn-success:hover { transform:translateY(-1.5px); filter:brightness(1.08); }
+.btn-info { background:linear-gradient(135deg,#0ea5e9,#0284c7); color:#fff; box-shadow:0 4px 14px rgba(14,165,233,0.3); }
+.btn-info:hover { transform:translateY(-1.5px); filter:brightness(1.08); }
 .btn-cancel { background-color:var(--navy-light); color:var(--text-light); border:1px solid var(--border-slate); }
 .btn-cancel:hover { background-color:#475569; }
 .btn-danger-action { background-color:#d9534f; color:white; }

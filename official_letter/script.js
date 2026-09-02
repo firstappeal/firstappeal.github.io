@@ -268,6 +268,189 @@ function replacePatternInBody(root, matchStr, caseNo, caseYear, parties) {
   return changed;
 }
 
+// ── Toast notification ─────────────────────────────────────────
+function showToast(msg, type = 'success') {
+  let toast = document.getElementById('olToast');
+  if (!toast) {
+    toast = document.createElement('div');
+    toast.id = 'olToast';
+    toast.style.cssText = [
+      'position:fixed','bottom:28px','right:28px','z-index:99999',
+      'padding:12px 22px','border-radius:10px','font-size:0.9rem',
+      'font-family:inherit','font-weight:600','box-shadow:0 8px 24px rgba(0,0,0,0.35)',
+      'transition:opacity 0.3s','pointer-events:none','opacity:0'
+    ].join(';');
+    document.body.appendChild(toast);
+  }
+  toast.style.background = type === 'error' ? '#d9534f' : '#16a34a';
+  toast.style.color = '#fff';
+  toast.textContent = msg;
+  toast.style.opacity = '1';
+  clearTimeout(toast._t);
+  toast._t = setTimeout(() => { toast.style.opacity = '0'; }, 3000);
+}
+
+// ── Collect current letter data ────────────────────────────────
+function collectLetterData() {
+  return {
+    letter_no:    document.getElementById('letter_no')?.value    || '',
+    letter_date:  document.getElementById('letter_date')?.value  || '',
+    sender_title: document.getElementById('sender_title')?.value || '',
+    to_title:     document.getElementById('to_title')?.value     || '',
+    to_address:   document.getElementById('to_address')?.value   || '',
+    subject_text: document.getElementById('subject_text')?.value || '',
+    salutation:   document.getElementById('salutation')?.value   || '',
+    closing:      document.getElementById('closing')?.value      || '',
+    signatory:    document.getElementById('signatory')?.value    || '',
+    body_html:    document.getElementById('p_body')?.innerHTML   || '',
+  };
+}
+
+// ── Save to Supabase ───────────────────────────────────────────
+async function saveLetter() {
+  const btn = document.getElementById('saveLetterBtn');
+  if (!window.PortalDB) { showToast('Database not connected', 'error'); return; }
+
+  const data = collectLetterData();
+  if (!data.subject_text && !data.letter_no && !data.body_html.trim()) {
+    showToast('Nothing to save — fill in at least a subject or letter body.', 'error');
+    return;
+  }
+
+  if (btn) { btn.disabled = true; btn.textContent = '⏳ Saving…'; }
+  try {
+    await window.PortalDB.insertOfficialLetter(data);
+    showToast('✅ Letter saved to cloud!');
+  } catch(e) {
+    console.error(e);
+    // If table doesn't exist yet, show a helpful message
+    if (e.message && e.message.includes('42P01')) {
+      showToast('Table not found — please create "official_letters" in Supabase first.', 'error');
+    } else {
+      showToast('Save failed: ' + e.message, 'error');
+    }
+  } finally {
+    if (btn) { btn.disabled = false; btn.textContent = '💾 Save Letter'; }
+  }
+}
+
+// ── Load modal helpers ─────────────────────────────────────────
+let _allLetters = [];
+
+function formatSavedDate(iso) {
+  if (!iso) return '—';
+  const d = new Date(iso);
+  return d.toLocaleDateString('en-IN', { day:'2-digit', month:'short', year:'numeric' })
+       + ' ' + d.toLocaleTimeString('en-IN', { hour:'2-digit', minute:'2-digit' });
+}
+
+function renderLettersModal(filter = '') {
+  const tbody  = document.getElementById('lettersModalBody');
+  const count  = document.getElementById('lettersModalCount');
+  if (!tbody) return;
+
+  const q = filter.toLowerCase().trim();
+  const rows = _allLetters.filter(l =>
+    !q ||
+    l.subject_text?.toLowerCase().includes(q) ||
+    l.to_title?.toLowerCase().includes(q)     ||
+    l.to_address?.toLowerCase().includes(q)   ||
+    l.letter_no?.toLowerCase().includes(q)
+  );
+
+  if (count) count.textContent = `${rows.length} letter${rows.length !== 1 ? 's' : ''}`;
+
+  if (rows.length === 0) {
+    tbody.innerHTML = `<tr><td colspan="5" style="padding:24px;text-align:center;color:var(--text-muted);">
+      ${filter ? 'No letters match your search.' : 'No saved letters yet.'}
+    </td></tr>`;
+    return;
+  }
+
+  tbody.innerHTML = rows.map(l => `
+    <tr style="border-bottom:1px solid var(--border-slate);transition:background 0.15s;"
+        onmouseover="this.style.background='rgba(201,162,39,0.06)'"
+        onmouseout="this.style.background=''">
+      <td style="padding:10px 14px;color:var(--text-light);font-weight:600;">${l.letter_no || '<span style="color:var(--text-muted)">—</span>'}</td>
+      <td style="padding:10px 14px;color:var(--text-light);">${l.to_title || '<span style="color:var(--text-muted)">—</span>'}<br>
+        <small style="color:var(--text-muted);">${l.to_address || ''}</small></td>
+      <td style="padding:10px 14px;color:var(--text-light);max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"
+          title="${l.subject_text}">${l.subject_text || '<span style="color:var(--text-muted)">—</span>'}</td>
+      <td style="padding:10px 14px;color:var(--text-muted);white-space:nowrap;font-size:0.78rem;">${formatSavedDate(l.saved_at)}</td>
+      <td style="padding:10px 14px;text-align:center;white-space:nowrap;">
+        <button onclick="loadLetter(${l.id})"
+          style="background:var(--gold-primary);color:var(--navy-dark);border:none;padding:5px 14px;border-radius:6px;font-weight:700;cursor:pointer;font-size:0.8rem;margin-right:6px;">
+          📂 Load
+        </button>
+        <button onclick="deleteOfficialLetter(${l.id}, this)"
+          style="background:#d9534f;color:#fff;border:none;padding:5px 12px;border-radius:6px;font-weight:700;cursor:pointer;font-size:0.8rem;">
+          🗑
+        </button>
+      </td>
+    </tr>`).join('');
+}
+
+async function openLoadModal() {
+  const modal = document.getElementById('loadLettersModal');
+  if (!modal) return;
+  modal.style.display = 'flex';
+  setTimeout(() => modal.classList.add('active'), 10);
+
+  const tbody = document.getElementById('lettersModalBody');
+  if (tbody) tbody.innerHTML = `<tr><td colspan="5" style="padding:24px;text-align:center;color:var(--text-muted);">⏳ Loading…</td></tr>`;
+
+  try {
+    _allLetters = await window.PortalDB.getOfficialLetters();
+    renderLettersModal(document.getElementById('lettersModalSearch')?.value || '');
+  } catch(e) {
+    if (tbody) tbody.innerHTML = `<tr><td colspan="5" style="padding:24px;text-align:center;color:#f87171;">
+      Failed to load: ${e.message}</td></tr>`;
+  }
+}
+
+function closeLoadModal() {
+  const modal = document.getElementById('loadLettersModal');
+  if (!modal) return;
+  modal.classList.remove('active');
+  setTimeout(() => { modal.style.display = 'none'; }, 220);
+}
+
+function loadLetter(id) {
+  const letter = _allLetters.find(l => l.id === id);
+  if (!letter) return;
+
+  document.getElementById('letter_no').value    = letter.letter_no;
+  document.getElementById('letter_date').value  = letter.letter_date;
+  document.getElementById('sender_title').value = letter.sender_title;
+  document.getElementById('to_title').value     = letter.to_title;
+  document.getElementById('to_address').value   = letter.to_address;
+  document.getElementById('subject_text').value = letter.subject_text;
+  document.getElementById('salutation').value   = letter.salutation;
+  document.getElementById('closing').value      = letter.closing;
+  document.getElementById('signatory').value    = letter.signatory;
+
+  const bodyEl = document.getElementById('p_body');
+  if (bodyEl) bodyEl.innerHTML = letter.body_html || '';
+
+  syncFields();
+  closeLoadModal();
+  showToast('✅ Letter loaded!');
+}
+
+async function deleteOfficialLetter(id, btn) {
+  if (!confirm('Delete this saved letter? This cannot be undone.')) return;
+  if (btn) btn.disabled = true;
+  try {
+    await window.PortalDB.deleteOfficialLetter(id);
+    _allLetters = _allLetters.filter(l => l.id !== id);
+    renderLettersModal(document.getElementById('lettersModalSearch')?.value || '');
+    showToast('🗑 Letter deleted.');
+  } catch(e) {
+    showToast('Delete failed: ' + e.message, 'error');
+    if (btn) btn.disabled = false;
+  }
+}
+
 // ── Print ─────────────────────────────────────────────────────
 function printLetter() {
   syncFields();
@@ -408,6 +591,20 @@ document.addEventListener('DOMContentLoaded', () => {
   clearCancel?.addEventListener('click', hideModal);
   clearOk?.addEventListener('click', () => { clearAllFields(); hideModal(); });
   clearModal?.addEventListener('click', e => { if (e.target===clearModal) hideModal(); });
+
+  // Save / Load Letters buttons
+  document.getElementById('saveLetterBtn')?.addEventListener('click', saveLetter);
+  document.getElementById('loadLettersBtn')?.addEventListener('click', openLoadModal);
+
+  // Load Letters modal — close buttons & backdrop & search
+  document.getElementById('closeLettersModal')?.addEventListener('click', closeLoadModal);
+  document.getElementById('closeLettersModalBtn')?.addEventListener('click', closeLoadModal);
+  document.getElementById('loadLettersModal')?.addEventListener('click', e => {
+    if (e.target === document.getElementById('loadLettersModal')) closeLoadModal();
+  });
+  document.getElementById('lettersModalSearch')?.addEventListener('input', e => {
+    renderLettersModal(e.target.value);
+  });
 
   syncFields();
 });

@@ -333,6 +333,44 @@
         case_records_count:  crCount
       };
     }
+    // ── OFFICIAL LETTERS ─────────────────────────────────────
+    async getOfficialLetters() {
+      const rows = await sbGet('official_letters', 'limit=500');
+      return rows.map(r => ({
+        id:          r.id,
+        letter_no:   r.letter_no   || '',
+        letter_date: r.letter_date || '',
+        sender_title:r.sender_title|| '',
+        to_title:    r.to_title    || '',
+        to_address:  r.to_address  || '',
+        subject_text:r.subject_text|| '',
+        salutation:  r.salutation  || '',
+        closing:     r.closing     || '',
+        signatory:   r.signatory   || '',
+        body_html:   r.body_html   || '',
+        saved_at:    r.created_at
+      }));
+    },
+
+    async insertOfficialLetter(body) {
+      return sbInsert('official_letters', {
+        letter_no:    body.letter_no    || '',
+        letter_date:  body.letter_date  || '',
+        sender_title: body.sender_title || '',
+        to_title:     body.to_title     || '',
+        to_address:   body.to_address   || '',
+        subject_text: body.subject_text || '',
+        salutation:   body.salutation   || '',
+        closing:      body.closing      || '',
+        signatory:    body.signatory    || '',
+        body_html:    body.body_html    || ''
+      });
+    },
+
+    async deleteOfficialLetter(id) {
+      return sbDelete('official_letters', { id });
+    },
+
   };
 
   console.log('PortalDB (Supabase adapter) loaded ✓');

@@ -389,12 +389,8 @@ function addNewRow(data = { nature: 'FA', case_no: '', appellant: '', assistant:
       assistantInput.value = '';
     }
     
-    sortEditorTableDescending();
+    syncPrintTable(); // update print preview without re-ordering the editor
   }
-  
-  caseNoInput.addEventListener('change', () => {
-    sortEditorTableDescending();
-  });
   
   reindexSerialNumbers();
 }
@@ -820,7 +816,7 @@ async function handlePdfUpload(event) {
         });
       }
       
-      sortEditorTableDescending();
+      reindexSerialNumbers();
       alert(`PDF से सफलतापूर्वक ${uniqueMatches.length} केस निकाले गए।`);
     } else {
       alert("इस PDF से कोई केस नंबर (जैसे 47/2024) नहीं मिला। (No case number found in PDF)");
