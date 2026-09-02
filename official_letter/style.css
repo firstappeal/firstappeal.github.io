@@ -227,6 +227,24 @@ body {
   box-shadow: inset 0 0 0 1.5px rgba(201,162,39,0.45);
   background: rgba(201,162,39,0.04);
 }
+/* Paragraph spacing inside the editable body */
+#p_body > p,
+#p_body > div,
+#p_body > .letter-para {
+  margin: 0 0 9pt 0;
+  text-align: justify;
+  line-height: 1.75;
+}
+#p_body > p:last-child,
+#p_body > div:last-child {
+  margin-bottom: 0;
+}
+/* Empty paragraphs (just Enter for spacing) — give them a minimum height */
+#p_body > p:empty,
+#p_body > div:empty {
+  min-height: 1em;
+}
+
 /* Placeholder */
 #p_body:empty::before {
   content: attr(data-placeholder);

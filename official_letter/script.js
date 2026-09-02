@@ -309,10 +309,52 @@ document.addEventListener('DOMContentLoaded', () => {
     scheduleSubjectExpansion();
   });
 
-  // FA expansion on body input
+  // FA expansion on body input + Tab/Enter key handling
   const bodyEl = document.getElementById('p_body');
   if (bodyEl) {
-    bodyEl.addEventListener('input', () => { scheduleExpansion(); updateToolbarState(); });
+    // Make Enter create <p> elements instead of bare <div> or <br>
+    document.execCommand('defaultParagraphSeparator', false, 'p');
+
+    bodyEl.addEventListener('keydown', (e) => {
+      // ── Tab → insert 4 non-breaking spaces (paragraph indent) ─
+      if (e.key === 'Tab') {
+        e.preventDefault();
+        document.execCommand('insertText', false, '\u00A0\u00A0\u00A0\u00A0');
+        return;
+      }
+
+      // ── Enter → insert a new <p> with identical alignment ─────
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+
+        // Detect current paragraph's alignment so we can carry it over
+        const sel   = window.getSelection();
+        let alignCmd = 'justifyLeft';
+        if (sel.rangeCount) {
+          const block = sel.getRangeAt(0).startContainer.parentElement?.closest('p,div,[contenteditable]');
+          if (block) {
+            const ta = block.style.textAlign || window.getComputedStyle(block).textAlign;
+            if (ta === 'justify') alignCmd = 'justifyFull';
+            else if (ta === 'center') alignCmd = 'justifyCenter';
+            else if (ta === 'right')  alignCmd = 'justifyRight';
+          }
+        }
+
+        document.execCommand('insertParagraph', false, null);
+
+        // Re-apply alignment so new paragraph matches the previous one
+        document.execCommand(alignCmd, false, null);
+
+        // Ensure the new <p> gets the paragraph-spacing class
+        const newBlock = window.getSelection()?.getRangeAt(0)?.startContainer?.parentElement;
+        if (newBlock && (newBlock.tagName === 'P' || newBlock.tagName === 'DIV')) {
+          newBlock.classList.add('letter-para');
+        }
+        return;
+      }
+    });
+
+    bodyEl.addEventListener('input',   () => { scheduleExpansion(); updateToolbarState(); });
     bodyEl.addEventListener('keyup',   updateToolbarState);
     bodyEl.addEventListener('mouseup', updateToolbarState);
   }
