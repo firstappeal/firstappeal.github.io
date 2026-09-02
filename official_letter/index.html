@@ -131,6 +131,10 @@
           <label class="toggle-label" for="opt_watermark">Show watermark emblem</label>
           <label class="toggle-switch"><input type="checkbox" id="opt_watermark" checked><span class="slider"></span></label>
         </div>
+        <div class="toggle-row">
+          <label class="toggle-label" for="opt_endorsement">Add "Copy to" (Endorsement)</label>
+          <label class="toggle-switch"><input type="checkbox" id="opt_endorsement"><span class="slider"></span></label>
+        </div>
         <div class="input-group" style="margin-top:4px;">
           <label for="font_size_select">Body Font Size</label>
           <select id="font_size_select">
@@ -207,6 +211,27 @@
           <div style="margin-top:28pt;margin-left:auto;width:250px;text-align:center;display:flex;flex-direction:column;gap:32pt;position:relative;z-index:1;">
             <div id="p_closing" style="font-size:12pt;">Yours faithfully,</div>
             <div id="p_signatory" style="font-size:12pt;font-weight:bold;">Assistant Registrar</div>
+          </div>
+
+          <!-- Endorsement (Copy To) Block -->
+          <div id="endorsement_block" style="display:none; margin-top:24pt; font-size:12pt; position:relative; z-index:1;">
+            <div style="display:flex; justify-content:space-between; font-weight:bold; margin-bottom:14pt;">
+              <div>Memo No. <span class="sync_letter_no">………</span></div>
+              <div>Patna, Dated <span class="sync_letter_date">………… 20……</span></div>
+            </div>
+            <div style="margin-bottom:10pt;">
+              Copy forwarded for information/necessary action to :
+            </div>
+            <div id="p_copy_to"
+                 contenteditable="true"
+                 spellcheck="true"
+                 data-placeholder="Type recipient(s) here...&#10;(1) ...&#10;(2) ..."
+                 style="font-family:'Times New Roman',Times,serif; line-height:1.75; min-height:40pt; outline:none;"></div>
+            
+            <div style="margin-top:24pt;margin-left:auto;width:250px;text-align:center;display:flex;flex-direction:column;gap:32pt;">
+              <div class="sync_closing">Yours faithfully,</div>
+              <div class="sync_signatory" style="font-weight:bold;">Assistant Registrar</div>
+            </div>
           </div>
 
         </div>

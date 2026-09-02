@@ -272,7 +272,8 @@ body {
 #p_body li { margin-bottom: 4pt; }
 
 /* Placeholder — shown when body is completely empty */
-#p_body:empty::before {
+#p_body:empty::before,
+#p_copy_to:empty::before {
   content: attr(data-placeholder);
   color: #bbb;
   font-style: italic;

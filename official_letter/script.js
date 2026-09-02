@@ -45,21 +45,49 @@ function syncFields() {
   if (wmEl) wmEl.style.display =
     document.getElementById('opt_watermark')?.checked ? '' : 'none';
 
-  // Font size on body
+  // Endorsement block visibility and syncing
+  const endorsementBlock = document.getElementById('endorsement_block');
+  if (endorsementBlock) {
+    const isEndorsement = document.getElementById('opt_endorsement')?.checked;
+    endorsementBlock.style.display = isEndorsement ? 'block' : 'none';
+    
+    if (isEndorsement) {
+      const lNo = document.getElementById('letter_no')?.value.trim() || '………';
+      const lDate = document.getElementById('letter_date')?.value.trim() || '………… 20……';
+      const clos = document.getElementById('closing')?.value.trim() || 'Yours faithfully,';
+      const sig = document.getElementById('signatory')?.value.trim() || 'Assistant Registrar';
+      
+      endorsementBlock.querySelectorAll('.sync_letter_no').forEach(el => el.textContent = lNo);
+      endorsementBlock.querySelectorAll('.sync_letter_date').forEach(el => el.textContent = lDate);
+      endorsementBlock.querySelectorAll('.sync_closing').forEach(el => el.textContent = clos);
+      endorsementBlock.querySelectorAll('.sync_signatory').forEach(el => el.textContent = sig);
+    }
+  }
+
+  // Font size on body and endorsement
   const bodyEl = document.getElementById('p_body');
+  const copyToEl = document.getElementById('p_copy_to');
   const fs = document.getElementById('font_size_select')?.value || '12pt';
   if (bodyEl) bodyEl.style.fontSize = fs;
+  if (copyToEl) copyToEl.style.fontSize = fs;
 }
 
-// ── Formatting toolbar: operates on selection inside p_body ──
+// ── Formatting toolbar: operates on selection inside contenteditable ──
 function applyFormat(cmd) {
-  const body = document.getElementById('p_body');
-  if (!body) return;
-  // If selection is inside body, execCommand applies to it.
-  // If not, focus the body first (cursor goes to end).
   const sel = window.getSelection();
-  const insideBody = body.contains(sel.anchorNode);
-  if (!insideBody) body.focus();
+  if (!sel.rangeCount) return;
+  
+  let target = sel.anchorNode;
+  if (target.nodeType === Node.TEXT_NODE) target = target.parentElement;
+  
+  const editable = target.closest('[contenteditable="true"]');
+  
+  // If not inside an editable block, default to p_body
+  if (!editable) {
+    const body = document.getElementById('p_body');
+    if (body) body.focus();
+  }
+  
   document.execCommand(cmd, false, null);
   updateToolbarState();
 }
@@ -307,6 +335,8 @@ function collectLetterData() {
     closing:      document.getElementById('closing')?.value      || '',
     signatory:    document.getElementById('signatory')?.value    || '',
     body_html:    document.getElementById('p_body')?.innerHTML   || '',
+    has_endorsement: document.getElementById('opt_endorsement')?.checked || false,
+    copy_to_html: document.getElementById('p_copy_to')?.innerHTML || '',
   };
 }
 
@@ -471,8 +501,14 @@ function loadLetter(id) {
   document.getElementById('closing').value      = letter.closing || '';
   document.getElementById('signatory').value    = letter.signatory || '';
 
+  const optEndorsement = document.getElementById('opt_endorsement');
+  if (optEndorsement) optEndorsement.checked = letter.has_endorsement || false;
+
   const bodyEl = document.getElementById('p_body');
   if (bodyEl) bodyEl.innerHTML = letter.body_html || '';
+
+  const copyToEl = document.getElementById('p_copy_to');
+  if (copyToEl) copyToEl.innerHTML = letter.copy_to_html || '';
 
   syncFields();
   closeLoadModal();
@@ -568,25 +604,24 @@ document.addEventListener('DOMContentLoaded', () => {
         const range = document.createRange();
         range.selectNodeContents(p);
         range.collapse(false);
-        const sel = window.getSelection();
-        sel.removeAllRanges();
         sel.addRange(range);
       }
     });
 
-    bodyEl.addEventListener('keydown', (e) => {
-      // ── Tab → Insert literal tab character ──────────
-      // Works perfectly with CSS tab-size: 36pt and white-space: pre-wrap
-      // This mimics MS Word behavior where tabs are fixed widths
-      // and do not stretch under text-align: justify.
+    const handleTab = (e) => {
       if (e.key === 'Tab') {
         e.preventDefault();
         document.execCommand('insertText', false, '\t');
         return;
       }
-    });
+    };
+
+    bodyEl.addEventListener('keydown', handleTab);
+    const copyToEl = document.getElementById('p_copy_to');
+    if (copyToEl) copyToEl.addEventListener('keydown', handleTab);
 
     bodyEl.addEventListener('input',   () => { scheduleExpansion(); updateToolbarState(); });
+    if (copyToEl) copyToEl.addEventListener('input', () => updateToolbarState());
     bodyEl.addEventListener('keyup',   updateToolbarState);
     bodyEl.addEventListener('mouseup', updateToolbarState);
   }
