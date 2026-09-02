@@ -54,12 +54,9 @@ function syncFields() {
     if (isEndorsement) {
       const lNo = document.getElementById('letter_no')?.value.trim() || '………';
       const lDate = document.getElementById('letter_date')?.value.trim() || '………… 20……';
-      const clos = document.getElementById('closing')?.value.trim() || 'Yours faithfully,';
       const sig = document.getElementById('signatory')?.value.trim() || 'Assistant Registrar';
       
-      endorsementBlock.querySelectorAll('.sync_letter_no').forEach(el => el.textContent = lNo);
       endorsementBlock.querySelectorAll('.sync_letter_date').forEach(el => el.textContent = lDate);
-      endorsementBlock.querySelectorAll('.sync_closing').forEach(el => el.textContent = clos);
       endorsementBlock.querySelectorAll('.sync_signatory').forEach(el => el.textContent = sig);
     }
   }
