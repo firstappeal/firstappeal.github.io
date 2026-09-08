@@ -4,9 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Import Cases from PDF — Patna High Court</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="style.css">
+  <!-- Offline System Fonts -->
+  <style>
+    :root {
+      --font-ui: 'Segoe UI', 'Ubuntu', 'Helvetica Neue', Arial, sans-serif;
+    }
+    body { font-family: var(--font-ui); }
+  </style>
+  <link rel="stylesheet" href="style.css?v=3">
 </head>
 <body>
 
@@ -209,13 +214,11 @@
   <!-- Toast container -->
   <div id="toastContainer"></div>
 
-  <!-- PDF.js from CDN -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <!-- PDF.js Local Offline Version -->
+  <script src="../shared/pdf.min.js?v=3"></script>
   <script>
-    // Set PDF.js worker
     if (typeof pdfjsLib !== 'undefined') {
-      pdfjsLib.GlobalWorkerOptions.workerSrc =
-        'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+      pdfjsLib.GlobalWorkerOptions.workerSrc = '../shared/pdf.worker.min.js';
     }
   </script>
   <script src="../shared/db.js?v=3"></script>

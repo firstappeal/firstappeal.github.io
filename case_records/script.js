@@ -102,6 +102,39 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Pagination State & DOM Elements
+  let currentPage = 1;
+  let pageSize = 50;
+
+  const pageSizeSelect = document.getElementById('pageSizeSelect');
+  const pageInfoText = document.getElementById('pageInfoText');
+  const prevPageBtn = document.getElementById('prevPageBtn');
+  const nextPageBtn = document.getElementById('nextPageBtn');
+
+  if (pageSizeSelect) {
+    pageSizeSelect.addEventListener('change', () => {
+      pageSize = pageSizeSelect.value === 'all' ? Infinity : parseInt(pageSizeSelect.value, 10);
+      currentPage = 1;
+      renderRecords();
+    });
+  }
+
+  if (prevPageBtn) {
+    prevPageBtn.addEventListener('click', () => {
+      if (currentPage > 1) {
+        currentPage--;
+        renderRecords();
+      }
+    });
+  }
+
+  if (nextPageBtn) {
+    nextPageBtn.addEventListener('click', () => {
+      currentPage++;
+      renderRecords();
+    });
+  }
+
   // 2. Render Table & Update KPIs
   function renderRecords() {
     const query = searchInput.value.toLowerCase().trim();
@@ -138,12 +171,31 @@ document.addEventListener('DOMContentLoaded', () => {
     if (filtered.length === 0) {
       tableBody.innerHTML = '';
       noRecordsState.style.display = 'block';
+      if (pageInfoText) pageInfoText.textContent = 'Page 0 of 0 (0 items)';
+      if (prevPageBtn) prevPageBtn.disabled = true;
+      if (nextPageBtn) nextPageBtn.disabled = true;
       return;
     }
 
     noRecordsState.style.display = 'none';
 
-    tableBody.innerHTML = filtered.map(r => `
+    // Calculate Pagination Slices
+    const totalRecords = filtered.length;
+    const totalPages = pageSize === Infinity ? 1 : (Math.ceil(totalRecords / pageSize) || 1);
+    if (currentPage > totalPages) currentPage = totalPages;
+    if (currentPage < 1) currentPage = 1;
+
+    if (pageInfoText) {
+      pageInfoText.textContent = `Page ${currentPage} of ${totalPages} (${totalRecords} items)`;
+    }
+    if (prevPageBtn) prevPageBtn.disabled = currentPage <= 1;
+    if (nextPageBtn) nextPageBtn.disabled = currentPage >= totalPages;
+
+    const displayRecords = pageSize === Infinity 
+      ? filtered 
+      : filtered.slice((currentPage - 1) * pageSize, currentPage * pageSize);
+
+    tableBody.innerHTML = displayRecords.map(r => `
       <tr>
         <td>
           <span class="hc-case-badge">${escapeHtml(r.case_type)} No. ${escapeHtml(r.case_no)} / ${escapeHtml(r.case_year)}</span>

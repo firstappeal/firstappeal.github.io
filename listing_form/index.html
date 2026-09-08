@@ -182,7 +182,7 @@
   </div>
 
   <!-- Load Master Cases Database -->
-  <script src="../shared/cases_db.js?v=2"></script>
+  <script src="../shared/cases_db.js?v=3"></script>
   <script>
     document.addEventListener('DOMContentLoaded', async () => {
        if (typeof CASES_DB !== 'undefined' && window.PortalDB) {
@@ -207,12 +207,12 @@
   <script src="assistants_db.js?v=3"></script>
   
   <!-- Load PDF.js for PDF parsing -->
-  <script src="pdf.min.js"></script>
+  <script src="../shared/pdf.min.js?v=3"></script>
   <script>
     // Configure worker source
     if (window['pdfjs-dist/build/pdf']) {
       window.pdfjsLib = window['pdfjs-dist/build/pdf'];
-      window.pdfjsLib.GlobalWorkerOptions.workerSrc = 'pdf.worker.min.js';
+      window.pdfjsLib.GlobalWorkerOptions.workerSrc = '../shared/pdf.worker.min.js';
     }
   </script>
 

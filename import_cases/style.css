@@ -3,8 +3,6 @@
    Matches the portal's dark navy + gold design language
    ============================================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
-
 :root {
   --primary-blue:  #3b82f6;
   --accent-gold:   #f59e0b;
