@@ -79,7 +79,7 @@
               + Add Reference
             </button>
           </label>
-          <small class="help-text">Enter Memo No. and date for each previous communication regarding Trial Court Records issued to this court.</small>
+          <small class="help-text">Enter Memo No. and date for each previous communication regarding Lower Court Records issued to this court.</small>
           <div id="refListContainer" style="display:flex;flex-direction:column;gap:8px;margin-top:6px;"></div>
         </div>
       </div>
@@ -183,14 +183,14 @@
           <!-- Addressee -->
           <div style="font-size: 12pt; margin-bottom: 16pt; line-height: 1.5;">
             To,<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;<strong>The</strong> <strong id="p_rem_to_title">District and Sessions Judge</strong>,<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;The <strong id="p_rem_to_title">District and Sessions Judge</strong>,<br>
             &nbsp;&nbsp;&nbsp;&nbsp;<strong id="p_rem_to_address">Patna</strong>.
           </div>
 
           <!-- Subject Line (Bold and Well Aligned) -->
           <div style="margin-bottom: 16pt; font-size: 12pt; line-height: 1.5; font-weight: bold; display: flex; align-items: flex-start;">
             <span style="white-space: nowrap; margin-right: 8px;">SUBJECT:</span>
-            <span id="p_rem_subject_text" style="font-weight: bold;">REMINDER regarding non-receipt of Trial Court Records (L.C.R.)</span>
+            <span id="p_rem_subject_text" style="font-weight: bold;">REMINDER regarding non-receipt of Lower Court Records (L.C.R.)</span>
           </div>
 
           <!-- Salutation -->
@@ -200,10 +200,10 @@
 
           <!-- Body Text -->
           <div style="font-family: 'Times New Roman', Times, serif; font-size: 12pt; line-height: 1.7; text-align: justify; margin-bottom: 24pt;" id="p_rem_body">
-            <p style="margin: 0 0 10pt 0;">I am directed to refer to the Hon'ble Court's earlier communication(s) regarding the sending of Trial Court Records in the above-noted matter, the particulars whereof are as hereunder:</p>
+            <p style="margin: 0 0 10pt 0;">I am directed to refer to the Hon'ble Court's earlier communication(s) regarding the sending of Lower Court Records in the above-noted matter, the particulars whereof are as hereunder:</p>
             <div id="p_rem_refs_list" style="padding-left: 24pt; margin: 0 0 10pt 0; line-height: 1.8;"></div>
-            <p style="margin: 0 0 10pt 0;">That the Trial Court Records connected with <strong id="p_rem_case_title">First Appeal No. 3 of 1973</strong> (Arising out of <em id="p_rem_arising">Land Acquisition Case No. 12 of 1971</em>, Court of the <em id="p_rem_court">Subordinate Judge I, Patna</em>) were requisitioned for transmission to this Court vide the aforesaid communication(s). However, the Trial Court Records have not been received by this Court till date, causing undue delay in the proceedings of the instant appeal.</p>
-            <p style="margin: 0;">I am, therefore, directed to request you to kindly look into the matter personally and ensure that the connected Trial Court Records are transmitted to this Court positively <strong id="p_rem_deadline">within 15 days</strong> from the date of receipt of this <strong>REMINDER</strong>, failing which the matter may be placed before the Hon'ble Court for appropriate orders.</p>
+            <p style="margin: 0 0 10pt 0;">That the Lower Court Records connected with <strong id="p_rem_case_title">First Appeal No. 3 of 1973</strong> (Arising out of <em id="p_rem_arising">Land Acquisition Case No. 12 of 1971</em>, Court of the <em id="p_rem_court">Subordinate Judge I, Patna</em>) were requisitioned for transmission to this Court vide the aforesaid communication(s). However, the Lower Court Records have not been received by this Court till date, causing undue delay in the proceedings of the instant appeal.</p>
+            <p style="margin: 0;">I am, therefore, directed to request you to kindly look into the matter personally and ensure that the connected Lower Court Records are transmitted to this Court positively <strong id="p_rem_deadline">within 15 days</strong> from the date of receipt of this <strong>REMINDER</strong>, failing which the matter may be placed before the Hon'ble Court for appropriate orders.</p>
           </div>
 
           <!-- Sign-off -->
@@ -318,7 +318,7 @@
 
       const versusStr = (app && resp) ? ` (${app} Vs ${resp})` : '';
       document.getElementById('p_rem_subject_text').innerHTML =
-        `REMINDER regarding non-receipt of Trial Court Records (L.C.R.) in connection with ` +
+        `REMINDER regarding non-receipt of Lower Court Records (L.C.R.) in connection with ` +
         `<strong>${caseType} No. ${caseNo} of ${caseYear}</strong>${versusStr}.`;
 
       document.getElementById('p_rem_case_title').textContent = `${caseType} No. ${caseNo} of ${caseYear}`;
