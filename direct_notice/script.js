@@ -17,7 +17,9 @@ const FIELD_MAP = {
   in_connected_court  : 'in_connected_court',
   in_appellant        : 'in_appellant',
   in_respondent       : 'in_respondent',
-  in_advocate_name    : 'in_advocate_name',
+  in_advocate_status  : 'in_advocate_status',
+  in_custom_reason    : 'in_custom_reason',
+  in_notice_body      : 'in_notice_body',
   in_appearance_period: 'in_appearance_period',
   in_date_day         : 'in_date_day',
   in_date_month       : 'in_date_month',
@@ -99,7 +101,26 @@ function renderPages() {
   const appellant = document.getElementById('in_appellant').value.trim() || '\u00A0';
   const respondent = document.getElementById('in_respondent').value.trim() || '\u00A0';
   
-  const advocateName = document.getElementById('in_advocate_name').value.trim() || '\u00A0';
+  const advocateNameEl = document.getElementById('in_advocate_name');
+  const advocateName = advocateNameEl ? advocateNameEl.value.trim() : '';
+  const advocateStatusSelect = document.getElementById('in_advocate_status') ? document.getElementById('in_advocate_status').value : 'has died';
+  const customReason = document.getElementById('in_custom_reason') ? document.getElementById('in_custom_reason').value.trim() : '';
+  const noticeBodyCustom = document.getElementById('in_notice_body') ? document.getElementById('in_notice_body').value.trim() : '';
+  
+  let statusText = advocateStatusSelect;
+  if (advocateStatusSelect === 'custom') {
+    statusText = customReason || 'has died';
+  }
+  
+  let bodyParagraph1 = noticeBodyCustom;
+  if (!bodyParagraph1) {
+    if (advocateName) {
+      bodyParagraph1 = `Please take notice that learned counsel/Advocate Mr. <span class="val-advocate-name">${advocateName}</span> who represented you in the above mentioned appeal ${statusText}.`;
+    } else {
+      bodyParagraph1 = `Please take notice that learned counsel/Advocate who represented you in the above mentioned appeal ${statusText}.`;
+    }
+  }
+
   const appearancePeriod = document.getElementById('in_appearance_period').value.trim() || '\u00A0';
   
   const dateDay = document.getElementById('in_date_day').value.trim() || '\u00A0';
@@ -178,7 +199,7 @@ function renderPages() {
 
         <!-- Notice Body -->
         <div class="doc-body-paragraph paragraph-indent">
-          Please take notice that Mr. <span class="val-advocate-name">${advocateName}</span> who represented you in the above mentioned appeal.
+          ${bodyParagraph1}
         </div>
 
         <div class="doc-body-paragraph paragraph-indent">
@@ -281,6 +302,28 @@ document.addEventListener('DOMContentLoaded', () => {
       input.addEventListener('change', renderPages);
     }
   }
+
+  // Advocate Status custom reason visibility handler
+  const advocateStatusInput = document.getElementById('in_advocate_status');
+  const customReasonGroup = document.getElementById('customReasonGroup');
+  
+  window.updateCustomReasonVisibility = function() {
+    if (advocateStatusInput && customReasonGroup) {
+      if (advocateStatusInput.value === 'custom') {
+        customReasonGroup.style.display = 'block';
+      } else {
+        customReasonGroup.style.display = 'none';
+      }
+    }
+  };
+
+  if (advocateStatusInput) {
+    advocateStatusInput.addEventListener('change', () => {
+      window.updateCustomReasonVisibility();
+      renderPages();
+    });
+  }
+  window.updateCustomReasonVisibility();
 
   // 5. Initial rendering of preview pages
   renderPages();
@@ -476,6 +519,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }
       
+      if (document.getElementById('in_advocate_status')) {
+        document.getElementById('in_advocate_status').value = 'has died';
+      }
+      if (typeof window.updateCustomReasonVisibility === 'function') {
+        window.updateCustomReasonVisibility();
+      }
+
       if (caseSearchInput) {
         caseSearchInput.value = '';
         updateClearBtnState();
@@ -553,7 +603,10 @@ document.addEventListener('DOMContentLoaded', () => {
       connectedCourt: document.getElementById('in_connected_court').value.trim(),
       appellant: document.getElementById('in_appellant').value.trim(),
       respondent: document.getElementById('in_respondent').value.trim(),
-      advocateName: document.getElementById('in_advocate_name').value.trim(),
+      advocateName: document.getElementById('in_advocate_name') ? document.getElementById('in_advocate_name').value.trim() : '',
+      advocateStatus: document.getElementById('in_advocate_status') ? document.getElementById('in_advocate_status').value : 'has died',
+      customReason: document.getElementById('in_custom_reason') ? document.getElementById('in_custom_reason').value.trim() : '',
+      noticeBody: document.getElementById('in_notice_body') ? document.getElementById('in_notice_body').value.trim() : '',
       appearancePeriod: document.getElementById('in_appearance_period').value.trim(),
       dateDay: document.getElementById('in_date_day').value.trim(),
       dateMonth: document.getElementById('in_date_month').value.trim(),
@@ -642,7 +695,21 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('in_connected_court').value = notice.connectedCourt || '';
     document.getElementById('in_appellant').value = notice.appellant || '';
     document.getElementById('in_respondent').value = notice.respondent || '';
-    document.getElementById('in_advocate_name').value = notice.advocateName || '';
+    if (document.getElementById('in_advocate_name')) {
+      document.getElementById('in_advocate_name').value = notice.advocateName || '';
+    }
+    if (document.getElementById('in_advocate_status')) {
+      document.getElementById('in_advocate_status').value = notice.advocateStatus || 'has died';
+    }
+    if (document.getElementById('in_custom_reason')) {
+      document.getElementById('in_custom_reason').value = notice.customReason || '';
+    }
+    if (document.getElementById('in_notice_body')) {
+      document.getElementById('in_notice_body').value = notice.noticeBody || '';
+    }
+    if (typeof window.updateCustomReasonVisibility === 'function') {
+      window.updateCustomReasonVisibility();
+    }
     document.getElementById('in_appearance_period').value = notice.appearancePeriod || '';
     document.getElementById('in_date_day').value = notice.dateDay || '';
     document.getElementById('in_date_month').value = notice.dateMonth || '';

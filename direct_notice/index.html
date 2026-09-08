@@ -129,9 +129,27 @@
           </button>
         </div>
 
+        <div class="form-row">
+          <div class="input-group">
+            <label for="in_advocate_status">Advocate Status / Reason</label>
+            <select id="in_advocate_status">
+              <option value="has died" selected>has died</option>
+              <option value="has expired">has expired</option>
+              <option value="has ceased to practice">has ceased to practice</option>
+              <option value="has retired">has retired</option>
+              <option value="has been elevated">has been elevated</option>
+              <option value="custom">Custom Reason / Free Text</option>
+            </select>
+          </div>
+          <div class="input-group" id="customReasonGroup" style="display: none;">
+            <label for="in_custom_reason">Custom Reason Text</label>
+            <input type="text" id="in_custom_reason" placeholder="e.g. has passed away">
+          </div>
+        </div>
+
         <div class="input-group">
-          <label for="in_advocate_name">Advocate Name (represented you)</label>
-          <input type="text" id="in_advocate_name" placeholder="e.g. Late Sri K.N. Keshav">
+          <label for="in_notice_body">Notice Body Paragraph 1 (Optional Override)</label>
+          <textarea id="in_notice_body" rows="2" placeholder="Leave empty for auto phrasing: 'Please take notice that learned counsel/Advocate who represented you in the above mentioned appeal [Status].'"></textarea>
         </div>
 
         <div class="input-group">
