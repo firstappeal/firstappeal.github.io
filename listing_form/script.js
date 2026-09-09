@@ -196,17 +196,19 @@ function updateAllJudgeDropdowns() {
 }
 
 // ── Add New Row to the Editor Table ────────────────────────────────
-function addNewRow(data = { nature: 'FA', case_no: '', appellant: '', assistant: '', heading: '', direction: '', remarks: 'Fixed' }) {
+function addNewRow(data = { nature: 'FA', case_no: '', appellant: '', assistant: '', heading: '', direction: '', remarks: '', judge: '' }) {
   const tbody = document.getElementById('editorTableBody');
   const tr = document.createElement('tr');
   const rowId = 'row_' + Math.random().toString(36).substr(2, 9);
   
   const headingVal = typeof data.heading !== 'undefined' ? data.heading : '';
-  const remarksVal = data.remarks || 'Fixed';
+  const remarksVal = typeof data.remarks !== 'undefined' ? data.remarks : '';
   const assistantVal = data.assistant || '';
   
-  // Calculate allocated judge
-  const allocatedJudge = evaluateJudge(headingVal, data.case_no);
+  // Calculate allocated judge: prefer provided judge if in JUDGES, else evaluate rule
+  const allocatedJudge = (data.judge && JUDGES.includes(data.judge)) 
+    ? data.judge 
+    : evaluateJudge(headingVal, data.case_no);
   
   tr.id = rowId;
   tr.innerHTML = `
@@ -261,6 +263,12 @@ function addNewRow(data = { nature: 'FA', case_no: '', appellant: '', assistant:
   const suggestionsDiv = tr.querySelector('.suggestions-list');
   const appellantInput = tr.querySelector('.appellant-field');
   const judgeSelect = tr.querySelector('.judge-field');
+  
+  // If judge was explicitly provided, mark as manual so rule re-calculation doesn't overwrite it
+  if (data.judge && JUDGES.includes(data.judge)) {
+    judgeSelect.value = data.judge;
+    judgeSelect.dataset.manual = 'true';
+  }
   
   let activeIndex = -1;
   
@@ -730,6 +738,60 @@ function deleteRule(index) {
   }
 }
 
+// ── Judge Resolution & Helper Utilities ────────────────────────────
+function normalizeJudgeName(str) {
+  return (str || '')
+    .toLowerCase()
+    .replace(/hon'?ble|the|acting|chief|justice|mr\.?|ms\.?|mrs\.?|dr\.?/gi, '')
+    .replace(/[^a-z]/gi, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function toTitleCase(str) {
+  return (str || '')
+    .toLowerCase()
+    .split(/\s+/)
+    .map(w => w ? w.charAt(0).toUpperCase() + w.slice(1) : '')
+    .join(' ');
+}
+
+function resolveOrAddJudge(rawJudge) {
+  if (!rawJudge) return '';
+  const norm = normalizeJudgeName(rawJudge);
+  if (!norm) return '';
+
+  // 1. Exact normalized match against existing JUDGES
+  for (const j of JUDGES) {
+    if (normalizeJudgeName(j) === norm) {
+      return j;
+    }
+  }
+
+  // 2. Substring match if name has at least 2 words
+  const words = norm.split(' ');
+  if (words.length >= 2) {
+    for (const j of JUDGES) {
+      const jNorm = normalizeJudgeName(j);
+      if (jNorm.includes(norm) || norm.includes(jNorm)) {
+        return j;
+      }
+    }
+  }
+
+  // 3. Not found: format as "Hon'ble Mr. Justice [Name]" and add to JUDGES
+  let formatted = '';
+  if (/chief/i.test(rawJudge)) {
+    formatted = `Hon'ble Chief Justice ${toTitleCase(norm)}`;
+  } else {
+    formatted = `Hon'ble Mr. Justice ${toTitleCase(norm)}`;
+  }
+
+  JUDGES.push(formatted);
+  saveJudges();
+  return formatted;
+}
+
 // ── PDF File Upload & Parsing ──────────────────────────────────────
 async function handlePdfUpload(event) {
   const file = event.target.files[0];
@@ -781,45 +843,144 @@ async function handlePdfUpload(event) {
     
     const fullText = pageTexts.join(' ');
     
-    // Look for pattern like 47/2024 or FA/47/2024
-    const caseNoRegex = /(?:^|[^\d/])(\d{1,5}\s*\/\s*\d{4})(?=[^\d/]|$)/g;
-    const matchesIterator = fullText.matchAll(caseNoRegex);
-    const matches = Array.from(matchesIterator).map(m => m[1]);
-    
-    if (matches && matches.length > 0) {
-      const uniqueMatches = [...new Set(matches.map(m => m.replace(/\s+/g, '')))];
-      
-      // Fast O(1) lookup map for CASES_DB
-      const casesMapBySuffix = {};
-      if (typeof CASES_DB !== 'undefined') {
-        for (const key of Object.keys(CASES_DB)) {
-          const parts = key.split('/');
-          if (parts.length >= 2) {
-            const suffix = parts.slice(1).join('/');
-            casesMapBySuffix[suffix] = CASES_DB[key].appellant || '';
-          }
+    // 1. Extract Adjourn List Date (e.g. "Adjourn List Date : 10/09/2026")
+    let extractedDate = '';
+    const dateMatch = fullText.match(/Adjourn\s*List\s*Date\s*:\s*(\d{1,2}[/-]\d{1,2}[/-]\d{4})/i) ||
+                      fullText.match(/Date\s*for\s*Listing\s*:\s*(\d{1,2}[/-]\d{1,2}[/-]\d{4})/i);
+    if (dateMatch && dateMatch[1]) {
+      extractedDate = dateMatch[1].replace(/\//g, '-');
+      document.getElementById('head_date').value = extractedDate;
+      syncHeaders();
+    }
+
+    // 2. Filter out Carry Forward section
+    const cfIndex = fullText.search(/CARRY\s*FORWA?R[ED]*\s*CASES\s*LIST/i);
+    const nonCfText = (cfIndex !== -1) ? fullText.slice(0, cfIndex) : fullText;
+
+    // Fast O(1) lookup map for CASES_DB
+    const casesMapBySuffix = {};
+    if (typeof CASES_DB !== 'undefined') {
+      for (const key of Object.keys(CASES_DB)) {
+        const parts = key.split('/');
+        if (parts.length >= 2) {
+          const suffix = parts.slice(1).join('/');
+          casesMapBySuffix[suffix] = CASES_DB[key].appellant || '';
         }
       }
+    }
 
-      for (const caseNoVal of uniqueMatches) {
-        const appellantName = casesMapBySuffix[caseNoVal] || '';
-        const assistantName = (typeof ASSISTANTS_DB !== 'undefined' && ASSISTANTS_DB[caseNoVal]) ? ASSISTANTS_DB[caseNoVal] : '';
-        
-        addNewRow({ 
-          nature: 'FA', 
-          case_no: caseNoVal, 
-          appellant: appellantName, 
+    // 3. Parse structured cases (Sl no. + Case Type + Case No. / Year)
+    const caseRegex = /(?:^|\s)(\d{1,4})\s+(?:([A-Za-z]+)\s+)?(\d{1,5}\s*\/\s*\d{4})\b/g;
+    const caseMatches = [];
+    let cm;
+    while ((cm = caseRegex.exec(nonCfText)) !== null) {
+      caseMatches.push({
+        index: cm.index,
+        slNo: cm[1],
+        nature: cm[2] || 'FA',
+        caseNo: cm[3].replace(/\s+/g, '')
+      });
+    }
+
+    const parsedCases = [];
+    const seenCaseNos = new Set();
+
+    if (caseMatches.length > 0) {
+      for (let i = 0; i < caseMatches.length; i++) {
+        const item = caseMatches[i];
+        if (seenCaseNos.has(item.caseNo)) continue;
+        seenCaseNos.add(item.caseNo);
+
+        const start = item.index;
+        const end = (i + 1 < caseMatches.length) ? caseMatches[i + 1].index : nonCfText.length;
+        const chunk = nonCfText.slice(start, end);
+
+        // Discard any chunk marked CARRY FORWARD
+        if (/CARRY\s*FORWARD|CARRY\s*FORWA?RED/i.test(chunk)) {
+          continue;
+        }
+
+        // Judge Extraction
+        let rawJudge = '';
+        const jm = chunk.match(/PRESIDED\s*BY[\s\d-]*(?:HON[\'\w]*\s+)?(?:MR\.?|MS\.?|MRS\.?|DR\.?)?\s*(?:JUSTICE\s+)?([A-Z][A-Z\s]+?)(?=,|\xa0|\d{2}\/\d{2}\/\d{4}|Direct|Posted|Court|Present|Status|Order|$)/i);
+        if (jm) {
+          rawJudge = jm[1].replace(/\s+/g, ' ').trim();
+        } else {
+          // Check global judge in header e.g. "LIST OF FA CASES BEFORE: HON'BLE ..."
+          const globalJudgeMatch = nonCfText.match(/BEFORE\s*:\s*(?:HON'?BLE\s+)?([^\n\r]+)/i);
+          if (globalJudgeMatch) {
+            rawJudge = globalJudgeMatch[1].replace(/\s+/g, ' ').trim();
+          }
+        }
+
+        const allocatedJudge = rawJudge ? resolveOrAddJudge(rawJudge) : '';
+        const appellantName = casesMapBySuffix[item.caseNo] || '';
+        const assistantName = (typeof ASSISTANTS_DB !== 'undefined' && ASSISTANTS_DB[item.caseNo]) ? ASSISTANTS_DB[item.caseNo] : '';
+
+        // Heading, Direction, Remarks are left blank per user requirement
+        parsedCases.push({
+          nature: item.nature || 'FA',
+          case_no: item.caseNo,
+          appellant: appellantName,
           assistant: assistantName,
-          heading: '', 
-          direction: '', 
-          remarks: 'Fixed' 
+          heading: '',
+          direction: '',
+          remarks: '',
+          judge: allocatedJudge
         });
       }
-      
-      reindexSerialNumbers();
-      alert(`PDF से सफलतापूर्वक ${uniqueMatches.length} केस निकाले गए।`);
     } else {
-      alert("इस PDF से कोई केस नंबर (जैसे 47/2024) नहीं मिला। (No case number found in PDF)");
+      // Fallback for unstructured PDF: extract all case numbers from non-CF text
+      const fallbackRegex = /(?:^|[^\d/])(\d{1,5}\s*\/\s*\d{4})(?=[^\d/]|$)/g;
+      const fallbackMatches = Array.from(nonCfText.matchAll(fallbackRegex)).map(m => m[1].replace(/\s+/g, ''));
+      const uniqueFallback = [...new Set(fallbackMatches)];
+
+      // Check for global judge
+      let globalJudge = '';
+      const globalJudgeMatch = nonCfText.match(/BEFORE\s*:\s*(?:HON'?BLE\s+)?([^\n\r]+)/i);
+      if (globalJudgeMatch) {
+        globalJudge = resolveOrAddJudge(globalJudgeMatch[1].replace(/\s+/g, ' ').trim());
+      }
+
+      for (const caseNoVal of uniqueFallback) {
+        const appellantName = casesMapBySuffix[caseNoVal] || '';
+        const assistantName = (typeof ASSISTANTS_DB !== 'undefined' && ASSISTANTS_DB[caseNoVal]) ? ASSISTANTS_DB[caseNoVal] : '';
+
+        parsedCases.push({
+          nature: 'FA',
+          case_no: caseNoVal,
+          appellant: appellantName,
+          assistant: assistantName,
+          heading: '',
+          direction: '',
+          remarks: '',
+          judge: globalJudge
+        });
+      }
+    }
+
+    if (parsedCases.length > 0) {
+      // Remove any existing empty rows
+      const existingRows = document.querySelectorAll('#editorTableBody tr');
+      existingRows.forEach(r => {
+        const val = r.querySelector('.case-no-field')?.value.trim();
+        if (!val) r.remove();
+      });
+
+      for (const cData of parsedCases) {
+        addNewRow(cData);
+      }
+
+      reindexSerialNumbers();
+      syncPrintTable();
+
+      let msg = `PDF से सफलतापूर्वक ${parsedCases.length} केस निकाले गए।`;
+      if (extractedDate) {
+        msg += `\nदिनांक: ${extractedDate}`;
+      }
+      alert(msg);
+    } else {
+      alert("इस PDF से कोई वैध केस नहीं मिला। (No valid cases found in PDF)");
     }
   } catch (error) {
     console.error('Error parsing PDF:', error);
