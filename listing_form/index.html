@@ -40,6 +40,7 @@
         </div>
       </div>
       <div class="nav-actions">
+        <button type="button" class="btn btn-warning" onclick="openUpdateJudgesModal()">⚖️ जज लिस्ट अपडेट (HC Site)</button>
         <button type="button" class="btn btn-info" onclick="openSearchModal()">🔍 इतिहास खोजें (Search History)</button>
         <button type="button" class="btn btn-info" onclick="viewCloudLists()">📂 सहेजी गई सूची लोड करें</button>
         <button type="button" class="btn btn-success" onclick="saveToCloud()">💾 सूची सहेजें (Save List)</button>
@@ -80,11 +81,17 @@
           <div style="margin-top: 16px; border-top: 1px solid var(--border-color); padding-top: 16px; display: grid; grid-template-columns: 1fr 2fr; gap: 24px;">
             <!-- Judges List -->
             <div style="border-right: 1px solid var(--border-color); padding-right: 16px;">
-              <h3 style="font-size: 0.9rem; font-weight: 700; color: var(--text-main); margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center;">
-                <span>न्यायाधीशों की सूची (Judges List)</span>
-                <button type="button" class="btn btn-success" style="padding: 2px 6px; font-size: 0.75rem;" onclick="addJudgePrompt()">➕ जोड़ें</button>
+              <h3 style="font-size: 0.9rem; font-weight: 700; color: var(--text-main); margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 6px;">
+                <span style="display: flex; align-items: center; gap: 6px;">
+                  <span>न्यायाधीशों की सूची</span>
+                  <span id="judgesCountBadge" class="judge-count-badge">0</span>
+                </span>
+                <div style="display: flex; gap: 6px;">
+                  <button type="button" class="btn btn-primary" style="padding: 2px 8px; font-size: 0.75rem;" onclick="openUpdateJudgesModal()">🔄 वेबसाइट से अपडेट</button>
+                  <button type="button" class="btn btn-success" style="padding: 2px 8px; font-size: 0.75rem;" onclick="addJudgePrompt()">➕ जोड़ें</button>
+                </div>
               </h3>
-              <ul id="judgesListUI" style="list-style: none; display: flex; flex-direction: column; gap: 8px;">
+              <ul id="judgesListUI" style="list-style: none; display: flex; flex-direction: column; gap: 8px; max-height: 380px; overflow-y: auto; padding-right: 4px;">
                 <!-- Judges will be dynamically loaded here -->
               </ul>
             </div>
@@ -181,6 +188,80 @@
     </div>
   </div>
 
+  <!-- Update Judges from Website Modal -->
+  <div id="updateJudgesModal" class="custom-modal-backdrop no-print" style="display: none;">
+    <div class="custom-modal-dialog">
+      <div class="custom-modal-header">
+        <h2>⚖️ उच्च न्यायालय से न्यायाधीशों की सूची अपडेट करें</h2>
+        <button type="button" class="btn btn-danger-outline" style="padding: 2px 8px; font-size: 1rem; border: none;" onclick="closeUpdateJudgesModal()">✕</button>
+      </div>
+      <div class="custom-modal-body">
+        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 16px;">
+          <div>
+            <span style="font-weight: 600; font-size: 0.9rem; color: var(--text-main);">आधिकारिक स्रोत (Official Source): </span>
+            <a href="https://patnahighcourt.gov.in/judgel" target="_blank" rel="noopener noreferrer" style="color: var(--accent-color); text-decoration: underline; font-weight: 500; font-size: 0.88rem;">
+              patnahighcourt.gov.in/judgel ↗
+            </a>
+          </div>
+          <button type="button" id="btnLiveFetch" class="btn btn-primary" onclick="fetchJudgesFromWeb()">
+            ⚡ वेबसाइट से लाइव लोड करें (Fetch Live)
+          </button>
+        </div>
+
+        <div id="judgeFetchStatus" class="status-banner info" style="display: none;">
+          <span id="judgeFetchStatusIcon">⏳</span>
+          <span id="judgeFetchStatusText">उच्च न्यायालय की वेबसाइट से सूची लोड की जा रही है...</span>
+        </div>
+
+        <!-- Preview of fetched judges -->
+        <div id="judgesPreviewContainer" style="display: none; margin-top: 14px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+            <strong style="font-size: 0.9rem; color: var(--text-main);">
+              प्राप्त न्यायाधीश सूची (Preview): <span id="previewCountBadge" class="judge-count-badge">0</span>
+            </strong>
+            <span style="font-size: 0.78rem; color: var(--text-muted);">नीचे दी गई सूची को लिस्टिंग फॉर्म में लागू करने के लिए "लागू करें और सहेजें" दबाएं।</span>
+          </div>
+          <div style="max-height: 280px; overflow-y: auto; border: 1px solid var(--border-color); border-radius: 6px;">
+            <table class="judges-preview-table">
+              <thead>
+                <tr>
+                  <th style="width: 50px; text-align: center;">क्र०</th>
+                  <th>न्यायाधीश का नाम (Judge Name)</th>
+                </tr>
+              </thead>
+              <tbody id="judgesPreviewTableBody">
+                <!-- Dynamically populated -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Fallback Paste Section (Collapsible) -->
+        <details id="pasteFallbackDetails" style="margin-top: 18px; border-top: 1px dashed var(--border-color); padding-top: 12px;">
+          <summary style="font-size: 0.85rem; font-weight: 600; color: var(--text-muted); cursor: pointer;">
+            📋 यदि इंटरनेट/CORS प्रतिबंध हो: वेबपेज HTML या टेक्स्ट पेस्ट करके अपडेट करें (Manual Paste Option)
+          </summary>
+          <div style="margin-top: 10px;">
+            <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 8px;">
+              यदि नेटवर्क फ़ायरवॉल की वजह से सीधा लोड न हो, तो <a href="https://patnahighcourt.gov.in/judgel" target="_blank" style="color:var(--accent-color);">patnahighcourt.gov.in/judgel</a> पेज खोलकर उसका सारा टेक्स्ट या HTML (Ctrl+A &amp; Ctrl+C) यहाँ पेस्ट करें:
+            </p>
+            <textarea id="pasteJudgeContent" rows="4" style="width: 100%; border: 1px solid var(--border-color); border-radius: 6px; padding: 8px; font-family: monospace; font-size: 0.8rem;" placeholder="वेबपेज का HTML या टेक्स्ट यहाँ पेस्ट करें..."></textarea>
+            <div style="margin-top: 8px; display: flex; gap: 8px; flex-wrap: wrap;">
+              <button type="button" class="btn btn-info" style="padding: 4px 12px; font-size: 0.8rem;" onclick="parsePastedJudgeContent()">🔍 पेस्ट किया हुआ डेटा पार्स करें</button>
+              <button type="button" class="btn btn-warning" style="padding: 4px 12px; font-size: 0.8rem;" onclick="restoreDefaultSittingJudges()">🔄 मूल 43 जजों की सूची पुनर्स्थापित करें</button>
+            </div>
+          </div>
+        </details>
+      </div>
+      <div class="custom-modal-footer">
+        <button type="button" class="btn btn-danger-outline" onclick="closeUpdateJudgesModal()">रद्द करें (Cancel)</button>
+        <button type="button" id="btnApplyJudges" class="btn btn-success" style="display: none;" onclick="applyFetchedJudges()">
+          💾 लागू करें और सहेजें (Apply &amp; Save)
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- Load Master Cases Database -->
   <script src="../shared/cases_db.js?v=3"></script>
   <script>
@@ -205,6 +286,9 @@
   
   <!-- Load Assistants Database -->
   <script src="assistants_db.js?v=3"></script>
+  
+  <!-- Load Master Sitting Judges Database -->
+  <script src="judges_db.js?v=1"></script>
   
   <!-- Load PDF.js for PDF parsing -->
   <script src="../shared/pdf.min.js?v=3"></script>
