@@ -19,29 +19,50 @@ def extract_cases_from_pdf(pdf_bytes):
     doc = fitz.open(stream=pdf_bytes, filetype="pdf")
     results = []
     overall_date = "Unknown Date"
+    current_bench = ""
     
-    for page in doc:
+    for i, page in enumerate(doc):
         lines = page.get_text().split('\n')
-        date_str = ""
-        judges = []
-        for line in lines[:20]:
-            line = line.strip()
-            if not line: continue
-            if re.match(r'^(Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)', line):
-                date_str = line
-                if overall_date == "Unknown Date":
-                    overall_date = date_str
-            if line.startswith("Hon'ble"):
-                judges.append(line)
-            elif line.startswith("& Hon'ble"):
-                judges.append(line)
-        text = "\n".join(lines)
-        fa_cases = re.findall(r'FA/\d+/\d+', text)
-        if fa_cases:
-            j_str = " ".join(judges).strip()
-            for c in fa_cases:
-                results.append({"date": date_str, "judge": j_str, "case_no": c})
-                
+        
+        # Only check for overall date on the first page
+        if i == 0:
+            for line in lines[:20]:
+                if re.match(r'^(Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)', line.strip()):
+                    overall_date = line.strip()
+                    break
+
+        for j, line in enumerate(lines):
+            line_clean = line.strip()
+            
+            # Update current bench if Court No. block is found
+            if "Court No." in line_clean:
+                bench_parts = []
+                for k in range(j + 1, min(j + 10, len(lines))):
+                    if "SNo" in lines[k] or "Case No" in lines[k] or "LT Party Detail" in lines[k]:
+                        break
+                    part = lines[k].strip()
+                    if part:
+                        bench_parts.append(part)
+                if bench_parts:
+                    current_bench = " ".join(bench_parts).strip()
+            
+            # Fallback for Hon'ble if no Court No. has been seen yet
+            elif line_clean.startswith("Hon'ble") and not current_bench:
+                bench_parts = [line_clean]
+                for k in range(j + 1, min(j + 5, len(lines))):
+                    if lines[k].strip().startswith("& Hon'ble"):
+                        bench_parts.append(lines[k].strip())
+                    else:
+                        break
+                current_bench = " ".join(bench_parts).strip()
+            
+            fa_cases = re.findall(r'FA/\d+/\d+', line_clean)
+            if fa_cases:
+                for c in fa_cases:
+                    # Provide a default if somehow it's still empty
+                    b_str = current_bench if current_bench else "Unknown Bench"
+                    results.append({"date": overall_date, "judge": b_str, "case_no": c})
+                    
     return results, overall_date
 
 def get_existing_dates():
@@ -142,7 +163,6 @@ def fetch_and_process():
     
     base_data = {'ctl00$MainContent$ddlType': 'Entire Cause List'}
     for opt in options:
-        # Simplistic check if we already have it
         day_str = str(int(opt['text'].split('-')[0])) # '10' or '1'
         mon_str = opt['text'].split('-')[1] # 'Sep'
         
