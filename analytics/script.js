@@ -242,9 +242,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const now = Date.now();
     const SEVEN_DAYS = 7 * 24 * 60 * 60 * 1000;
+    const THIRTY_DAYS = 30 * 24 * 60 * 60 * 1000;
     const daStats = {};
     all.forEach(d => {
-      daStats[d.name] = { listed7d: new Set(), direct7d: new Set(), notice7d: new Set(), lcr7d: new Set(), files7d: new Set() };
+      daStats[d.name] = { listed7d: new Set(), printed30d: new Set(), direct7d: new Set(), notice7d: new Set(), lcr7d: new Set(), files7d: new Set() };
     });
 
     function addStat(daName, key, caseKey) {
@@ -255,7 +256,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const caseKey = normalizeCaseKey(c.case_no, c.case_year);
       const da = (c.dealing_assistant || '').trim() || getDaForCase(c.case_no, c.case_year);
       if (!da) return;
-      if (!daStats[da]) daStats[da] = { listed7d: new Set(), direct7d: new Set(), notice7d: new Set(), lcr7d: new Set(), files7d: new Set() };
+      if (!daStats[da]) daStats[da] = { listed7d: new Set(), printed30d: new Set(), direct7d: new Set(), notice7d: new Set(), lcr7d: new Set(), files7d: new Set() };
       
       if (c.saved_at && (now - new Date(c.saved_at).getTime() <= SEVEN_DAYS)) addStat(da, 'lcr7d', caseKey);
     });
@@ -277,11 +278,17 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     causeLists.forEach(cl => {
-      if (cl.saved_at && (now - new Date(cl.saved_at).getTime() <= SEVEN_DAYS)) {
+      if (cl.saved_at) {
+        const clTime = new Date(cl.saved_at).getTime();
         (cl.cases || []).forEach(c => {
-          const caseKey = normalizeCaseKey(c.case_no, c.case_year);
-          const da = getDaForCase(c.case_no, c.case_year);
-          addStat(da, 'listed7d', caseKey);
+          const caseKey = normalizeCaseKey(c.case_no || c.caseNo, c.case_year);
+          const da = getDaForCase(c.case_no || c.caseNo, c.case_year);
+          if (now - clTime <= SEVEN_DAYS) {
+            addStat(da, 'listed7d', caseKey);
+          }
+          if (now - clTime <= THIRTY_DAYS) {
+            addStat(da, 'printed30d', caseKey);
+          }
         });
       }
     });
@@ -301,9 +308,10 @@ document.addEventListener('DOMContentLoaded', () => {
     tbody.innerHTML = das.map(d => {
       const pct = total > 0 ? ((d.casesAllotted / total) * 100).toFixed(1) : 0;
       const barW = Math.min(parseFloat(pct) * 4, 100);
-      const stat = daStats[d.name] || { listed7d: new Set(), direct7d: new Set(), notice7d: new Set(), lcr7d: new Set(), files7d: new Set() };
+      const stat = daStats[d.name] || { listed7d: new Set(), printed30d: new Set(), direct7d: new Set(), notice7d: new Set(), lcr7d: new Set(), files7d: new Set() };
       
       const listedCount = stat.listed7d.size;
+      const printedCount = stat.printed30d.size;
       const directCount = stat.direct7d.size;
       const noticeCount = stat.notice7d.size;
       const lcrStatCount = stat.lcr7d.size;
@@ -328,6 +336,7 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
           </td>
           <td><span class="badge ${listedCount > 0 ? 'badge-blue' : ''}" style="${listedCount === 0 ? 'background:transparent;color:var(--text-muted);' : ''}">${listedCount}</span></td>
+          <td><span class="badge ${printedCount > 0 ? 'badge-blue' : ''}" style="${printedCount === 0 ? 'background:transparent;color:var(--text-muted);' : ''}">${printedCount}</span></td>
           <td><span class="badge ${directCount > 0 ? 'badge-purple' : ''}" style="${directCount === 0 ? 'background:transparent;color:var(--text-muted);' : ''}">${directCount}</span></td>
           <td><span class="badge ${noticeCount > 0 ? 'badge-green' : ''}" style="${noticeCount === 0 ? 'background:transparent;color:var(--text-muted);' : ''}">${noticeCount}</span></td>
           <td><span class="badge ${filesCount > 0 ? 'badge-teal' : ''}" style="${filesCount === 0 ? 'background:transparent;color:var(--text-muted);' : ''}">${filesCount}</span></td>
