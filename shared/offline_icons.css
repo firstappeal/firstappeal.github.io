@@ -63,6 +63,19 @@
 .fa-satellite-dish::before      { content: "📡"; }
 .fa-list-check::before          { content: "📋"; }
 
+/* Additional Icon Fallbacks */
+.fa-check-circle::before        { content: "✓"; font-weight: bold; }   /* alias for fa-circle-check */
+.fa-clock-rotate-left::before   { content: "🕐"; }
+.fa-share-from-square::before   { content: "↪"; font-weight: bold; }
+.fa-users-gear::before          { content: "👥"; }
+.fa-clipboard-check::before     { content: "📋"; }
+.fa-timeline::before            { content: "📅"; }
+.fa-bolt::before                { content: "⚡"; }
+.fa-cloud-arrow-up::before      { content: "☁"; font-weight: bold; }
+.fa-file-circle-xmark::before   { content: "📄✕"; }
+.fa-calendar-check::before      { content: "📅"; }
+.fa-indian-rupee-sign::before   { content: "₹"; font-weight: bold; }
+
 /* Size Utilities */
 .fa-3x {
   font-size: 3em;

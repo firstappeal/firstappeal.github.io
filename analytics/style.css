@@ -41,7 +41,7 @@ body { font-family: 'Inter', sans-serif; background: var(--bg-main); color: var(
 }
 .brand-text h1 { font-size: 1rem; font-weight: 700; }
 .brand-text p  { font-size: 0.74rem; color: var(--text-muted); }
-.nav-actions { display: flex; gap: 10px; }
+.nav-actions { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
 .btn {
   display: inline-flex; align-items: center; gap: 8px;
   padding: 8px 16px; border-radius: 8px; font-size: 0.82rem;
@@ -58,11 +58,11 @@ body { font-family: 'Inter', sans-serif; background: var(--bg-main); color: var(
 /* KPI GRID */
 .kpi-grid {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 16px;
 }
-@media (max-width: 1200px) { .kpi-grid { grid-template-columns: repeat(3, 1fr); } }
-@media (max-width: 640px)  { .kpi-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 1200px) { .kpi-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 640px)  { .kpi-grid { grid-template-columns: 1fr; } }
 
 .kpi-card {
   background: var(--bg-card); border-radius: var(--radius);

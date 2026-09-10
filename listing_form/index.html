@@ -16,12 +16,7 @@
   <link rel="stylesheet" href="style.css?v=4">
 </head>
 <body>
-  <div id="error-log" style="position:fixed; top:0; left:0; right:0; background:red; color:white; z-index:9999; white-space:pre-wrap;"></div>
-  <script>
-    window.addEventListener('error', function(e) {
-      document.getElementById('error-log').innerText += e.message + ' at ' + e.filename + ':' + e.lineno + '\n';
-    });
-  </script>
+
 
   <!-- ── EDITOR INTERFACE ────────────────────────────────────────── -->
   <div id="editorWrapper" class="no-print">
