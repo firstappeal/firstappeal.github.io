@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Causelist Printed Cases — Patna High Court</title>
+  <style>
+    :root {
+      --font-ui: 'Segoe UI', 'Ubuntu', 'Helvetica Neue', Arial, sans-serif;
+    }
+    body { font-family: var(--font-ui); background: #f8fafc; margin:0; padding:0; }
+    .navbar { display: flex; align-items: center; background: #fff; padding: 12px 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+    .back-link { text-decoration: none; color: #475569; font-weight: 500; margin-right: 20px; }
+    .brand-logo { color: #ec4899; font-size: 1.5rem; margin-right: 12px; }
+    .brand-text h1 { font-size: 1.1rem; margin: 0; color: #1e293b; }
+    .brand-text p { font-size: 0.8rem; margin: 0; color: #64748b; }
+    .main-content { max-width: 1000px; margin: 24px auto; padding: 0 16px; }
+    .card { background: #fff; border-radius: 8px; padding: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); margin-bottom: 24px; }
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; border-radius: 6px; font-weight: 500; cursor: pointer; border: none; font-size: 0.9rem; }
+    .btn-primary { background: #3b82f6; color: #fff; }
+    .btn-primary:hover { background: #2563eb; }
+    table { width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 0.9rem; }
+    th, td { padding: 12px; text-align: left; border-bottom: 1px solid #e2e8f0; }
+    th { background: #f1f5f9; color: #475569; font-weight: 600; }
+    #toastContainer { position: fixed; bottom: 20px; right: 20px; display: flex; flex-direction: column; gap: 10px; z-index: 9999; }
+    .toast { background: #333; color: #fff; padding: 12px 20px; border-radius: 6px; font-size: 0.9rem; opacity: 0; transition: opacity 0.3s; }
+    
+    .timeline-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; margin-top: 16px; }
+    .timeline-item { padding: 12px; border-radius: 6px; border: 1px solid #e2e8f0; display: flex; flex-direction: column; gap: 4px; }
+    .timeline-item.status-printed { border-left: 4px solid #3b82f6; background: #eff6ff; }
+    .timeline-item.status-none { border-left: 4px solid #f59e0b; background: #fffbeb; }
+    .timeline-item.status-missing { border-left: 4px solid #94a3b8; background: #f8fafc; color: #64748b; }
+    .timeline-date { font-weight: 600; font-size: 0.9rem; }
+    .timeline-desc { font-size: 0.85rem; }
+  </style>
+  <link rel="stylesheet" href="../shared/offline_icons.css">
+</head>
+<body>
+  <header class="navbar">
+    <a href="../index.html" class="back-link">&#8592; Dashboard</a>
+    <div class="brand-logo"><i class="fa-solid fa-list"></i></div>
+    <div class="brand-text">
+      <h1>Causelist Printed Cases</h1>
+      <p>Keep records of First Appeal cases printed in the causelist.</p>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <div class="card">
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div>
+          <h2 style="margin: 0 0 4px 0;">30-Day Causelist Timeline</h2>
+          <p style="margin: 0; color: #64748b; font-size: 0.9rem;">Shows days with FA cases, days with no FA cases, and days without a causelist.</p>
+        </div>
+        <button id="updateBtn" class="btn btn-primary">
+          <i class="fa-solid fa-cloud-arrow-down"></i> Update Causelist (Actions)
+        </button>
+      </div>
+      <div class="timeline-grid" id="timelineGrid">
+         <div style="color: #94a3b8; font-size: 0.9rem; padding: 12px;">Loading timeline...</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2 style="margin: 0 0 4px 0;">Detailed FA Cases Record</h2>
+      <p style="margin: 0; color: #64748b; font-size: 0.9rem;">Detailed list of all FA cases printed in the last 30 days.</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Case No.</th>
+            <th>Judge Name</th>
+            <th>Saved At</th>
+          </tr>
+        </thead>
+        <tbody id="recordsTbody">
+          <tr><td colspan="4" style="text-align: center; color: #94a3b8;">Loading records...</td></tr>
+        </tbody>
+      </table>
+    </div>
+    
+    <div style="font-size: 0.85rem; color: #64748b;">
+      <i class="fa-solid fa-circle-info"></i> Note: The update process is automated via GitHub Actions and runs daily. Records older than 30 days are automatically removed.
+    </div>
+  </main>
+
+  <div id="toastContainer"></div>
+
+  <script src="../shared/db.js?v=3"></script>
+  <script src="script.js"></script>
+</body>
+</html>

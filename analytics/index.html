@@ -4,9 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Section Analytics — Patna High Court</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="style.css">
+  <!-- Offline System Fonts -->
+  <style>
+    :root {
+      --font-ui: 'Segoe UI', 'Ubuntu', 'Helvetica Neue', Arial, sans-serif;
+    }
+    body { font-family: var(--font-ui); }
+  </style>
+  <link rel="stylesheet" href="../shared/offline_icons.css">
+  <link rel="stylesheet" href="style.css?v=2">
 </head>
 <body>
 <div class="app-container">
@@ -15,7 +21,7 @@
   <header class="navbar no-print">
     <div class="nav-brand">
       <a href="../index.html" class="back-link" title="Main Portal">
-        <i class="fa-solid fa-arrow-left"></i>
+        &#8592; Dashboard
       </a>
       <div class="brand-logo"><i class="fa-solid fa-chart-pie"></i></div>
       <div class="brand-text">
@@ -107,13 +113,14 @@
               <th>Cases Allotted</th>
               <th>Workload Share</th>
               <th>Cases Listed (7d)</th>
+              <th>Printed in Causelist (30d)</th>
               <th>Direct Notices (7d)</th>
               <th>Notices Forwarded (7d)</th>
               <th>Files In Movement</th>
             </tr>
           </thead>
           <tbody id="daTableBody">
-            <tr><td colspan="8" style="text-align:center;color:var(--text-muted);">Loading…</td></tr>
+            <tr><td colspan="9" style="text-align:center;color:var(--text-muted);">Loading…</td></tr>
           </tbody>
         </table>
       </div>
