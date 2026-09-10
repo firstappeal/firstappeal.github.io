@@ -38,11 +38,37 @@ body {
   align-items: center;
   background-color: var(--primary-color);
   color: #fff;
-  padding: 12px 24px;
+  padding: 10px 20px;
   box-shadow: var(--shadow-md);
   position: sticky;
   top: 0;
   z-index: 100;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.nav-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  text-decoration: none;
+  font-family: var(--font-ui, sans-serif);
+  font-weight: 600;
+  font-size: 0.85rem;
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  transition: all 0.2s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.nav-back-btn:hover {
+  background: #2563eb;
+  border-color: #3b82f6;
+  color: #fff;
+  transform: translateX(-2px);
 }
 
 .nav-logo {
@@ -66,7 +92,15 @@ body {
 
 .nav-actions {
   display: flex;
-  gap: 12px;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.nav-actions .btn {
+  padding: 7px 11px;
+  font-size: 0.82rem;
+  white-space: nowrap;
 }
 
 .btn {

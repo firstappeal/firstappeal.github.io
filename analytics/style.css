@@ -24,12 +24,15 @@ body { font-family: 'Inter', sans-serif; background: var(--bg-main); color: var(
 }
 .nav-brand { display: flex; align-items: center; gap: 14px; }
 .back-link {
-  width: 36px; height: 36px; border-radius: 8px;
-  display: flex; align-items: center; justify-content: center;
-  background: var(--bg-elevated); color: var(--text-muted);
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  background: var(--primary-blue); color: #fff;
   text-decoration: none; transition: all .2s;
+  font-size: 0.85rem; font-weight: 600;
+  white-space: nowrap;
 }
-.back-link:hover { background: var(--primary-blue); color: #fff; }
+.back-link:hover { background: #1d4ed8; color: #fff; transform: translateX(-2px); }
 .brand-logo {
   width: 40px; height: 40px; border-radius: 10px;
   background: linear-gradient(135deg, #3b82f6, #6366f1);

@@ -11,17 +11,18 @@
       }
       body { font-family: var(--font-ui); }
     </style>
+    <link rel="stylesheet" href="../shared/offline_icons.css">
     <link rel="stylesheet" href="style.css?v=3">
 </head>
 <body>
-    <div style="position: absolute; top: 10px; left: 10px; z-index: 1000;" class="no-print">
-        <a href="../index.html" style="text-decoration: none; font-family: sans-serif; background: #2563eb; color: white; padding: 8px 12px; border-radius: 6px; font-size: 14px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">&#8592; Dashboard</a>
-    </div>
     <div class="app-container">
         <header class="app-header">
-            <div class="header-content">
-                <h1><i class="fa-solid fa-folder-tree"></i> File Movement Tracking</h1>
-                <p>Track physical case files moving to different departments</p>
+            <div style="display: flex; align-items: center; gap: 1rem;">
+                <a href="../index.html" class="nav-back-btn" title="Return to Dashboard">&#8592; Dashboard</a>
+                <div class="header-content">
+                    <h1><i class="fa-solid fa-folder-tree"></i> File Movement Tracking</h1>
+                    <p>Track physical case files moving to different departments</p>
+                </div>
             </div>
             <div class="header-actions">
                 <button id="printBtn" class="btn btn-primary"><i class="fa-solid fa-print"></i> Print Log</button>

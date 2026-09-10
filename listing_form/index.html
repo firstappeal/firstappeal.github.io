@@ -12,17 +12,14 @@
     }
     body { font-family: var(--font-ui); }
   </style>
-  <!-- Stylesheet -->
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="../shared/offline_icons.css">
+  <link rel="stylesheet" href="style.css?v=4">
 </head>
 <body>
-    <div style="position: absolute; top: 10px; left: 10px; z-index: 1000;" class="no-print">
-        <a href="../index.html" style="text-decoration: none; font-family: sans-serif; background: #2563eb; color: white; padding: 8px 12px; border-radius: 6px; font-size: 14px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">&#8592; Dashboard</a>
-    </div>
   <div id="error-log" style="position:fixed; top:0; left:0; right:0; background:red; color:white; z-index:9999; white-space:pre-wrap;"></div>
   <script>
     window.addEventListener('error', function(e) {
-      document.getElementById('error-log').innerText += e.message + ' at ' + e.filename + ':' + e.lineno + '\\n';
+      document.getElementById('error-log').innerText += e.message + ' at ' + e.filename + ':' + e.lineno + '\n';
     });
   </script>
 
@@ -30,23 +27,26 @@
   <div id="editorWrapper" class="no-print">
     <!-- Navbar -->
     <header class="navbar">
-      <div class="nav-logo">
-        <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
-          <path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
-        </svg>
-        <div>
-          <h1>वाद सूची निर्माता</h1>
-          <p>पटना उच्च न्यायालय</p>
+      <div style="display: flex; align-items: center; gap: 14px;">
+        <a href="../index.html" class="nav-back-btn" title="Return to Dashboard">&#8592; Dashboard</a>
+        <div class="nav-logo">
+          <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
+            <path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
+          </svg>
+          <div>
+            <h1>वाद सूची निर्माता</h1>
+            <p>पटना उच्च न्यायालय</p>
+          </div>
         </div>
       </div>
       <div class="nav-actions">
-        <button type="button" class="btn btn-warning" onclick="openUpdateJudgesModal()">⚖️ जज लिस्ट अपडेट (HC Site)</button>
-        <button type="button" class="btn btn-info" onclick="openSearchModal()">🔍 इतिहास खोजें (Search History)</button>
-        <button type="button" class="btn btn-info" onclick="viewCloudLists()">📂 सहेजी गई सूची लोड करें</button>
-        <button type="button" class="btn btn-success" onclick="saveToCloud()">💾 सूची सहेजें (Save List)</button>
-        <button type="button" class="btn btn-danger" onclick="clearAllRows()">🗑 सूची साफ करें</button>
-        <button type="button" class="btn btn-primary" onclick="printShort()">🖨 संक्षिप्त प्रिंट (Short Print)</button>
-        <button type="button" class="btn btn-primary" onclick="printFull()">🖨 पूरा प्रिंट (Full Print)</button>
+        <button type="button" class="btn btn-warning" onclick="openUpdateJudgesModal()" title="उच्च न्यायालय की वेबसाइट से जजों की सूची अपडेट करें">⚖️ जज लिस्ट अपडेट</button>
+        <button type="button" class="btn btn-info" onclick="openSearchModal()" title="पुराने मामलों का इतिहास खोजें">🔍 इतिहास खोजें</button>
+        <button type="button" class="btn btn-info" onclick="viewCloudLists()" title="सहेजी गई वाद सूची लोड करें">📂 लोड करें</button>
+        <button type="button" class="btn btn-success" onclick="saveToCloud()" title="वर्तमान वाद सूची सहेजें">💾 सूची सहेजें</button>
+        <button type="button" class="btn btn-danger" onclick="clearAllRows()" title="सभी पंक्तियाँ हटाएँ">🗑 साफ करें</button>
+        <button type="button" class="btn btn-primary" onclick="printShort()" title="संक्षिप्त वाद सूची प्रिंट करें">🖨 संक्षिप्त प्रिंट</button>
+        <button type="button" class="btn btn-primary" onclick="printFull()" title="पूरी वाद सूची प्रिंट करें">🖨 पूरा प्रिंट</button>
       </div>
     </header>
 

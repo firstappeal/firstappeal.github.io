@@ -276,8 +276,8 @@ function renderTable() {
         }
 
         const returnBtnHtml = record.status === 'out'
-            ? `<button class="btn-icon return" title="Mark as Returned" onclick="toggleStatus('${record.id}')"><i class="fa-solid fa-rotate-left"></i></button>`
-            : `<button class="btn-icon return" title="Mark as Sent Out" onclick="toggleStatus('${record.id}')"><i class="fa-solid fa-share"></i></button>`;
+            ? `<button class="btn-icon return" title="Mark as Returned (फाइल वापस आई)" onclick="toggleStatus('${record.id}')"><i class="fa-solid fa-rotate-left"></i> <span>Return</span></button>`
+            : `<button class="btn-icon return resend" title="Mark as Sent Out (फाइल बाहर भेजी)" onclick="toggleStatus('${record.id}')"><i class="fa-solid fa-share"></i> <span>Send Out</span></button>`;
 
         let rowClass = '';
         if (record.status === 'out') {
@@ -297,8 +297,8 @@ function renderTable() {
             <td>${statusHtml}</td>
             <td class="no-print" style="white-space: nowrap;">
                 ${returnBtnHtml}
-                <button class="btn-icon" title="Edit Record" onclick="editRecord('${record.id}')"><i class="fa-solid fa-pen"></i></button>
-                <button class="btn-icon delete" title="Delete Record" onclick="deleteRecord('${record.id}')"><i class="fa-solid fa-trash"></i></button>
+                <button class="btn-icon edit" title="Edit Record" onclick="editRecord('${record.id}')"><i class="fa-solid fa-pen"></i> <span>Edit</span></button>
+                <button class="btn-icon delete" title="Delete Record" onclick="deleteRecord('${record.id}')"><i class="fa-solid fa-trash"></i> <span>Delete</span></button>
             </td>
         `;
         historyBody.appendChild(tr);

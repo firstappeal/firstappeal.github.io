@@ -62,20 +62,27 @@ body {
 }
 
 .back-link {
-  color: var(--text-muted);
-  font-size: 1.25rem;
-  padding: 0.5rem 0.75rem;
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid var(--border-color);
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.45rem 0.85rem;
+  border-radius: 6px;
+  background: #2563eb;
+  border: 1px solid #1d4ed8;
   transition: all 0.2s ease;
   text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
 }
 
 .back-link:hover {
-  color: var(--text-main);
-  background: var(--primary-blue);
-  border-color: var(--primary-blue);
+  color: #fff;
+  background: #1d4ed8;
+  border-color: #1e40af;
+  transform: translateX(-2px);
 }
 
 .brand-logo {
@@ -150,20 +157,26 @@ body {
 }
 
 .btn-action-icon {
-  background: rgba(255, 255, 255, 0.05);
-  color: var(--text-muted);
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-main);
   border: 1px solid var(--border-color);
   padding: 0.4rem 0.6rem;
   border-radius: 6px;
   cursor: pointer;
   transition: all 0.2s ease;
+  font-size: 0.95rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  min-height: 30px;
 }
 .btn-action-icon:hover {
   color: var(--text-main);
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.2);
 }
-.btn-action-icon.edit:hover { color: var(--primary-blue); border-color: var(--primary-blue); }
-.btn-action-icon.delete:hover { color: var(--accent-red); border-color: var(--accent-red); }
+.btn-action-icon.edit:hover { color: var(--primary-blue); border-color: var(--primary-blue); background: rgba(59, 130, 246, 0.15); }
+.btn-action-icon.delete:hover { color: var(--accent-red); border-color: var(--accent-red); background: rgba(239, 68, 68, 0.15); }
 
 /* ── MAIN CONTENT & KPI GRID ──────────────────────────────── */
 .main-content {

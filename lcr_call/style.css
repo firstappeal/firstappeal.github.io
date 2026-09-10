@@ -49,7 +49,7 @@ body {
 .navbar {
   background-color: var(--navy-dark);
   border-bottom: 2.5px solid var(--gold-primary);
-  padding: 12px 32px;
+  padding: 10px 24px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -57,6 +57,30 @@ body {
   top: 0;
   z-index: 100;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.nav-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #2563eb;
+  color: #fff;
+  text-decoration: none;
+  font-family: var(--font-ui, sans-serif);
+  font-weight: 600;
+  font-size: 0.85rem;
+  padding: 8px 14px;
+  border-radius: 6px;
+  border: 1px solid #3b82f6;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.nav-back-btn:hover {
+  background: #1d4ed8;
+  color: #fff;
+  transform: translateX(-2px);
 }
 
 .nav-logo {
@@ -85,7 +109,9 @@ body {
 
 .nav-actions {
   display: flex;
-  gap: 12px;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .btn {
