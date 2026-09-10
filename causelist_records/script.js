@@ -45,20 +45,32 @@ async function loadRecords() {
         }
         recordsTbody.innerHTML = html;
 
-        // --- Render 30-Day Timeline ---
+        // --- Render Timeline ---
         const today = new Date();
+        const minDate = new Date('2026-09-01T00:00:00');
         let timelineHtml = '';
         
         for (let i = 0; i < 30; i++) {
             const d = new Date(today);
             d.setDate(today.getDate() - i);
-            const dateStr = d.toISOString().substring(0, 10); // YYYY-MM-DD
             
-            // Find a record that corresponds to this date
-            // The python script creates records on the day they are fetched (created_at).
-            const record = lists.find(l => {
+            // Do not show timeline before 01-Sep-2026
+            if (d < minDate) break;
+
+            const dateStr = d.toISOString().substring(0, 10);
+            
+            let record = null;
+            const monthMap = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+            const dayStr = String(d.getDate());
+            const monStr = monthMap[d.getMonth()];
+            
+            record = lists.find(l => {
                 const createdStr = new Date(l.created_at).toISOString().substring(0, 10);
-                return createdStr === dateStr;
+                if (createdStr === dateStr) return true;
+                
+                const recDate = l.date || (l.header && l.header.date) || "";
+                if (recDate.includes(dayStr) && recDate.includes(monStr)) return true;
+                return false;
             });
             
             const displayDate = d.toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short' });
