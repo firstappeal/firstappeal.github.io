@@ -6,7 +6,6 @@ from PIL import Image, ImageFilter
 import fitz
 from datetime import datetime, timedelta
 
-# Extract Supabase credentials from db.js
 try:
     with open('shared/db.js', 'r') as f:
         content = f.read()
@@ -45,60 +44,60 @@ def extract_cases_from_pdf(pdf_bytes):
                 
     return results, overall_date
 
+def get_existing_dates():
+    headers = {'apikey': SUPA_KEY, 'Authorization': f'Bearer {SUPA_KEY}'}
+    r = requests.get(f"{SUPA_URL}/rest/v1/cause_lists?select=date", headers=headers)
+    if r.status_code == 200:
+        return [row.get('date') for row in r.json() if row.get('date')]
+    return []
+
 def upload_to_supabase(cases, overall_date):
     headers = {
-        'apikey': SUPA_KEY,
-        'Authorization': f'Bearer {SUPA_KEY}',
-        'Content-Type': 'application/json',
-        'Prefer': 'return=representation'
+        'apikey': SUPA_KEY, 'Authorization': f'Bearer {SUPA_KEY}',
+        'Content-Type': 'application/json', 'Prefer': 'return=representation'
     }
-    
-    # Check if a causelist for this date already exists to prevent duplicate runs
-    r_check = requests.get(f"{SUPA_URL}/rest/v1/cause_lists?date=eq.{overall_date}", headers=headers)
-    if r_check.status_code == 200 and len(r_check.json()) > 0:
-        print(f"Causelist for {overall_date} already exists. Skipping upload.")
+    payload = {"header": {"date": overall_date}, "cases": cases, "date": overall_date}
+    r = requests.post(f"{SUPA_URL}/rest/v1/cause_lists", json=payload, headers=headers)
+    if r.status_code in [200, 201]:
+        print(f"Successfully uploaded causelist for {overall_date} ({len(cases)} cases).")
     else:
-        payload = {
-            "header": {"date": overall_date},
-            "cases": cases,
-            "date": overall_date
-        }
-        
-        r = requests.post(f"{SUPA_URL}/rest/v1/cause_lists", json=payload, headers=headers)
-        if r.status_code in [200, 201]:
-            print(f"Successfully uploaded causelist for {overall_date} ({len(cases)} cases) to Supabase.")
-        else:
-            print("Failed to upload to Supabase:", r.status_code, r.text)
+        print("Failed to upload to Supabase:", r.status_code, r.text)
 
 def delete_old_causelists():
-    headers = {
-        'apikey': SUPA_KEY,
-        'Authorization': f'Bearer {SUPA_KEY}',
-        'Content-Type': 'application/json'
-    }
-    # Calculate date 30 days ago
+    headers = {'apikey': SUPA_KEY, 'Authorization': f'Bearer {SUPA_KEY}', 'Content-Type': 'application/json'}
     thirty_days_ago = (datetime.utcnow() - timedelta(days=30)).isoformat()
-    
-    print(f"Deleting causelists older than {thirty_days_ago}...")
     r = requests.delete(f"{SUPA_URL}/rest/v1/cause_lists?created_at=lt.{thirty_days_ago}", headers=headers)
-    if r.status_code in [200, 204]:
-        print("Successfully deleted old causelists.")
-    else:
-        print("Failed to delete old causelists:", r.status_code, r.text)
+    if r.status_code in [200, 204]: print("Successfully deleted old causelists.")
 
-def fetch_and_process():
+def parse_date_str(d_str):
+    try: return datetime.strptime(d_str, '%d-%b-%Y')
+    except: return None
+
+def get_dropdown_options(soup):
+    sel = soup.find('select', {'name': 'ctl00$MainContent$ddlDate'})
+    options = []
+    if not sel: return options
+    for opt in sel.find_all('option'):
+        val = opt.get('value')
+        text = opt.text.strip()
+        dt = parse_date_str(text)
+        if dt and dt >= datetime(2026, 9, 1): # On or after 01-Sep-2026
+            options.append({'value': val, 'text': text})
+    return options
+
+def fetch_specific_date(val, date_text, base_data):
     url = "https://patnahighcourt.gov.in/causelists/entire/clist"
-    for attempt in range(50):
+    for attempt in range(20):
         try:
             sess = requests.Session()
             sess.verify = False
             r = sess.get(url, timeout=15)
             soup = BeautifulSoup(r.text, 'html.parser')
-            data = {}
+            data = base_data.copy()
             for inp in soup.find_all('input'):
                 name = inp.get('name')
-                if name:
-                    data[name] = inp.get('value', '')
+                if name: data[name] = inp.get('value', '')
+            data['ctl00$MainContent$ddlDate'] = val
             
             captcha_img = soup.find('img', alt='Captcha')
             if not captcha_img: continue
@@ -110,15 +109,11 @@ def fetch_and_process():
             img = img.point(lambda x: 0 if x < 140 else 255, '1')
             text = pytesseract.image_to_string(img, config='--psm 8 -c tessedit_char_whitelist=0123456789').strip()
             text = re.sub(r'\D', '', text)
-            
             if len(text) != 3:
                 img = img.filter(ImageFilter.MinFilter(3))
                 text = pytesseract.image_to_string(img, config='--psm 8 -c tessedit_char_whitelist=0123456789').strip()
                 text = re.sub(r'\D', '', text)
-            
-            if not text:
-                continue
-                
+            if not text: continue
             if len(text) > 3: text = text[:3]
             if len(text) < 3: text = text.ljust(3, '0')
             
@@ -127,19 +122,43 @@ def fetch_and_process():
             
             r_post = sess.post(url, data=data, timeout=30)
             if 'pdf' in r_post.headers.get('Content-Type', '').lower():
-                print(f"Success on attempt {attempt+1}! Parsing PDF...")
+                print(f"Success fetching PDF for {date_text}")
                 cases, overall_date = extract_cases_from_pdf(r_post.content)
-                print(f"Extracted {len(cases)} FA cases for date: {overall_date}.")
                 upload_to_supabase(cases, overall_date)
-                delete_old_causelists()
-                return
-            
+                return True
         except Exception as e:
-            print(f"Attempt {attempt+1} failed:", e)
-        time.sleep(2)
+            pass
+        time.sleep(1)
+    print(f"Failed to fetch {date_text} after 20 attempts.")
+    return False
+
+def fetch_and_process():
+    url = "https://patnahighcourt.gov.in/causelists/entire/clist"
+    r = requests.get(url, verify=False)
+    soup = BeautifulSoup(r.text, 'html.parser')
+    options = get_dropdown_options(soup)
+    
+    existing = get_existing_dates()
+    
+    base_data = {'ctl00$MainContent$ddlType': 'Entire Cause List'}
+    for opt in options:
+        # Simplistic check if we already have it
+        day_str = str(int(opt['text'].split('-')[0])) # '10' or '1'
+        mon_str = opt['text'].split('-')[1] # 'Sep'
         
-    print("Failed to bypass captcha after 50 attempts.")
-    sys.exit(1)
+        found = False
+        for ex in existing:
+            if ex and day_str in ex and mon_str in ex:
+                found = True
+                break
+        
+        if found:
+            print(f"Already have records for {opt['text']} (skipped)")
+        else:
+            print(f"Missing records for {opt['text']}, fetching...")
+            fetch_specific_date(opt['value'], opt['text'], base_data)
+
+    delete_old_causelists()
 
 if __name__ == '__main__':
     fetch_and_process()
