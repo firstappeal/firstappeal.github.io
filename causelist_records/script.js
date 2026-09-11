@@ -18,7 +18,8 @@ const timelineGrid = document.getElementById('timelineGrid');
 async function loadRecords() {
     if (!window.PortalDB) return;
     try {
-        const lists = await window.PortalDB.getCauseLists();
+        const allLists = await window.PortalDB.getCauseLists();
+        const lists = allLists.filter(l => !(l.header && l.header.head_court));
         
         // --- Render Detailed Table ---
         let html = '';

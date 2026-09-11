@@ -1,0 +1,91 @@
+/* ══════════════════════════════════════════════════════════════
+   OFFLINE ICON FALLBACKS (Font Awesome 100% Offline Compatibility)
+   Patna High Court Unified Portal
+   ══════════════════════════════════════════════════════════════ */
+
+.fa-solid, .fa-regular, .fa-brands, .fas, .far, .fab {
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  line-height: 1;
+  display: inline-block;
+}
+
+/* Common Navigation & Dashboard Icons */
+.fa-arrow-left::before          { content: "←"; font-weight: bold; }
+.fa-rotate-left::before, .fa-undo::before { content: "↩"; font-weight: bold; }
+.fa-share::before               { content: "↪"; font-weight: bold; }
+.fa-scale-balanced::before      { content: "⚖"; }
+.fa-magnifying-glass::before    { content: "🔍"; }
+.fa-file-lines::before          { content: "📄"; }
+.fa-envelope-open-text::before  { content: "✉"; }
+.fa-paper-plane::before         { content: "✈"; }
+.fa-phone-volume::before        { content: "📞"; }
+.fa-folder-tree::before         { content: "📁"; }
+.fa-box-archive::before         { content: "🗄"; }
+.fa-file-import::before         { content: "📥"; }
+.fa-chart-pie::before           { content: "📊"; }
+.fa-print::before               { content: "🖨"; }
+.fa-rotate-right::before        { content: "🔄"; }
+.fa-plus::before                { content: "+"; font-weight: bold; }
+.fa-plus-circle::before         { content: "➕"; }
+.fa-file-csv::before            { content: "📑"; }
+.fa-eye::before                 { content: "👁"; }
+.fa-pen-to-square::before       { content: "✏"; }
+.fa-pencil::before              { content: "✏"; }
+.fa-pen::before                 { content: "✏"; }
+.fa-save::before                { content: "💾"; }
+.fa-trash-can::before           { content: "🗑"; }
+.fa-trash::before               { content: "🗑"; }
+.fa-user-shield::before         { content: "🛡"; }
+.fa-hashtag::before             { content: "#"; }
+.fa-clock::before               { content: "⏱"; }
+.fa-check-double::before        { content: "✓✓"; }
+.fa-circle-check::before        { content: "✓"; font-weight: bold; }
+.fa-check::before               { content: "✓"; font-weight: bold; }
+.fa-circle-xmark::before        { content: "✕"; font-weight: bold; }
+.fa-xmark::before               { content: "✕"; font-weight: bold; }
+.fa-circle-info::before         { content: "ℹ"; }
+.fa-triangle-exclamation::before{ content: "⚠"; }
+.fa-ban::before                 { content: "🚫"; }
+.fa-folder-closed::before       { content: "📁"; }
+.fa-folder-open::before         { content: "📂"; }
+.fa-gavel::before               { content: "⚖"; }
+.fa-users::before               { content: "👥"; }
+.fa-landmark::before            { content: "🏛"; }
+.fa-box::before                 { content: "📦"; }
+.fa-cubes::before               { content: "📦"; }
+.fa-coins::before               { content: "💰"; }
+.fa-floppy-disk::before         { content: "💾"; }
+.fa-file-invoice::before        { content: "📄"; }
+.fa-file-pdf::before            { content: "📑"; }
+.fa-download::before            { content: "⬇"; }
+.fa-satellite-dish::before      { content: "📡"; }
+.fa-list-check::before          { content: "📋"; }
+
+/* Additional Icon Fallbacks */
+.fa-check-circle::before        { content: "✓"; font-weight: bold; }   /* alias for fa-circle-check */
+.fa-clock-rotate-left::before   { content: "🕐"; }
+.fa-share-from-square::before   { content: "↪"; font-weight: bold; }
+.fa-users-gear::before          { content: "👥"; }
+.fa-clipboard-check::before     { content: "📋"; }
+.fa-timeline::before            { content: "📅"; }
+.fa-bolt::before                { content: "⚡"; }
+.fa-cloud-arrow-up::before      { content: "☁"; font-weight: bold; }
+.fa-file-circle-xmark::before   { content: "📄✕"; }
+.fa-calendar-check::before      { content: "📅"; }
+.fa-indian-rupee-sign::before   { content: "₹"; font-weight: bold; }
+
+/* Size Utilities */
+.fa-3x {
+  font-size: 3em;
+}
+.fa-2x {
+  font-size: 2em;
+}
+.fa-lg {
+  font-size: 1.25em;
+}
+.fa-sm {
+  font-size: 0.875em;
+}

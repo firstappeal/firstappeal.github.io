@@ -12,20 +12,21 @@
     }
     body { font-family: var(--font-ui); }
   </style>
-  <link rel="stylesheet" href="style.css?v=2"/>
+  <link rel="stylesheet" href="../shared/offline_icons.css">
+  <link rel="stylesheet" href="style.css?v=3"/>
 </head>
 <body>
-    <div style="position: absolute; top: 10px; left: 10px; z-index: 1000;" class="no-print">
-        <a href="../index.html" style="text-decoration: none; font-family: sans-serif; background: #2563eb; color: white; padding: 8px 12px; border-radius: 6px; font-size: 14px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">&#8592; Dashboard</a>
-    </div>
 
 <!-- ═══════════════════ CONTROL PANEL (screen only) ═══════════════════ -->
 <div class="control-panel no-print">
-  <div class="panel-header">
-    <div class="panel-logo">⚖️</div>
-    <div>
-      <div class="panel-title">नोटिस फॉर्वर्डिंग फॉर्म</div>
-      <div class="panel-subtitle">उच्च न्यायालय, पटना</div>
+  <div style="display: flex; align-items: center; gap: 16px;">
+    <a href="../index.html" class="nav-back-btn" title="Return to Dashboard">&#8592; Dashboard</a>
+    <div class="panel-header">
+      <div class="panel-logo">⚖️</div>
+      <div>
+        <div class="panel-title">नोटिस फॉर्वर्डिंग फॉर्म</div>
+        <div class="panel-subtitle">उच्च न्यायालय, पटना</div>
+      </div>
     </div>
   </div>
   <div class="panel-actions">
@@ -279,9 +280,8 @@
   </div>
 
   <!-- Shared Case Record Sync Script -->
-  <script src="../shared/case_record_modal.js"></script>
-
-  <script src="../shared/cases_db.js?v=2"></script>
+  <script src="../shared/case_record_modal.js?v=3"></script>
+  <script src="../shared/cases_db.js?v=3"></script>
   <script>
     document.addEventListener('DOMContentLoaded', async () => {
        if (typeof CASES_DB !== 'undefined' && window.PortalDB) {

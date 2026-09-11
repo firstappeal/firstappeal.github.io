@@ -12,21 +12,21 @@
     }
     body { font-family: var(--font-ui); }
   </style>
-  <!-- Stylesheet -->
-  <link rel="stylesheet" href="style.css?v=1">
+  <link rel="stylesheet" href="../shared/offline_icons.css">
+  <link rel="stylesheet" href="style.css?v=2">
 </head>
 <body>
-    <div style="position: absolute; top: 10px; left: 10px; z-index: 1000;" class="no-print">
-        <a href="../index.html" style="text-decoration: none; font-family: sans-serif; background: #2563eb; color: white; padding: 8px 12px; border-radius: 6px; font-size: 14px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">&#8592; Dashboard</a>
-    </div>
 
   <!-- ── CONTROL PANEL / NAVBAR ──────────────────────────────────── -->
   <header class="navbar no-print">
-    <div class="nav-logo">
-      <div class="nav-icon">⚖️</div>
-      <div>
-        <h1>Direct Notice Form Creator</h1>
-        <div class="nav-subtitle">High Court of Judicature at Patna</div>
+    <div style="display: flex; align-items: center; gap: 16px;">
+      <a href="../index.html" class="nav-back-btn" title="Return to Dashboard">&#8592; Dashboard</a>
+      <div class="nav-logo">
+        <div class="nav-icon">⚖️</div>
+        <div>
+          <h1>Direct Notice Form Creator</h1>
+          <div class="nav-subtitle">High Court of Judicature at Patna</div>
+        </div>
       </div>
     </div>
     <div class="nav-actions">
@@ -129,9 +129,27 @@
           </button>
         </div>
 
+        <div class="form-row">
+          <div class="input-group">
+            <label for="in_advocate_status">Advocate Status / Reason</label>
+            <select id="in_advocate_status">
+              <option value="has died" selected>has died</option>
+              <option value="has expired">has expired</option>
+              <option value="has ceased to practice">has ceased to practice</option>
+              <option value="has retired">has retired</option>
+              <option value="has been elevated">has been elevated</option>
+              <option value="custom">Custom Reason / Free Text</option>
+            </select>
+          </div>
+          <div class="input-group" id="customReasonGroup" style="display: none;">
+            <label for="in_custom_reason">Custom Reason Text</label>
+            <input type="text" id="in_custom_reason" placeholder="e.g. has passed away">
+          </div>
+        </div>
+
         <div class="input-group">
-          <label for="in_advocate_name">Advocate Name (represented you)</label>
-          <input type="text" id="in_advocate_name" placeholder="e.g. Late Sri K.N. Keshav">
+          <label for="in_notice_body">Notice Body Paragraph 1 (Optional Override)</label>
+          <textarea id="in_notice_body" rows="2" placeholder="Leave empty for auto phrasing: 'Please take notice that learned counsel/Advocate who represented you in the above mentioned appeal [Status].'"></textarea>
         </div>
 
         <div class="input-group">
@@ -212,7 +230,7 @@
   </div>
 
   <!-- Case database (local copy – self-contained) -->
-  <script src="../shared/cases_db.js?v=2"></script>
+  <script src="../shared/cases_db.js?v=3"></script>
   <script>
     document.addEventListener('DOMContentLoaded', async () => {
        if (typeof CASES_DB !== 'undefined' && window.PortalDB) {

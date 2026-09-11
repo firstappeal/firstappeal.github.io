@@ -12,22 +12,22 @@
     }
     body { font-family: var(--font-ui); }
   </style>
-  <!-- Stylesheet -->
-  <link rel="stylesheet" href="style.css?v=7">
+  <link rel="stylesheet" href="../shared/offline_icons.css">
+  <link rel="stylesheet" href="style.css?v=8">
   <link rel="stylesheet" href="../shared/case_record_modal.css">
 </head>
 <body>
-    <div style="position: absolute; top: 10px; left: 10px; z-index: 1000;" class="no-print">
-        <a href="../index.html" style="text-decoration: none; font-family: sans-serif; background: #2563eb; color: white; padding: 8px 12px; border-radius: 6px; font-size: 14px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">&#8592; Dashboard</a>
-    </div>
 
   <!-- ── CONTROL PANEL / NAVBAR ──────────────────────────────────── -->
   <header class="navbar no-print">
-    <div class="nav-logo">
-      <div class="nav-icon">⚖️</div>
-      <div>
-        <h1>LCR Call Letter Creator</h1>
-        <p>High Court of Judicature at Patna</p>
+    <div style="display: flex; align-items: center; gap: 16px;">
+      <a href="../index.html" class="nav-back-btn" title="Return to Dashboard">&#8592; Dashboard</a>
+      <div class="nav-logo">
+        <div class="nav-icon">⚖️</div>
+        <div>
+          <h1>LCR Call Letter Creator</h1>
+          <p>High Court of Judicature at Patna</p>
+        </div>
       </div>
     </div>
     <div class="nav-actions">
@@ -211,7 +211,7 @@
           <div class="doc-to-section">
             <div class="to-label">To</div>
             <div class="to-address">
-              The <span class="val-to-title" id="p_recipient_title">&nbsp;</span><br>
+              <strong>The</strong> <span class="val-to-title" id="p_recipient_title">&nbsp;</span><br>
               <span class="val-to-address" id="p_recipient_address">&nbsp;</span>
             </div>
           </div>

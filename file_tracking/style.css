@@ -36,7 +36,6 @@ body {
     padding: 2rem;
 }
 
-/* Header Styles */
 .app-header {
     display: flex;
     justify-content: space-between;
@@ -44,6 +43,28 @@ body {
     margin-bottom: 2rem;
     padding-bottom: 1rem;
     border-bottom: 2px solid var(--border-color);
+}
+
+.nav-back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--primary-color);
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.88rem;
+    padding: 8px 14px;
+    border-radius: 6px;
+    transition: all 0.2s;
+    white-space: nowrap;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.nav-back-btn:hover {
+    background: var(--primary-hover);
+    transform: translateX(-2px);
+    color: #fff;
 }
 
 .header-content h1 {
@@ -121,22 +142,73 @@ body {
 }
 
 .btn-icon {
-    padding: 0.4rem;
-    border-radius: 4px;
-    background: none;
-    border: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 5px 9px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 600;
     cursor: pointer;
-    color: var(--text-muted);
+    border: 1px solid var(--border-color);
+    background: #fff;
+    color: var(--text-main);
     transition: var(--transition);
+    margin-right: 4px;
+    vertical-align: middle;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.btn-icon:last-child {
+    margin-right: 0;
+}
+
+.btn-icon.return {
+    background: #ecfdf5;
+    color: #059669;
+    border-color: #a7f3d0;
+}
+
+.btn-icon.return:hover {
+    background: #059669;
+    color: #fff;
+    border-color: #047857;
+}
+
+.btn-icon.return.resend {
+    background: #eff6ff;
+    color: #2563eb;
+    border-color: #bfdbfe;
+}
+
+.btn-icon.return.resend:hover {
+    background: #2563eb;
+    color: #fff;
+    border-color: #1d4ed8;
+}
+
+.btn-icon.edit {
+    background: #f8fafc;
+    color: #475569;
+    border-color: #cbd5e1;
+}
+
+.btn-icon.edit:hover {
+    background: #475569;
+    color: #fff;
+    border-color: #334155;
+}
+
+.btn-icon.delete {
+    background: #fef2f2;
+    color: #dc2626;
+    border-color: #fecaca;
 }
 
 .btn-icon.delete:hover {
-    color: var(--danger);
-    background-color: #fef2f2;
-}
-.btn-icon.return:hover {
-    color: var(--secondary-color);
-    background-color: #ecfdf5;
+    background: #dc2626;
+    color: #fff;
+    border-color: #b91c1c;
 }
 
 /* Main Layout */

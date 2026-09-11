@@ -8,20 +8,20 @@
     :root { --font-ui: 'Segoe UI', 'Ubuntu', 'Helvetica Neue', Arial, sans-serif; }
     body { font-family: var(--font-ui); }
   </style>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="../shared/offline_icons.css">
+  <link rel="stylesheet" href="style.css?v=2">
 </head>
 <body>
 
-  <div style="position:absolute;top:10px;left:10px;z-index:1000;" class="no-print">
-    <a href="../index.html" style="text-decoration:none;font-family:sans-serif;background:#2563eb;color:white;padding:8px 14px;border-radius:6px;font-size:14px;font-weight:600;">&#8592; Dashboard</a>
-  </div>
-
   <header class="navbar no-print">
-    <div class="nav-logo">
-      <div class="nav-icon">✉️</div>
-      <div>
-        <h1>Official Letter Writer</h1>
-        <p>High Court of Judicature at Patna – Type directly on the letterhead</p>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <a href="../index.html" class="nav-back-btn" title="Return to Dashboard">&#8592; Dashboard</a>
+      <div class="nav-logo">
+        <div class="nav-icon">✉️</div>
+        <div>
+          <h1>Official Letter Writer</h1>
+          <p>High Court of Judicature at Patna – Type directly on the letterhead</p>
+        </div>
       </div>
     </div>
     <div class="nav-actions">
@@ -131,6 +131,10 @@
           <label class="toggle-label" for="opt_watermark">Show watermark emblem</label>
           <label class="toggle-switch"><input type="checkbox" id="opt_watermark" checked><span class="slider"></span></label>
         </div>
+        <div class="toggle-row">
+          <label class="toggle-label" for="opt_endorsement">Add "Copy to" (Endorsement)</label>
+          <label class="toggle-switch"><input type="checkbox" id="opt_endorsement"><span class="slider"></span></label>
+        </div>
         <div class="input-group" style="margin-top:4px;">
           <label for="font_size_select">Body Font Size</label>
           <select id="font_size_select">
@@ -201,12 +205,31 @@
                contenteditable="true"
                spellcheck="true"
                data-placeholder="Click here and start typing your letter…&#10;&#10;Tip: Type FA No. 182/1980 and party names will be auto-fetched."
-               style="font-size:12pt;font-family:'Times New Roman',Times,serif;line-height:1.75;text-align:justify;margin-bottom:24pt;position:relative;z-index:1;min-height:60pt;outline:none;"></div>
+               style="font-size:12pt;font-family:'Times New Roman',Times,serif;line-height:1.75;text-align:justify;margin-bottom:12pt;position:relative;z-index:1;min-height:60pt;outline:none;"></div>
 
           <!-- Sign-off -->
-          <div style="margin-top:28pt;margin-left:auto;width:250px;text-align:center;display:flex;flex-direction:column;gap:32pt;position:relative;z-index:1;">
+          <div style="margin-top:16pt;margin-left:auto;width:250px;text-align:right;display:flex;flex-direction:column;gap:32pt;position:relative;z-index:1;">
             <div id="p_closing" style="font-size:12pt;">Yours faithfully,</div>
             <div id="p_signatory" style="font-size:12pt;font-weight:bold;">Assistant Registrar</div>
+          </div>
+
+          <!-- Endorsement (Copy To) Block -->
+          <div id="endorsement_block" style="display:none; margin-top:12pt; font-size:12pt; position:relative; z-index:1;">
+            <div style="font-weight:bold; margin-bottom:8pt;">
+              Letter No. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Patna, Dated <span class="sync_letter_date">………… 20……</span>
+            </div>
+            <div style="margin-bottom:10pt;">
+              Copy forwarded for information/necessary action to :
+            </div>
+            <div id="p_copy_to"
+                 contenteditable="true"
+                 spellcheck="true"
+                 data-placeholder="Type recipient(s) here...&#10;(1) ...&#10;(2) ..."
+                 style="font-family:'Times New Roman',Times,serif; line-height:1.75; min-height:40pt; outline:none;"></div>
+            
+            <div style="margin-top:12pt;margin-left:auto;width:250px;text-align:right;display:flex;flex-direction:column;gap:12pt;">
+              <div class="sync_signatory" style="font-weight:bold;">Assistant Registrar</div>
+            </div>
           </div>
 
         </div>

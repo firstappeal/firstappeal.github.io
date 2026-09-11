@@ -1,9 +1,73 @@
-// ── Master Judges List (persisted in LocalStorage) ───────────────────
-let JUDGES = JSON.parse(localStorage.getItem('patna_judges_v3')) || [
+// ── Master Judges List (Default from Patna High Court website: https://patnahighcourt.gov.in/judgel) ──
+const DEFAULT_PATNA_JUDGES = (typeof window !== 'undefined' && window.PATNA_HIGH_COURT_JUDGES) ? window.PATNA_HIGH_COURT_JUDGES : [
+  "Hon'ble The Acting Chief Justice Sudhir Singh",
+  "Hon'ble Mr. Justice Rajeev Ranjan Prasad",
+  "Hon'ble Mr. Justice Mohit Kumar Shah",
+  "Hon'ble Mr. Justice Bibek Chaudhuri",
+  "Hon'ble Mr. Justice Nani Tagia",
+  "Hon'ble Mr. Justice Sanjay Kumar Singh",
+  "Hon'ble Mr. Justice Anil Kumar Sinha",
+  "Hon'ble Mr. Justice Prabhat Kumar Singh",
+  "Hon'ble Mr. Justice Partha Sarthy",
+  "Hon'ble Mr. Justice A. Abhishek Reddy",
+  "Hon'ble Mr. Justice Sandeep Kumar",
+  "Hon'ble Mr. Justice Purnendu Singh",
+  "Hon'ble Mr. Justice Satyavrat Verma",
+  "Hon'ble Mr. Justice Rajesh Kumar Verma",
+  "Hon'ble Smt. Justice Gunnu Anupama Chakravarthy",
+  "Hon'ble Mr. Justice Rajiv Roy",
+  "Hon'ble Mr. Justice Harish Kumar",
+  "Hon'ble Mr. Justice Shailendra Singh",
+  "Hon'ble Mr. Justice Arun Kumar Jha",
+  "Hon'ble Mr. Justice Jitendra Kumar",
+  "Hon'ble Mr. Justice Alok Kumar Pandey",
+  "Hon'ble Mr. Justice Sunil Dutta Mishra",
+  "Hon'ble Mr. Justice Chandra Shekhar Jha",
+  "Hon'ble Mr. Justice Khatim Reza",
+  "Hon'ble Mr. Justice Dr. Anshuman",
+  "Hon'ble Mr. Justice Rudra Prakash Mishra",
   "Hon'ble Mr. Justice Ramesh Chand Malviya",
+  "Hon'ble Mr. Justice Shashi Bhushan Prasad Singh",
+  "Hon'ble Mr. Justice Ashok Kumar Pandey",
+  "Hon'ble Mr. Justice Alok Kumar Sinha",
   "Hon'ble Mr. Justice Sourendra Pandey",
-  "Hon'ble Mr. Justice Rudra Prakash Mishra"
+  "Hon'ble Justice Smt. Soni Shrivastava",
+  "Hon'ble Mr. Justice Ajit Kumar",
+  "Hon'ble Mr. Justice Ritesh Kumar",
+  "Hon'ble Mr. Justice Praveen Kumar",
+  "Hon'ble Mr. Justice Ansul",
+  "Hon'ble Mr. Justice Ranjan Kumar Jha",
+  "Hon'ble Mr. Justice Kumar Manish",
+  "Hon'ble Mr. Justice Raj Kumar",
+  "Hon'ble Mr. Justice Rana Vikram Singh",
+  "Hon'ble Mr. Justice Vikash Kumar",
+  "Hon'ble Mr. Justice Girijish Kumar",
+  "Hon'ble Mr. Justice Alok Kumar"
 ];
+
+const STORAGE_KEY_JUDGES = 'patna_judges_v4';
+
+function loadInitialJudges() {
+  try {
+    const v4 = JSON.parse(localStorage.getItem(STORAGE_KEY_JUDGES));
+    if (v4 && Array.isArray(v4) && v4.length >= 20) {
+      return v4;
+    }
+    // Check old v3: if user had customized beyond 3 placeholder judges, merge
+    const v3 = JSON.parse(localStorage.getItem('patna_judges_v3') || '[]');
+    if (v3 && Array.isArray(v3) && v3.length > 3) {
+      const merged = Array.from(new Set([...DEFAULT_PATNA_JUDGES, ...v3]));
+      localStorage.setItem(STORAGE_KEY_JUDGES, JSON.stringify(merged));
+      return merged;
+    }
+  } catch (e) {
+    console.warn('Error loading judges from localStorage:', e);
+  }
+  localStorage.setItem(STORAGE_KEY_JUDGES, JSON.stringify(DEFAULT_PATNA_JUDGES));
+  return [...DEFAULT_PATNA_JUDGES];
+}
+
+let JUDGES = loadInitialJudges();
 
 // ── Master Allocation Rules List (persisted in LocalStorage) ──────────
 let RULES = JSON.parse(localStorage.getItem('patna_rules_v3')) || [
@@ -78,7 +142,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // ── Save Lists to LocalStorage ──────────────────────────────────────
 function saveJudges() {
-  localStorage.setItem('patna_judges_v3', JSON.stringify(JUDGES));
+  localStorage.setItem(STORAGE_KEY_JUDGES, JSON.stringify(JUDGES));
+  localStorage.setItem('patna_judges_v3', JSON.stringify(JUDGES)); // Backward compatibility
   renderJudgesSettings();
   updateAllJudgeDropdowns();
 }
@@ -196,17 +261,24 @@ function updateAllJudgeDropdowns() {
 }
 
 // ── Add New Row to the Editor Table ────────────────────────────────
-function addNewRow(data = { nature: 'FA', case_no: '', appellant: '', assistant: '', heading: '', direction: '', remarks: 'Fixed' }) {
+function addNewRow(data = { nature: 'FA', case_no: '', appellant: '', assistant: '', heading: '', direction: '', remarks: '', judge: '' }) {
   const tbody = document.getElementById('editorTableBody');
   const tr = document.createElement('tr');
   const rowId = 'row_' + Math.random().toString(36).substr(2, 9);
   
   const headingVal = typeof data.heading !== 'undefined' ? data.heading : '';
-  const remarksVal = data.remarks || 'Fixed';
+  const remarksVal = typeof data.remarks !== 'undefined' ? data.remarks : '';
   const assistantVal = data.assistant || '';
   
-  // Calculate allocated judge
-  const allocatedJudge = evaluateJudge(headingVal, data.case_no);
+  // Calculate allocated judge: prefer provided judge if in JUDGES, else evaluate rule
+  let effectiveJudge = data.judge;
+  if (effectiveJudge && !JUDGES.includes(effectiveJudge)) {
+    const matched = findJudgeInText(effectiveJudge);
+    if (matched) effectiveJudge = matched;
+  }
+  const allocatedJudge = (effectiveJudge && JUDGES.includes(effectiveJudge)) 
+    ? effectiveJudge 
+    : evaluateJudge(headingVal, data.case_no);
   
   tr.id = rowId;
   tr.innerHTML = `
@@ -261,6 +333,12 @@ function addNewRow(data = { nature: 'FA', case_no: '', appellant: '', assistant:
   const suggestionsDiv = tr.querySelector('.suggestions-list');
   const appellantInput = tr.querySelector('.appellant-field');
   const judgeSelect = tr.querySelector('.judge-field');
+  
+  // If judge was explicitly provided, mark as manual so rule re-calculation doesn't overwrite it
+  if (effectiveJudge && JUDGES.includes(effectiveJudge)) {
+    judgeSelect.value = effectiveJudge;
+    judgeSelect.dataset.manual = 'true';
+  }
   
   let activeIndex = -1;
   
@@ -638,17 +716,22 @@ function syncPrintTable() {
 // ── Judges List Settings UI Renderer ──────────────────────────────
 function renderJudgesSettings() {
   const ul = document.getElementById('judgesListUI');
-  ul.innerHTML = '';
-  
-  JUDGES.forEach((judge, index) => {
-    const li = document.createElement('li');
-    li.style.cssText = "display: flex; justify-content: space-between; align-items: center; background: #f1f5f9; padding: 6px 10px; border-radius: 4px; font-size: 0.8rem; font-weight: 500;";
-    li.innerHTML = `
-      <span>${judge}</span>
-      <button type="button" class="btn btn-danger-outline" style="padding: 2px 6px; font-size: 0.7rem;" onclick="deleteJudge(${index})">❌</button>
-    `;
-    ul.appendChild(li);
-  });
+  if (ul) {
+    ul.innerHTML = '';
+    JUDGES.forEach((judge, index) => {
+      const li = document.createElement('li');
+      li.style.cssText = "display: flex; justify-content: space-between; align-items: center; background: #f1f5f9; padding: 6px 10px; border-radius: 4px; font-size: 0.8rem; font-weight: 500;";
+      li.innerHTML = `
+        <span>${index + 1}. ${judge}</span>
+        <button type="button" class="btn btn-danger-outline" style="padding: 2px 6px; font-size: 0.7rem;" onclick="deleteJudge(${index})">❌</button>
+      `;
+      ul.appendChild(li);
+    });
+  }
+  const badge = document.getElementById('judgesCountBadge');
+  if (badge) {
+    badge.textContent = `${JUDGES.length} न्यायाधीश`;
+  }
 }
 
 function addJudgePrompt() {
@@ -667,6 +750,234 @@ function deleteJudge(index) {
     JUDGES.splice(index, 1);
     saveJudges();
   }
+}
+
+// ── Live Update Judges from Patna High Court Website (https://patnahighcourt.gov.in/judgel) ──
+let _tempFetchedJudges = [];
+
+function openUpdateJudgesModal() {
+  const modal = document.getElementById('updateJudgesModal');
+  if (!modal) return;
+  modal.style.display = 'flex';
+  
+  // Reset modal state
+  _tempFetchedJudges = [];
+  const statusBanner = document.getElementById('judgeFetchStatus');
+  if (statusBanner) statusBanner.style.display = 'none';
+  const previewBox = document.getElementById('judgesPreviewContainer');
+  if (previewBox) previewBox.style.display = 'none';
+  const applyBtn = document.getElementById('btnApplyJudges');
+  if (applyBtn) applyBtn.style.display = 'none';
+  const pasteArea = document.getElementById('pasteJudgeContent');
+  if (pasteArea) pasteArea.value = '';
+  const fallbackDetails = document.getElementById('pasteFallbackDetails');
+  if (fallbackDetails) fallbackDetails.open = false;
+}
+
+function closeUpdateJudgesModal() {
+  const modal = document.getElementById('updateJudgesModal');
+  if (modal) modal.style.display = 'none';
+}
+
+function setJudgeFetchStatus(type, icon, text) {
+  const statusBanner = document.getElementById('judgeFetchStatus');
+  const statusIcon = document.getElementById('judgeFetchStatusIcon');
+  const statusText = document.getElementById('judgeFetchStatusText');
+  if (!statusBanner) return;
+  
+  statusBanner.className = `status-banner ${type}`;
+  if (statusIcon) statusIcon.textContent = icon;
+  if (statusText) statusText.textContent = text;
+  statusBanner.style.display = 'flex';
+}
+
+function renderJudgesPreview(judgesList) {
+  const previewBox = document.getElementById('judgesPreviewContainer');
+  const tbody = document.getElementById('judgesPreviewTableBody');
+  const countBadge = document.getElementById('previewCountBadge');
+  const applyBtn = document.getElementById('btnApplyJudges');
+  
+  if (!previewBox || !tbody) return;
+  
+  _tempFetchedJudges = judgesList;
+  tbody.innerHTML = '';
+  
+  judgesList.forEach((j, idx) => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td style="text-align: center; font-weight: 600; color: var(--text-muted);">${idx + 1}</td>
+      <td style="font-weight: 500; color: var(--text-main);">${j}</td>
+    `;
+    tbody.appendChild(tr);
+  });
+  
+  if (countBadge) countBadge.textContent = `${judgesList.length} न्यायाधीश`;
+  previewBox.style.display = 'block';
+  if (applyBtn) applyBtn.style.display = 'inline-flex';
+}
+
+function parseJudgesFromHtmlOrText(content) {
+  if (!content || typeof content !== 'string') return [];
+  const judges = [];
+  
+  // 1. Try DOMParser (HTML table extraction)
+  if (typeof DOMParser !== 'undefined') {
+    try {
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(content, 'text/html');
+      let table = doc.getElementById('ctl00_MainContent_gvList');
+      if (!table) {
+        // Fallback: search for any table with Appointment or Sl.No.
+        const tables = doc.querySelectorAll('table');
+        for (const t of tables) {
+          if (/appointment|retirement|sl\.?\s*no/i.test(t.textContent)) {
+            table = t;
+            break;
+          }
+        }
+      }
+      
+      if (table) {
+        const rows = table.querySelectorAll('tbody tr, tr');
+        rows.forEach(r => {
+          const cols = r.querySelectorAll('td');
+          if (cols.length >= 2) {
+            const rawName = cols[1].textContent || '';
+            const cleaned = rawName.replace(/\s+/g, ' ').trim();
+            if (cleaned && !/^name/i.test(cleaned) && /hon'?ble/i.test(cleaned) && !/court|elevated|former|judges$|section|rules/i.test(cleaned)) {
+              judges.push(cleaned);
+            }
+          }
+        });
+      }
+    } catch (err) {
+      console.warn('DOM parsing error:', err);
+    }
+  }
+  
+  // 2. If table didn't yield enough results, use robust text line parser
+  if (judges.length < 5) {
+    const plain = content.replace(/<[^>]+>/g, ' ');
+    const lines = plain.split(/[\r\n]+/).map(l => l.trim()).filter(Boolean);
+    for (let i = 0; i < lines.length; i++) {
+      const line = lines[i];
+      if (/hon'?ble/i.test(line)) {
+        if (/^hon'?ble\s+(?:the\s+acting\s+chief\s+justice|mr\.?\s+justice|smt\.?\s+justice|justice\s+smt\.?)$/i.test(line) && i + 1 < lines.length) {
+          const candidate = `${line} ${lines[i + 1]}`.replace(/\s+/g, ' ').trim();
+          if (!judges.includes(candidate) && !/court|elevated|former|judges$|section|rules/i.test(candidate)) {
+            judges.push(candidate);
+            i++;
+          }
+        } else if (/hon'?ble\s+(?:the\s+acting\s+chief\s+justice|mr\.?\s+justice|smt\.?\s+justice|justice\s+smt\.?)\s+[a-z]/i.test(line)) {
+          let cleaned = line.split(/Know More|15-Apr|22-May/i)[0];
+          cleaned = cleaned.replace(/\b\d{1,2}-[A-Za-z]{3}-\d{4}\b.*/, '').replace(/\s+/g, ' ').trim();
+          if (!judges.includes(cleaned) && !/court|elevated|former|judges$|section|rules/i.test(cleaned)) {
+            judges.push(cleaned);
+          }
+        }
+      }
+    }
+  }
+  
+  // Deduplicate while preserving order
+  return Array.from(new Set(judges));
+}
+
+async function fetchJudgesFromWeb() {
+  const fetchBtn = document.getElementById('btnLiveFetch');
+  if (fetchBtn) {
+    fetchBtn.disabled = true;
+    fetchBtn.textContent = "⏳ कनेक्ट हो रहा है...";
+  }
+  
+  setJudgeFetchStatus('info', '⏳', 'उच्च न्यायालय की वेबसाइट (https://patnahighcourt.gov.in/judgel) से जजों की सूची लोड की जा रही है...');
+  
+  const targetUrl = "https://patnahighcourt.gov.in/judgel";
+  const proxyEndpoints = [
+    targetUrl, // Direct
+    `https://corsproxy.io/?url=${encodeURIComponent(targetUrl)}`,
+    `https://api.allorigins.win/raw?url=${encodeURIComponent(targetUrl)}`,
+    `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(targetUrl)}`
+  ];
+  
+  let fetchedHtml = null;
+  
+  for (const url of proxyEndpoints) {
+    try {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 7000);
+      const res = await fetch(url, { signal: controller.signal, cache: 'no-cache' });
+      clearTimeout(timeoutId);
+      
+      if (res.ok) {
+        const text = await res.text();
+        if (text && (text.includes('ctl00_MainContent_gvList') || text.includes('Sudhir Singh') || text.includes('Chief Justice'))) {
+          fetchedHtml = text;
+          break;
+        }
+      }
+    } catch (e) {
+      // Continue to next fallback
+    }
+  }
+  
+  if (fetchBtn) {
+    fetchBtn.disabled = false;
+    fetchBtn.textContent = "⚡ वेबसाइट से लाइव लोड करें (Fetch Live)";
+  }
+  
+  if (fetchedHtml) {
+    const judges = parseJudgesFromHtmlOrText(fetchedHtml);
+    if (judges.length > 0) {
+      setJudgeFetchStatus('success', '✅', `वेबसाइट से सफलतापूर्वक ${judges.length} वर्तमान न्यायाधीश प्राप्त हुए!`);
+      renderJudgesPreview(judges);
+      return;
+    }
+  }
+  
+  // Fallback notice
+  setJudgeFetchStatus('warning', '⚠️', 'लाइव कनेक्शन अवरुद्ध (CORS/Network)। नीचे दिया गया "टेक्स्ट/HTML पेस्ट करें" विकल्प चुनें या मूल सूची पुनर्स्थापित करें।');
+  const fallbackDetails = document.getElementById('pasteFallbackDetails');
+  if (fallbackDetails) fallbackDetails.open = true;
+}
+
+function parsePastedJudgeContent() {
+  const textarea = document.getElementById('pasteJudgeContent');
+  if (!textarea || !textarea.value.trim()) {
+    alert("कृपया पहले उच्च न्यायालय वेबसाइट (https://patnahighcourt.gov.in/judgel) से कॉपी किया गया डेटा पेस्ट करें।");
+    return;
+  }
+  
+  const judges = parseJudgesFromHtmlOrText(textarea.value);
+  if (judges.length > 0) {
+    setJudgeFetchStatus('success', '✅', `पेस्ट किए गए डेटा से सफलतापूर्वक ${judges.length} न्यायाधीश निकाले गए!`);
+    renderJudgesPreview(judges);
+  } else {
+    setJudgeFetchStatus('error', '❌', 'पेस्ट किए गए टेक्स्ट में कोई वैध न्यायाधीश का नाम (Hon\'ble ...) नहीं मिला। कृपया वेबसाइट का पूरा टेबल कॉपी करें।');
+  }
+}
+
+function restoreDefaultSittingJudges() {
+  const judges = (typeof window !== 'undefined' && window.PATNA_HIGH_COURT_JUDGES) ? window.PATNA_HIGH_COURT_JUDGES : DEFAULT_PATNA_JUDGES;
+  setJudgeFetchStatus('info', 'ℹ️', `आधिकारिक रिकॉर्ड से ${judges.length} न्यायाधीशों की मास्टर सूची तैयार की गई है।`);
+  renderJudgesPreview([...judges]);
+}
+
+function applyFetchedJudges() {
+  if (!_tempFetchedJudges || _tempFetchedJudges.length === 0) {
+    alert("लागू करने के लिए कोई न्यायाधीश सूची उपलब्ध नहीं है।");
+    return;
+  }
+  
+  JUDGES = [..._tempFetchedJudges];
+  saveJudges();
+  closeUpdateJudgesModal();
+  
+  // Automatically open the details element so user can view the updated judges list
+  const details = document.querySelector('.panel.card details');
+  if (details) details.open = true;
+  
+  showToast(`✅ न्यायाधीश सूची अपडेट की गई (${JUDGES.length} न्यायाधीश)!`);
 }
 
 // ── Rules List Settings UI Renderer ───────────────────────────────
@@ -730,6 +1041,70 @@ function deleteRule(index) {
   }
 }
 
+// ── Judge Resolution & Helper Utilities ────────────────────────────
+function getJudgeCoreName(j) {
+  return (j || '')
+    .toLowerCase()
+    .replace(/\b(?:hon'?ble|the|acting|chief|justice|mr\.?|ms\.?|mrs\.?|smt\.?|dr\.?)\b/gi, '')
+    .replace(/[^a-z]/gi, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function normalizeJudgeName(str) {
+  return getJudgeCoreName(str);
+}
+
+function findJudgeInText(textSnippet) {
+  if (!textSnippet || typeof textSnippet !== 'string') return null;
+  const cleanSnippet = ' ' + textSnippet.toLowerCase().replace(/[^a-z]/gi, ' ').replace(/\s+/g, ' ') + ' ';
+  
+  // Sort judges by length of core name descending (e.g. "Alok Kumar Pandey" matches before "Alok Kumar")
+  const sortedJudges = [...JUDGES].sort((a, b) => {
+    return getJudgeCoreName(b).length - getJudgeCoreName(a).length;
+  });
+
+  for (const j of sortedJudges) {
+    const core = getJudgeCoreName(j);
+    if (!core || core.length < 3) continue;
+    const pattern = new RegExp('\\b' + core.replace(/\s+/g, '\\s+') + '\\b', 'i');
+    if (pattern.test(cleanSnippet)) {
+      return j;
+    }
+  }
+  return null;
+}
+
+function toTitleCase(str) {
+  return (str || '')
+    .toLowerCase()
+    .split(/\s+/)
+    .map(w => w ? w.charAt(0).toUpperCase() + w.slice(1) : '')
+    .join(' ');
+}
+
+function resolveOrAddJudge(rawJudge) {
+  if (!rawJudge) return '';
+  const matched = findJudgeInText(rawJudge);
+  if (matched) return matched;
+
+  const norm = getJudgeCoreName(rawJudge);
+  if (!norm || norm.length < 3) return '';
+
+  let formatted = '';
+  if (/chief/i.test(rawJudge)) {
+    formatted = `Hon'ble Chief Justice ${toTitleCase(norm)}`;
+  } else if (/smt|mrs|ms/i.test(rawJudge)) {
+    formatted = `Hon'ble Justice Smt. ${toTitleCase(norm)}`;
+  } else {
+    formatted = `Hon'ble Mr. Justice ${toTitleCase(norm)}`;
+  }
+
+  JUDGES.push(formatted);
+  saveJudges();
+  return formatted;
+}
+
 // ── PDF File Upload & Parsing ──────────────────────────────────────
 async function handlePdfUpload(event) {
   const file = event.target.files[0];
@@ -781,45 +1156,171 @@ async function handlePdfUpload(event) {
     
     const fullText = pageTexts.join(' ');
     
-    // Look for pattern like 47/2024 or FA/47/2024
-    const caseNoRegex = /(?:^|[^\d/])(\d{1,5}\s*\/\s*\d{4})(?=[^\d/]|$)/g;
-    const matchesIterator = fullText.matchAll(caseNoRegex);
-    const matches = Array.from(matchesIterator).map(m => m[1]);
-    
-    if (matches && matches.length > 0) {
-      const uniqueMatches = [...new Set(matches.map(m => m.replace(/\s+/g, '')))];
-      
-      // Fast O(1) lookup map for CASES_DB
-      const casesMapBySuffix = {};
-      if (typeof CASES_DB !== 'undefined') {
-        for (const key of Object.keys(CASES_DB)) {
-          const parts = key.split('/');
-          if (parts.length >= 2) {
-            const suffix = parts.slice(1).join('/');
-            casesMapBySuffix[suffix] = CASES_DB[key].appellant || '';
+    // 1. Extract Adjourn List Date (e.g. "Adjourn List Date : 10/09/2026")
+    let extractedDate = '';
+    const dateMatch = fullText.match(/Adjourn\s*List\s*Date\s*:\s*(\d{1,2}[/-]\d{1,2}[/-]\d{4})/i) ||
+                      fullText.match(/Date\s*for\s*Listing\s*:\s*(\d{1,2}[/-]\d{1,2}[/-]\d{4})/i);
+    if (dateMatch && dateMatch[1]) {
+      extractedDate = dateMatch[1].replace(/\//g, '-');
+      document.getElementById('head_date').value = extractedDate;
+      syncHeaders();
+    }
+
+    // 2. Filter out Carry Forward section
+    const cfIndex = fullText.search(/CARRY\s*FORWA?R[ED]*\s*CASES\s*LIST/i);
+    const nonCfText = (cfIndex !== -1) ? fullText.slice(0, cfIndex) : fullText;
+
+    // Track global or section judge
+    let currentSectionJudge = '';
+    const globalHeaderMatch = nonCfText.match(/BEFORE\s*:\s*(.+?)(?=\s+(?:Date|Sl\.?\s*No|Case|Nature|\d{1,2}[/-]\d{1,2}[/-]\d{4}|$))/i);
+    if (globalHeaderMatch) {
+      currentSectionJudge = findJudgeInText(globalHeaderMatch[1]) || resolveOrAddJudge(globalHeaderMatch[1].trim());
+    }
+
+    // Fast O(1) lookup map for CASES_DB
+    const casesMapBySuffix = {};
+    if (typeof CASES_DB !== 'undefined') {
+      for (const key of Object.keys(CASES_DB)) {
+        const parts = key.split('/');
+        if (parts.length >= 2) {
+          const suffix = parts.slice(1).join('/');
+          casesMapBySuffix[suffix] = CASES_DB[key].appellant || '';
+        }
+      }
+    }
+
+    // 3. Parse structured cases (Sl no. + Case Type + Case No. / Year)
+    const caseRegex = /(?:^|\s)(\d{1,4})\s+(?:([A-Za-z]+)\s+)?(\d{1,5}\s*\/\s*\d{4})\b/g;
+    const caseMatches = [];
+    let cm;
+    while ((cm = caseRegex.exec(nonCfText)) !== null) {
+      caseMatches.push({
+        index: cm.index,
+        slNo: cm[1],
+        nature: cm[2] || 'FA',
+        caseNo: cm[3].replace(/\s+/g, '')
+      });
+    }
+
+    const parsedCases = [];
+    const seenCaseNos = new Set();
+
+    if (caseMatches.length > 0) {
+      for (let i = 0; i < caseMatches.length; i++) {
+        const item = caseMatches[i];
+        if (seenCaseNos.has(item.caseNo)) continue;
+        seenCaseNos.add(item.caseNo);
+
+        const start = item.index;
+        const end = (i + 1 < caseMatches.length) ? caseMatches[i + 1].index : nonCfText.length;
+        const chunk = nonCfText.slice(start, end);
+
+        // Discard any chunk marked CARRY FORWARD
+        if (/CARRY\s*FORWARD|CARRY\s*FORWA?RED/i.test(chunk)) {
+          continue;
+        }
+
+        // Check if this chunk contains a new section header BEFORE: ...
+        const sectionMatch = chunk.match(/BEFORE\s*:\s*(.+?)(?=\s+(?:Date|Sl\.?\s*No|Case|Nature|\d{1,2}[/-]\d{1,2}[/-]\d{4}|$))/i);
+        if (sectionMatch) {
+          const sj = findJudgeInText(sectionMatch[1]) || resolveOrAddJudge(sectionMatch[1].trim());
+          if (sj) currentSectionJudge = sj;
+        }
+
+        // Judge Extraction:
+        // 1. Check PRESIDED BY in this chunk
+        let allocatedJudge = '';
+        const pbIndex = chunk.search(/PRESIDED\s*BY/i);
+        if (pbIndex !== -1) {
+          const pbSnippet = chunk.slice(pbIndex, pbIndex + 140);
+          allocatedJudge = findJudgeInText(pbSnippet);
+          if (!allocatedJudge) {
+            const pMatch = pbSnippet.match(/PRESIDED\s*BY\s*[\d-]*\s*(.+?)(?=\s+(?:Under|Posted|Direct|Court|Present|Status|Order|\d{2}\/\d{2}\/\d{4}|,|$))/i);
+            if (pMatch && pMatch[1]) {
+              allocatedJudge = resolveOrAddJudge(pMatch[1].trim());
+            }
           }
+        }
+
+        // 2. If no per-case judge found, fall back to current section / global judge
+        if (!allocatedJudge && currentSectionJudge) {
+          allocatedJudge = currentSectionJudge;
+        }
+
+        // 3. Fallback: check if any judge name appears anywhere in this chunk
+        if (!allocatedJudge) {
+          allocatedJudge = findJudgeInText(chunk) || '';
+        }
+
+        const appellantName = casesMapBySuffix[item.caseNo] || '';
+        const assistantName = (typeof ASSISTANTS_DB !== 'undefined' && ASSISTANTS_DB[item.caseNo]) ? ASSISTANTS_DB[item.caseNo] : '';
+
+        // Heading, Direction, Remarks are left blank per user requirement
+        parsedCases.push({
+          nature: item.nature || 'FA',
+          case_no: item.caseNo,
+          appellant: appellantName,
+          assistant: assistantName,
+          heading: '',
+          direction: '',
+          remarks: '',
+          judge: allocatedJudge
+        });
+      }
+    } else {
+      // Fallback for unstructured PDF: extract all case numbers from non-CF text
+      const fallbackRegex = /(?:^|[^\d/])(\d{1,5}\s*\/\s*\d{4})(?=[^\d/]|$)/g;
+      const fallbackMatches = Array.from(nonCfText.matchAll(fallbackRegex)).map(m => m[1].replace(/\s+/g, ''));
+      const uniqueFallback = [...new Set(fallbackMatches)];
+
+      // Check for global judge
+      let globalJudge = currentSectionJudge;
+      if (!globalJudge) {
+        const globalJudgeMatch = nonCfText.match(/BEFORE\s*:\s*(.+?)(?=\s+(?:Date|Sl\.?\s*No|Case|Nature|\d{1,2}[/-]\d{1,2}[/-]\d{4}|$))/i);
+        if (globalJudgeMatch) {
+          globalJudge = findJudgeInText(globalJudgeMatch[1]) || resolveOrAddJudge(globalJudgeMatch[1].trim());
         }
       }
 
-      for (const caseNoVal of uniqueMatches) {
+      for (const caseNoVal of uniqueFallback) {
         const appellantName = casesMapBySuffix[caseNoVal] || '';
         const assistantName = (typeof ASSISTANTS_DB !== 'undefined' && ASSISTANTS_DB[caseNoVal]) ? ASSISTANTS_DB[caseNoVal] : '';
-        
-        addNewRow({ 
-          nature: 'FA', 
-          case_no: caseNoVal, 
-          appellant: appellantName, 
+
+        parsedCases.push({
+          nature: 'FA',
+          case_no: caseNoVal,
+          appellant: appellantName,
           assistant: assistantName,
-          heading: '', 
-          direction: '', 
-          remarks: 'Fixed' 
+          heading: '',
+          direction: '',
+          remarks: '',
+          judge: globalJudge || ''
         });
       }
-      
+    }
+
+    if (parsedCases.length > 0) {
+      // Remove any existing empty rows
+      const existingRows = document.querySelectorAll('#editorTableBody tr');
+      existingRows.forEach(r => {
+        const val = r.querySelector('.case-no-field')?.value.trim();
+        if (!val) r.remove();
+      });
+
+      for (const cData of parsedCases) {
+        addNewRow(cData);
+      }
+
       reindexSerialNumbers();
-      alert(`PDF से सफलतापूर्वक ${uniqueMatches.length} केस निकाले गए।`);
+      syncPrintTable();
+
+      let msg = `PDF से सफलतापूर्वक ${parsedCases.length} केस निकाले गए।`;
+      if (extractedDate) {
+        msg += `\nदिनांक: ${extractedDate}`;
+      }
+      alert(msg);
     } else {
-      alert("इस PDF से कोई केस नंबर (जैसे 47/2024) नहीं मिला। (No case number found in PDF)");
+      alert("इस PDF से कोई वैध केस नहीं मिला। (No valid cases found in PDF)");
     }
   } catch (error) {
     console.error('Error parsing PDF:', error);

@@ -16,6 +16,35 @@
     'Prefer':        'return=representation'
   };
 
+  function syncToLocalCasesCache(records) {
+    try {
+      const recs = Array.isArray(records) ? records : [records];
+      const localStore = JSON.parse(localStorage.getItem('phc_local_cases_db') || '{}');
+      recs.forEach(r => {
+        const cType = r.case_type || 'FA';
+        const code = cType === 'First Appeal' ? 'FA' : cType;
+        if (r.case_no && r.case_year) {
+          const key = `${code}/${r.case_no}/${r.case_year}`;
+          const val = { appellant: r.appellant || '', respondent: r.respondent || '' };
+          localStore[key] = val;
+          if (typeof CASES_DB !== 'undefined') {
+            CASES_DB[key] = val;
+          }
+        }
+      });
+      localStorage.setItem('phc_local_cases_db', JSON.stringify(localStore));
+    } catch(e) {
+      console.warn('Local cases cache sync error:', e);
+    }
+  }
+
+  try {
+    const savedLocal = JSON.parse(localStorage.getItem('phc_local_cases_db') || '{}');
+    if (typeof CASES_DB !== 'undefined') {
+      Object.assign(CASES_DB, savedLocal);
+    }
+  } catch(e) {}
+
   // ── Low-level helpers ───────────────────────────────────────
 
   async function sbGet(table, params = '') {
@@ -113,7 +142,7 @@
     },
 
     async insertCaseRecord(body) {
-      return sbInsert('case_records', {
+      const result = await sbInsert('case_records', {
         case_type:             body.case_type || 'First Appeal',
         case_no:               body.case_no   || '',
         case_year:             body.case_year || '',
@@ -132,6 +161,8 @@
         dealing_assistant:     body.dealing_assistant       || '',
         data_json:             body
       });
+      syncToLocalCasesCache(body);
+      return result;
     },
 
     async bulkInsertCaseRecords(records, chunkSize = 150) {
@@ -166,6 +197,7 @@
           console.warn(`Bulk insert chunk failed (${i} to ${i + chunkSize}):`, e);
         }
       }
+      syncToLocalCasesCache(records);
       return results;
     },
 

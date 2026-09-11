@@ -5,12 +5,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Case Records System - Patna High Court</title>
-  <!-- Google Fonts & Font Awesome -->
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap"
-    rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="style.css">
+  <!-- Offline System Fonts -->
+  <style>
+    :root {
+      --font-ui: 'Segoe UI', 'Ubuntu', 'Helvetica Neue', Arial, sans-serif;
+      --font-devanagari: 'Noto Sans Devanagari', 'Mangal', 'Arial Unicode MS', sans-serif;
+    }
+    body { font-family: var(--font-ui); }
+  </style>
+  <link rel="stylesheet" href="../shared/offline_icons.css">
+  <link rel="stylesheet" href="style.css?v=4">
 </head>
 
 <body>
@@ -19,7 +23,7 @@
     <header class="navbar no-print">
       <div class="nav-brand">
         <a href="../index.html" class="back-link" title="Return to Main Portal Dashboard">
-          <i class="fa-solid fa-arrow-left"></i>
+          &#8592; Dashboard
         </a>
         <div class="brand-logo">
           <i class="fa-solid fa-box-archive"></i>
@@ -136,6 +140,24 @@
           <h3>No Case Records Found</h3>
           <p>No records match your search criteria. Click "New Case Record" to add case details to the master database.
           </p>
+        </div>
+
+        <!-- PAGINATION CONTROLS -->
+        <div class="pagination-bar no-print" id="paginationControls" style="display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; border-top: 1px solid #334155; font-size: 0.88rem;">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span>Rows per page:</span>
+            <select id="pageSizeSelect" style="background:#0f172a; color:#f8fafc; border:1px solid #334155; border-radius:4px; padding:4px 8px; font-size:0.85rem; outline:none;">
+              <option value="50" selected>50</option>
+              <option value="100">100</option>
+              <option value="250">250</option>
+              <option value="all">All</option>
+            </select>
+          </div>
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <span id="pageInfoText" style="color: #94a3b8;">Page 1 of 1</span>
+            <button type="button" id="prevPageBtn" class="btn btn-secondary" style="padding: 4px 12px; font-size: 0.82rem;" disabled>&larr; Previous</button>
+            <button type="button" id="nextPageBtn" class="btn btn-secondary" style="padding: 4px 12px; font-size: 0.82rem;" disabled>Next &rarr;</button>
+          </div>
         </div>
       </section>
     </main>

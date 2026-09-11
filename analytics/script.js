@@ -280,14 +280,20 @@ document.addEventListener('DOMContentLoaded', () => {
     causeLists.forEach(cl => {
       if (cl.saved_at) {
         const clTime = new Date(cl.saved_at).getTime();
+        const isListingForm = cl.header && cl.header.head_court;
+
         (cl.cases || []).forEach(c => {
           const caseKey = normalizeCaseKey(c.case_no || c.caseNo, c.case_year);
           const da = getDaForCase(c.case_no || c.caseNo, c.case_year);
-          if (now - clTime <= SEVEN_DAYS) {
-            addStat(da, 'listed7d', caseKey);
-          }
-          if (now - clTime <= THIRTY_DAYS) {
-            addStat(da, 'printed30d', caseKey);
+          
+          if (isListingForm) {
+            if (now - clTime <= SEVEN_DAYS) {
+              addStat(da, 'listed7d', caseKey);
+            }
+          } else {
+            if (now - clTime <= THIRTY_DAYS) {
+              addStat(da, 'printed30d', caseKey);
+            }
           }
         });
       }
@@ -355,7 +361,16 @@ document.addEventListener('DOMContentLoaded', () => {
       ...lcrCalls.map(d    => ({ type: 'LCR Call',      icon: 'fa-phone-volume',       color: '#f59e0b', label: `F.A. No. ${d.case_no}/${d.case_year}`,        saved_at: d.saved_at })),
       ...noticeForms.map(d => ({ type: 'Notice Form',   icon: 'fa-envelope-open-text', color: '#22c55e', label: `Case ${d.caseNo || d.case_no || 'Unknown'}`,  saved_at: d.saved_at })),
       ...directNotes.map(d => ({ type: 'Direct Notice', icon: 'fa-paper-plane',        color: '#a855f7', label: `Case ${d.caseNo || d.case_no || 'Unknown'}`,  saved_at: d.saved_at })),
-      ...causeLists.map(d  => ({ type: 'Cause List',    icon: 'fa-list-check',         color: '#3b82f6', label: d.header?.date ? `Date: ${d.header.date}` : 'Cause List', saved_at: d.saved_at })),
+      ...causeLists.map(d  => {
+          const isListingForm = d.header && d.header.head_court;
+          return {
+              type: isListingForm ? 'Listing Form' : 'Printed Causelist',
+              icon: isListingForm ? 'fa-clipboard-list' : 'fa-list-check',
+              color: isListingForm ? '#10b981' : '#3b82f6',
+              label: d.header?.date ? `Date: ${d.header.date}` : (isListingForm ? 'Listing Form' : 'Cause List'),
+              saved_at: d.saved_at
+          };
+      }),
     ]
     .filter(d => d.saved_at)
     .sort((a, b) => new Date(b.saved_at) - new Date(a.saved_at))

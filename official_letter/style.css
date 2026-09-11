@@ -35,7 +35,7 @@ body {
 .navbar {
   background-color: var(--navy-dark);
   border-bottom: 2.5px solid var(--gold-primary);
-  padding: 12px 32px;
+  padding: 10px 24px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -43,12 +43,37 @@ body {
   top: 0;
   z-index: 100;
   box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  flex-wrap: wrap;
+  gap: 12px;
 }
+
+.nav-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #2563eb;
+  color: #fff;
+  text-decoration: none;
+  font-family: var(--font-ui, sans-serif);
+  font-weight: 600;
+  font-size: 0.85rem;
+  padding: 8px 14px;
+  border-radius: 6px;
+  border: 1px solid #3b82f6;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.nav-back-btn:hover {
+  background: #1d4ed8;
+  color: #fff;
+  transform: translateX(-2px);
+}
+
 .nav-logo { display:flex; align-items:center; gap:16px; }
 .nav-icon  { font-size:2.2rem; line-height:1; }
 .nav-logo h1 { font-size:1.25rem; font-weight:700; color:var(--gold-light); }
 .nav-logo p  { font-size:0.8rem; color:var(--text-muted); margin-top:2px; }
-.nav-actions { display:flex; gap:12px; }
+.nav-actions { display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
 
 /* ── Buttons ─────────────────────────────────────────────── */
 .btn {
@@ -243,6 +268,9 @@ body {
   font-family: 'Times New Roman', Times, serif;
   line-height: 1.75;
   text-align: justify;
+  white-space: pre-wrap;   /* allows literal \t tab characters */
+  tab-size: 36pt;          /* fixed tab stop size exactly like MS Word */
+  -moz-tab-size: 36pt;
 }
 
 /* Inter-paragraph gap — space BETWEEN paragraphs only */
@@ -251,22 +279,6 @@ body {
 #p_body div + p,
 #p_body div + div {
   margin-top: 9pt;
-}
-
-/*
-  text-indent is set via inline style by the Tab key handler.
-  Default is 0 (no indent). Tab toggles it to exactly 36pt — a
-  fixed CSS length, so every indented paragraph is identical.
-  Do NOT set a default text-indent here; let the Tab key control it.
-*/
-#p_body p,
-#p_body div {
-  text-indent: 0;          /* baseline: no indent unless Tab is pressed */
-}
-/* Honour the inline override set by Tab key (specificity guard) */
-#p_body p[style*="text-indent"],
-#p_body div[style*="text-indent"] {
-  text-indent: inherit;    /* let the inline style win */
 }
 
 /* An Enter on an empty paragraph acts as a spacing line */
@@ -285,7 +297,8 @@ body {
 #p_body li { margin-bottom: 4pt; }
 
 /* Placeholder — shown when body is completely empty */
-#p_body:empty::before {
+#p_body:empty::before,
+#p_copy_to:empty::before {
   content: attr(data-placeholder);
   color: #bbb;
   font-style: italic;
