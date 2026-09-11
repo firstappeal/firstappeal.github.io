@@ -15,7 +15,62 @@ const recordsTbody = document.getElementById('recordsTbody');
 const timelineGrid = document.getElementById('timelineGrid');
 
 let allScrapedLists = [];
-let selectedDateStr = null; // Store ISO date format
+let selectedDateStr = null; // YYYY-MM-DD
+
+const MONTH_MAP = {
+    "Jan":0,"Feb":1,"Mar":2,"Apr":3,"May":4,"Jun":5,
+    "Jul":6,"Aug":7,"Sep":8,"Oct":9,"Nov":10,"Dec":11,
+    "January":0,"February":1,"March":2,"April":3,"June":5,
+    "July":6,"August":7,"September":8,"October":9,"November":10,"December":11
+};
+
+/**
+ * Normalizes ANY date string we might encounter in the DB to YYYY-MM-DD.
+ * Handles:
+ *   "03-Sep-2026"           -> "2026-09-03"
+ *   "03-09-2026" (DD-MM-YYYY) -> "2026-09-03"
+ *   "Thursday 3rd September, 2026" -> "2026-09-03"
+ *   "Friday 11th September, 2026"  -> "2026-09-11"
+ */
+function normalizeDateStr(raw) {
+    if (!raw) return null;
+    const s = raw.trim();
+
+    // Format: DD-Mon-YYYY  e.g. "03-Sep-2026"
+    let m = s.match(/^(\d{1,2})-([A-Za-z]+)-(\d{4})$/);
+    if (m) {
+        const day = parseInt(m[1], 10);
+        const mon = MONTH_MAP[m[2]];
+        const yr  = parseInt(m[3], 10);
+        if (mon !== undefined) {
+            return `${yr}-${String(mon+1).padStart(2,'0')}-${String(day).padStart(2,'0')}`;
+        }
+    }
+
+    // Format: DD-MM-YYYY  e.g. "03-09-2026"
+    m = s.match(/^(\d{2})-(\d{2})-(\d{4})$/);
+    if (m) {
+        const day = parseInt(m[1], 10);
+        const mon = parseInt(m[2], 10) - 1;
+        const yr  = parseInt(m[3], 10);
+        if (mon >= 0 && mon <= 11 && day >= 1 && day <= 31) {
+            return `${yr}-${String(mon+1).padStart(2,'0')}-${String(day).padStart(2,'0')}`;
+        }
+    }
+
+    // Format: "Thursday 3rd September, 2026"
+    m = s.match(/\b(\d{1,2})(?:st|nd|rd|th)?\s+([A-Za-z]+)[,\s]+(\d{4})\b/);
+    if (m) {
+        const day = parseInt(m[1], 10);
+        const mon = MONTH_MAP[m[2]];
+        const yr  = parseInt(m[3], 10);
+        if (mon !== undefined && yr > 2000) {
+            return `${yr}-${String(mon+1).padStart(2,'0')}-${String(day).padStart(2,'0')}`;
+        }
+    }
+
+    return null;
+}
 
 function renderTable() {
     let html = '';
@@ -25,78 +80,47 @@ function renderTable() {
     const searchQuery = searchInput ? searchInput.value.trim().toLowerCase() : '';
 
     if (searchQuery) {
-        // Global search mode
         allScrapedLists.forEach(list => {
-            const cases = list.cases || [];
-            cases.forEach(c => {
+            (list.cases || []).forEach(c => {
                 if (c.case_no && c.case_no.toLowerCase().includes(searchQuery)) {
                     hasCases = true;
-                    const savedDate = new Date(list.created_at).toLocaleString();
                     html += `<tr>
-                        <td>${c.date || (list.header && list.header.date) || 'N/A'}</td>
+                        <td>${list._normalizedDate || 'N/A'}</td>
                         <td><strong>${c.case_no}</strong></td>
                         <td>${c.judge || 'N/A'}</td>
-                        <td style="color: #64748b; font-size: 0.85rem;">${savedDate}</td>
                     </tr>`;
                 }
             });
         });
-        
         if (!hasCases) {
-            html = `<tr><td colspan="4" style="text-align: center; color: #94a3b8;">No matching cases found for "${searchQuery}".</td></tr>`;
+            html = `<tr><td colspan="3" style="text-align:center;color:#94a3b8;">No matching cases found for "${searchQuery}".</td></tr>`;
         }
         recordsTbody.innerHTML = html;
         return;
     }
-    
+
     if (!selectedDateStr) {
-        recordsTbody.innerHTML = '<tr><td colspan="4" style="text-align: center; color: #94a3b8;">Select a date from the timeline above to view its causelist records.</td></tr>';
+        recordsTbody.innerHTML = '<tr><td colspan="3" style="text-align:center;color:#94a3b8;">Select a date from the timeline above to view its causelist records.</td></tr>';
         return;
     }
 
-    let listsToRender = allScrapedLists.filter(l => {
-        const [yyyy, mm, dd] = selectedDateStr.split('-');
-        const targetDate = new Date(yyyy, mm - 1, dd);
-        const recDate = l.date || (l.header && l.header.date) || "";
-        if (!recDate) return false;
-        
-        const parsed = new Date(recDate);
-        if (!isNaN(parsed.getTime())) {
-            const pyStr = String(parsed.getFullYear());
-            const pmStr = String(parsed.getMonth() + 1).padStart(2, '0');
-            const pdStr = String(parsed.getDate()).padStart(2, '0');
-            return `${pyStr}-${pmStr}-${pdStr}` === selectedDateStr;
-        }
-        
-        const monthMap = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-        const dayStr0 = String(targetDate.getDate()).padStart(2, '0');
-        const dayStr = String(targetDate.getDate());
-        const monStr = monthMap[targetDate.getMonth()];
-        const yearStr = String(targetDate.getFullYear());
-        
-        return (recDate.includes(dayStr0 + '-') || recDate.includes(dayStr + '-') || recDate.includes(dayStr + ' ')) && 
-               recDate.includes(monStr) && 
-               recDate.includes(yearStr);
-    });
+    const listsToRender = allScrapedLists.filter(l => l._normalizedDate === selectedDateStr);
 
-    if (!listsToRender || listsToRender.length === 0) {
-        html = `<tr><td colspan="4" style="text-align: center; color: #94a3b8;">No causelist records found${selectedDateStr ? ' for this date' : ''}.</td></tr>`;
+    if (!listsToRender.length) {
+        html = `<tr><td colspan="3" style="text-align:center;color:#94a3b8;">No causelist records found for this date.</td></tr>`;
     } else {
         listsToRender.forEach(list => {
-            const cases = list.cases || [];
-            cases.forEach(c => {
+            (list.cases || []).forEach(c => {
                 hasCases = true;
-                const savedDate = new Date(list.created_at).toLocaleString();
                 html += `<tr>
-                    <td>${c.date || list.header.date || 'N/A'}</td>
+                    <td>${list._normalizedDate}</td>
                     <td><strong>${c.case_no}</strong></td>
                     <td>${c.judge || 'N/A'}</td>
-                    <td style="color: #64748b; font-size: 0.85rem;">${savedDate}</td>
                 </tr>`;
             });
         });
         if (!hasCases) {
-            html = `<tr><td colspan="4" style="text-align: center; color: #94a3b8;">No FA cases printed${selectedDateStr ? ' on this date' : ' in the recent causelists'}.</td></tr>`;
+            html = `<tr><td colspan="3" style="text-align:center;color:#94a3b8;">No FA cases printed on this date.</td></tr>`;
         }
     }
     recordsTbody.innerHTML = html;
@@ -104,53 +128,36 @@ function renderTable() {
 
 function renderTimeline() {
     const today = new Date();
-    const minDate = new Date('2026-09-01T00:00:00');
+    const minDate = new Date(2026, 8, 1);
     let timelineHtml = '';
-    
+
     for (let i = 0; i < 30; i++) {
-        const d = new Date(today);
-        d.setDate(today.getDate() - i);
-        
+        const d = new Date(today.getFullYear(), today.getMonth(), today.getDate() - i);
         if (d < minDate) break;
 
-        const pyStr = String(d.getFullYear());
-        const pmStr = String(d.getMonth() + 1).padStart(2, '0');
-        const pdStr = String(d.getDate()).padStart(2, '0');
-        const dateStr = `${pyStr}-${pmStr}-${pdStr}`;
-        
-        const record = allScrapedLists.find(l => {
-            const recDate = l.date || (l.header && l.header.date) || "";
-            if (!recDate) return false;
-            
-            const parsed = new Date(recDate);
-            if (!isNaN(parsed.getTime())) {
-                return parsed.getFullYear() === d.getFullYear() && 
-                       parsed.getMonth() === d.getMonth() && 
-                       parsed.getDate() === d.getDate();
+        const yr  = d.getFullYear();
+        const mon = String(d.getMonth() + 1).padStart(2, '0');
+        const day = String(d.getDate()).padStart(2, '0');
+        const dateStr = `${yr}-${mon}-${day}`;
+
+        let totalCases = 0;
+        let hasRecord = false;
+        allScrapedLists.forEach(l => {
+            if (l._normalizedDate === dateStr) {
+                hasRecord = true;
+                totalCases += (l.cases || []).length;
             }
-            
-            const monthMap = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-            const dayStr0 = String(d.getDate()).padStart(2, '0');
-            const dayStr = String(d.getDate());
-            const monStr = monthMap[d.getMonth()];
-            const yearStr = String(d.getFullYear());
-            
-            return (recDate.includes(dayStr0 + '-') || recDate.includes(dayStr + '-') || recDate.includes(dayStr + ' ')) && 
-                   recDate.includes(monStr) && 
-                   recDate.includes(yearStr);
         });
-        
+
         const displayDate = d.toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short' });
-        
         const isActive = dateStr === selectedDateStr ? 'active' : '';
-        
-        if (record) {
-            const caseCount = (record.cases || []).length;
-            if (caseCount > 0) {
+
+        if (hasRecord) {
+            if (totalCases > 0) {
                 timelineHtml += `
                     <div class="timeline-item status-printed ${isActive}" data-date="${dateStr}">
                         <div class="timeline-date">${displayDate}</div>
-                        <div class="timeline-desc"><strong>${caseCount}</strong> FA Cases Printed</div>
+                        <div class="timeline-desc"><strong>${totalCases}</strong> FA Cases Printed</div>
                     </div>`;
             } else {
                 timelineHtml += `
@@ -168,21 +175,13 @@ function renderTimeline() {
         }
     }
     timelineGrid.innerHTML = timelineHtml;
-    
-    // Add click event listeners to timeline items
+
     document.querySelectorAll('.timeline-item').forEach(item => {
         item.addEventListener('click', (e) => {
             const clickedDate = e.currentTarget.getAttribute('data-date');
-            
-            // Toggle selection: if clicking the already selected date, deselect it
-            if (selectedDateStr === clickedDate) {
-                selectedDateStr = null;
-            } else {
-                selectedDateStr = clickedDate;
-            }
-            
-            renderTimeline(); // Re-render to update the 'active' highlight CSS
-            renderTable();    // Re-render the table filtered by the selected date
+            selectedDateStr = (selectedDateStr === clickedDate) ? null : clickedDate;
+            renderTimeline();
+            renderTable();
         });
     });
 }
@@ -192,28 +191,36 @@ async function loadRecords() {
     try {
         const allLists = await window.PortalDB.getCauseLists();
         const rawScraped = allLists.filter(l => !(l.header && l.header.head_court));
-        
-        // Deduplicate lists by date (so if the script scraped Thursday's list 5 times, it only counts as 1 list)
-        const dateSeen = new Set();
-        allScrapedLists = [];
+
+        // Normalize each record's date and deduplicate — keep record with most cases per date
+        const byDate = new Map();
         for (const l of rawScraped) {
-            const recDate = l.date || (l.header && l.header.date) || "";
-            if (!recDate || !dateSeen.has(recDate)) {
-                if (recDate) dateSeen.add(recDate);
-                allScrapedLists.push(l);
+            const rawDate = l.date || (l.header && l.header.date) || "";
+            const norm = normalizeDateStr(rawDate);
+            l._normalizedDate = norm;
+            if (!norm) continue;
+
+            if (!byDate.has(norm)) {
+                byDate.set(norm, l);
+            } else {
+                const existing = byDate.get(norm);
+                if ((l.cases || []).length > (existing.cases || []).length) {
+                    byDate.set(norm, l);
+                }
             }
         }
-        
+
+        allScrapedLists = Array.from(byDate.values());
+
         renderTimeline();
         renderTable();
-        
+
     } catch (e) {
         console.error(e);
-        recordsTbody.innerHTML = '<tr><td colspan="4" style="text-align: center; color: #ef4444;">Error loading records.</td></tr>';
-        timelineGrid.innerHTML = '<div style="color: #ef4444; padding: 12px;">Error loading timeline.</div>';
+        recordsTbody.innerHTML = '<tr><td colspan="3" style="text-align:center;color:#ef4444;">Error loading records.</td></tr>';
+        timelineGrid.innerHTML = '<div style="color:#ef4444;padding:12px;">Error loading timeline.</div>';
     }
 }
-
 
 document.addEventListener('DOMContentLoaded', () => {
     loadRecords();
