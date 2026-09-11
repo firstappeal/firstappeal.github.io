@@ -130,17 +130,19 @@ parseBtn.addEventListener('click', async () => {
         if (lineText) pageLines.push(lineText);
       });
       
-      // Stitch continuation lines for this page
-      let stitched = [];
-      for(const line of pageLines) {
-        if (/FA\/\d{1,5}\/\d{4}/i.test(line)) {
-            stitched.push(line);
-        } else if (stitched.length > 0) {
-            stitched[stitched.length - 1] += ' ' + line;
-        }
-      }
+      // Join all text on the page into one giant string
+      const fullText = pageLines.join(' ');
       
-      allLines.push(...stitched);
+      // Split by Case Number (lookahead to keep the case number in the chunk)
+      // Handles optional spaces like F A / 122 / 1978
+      const splitRe = /(?=F[\s\.]*A[\s\.]*\/\s*\d{1,5}\s*\/\s*\d{4})/i;
+      const chunks = fullText.split(splitRe);
+      
+      for (const chunk of chunks) {
+         if (/F[\s\.]*A[\s\.]*\/\s*\d{1,5}\s*\/\s*\d{4}/i.test(chunk)) {
+             allLines.push(chunk.trim());
+         }
+      }
     }
 
     setParseProgress(65, 'Parsing case entries…');
@@ -241,7 +243,7 @@ function parseAllLines(lines) {
     let partyPart = line
       .replace(/^\d+\s*/, '')            // strip leading serial number (even if no space)
       .replace(caseKeyRe, '')            // strip FA/no/year
-      .replace(/\s+\d+\s*$/, '')        // strip trailing petitioner count
+      .replace(/(?:\s+\d+)+\s*$/, '')        // strip trailing petitioner count
       .trim();
 
     // Attempt to split on VS separator
