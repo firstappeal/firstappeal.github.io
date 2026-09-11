@@ -124,7 +124,7 @@
       <div style="display:flex; gap:12px; align-items:center; margin:14px 0; flex-wrap:wrap;">
         <select class="form-select" id="filterStatus" style="min-width:160px;">
           <option value="all">Show All</option>
-          <option value="new">New Only</option>
+          <option value="new">New Only</option><option value="update">Updates Only</option>
           <option value="skip">Already in DB</option>
           <option value="error">Parse Errors</option>
         </select>
@@ -179,7 +179,7 @@
       <div style="display:flex; gap:12px; align-items:center; flex-wrap:wrap;">
         <button class="btn btn-success" id="importBtn">
           <i class="fa-solid fa-cloud-arrow-up"></i>
-          Import <span id="importCount">0</span> New Cases
+          Process <span id="importCount">0</span> Cases
         </button>
         <span style="font-size:0.82rem; color:var(--text-muted);" id="importHint"></span>
       </div>

@@ -13,7 +13,7 @@
 // ── State ──────────────────────────────────────────────────────
 let selectedFile    = null;    // File object
 let parsedCases     = [];      // { caseNo, caseYear, appellant, respondent, status:'new'|'skip'|'error', rawLine, edited }
-let existingKeys    = new Set(); // "caseNo|caseYear" pairs already in Supabase
+let existingRecordsMap = new Map(); // "caseNo|caseYear" pairs already in Supabase
 
 // ── DOM Refs ───────────────────────────────────────────────────
 const dropZone         = document.getElementById('dropZone');
@@ -141,9 +141,25 @@ parseBtn.addEventListener('click', async () => {
     // 5. Mark status
     parsedCases = rawParsed.map(c => {
       const key = `${c.caseNo}|${c.caseYear}`;
+      const existing = existingRecordsMap.get(key);
+      let status = 'new';
+      let dbId = null;
+      if (existing) {
+        const dbApp = (existing.appellant || '').trim().toLowerCase();
+        const dbRes = (existing.respondent || '').trim().toLowerCase();
+        const cApp = (c.appellant || '').trim().toLowerCase();
+        const cRes = (c.respondent || '').trim().toLowerCase();
+        if (dbApp !== cApp || dbRes !== cRes) {
+          status = 'update';
+          dbId = existing.id;
+        } else {
+          status = 'skip';
+        }
+      }
       return {
         ...c,
-        status: existingKeys.has(key) ? 'skip' : 'new',
+        status,
+        dbId,
         edited: false
       };
     });
@@ -249,17 +265,16 @@ function cleanName(str) {
 
 // ── Load Existing Keys from Supabase ───────────────────────────
 async function loadExistingKeys() {
-  existingKeys.clear();
+  existingRecordsMap.clear();
   if (!window.PortalDB) return;
   try {
-    // Fetch only case_no and case_year columns — lightweight
-    const records = await window.PortalDB.getCaseRecords('case_no,case_year');
+    const records = await window.PortalDB.getCaseRecords('id,case_no,case_year,appellant,respondent');
     records.forEach(r => {
       if (r.case_no && r.case_year) {
-        existingKeys.add(`${r.case_no}|${r.case_year}`);
+        existingRecordsMap.set(`${r.case_no}|${r.case_year}`, r);
       }
     });
-    console.log(`Loaded ${existingKeys.size} existing keys from Supabase.`);
+    console.log(`Loaded ${existingRecordsMap.size} existing records from Supabase.`);
   } catch (err) {
     console.warn('Could not load existing keys:', err);
     showToast('Warning: Could not check existing DB. All cases will show as new.', 'info');
@@ -270,9 +285,10 @@ async function loadExistingKeys() {
 function renderPreview() {
   // Compute stats
   const newCount   = parsedCases.filter(c => c.status === 'new').length;
+  const updateCount = parsedCases.filter(c => c.status === 'update').length;
   const skipCount  = parsedCases.filter(c => c.status === 'skip').length;
   const errorCount = parsedCases.filter(c => c.status === 'error').length;
-  statNew.textContent   = newCount;
+  statNew.innerHTML   = `${newCount} <span style="font-size:0.8rem; font-weight:normal;">new</span>, ${updateCount} <span style="font-size:0.8rem; font-weight:normal;">updates</span>`;
   statSkip.textContent  = skipCount;
   statError.textContent = errorCount;
 
@@ -312,9 +328,11 @@ function renderPreviewRows() {
   }
 
   previewBody.innerHTML = visible.map((c, i) => {
-    const rowClass = c.status === 'new' ? 'row-new' : c.status === 'skip' ? 'row-skip' : 'row-error';
+    const rowClass = c.status === 'new' ? 'row-new' : c.status === 'update' ? 'row-new' : c.status === 'skip' ? 'row-skip' : 'row-error';
     const badge    = c.status === 'new'
       ? `<span class="badge badge-new"><i class="fa-solid fa-plus"></i> New</span>`
+      : c.status === 'update'
+      ? `<span class="badge badge-new" style="background:#f59e0b;color:#fff;"><i class="fa-solid fa-pen"></i> Update</span>`
       : c.status === 'skip'
       ? `<span class="badge badge-skip"><i class="fa-solid fa-ban"></i> In DB</span>`
       : `<span class="badge badge-error"><i class="fa-solid fa-triangle-exclamation"></i> Error</span>`;
@@ -369,10 +387,25 @@ window.saveEdit = function(idx) {
   if (appInput) parsedCases[idx].appellant = appInput.value.trim();
   if (resInput) parsedCases[idx].respondent = resInput.value.trim();
 
-  // If previously error and now has both names → mark as new
-  if (parsedCases[idx].status === 'error' && parsedCases[idx].appellant && parsedCases[idx].respondent) {
-    const key = `${parsedCases[idx].caseNo}|${parsedCases[idx].caseYear}`;
-    parsedCases[idx].status = existingKeys.has(key) ? 'skip' : 'new';
+  const c = parsedCases[idx];
+  if (c.appellant && c.respondent) {
+    const key = `${c.caseNo}|${c.caseYear}`;
+    const existing = existingRecordsMap.get(key);
+    
+    if (existing) {
+        const dbApp = (existing.appellant || '').trim().toLowerCase();
+        const dbRes = (existing.respondent || '').trim().toLowerCase();
+        const cApp = (c.appellant || '').trim().toLowerCase();
+        const cRes = (c.respondent || '').trim().toLowerCase();
+        if (dbApp !== cApp || dbRes !== cRes) {
+          c.status = 'update';
+          c.dbId = existing.id;
+        } else {
+          c.status = 'skip';
+        }
+    } else {
+        c.status = 'new';
+    }
   }
 
   parsedCases[idx]._editing = false;
