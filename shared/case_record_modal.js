@@ -201,11 +201,8 @@
         </div>
 
         <div class="cr-modal-footer">
-          <button type="button" class="cr-btn cr-btn-cancel" id="crSkipBtn" title="Close this dialog without any action">
+          <button type="button" class="cr-btn cr-btn-cancel" id="crSkipBtn" title="Skip updating master records and proceed">
             ✕ Skip
-          </button>
-          <button type="button" class="cr-btn cr-btn-print" id="crPrintOnlyBtn" title="Proceed without updating master records">
-            <i class="fa-solid fa-print"></i> Print Only / Save Only
           </button>
           <button type="button" class="cr-btn cr-btn-primary" id="crSaveSubmitBtn">
             <i class="fa-solid fa-floppy-disk"></i> Update Master Records &amp; Proceed
@@ -225,17 +222,14 @@
 
     document.getElementById('crCloseBtn').addEventListener('click', closeModal);
 
-    // Skip – close without doing anything
+    // Skip – proceed without updating master records
     document.getElementById('crSkipBtn').addEventListener('click', () => {
       closeModal();
-      // No callback — truly skip all actions
-    });
-
-    // Print Only / Save Only – proceed without updating master records
-    document.getElementById('crPrintOnlyBtn').addEventListener('click', () => {
-      closeModal();
-      const cb = typeof onPrintOnly === 'function' ? onPrintOnly : (typeof onSaveSuccess === 'function' ? onSaveSuccess : null);
-      if (cb) cb();
+      if (typeof onSkip === 'function') {
+         onSkip();
+      } else if (typeof onSaveSuccess === 'function') {
+         onSaveSuccess();
+      }
     });
 
     document.getElementById('crSaveSubmitBtn').addEventListener('click', async () => {
