@@ -389,53 +389,25 @@
             // -- Arising Out Of ------------------------------------------------
             const arisingField = document.getElementById('rem_arising_out_of');
             if (arisingField && (forceOverwrite || !arisingField.value.trim())) {
-              let arisingText = '';
-              const formatDate = (dateStr) => {
-                if (!dateStr) return '';
-                const parts = dateStr.split('-');
-                if (parts.length === 3) {
-                  if (parts[0].length === 4) return `${parts[2]}-${parts[1]}-${parts[0]}`;
-                  if (parts[2].length === 4) return dateStr;
-                }
-                const d = new Date(dateStr);
-                if (!isNaN(d.getTime())) {
-                  return `${String(d.getDate()).padStart(2,'0')}-${String(d.getMonth()+1).padStart(2,'0')}-${d.getFullYear()}`;
-                }
-                return dateStr;
-              };
-              const fmtJ = formatDate(match.date_of_judgment);
-              const fmtD = formatDate(match.date_of_decree_award);
-              if (match.date_of_judgment || match.date_of_decree_award) {
-                if (match.date_of_judgment && match.date_of_decree_award) {
-                  arisingText = fmtJ === fmtD
-                    ? `Judgment and Decree/Award dated ${fmtJ}`
-                    : `Judgment dated ${fmtJ} and Decree/Award dated ${fmtD}`;
-                } else if (match.date_of_judgment) {
-                  arisingText = `Judgment dated ${fmtJ}`;
-                } else {
-                  arisingText = `Decree/Award dated ${fmtD}`;
-                }
-              } else if (match.lc_case_type && match.lc_case_no && match.lc_case_year) {
-                arisingText = `${match.lc_case_type} No. ${match.lc_case_no} of ${match.lc_case_year}`;
-              } else {
-                arisingText = 'Judgment and Decree';
+              if (match.lc_case_type && match.lc_case_no && match.lc_case_year) {
+                arisingField.value = `${match.lc_case_type} No. ${match.lc_case_no}/${match.lc_case_year}`;
               }
-              arisingField.value = arisingText;
             }
+
 
             // -- Court of the --------------------------------------------------
             const courtField = document.getElementById('rem_court_of_the');
             if (match.lc_court && courtField && (forceOverwrite || !courtField.value.trim())) {
               courtField.value = match.lc_court;
               // Also update recipient title/address
-              const parts = match.lc_court.split(',');
               const titleField = document.getElementById('rem_to_title');
               const addrField  = document.getElementById('rem_to_address');
               if (titleField && (forceOverwrite || titleField.value === 'District and Sessions Judge'))
-                titleField.value = parts[0].trim();
-              if (addrField && parts.length > 1 && (forceOverwrite || addrField.value.trim().toLowerCase() === 'patna'))
-                addrField.value = parts.slice(1).join(',').trim();
+                titleField.value = match.lc_court.trim();
+              if (addrField && (forceOverwrite || addrField.value.trim().toLowerCase() === 'patna'))
+                addrField.value = '';
             }
+
 
             // -- LC case no / year for reference (populate appeal_from_* shadow fields) --
             const lcNoField   = document.getElementById('rem_lc_case_no');
@@ -509,6 +481,21 @@
         // Defer slightly to let PortalDB initialise
         setTimeout(() => fetchArisingOutOfFromMaster(false), 800);
       }
+      // 6b. Auto-populate Recipient from Court of the manually
+      const remCourtOfTheInput = document.getElementById('rem_court_of_the');
+      const remToTitle = document.getElementById('rem_to_title');
+      const remToAddr = document.getElementById('rem_to_address');
+      if (remCourtOfTheInput && remToTitle && remToAddr) {
+        remCourtOfTheInput.addEventListener('input', () => {
+          const val = remCourtOfTheInput.value;
+          if (val) {
+            remToTitle.value = val.trim();
+            remToAddr.value = '';
+            syncReminderFields();
+          }
+        });
+      }
+
 
       // 7. Blur listeners for manual case entry
       const caseNoField   = document.getElementById('rem_case_no');

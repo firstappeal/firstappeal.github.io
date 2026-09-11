@@ -103,24 +103,15 @@ document.addEventListener('DOMContentLoaded', () => {
   const courtOfTheInput = document.getElementById('court_of_the');
   if (courtOfTheInput && recTitle && recAddr) {
     courtOfTheInput.addEventListener('input', () => {
-      // Only auto-populate if user is typing in court_of_the
       const val = courtOfTheInput.value;
       if (val) {
-        const parts = val.split(',');
-        if (parts.length > 1) {
-          recTitle.value = parts[0].trim();
-          recAddr.value = parts.slice(1).join(',').trim();
-        } else {
-          recTitle.value = val.trim();
-          recAddr.value = '';
-        }
+        recTitle.value = val.trim();
+        recAddr.value = '';
         syncFields();
       }
     });
   }
 
-  // 4. Initial Sync to fill A4 page values
-  syncFields();
 
   // 5. Autocomplete & Auto-populate Logic
   const sankhyaInput = document.getElementById('sankhya');
@@ -306,17 +297,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
           if (match.lc_court && lcCourtField && (forceOverwrite || !lcCourtField.value)) {
             lcCourtField.value = match.lc_court;
-            const parts = match.lc_court.split(',');
             if (recipientTitleField && (!recipientTitleField.value || recipientTitleField.value === "District and Sessions Judge")) {
-              recipientTitleField.value = parts[0].trim();
+              recipientTitleField.value = match.lc_court.trim();
             }
             const recipientAddressField = document.getElementById('recipient_address');
-            if (recipientAddressField && parts.length > 1 && (!recipientAddressField.value || recipientAddressField.value.trim().toLowerCase() === "patna")) {
-              recipientAddressField.value = parts.slice(1).join(',').trim();
-            } else if (recipientAddressField && parts.length === 1 && recipientAddressField.value.trim().toLowerCase() === "patna") {
+            if (recipientAddressField && (!recipientAddressField.value || recipientAddressField.value.trim().toLowerCase() === "patna")) {
               recipientAddressField.value = '';
             }
           }
+
           if (match.lc_case_type && appealFromField && (forceOverwrite || !appealFromField.value)) {
             let cleanedType = match.lc_case_type.trim();
             if (cleanedType.toLowerCase().endsWith('of the')) {
@@ -327,44 +316,16 @@ document.addEventListener('DOMContentLoaded', () => {
           if (match.lc_case_no && appealFromNoField && (forceOverwrite || !appealFromNoField.value)) appealFromNoField.value = match.lc_case_no;
           if (match.lc_case_year && appealFromYearField && (forceOverwrite || !appealFromYearField.value)) appealFromYearField.value = match.lc_case_year;
           
-          if (arisingOutOfField && (forceOverwrite || !arisingOutOfField.value) && match.lc_case_type && match.lc_case_no && match.lc_case_year) {
-            let arisingText = `${match.lc_case_type} No. ${match.lc_case_no} of ${match.lc_case_year}`;
-            
-            const formatDate = (dateStr) => {
-              if (!dateStr) return '';
-              const parts = dateStr.split('-');
-              if (parts.length === 3) {
-                if (parts[0].length === 4) return `${parts[2]}-${parts[1]}-${parts[0]}`;
-                if (parts[2].length === 4) return dateStr;
-              }
-              const d = new Date(dateStr);
-              if (!isNaN(d.getTime())) {
-                return `${String(d.getDate()).padStart(2, '0')}-${String(d.getMonth() + 1).padStart(2, '0')}-${d.getFullYear()}`;
-              }
-              return dateStr;
-            };
-
-            const fmtJ = formatDate(match.date_of_judgment);
-            const fmtD = formatDate(match.date_of_decree_award);
-
-            if (match.date_of_judgment || match.date_of_decree_award) {
-              if (match.date_of_judgment && match.date_of_decree_award) {
-                if (fmtJ === fmtD) {
-                  arisingText = `Judgment and Decree/Award dated ${fmtJ}`;
-                } else {
-                  arisingText = `Judgment dated ${fmtJ} and Decree/Award dated ${fmtD}`;
-                }
-              } else if (match.date_of_judgment) {
-                arisingText = `Judgment dated ${fmtJ}`;
-              } else if (match.date_of_decree_award) {
-                arisingText = `Decree/Award dated ${fmtD}`;
-              }
-            } else {
-              arisingText = 'Judgment and Decree';
+          if (arisingOutOfField && (forceOverwrite || !arisingOutOfField.value)) {
+            let arisingText = '';
+            if (match.lc_case_type && match.lc_case_no && match.lc_case_year) {
+              arisingText = `${match.lc_case_type} No. ${match.lc_case_no}/${match.lc_case_year}`;
             }
-            
-            arisingOutOfField.value = arisingText;
+            if (arisingText) {
+              arisingOutOfField.value = arisingText;
+            }
           }
+
         }
       }
     } catch (err) {
