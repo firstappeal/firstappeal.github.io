@@ -158,7 +158,7 @@ parseBtn.addEventListener('click', async () => {
                 }
             });
             
-            if (bestRow) {
+            if (bestRow && minDiff <= 12) {
                 // If this line is physically ABOVE the anchor (y > anchor.y), unshift it.
                 // If it is physically BELOW the anchor (y < anchor.y), push it.
                 if (y > bestRow.y) {
