@@ -2,13 +2,18 @@ name: Daily Causelist Updater
 
 on:
   schedule:
-    # Runs at 2:00 AM UTC (7:30 AM IST) every day
-    - cron: '0 2 * * *'
+    # Runs at 4:00 AM UTC (9:30 AM IST) every weekday Mon-Fri
+    # The court publishes the next day's causelist in the morning
+    - cron: '0 4 * * 1-5'
   workflow_dispatch: # Allows manual triggering from the Actions tab
 
 jobs:
   update-causelist:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: court_portal
+
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -16,17 +21,16 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.10'
+          python-version: '3.11'
 
       - name: Install System Dependencies
         run: |
-          sudo apt-get update
+          sudo apt-get update -qq
           sudo apt-get install -y tesseract-ocr
 
       - name: Install Python Dependencies
         run: |
-          python -m pip install --upgrade pip
-          pip install requests beautifulsoup4 pytesseract PyMuPDF Pillow
+          pip install --quiet requests beautifulsoup4 pytesseract PyMuPDF Pillow urllib3
 
       - name: Run Causelist Scraper
         run: |
