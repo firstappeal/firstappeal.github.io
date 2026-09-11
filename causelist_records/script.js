@@ -20,6 +20,34 @@ let selectedDateStr = null; // Store ISO date format
 function renderTable() {
     let html = '';
     let hasCases = false;
+
+    const searchInput = document.getElementById('caseSearch');
+    const searchQuery = searchInput ? searchInput.value.trim().toLowerCase() : '';
+
+    if (searchQuery) {
+        // Global search mode
+        allScrapedLists.forEach(list => {
+            const cases = list.cases || [];
+            cases.forEach(c => {
+                if (c.case_no && c.case_no.toLowerCase().includes(searchQuery)) {
+                    hasCases = true;
+                    const savedDate = new Date(list.created_at).toLocaleString();
+                    html += `<tr>
+                        <td>${c.date || (list.header && list.header.date) || 'N/A'}</td>
+                        <td><strong>${c.case_no}</strong></td>
+                        <td>${c.judge || 'N/A'}</td>
+                        <td style="color: #64748b; font-size: 0.85rem;">${savedDate}</td>
+                    </tr>`;
+                }
+            });
+        });
+        
+        if (!hasCases) {
+            html = `<tr><td colspan="4" style="text-align: center; color: #94a3b8;">No matching cases found for "${searchQuery}".</td></tr>`;
+        }
+        recordsTbody.innerHTML = html;
+        return;
+    }
     
     if (!selectedDateStr) {
         recordsTbody.innerHTML = '<tr><td colspan="4" style="text-align: center; color: #94a3b8;">Select a date from the timeline above to view its causelist records.</td></tr>';
@@ -152,4 +180,10 @@ async function loadRecords() {
 }
 
 
-document.addEventListener('DOMContentLoaded', loadRecords);
+document.addEventListener('DOMContentLoaded', () => {
+    loadRecords();
+    const searchInput = document.getElementById('caseSearch');
+    if (searchInput) {
+        searchInput.addEventListener('input', renderTable);
+    }
+});
