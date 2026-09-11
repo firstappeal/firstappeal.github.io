@@ -1,14 +1,11 @@
 """
 Causelist Scraper for Patna High Court
 ---------------------------------------
-1. Opens the causelist page — the server sets a cookie 'CaptchaImageText'
-   with the plaintext answer (a 3-digit number).
-2. Picks the LATEST (first) date from the dropdown.
-3. If that date is already in Supabase, exits — nothing to do.
-4. Submits the form with the captcha answer from the cookie.
-5. Parses FA cases + judge names from the returned PDF.
-6. Saves to Supabase with the date string (e.g. "11-Sep-2026").
-7. Deletes any records older than 30 days.
+1. Opens the causelist page. The server sets a cookie 'CaptchaImageText'
+   with the plaintext 3-digit captcha answer.
+2. Gets ALL dates from the dropdown.
+3. For each date not already in Supabase, downloads the PDF and saves FA cases.
+4. Deletes any records older than 30 days.
 """
 
 import requests
@@ -50,7 +47,6 @@ def extract_fa_cases(pdf_bytes):
         lines = [l.strip() for l in page.get_text().split('\n')]
 
         for j, line in enumerate(lines):
-            # Detect a new court / bench block
             if "Court No." in line:
                 bench_parts = []
                 for k in range(j + 1, min(j + 12, len(lines))):
@@ -62,7 +58,6 @@ def extract_fa_cases(pdf_bytes):
                     current_judge = " ".join(bench_parts).strip()
 
             elif line.startswith("Hon'ble"):
-                # Catch bench announced without Court No.
                 bench_parts = [line]
                 for k in range(j + 1, min(j + 6, len(lines))):
                     if lines[k].startswith("& Hon'ble"):
@@ -84,9 +79,9 @@ def get_existing_dates():
         headers=HEADERS_SB, timeout=15
     )
     if r.status_code == 200:
-        return [row.get('date', '') for row in r.json()]
+        return set(row.get('date', '') for row in r.json())
     print("Could not read existing dates:", r.status_code, r.text[:200])
-    return []
+    return set()
 
 
 def save_to_supabase(date_str, cases):
@@ -100,9 +95,9 @@ def save_to_supabase(date_str, cases):
         json=payload, headers=HEADERS_SB, timeout=20
     )
     if r.status_code in (200, 201):
-        print(f"✓ Saved {len(cases)} FA cases for {date_str}.")
+        print(f"  ✓ Saved {len(cases)} FA cases for {date_str}.")
     else:
-        print(f"✗ Supabase error {r.status_code}: {r.text[:300]}")
+        print(f"  ✗ Supabase error {r.status_code}: {r.text[:300]}")
 
 
 def delete_old_records():
@@ -117,56 +112,28 @@ def delete_old_records():
         print("Warning: could not delete old records:", r.status_code)
 
 
-# ── Main ──────────────────────────────────────────────────────────────────────
-def fetch_and_save_latest():
-    print("=== Causelist Scraper Started ===")
-
-    for attempt in range(1, 16):
+# ── Fetch one date's PDF ──────────────────────────────────────────────────────
+def fetch_date(date_val, date_text):
+    """
+    Tries up to 10 times to fetch the PDF for a given date.
+    Returns True on success, False on failure.
+    """
+    for attempt in range(1, 11):
         try:
             sess = requests.Session()
             sess.verify = False
 
-            # Step 1: GET the page — server sets CaptchaImageText cookie
             r = sess.get(HC_URL, timeout=15)
             soup = BeautifulSoup(r.text, 'html.parser')
 
-            # Step 2: Read captcha answer from cookie
+            # Read captcha answer from cookie
             captcha_answer = sess.cookies.get('CaptchaImageText', '')
-            if not captcha_answer or not re.match(r'^\d{3}$', captcha_answer):
-                print(f"Attempt {attempt}: No CaptchaImageText cookie (got '{captcha_answer}'), retrying...")
+            if not re.match(r'^\d+$', captcha_answer):
+                print(f"    Attempt {attempt}: no captcha cookie, retrying...")
                 time.sleep(2)
                 continue
-            print(f"Attempt {attempt}: captcha answer from cookie = {captcha_answer}")
 
-            # Step 3: Get the latest date from dropdown
-            sel = soup.find('select', {'name': 'ctl00$MainContent$ddlDate'})
-            if not sel:
-                print("ERROR: Date dropdown not found on page.")
-                sys.exit(1)
-
-            date_val = None
-            date_text = None
-            for opt in sel.find_all('option'):
-                text = opt.text.strip()
-                val  = opt.get('value', '')
-                if re.match(r'^\d{1,2}-[A-Za-z]+-\d{4}$', text):
-                    date_val  = val
-                    date_text = text
-                    break
-
-            if not date_text:
-                print("ERROR: No valid date option in dropdown.")
-                sys.exit(1)
-            print(f"Latest date on website: {date_text}")
-
-            # Step 4: Check if we already have it
-            existing = get_existing_dates()
-            if date_text in existing:
-                print(f"Already have records for {date_text}. Nothing to do.")
-                delete_old_records()
-                sys.exit(0)
-
-            # Step 5: Build form and POST
+            # Build form
             form_data = {'ctl00$MainContent$ddlType': 'Entire Cause List'}
             for inp in soup.find_all('input'):
                 name = inp.get('name')
@@ -180,25 +147,59 @@ def fetch_and_save_latest():
             ctype = resp.headers.get('Content-Type', '').lower()
 
             if 'pdf' in ctype:
-                print(f"✓ PDF received ({len(resp.content)} bytes). Parsing FA cases...")
                 cases = extract_fa_cases(resp.content)
-                print(f"  Found {len(cases)} FA cases.")
                 save_to_supabase(date_text, cases)
-                delete_old_records()
-                print("=== Done ===")
-                sys.exit(0)
+                return True
             else:
-                # Wrong captcha or session mismatch — retry
-                print(f"Attempt {attempt}: Server returned HTML (captcha rejected or session issue). Retrying...")
-                time.sleep(2)
+                print(f"    Attempt {attempt}: got HTML (captcha={captcha_answer}, retrying...)")
 
         except Exception as e:
-            print(f"Attempt {attempt} exception: {e}")
-            time.sleep(2)
+            print(f"    Attempt {attempt} exception: {e}")
 
-    print("FAILED: Could not download PDF after 15 attempts.")
-    sys.exit(1)
+        time.sleep(2)
+
+    print(f"  ✗ Failed to fetch {date_text} after 10 attempts.")
+    return False
+
+
+# ── Main ──────────────────────────────────────────────────────────────────────
+def run():
+    print("=== Causelist Scraper Started ===")
+
+    # Get all available dates from the website dropdown
+    r = requests.get(HC_URL, verify=False, timeout=15)
+    soup = BeautifulSoup(r.text, 'html.parser')
+    sel = soup.find('select', {'name': 'ctl00$MainContent$ddlDate'})
+    if not sel:
+        print("ERROR: Date dropdown not found.")
+        sys.exit(1)
+
+    all_options = []
+    for opt in sel.find_all('option'):
+        text = opt.text.strip()
+        val  = opt.get('value', '')
+        if re.match(r'^\d{1,2}-[A-Za-z]+-\d{4}$', text):
+            all_options.append({'value': val, 'text': text})
+
+    print(f"Found {len(all_options)} dates in dropdown: {[o['text'] for o in all_options]}")
+
+    # Get dates already in Supabase
+    existing = get_existing_dates()
+    print(f"Already have data for: {sorted(existing)}")
+
+    # Process each missing date
+    missing = [o for o in all_options if o['text'] not in existing]
+    if not missing:
+        print("All dates already fetched. Nothing to do.")
+    else:
+        print(f"\nFetching {len(missing)} missing date(s)...")
+        for opt in missing:
+            print(f"\n→ Fetching {opt['text']}...")
+            fetch_date(opt['value'], opt['text'])
+
+    delete_old_records()
+    print("\n=== Done ===")
 
 
 if __name__ == '__main__':
-    fetch_and_save_latest()
+    run()
