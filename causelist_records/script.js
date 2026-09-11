@@ -55,13 +55,17 @@ function renderTable() {
     }
 
     let listsToRender = allScrapedLists.filter(l => {
-        const targetDate = new Date(selectedDateStr);
+        const [yyyy, mm, dd] = selectedDateStr.split('-');
+        const targetDate = new Date(yyyy, mm - 1, dd);
         const recDate = l.date || (l.header && l.header.date) || "";
         if (!recDate) return false;
         
         const parsed = new Date(recDate);
         if (!isNaN(parsed.getTime())) {
-            return parsed.toISOString().substring(0, 10) === selectedDateStr;
+            const pyStr = String(parsed.getFullYear());
+            const pmStr = String(parsed.getMonth() + 1).padStart(2, '0');
+            const pdStr = String(parsed.getDate()).padStart(2, '0');
+            return `${pyStr}-${pmStr}-${pdStr}` === selectedDateStr;
         }
         
         const monthMap = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
@@ -109,7 +113,10 @@ function renderTimeline() {
         
         if (d < minDate) break;
 
-        const dateStr = d.toISOString().substring(0, 10);
+        const pyStr = String(d.getFullYear());
+        const pmStr = String(d.getMonth() + 1).padStart(2, '0');
+        const pdStr = String(d.getDate()).padStart(2, '0');
+        const dateStr = `${pyStr}-${pmStr}-${pdStr}`;
         
         const record = allScrapedLists.find(l => {
             const recDate = l.date || (l.header && l.header.date) || "";
@@ -117,7 +124,9 @@ function renderTimeline() {
             
             const parsed = new Date(recDate);
             if (!isNaN(parsed.getTime())) {
-                return parsed.toISOString().substring(0, 10) === dateStr;
+                return parsed.getFullYear() === d.getFullYear() && 
+                       parsed.getMonth() === d.getMonth() && 
+                       parsed.getDate() === d.getDate();
             }
             
             const monthMap = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
