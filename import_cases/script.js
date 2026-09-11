@@ -112,7 +112,7 @@ parseBtn.addEventListener('click', async () => {
       const page = await pdf.getPage(p);
       const content = await page.getTextContent();
 
-      // Group text items into lines by their Y coordinate (rounded to 2dp)
+      // Group text items into lines by their Y coordinate (rounded to 4px)
       const lineMap = {};
       content.items.forEach(item => {
         const y = Math.round(item.transform[5] / 4) * 4;
@@ -120,29 +120,60 @@ parseBtn.addEventListener('click', async () => {
         lineMap[y].push(item);
       });
 
-      // Sort by descending Y (top to bottom on page)
-      const sortedYs = Object.keys(lineMap).map(Number).sort((a, b) => b - a);
-      let pageLines = [];
+      const sortedYs = Object.keys(lineMap).map(Number).sort((a, b) => b - a); // Descending (top to bottom)
+      
+      // 1. Identify Case Nos and their Y coordinates
+      const caseRows = [];
       sortedYs.forEach(y => {
-        // Sort items by X coordinate (left to right)
         lineMap[y].sort((a, b) => a.transform[4] - b.transform[4]);
-        const lineText = lineMap[y].map(i => i.str).join(' ').trim();
-        if (lineText) pageLines.push(lineText);
+        
+        // Filter out X < 60 (Sr No) and X > 500 (Total Petitioners)
+        const validItems = lineMap[y].filter(i => i.transform[4] >= 60 && i.transform[4] <= 500);
+        const lineText = validItems.map(i => i.str).join(' ').trim();
+        
+        // If this line contains a Case No, record it as a row anchor
+        if (/F[\s\.]*A[\s\.]*\/\s*\d{1,5}\s*\/\s*\d{4}/i.test(lineText)) {
+           caseRows.push({ y: y, textParts: [lineText] });
+        }
       });
       
-      // Join all text on the page into one giant string
-      const fullText = pageLines.join(' ');
+      // 2. Attach orphan lines to the CLOSEST Case No (because cells are vertically centered)
+      sortedYs.forEach(y => {
+        // Filter out X < 60 (Sr No) and X > 500 (Total Petitioners)
+        const validItems = lineMap[y].filter(i => i.transform[4] >= 60 && i.transform[4] <= 500);
+        if (validItems.length === 0) return;
+        
+        const lineText = validItems.map(i => i.str).join(' ').trim();
+        // If it doesn't contain a Case No, it's an orphan Party Details line
+        if (!/F[\s\.]*A[\s\.]*\/\s*\d{1,5}\s*\/\s*\d{4}/i.test(lineText) && lineText) {
+            
+            // Find the Case No row with the minimum absolute Y distance
+            let bestRow = null;
+            let minDiff = Infinity;
+            caseRows.forEach(cr => {
+                const diff = Math.abs(cr.y - y);
+                if (diff < minDiff) {
+                    minDiff = diff;
+                    bestRow = cr;
+                }
+            });
+            
+            if (bestRow) {
+                // If this line is physically ABOVE the anchor (y > anchor.y), unshift it.
+                // If it is physically BELOW the anchor (y < anchor.y), push it.
+                if (y > bestRow.y) {
+                    bestRow.textParts.unshift(lineText);
+                } else {
+                    bestRow.textParts.push(lineText);
+                }
+            }
+        }
+      });
       
-      // Split by Case Number (lookahead to keep the case number in the chunk)
-      // Handles optional spaces like F A / 122 / 1978
-      const splitRe = /(?=F[\s\.]*A[\s\.]*\/\s*\d{1,5}\s*\/\s*\d{4})/i;
-      const chunks = fullText.split(splitRe);
-      
-      for (const chunk of chunks) {
-         if (/F[\s\.]*A[\s\.]*\/\s*\d{1,5}\s*\/\s*\d{4}/i.test(chunk)) {
-             allLines.push(chunk.trim());
-         }
-      }
+      // 3. Flatten each row into a single string
+      caseRows.forEach(cr => {
+         allLines.push(cr.textParts.join(' '));
+      });
     }
 
     setParseProgress(65, 'Parsing case entries…');
