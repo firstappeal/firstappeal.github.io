@@ -3,16 +3,12 @@ name: Daily Causelist Updater
 on:
   schedule:
     # Runs at 4:00 AM UTC (9:30 AM IST) every weekday Mon-Fri
-    # The court publishes the next day's causelist in the morning
     - cron: '0 4 * * 1-5'
   workflow_dispatch: # Allows manual triggering from the Actions tab
 
 jobs:
   update-causelist:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: court_portal
 
     steps:
       - name: Checkout Repository
