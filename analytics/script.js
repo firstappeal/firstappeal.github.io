@@ -114,7 +114,8 @@ document.addEventListener('DOMContentLoaded', () => {
     renderCompleteness();
     renderDecades();
     renderDAs();
-    renderActivity();
+    renderLcrStatus();
+    renderCauselistTrend();
   }
 
   /* ── KPI Cards ───────────────────────────────────────────── */
@@ -352,55 +353,98 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ── Recent Activity ──────────────────────────────────────── */
-  function renderActivity() {
-    const feed  = document.getElementById('activityFeed');
-    const empty = document.getElementById('activityEmpty');
-    if (!feed) return;
+  function renderLcrStatus() {
+    const grid = document.getElementById('lcrStatusGrid');
+    const badge = document.getElementById('lcrTotalBadge');
+    if (!grid || !badge) return;
 
-    const allDocs = [
-      ...lcrCalls.map(d    => ({ type: 'LCR Call',      icon: 'fa-phone-volume',       color: '#f59e0b', label: `F.A. No. ${d.case_no}/${d.case_year}`,        saved_at: d.saved_at })),
-      ...noticeForms.map(d => ({ type: 'Notice Form',   icon: 'fa-envelope-open-text', color: '#22c55e', label: `Case ${d.caseNo || d.case_no || 'Unknown'}`,  saved_at: d.saved_at })),
-      ...directNotes.map(d => ({ type: 'Direct Notice', icon: 'fa-paper-plane',        color: '#a855f7', label: `Case ${d.caseNo || d.case_no || 'Unknown'}`,  saved_at: d.saved_at })),
-      ...causeLists.map(d  => {
-          const isListingForm = d.header && d.header.head_court;
-          return {
-              type: isListingForm ? 'Listing Form' : 'Printed Causelist',
-              icon: isListingForm ? 'fa-clipboard-list' : 'fa-list-check',
-              color: isListingForm ? '#10b981' : '#3b82f6',
-              label: d.header?.date ? `Date: ${d.header.date}` : (isListingForm ? 'Listing Form' : 'Cause List'),
-              saved_at: d.saved_at
-          };
-      }),
-    ]
-    .filter(d => d.saved_at)
-    .sort((a, b) => new Date(b.saved_at) - new Date(a.saved_at))
-    .slice(0, 15);
+    badge.textContent = `${lcrCalls.length} Total Calls`;
 
-    if (allDocs.length === 0) {
-      empty.style.display = 'block';
-      feed.style.display  = 'none';
-      return;
-    }
-    empty.style.display = 'none';
-    feed.style.display  = 'block';
+    const statusCounts = {
+      'Pending': 0,
+      'Sent': 0,
+      'Received': 0,
+      'Reminder Sent': 0,
+      'Other': 0
+    };
 
-    document.getElementById('recentBadge').textContent =
-      `Last ${allDocs.length} Document${allDocs.length !== 1 ? 's' : ''}`;
+    lcrCalls.forEach(call => {
+      const st = call.lcr_status || 'Pending';
+      if (statusCounts[st] !== undefined) {
+        statusCounts[st]++;
+      } else {
+        statusCounts['Other']++;
+      }
+    });
 
-    feed.innerHTML = allDocs.map(d => {
-      const dt = new Date(d.saved_at);
-      const timeStr = isNaN(dt) ? '—' : dt.toLocaleString('en-IN', {
-        day:'2-digit', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit'
-      });
+    const total = lcrCalls.length;
+    
+    const statuses = ['Pending', 'Sent', 'Reminder Sent', 'Received', 'Other'];
+    const colors = {
+      'Pending': '#f59e0b',
+      'Sent': '#3b82f6',
+      'Reminder Sent': '#a855f7',
+      'Received': '#22c55e',
+      'Other': '#94a3b8'
+    };
+
+    grid.innerHTML = statuses.map(st => {
+      const count = statusCounts[st];
+      if (count === 0 && st === 'Other') return '';
+      const pct = total > 0 ? Math.round((count / total) * 100) : 0;
       return `
-        <div class="activity-item">
-          <div class="act-icon" style="background:${d.color}22;color:${d.color};">
-            <i class="fa-solid ${d.icon}"></i>
+        <div class="completeness-item">
+          <div class="ci-header">
+            <span class="ci-label"><i class="fa-solid fa-circle" style="color:${colors[st]};font-size:0.6rem;"></i> ${st}</span>
+            <div class="ci-stats">
+              <span class="ci-count">${count.toLocaleString('en-IN')}</span>
+              <span class="ci-pct">${pct}%</span>
+            </div>
           </div>
-          <div class="act-body">
-            <div class="act-title">${d.label}</div>
-            <div class="act-meta"><span class="act-type">${d.type}</span> · ${timeStr}</div>
+          <div class="ci-bar-bg">
+            <div class="ci-bar-fill" style="width:${pct}%;background:${colors[st]}"></div>
           </div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  function renderCauselistTrend() {
+    const container = document.getElementById('causelistChart');
+    if (!container) return;
+
+    const scrapedLists = causeLists.filter(l => !(l.header && l.header.head_court));
+    
+    const dateCounts = {};
+    scrapedLists.forEach(l => {
+      const rawDate = l.date || (l.header && l.header.date) || "";
+      if (rawDate) {
+         let dStr = rawDate.substring(0, 11);
+         if (!dateCounts[dStr]) dateCounts[dStr] = 0;
+         dateCounts[dStr] += (l.cases || []).length;
+      }
+    });
+
+    const entries = Object.entries(dateCounts).sort((a, b) => new Date(a[0]) - new Date(b[0]));
+    const recent = entries.slice(-30);
+    const max = Math.max(0, ...recent.map(e => e[1]));
+    const color = '#3b82f6';
+
+    if (recent.length === 0) {
+       container.innerHTML = `<div style="padding: 20px; color: #94a3b8; font-size: 0.9rem;">No scraped causelist data available.</div>`;
+       return;
+    }
+
+    container.innerHTML = recent.map(([dateStr, count]) => {
+      const barH = max > 0 ? Math.round((count / max) * 100) : 0;
+      const shortDate = dateStr.length >= 6 ? dateStr.substring(0,6) : dateStr;
+      return `
+        <div class="decade-bar-wrap">
+          <div class="decade-bar-outer">
+            <div class="decade-count">${count}</div>
+            <div class="decade-bar" style="height:${barH}%;background:${color};"></div>
+          </div>
+          <div class="decade-label" style="font-size: 0.65rem; white-space: nowrap;">${shortDate}</div>
         </div>
       `;
     }).join('');
