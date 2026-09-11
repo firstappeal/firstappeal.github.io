@@ -102,7 +102,7 @@ def get_dropdown_options(soup):
         val = opt.get('value')
         text = opt.text.strip()
         dt = parse_date_str(text)
-        if dt and dt >= datetime(2026, 9, 1): # On or after 01-Sep-2026
+        if dt and dt > datetime(2026, 9, 1): # Strictly after 01-Sep-2026 (skips 01-Sep as requested)
             options.append({'value': val, 'text': text})
     return options
 
@@ -144,8 +144,8 @@ def fetch_specific_date(val, date_text, base_data):
             r_post = sess.post(url, data=data, timeout=30)
             if 'pdf' in r_post.headers.get('Content-Type', '').lower():
                 print(f"Success fetching PDF for {date_text}")
-                cases, overall_date = extract_cases_from_pdf(r_post.content)
-                upload_to_supabase(cases, overall_date)
+                cases, _ = extract_cases_from_pdf(r_post.content)
+                upload_to_supabase(cases, date_text)
                 return True
         except Exception as e:
             pass
@@ -168,7 +168,7 @@ def fetch_and_process():
         
         found = False
         for ex in existing:
-            if ex and day_str in ex and mon_str in ex:
+            if ex == opt['text']:
                 found = True
                 break
         
