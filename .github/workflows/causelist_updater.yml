@@ -19,14 +19,9 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Install System Dependencies
-        run: |
-          sudo apt-get update -qq
-          sudo apt-get install -y tesseract-ocr
-
       - name: Install Python Dependencies
         run: |
-          pip install --quiet requests beautifulsoup4 pytesseract PyMuPDF Pillow urllib3
+          pip install --quiet requests beautifulsoup4 PyMuPDF urllib3
 
       - name: Run Causelist Scraper
         run: |
