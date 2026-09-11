@@ -115,17 +115,32 @@ parseBtn.addEventListener('click', async () => {
       // Group text items into lines by their Y coordinate (rounded to 2dp)
       const lineMap = {};
       content.items.forEach(item => {
-        const y = Math.round(item.transform[5] * 10) / 10;
+        const y = Math.round(item.transform[5] / 4) * 4;
         if (!lineMap[y]) lineMap[y] = [];
-        lineMap[y].push(item.str);
+        lineMap[y].push(item);
       });
 
       // Sort by descending Y (top to bottom on page)
       const sortedYs = Object.keys(lineMap).map(Number).sort((a, b) => b - a);
+      let pageLines = [];
       sortedYs.forEach(y => {
-        const lineText = lineMap[y].join(' ').trim();
-        if (lineText) allLines.push(lineText);
+        // Sort items by X coordinate (left to right)
+        lineMap[y].sort((a, b) => a.transform[4] - b.transform[4]);
+        const lineText = lineMap[y].map(i => i.str).join(' ').trim();
+        if (lineText) pageLines.push(lineText);
       });
+      
+      // Stitch continuation lines for this page
+      let stitched = [];
+      for(const line of pageLines) {
+        if (/FA\/\d{1,5}\/\d{4}/i.test(line)) {
+            stitched.push(line);
+        } else if (stitched.length > 0) {
+            stitched[stitched.length - 1] += ' ' + line;
+        }
+      }
+      
+      allLines.push(...stitched);
     }
 
     setParseProgress(65, 'Parsing case entries…');
@@ -142,20 +157,24 @@ parseBtn.addEventListener('click', async () => {
     parsedCases = rawParsed.map(c => {
       const key = `${c.caseNo}|${c.caseYear}`;
       const existing = existingRecordsMap.get(key);
-      let status = 'new';
+      let status = c.status; // preserve 'error' if it's already an error
       let dbId = null;
-      if (existing) {
-        const dbApp = (existing.appellant || '').trim().toLowerCase();
-        const dbRes = (existing.respondent || '').trim().toLowerCase();
-        const cApp = (c.appellant || '').trim().toLowerCase();
-        const cRes = (c.respondent || '').trim().toLowerCase();
-        if (dbApp !== cApp || dbRes !== cRes) {
-          status = 'update';
-          dbId = existing.id;
-        } else {
-          status = 'skip';
-        }
+      
+      if (status !== 'error') {
+          if (existing) {
+            const dbApp = (existing.appellant || '').trim().toLowerCase();
+            const dbRes = (existing.respondent || '').trim().toLowerCase();
+            const cApp = (c.appellant || '').trim().toLowerCase();
+            const cRes = (c.respondent || '').trim().toLowerCase();
+            if (dbApp !== cApp || dbRes !== cRes) {
+              status = 'update';
+              dbId = existing.id;
+            } else {
+              status = 'skip';
+            }
+          }
       }
+      
       return {
         ...c,
         status,
@@ -230,20 +249,18 @@ function parseAllLines(lines) {
 
     if (vsParts.length >= 2) {
       const appellant  = cleanName(vsParts[0]);
-      // Join remaining parts in case VS appears in a name (rare)
       const respondent = cleanName(vsParts.slice(1).join(' VS '));
 
-      if (appellant && respondent) {
-        seen.add(key);
-        results.push({ caseNo, caseYear, appellant, respondent, rawLine: line, status: 'new' });
-        continue;
-      }
-    }
-
-    // Could not split — record as parse error
-    if (caseNo && caseYear) {
       seen.add(key);
-      results.push({ caseNo, caseYear, appellant: '', respondent: '', rawLine: line, status: 'error' });
+      const isError = !appellant || !respondent;
+      results.push({ caseNo, caseYear, appellant, respondent, rawLine: line, status: isError ? 'error' : 'new' });
+      continue;
+    } else {
+      // No VS found
+      const appellant = cleanName(partyPart);
+      seen.add(key);
+      results.push({ caseNo, caseYear, appellant, respondent: '', rawLine: line, status: 'error' });
+      continue;
     }
   }
 
