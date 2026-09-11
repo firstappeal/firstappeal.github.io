@@ -11,7 +11,6 @@ function showToast(msg) {
     }, 4000);
 }
 
-const updateBtn = document.getElementById('updateBtn');
 const recordsTbody = document.getElementById('recordsTbody');
 const timelineGrid = document.getElementById('timelineGrid');
 
@@ -22,23 +21,23 @@ function renderTable() {
     let html = '';
     let hasCases = false;
     
-    let listsToRender = allScrapedLists;
-    
-    // Filter lists if a timeline date is selected
-    if (selectedDateStr) {
-        listsToRender = allScrapedLists.filter(l => {
-            const createdStr = new Date(l.created_at).toISOString().substring(0, 10);
-            if (createdStr === selectedDateStr) return true;
-            
-            const targetDate = new Date(selectedDateStr);
-            const monthMap = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-            const dayStr = String(targetDate.getDate());
-            const monStr = monthMap[targetDate.getMonth()];
-            
-            const recDate = l.date || (l.header && l.header.date) || "";
-            return recDate.includes(dayStr) && recDate.includes(monStr);
-        });
+    if (!selectedDateStr) {
+        recordsTbody.innerHTML = '<tr><td colspan="4" style="text-align: center; color: #94a3b8;">Select a date from the timeline above to view its causelist records.</td></tr>';
+        return;
     }
+
+    let listsToRender = allScrapedLists.filter(l => {
+        const createdStr = new Date(l.created_at).toISOString().substring(0, 10);
+        if (createdStr === selectedDateStr) return true;
+        
+        const targetDate = new Date(selectedDateStr);
+        const monthMap = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+        const dayStr = String(targetDate.getDate());
+        const monStr = monthMap[targetDate.getMonth()];
+        
+        const recDate = l.date || (l.header && l.header.date) || "";
+        return recDate.includes(dayStr) && recDate.includes(monStr);
+    });
 
     if (!listsToRender || listsToRender.length === 0) {
         html = `<tr><td colspan="4" style="text-align: center; color: #94a3b8;">No causelist records found${selectedDateStr ? ' for this date' : ''}.</td></tr>`;
@@ -152,22 +151,5 @@ async function loadRecords() {
     }
 }
 
-updateBtn.addEventListener('click', () => {
-    const hostname = window.location.hostname;
-    const pathname = window.location.pathname;
-    
-    if (hostname.includes('github.io')) {
-        const username = hostname.split('.')[0];
-        const repo = pathname.split('/')[1];
-        const actionsUrl = `https://github.com/${username}/${repo}/actions/workflows/causelist_updater.yml`;
-        
-        showToast('Redirecting to GitHub Actions to trigger the update manually...');
-        setTimeout(() => {
-            window.open(actionsUrl, '_blank');
-        }, 1500);
-    } else {
-        alert('Because the portal is hosted on GitHub Pages, the update process is managed by GitHub Actions.\n\nTo update manually, go to your GitHub Repository -> Actions tab -> Daily Causelist Updater -> Run workflow.');
-    }
-});
 
 document.addEventListener('DOMContentLoaded', loadRecords);
