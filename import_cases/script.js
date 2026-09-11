@@ -204,7 +204,7 @@ function parseAllLines(lines) {
     // Extract the Party Details portion: strip serial numbers and case key
     // Remove leading number (serial), the case key itself, and trailing number (Total Petitioner's)
     let partyPart = line
-      .replace(/^\d+\s+/, '')            // strip leading serial number
+      .replace(/^\d+\s*/, '')            // strip leading serial number (even if no space)
       .replace(caseKeyRe, '')            // strip FA/no/year
       .replace(/\s+\d+\s*$/, '')        // strip trailing petitioner count
       .trim();
