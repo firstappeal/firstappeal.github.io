@@ -114,8 +114,6 @@ document.addEventListener('DOMContentLoaded', () => {
     renderCompleteness();
     renderDecades();
     renderDAs();
-    renderLcrStatus();
-    renderCauselistTrend();
   }
 
   /* ── KPI Cards ───────────────────────────────────────────── */
@@ -353,76 +351,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ── Recent Activity ──────────────────────────────────────── */
-  function renderLcrStatus() {
-    const grid = document.getElementById('lcrStatusGrid');
-    const badge = document.getElementById('lcrTotalBadge');
-    if (!grid || !badge) return;
-
-    badge.textContent = `${lcrCalls.length} Total Calls`;
-
-    const statusCounts = {
-      'Pending': 0,
-      'Sent': 0,
-      'Received': 0,
-      'Reminder Sent': 0,
-      'Other': 0
-    };
-
-    lcrCalls.forEach(call => {
-      const st = call.lcr_status || 'Pending';
-      if (statusCounts[st] !== undefined) {
-        statusCounts[st]++;
-      } else {
-        statusCounts['Other']++;
-      }
-    });
-
-    const total = lcrCalls.length;
-    
-    const statuses = ['Pending', 'Sent', 'Reminder Sent', 'Received', 'Other'];
-    const colors = {
-      'Pending': '#f59e0b',
-      'Sent': '#3b82f6',
-      'Reminder Sent': '#a855f7',
-      'Received': '#22c55e',
-      'Other': '#94a3b8'
-    };
-
-    grid.innerHTML = statuses.map(st => {
-      const count = statusCounts[st];
-      if (count === 0 && st === 'Other') return '';
-      const pct = total > 0 ? Math.round((count / total) * 100) : 0;
-      return `
-        <div class="completeness-item">
-          <div class="ci-header">
-            <span class="ci-label"><i class="fa-solid fa-circle" style="color:${colors[st]};font-size:0.6rem;"></i> ${st}</span>
-            <div class="ci-stats">
-              <span class="ci-count">${count.toLocaleString('en-IN')}</span>
-              <span class="ci-pct">${pct}%</span>
-            </div>
-          </div>
-          <div class="ci-bar-bg">
-            <div class="ci-bar-fill" style="width:${pct}%;background:${colors[st]}"></div>
-          </div>
-        </div>
-      `;
-    }).join('');
-  }
-
-  function renderCauselistTrend() {
-    const container = document.getElementById('causelistChart');
-    if (!container) return;
-
-    const scrapedLists = causeLists.filter(l => !(l.header && l.header.head_court));
-    
-    const dateCounts = {};
-    scrapedLists.forEach(l => {
-      const rawDate = l.date || (l.header && l.header.date) || "";
-      if (rawDate) {
-         let dStr = rawDate.substring(0, 11);
-         if (!dateCounts[dStr]) dateCounts[dStr] = 0;
-         dateCounts[dStr] += (l.cases || []).length;
-      }
     });
 
     const entries = Object.entries(dateCounts).sort((a, b) => new Date(a[0]) - new Date(b[0]));
