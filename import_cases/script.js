@@ -481,19 +481,23 @@ exportErrorsBtn.addEventListener('click', () => {
 
 // ── Import to Supabase ─────────────────────────────────────────
 function updateImportCount() {
-  const n = parsedCases.filter(c => c.status === 'new').length;
-  importCount.textContent = n;
-  importBtn.disabled = n === 0;
-  importHint.textContent = n > 0
+  const nNew = parsedCases.filter(c => c.status === 'new').length;
+  const nUpdate = parsedCases.filter(c => c.status === 'update').length;
+  const total = nNew + nUpdate;
+  importCount.textContent = total;
+  importBtn.disabled = total === 0;
+  importHint.textContent = total > 0
     ? `${parsedCases.filter(c => c.status === 'skip').length} already-existing cases will be skipped.`
-    : 'No new cases to import.';
+    : 'No cases to process.';
 }
+
 
 importBtn.addEventListener('click', async () => {
   const toImport = parsedCases.filter(c => c.status === 'new' && c.appellant && c.respondent);
+  const toUpdate = parsedCases.filter(c => c.status === 'update' && c.appellant && c.respondent && c.dbId);
 
-  if (!toImport.length) {
-    showToast('No new cases to import.', 'info');
+  if (!toImport.length && !toUpdate.length) {
+    showToast('No new cases or updates to process.', 'info');
     return;
   }
 
@@ -503,8 +507,7 @@ importBtn.addEventListener('click', async () => {
   }
 
   const confirmed = confirm(
-    `Import ${toImport.length} new First Appeal cases into the master Supabase database?\n\n` +
-    `This will NOT overwrite any existing records.`
+    `Process ${toImport.length} new cases and update ${toUpdate.length} existing cases in the master database?`
   );
   if (!confirmed) return;
 
@@ -512,75 +515,99 @@ importBtn.addEventListener('click', async () => {
   importProgress.style.display = 'block';
   importResult.style.display   = 'none';
 
-  const CHUNK_SIZE = 150;
   let inserted = 0;
+  let updated  = 0;
   let failed   = 0;
-  const chunks = [];
-  for (let i = 0; i < toImport.length; i += CHUNK_SIZE) {
-    chunks.push(toImport.slice(i, i + CHUNK_SIZE));
+
+  if (toImport.length > 0) {
+      const CHUNK_SIZE = 150;
+      const chunks = [];
+      for (let i = 0; i < toImport.length; i += CHUNK_SIZE) {
+        chunks.push(toImport.slice(i, i + CHUNK_SIZE));
+      }
+
+      for (let ci = 0; ci < chunks.length; ci++) {
+        const chunk = chunks[ci];
+        const pct   = Math.round(((ci) / chunks.length) * 50);
+        setImportProgress(pct, `Inserting chunk ${ci + 1} of ${chunks.length} (${inserted} done)…`);
+
+        const records = chunk.map(c => ({
+          case_type:  'First Appeal',
+          case_no:    c.caseNo,
+          case_year:  c.caseYear,
+          appellant:  c.appellant,
+          respondent: c.respondent,
+          lc_court: '', lc_case_type: '', lc_case_no: '', lc_case_year: '',
+          date_of_judgment: '', date_of_decree_award: '', date_of_filing_fa: '',
+          suit_value: '', appeal_value: '', record_room_bundle_no: '', dealing_assistant: ''
+        }));
+
+        try {
+          await window.PortalDB.bulkInsertCaseRecords(records, CHUNK_SIZE);
+          inserted += chunk.length;
+        } catch (err) {
+          console.error(`Chunk ${ci + 1} failed:`, err);
+          failed += chunk.length;
+        }
+      }
   }
 
-  for (let ci = 0; ci < chunks.length; ci++) {
-    const chunk = chunks[ci];
-    const pct   = Math.round(((ci) / chunks.length) * 100);
-    setImportProgress(pct, `Inserting chunk ${ci + 1} of ${chunks.length} (${inserted} done)…`);
-
-    const records = chunk.map(c => ({
-      case_type:  'First Appeal',
-      case_no:    c.caseNo,
-      case_year:  c.caseYear,
-      appellant:  c.appellant,
-      respondent: c.respondent,
-      // All other fields left empty — will be filled via LCR/case_records later
-      lc_court: '', lc_case_type: '', lc_case_no: '', lc_case_year: '',
-      date_of_judgment: '', date_of_decree_award: '', date_of_filing_fa: '',
-      suit_value: '', appeal_value: '', record_room_bundle_no: '', dealing_assistant: ''
-    }));
-
-    try {
-      await window.PortalDB.bulkInsertCaseRecords(records, CHUNK_SIZE);
-      inserted += chunk.length;
-    } catch (err) {
-      console.error(`Chunk ${ci + 1} failed:`, err);
-      failed += chunk.length;
-    }
+  if (toUpdate.length > 0) {
+      for (let i = 0; i < toUpdate.length; i++) {
+         const c = toUpdate[i];
+         const pct = 50 + Math.round((i / toUpdate.length) * 50);
+         setImportProgress(pct, `Updating record ${i + 1} of ${toUpdate.length}…`);
+         
+         try {
+            await window.PortalDB.updateCaseRecord(c.dbId, {
+                appellant: c.appellant,
+                respondent: c.respondent
+            });
+            updated++;
+         } catch (err) {
+            console.error(`Update failed for ${c.caseNo}/${c.caseYear}:`, err);
+            failed++;
+         }
+      }
   }
 
-  setImportProgress(100, 'Import complete!');
+  setImportProgress(100, 'Processing complete!');
   setTimeout(() => {
     importProgress.style.display = 'none';
 
-    // Show result panel
     importResult.style.display = 'block';
     if (failed === 0) {
       document.getElementById('resultIcon').textContent  = '✅';
-      document.getElementById('resultTitle').textContent = `${inserted} Cases Imported Successfully!`;
+      document.getElementById('resultTitle').textContent = `Processing Completed Successfully!`;
       document.getElementById('resultBody').textContent  =
-        `All ${inserted} new First Appeal cases have been added to the master Supabase database. ` +
-        `Existing records were not affected.`;
+        `${inserted} new cases imported. ${updated} existing cases updated with new names.`;
     } else {
       document.getElementById('resultIcon').textContent  = '⚠️';
-      document.getElementById('resultTitle').textContent = `Partial Import`;
+      document.getElementById('resultTitle').textContent = `Partial Success`;
       document.getElementById('resultBody').textContent  =
-        `${inserted} cases imported successfully. ${failed} cases failed — ` +
-        `please try again or contact support.`;
+        `${inserted} inserted, ${updated} updated. ${failed} cases failed — check console.`;
     }
 
-    // Mark imported cases as "skip" so they show correctly
-    const importedKeys = new Set(toImport.map(c => `${c.caseNo}|${c.caseYear}`));
+    const processedKeys = new Set([
+        ...toImport.map(c => `${c.caseNo}|${c.caseYear}`),
+        ...toUpdate.map(c => `${c.caseNo}|${c.caseYear}`)
+    ]);
+    
     parsedCases.forEach(c => {
-      if (importedKeys.has(`${c.caseNo}|${c.caseYear}`)) {
+      if (processedKeys.has(`${c.caseNo}|${c.caseYear}`)) {
         c.status = 'skip';
-        existingKeys.add(`${c.caseNo}|${c.caseYear}`);
       }
     });
-    renderPreview();
-    updateImportCount();
-    importBtn.disabled = false;
-
-    showToast(`Imported ${inserted} cases to Supabase!`, 'success');
+    
+    loadExistingKeys().then(() => {
+        renderPreview();
+        updateImportCount();
+        importBtn.disabled = false;
+        showToast(`Processed ${inserted + updated} cases!`, 'success');
+    });
   }, 600);
 });
+
 
 // ── Import Another ─────────────────────────────────────────────
 importAnotherBtn.addEventListener('click', () => {
