@@ -1388,7 +1388,9 @@ async function viewCloudLists() {
   let allCauseLists = [];
   try {
     if (window.PortalDB) {
-      allCauseLists = await window.PortalDB.getCauseLists();
+      const rawLists = await window.PortalDB.getCauseLists();
+      // Filter out scraped lists: manual listing forms always have head_court
+      allCauseLists = rawLists.filter(l => l.header && l.header.head_court !== undefined);
     } else {
       throw new Error('PortalDB not available');
     }
