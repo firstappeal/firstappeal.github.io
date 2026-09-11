@@ -261,14 +261,18 @@ function updateAllJudgeDropdowns() {
 }
 
 // ── Add New Row to the Editor Table ────────────────────────────────
-function addNewRow(data = { nature: 'FA', case_no: '', appellant: '', assistant: '', heading: '', direction: '', remarks: '', judge: '' }) {
+function addNewRow(data = {}) {
   const tbody = document.getElementById('editorTableBody');
   const tr = document.createElement('tr');
   const rowId = 'row_' + Math.random().toString(36).substr(2, 9);
   
-  const headingVal = typeof data.heading !== 'undefined' ? data.heading : '';
-  const remarksVal = typeof data.remarks !== 'undefined' ? data.remarks : '';
+  const natureVal = data.nature || 'FA';
+  const caseNoVal = data.case_no || '';
+  const appellantVal = data.appellant || '';
   const assistantVal = data.assistant || '';
+  const headingVal = data.heading || '';
+  const directionVal = data.direction || '';
+  const remarksVal = data.remarks || '';
   
   // Calculate allocated judge: prefer provided judge if in JUDGES, else evaluate rule
   let effectiveJudge = data.judge;
@@ -278,20 +282,21 @@ function addNewRow(data = { nature: 'FA', case_no: '', appellant: '', assistant:
   }
   const allocatedJudge = (effectiveJudge && JUDGES.includes(effectiveJudge)) 
     ? effectiveJudge 
-    : evaluateJudge(headingVal, data.case_no);
+    : evaluateJudge(headingVal, caseNoVal);
   
   tr.id = rowId;
   tr.innerHTML = `
     <td class="serial-number" style="text-align: center; font-weight: 600; color: #475569; vertical-align: middle;"></td>
     <td style="text-align: center; font-weight: 600; color: #334155; vertical-align: middle;">
-      <span class="nature-label">FA</span>
+      <span class="nature-label">${natureVal}</span>
+      <input type="hidden" class="nature-field" value="${natureVal}" />
     </td>
     <td class="autocomplete-cell">
-      <input type="text" class="cell-input case-no-field" value="${data.case_no}" placeholder="जैसे: 47/2024" autocomplete="off" />
+      <input type="text" class="cell-input case-no-field" value="${caseNoVal}" placeholder="जैसे: 47/2024" autocomplete="off" />
       <div class="suggestions-list" style="display: none;"></div>
     </td>
     <td>
-      <input type="text" class="cell-input appellant-field" value="${data.appellant}" oninput="syncPrintTable()" />
+      <input type="text" class="cell-input appellant-field" value="${appellantVal}" oninput="syncPrintTable()" />
     </td>
     <td>
       <input type="text" class="cell-input assistant-field" value="${assistantVal}" oninput="syncPrintTable()" />
@@ -306,7 +311,7 @@ function addNewRow(data = { nature: 'FA', case_no: '', appellant: '', assistant:
       </select>
     </td>
     <td>
-      <input type="text" class="cell-input direction-field" value="${data.direction}" oninput="syncPrintTable()" />
+      <input type="text" class="cell-input direction-field" value="${directionVal}" oninput="syncPrintTable()" />
     </td>
     <td>
       <select class="cell-input remarks-field" onchange="syncPrintTable()">
