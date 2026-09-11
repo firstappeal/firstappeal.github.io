@@ -55,16 +55,24 @@ function renderTable() {
     }
 
     let listsToRender = allScrapedLists.filter(l => {
-        const createdStr = new Date(l.created_at).toISOString().substring(0, 10);
-        if (createdStr === selectedDateStr) return true;
-        
         const targetDate = new Date(selectedDateStr);
+        const recDate = l.date || (l.header && l.header.date) || "";
+        if (!recDate) return false;
+        
+        const parsed = new Date(recDate);
+        if (!isNaN(parsed.getTime())) {
+            return parsed.toISOString().substring(0, 10) === selectedDateStr;
+        }
+        
         const monthMap = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+        const dayStr0 = String(targetDate.getDate()).padStart(2, '0');
         const dayStr = String(targetDate.getDate());
         const monStr = monthMap[targetDate.getMonth()];
+        const yearStr = String(targetDate.getFullYear());
         
-        const recDate = l.date || (l.header && l.header.date) || "";
-        return recDate.includes(dayStr) && recDate.includes(monStr);
+        return (recDate.includes(dayStr0 + '-') || recDate.includes(dayStr + '-') || recDate.includes(dayStr + ' ')) && 
+               recDate.includes(monStr) && 
+               recDate.includes(yearStr);
     });
 
     if (!listsToRender || listsToRender.length === 0) {
@@ -103,17 +111,24 @@ function renderTimeline() {
 
         const dateStr = d.toISOString().substring(0, 10);
         
-        const monthMap = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-        const dayStr = String(d.getDate());
-        const monStr = monthMap[d.getMonth()];
-        
         const record = allScrapedLists.find(l => {
-            const createdStr = new Date(l.created_at).toISOString().substring(0, 10);
-            if (createdStr === dateStr) return true;
-            
             const recDate = l.date || (l.header && l.header.date) || "";
-            if (recDate.includes(dayStr) && recDate.includes(monStr)) return true;
-            return false;
+            if (!recDate) return false;
+            
+            const parsed = new Date(recDate);
+            if (!isNaN(parsed.getTime())) {
+                return parsed.toISOString().substring(0, 10) === dateStr;
+            }
+            
+            const monthMap = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+            const dayStr0 = String(d.getDate()).padStart(2, '0');
+            const dayStr = String(d.getDate());
+            const monStr = monthMap[d.getMonth()];
+            const yearStr = String(d.getFullYear());
+            
+            return (recDate.includes(dayStr0 + '-') || recDate.includes(dayStr + '-') || recDate.includes(dayStr + ' ')) && 
+                   recDate.includes(monStr) && 
+                   recDate.includes(yearStr);
         });
         
         const displayDate = d.toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short' });
@@ -167,7 +182,18 @@ async function loadRecords() {
     if (!window.PortalDB) return;
     try {
         const allLists = await window.PortalDB.getCauseLists();
-        allScrapedLists = allLists.filter(l => !(l.header && l.header.head_court));
+        const rawScraped = allLists.filter(l => !(l.header && l.header.head_court));
+        
+        // Deduplicate lists by date (so if the script scraped Thursday's list 5 times, it only counts as 1 list)
+        const dateSeen = new Set();
+        allScrapedLists = [];
+        for (const l of rawScraped) {
+            const recDate = l.date || (l.header && l.header.date) || "";
+            if (!recDate || !dateSeen.has(recDate)) {
+                if (recDate) dateSeen.add(recDate);
+                allScrapedLists.push(l);
+            }
+        }
         
         renderTimeline();
         renderTable();
