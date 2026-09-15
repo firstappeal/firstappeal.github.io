@@ -350,33 +350,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }).join('');
   }
 
-  /* ── Recent Activity ──────────────────────────────────────── */
-    });
 
-    const entries = Object.entries(dateCounts).sort((a, b) => new Date(a[0]) - new Date(b[0]));
-    const recent = entries.slice(-30);
-    const max = Math.max(0, ...recent.map(e => e[1]));
-    const color = '#3b82f6';
-
-    if (recent.length === 0) {
-       container.innerHTML = `<div style="padding: 20px; color: #94a3b8; font-size: 0.9rem;">No scraped causelist data available.</div>`;
-       return;
-    }
-
-    container.innerHTML = recent.map(([dateStr, count]) => {
-      const barH = max > 0 ? Math.round((count / max) * 100) : 0;
-      const shortDate = dateStr.length >= 6 ? dateStr.substring(0,6) : dateStr;
-      return `
-        <div class="decade-bar-wrap">
-          <div class="decade-bar-outer">
-            <div class="decade-count">${count}</div>
-            <div class="decade-bar" style="height:${barH}%;background:${color};"></div>
-          </div>
-          <div class="decade-label" style="font-size: 0.65rem; white-space: nowrap;">${shortDate}</div>
-        </div>
-      `;
-    }).join('');
-  }
 
   /* ── Helpers ──────────────────────────────────────────────── */
   function setText(id, val) {
