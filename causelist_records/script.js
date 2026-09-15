@@ -72,6 +72,24 @@ function normalizeDateStr(raw) {
     return null;
 }
 
+function normalizeCaseKey(caseNo, caseYear) {
+    if (!caseNo) return '';
+    let c = String(caseNo).replace('FA/', '').trim();
+    if (c.includes('/')) {
+        const parts = c.split('/');
+        c = parts.length === 3 ? `${parts[1]}/${parts[2]}` : c;
+    } else if (caseYear) {
+        c = `${c}/${caseYear}`;
+    }
+    return c;
+}
+
+function getDaForCase(caseNo, caseYear) {
+    if (typeof ASSISTANTS_DB === 'undefined') return '';
+    const c = normalizeCaseKey(caseNo, caseYear);
+    return ASSISTANTS_DB[c] || '';
+}
+
 function renderTable() {
     let html = '';
     let hasCases = false;
@@ -84,43 +102,47 @@ function renderTable() {
             (list.cases || []).forEach(c => {
                 if (c.case_no && c.case_no.toLowerCase().includes(searchQuery)) {
                     hasCases = true;
+                    const da = (c.dealing_assistant || '').trim() || getDaForCase(c.case_no, c.case_year);
                     html += `<tr>
                         <td>${list._normalizedDate || 'N/A'}</td>
                         <td><strong>${c.case_no}</strong></td>
                         <td>${c.judge || 'N/A'}</td>
+                        <td>${da || 'N/A'}</td>
                     </tr>`;
                 }
             });
         });
         if (!hasCases) {
-            html = `<tr><td colspan="3" style="text-align:center;color:#94a3b8;">No matching cases found for "${searchQuery}".</td></tr>`;
+            html = `<tr><td colspan="4" style="text-align:center;color:#94a3b8;">No matching cases found for "${searchQuery}".</td></tr>`;
         }
         recordsTbody.innerHTML = html;
         return;
     }
 
     if (!selectedDateStr) {
-        recordsTbody.innerHTML = '<tr><td colspan="3" style="text-align:center;color:#94a3b8;">Select a date from the timeline above to view its causelist records.</td></tr>';
+        recordsTbody.innerHTML = '<tr><td colspan="4" style="text-align:center;color:#94a3b8;">Select a date from the timeline above to view its causelist records.</td></tr>';
         return;
     }
 
     const listsToRender = allScrapedLists.filter(l => l._normalizedDate === selectedDateStr);
 
     if (!listsToRender.length) {
-        html = `<tr><td colspan="3" style="text-align:center;color:#94a3b8;">No causelist records found for this date.</td></tr>`;
+        html = `<tr><td colspan="4" style="text-align:center;color:#94a3b8;">No causelist records found for this date.</td></tr>`;
     } else {
         listsToRender.forEach(list => {
             (list.cases || []).forEach(c => {
                 hasCases = true;
+                const da = (c.dealing_assistant || '').trim() || getDaForCase(c.case_no, c.case_year);
                 html += `<tr>
                     <td>${list._normalizedDate}</td>
                     <td><strong>${c.case_no}</strong></td>
                     <td>${c.judge || 'N/A'}</td>
+                    <td>${da || 'N/A'}</td>
                 </tr>`;
             });
         });
         if (!hasCases) {
-            html = `<tr><td colspan="3" style="text-align:center;color:#94a3b8;">No FA cases printed on this date.</td></tr>`;
+            html = `<tr><td colspan="4" style="text-align:center;color:#94a3b8;">No FA cases printed on this date.</td></tr>`;
         }
     }
     recordsTbody.innerHTML = html;
@@ -217,7 +239,7 @@ async function loadRecords() {
 
     } catch (e) {
         console.error(e);
-        recordsTbody.innerHTML = '<tr><td colspan="3" style="text-align:center;color:#ef4444;">Error loading records.</td></tr>';
+        recordsTbody.innerHTML = '<tr><td colspan="4" style="text-align:center;color:#ef4444;">Error loading records.</td></tr>';
         timelineGrid.innerHTML = '<div style="color:#ef4444;padding:12px;">Error loading timeline.</div>';
     }
 }
