@@ -308,6 +308,13 @@ body {
 .preview-active #editorWrapper { display: none; }
 
 /* ── Print-page internals ─────────────────────────────────── */
+.pr-topleft {
+  position: absolute;
+  top: 15mm;
+  left: 25mm;
+  font-size: 11pt;
+  font-weight: bold;
+}
 .pr-topright {
   position: absolute;
   top: 15mm;
@@ -505,6 +512,7 @@ body {
     break-after: auto !important;
   }
 
+  .pr-topleft { position: absolute; top: 0; left: 0; }
   .pr-topright { position: absolute; top: 0; right: 0; }
   
   /* Compact spacing for single-page print fit */
