@@ -8,6 +8,7 @@
       --primary-color: #1a73e8;
       --success-color: #166534;
       --danger-color: #d93025;
+      --warning-color: #b45309;
       --border-color: #e2e8f0;
       --bg-color: #f8fafc;
     }
@@ -18,7 +19,7 @@
       color: #334155;
     }
     .container {
-      max-width: 600px;
+      max-width: 700px;
       margin: 50px auto;
       background: white;
       padding: 30px;
@@ -45,23 +46,38 @@
     }
     .back-btn:hover { background: #e2e8f0; color: #334155; }
     
-    .form-group {
-      margin-bottom: 20px;
+    .card {
+      background: var(--bg-color);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 25px;
     }
+    .card h2 {
+      margin-top: 0;
+      font-size: 1.1rem;
+      color: #0f172a;
+      margin-bottom: 15px;
+    }
+    
+    .form-group { margin-bottom: 15px; }
     label {
       display: block;
       font-weight: 600;
       margin-bottom: 6px;
       font-size: 0.9rem;
     }
-    input {
+    input, textarea {
       width: 100%;
       padding: 10px;
       border: 1px solid #cbd5e1;
       border-radius: 6px;
       box-sizing: border-box;
       font-size: 1rem;
+      font-family: inherit;
     }
+    textarea { resize: vertical; min-height: 80px; }
+    
     .btn {
       padding: 10px 20px;
       border: none;
@@ -69,13 +85,17 @@
       cursor: pointer;
       font-weight: 600;
       font-size: 0.95rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
     }
     .btn-primary { background: var(--primary-color); color: white; }
     .btn-success { background: var(--success-color); color: white; }
     .btn-danger { background: var(--danger-color); color: white; }
+    .btn-warning { background: var(--warning-color); color: white; }
     
-    .flex-row { display: flex; gap: 10px; align-items: flex-end; }
-    #statusMsg { margin-top: 15px; font-weight: 600; font-size: 0.9rem; }
+    .status-msg { margin-top: 15px; font-weight: 600; font-size: 0.95rem; }
+    .hint { font-size: 0.8rem; color: #64748b; margin-top: 4px; }
   </style>
 </head>
 <body>
@@ -86,29 +106,51 @@
     </h1>
     
     <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 25px;">
-      किसी केस के लिए डीलिंग असिस्टेंट (Dealing Assistant) खोजें, नया जोड़ें, अपडेट करें या हटाएं। यह डेटा आपके ब्राउज़र में सुरक्षित रहेगा और लिस्टिंग फॉर्म पर लागू होगा।
+      यहाँ से आप एक या एक से अधिक केस किसी असिस्टेंट को सौंप सकते हैं, या किसी असिस्टेंट का नाम बदल सकते हैं।
     </p>
 
-    <div class="form-group flex-row">
-      <div style="flex: 1;">
-        <label>केस नंबर (Case No.)</label>
-        <input type="text" id="caseNoInput" placeholder="e.g. 47/2024" onkeyup="if(event.key==='Enter') searchAssistant()" />
+    <!-- Section 1: Bulk Allocate -->
+    <div class="card">
+      <h2>1. केस आवंटन (Assign Cases)</h2>
+      <div class="form-group">
+        <label>केस नंबर (Case Numbers)</label>
+        <textarea id="bulkCaseInput" placeholder="47/2024, 12/2023... (एक से अधिक केस कॉमा या नई लाइन से अलग करें)"></textarea>
+        <div class="hint">आप एक साथ कई केस पेस्ट कर सकते हैं।</div>
       </div>
-      <button class="btn btn-primary" onclick="searchAssistant()">🔍 खोजें</button>
-    </div>
-
-    <div id="editArea" style="display: none; background: var(--bg-color); padding: 20px; border: 1px solid var(--border-color); border-radius: 8px;">
       <div class="form-group">
         <label>असिस्टेंट का नाम (Assistant Name)</label>
-        <input type="text" id="nameInput" placeholder="असिस्टेंट का नाम दर्ज करें" />
+        <input type="text" id="bulkNameInput" placeholder="असिस्टेंट का नाम दर्ज करें" />
       </div>
-      <div style="display: flex; gap: 10px;">
-        <button class="btn btn-success" onclick="saveAssistant()">💾 सेव करें (Save)</button>
-        <button class="btn btn-danger" onclick="deleteAssistant()">🗑 हटाएं (Delete)</button>
-      </div>
+      <button class="btn btn-success" onclick="bulkAssign()">💾 सेव करें (Assign)</button>
+      <div id="bulkStatus" class="status-msg"></div>
     </div>
-    
-    <div id="statusMsg"></div>
+
+    <!-- Section 2: Rename Assistant -->
+    <div class="card">
+      <h2>2. असिस्टेंट का नाम बदलें (Rename Assistant)</h2>
+      <div class="form-group">
+        <label>पुराना नाम (Old Name)</label>
+        <input type="text" id="oldNameInput" placeholder="उदा: Ravi" />
+      </div>
+      <div class="form-group">
+        <label>नया नाम (New Name)</label>
+        <input type="text" id="newNameInput" placeholder="उदा: Ravi Kumar" />
+      </div>
+      <button class="btn btn-primary" onclick="renameAssistant()">✏️ नाम बदलें (Rename)</button>
+      <div id="renameStatus" class="status-msg"></div>
+    </div>
+
+    <!-- Section 3: Delete Mapping -->
+    <div class="card">
+      <h2>3. केस से असिस्टेंट हटाएं (Remove Assistant from Cases)</h2>
+      <div class="form-group">
+        <label>केस नंबर (Case Numbers)</label>
+        <textarea id="deleteCaseInput" placeholder="47/2024, 12/2023..."></textarea>
+      </div>
+      <button class="btn btn-danger" onclick="deleteMappings()">🗑 हटाएं (Remove)</button>
+      <div id="deleteStatus" class="status-msg"></div>
+    </div>
+
   </div>
 
   <script src="assistants_db.js"></script>
@@ -116,6 +158,7 @@
     const STORAGE_KEY = 'patna_custom_assistants_v1';
     let customAssistants = {};
 
+    // Load existing custom overrides on startup
     try {
       const stored = localStorage.getItem(STORAGE_KEY);
       if (stored) {
@@ -129,60 +172,89 @@
       }
     } catch (e) {}
 
-    function showMsg(text, color) {
-      const el = document.getElementById('statusMsg');
+    function showMsg(id, text, color) {
+      const el = document.getElementById(id);
       el.textContent = text;
       el.style.color = color;
+      setTimeout(() => { el.textContent = ''; }, 5000);
     }
 
-    function searchAssistant() {
-      const caseNo = document.getElementById('caseNoInput').value.trim();
-      if (!caseNo) {
-        showMsg("कृपया केस नंबर दर्ज करें। (Please enter Case No.)", "var(--danger-color)");
-        document.getElementById('editArea').style.display = 'none';
+    function parseCaseNumbers(text) {
+      return text.split(/[\n,;]+/).map(s => s.trim()).filter(s => s.length > 0);
+    }
+
+    function bulkAssign() {
+      const casesText = document.getElementById('bulkCaseInput').value;
+      const name = document.getElementById('bulkNameInput').value.trim();
+      const cases = parseCaseNumbers(casesText);
+
+      if (cases.length === 0 || !name) {
+        showMsg('bulkStatus', "❌ कृपया केस नंबर और असिस्टेंट का नाम दर्ज करें।", "var(--danger-color)");
         return;
       }
 
-      let currentName = '';
-      if (typeof ASSISTANTS_DB !== 'undefined' && ASSISTANTS_DB.hasOwnProperty(caseNo)) {
-        currentName = ASSISTANTS_DB[caseNo];
-        showMsg("✅ केस नंबर मिला। (Case found.)", "var(--success-color)");
-      } else {
-        showMsg("⚠️ नया केस। आप इसे डेटाबेस में जोड़ सकते हैं। (New case. You can add it.)", "#b45309");
-      }
+      cases.forEach(caseNo => {
+        customAssistants[caseNo] = name;
+        if (typeof ASSISTANTS_DB !== 'undefined') ASSISTANTS_DB[caseNo] = name;
+      });
 
-      document.getElementById('nameInput').value = currentName;
-      document.getElementById('editArea').style.display = 'block';
-    }
-
-    function saveAssistant() {
-      const caseNo = document.getElementById('caseNoInput').value.trim();
-      const name = document.getElementById('nameInput').value.trim();
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(customAssistants));
       
-      if (!caseNo || !name) {
-        showMsg("❌ केस नंबर और असिस्टेंट का नाम दोनों आवश्यक हैं। (Both fields are required.)", "var(--danger-color)");
+      document.getElementById('bulkCaseInput').value = '';
+      document.getElementById('bulkNameInput').value = '';
+      showMsg('bulkStatus', `✅ सफलतापूर्वक ${cases.length} केस '${name}' को सौंपे गए।`, "var(--success-color)");
+    }
+
+    function renameAssistant() {
+      const oldName = document.getElementById('oldNameInput').value.trim();
+      const newName = document.getElementById('newNameInput').value.trim();
+
+      if (!oldName || !newName) {
+        showMsg('renameStatus', "❌ दोनों नाम दर्ज करना आवश्यक है।", "var(--danger-color)");
         return;
       }
 
-      customAssistants[caseNo] = name;
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(customAssistants));
-      if (typeof ASSISTANTS_DB !== 'undefined') ASSISTANTS_DB[caseNo] = name;
+      let count = 0;
+      if (typeof ASSISTANTS_DB !== 'undefined') {
+        for (const [caseNo, astName] of Object.entries(ASSISTANTS_DB)) {
+          if (astName.toLowerCase() === oldName.toLowerCase()) {
+            customAssistants[caseNo] = newName;
+            ASSISTANTS_DB[caseNo] = newName;
+            count++;
+          }
+        }
+      }
 
-      showMsg(`✅ '${caseNo}' के लिए '${name}' को सफलतापूर्वक सेव किया गया।`, "var(--success-color)");
+      if (count === 0) {
+        showMsg('renameStatus', `⚠️ '${oldName}' नाम का कोई असिस्टेंट नहीं मिला।`, "var(--warning-color)");
+        return;
+      }
+
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(customAssistants));
+      document.getElementById('oldNameInput').value = '';
+      document.getElementById('newNameInput').value = '';
+      showMsg('renameStatus', `✅ '${oldName}' का नाम बदलकर '${newName}' कर दिया गया है (${count} केस अपडेट हुए)।`, "var(--success-color)");
     }
 
-    function deleteAssistant() {
-      const caseNo = document.getElementById('caseNoInput').value.trim();
-      if (!caseNo) return;
+    function deleteMappings() {
+      const casesText = document.getElementById('deleteCaseInput').value;
+      const cases = parseCaseNumbers(casesText);
 
-      if (!confirm(`क्या आप वाकई '${caseNo}' की मैपिंग हटाना चाहते हैं?`)) return;
+      if (cases.length === 0) {
+        showMsg('deleteStatus', "❌ कृपया हटाने के लिए केस नंबर दर्ज करें।", "var(--danger-color)");
+        return;
+      }
 
-      customAssistants[caseNo] = null;
+      if (!confirm(`क्या आप वाकई ${cases.length} केसों से असिस्टेंट हटाना चाहते हैं?`)) return;
+
+      cases.forEach(caseNo => {
+        customAssistants[caseNo] = null;
+        if (typeof ASSISTANTS_DB !== 'undefined') delete ASSISTANTS_DB[caseNo];
+      });
+
       localStorage.setItem(STORAGE_KEY, JSON.stringify(customAssistants));
-      if (typeof ASSISTANTS_DB !== 'undefined') delete ASSISTANTS_DB[caseNo];
-
-      document.getElementById('nameInput').value = '';
-      showMsg(`🗑 '${caseNo}' की मैपिंग हटा दी गई है। (Mapping deleted.)`, "var(--success-color)");
+      document.getElementById('deleteCaseInput').value = '';
+      showMsg('deleteStatus', `🗑 ${cases.length} केसों से असिस्टेंट हटा दिए गए।`, "var(--success-color)");
     }
   </script>
 </body>
