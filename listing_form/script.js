@@ -1615,3 +1615,119 @@ async function searchCaseHistory() {
     btn.disabled = false;
   }
 }
+
+// ── Assistant Allocation Logic ──────────────────────────────────────────
+const STORAGE_KEY_CUSTOM_ASSISTANTS = 'patna_custom_assistants_v1';
+let customAssistants = {};
+
+document.addEventListener('DOMContentLoaded', () => {
+  try {
+    const stored = localStorage.getItem(STORAGE_KEY_CUSTOM_ASSISTANTS);
+    if (stored) {
+      customAssistants = JSON.parse(stored);
+      if (typeof ASSISTANTS_DB !== 'undefined') {
+        for (const [caseNo, name] of Object.entries(customAssistants)) {
+          if (name === null) {
+            delete ASSISTANTS_DB[caseNo];
+          } else {
+            ASSISTANTS_DB[caseNo] = name;
+          }
+        }
+      }
+    }
+  } catch (e) {
+    console.error("Error loading custom assistants", e);
+  }
+});
+
+function searchAssistant() {
+  const caseNoInput = document.getElementById('assistantSearchCaseNo');
+  const caseNo = caseNoInput.value.trim();
+  const msg = document.getElementById('assistantStatusMsg');
+  const editArea = document.getElementById('assistantEditArea');
+  const nameInput = document.getElementById('assistantEditName');
+  
+  if (!caseNo) {
+    msg.textContent = "कृपया केस नंबर दर्ज करें। (Please enter Case No.)";
+    msg.style.color = "#d93025";
+    editArea.style.display = 'none';
+    return;
+  }
+
+  let currentName = '';
+  if (typeof ASSISTANTS_DB !== 'undefined' && ASSISTANTS_DB.hasOwnProperty(caseNo)) {
+    currentName = ASSISTANTS_DB[caseNo];
+    msg.textContent = `✅ केस नंबर मिला। (Case found.)`;
+    msg.style.color = "#166534";
+  } else {
+    msg.textContent = `⚠️ नया केस। आप इसे डेटाबेस में जोड़ सकते हैं। (New case. You can add it.)`;
+    msg.style.color = "#b45309";
+  }
+
+  nameInput.value = currentName;
+  editArea.style.display = 'block';
+}
+
+function saveAssistantMapping() {
+  const caseNo = document.getElementById('assistantSearchCaseNo').value.trim();
+  const name = document.getElementById('assistantEditName').value.trim();
+  const msg = document.getElementById('assistantStatusMsg');
+  
+  if (!caseNo || !name) {
+    msg.textContent = "❌ केस नंबर और असिस्टेंट का नाम दोनों आवश्यक हैं। (Both fields are required.)";
+    msg.style.color = "#d93025";
+    return;
+  }
+
+  customAssistants[caseNo] = name;
+  localStorage.setItem(STORAGE_KEY_CUSTOM_ASSISTANTS, JSON.stringify(customAssistants));
+  
+  if (typeof ASSISTANTS_DB !== 'undefined') {
+    ASSISTANTS_DB[caseNo] = name;
+  }
+
+  msg.textContent = `✅ '${caseNo}' के लिए '${name}' को सफलतापूर्वक सेव किया गया।`;
+  msg.style.color = "#166534";
+  
+  // Refresh assistant fields in the editor table if they match the case
+  const rows = document.querySelectorAll('#editorTableBody tr');
+  rows.forEach(row => {
+    const rowCaseNo = row.querySelector('.case-no-field').value.trim();
+    if (rowCaseNo === caseNo) {
+      row.querySelector('.assistant-field').value = name;
+    }
+  });
+  syncPrintTable();
+}
+
+function deleteAssistantMapping() {
+  const caseNo = document.getElementById('assistantSearchCaseNo').value.trim();
+  const msg = document.getElementById('assistantStatusMsg');
+  
+  if (!caseNo) return;
+
+  if (!confirm(`क्या आप वाकई '${caseNo}' का मैपिंग हटाना चाहते हैं?`)) {
+    return;
+  }
+
+  customAssistants[caseNo] = null; // null indicates deleted
+  localStorage.setItem(STORAGE_KEY_CUSTOM_ASSISTANTS, JSON.stringify(customAssistants));
+  
+  if (typeof ASSISTANTS_DB !== 'undefined') {
+    delete ASSISTANTS_DB[caseNo];
+  }
+
+  document.getElementById('assistantEditName').value = '';
+  msg.textContent = `🗑 '${caseNo}' की मैपिंग हटा दी गई है। (Mapping deleted.)`;
+  msg.style.color = "#166534";
+  
+  // Clear assistant fields in the editor table if they match the case
+  const rows = document.querySelectorAll('#editorTableBody tr');
+  rows.forEach(row => {
+    const rowCaseNo = row.querySelector('.case-no-field').value.trim();
+    if (rowCaseNo === caseNo) {
+      row.querySelector('.assistant-field').value = '';
+    }
+  });
+  syncPrintTable();
+}
