@@ -1615,3 +1615,24 @@ async function searchCaseHistory() {
     btn.disabled = false;
   }
 }
+
+// ── Apply Custom Assistant Allocations ────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  try {
+    const stored = localStorage.getItem('patna_custom_assistants_v1');
+    if (stored) {
+      const customAssistants = JSON.parse(stored);
+      if (typeof ASSISTANTS_DB !== 'undefined') {
+        for (const [caseNo, name] of Object.entries(customAssistants)) {
+          if (name === null || name === '') {
+            delete ASSISTANTS_DB[caseNo];
+          } else {
+            ASSISTANTS_DB[caseNo] = name;
+          }
+        }
+      }
+    }
+  } catch (e) {
+    console.error("Error loading custom assistants", e);
+  }
+});

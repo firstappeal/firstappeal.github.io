@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <title>सहायक आवंटन प्रबंधक (Assistant Allocation Manager)</title>
+  <style>
+    :root {
+      --primary-color: #1a73e8;
+      --success-color: #166534;
+      --danger-color: #d93025;
+      --border-color: #e2e8f0;
+      --bg-color: #f8fafc;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0; padding: 0;
+      background: #f1f5f9;
+      color: #334155;
+    }
+    .container {
+      max-width: 600px;
+      margin: 50px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    }
+    h1 {
+      color: var(--primary-color);
+      margin-top: 0;
+      font-size: 1.5rem;
+      border-bottom: 2px solid var(--border-color);
+      padding-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .back-btn {
+      font-size: 0.9rem;
+      text-decoration: none;
+      color: #64748b;
+      background: #f1f5f9;
+      padding: 6px 12px;
+      border-radius: 6px;
+    }
+    .back-btn:hover { background: #e2e8f0; color: #334155; }
+    
+    .form-group {
+      margin-bottom: 20px;
+    }
+    label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 6px;
+      font-size: 0.9rem;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      box-sizing: border-box;
+      font-size: 1rem;
+    }
+    .btn {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+    .btn-primary { background: var(--primary-color); color: white; }
+    .btn-success { background: var(--success-color); color: white; }
+    .btn-danger { background: var(--danger-color); color: white; }
+    
+    .flex-row { display: flex; gap: 10px; align-items: flex-end; }
+    #statusMsg { margin-top: 15px; font-weight: 600; font-size: 0.9rem; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>
+      🧑‍💼 सहायक आवंटन (Assistant Allocation)
+      <a href="index.html" class="back-btn">🔙 वापस जाएँ (Back)</a>
+    </h1>
+    
+    <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 25px;">
+      किसी केस के लिए डीलिंग असिस्टेंट (Dealing Assistant) खोजें, नया जोड़ें, अपडेट करें या हटाएं। यह डेटा आपके ब्राउज़र में सुरक्षित रहेगा और लिस्टिंग फॉर्म पर लागू होगा।
+    </p>
+
+    <div class="form-group flex-row">
+      <div style="flex: 1;">
+        <label>केस नंबर (Case No.)</label>
+        <input type="text" id="caseNoInput" placeholder="e.g. 47/2024" onkeyup="if(event.key==='Enter') searchAssistant()" />
+      </div>
+      <button class="btn btn-primary" onclick="searchAssistant()">🔍 खोजें</button>
+    </div>
+
+    <div id="editArea" style="display: none; background: var(--bg-color); padding: 20px; border: 1px solid var(--border-color); border-radius: 8px;">
+      <div class="form-group">
+        <label>असिस्टेंट का नाम (Assistant Name)</label>
+        <input type="text" id="nameInput" placeholder="असिस्टेंट का नाम दर्ज करें" />
+      </div>
+      <div style="display: flex; gap: 10px;">
+        <button class="btn btn-success" onclick="saveAssistant()">💾 सेव करें (Save)</button>
+        <button class="btn btn-danger" onclick="deleteAssistant()">🗑 हटाएं (Delete)</button>
+      </div>
+    </div>
+    
+    <div id="statusMsg"></div>
+  </div>
+
+  <script src="assistants_db.js"></script>
+  <script>
+    const STORAGE_KEY = 'patna_custom_assistants_v1';
+    let customAssistants = {};
+
+    try {
+      const stored = localStorage.getItem(STORAGE_KEY);
+      if (stored) {
+        customAssistants = JSON.parse(stored);
+        if (typeof ASSISTANTS_DB !== 'undefined') {
+          for (const [key, val] of Object.entries(customAssistants)) {
+            if (val === null || val === '') delete ASSISTANTS_DB[key];
+            else ASSISTANTS_DB[key] = val;
+          }
+        }
+      }
+    } catch (e) {}
+
+    function showMsg(text, color) {
+      const el = document.getElementById('statusMsg');
+      el.textContent = text;
+      el.style.color = color;
+    }
+
+    function searchAssistant() {
+      const caseNo = document.getElementById('caseNoInput').value.trim();
+      if (!caseNo) {
+        showMsg("कृपया केस नंबर दर्ज करें। (Please enter Case No.)", "var(--danger-color)");
+        document.getElementById('editArea').style.display = 'none';
+        return;
+      }
+
+      let currentName = '';
+      if (typeof ASSISTANTS_DB !== 'undefined' && ASSISTANTS_DB.hasOwnProperty(caseNo)) {
+        currentName = ASSISTANTS_DB[caseNo];
+        showMsg("✅ केस नंबर मिला। (Case found.)", "var(--success-color)");
+      } else {
+        showMsg("⚠️ नया केस। आप इसे डेटाबेस में जोड़ सकते हैं। (New case. You can add it.)", "#b45309");
+      }
+
+      document.getElementById('nameInput').value = currentName;
+      document.getElementById('editArea').style.display = 'block';
+    }
+
+    function saveAssistant() {
+      const caseNo = document.getElementById('caseNoInput').value.trim();
+      const name = document.getElementById('nameInput').value.trim();
+      
+      if (!caseNo || !name) {
+        showMsg("❌ केस नंबर और असिस्टेंट का नाम दोनों आवश्यक हैं। (Both fields are required.)", "var(--danger-color)");
+        return;
+      }
+
+      customAssistants[caseNo] = name;
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(customAssistants));
+      if (typeof ASSISTANTS_DB !== 'undefined') ASSISTANTS_DB[caseNo] = name;
+
+      showMsg(`✅ '${caseNo}' के लिए '${name}' को सफलतापूर्वक सेव किया गया।`, "var(--success-color)");
+    }
+
+    function deleteAssistant() {
+      const caseNo = document.getElementById('caseNoInput').value.trim();
+      if (!caseNo) return;
+
+      if (!confirm(`क्या आप वाकई '${caseNo}' की मैपिंग हटाना चाहते हैं?`)) return;
+
+      customAssistants[caseNo] = null;
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(customAssistants));
+      if (typeof ASSISTANTS_DB !== 'undefined') delete ASSISTANTS_DB[caseNo];
+
+      document.getElementById('nameInput').value = '';
+      showMsg(`🗑 '${caseNo}' की मैपिंग हटा दी गई है। (Mapping deleted.)`, "var(--success-color)");
+    }
+  </script>
+</body>
+</html>
