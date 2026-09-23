@@ -1012,7 +1012,7 @@ function renderRulesSettings() {
             <option value=">=" ${rule.operator === '>=' ? 'selected' : ''}>&ge;</option>
             <option value="=" ${rule.operator === '=' ? 'selected' : ''}>=</option>
           </select>
-          <input type="number" class="cell-input rule-year" style="padding: 4px; width: 70px; ${rule.operator === 'any' ? 'display:none;' : ''}" value="${rule.year}" placeholder="Year" oninput="updateRule(${index}, 'year', this.value)" />
+          <input type="number" class="cell-input rule-year" style="padding: 4px; width: 70px; ${rule.operator === 'any' ? 'display:none;' : ''}" value="${rule.year}" placeholder="Year" onchange="updateRule(${index}, 'year', this.value)" />
         </div>
       </td>
       <td>
