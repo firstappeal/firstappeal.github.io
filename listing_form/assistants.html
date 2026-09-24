@@ -53,8 +53,32 @@
       <div id="tokenStatus" class="status-msg"></div>
     </div>
 
+    <!-- MANAGE ASSISTANTS CARD -->
+    <div class="card" style="background: #fff7ed; border-color: #fed7aa;">
+      <h2>✏️ Manage Assistant Names</h2>
+      <p style="font-size: 0.85rem; color: #9a3412; margin-bottom: 15px;">
+        Update a name to instantly rename them across all their cases globally, or Delete a name to instantly unassign them from all their cases.
+      </p>
+      <div class="flex-row">
+        <div>
+          <label>Select Assistant</label>
+          <select id="manageSelectName">
+            <option value="">-- Select Assistant --</option>
+            <!-- Populated by JS -->
+          </select>
+        </div>
+        <div>
+          <label>Rename To (Optional)</label>
+          <input type="text" id="manageNewName" placeholder="New Name" />
+        </div>
+        <button class="btn btn-warning" onclick="renameAssistant()" style="background: var(--warning-color); color: white;">✏️ Update Name</button>
+        <button class="btn btn-danger" onclick="deleteAssistant()">🗑 Delete</button>
+      </div>
+      <div id="manageStatus" class="status-msg"></div>
+    </div>
+
     <div class="card">
-      <h2>🔍 Filter & Select Cases</h2>
+      <h2>🔍 Filter & Select Cases to Re-assign</h2>
       <div class="flex-row">
         <div>
           <label>Filter by Year (Optional)</label>
@@ -145,18 +169,23 @@
         const sel = (ast === selectedValue) ? 'selected' : '';
         html += `<option value="${ast}" ${sel}>${ast}</option>`;
       });
-      html += `<option value="ADD_NEW">➕ नया असिस्टेंट जोड़ें (Add New...)</option>`;
       return html;
     }
 
     function populateDropdowns() {
+      const optionsStr = buildOptionsHtml();
+      
       // 1. Filter dropdown
       const filterSelect = document.getElementById('filterName');
-      filterSelect.innerHTML = `<option value="">-- All Assistants --</option>` + buildOptionsHtml().replace('<option value="ADD_NEW">➕ नया असिस्टेंट जोड़ें (Add New...)</option>', '');
+      filterSelect.innerHTML = `<option value="">-- All Assistants --</option>` + optionsStr;
       
-      // 2. Bulk dropdown
+      // 2. Manage dropdown
+      const manageSelect = document.getElementById('manageSelectName');
+      manageSelect.innerHTML = `<option value="">-- Select Assistant --</option>` + optionsStr;
+
+      // 3. Bulk dropdown
       const bulkSelect = document.getElementById('bulkAssistantName');
-      bulkSelect.innerHTML = `<option value="">-- Select Assistant --</option>` + buildOptionsHtml();
+      bulkSelect.innerHTML = `<option value="">-- Select Assistant --</option>` + optionsStr + `<option value="ADD_NEW">➕ नया असिस्टेंट जोड़ें (Add New...)</option>`;
     }
 
     function handleDropdownAdd(selectElem) {
@@ -173,11 +202,11 @@
             const rowSelects = document.querySelectorAll('.ast-name-input');
             rowSelects.forEach(sel => {
               const currentVal = sel.value;
-              sel.innerHTML = `<option value="">-- Select Assistant --</option>` + buildOptionsHtml(currentVal);
+              sel.innerHTML = `<option value="">-- Select Assistant --</option>` + buildOptionsHtml(currentVal) + `<option value="ADD_NEW">➕ नया असिस्टेंट जोड़ें (Add New...)</option>`;
             });
           }
           // Set the value of the dropdown that triggered it
-          selectElem.innerHTML = `<option value="">-- Select Assistant --</option>` + buildOptionsHtml(nameTrimmed);
+          selectElem.innerHTML = `<option value="">-- Select Assistant --</option>` + buildOptionsHtml(nameTrimmed) + `<option value="ADD_NEW">➕ नया असिस्टेंट जोड़ें (Add New...)</option>`;
           selectElem.value = nameTrimmed;
         } else {
           selectElem.value = ''; // Reset if cancelled
@@ -200,6 +229,132 @@
       el.style.color = color;
     }
 
+    async function pushToGithub(messageText, onCompleteMsg) {
+      const token = document.getElementById('githubToken').value.trim();
+      if (!token) {
+        alert('❌ Please enter your GitHub Token and save it first.');
+        return false;
+      }
+
+      const jsContent = 'const ASSISTANTS_DB = \n' + JSON.stringify(ASSISTANTS_DB, null, 2) + ';';
+      
+      try {
+        for (const filePath of FILES_TO_UPDATE) {
+          const getRes = await fetch(`https://api.github.com/repos/${REPO}/contents/${filePath}`, {
+            headers: { 'Authorization': `token ${token}` }
+          });
+          if (!getRes.ok) throw new Error(`Failed to fetch ${filePath} metadata`);
+          const getJson = await getRes.json();
+          const sha = getJson.sha;
+
+          const base64Content = btoa(unescape(encodeURIComponent(jsContent)));
+
+          const putRes = await fetch(`https://api.github.com/repos/${REPO}/contents/${filePath}`, {
+            method: 'PUT',
+            headers: {
+              'Authorization': `token ${token}`,
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              message: messageText,
+              content: base64Content,
+              sha: sha
+            })
+          });
+
+          if (!putRes.ok) {
+            const errJson = await putRes.json();
+            throw new Error(`Failed to push ${filePath}: ${errJson.message}`);
+          }
+        }
+        
+        return true;
+      } catch (error) {
+        console.error(error);
+        alert(`❌ GitHub API Error: ${error.message}`);
+        return false;
+      }
+    }
+
+    // --- MANAGE ASSISTANTS ---
+    async function renameAssistant() {
+      const sel = document.getElementById('manageSelectName');
+      const oldName = sel.options[sel.selectedIndex].value;
+      const newName = document.getElementById('manageNewName').value.trim();
+
+      if (!oldName || !newName) {
+        showMsg('manageStatus', "❌ Please select an assistant and enter a new name.", "var(--danger-color)");
+        return;
+      }
+
+      let count = 0;
+      for (const [caseNo, astName] of Object.entries(ASSISTANTS_DB)) {
+        if (astName === oldName) {
+          ASSISTANTS_DB[caseNo] = newName;
+          count++;
+        }
+      }
+
+      if (count === 0) {
+        showMsg('manageStatus', "⚠️ No cases found for this assistant.", "var(--warning-color)");
+        return;
+      }
+
+      showMsg('manageStatus', '⏳ Updating GitHub...', '#0f172a');
+      const success = await pushToGithub(
+        `Globally renamed ${oldName} to ${newName} across ${count} cases`, 
+        `✅ Success! Renamed '${oldName}' to '${newName}' on GitHub.`
+      );
+      
+      if (success) {
+        showMsg('manageStatus', `✅ Success! Renamed '${oldName}' to '${newName}' across ${count} cases.`, "var(--success-color)");
+        document.getElementById('manageNewName').value = '';
+        extractUniqueAssistants();
+        populateDropdowns();
+        document.getElementById('resultsArea').style.display = 'none'; // clear stale UI
+      } else {
+        showMsg('manageStatus', "❌ Update failed.", "var(--danger-color)");
+      }
+    }
+
+    async function deleteAssistant() {
+      const sel = document.getElementById('manageSelectName');
+      const name = sel.options[sel.selectedIndex].value;
+
+      if (!name) {
+        showMsg('manageStatus', "❌ Please select an assistant to delete.", "var(--danger-color)");
+        return;
+      }
+
+      if (!confirm(`Are you sure you want to delete '${name}'? This will unassign them from ALL their cases globally!`)) {
+        return;
+      }
+
+      let count = 0;
+      for (const [caseNo, astName] of Object.entries(ASSISTANTS_DB)) {
+        if (astName === name) {
+          delete ASSISTANTS_DB[caseNo];
+          count++;
+        }
+      }
+
+      showMsg('manageStatus', '⏳ Updating GitHub...', '#0f172a');
+      const success = await pushToGithub(
+        `Globally deleted assistant ${name} (removed from ${count} cases)`, 
+        `✅ Success! Deleted '${name}'.`
+      );
+      
+      if (success) {
+        showMsg('manageStatus', `✅ Success! Deleted '${name}' and unassigned from ${count} cases.`, "var(--success-color)");
+        extractUniqueAssistants();
+        populateDropdowns();
+        document.getElementById('resultsArea').style.display = 'none'; // clear stale UI
+      } else {
+        showMsg('manageStatus', "❌ Update failed.", "var(--danger-color)");
+      }
+    }
+
+    // --- CASE RE-ASSIGNMENT ---
     function findCases() {
       const year = document.getElementById('filterYear').value.trim();
       const filterSelect = document.getElementById('filterName');
@@ -217,7 +372,7 @@
         if (match) {
           count++;
           const tr = document.createElement('tr');
-          const optionsHtml = `<option value="">-- No Assistant --</option>` + buildOptionsHtml(astName);
+          const optionsHtml = `<option value="">-- No Assistant --</option>` + buildOptionsHtml(astName) + `<option value="ADD_NEW">➕ नया असिस्टेंट जोड़ें (Add New...)</option>`;
           tr.innerHTML = `
             <td class="checkbox-col"><input type="checkbox" class="case-cb" checked /></td>
             <td class="case-no-cell">${caseNo}</td>
@@ -261,12 +416,7 @@
     }
 
     async function updateGlobally() {
-      const token = document.getElementById('githubToken').value.trim();
-      if (!token) {
-        showMsg('updateStatus', '❌ Please enter your GitHub Token and save it first.', 'var(--danger-color)');
-        return;
-      }
-
+      const btn = document.getElementById('btnGlobalUpdate');
       const rows = document.querySelectorAll('#casesTbody tr');
       let updatedCount = 0;
 
@@ -291,55 +441,23 @@
         return;
       }
 
-      const btn = document.getElementById('btnGlobalUpdate');
       btn.disabled = true;
       btn.textContent = '⏳ Updating GitHub...';
       showMsg('updateStatus', 'Connecting to GitHub API...', '#0f172a');
 
-      const jsContent = 'const ASSISTANTS_DB = \n' + JSON.stringify(ASSISTANTS_DB, null, 2) + ';';
+      const success = await pushToGithub(`Re-allotted ${updatedCount} cases via dropdown UI`);
       
-      try {
-        for (const filePath of FILES_TO_UPDATE) {
-          const getRes = await fetch(`https://api.github.com/repos/${REPO}/contents/${filePath}`, {
-            headers: { 'Authorization': `token ${token}` }
-          });
-          if (!getRes.ok) throw new Error(`Failed to fetch ${filePath} metadata`);
-          const getJson = await getRes.json();
-          const sha = getJson.sha;
-
-          const base64Content = btoa(unescape(encodeURIComponent(jsContent)));
-
-          const putRes = await fetch(`https://api.github.com/repos/${REPO}/contents/${filePath}`, {
-            method: 'PUT',
-            headers: {
-              'Authorization': `token ${token}`,
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-              message: `Re-allotted ${updatedCount} cases via dropdown UI`,
-              content: base64Content,
-              sha: sha
-            })
-          });
-
-          if (!putRes.ok) {
-            const errJson = await putRes.json();
-            throw new Error(`Failed to push ${filePath}: ${errJson.message}`);
-          }
-        }
-        
+      if (success) {
         showMsg('updateStatus', `✅ Success! Globally updated ${updatedCount} cases. (Wait a minute for GitHub Pages to refresh).`, 'var(--success-color)');
-        
-        // Uncheck all to prevent double submit
         selectAll(false);
-
-      } catch (error) {
-        console.error(error);
-        showMsg('updateStatus', `❌ GitHub API Error: ${error.message}`, 'var(--danger-color)');
-      } finally {
-        btn.disabled = false;
-        btn.textContent = '🚀 Save All Checked Cases to GitHub';
+        extractUniqueAssistants();
+        populateDropdowns();
+      } else {
+        showMsg('updateStatus', "❌ Update failed.", 'var(--danger-color)');
       }
+      
+      btn.disabled = false;
+      btn.textContent = '🚀 Save All Checked Cases to GitHub';
     }
   </script>
 </body>
