@@ -14,7 +14,7 @@
     .card h2 { margin-top: 0; font-size: 1.1rem; color: #0f172a; margin-bottom: 15px; }
     .form-group { margin-bottom: 15px; }
     label { display: block; font-weight: 600; margin-bottom: 6px; font-size: 0.9rem; }
-    input[type="text"], input[type="password"], input[type="number"] { width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; box-sizing: border-box; font-size: 1rem; }
+    input[type="text"], input[type="password"], input[type="number"], select { width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; box-sizing: border-box; font-size: 1rem; font-family: inherit; }
     .btn { padding: 8px 16px; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 6px; color: white; }
     .btn-primary { background: var(--primary-color); }
     .btn-success { background: var(--success-color); }
@@ -62,7 +62,10 @@
         </div>
         <div>
           <label>Filter by Current Assistant (Optional)</label>
-          <input type="text" id="filterName" placeholder="e.g. Jeetesh" />
+          <select id="filterName">
+            <option value="">-- All Assistants --</option>
+            <!-- Options populated by JS -->
+          </select>
         </div>
         <button class="btn btn-primary" onclick="findCases()">🔍 Find Cases</button>
       </div>
@@ -79,7 +82,10 @@
         <div class="flex-row" style="background: #f8fafc; padding: 10px; border: 1px solid var(--border-color); border-radius: 6px; margin-bottom: 10px;">
           <div>
             <label style="font-size: 0.8rem; margin-bottom: 2px;">Bulk apply name to all checked cases:</label>
-            <input type="text" id="bulkAssistantName" placeholder="Type assistant name here..." style="padding: 6px;" />
+            <select id="bulkAssistantName" style="padding: 6px;" onchange="handleDropdownAdd(this)">
+              <option value="">-- Select Assistant --</option>
+              <!-- Options populated by JS -->
+            </select>
           </div>
           <button class="btn btn-primary" onclick="applyBulkName()">⬇️ Apply to Checked</button>
         </div>
@@ -112,11 +118,72 @@
       'listing_form/assistants_db.js',
       'file_tracking/assistants_db.js'
     ];
+    
+    let uniqueAssistants = [];
 
     document.addEventListener('DOMContentLoaded', () => {
       const savedToken = localStorage.getItem('github_pat');
       if (savedToken) document.getElementById('githubToken').value = savedToken;
+      
+      extractUniqueAssistants();
+      populateDropdowns();
     });
+
+    function extractUniqueAssistants() {
+      const set = new Set();
+      if (typeof ASSISTANTS_DB !== 'undefined') {
+        Object.values(ASSISTANTS_DB).forEach(name => {
+          if (name && name.trim()) set.add(name.trim());
+        });
+      }
+      uniqueAssistants = Array.from(set).sort();
+    }
+
+    function buildOptionsHtml(selectedValue = '') {
+      let html = '';
+      uniqueAssistants.forEach(ast => {
+        const sel = (ast === selectedValue) ? 'selected' : '';
+        html += `<option value="${ast}" ${sel}>${ast}</option>`;
+      });
+      html += `<option value="ADD_NEW">➕ नया असिस्टेंट जोड़ें (Add New...)</option>`;
+      return html;
+    }
+
+    function populateDropdowns() {
+      // 1. Filter dropdown
+      const filterSelect = document.getElementById('filterName');
+      filterSelect.innerHTML = `<option value="">-- All Assistants --</option>` + buildOptionsHtml().replace('<option value="ADD_NEW">➕ नया असिस्टेंट जोड़ें (Add New...)</option>', '');
+      
+      // 2. Bulk dropdown
+      const bulkSelect = document.getElementById('bulkAssistantName');
+      bulkSelect.innerHTML = `<option value="">-- Select Assistant --</option>` + buildOptionsHtml();
+    }
+
+    function handleDropdownAdd(selectElem) {
+      if (selectElem.value === 'ADD_NEW') {
+        const newName = prompt("नए असिस्टेंट का नाम दर्ज करें (Enter new assistant name):");
+        if (newName && newName.trim()) {
+          const nameTrimmed = newName.trim();
+          if (!uniqueAssistants.includes(nameTrimmed)) {
+            uniqueAssistants.push(nameTrimmed);
+            uniqueAssistants.sort();
+            populateDropdowns();
+            
+            // Also update all existing row dropdowns
+            const rowSelects = document.querySelectorAll('.ast-name-input');
+            rowSelects.forEach(sel => {
+              const currentVal = sel.value;
+              sel.innerHTML = `<option value="">-- Select Assistant --</option>` + buildOptionsHtml(currentVal);
+            });
+          }
+          // Set the value of the dropdown that triggered it
+          selectElem.innerHTML = `<option value="">-- Select Assistant --</option>` + buildOptionsHtml(nameTrimmed);
+          selectElem.value = nameTrimmed;
+        } else {
+          selectElem.value = ''; // Reset if cancelled
+        }
+      }
+    }
 
     function saveToken() {
       const token = document.getElementById('githubToken').value.trim();
@@ -135,7 +202,8 @@
 
     function findCases() {
       const year = document.getElementById('filterYear').value.trim();
-      const name = document.getElementById('filterName').value.trim().toLowerCase();
+      const filterSelect = document.getElementById('filterName');
+      const name = filterSelect.options[filterSelect.selectedIndex].value;
       
       const tbody = document.getElementById('casesTbody');
       tbody.innerHTML = '';
@@ -144,15 +212,20 @@
       for (const [caseNo, astName] of Object.entries(ASSISTANTS_DB)) {
         let match = true;
         if (year && !caseNo.endsWith('/' + year)) match = false;
-        if (name && astName.toLowerCase() !== name) match = false;
+        if (name && astName !== name) match = false;
         
         if (match) {
           count++;
           const tr = document.createElement('tr');
+          const optionsHtml = `<option value="">-- No Assistant --</option>` + buildOptionsHtml(astName);
           tr.innerHTML = `
             <td class="checkbox-col"><input type="checkbox" class="case-cb" checked /></td>
             <td class="case-no-cell">${caseNo}</td>
-            <td><input type="text" class="row-input ast-name-input" value="${astName}" /></td>
+            <td>
+              <select class="row-input ast-name-input" onchange="handleDropdownAdd(this)">
+                ${optionsHtml}
+              </select>
+            </td>
           `;
           tbody.appendChild(tr);
         }
@@ -175,8 +248,9 @@
     }
 
     function applyBulkName() {
-      const newName = document.getElementById('bulkAssistantName').value.trim();
-      if (!newName) return;
+      const select = document.getElementById('bulkAssistantName');
+      const newName = select.options[select.selectedIndex].value;
+      if (!newName || newName === 'ADD_NEW') return;
       const rows = document.querySelectorAll('#casesTbody tr');
       rows.forEach(tr => {
         const cb = tr.querySelector('.case-cb');
@@ -200,8 +274,10 @@
         const cb = tr.querySelector('.case-cb');
         if (cb && cb.checked) {
           const caseNo = tr.querySelector('.case-no-cell').textContent.trim();
-          const astName = tr.querySelector('.ast-name-input').value.trim();
-          if (astName) {
+          const sel = tr.querySelector('.ast-name-input');
+          const astName = sel.options[sel.selectedIndex].value;
+          
+          if (astName && astName !== 'ADD_NEW') {
             ASSISTANTS_DB[caseNo] = astName;
           } else {
             delete ASSISTANTS_DB[caseNo];
@@ -220,7 +296,6 @@
       btn.textContent = '⏳ Updating GitHub...';
       showMsg('updateStatus', 'Connecting to GitHub API...', '#0f172a');
 
-      // Generate new JS content
       const jsContent = 'const ASSISTANTS_DB = \n' + JSON.stringify(ASSISTANTS_DB, null, 2) + ';';
       
       try {
@@ -241,7 +316,7 @@
               'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-              message: `Simultaneously re-allotted ${updatedCount} cases`,
+              message: `Re-allotted ${updatedCount} cases via dropdown UI`,
               content: base64Content,
               sha: sha
             })
