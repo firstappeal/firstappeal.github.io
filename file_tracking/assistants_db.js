@@ -3412,7 +3412,7 @@ const ASSISTANTS_DB =
   "72/2006": "Kamlesh",
   "87/2006": "Kamlesh",
   "811/2000": "Shraysi",
-  "90/2000": "Radhe",
+  "90/2000": "Neha",
   "201/2007": "Radhe",
   "209/2007": "Radhe",
   "219/2007": "Radhe",
