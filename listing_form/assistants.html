@@ -2,7 +2,7 @@
 <html lang="hi">
 <head>
   <meta charset="UTF-8">
-  <title>सहायक आवंटन प्रबंधक (Global Assistant Allocation Manager)</title>
+  <title>सहायक आवंटन प्रबंधक (Global Assistant Manager)</title>
   <style>
     :root { --primary-color: #1a73e8; --success-color: #166534; --danger-color: #d93025; --warning-color: #b45309; --border-color: #e2e8f0; --bg-color: #f8fafc; }
     body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; background: #f1f5f9; color: #334155; }
@@ -14,19 +14,21 @@
     .card h2 { margin-top: 0; font-size: 1.1rem; color: #0f172a; margin-bottom: 15px; }
     .form-group { margin-bottom: 15px; }
     label { display: block; font-weight: 600; margin-bottom: 6px; font-size: 0.9rem; }
-    input, select { width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; box-sizing: border-box; font-size: 1rem; }
-    .btn { padding: 10px 20px; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 0.95rem; display: inline-flex; align-items: center; gap: 6px; color: white; }
+    input[type="text"], input[type="password"], input[type="number"] { width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; box-sizing: border-box; font-size: 1rem; }
+    .btn { padding: 8px 16px; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 6px; color: white; }
     .btn-primary { background: var(--primary-color); }
     .btn-success { background: var(--success-color); }
     .btn-danger { background: var(--danger-color); }
+    .btn-outline { background: white; color: var(--primary-color); border: 1px solid var(--primary-color); }
     .btn:disabled { opacity: 0.6; cursor: not-allowed; }
     .status-msg { margin-top: 15px; font-weight: 600; font-size: 0.95rem; }
-    table { width: 100%; border-collapse: collapse; margin-top: 15px; background: white; font-size: 0.9rem; }
-    th, td { padding: 10px; border: 1px solid var(--border-color); text-align: left; }
-    th { background: #f1f5f9; }
+    table { width: 100%; border-collapse: collapse; margin-top: 10px; background: white; font-size: 0.9rem; }
+    th, td { padding: 8px 10px; border: 1px solid var(--border-color); text-align: left; }
+    th { background: #f1f5f9; position: sticky; top: 0; z-index: 10; }
     .checkbox-col { width: 40px; text-align: center; }
     .flex-row { display: flex; gap: 15px; align-items: flex-end; }
     .flex-row > div { flex: 1; }
+    .row-input { width: 100%; padding: 6px; border: 1px solid #cbd5e1; border-radius: 4px; }
   </style>
 </head>
 <body>
@@ -66,27 +68,37 @@
       </div>
       
       <div id="resultsArea" style="display: none; margin-top: 25px;">
-        <h3 style="font-size: 1rem; margin-bottom: 10px;">Found <span id="matchCount">0</span> cases</h3>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+          <h3 style="font-size: 1rem; margin: 0;">Found <span id="matchCount">0</span> cases</h3>
+          <div style="display: flex; gap: 10px;">
+            <button class="btn btn-outline" onclick="selectAll(true)">☑️ Select All</button>
+            <button class="btn btn-outline" onclick="selectAll(false)">☐ Unselect All</button>
+          </div>
+        </div>
+
+        <div class="flex-row" style="background: #f8fafc; padding: 10px; border: 1px solid var(--border-color); border-radius: 6px; margin-bottom: 10px;">
+          <div>
+            <label style="font-size: 0.8rem; margin-bottom: 2px;">Bulk apply name to all checked cases:</label>
+            <input type="text" id="bulkAssistantName" placeholder="Type assistant name here..." style="padding: 6px;" />
+          </div>
+          <button class="btn btn-primary" onclick="applyBulkName()">⬇️ Apply to Checked</button>
+        </div>
         
-        <div style="max-height: 400px; overflow-y: auto; border: 1px solid var(--border-color); border-radius: 6px;">
+        <div style="max-height: 400px; overflow-y: auto; border: 1px solid var(--border-color); border-radius: 6px; position: relative;">
           <table>
             <thead>
               <tr>
-                <th class="checkbox-col"><input type="checkbox" id="selectAll" checked onchange="toggleAll(this)" /></th>
-                <th>Case No</th>
-                <th>Current Assistant</th>
+                <th class="checkbox-col">Check</th>
+                <th style="width: 150px;">Case No</th>
+                <th>Assigned Assistant (Edit below to simultaneously allot)</th>
               </tr>
             </thead>
             <tbody id="casesTbody"></tbody>
           </table>
         </div>
 
-        <div class="flex-row" style="margin-top: 20px; align-items: flex-end; background: #f0fdf4; padding: 15px; border-radius: 6px; border: 1px solid #bbf7d0;">
-          <div>
-            <label style="color: #166534;">Assign selected cases to New Assistant:</label>
-            <input type="text" id="newAssistantName" placeholder="New Assistant Name" />
-          </div>
-          <button id="btnGlobalUpdate" class="btn btn-success" onclick="updateGlobally()">🚀 Update Globally on GitHub</button>
+        <div style="margin-top: 20px; background: #f0fdf4; padding: 15px; border-radius: 6px; border: 1px solid #bbf7d0; display: flex; justify-content: flex-end;">
+          <button id="btnGlobalUpdate" class="btn btn-success" onclick="updateGlobally()" style="padding: 12px 24px; font-size: 1rem;">🚀 Save All Checked Cases to GitHub</button>
         </div>
         <div id="updateStatus" class="status-msg"></div>
       </div>
@@ -138,9 +150,9 @@
           count++;
           const tr = document.createElement('tr');
           tr.innerHTML = `
-            <td class="checkbox-col"><input type="checkbox" class="case-cb" value="${caseNo}" checked /></td>
-            <td>${caseNo}</td>
-            <td>${astName}</td>
+            <td class="checkbox-col"><input type="checkbox" class="case-cb" checked /></td>
+            <td class="case-no-cell">${caseNo}</td>
+            <td><input type="text" class="row-input ast-name-input" value="${astName}" /></td>
           `;
           tbody.appendChild(tr);
         }
@@ -155,11 +167,23 @@
       }
     }
 
-    function toggleAll(source) {
+    function selectAll(check) {
       const checkboxes = document.querySelectorAll('.case-cb');
       for (let i = 0; i < checkboxes.length; i++) {
-        checkboxes[i].checked = source.checked;
+        checkboxes[i].checked = check;
       }
+    }
+
+    function applyBulkName() {
+      const newName = document.getElementById('bulkAssistantName').value.trim();
+      if (!newName) return;
+      const rows = document.querySelectorAll('#casesTbody tr');
+      rows.forEach(tr => {
+        const cb = tr.querySelector('.case-cb');
+        if (cb && cb.checked) {
+          tr.querySelector('.ast-name-input').value = newName;
+        }
+      });
     }
 
     async function updateGlobally() {
@@ -169,14 +193,24 @@
         return;
       }
 
-      const newName = document.getElementById('newAssistantName').value.trim();
-      if (!newName) {
-        showMsg('updateStatus', '❌ Please enter the new assistant name.', 'var(--danger-color)');
-        return;
-      }
+      const rows = document.querySelectorAll('#casesTbody tr');
+      let updatedCount = 0;
 
-      const checkboxes = document.querySelectorAll('.case-cb:checked');
-      if (checkboxes.length === 0) {
+      rows.forEach(tr => {
+        const cb = tr.querySelector('.case-cb');
+        if (cb && cb.checked) {
+          const caseNo = tr.querySelector('.case-no-cell').textContent.trim();
+          const astName = tr.querySelector('.ast-name-input').value.trim();
+          if (astName) {
+            ASSISTANTS_DB[caseNo] = astName;
+          } else {
+            delete ASSISTANTS_DB[caseNo];
+          }
+          updatedCount++;
+        }
+      });
+
+      if (updatedCount === 0) {
         showMsg('updateStatus', '❌ Please select at least one case to update.', 'var(--danger-color)');
         return;
       }
@@ -186,16 +220,11 @@
       btn.textContent = '⏳ Updating GitHub...';
       showMsg('updateStatus', 'Connecting to GitHub API...', '#0f172a');
 
-      // Update in memory first
-      const selectedCases = Array.from(checkboxes).map(cb => cb.value);
-      selectedCases.forEach(c => { ASSISTANTS_DB[c] = newName; });
-
       // Generate new JS content
       const jsContent = 'const ASSISTANTS_DB = \n' + JSON.stringify(ASSISTANTS_DB, null, 2) + ';';
       
       try {
         for (const filePath of FILES_TO_UPDATE) {
-          // 1. Get file SHA
           const getRes = await fetch(`https://api.github.com/repos/${REPO}/contents/${filePath}`, {
             headers: { 'Authorization': `token ${token}` }
           });
@@ -203,10 +232,8 @@
           const getJson = await getRes.json();
           const sha = getJson.sha;
 
-          // 2. Encode to Base64 (handling unicode properly)
           const base64Content = btoa(unescape(encodeURIComponent(jsContent)));
 
-          // 3. Update file
           const putRes = await fetch(`https://api.github.com/repos/${REPO}/contents/${filePath}`, {
             method: 'PUT',
             headers: {
@@ -214,7 +241,7 @@
               'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-              message: `Bulk reassigned ${selectedCases.length} cases to ${newName}`,
+              message: `Simultaneously re-allotted ${updatedCount} cases`,
               content: base64Content,
               sha: sha
             })
@@ -226,17 +253,17 @@
           }
         }
         
-        showMsg('updateStatus', `✅ Success! Globally updated ${selectedCases.length} cases to '${newName}'. (Wait a minute for GitHub Pages to refresh).`, 'var(--success-color)');
+        showMsg('updateStatus', `✅ Success! Globally updated ${updatedCount} cases. (Wait a minute for GitHub Pages to refresh).`, 'var(--success-color)');
         
-        // Remove checkboxes to prevent double submit
-        findCases(); 
+        // Uncheck all to prevent double submit
+        selectAll(false);
 
       } catch (error) {
         console.error(error);
         showMsg('updateStatus', `❌ GitHub API Error: ${error.message}`, 'var(--danger-color)');
       } finally {
         btn.disabled = false;
-        btn.textContent = '🚀 Update Globally on GitHub';
+        btn.textContent = '🚀 Save All Checked Cases to GitHub';
       }
     }
   </script>
