@@ -2,259 +2,242 @@
 <html lang="hi">
 <head>
   <meta charset="UTF-8">
-  <title>सहायक आवंटन प्रबंधक (Assistant Allocation Manager)</title>
+  <title>सहायक आवंटन प्रबंधक (Global Assistant Allocation Manager)</title>
   <style>
-    :root {
-      --primary-color: #1a73e8;
-      --success-color: #166534;
-      --danger-color: #d93025;
-      --warning-color: #b45309;
-      --border-color: #e2e8f0;
-      --bg-color: #f8fafc;
-    }
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0; padding: 0;
-      background: #f1f5f9;
-      color: #334155;
-    }
-    .container {
-      max-width: 700px;
-      margin: 50px auto;
-      background: white;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-    }
-    h1 {
-      color: var(--primary-color);
-      margin-top: 0;
-      font-size: 1.5rem;
-      border-bottom: 2px solid var(--border-color);
-      padding-bottom: 10px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .back-btn {
-      font-size: 0.9rem;
-      text-decoration: none;
-      color: #64748b;
-      background: #f1f5f9;
-      padding: 6px 12px;
-      border-radius: 6px;
-    }
+    :root { --primary-color: #1a73e8; --success-color: #166534; --danger-color: #d93025; --warning-color: #b45309; --border-color: #e2e8f0; --bg-color: #f8fafc; }
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; background: #f1f5f9; color: #334155; }
+    .container { max-width: 900px; margin: 40px auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+    h1 { color: var(--primary-color); margin-top: 0; font-size: 1.5rem; border-bottom: 2px solid var(--border-color); padding-bottom: 10px; display: flex; justify-content: space-between; align-items: center; }
+    .back-btn { font-size: 0.9rem; text-decoration: none; color: #64748b; background: #f1f5f9; padding: 6px 12px; border-radius: 6px; }
     .back-btn:hover { background: #e2e8f0; color: #334155; }
-    
-    .card {
-      background: var(--bg-color);
-      border: 1px solid var(--border-color);
-      border-radius: 8px;
-      padding: 20px;
-      margin-bottom: 25px;
-    }
-    .card h2 {
-      margin-top: 0;
-      font-size: 1.1rem;
-      color: #0f172a;
-      margin-bottom: 15px;
-    }
-    
+    .card { background: var(--bg-color); border: 1px solid var(--border-color); border-radius: 8px; padding: 20px; margin-bottom: 25px; }
+    .card h2 { margin-top: 0; font-size: 1.1rem; color: #0f172a; margin-bottom: 15px; }
     .form-group { margin-bottom: 15px; }
-    label {
-      display: block;
-      font-weight: 600;
-      margin-bottom: 6px;
-      font-size: 0.9rem;
-    }
-    input, textarea {
-      width: 100%;
-      padding: 10px;
-      border: 1px solid #cbd5e1;
-      border-radius: 6px;
-      box-sizing: border-box;
-      font-size: 1rem;
-      font-family: inherit;
-    }
-    textarea { resize: vertical; min-height: 80px; }
-    
-    .btn {
-      padding: 10px 20px;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: 600;
-      font-size: 0.95rem;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .btn-primary { background: var(--primary-color); color: white; }
-    .btn-success { background: var(--success-color); color: white; }
-    .btn-danger { background: var(--danger-color); color: white; }
-    .btn-warning { background: var(--warning-color); color: white; }
-    
+    label { display: block; font-weight: 600; margin-bottom: 6px; font-size: 0.9rem; }
+    input, select { width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; box-sizing: border-box; font-size: 1rem; }
+    .btn { padding: 10px 20px; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 0.95rem; display: inline-flex; align-items: center; gap: 6px; color: white; }
+    .btn-primary { background: var(--primary-color); }
+    .btn-success { background: var(--success-color); }
+    .btn-danger { background: var(--danger-color); }
+    .btn:disabled { opacity: 0.6; cursor: not-allowed; }
     .status-msg { margin-top: 15px; font-weight: 600; font-size: 0.95rem; }
-    .hint { font-size: 0.8rem; color: #64748b; margin-top: 4px; }
+    table { width: 100%; border-collapse: collapse; margin-top: 15px; background: white; font-size: 0.9rem; }
+    th, td { padding: 10px; border: 1px solid var(--border-color); text-align: left; }
+    th { background: #f1f5f9; }
+    .checkbox-col { width: 40px; text-align: center; }
+    .flex-row { display: flex; gap: 15px; align-items: flex-end; }
+    .flex-row > div { flex: 1; }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>
-      🧑‍💼 सहायक आवंटन (Assistant Allocation)
-      <a href="index.html" class="back-btn">🔙 वापस जाएँ (Back)</a>
+      🧑‍💼 सहायक आवंटन (Global Assistant Manager)
+      <a href="../index.html" class="back-btn">🔙 वापस जाएँ (Home)</a>
     </h1>
     
-    <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 25px;">
-      यहाँ से आप एक या एक से अधिक केस किसी असिस्टेंट को सौंप सकते हैं, या किसी असिस्टेंट का नाम बदल सकते हैं।
-    </p>
-
-    <!-- Section 1: Bulk Allocate -->
-    <div class="card">
-      <h2>1. केस आवंटन (Assign Cases)</h2>
-      <div class="form-group">
-        <label>केस नंबर (Case Numbers)</label>
-        <textarea id="bulkCaseInput" placeholder="47/2024, 12/2023... (एक से अधिक केस कॉमा या नई लाइन से अलग करें)"></textarea>
-        <div class="hint">आप एक साथ कई केस पेस्ट कर सकते हैं।</div>
+    <div class="card" style="background: #eff6ff; border-color: #bfdbfe;">
+      <h2><i class="fa-solid fa-cloud-arrow-up"></i> GitHub Global Sync Settings</h2>
+      <p style="font-size: 0.85rem; color: #475569; margin-bottom: 15px;">
+        To make global updates that everyone can see, enter your GitHub Personal Access Token (PAT). It will be saved securely in your browser.
+      </p>
+      <div class="flex-row">
+        <div>
+          <label>GitHub Token (PAT)</label>
+          <input type="password" id="githubToken" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" />
+        </div>
+        <button class="btn btn-primary" onclick="saveToken()">💾 Save Token</button>
       </div>
-      <div class="form-group">
-        <label>असिस्टेंट का नाम (Assistant Name)</label>
-        <input type="text" id="bulkNameInput" placeholder="असिस्टेंट का नाम दर्ज करें" />
-      </div>
-      <button class="btn btn-success" onclick="bulkAssign()">💾 सेव करें (Assign)</button>
-      <div id="bulkStatus" class="status-msg"></div>
+      <div id="tokenStatus" class="status-msg"></div>
     </div>
 
-    <!-- Section 2: Rename Assistant -->
     <div class="card">
-      <h2>2. असिस्टेंट का नाम बदलें (Rename Assistant)</h2>
-      <div class="form-group">
-        <label>पुराना नाम (Old Name)</label>
-        <input type="text" id="oldNameInput" placeholder="उदा: Ravi" />
+      <h2>🔍 Filter & Select Cases</h2>
+      <div class="flex-row">
+        <div>
+          <label>Filter by Year (Optional)</label>
+          <input type="number" id="filterYear" placeholder="e.g. 2023" />
+        </div>
+        <div>
+          <label>Filter by Current Assistant (Optional)</label>
+          <input type="text" id="filterName" placeholder="e.g. Jeetesh" />
+        </div>
+        <button class="btn btn-primary" onclick="findCases()">🔍 Find Cases</button>
       </div>
-      <div class="form-group">
-        <label>नया नाम (New Name)</label>
-        <input type="text" id="newNameInput" placeholder="उदा: Ravi Kumar" />
-      </div>
-      <button class="btn btn-primary" onclick="renameAssistant()">✏️ नाम बदलें (Rename)</button>
-      <div id="renameStatus" class="status-msg"></div>
-    </div>
+      
+      <div id="resultsArea" style="display: none; margin-top: 25px;">
+        <h3 style="font-size: 1rem; margin-bottom: 10px;">Found <span id="matchCount">0</span> cases</h3>
+        
+        <div style="max-height: 400px; overflow-y: auto; border: 1px solid var(--border-color); border-radius: 6px;">
+          <table>
+            <thead>
+              <tr>
+                <th class="checkbox-col"><input type="checkbox" id="selectAll" checked onchange="toggleAll(this)" /></th>
+                <th>Case No</th>
+                <th>Current Assistant</th>
+              </tr>
+            </thead>
+            <tbody id="casesTbody"></tbody>
+          </table>
+        </div>
 
-    <!-- Section 3: Delete Mapping -->
-    <div class="card">
-      <h2>3. केस से असिस्टेंट हटाएं (Remove Assistant from Cases)</h2>
-      <div class="form-group">
-        <label>केस नंबर (Case Numbers)</label>
-        <textarea id="deleteCaseInput" placeholder="47/2024, 12/2023..."></textarea>
+        <div class="flex-row" style="margin-top: 20px; align-items: flex-end; background: #f0fdf4; padding: 15px; border-radius: 6px; border: 1px solid #bbf7d0;">
+          <div>
+            <label style="color: #166534;">Assign selected cases to New Assistant:</label>
+            <input type="text" id="newAssistantName" placeholder="New Assistant Name" />
+          </div>
+          <button id="btnGlobalUpdate" class="btn btn-success" onclick="updateGlobally()">🚀 Update Globally on GitHub</button>
+        </div>
+        <div id="updateStatus" class="status-msg"></div>
       </div>
-      <button class="btn btn-danger" onclick="deleteMappings()">🗑 हटाएं (Remove)</button>
-      <div id="deleteStatus" class="status-msg"></div>
     </div>
-
   </div>
 
   <script src="assistants_db.js"></script>
   <script>
-    const STORAGE_KEY = 'patna_custom_assistants_v1';
-    let customAssistants = {};
+    const REPO = 'firstappeal/firstappeal.github.io';
+    const FILES_TO_UPDATE = [
+      'listing_form/assistants_db.js',
+      'file_tracking/assistants_db.js'
+    ];
 
-    // Load existing custom overrides on startup
-    try {
-      const stored = localStorage.getItem(STORAGE_KEY);
-      if (stored) {
-        customAssistants = JSON.parse(stored);
-        if (typeof ASSISTANTS_DB !== 'undefined') {
-          for (const [key, val] of Object.entries(customAssistants)) {
-            if (val === null || val === '') delete ASSISTANTS_DB[key];
-            else ASSISTANTS_DB[key] = val;
-          }
-        }
-      }
-    } catch (e) {}
+    document.addEventListener('DOMContentLoaded', () => {
+      const savedToken = localStorage.getItem('github_pat');
+      if (savedToken) document.getElementById('githubToken').value = savedToken;
+    });
+
+    function saveToken() {
+      const token = document.getElementById('githubToken').value.trim();
+      localStorage.setItem('github_pat', token);
+      const el = document.getElementById('tokenStatus');
+      el.textContent = "✅ Token saved locally.";
+      el.style.color = "var(--success-color)";
+      setTimeout(() => el.textContent = "", 3000);
+    }
 
     function showMsg(id, text, color) {
       const el = document.getElementById(id);
       el.textContent = text;
       el.style.color = color;
-      setTimeout(() => { el.textContent = ''; }, 5000);
     }
 
-    function parseCaseNumbers(text) {
-      return text.split(/[\n,;]+/).map(s => s.trim()).filter(s => s.length > 0);
-    }
-
-    function bulkAssign() {
-      const casesText = document.getElementById('bulkCaseInput').value;
-      const name = document.getElementById('bulkNameInput').value.trim();
-      const cases = parseCaseNumbers(casesText);
-
-      if (cases.length === 0 || !name) {
-        showMsg('bulkStatus', "❌ कृपया केस नंबर और असिस्टेंट का नाम दर्ज करें।", "var(--danger-color)");
-        return;
-      }
-
-      cases.forEach(caseNo => {
-        customAssistants[caseNo] = name;
-        if (typeof ASSISTANTS_DB !== 'undefined') ASSISTANTS_DB[caseNo] = name;
-      });
-
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(customAssistants));
+    function findCases() {
+      const year = document.getElementById('filterYear').value.trim();
+      const name = document.getElementById('filterName').value.trim().toLowerCase();
       
-      document.getElementById('bulkCaseInput').value = '';
-      document.getElementById('bulkNameInput').value = '';
-      showMsg('bulkStatus', `✅ सफलतापूर्वक ${cases.length} केस '${name}' को सौंपे गए।`, "var(--success-color)");
-    }
-
-    function renameAssistant() {
-      const oldName = document.getElementById('oldNameInput').value.trim();
-      const newName = document.getElementById('newNameInput').value.trim();
-
-      if (!oldName || !newName) {
-        showMsg('renameStatus', "❌ दोनों नाम दर्ज करना आवश्यक है।", "var(--danger-color)");
-        return;
-      }
-
+      const tbody = document.getElementById('casesTbody');
+      tbody.innerHTML = '';
+      
       let count = 0;
-      if (typeof ASSISTANTS_DB !== 'undefined') {
-        for (const [caseNo, astName] of Object.entries(ASSISTANTS_DB)) {
-          if (astName.toLowerCase() === oldName.toLowerCase()) {
-            customAssistants[caseNo] = newName;
-            ASSISTANTS_DB[caseNo] = newName;
-            count++;
-          }
+      for (const [caseNo, astName] of Object.entries(ASSISTANTS_DB)) {
+        let match = true;
+        if (year && !caseNo.endsWith('/' + year)) match = false;
+        if (name && astName.toLowerCase() !== name) match = false;
+        
+        if (match) {
+          count++;
+          const tr = document.createElement('tr');
+          tr.innerHTML = `
+            <td class="checkbox-col"><input type="checkbox" class="case-cb" value="${caseNo}" checked /></td>
+            <td>${caseNo}</td>
+            <td>${astName}</td>
+          `;
+          tbody.appendChild(tr);
         }
       }
-
+      
+      document.getElementById('matchCount').textContent = count;
+      document.getElementById('resultsArea').style.display = 'block';
+      document.getElementById('updateStatus').textContent = '';
+      
       if (count === 0) {
-        showMsg('renameStatus', `⚠️ '${oldName}' नाम का कोई असिस्टेंट नहीं मिला।`, "var(--warning-color)");
-        return;
+        tbody.innerHTML = '<tr><td colspan="3" style="text-align:center;">No matching cases found.</td></tr>';
       }
-
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(customAssistants));
-      document.getElementById('oldNameInput').value = '';
-      document.getElementById('newNameInput').value = '';
-      showMsg('renameStatus', `✅ '${oldName}' का नाम बदलकर '${newName}' कर दिया गया है (${count} केस अपडेट हुए)।`, "var(--success-color)");
     }
 
-    function deleteMappings() {
-      const casesText = document.getElementById('deleteCaseInput').value;
-      const cases = parseCaseNumbers(casesText);
+    function toggleAll(source) {
+      const checkboxes = document.querySelectorAll('.case-cb');
+      for (let i = 0; i < checkboxes.length; i++) {
+        checkboxes[i].checked = source.checked;
+      }
+    }
 
-      if (cases.length === 0) {
-        showMsg('deleteStatus', "❌ कृपया हटाने के लिए केस नंबर दर्ज करें।", "var(--danger-color)");
+    async function updateGlobally() {
+      const token = document.getElementById('githubToken').value.trim();
+      if (!token) {
+        showMsg('updateStatus', '❌ Please enter your GitHub Token and save it first.', 'var(--danger-color)');
         return;
       }
 
-      if (!confirm(`क्या आप वाकई ${cases.length} केसों से असिस्टेंट हटाना चाहते हैं?`)) return;
+      const newName = document.getElementById('newAssistantName').value.trim();
+      if (!newName) {
+        showMsg('updateStatus', '❌ Please enter the new assistant name.', 'var(--danger-color)');
+        return;
+      }
 
-      cases.forEach(caseNo => {
-        customAssistants[caseNo] = null;
-        if (typeof ASSISTANTS_DB !== 'undefined') delete ASSISTANTS_DB[caseNo];
-      });
+      const checkboxes = document.querySelectorAll('.case-cb:checked');
+      if (checkboxes.length === 0) {
+        showMsg('updateStatus', '❌ Please select at least one case to update.', 'var(--danger-color)');
+        return;
+      }
 
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(customAssistants));
-      document.getElementById('deleteCaseInput').value = '';
-      showMsg('deleteStatus', `🗑 ${cases.length} केसों से असिस्टेंट हटा दिए गए।`, "var(--success-color)");
+      const btn = document.getElementById('btnGlobalUpdate');
+      btn.disabled = true;
+      btn.textContent = '⏳ Updating GitHub...';
+      showMsg('updateStatus', 'Connecting to GitHub API...', '#0f172a');
+
+      // Update in memory first
+      const selectedCases = Array.from(checkboxes).map(cb => cb.value);
+      selectedCases.forEach(c => { ASSISTANTS_DB[c] = newName; });
+
+      // Generate new JS content
+      const jsContent = 'const ASSISTANTS_DB = \n' + JSON.stringify(ASSISTANTS_DB, null, 2) + ';';
+      
+      try {
+        for (const filePath of FILES_TO_UPDATE) {
+          // 1. Get file SHA
+          const getRes = await fetch(`https://api.github.com/repos/${REPO}/contents/${filePath}`, {
+            headers: { 'Authorization': `token ${token}` }
+          });
+          if (!getRes.ok) throw new Error(`Failed to fetch ${filePath} metadata`);
+          const getJson = await getRes.json();
+          const sha = getJson.sha;
+
+          // 2. Encode to Base64 (handling unicode properly)
+          const base64Content = btoa(unescape(encodeURIComponent(jsContent)));
+
+          // 3. Update file
+          const putRes = await fetch(`https://api.github.com/repos/${REPO}/contents/${filePath}`, {
+            method: 'PUT',
+            headers: {
+              'Authorization': `token ${token}`,
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              message: `Bulk reassigned ${selectedCases.length} cases to ${newName}`,
+              content: base64Content,
+              sha: sha
+            })
+          });
+
+          if (!putRes.ok) {
+            const errJson = await putRes.json();
+            throw new Error(`Failed to push ${filePath}: ${errJson.message}`);
+          }
+        }
+        
+        showMsg('updateStatus', `✅ Success! Globally updated ${selectedCases.length} cases to '${newName}'. (Wait a minute for GitHub Pages to refresh).`, 'var(--success-color)');
+        
+        // Remove checkboxes to prevent double submit
+        findCases(); 
+
+      } catch (error) {
+        console.error(error);
+        showMsg('updateStatus', `❌ GitHub API Error: ${error.message}`, 'var(--danger-color)');
+      } finally {
+        btn.disabled = false;
+        btn.textContent = '🚀 Update Globally on GitHub';
+      }
     }
   </script>
 </body>
