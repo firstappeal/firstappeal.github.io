@@ -225,7 +225,7 @@ function recalculateAllAllocatedJudges() {
   rows.forEach(row => {
     const judgeSelect = row.querySelector('.judge-field');
     // If user has not manually overridden, auto-recalculate
-    if (judgeSelect && !judgeSelect.dataset.manual) {
+    if (judgeSelect) {
       const heading = row.querySelector('.heading-field').value;
       const caseNo = row.querySelector('.case-no-field').value;
       const allocatedJudge = evaluateJudge(heading, caseNo);
@@ -250,7 +250,7 @@ function updateAllJudgeDropdowns() {
       if (JUDGES.includes(currentSelected)) {
         judgeSelect.value = currentSelected;
       } else {
-        delete judgeSelect.dataset.manual; // Clear manual flag since judge is gone
+         // Clear manual flag since judge is gone
         const heading = row.querySelector('.heading-field').value;
         const caseNo = row.querySelector('.case-no-field').value;
         judgeSelect.value = evaluateJudge(heading, caseNo);
@@ -349,7 +349,7 @@ function addNewRow(data = {}) {
   
   caseNoInput.addEventListener('input', () => {
     // Auto-calculate judge if case number changed
-    if (!judgeSelect.dataset.manual) {
+    if (true) {
       const heading = tr.querySelector('.heading-field').value;
       judgeSelect.value = evaluateJudge(heading, caseNoInput.value);
     }
@@ -459,7 +459,7 @@ function addNewRow(data = {}) {
     }
     
     // Recalculate judge
-    if (!judgeSelect.dataset.manual) {
+    if (true) {
       const heading = tr.querySelector('.heading-field').value;
       judgeSelect.value = evaluateJudge(heading, displayVal);
     }
@@ -484,7 +484,7 @@ function handleHeadingChange(selectElem) {
   const caseNo = tr.querySelector('.case-no-field').value;
   const judgeSelect = tr.querySelector('.judge-field');
   
-  if (!judgeSelect.dataset.manual) {
+  if (true) {
     judgeSelect.value = evaluateJudge(selectElem.value, caseNo);
   }
   syncPrintTable();
@@ -493,7 +493,7 @@ function handleHeadingChange(selectElem) {
 // ── Manual Judge Change Handler ───────────────────────────────────
 function handleJudgeManualChange(selectElem) {
   // Mark as manually overridden
-  selectElem.dataset.manual = 'true';
+  
   syncPrintTable();
 }
 
