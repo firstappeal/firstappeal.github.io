@@ -342,7 +342,7 @@ function addNewRow(data = {}) {
   // If judge was explicitly provided, mark as manual so rule re-calculation doesn't overwrite it
   if (effectiveJudge && JUDGES.includes(effectiveJudge)) {
     judgeSelect.value = effectiveJudge;
-    judgeSelect.dataset.manual = 'true';
+    
   }
   
   let activeIndex = -1;
@@ -1480,7 +1480,7 @@ async function viewCloudLists() {
           const judgeSelect = lastRow.querySelector('.judge-field');
           if (judgeSelect && caseData.judge) {
             judgeSelect.value = caseData.judge;
-            judgeSelect.dataset.manual = 'true';
+            
           }
         }
       });
