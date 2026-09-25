@@ -198,8 +198,28 @@
           
           offset += limit;
         }
-        document.getElementById('updateStatus').textContent = `✅ Loaded ${MASTER_CASES.length} cases from Master Records.`;
-        setTimeout(() => { document.getElementById('updateStatus').textContent = ''; }, 3000);
+        
+        const masterSet = new Set(MASTER_CASES);
+        let ghostsFound = 0;
+        
+        for (const caseNo in ASSISTANTS_DB) {
+          if (!masterSet.has(caseNo)) {
+            delete ASSISTANTS_DB[caseNo];
+            ghostsFound++;
+          }
+        }
+        
+        if (ghostsFound > 0) {
+          document.getElementById('updateStatus').textContent = `🧹 Cleaning up ${ghostsFound} deleted cases from Assistant Database...`;
+          const success = await pushToGithub(`Auto-cleaned ${ghostsFound} deleted cases after Master Records update`);
+          if (success) {
+            document.getElementById('updateStatus').textContent = `✅ Synced database: ${ghostsFound} old allocations removed. New cases are ready for allocation.`;
+          }
+        } else {
+          document.getElementById('updateStatus').textContent = `✅ Synced with Master Records. ${MASTER_CASES.length} total cases.`;
+        }
+        setTimeout(() => { document.getElementById('updateStatus').textContent = ''; }, 4000);
+
       } catch (err) {
         console.error(err);
         document.getElementById('updateStatus').textContent = '❌ Failed to load Master Records.';
@@ -468,10 +488,8 @@
       // We will iterate over ALL Master Cases.
       // If a case is in ASSISTANTS_DB but NOT in Master Cases, we should probably still show it so they can fix it, 
       // but let's combine them into a single unique Set.
-      const allUniqueCases = new Set(MASTER_CASES);
-      Object.keys(ASSISTANTS_DB).forEach(k => allUniqueCases.add(k));
-
-      for (const caseNo of allUniqueCases) {
+      // Just iterate over MASTER_CASES (any ghosts are automatically cleaned on load)
+      for (const caseNo of MASTER_CASES) {
         const astName = ASSISTANTS_DB[caseNo] || '';
         
         let match = true;
