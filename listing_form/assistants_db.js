@@ -5706,5 +5706,6 @@ const ASSISTANTS_DB =
   "20/2021": "Manoranjan Priya",
   "48/2022": "Ronit Raj",
   "31/2023": "Vivek Kumar",
-  "102/2023": "Dhananjy Kumar Singh"
+  "102/2023": "Dhananjy Kumar Singh",
+  "235/2010": "Manoranjan Priya"
 };
