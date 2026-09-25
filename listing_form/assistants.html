@@ -53,6 +53,30 @@
       <div id="tokenStatus" class="status-msg"></div>
     </div>
 
+    
+    <!-- ADD UNASSIGNED CASE CARD -->
+    <div class="card" style="background: #f0fdf4; border-color: #bbf7d0;">
+      <h2>➕ Add Missing or Unassigned Case</h2>
+      <p style="font-size: 0.85rem; color: #166534; margin-bottom: 15px;">
+        If a case is completely missing from the manager (because it has never been assigned before), you can manually add it here.
+      </p>
+      <div class="flex-row">
+        <div>
+          <label>Case Number (e.g., FA/388/1980)</label>
+          <input type="text" id="addCaseNo" placeholder="FA/..." />
+        </div>
+        <div>
+          <label>Assign To</label>
+          <select id="addCaseName">
+            <option value="">-- Select Assistant --</option>
+          </select>
+        </div>
+        <button class="btn btn-success" onclick="addMissingCase()">➕ Add & Update GitHub</button>
+      </div>
+      <div id="addStatus" class="status-msg"></div>
+    </div>
+
+
     <!-- MANAGE ASSISTANTS CARD -->
     <div class="card" style="background: #fff7ed; border-color: #fed7aa;">
       <h2>✏️ Manage Assistant Names</h2>
@@ -184,6 +208,10 @@
       manageSelect.innerHTML = `<option value="">-- Select Assistant --</option>` + optionsStr;
 
       // 3. Bulk dropdown
+      
+      const addSelect = document.getElementById('addCaseName');
+      addSelect.innerHTML = `<option value="">-- Select Assistant --</option>` + optionsStr + `<option value="ADD_NEW">➕ नया असिस्टेंट जोड़ें (Add New...)</option>`;
+
       const bulkSelect = document.getElementById('bulkAssistantName');
       bulkSelect.innerHTML = `<option value="">-- Select Assistant --</option>` + optionsStr + `<option value="ADD_NEW">➕ नया असिस्टेंट जोड़ें (Add New...)</option>`;
     }
@@ -275,6 +303,36 @@
         return false;
       }
     }
+
+    
+    async function addMissingCase() {
+      const caseNo = document.getElementById('addCaseNo').value.trim();
+      const sel = document.getElementById('addCaseName');
+      const astName = sel.options[sel.selectedIndex].value;
+
+      if (!caseNo || !astName || astName === 'ADD_NEW') {
+        showMsg('addStatus', "❌ Please enter a case number and select an assistant.", "var(--danger-color)");
+        return;
+      }
+
+      ASSISTANTS_DB[caseNo] = astName;
+
+      showMsg('addStatus', '⏳ Updating GitHub...', '#0f172a');
+      const success = await pushToGithub(
+        `Added previously unassigned case ${caseNo} to ${astName}`
+      );
+      
+      if (success) {
+        showMsg('addStatus', `✅ Success! Added ${caseNo} and assigned to '${astName}'.`, "var(--success-color)");
+        document.getElementById('addCaseNo').value = '';
+        sel.value = '';
+        extractUniqueAssistants();
+        populateDropdowns();
+      } else {
+        showMsg('addStatus', "❌ Update failed.", "var(--danger-color)");
+      }
+    }
+
 
     // --- MANAGE ASSISTANTS ---
     async function renameAssistant() {
