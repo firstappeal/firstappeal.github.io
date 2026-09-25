@@ -62,8 +62,8 @@
       </p>
       <div class="flex-row">
         <div>
-          <label>Case Number (e.g., FA/388/1980)</label>
-          <input type="text" id="addCaseNo" placeholder="FA/..." />
+          <label>Case Number (e.g., 388/1980)</label>
+          <input type="text" id="addCaseNo" placeholder="e.g. 388/1980" />
         </div>
         <div>
           <label>Assign To</label>
@@ -192,8 +192,7 @@
           
           data.forEach(row => {
             // e.g. "FA" or "First Appeal"
-            let prefix = row.case_type === 'First Appeal' ? 'FA' : row.case_type;
-            let caseKey = `${prefix}/${row.case_no}/${row.case_year}`;
+            let caseKey = `${row.case_no}/${row.case_year}`;
             MASTER_CASES.push(caseKey);
           });
           
@@ -348,7 +347,8 @@
 
     
     async function addMissingCase() {
-      const caseNo = document.getElementById('addCaseNo').value.trim();
+      let caseNo = document.getElementById('addCaseNo').value.trim();
+      caseNo = caseNo.replace(/^(?:FA\/|First Appeal\/)/i, '').trim();
       const sel = document.getElementById('addCaseName');
       const astName = sel.options[sel.selectedIndex].value;
 
