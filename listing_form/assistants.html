@@ -111,7 +111,8 @@
         <div>
           <label>Filter by Current Assistant (Optional)</label>
           <select id="filterName">
-            <option value="">-- All Assistants --</option>
+            <option value="">-- All Cases (Assigned & Unassigned) --</option>
+            <option value="UNASSIGNED">❌ Unassigned Cases Only</option>
             <!-- Options populated by JS -->
           </select>
         </div>
@@ -167,12 +168,52 @@
       'file_tracking/assistants_db.js'
     ];
     
+    
+    const SUPA_URL = 'https://rbcrkmmlywvnkpqzexuh.supabase.co';
+    const SUPA_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJiY3JrbW1seXd2bmtwcXpleHVoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQ4NjU4MDksImV4cCI6MjEwMDQ0MTgwOX0.2V5qdZXPSr8UCKWvRT0htUpIG6Hy7nm8Ruv2Eg-jpjY';
+    
+    let MASTER_CASES = [];
+
+    async function loadMasterCases() {
+      try {
+        let offset = 0;
+        const limit = 1000;
+        document.getElementById('updateStatus').textContent = '⏳ Loading Master Records from database...';
+        
+        while (true) {
+          const res = await fetch(`${SUPA_URL}/rest/v1/case_records?select=case_type,case_no,case_year&limit=${limit}&offset=${offset}`, {
+            headers: {
+              'apikey': SUPA_KEY,
+              'Authorization': 'Bearer ' + SUPA_KEY
+            }
+          });
+          const data = await res.json();
+          if (data.length === 0) break;
+          
+          data.forEach(row => {
+            // e.g. "FA" or "First Appeal"
+            let prefix = row.case_type === 'First Appeal' ? 'FA' : row.case_type;
+            let caseKey = `${prefix}/${row.case_no}/${row.case_year}`;
+            MASTER_CASES.push(caseKey);
+          });
+          
+          offset += limit;
+        }
+        document.getElementById('updateStatus').textContent = `✅ Loaded ${MASTER_CASES.length} cases from Master Records.`;
+        setTimeout(() => { document.getElementById('updateStatus').textContent = ''; }, 3000);
+      } catch (err) {
+        console.error(err);
+        document.getElementById('updateStatus').textContent = '❌ Failed to load Master Records.';
+      }
+    }
+
     let uniqueAssistants = [];
 
     document.addEventListener('DOMContentLoaded', () => {
       const savedToken = localStorage.getItem('github_pat');
       if (savedToken) document.getElementById('githubToken').value = savedToken;
       
+      loadMasterCases();
       extractUniqueAssistants();
       populateDropdowns();
     });
@@ -201,7 +242,8 @@
       
       // 1. Filter dropdown
       const filterSelect = document.getElementById('filterName');
-      filterSelect.innerHTML = `<option value="">-- All Assistants --</option>` + optionsStr;
+      filterSelect.innerHTML = `<option value="">-- All Cases (Assigned & Unassigned) --</option>
+            <option value="UNASSIGNED">❌ Unassigned Cases Only</option>` + optionsStr;
       
       // 2. Manage dropdown
       const manageSelect = document.getElementById('manageSelectName');
@@ -422,10 +464,24 @@
       tbody.innerHTML = '';
       
       let count = 0;
-      for (const [caseNo, astName] of Object.entries(ASSISTANTS_DB)) {
+      
+      // We will iterate over ALL Master Cases.
+      // If a case is in ASSISTANTS_DB but NOT in Master Cases, we should probably still show it so they can fix it, 
+      // but let's combine them into a single unique Set.
+      const allUniqueCases = new Set(MASTER_CASES);
+      Object.keys(ASSISTANTS_DB).forEach(k => allUniqueCases.add(k));
+
+      for (const caseNo of allUniqueCases) {
+        const astName = ASSISTANTS_DB[caseNo] || '';
+        
         let match = true;
         if (year && !caseNo.endsWith('/' + year)) match = false;
-        if (name && astName !== name) match = false;
+        
+        if (name === 'UNASSIGNED') {
+          if (astName !== '') match = false;
+        } else if (name && astName !== name) {
+          match = false;
+        }
         
         if (match) {
           count++;
