@@ -5668,5 +5668,6 @@ const ASSISTANTS_DB =
   "189/2026": "Dhananjay Kumar",
   "190/2026": "Dhananjay Kumar",
   "191/2026": "Dhananjay Kumar",
-  "192/2026": "Dhananjay Kumar"
+  "192/2026": "Dhananjay Kumar",
+  "225/2025": "Shubham Kumar"
 };
