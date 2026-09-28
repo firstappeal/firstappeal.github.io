@@ -4748,7 +4748,7 @@ const ASSISTANTS_DB =
   "144/2019": "Amit Kumar",
   "145/2019": "Amit Kumar",
   "146/2019": "Amit Kumar",
-  "147/2019": "Amit Kumar",
+  "147/2019": "Ravi Singh",
   "148/2019": "Amit Kumar",
   "149/2019": "Amit Kumar",
   "150/2019": "Amit Kumar",
