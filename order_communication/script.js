@@ -102,8 +102,8 @@ function renderPages() {
            Present : <strong>${present}</strong>
         </div>
         
-        <div class="doc-row" style="text-align: center; margin-bottom: 20px;">
-           <span style="font-size: 22px; font-weight: bold;">${appealType} No. ${caseNo} of ${caseYear}</span>
+        <div class="doc-row" style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 15px; padding-left: 40px; font-size: 18px;">
+           <span style="min-width: 250px; text-align: center; font-weight: bold;">${appealType}</span> No. <span style="min-width: 100px; text-align: center; font-weight: bold;">${caseNo}</span> of <span style="min-width: 80px; text-align: center; font-weight: bold;">${caseYear}</span>
         </div>
         <div class="doc-row" style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 15px;">
            ( arising out of <span style="margin-left: 20px;"><strong>${arisingNo1}</strong> ${arisingYear1 ? 'of ' + arisingYear1 : ''}</span> <span style="margin-left: 20px;"><strong>${arisingNo2}</strong> ${arisingYear2 ? 'of ' + arisingYear2 : ''} of the Court of </span>
