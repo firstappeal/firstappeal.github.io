@@ -335,6 +335,20 @@
       return sbInsert('file_tracking_state', { data: data });
     },
 
+    // ── ORDER COMMUNICATIONS ─────────────────────────────────
+    async getOrderCommunications() {
+      const rows = await sbGet('order_communications', 'limit=500');
+      return rows.map(r => ({ ...(r.data_json || r), saved_at: r.created_at, id: r.id }));
+    },
+
+    async insertOrderCommunication(body) {
+      return sbInsert('order_communications', body);
+    },
+
+    async deleteOrderCommunication(id) {
+      return sbDelete('order_communications', { id });
+    },
+
     // ── ANALYTICS ────────────────────────────────────────────
     async getAnalytics() {
       const countPromise = fetch(
