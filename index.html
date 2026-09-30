@@ -1,205 +1,249 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>First Appeal Section - Patna High Court</title>
-    <!-- Offline System Fonts -->
-    <style>
-      :root {
-        --font-ui: 'Segoe UI', 'Ubuntu', 'Helvetica Neue', Arial, sans-serif;
-      }
-      body { font-family: var(--font-ui); }
-    </style>
-    <link rel="stylesheet" href="shared/offline_icons.css">
-    <link rel="stylesheet" href="style.css?v=4">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Patna High Court – Order Communication</title>
+  <!-- Offline-safe system fonts (no internet required) -->
+  <style>
+    :root {
+      --font-ui: 'Segoe UI', 'Ubuntu', 'Helvetica Neue', Arial, sans-serif;
+      --font-devanagari: 'Noto Sans Devanagari', 'Mangal', 'Arial Unicode MS', sans-serif;
+    }
+    body { font-family: var(--font-ui); }
+  </style>
+  <link rel="stylesheet" href="../shared/offline_icons.css">
+  <link rel="stylesheet" href="style.css?v=2">
 </head>
 <body>
-    <div class="portal-container">
-        <header class="portal-header">
-            <div class="logo-container">
-                <i class="fa-solid fa-scale-balanced fa-3x"></i>
-            </div>
-            <h1>First Appeal Section</h1>
-            <p>Unified dashboard for court applications, file tracking, and record management</p>
-        </header>
 
-<!-- GLOBAL CASE SEARCH -->
-<div class="global-search-wrap">
-    <div class="global-search-box">
-        <i class="fa-solid fa-magnifying-glass"></i>
-        <input type="text" id="globalSearchInput" placeholder="Search any case… e.g. FA 152 or party name" autocomplete="off">
-        <div id="globalSearchResults" class="gsearch-results" style="display:none;"></div>
+  <!-- ── CONTROL PANEL / NAVBAR ──────────────────────────────────── -->
+  <header class="navbar no-print">
+    <div style="display: flex; align-items: center; gap: 16px;">
+      <a href="../index.html" class="nav-back-btn" title="Return to Dashboard">&#8592; Dashboard</a>
+      <div class="nav-logo">
+        <div class="nav-icon">⚖️</div>
+        <div>
+          <h1>Order Communication</h1>
+          <div class="nav-subtitle">High Court of Judicature at Patna</div>
+        </div>
+      </div>
     </div>
-</div>
-
-        <!-- PORTAL APPLICATIONS GRID -->
-        <main class="portal-grid">
-            <a href="listing_form/index.html" class="portal-card">
-                <div class="card-icon blue">
-                    <i class="fa-solid fa-file-lines"></i>
-                </div>
-                <h2>Listing Form</h2>
-                <p>Generate print-ready listing forms with auto-populated case details.</p>
-            </a>
-
-            <a href="notice_form/index.html" class="portal-card">
-                <div class="card-icon green">
-                    <i class="fa-solid fa-envelope-open-text"></i>
-                </div>
-                <h2>Notice Forwarding</h2>
-                <p>Create and print official court notices for multiple recipients.</p>
-            </a>
-
-            <a href="direct_notice/index.html" class="portal-card">
-                <div class="card-icon purple">
-                    <i class="fa-solid fa-paper-plane"></i>
-                </div>
-                <h2>Direct Notice</h2>
-                <p>Generate direct notices for immediate dispatch.</p>
-            </a>
-
-            <a href="lcr_call/index.html" class="portal-card">
-                <div class="card-icon orange">
-                    <i class="fa-solid fa-phone-volume"></i>
-                </div>
-                <h2>LCR Call</h2>
-                <p>Generate forms for calling Lower Court Records.</p>
-            </a>
-
-            <a href="file_tracking/index.html" class="portal-card">
-                <div class="card-icon red">
-                    <i class="fa-solid fa-folder-tree"></i>
-                </div>
-                <h2>File Tracking</h2>
-                <p>Log and track physical case file movements across departments.</p>
-            </a>
-
-            <a href="case_records/index.html" class="portal-card">
-                <div class="card-icon teal" style="background: rgba(20, 184, 166, 0.15); color: #14b8a6;">
-                    <i class="fa-solid fa-box-archive"></i>
-                </div>
-                <h2>Case Records System</h2>
-                <p>Master register for case details, lower court judgments, valuations, and bundle numbers.</p>
-            </a>
-
-            <a href="import_cases/index.html" class="portal-card">
-                <div class="card-icon" style="background: rgba(168, 85, 247, 0.15); color: #a855f7;">
-                    <i class="fa-solid fa-file-import"></i>
-                </div>
-                <h2>Import Cases from PDF</h2>
-                <p>Bulk-import year-wise First Appeal cases from court PDFs into the master database safely.</p>
-            </a>
-
-            <a href="official_letter/index.html" class="portal-card">
-                <div class="card-icon" style="background: rgba(201, 162, 39, 0.15); color: #c9a227;">
-                    <i class="fa-solid fa-envelope-open-text"></i>
-                </div>
-                <h2>Official Letter Writer</h2>
-                <p>Compose and preview official letters on Patna High Court letterhead with live side-by-side editing.</p>
-            </a>
-
-            <a href="analytics/index.html" class="portal-card">
-                <div class="card-icon" style="background: rgba(99, 102, 241, 0.15); color: #6366f1;">
-                    <i class="fa-solid fa-chart-pie"></i>
-                </div>
-                <h2>Section Analytics</h2>
-                <p>DA workload, case records completeness, decade distribution &amp; recent activity.</p>
-            </a>
-
-            <a href="listing_form/assistants.html" class="portal-card">
-                <div class="card-icon" style="background: rgba(34, 197, 94, 0.15); color: #22c55e;">
-                    <i class="fa-solid fa-users-gear"></i>
-                </div>
-                <h2>Assistant Allocation</h2>
-                <p>Assign and manage dealing assistants for individual cases globally.</p>
-            </a>
-
-            <a href="causelist_records/index.html" class="portal-card">
-                <div class="card-icon" style="background: rgba(236, 72, 153, 0.15); color: #ec4899;">
-                    <i class="fa-solid fa-list"></i>
-                </div>
-                <h2>Causelist Printed Cases</h2>
-                <p>Fetch and record First Appeal cases printed in the causelist.</p>
-            </a>
-
-        </main>
-
-        <footer class="portal-footer">
-            <p>&copy; <span id="year"></span> Patna High Court Utilities. All rights reserved.</p>
-        </footer>
+    <div class="nav-actions">
+      <button class="btn btn-info" id="viewCloudNoticesBtn">
+        <span class="btn-icon">📂</span> Load Saved Notices
+      </button>
+      <button class="btn btn-success" id="saveToCloudBtn">
+        <span class="btn-icon">💾</span> Save Record
+      </button>
+      <button class="btn btn-secondary" id="clearBtn">
+        <span class="btn-icon">🗑️</span> Clear Form
+      </button>
+      <button class="btn btn-primary" id="printBtn">
+        <span class="btn-icon">🖨️</span> Print / Save PDF
+      </button>
     </div>
+  </header>
 
-    <script>
-        document.getElementById('year').textContent = new Date().getFullYear();
+  <!-- ── MAIN WORKSPACE ─────────────────────────────────────────── -->
+  <main class="workspace">
+    <!-- LEFT SIDEBAR: INPUT EDITOR -->
+    <section class="editor-panel no-print">
+      <!-- Section 1: Search Case Database -->
+      <div class="form-section">
+        <h2>Case Search & Auto-Populate</h2>
+        <div class="input-group search-group">
+          <label for="caseSearchInput">Search Case Number</label>
+          <div class="search-input-wrapper">
+            <input type="text" id="caseSearchInput" placeholder="Type Case Number (e.g. FA/1233/1971)..." autocomplete="off">
+            <div class="search-clear" id="searchClearBtn">&times;</div>
+          </div>
+          <div class="autocomplete-dropdown" id="autocompleteDropdown"></div>
+          <div class="helper-text">Select a case to auto-populate Appellant, Respondent, and Case Details.</div>
+        </div>
+      </div>
 
-        // ── Global Search (searches CASES_DB) ─────────────────────
-        const gInput   = document.getElementById('globalSearchInput');
-        const gResults = document.getElementById('globalSearchResults');
+      <!-- Section 2: Notice Form Fields -->
+      
+      <div class="form-section">
+        <h2>Order Communication Details</h2>
 
-        function normalizeQuery(q) {
-            // Convert natural "FA 152", "MA 10", "SA 5 2020" to DB key format
-            return q.trim().replace(/^(FA|MA|CA|SA)\s+(\d+)(?:\s+(\d+))?$/i, (_, type, no, yr) => {
-                return yr ? `${type.toUpperCase()}/${no}/${yr}` : `${type.toUpperCase()}/${no}`;
-            }).toLowerCase();
-        }
+        <div class="input-group">
+          <label for="in_present">Present :</label>
+          <input type="text" id="in_present" placeholder="e.g. HON'BLE MR. JUSTICE ...">
+        </div>
 
-        function renderGlobalResults(query) {
-            if (!query || query.length < 2) { gResults.style.display = 'none'; return; }
-            if (typeof CASES_DB === 'undefined') { gResults.style.display = 'none'; return; }
+        <div class="form-row-3">
+          <div class="input-group">
+            <label for="in_appeal_type">Appeal Type</label>
+            <input type="text" id="in_appeal_type" placeholder="e.g. FA">
+          </div>
+          <div class="input-group">
+            <label for="in_case_no">Case Number</label>
+            <input type="text" id="in_case_no" placeholder="e.g. 1233">
+          </div>
+          <div class="input-group">
+            <label for="in_case_year">Year</label>
+            <input type="text" id="in_case_year" placeholder="e.g. 1971">
+          </div>
+        </div>
 
-            const q = normalizeQuery(query);
-            const matches = Object.entries(CASES_DB)
-                .filter(([key, val]) =>
-                    key.toLowerCase().includes(q) ||
-                    (val.appellant || '').toLowerCase().includes(q) ||
-                    (val.respondent || '').toLowerCase().includes(q)
-                )
-                .slice(0, 8);
+        <div class="form-row">
+          <div class="input-group">
+            <label for="in_arising_no1">Arising out of No.</label>
+            <input type="text" id="in_arising_no1" placeholder="e.g. 12">
+          </div>
+          <div class="input-group">
+            <label for="in_arising_year1">of 200/Year</label>
+            <input type="text" id="in_arising_year1" placeholder="e.g. 23">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="input-group">
+            <label for="in_arising_no2">No.</label>
+            <input type="text" id="in_arising_no2" placeholder="">
+          </div>
+          <div class="input-group">
+            <label for="in_arising_year2">of 200/Year</label>
+            <input type="text" id="in_arising_year2" placeholder="">
+          </div>
+        </div>
+        <div class="input-group">
+            <label for="in_arising_court">of the Court of</label>
+            <input type="text" id="in_arising_court" placeholder="e.g. Sub Judge I, Patna">
+        </div>
 
-            if (matches.length === 0) {
-                gResults.innerHTML = '<div class="gs-no-result">No matching cases found</div>';
-            } else {
-                gResults.innerHTML = matches.map(([key, val]) => {
-                    const parts = key.split('/');
-                    const label = parts.length === 3 ? `FA No. ${parts[1]} / ${parts[2]}` : key;
-                    // Encode the search term so Case Records page can auto-search for this exact case
-                    const caseUrl = `case_records/index.html?search=${encodeURIComponent(key)}`;
-                    return `<a class="gs-item" href="${caseUrl}">
-                        <div class="gs-case">${label}</div>
-                        <div class="gs-party">${(val.appellant || '').substring(0,40)} vs ${(val.respondent || '').substring(0,30)}</div>
-                    </a>`;
-                }).join('');
-            }
-            gResults.style.display = 'block';
-        }
+        <div class="input-group">
+          <label for="in_appellant">Appellant Name</label>
+          <input type="text" id="in_appellant" placeholder="e.g. MAHABIR SINGH and ORS">
+        </div>
 
-        gInput.addEventListener('input', () => renderGlobalResults(gInput.value));
-        document.addEventListener('click', (e) => { if (!gInput.contains(e.target)) gResults.style.display = 'none'; });
-    </script>
-    <script src="shared/db.js?v=3"></script>
-    <script src="shared/cases_db.js?v=3"></script>
+        <div class="input-group">
+          <label for="in_respondent">Respondent Name</label>
+          <input type="text" id="in_respondent" placeholder="e.g. SMT. MADHURI DEVI and ORS">
+        </div>
 
-    <!-- SYNC RECENT CASES FROM SUPABASE -->
-    <script>
-      document.addEventListener('DOMContentLoaded', async () => {
-         if (typeof CASES_DB !== 'undefined' && window.PortalDB) {
-             try {
-                 const recentCases = await window.PortalDB.getRecentCaseRecords(1000);
-                 recentCases.forEach(c => {
-                     if (c.case_no && c.case_year) {
-                         const key = `FA/${c.case_no}/${c.case_year}`;
-                         if (!CASES_DB[key]) {
-                             CASES_DB[key] = { appellant: c.appellant, respondent: c.respondent };
-                         }
-                     }
-                 });
-             } catch (e) {
-                 console.warn("Failed to sync recent cases from Supabase", e);
-             }
-         }
-      });
-    </script>
+        <div class="input-group">
+          <label for="in_application_filed_by">Application filed by the</label>
+          <input type="text" id="in_application_filed_by" placeholder="e.g. Appellant">
+        </div>
+        <div class="input-group">
+          <label for="in_exn_case_no">in Exn. Case No.</label>
+          <input type="text" id="in_exn_case_no" placeholder="">
+        </div>
 
-  </body>
+        <div class="input-group">
+          <label for="in_order_text">Order</label>
+          <textarea id="in_order_text" rows="6" placeholder="Enter the order details here..."></textarea>
+        </div>
+
+        <div class="input-group">
+          <label for="in_memo_no">MEMO No.</label>
+          <input type="text" id="in_memo_no" placeholder="">
+        </div>
+
+        <div class="input-group">
+          <label for="in_copy_forwarded_to">Copy forwarded to the</label>
+          <input type="text" id="in_copy_forwarded_to" placeholder="e.g. District Judge">
+        </div>
+
+        <div class="form-row-3">
+          <div class="input-group">
+            <label for="in_date_day">Date: Day</label>
+            <input type="text" id="in_date_day" placeholder="e.g. 08th">
+          </div>
+          <div class="input-group">
+            <label for="in_date_month">Date: Month</label>
+            <input type="text" id="in_date_month" placeholder="e.g. July">
+          </div>
+          <div class="input-group">
+            <label for="in_date_year">Date: Year</label>
+            <input type="text" id="in_date_year" placeholder="e.g. 2026">
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- RIGHT PANEL: HIGH-FIDELITY LIVE PREVIEW -->
+    <section class="preview-panel">
+      <div id="pagesContainer">
+        <!-- Dynamic print-page elements will be generated here -->
+      </div>
+    </section>
+  </main>
+
+  <!-- ── MODAL DIALOGS ───────────────────────────────────────────── -->
+  <div class="modal-overlay" id="confirmModal">
+    <div class="modal-card">
+      <div class="modal-icon">⚠️</div>
+      <h3>Clear Form Content?</h3>
+      <p>Are you sure you want to clear all form entries? This action cannot be undone.</p>
+      <div class="modal-actions">
+        <button class="btn btn-secondary" id="cancelClearBtn">Cancel</button>
+        <button class="btn btn-danger" id="confirmClearBtn">Yes, Clear All</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── LOAD SAVED NOTICES MODAL ───────────────────────────── -->
+  <div id="loadNoticesModal" style="display:none;position:fixed;inset:0;background:rgba(11,15,25,0.85);backdrop-filter:blur(8px);z-index:10000;align-items:center;justify-content:center;">
+    <div style="background:#1e293b;border:1px solid #334155;border-radius:12px;width:760px;max-width:95vw;max-height:85vh;display:flex;flex-direction:column;box-shadow:0 25px 50px rgba(0,0,0,0.5);">
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:18px 24px;border-bottom:1px solid #334155;">
+        <h3 style="font-size:1.1rem;font-weight:700;color:#f8fafc;"><span style="margin-right:8px;">📂</span> Load Saved Order Communication</h3>
+        <button type="button" id="closeNoticesModal" style="background:none;border:none;color:#94a3b8;font-size:1.4rem;cursor:pointer;line-height:1;">&times;</button>
+      </div>
+      <div style="padding:16px 24px;border-bottom:1px solid #334155;">
+        <input type="text" id="noticesModalSearch" placeholder="Search by case number, year, or party name…"
+          style="width:100%;background:#0f172a;border:1.5px solid #475569;color:#f8fafc;padding:9px 14px;border-radius:8px;font-family:inherit;font-size:0.9rem;outline:none;">
+      </div>
+      <div style="overflow-y:auto;flex:1;">
+        <table style="width:100%;border-collapse:collapse;font-size:0.84rem;">
+          <thead style="position:sticky;top:0;background:#0f172a;">
+            <tr>
+              <th style="padding:10px 14px;text-align:left;color:#94a3b8;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.5px;border-bottom:1px solid #334155;">Case</th>
+              <th style="padding:10px 14px;text-align:left;color:#94a3b8;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.5px;border-bottom:1px solid #334155;">Appellant</th>
+              <th style="padding:10px 14px;text-align:left;color:#94a3b8;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.5px;border-bottom:1px solid #334155;">Respondent</th>
+              <th style="padding:10px 14px;text-align:left;color:#94a3b8;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.5px;border-bottom:1px solid #334155;">Saved On</th>
+              <th style="padding:10px 14px;text-align:center;color:#94a3b8;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.5px;border-bottom:1px solid #334155;">Action</th>
+            </tr>
+          </thead>
+          <tbody id="noticesModalBody">
+            <tr><td colspan="5" style="padding:24px;text-align:center;color:#94a3b8;">Loading…</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div style="padding:12px 24px;border-top:1px solid #334155;display:flex;align-items:center;gap:10px;">
+        <span id="noticesModalCount" style="font-size:0.8rem;color:#94a3b8;"></span>
+        <button type="button" id="closeNoticesModalBtn" style="margin-left:auto;background:#334155;color:#f8fafc;border:1px solid #475569;padding:8px 18px;border-radius:8px;cursor:pointer;font-family:inherit;font-size:0.88rem;font-weight:600;">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Case database (local copy – self-contained) -->
+  <script src="../shared/cases_db.js?v=3"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+       if (typeof CASES_DB !== 'undefined' && window.PortalDB) {
+           try {
+               const recentCases = await window.PortalDB.getRecentCaseRecords(1000);
+               recentCases.forEach(c => {
+                   if (c.case_no && c.case_year) {
+                       const key = `FA/${c.case_no}/${c.case_year}`;
+                       if (!CASES_DB[key]) {
+                           CASES_DB[key] = { appellant: c.appellant, respondent: c.respondent };
+                       }
+                   }
+               });
+           } catch (e) {
+               console.warn("Failed to sync recent cases from Supabase", e);
+           }
+       }
+    });
+  </script>
+
+  <!-- Application logic script -->
+    <script src="../shared/db.js?v=3"></script>
+  <script src="script.js"></script>
+</body>
 </html>
