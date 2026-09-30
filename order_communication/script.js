@@ -19,9 +19,7 @@ const FIELD_MAP = {
   in_order_text       : 'in_order_text',
   in_memo_no          : 'in_memo_no',
   in_copy_forwarded_to: 'in_copy_forwarded_to',
-  in_date_day         : 'in_date_day',
-  in_date_month       : 'in_date_month',
-  in_date_year        : 'in_date_year'
+  in_date_picker      : 'in_date_picker'
 };
 
 const APPEAL_TYPES = {
@@ -39,23 +37,15 @@ function ordinalSuffix(day) {
 }
 
 function populateCurrentDateParts() {
-  const now = new Date();
-  const day = now.getDate();
-  const year = now.getFullYear().toString().slice(-2);
-  const months = [
-    "January", "February", "March", "April", "May", "June",
-    "July", "August", "September", "October", "November", "December"
-  ];
-  const monthName = months[now.getMonth()];
-  const paddedDay = String(day).padStart(2, '0');
-  
-  const dayInput = document.getElementById('in_date_day');
-  const monthInput = document.getElementById('in_date_month');
-  const yearInput = document.getElementById('in_date_year');
-  
-  if (dayInput && !dayInput.value) dayInput.value = paddedDay;
-  if (monthInput && !monthInput.value) monthInput.value = monthName;
-  if (yearInput && !yearInput.value) yearInput.value = year;
+  const dateInput = document.getElementById('in_date_picker');
+  if (dateInput && !dateInput.value) {
+    const now = new Date();
+    // format as YYYY-MM-DD
+    const yyyy = now.getFullYear();
+    const mm = String(now.getMonth() + 1).padStart(2, '0');
+    const dd = String(now.getDate()).padStart(2, '0');
+    dateInput.value = `${yyyy}-${mm}-${dd}`;
+  }
 }
 
 function getValue(id) {
@@ -89,9 +79,17 @@ function renderPages() {
   const memoNo = getValue('in_memo_no') || '\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0';
   const copyForwardedTo = getValue('in_copy_forwarded_to') || '\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0';
   
-  const dateDay = getValue('in_date_day') || '\u00A0\u00A0\u00A0\u00A0';
-  const dateMonth = getValue('in_date_month') || '\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0';
-  const dateYear = getValue('in_date_year') || '\u00A0\u00A0';
+  let dateDay = '    ', dateMonth = '        ', dateYear = '  ';
+  const dateVal = getValue('in_date_picker');
+  if (dateVal) {
+    const d = new Date(dateVal);
+    if (!isNaN(d)) {
+      dateDay = String(d.getDate()).padStart(2, '0');
+      const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+      dateMonth = months[d.getMonth()];
+      dateYear = d.getFullYear().toString();
+    }
+  }
 
   const pagesHTML = `
       <div class="print-page" style="font-size: 16px; line-height: 1.6; font-family: serif;">
@@ -104,21 +102,21 @@ function renderPages() {
            Present : <strong>${present}</strong>
         </div>
         
-        <div class="doc-row" style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 15px; padding-left: 40px;">
-           <span style="min-width: 150px;"><strong>${appealType}</strong></span> No. <strong>${caseNo}</strong> of 200<strong>${caseYear}</strong>
+        <div class="doc-row" style="text-align: center; margin-bottom: 20px;">
+           <span style="font-size: 22px; font-weight: bold;">${appealType} No. ${caseNo} of ${caseYear}</span>
         </div>
         <div class="doc-row" style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 15px;">
-           ( arising out of <span style="margin-left: 20px;">No. <strong>${arisingNo1}</strong> of 200<strong>${arisingYear1}</strong></span> <span style="margin-left: 20px;">No. <strong>${arisingNo2}</strong> of 200<strong>${arisingYear2}</strong> of the Court of </span>
+           ( arising out of <span style="margin-left: 20px;"><strong>${arisingNo1}</strong> ${arisingYear1 ? 'of ' + arisingYear1 : ''}</span> <span style="margin-left: 20px;"><strong>${arisingNo2}</strong> ${arisingYear2 ? 'of ' + arisingYear2 : ''} of the Court of </span>
            <br><span style="margin-left: 20px;">of</span> <span style="margin-left: 20px;"><strong>${arisingCourt}</strong></span>
         </div>
         
-        <div class="doc-row" style="text-align: center; margin: 20px 0;">versus</div>
-
         <div class="doc-row" style="display: flex; justify-content: space-between; margin-bottom: 10px; padding-left: 40px; padding-right: 40px;">
            <strong style="width: 70%;">${appellant}</strong>
            <span>Appellant</span>
         </div>
         
+        <div class="doc-row" style="text-align: center; margin: 20px 0;">versus</div>
+
         <div class="doc-row" style="display: flex; justify-content: space-between; margin-bottom: 30px; padding-left: 40px; padding-right: 40px;">
            <strong style="width: 70%;">${respondent}</strong>
            <span>Respondent</span>
@@ -156,7 +154,7 @@ function renderPages() {
         <div class="doc-row" style="display: flex; justify-content: space-between; margin-top: 40px; align-items: center;">
            <div style="flex: 1;">
              HIGH COURT :<br><br>
-             The <strong>${dateDay}</strong> <strong>${dateMonth}</strong> 200<strong>${dateYear}</strong>
+             The <strong>${dateDay}</strong> <strong>${dateMonth}</strong> <strong>${dateYear}</strong>
            </div>
            <div style="font-size: 60px; font-weight: 300; line-height: 1; flex: 0.5; text-align: center; display: flex; align-items: center; justify-content: center; transform: scaleY(2.5);">}</div>
            <div style="text-align: center; flex: 1;">
