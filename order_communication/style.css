@@ -110,6 +110,7 @@ body {
 }
 
 .input-group {
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   margin-bottom: 16px;
@@ -129,6 +130,8 @@ body {
   color: #f8fafc;
   font-family: inherit;
   font-size: 13.5px;
+  width: 100%;
+  box-sizing: border-box;
 }
 .input-group input:focus, .input-group select:focus, .input-group textarea:focus {
   outline: none;
@@ -136,10 +139,12 @@ body {
   box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
 }
 
-.form-row { display: flex; gap: 12px; }
-.form-row > .input-group { flex: 1; }
-.form-row-3 { display: flex; gap: 12px; }
-.form-row-3 > .input-group { flex: 1; }
+.form-row { display: flex; gap: 12px; flex-wrap: wrap; }
+.form-row > .input-group {
+  box-sizing: border-box; flex: 1; }
+.form-row-3 { display: flex; gap: 12px; flex-wrap: wrap; }
+.form-row-3 > .input-group {
+  box-sizing: border-box; flex: 1; }
 
 .helper-text { font-size: 11px; color: #64748b; margin-top: 6px; }
 

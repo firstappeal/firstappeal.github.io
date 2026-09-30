@@ -19,9 +19,7 @@ const FIELD_MAP = {
   in_order_text       : 'in_order_text',
   in_memo_no          : 'in_memo_no',
   in_copy_forwarded_to: 'in_copy_forwarded_to',
-  in_date_day         : 'in_date_day',
-  in_date_month       : 'in_date_month',
-  in_date_year        : 'in_date_year'
+  in_date_picker      : 'in_date_picker'
 };
 
 const APPEAL_TYPES = {
@@ -39,23 +37,15 @@ function ordinalSuffix(day) {
 }
 
 function populateCurrentDateParts() {
-  const now = new Date();
-  const day = now.getDate();
-  const year = now.getFullYear().toString();
-  const months = [
-    "January", "February", "March", "April", "May", "June",
-    "July", "August", "September", "October", "November", "December"
-  ];
-  const monthName = months[now.getMonth()];
-  const paddedDay = String(day).padStart(2, '0');
-  
-  const dayInput = document.getElementById('in_date_day');
-  const monthInput = document.getElementById('in_date_month');
-  const yearInput = document.getElementById('in_date_year');
-  
-  if (dayInput && !dayInput.value) dayInput.value = paddedDay;
-  if (monthInput && !monthInput.value) monthInput.value = monthName;
-  if (yearInput && !yearInput.value) yearInput.value = year;
+  const dateInput = document.getElementById('in_date_picker');
+  if (dateInput && !dateInput.value) {
+    const now = new Date();
+    // format as YYYY-MM-DD
+    const yyyy = now.getFullYear();
+    const mm = String(now.getMonth() + 1).padStart(2, '0');
+    const dd = String(now.getDate()).padStart(2, '0');
+    dateInput.value = `${yyyy}-${mm}-${dd}`;
+  }
 }
 
 function getValue(id) {
@@ -89,9 +79,17 @@ function renderPages() {
   const memoNo = getValue('in_memo_no') || '\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0';
   const copyForwardedTo = getValue('in_copy_forwarded_to') || '\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0';
   
-  const dateDay = getValue('in_date_day') || '\u00A0\u00A0\u00A0\u00A0';
-  const dateMonth = getValue('in_date_month') || '\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0';
-  const dateYear = getValue('in_date_year') || '\u00A0\u00A0';
+  let dateDay = '    ', dateMonth = '        ', dateYear = '  ';
+  const dateVal = getValue('in_date_picker');
+  if (dateVal) {
+    const d = new Date(dateVal);
+    if (!isNaN(d)) {
+      dateDay = String(d.getDate()).padStart(2, '0');
+      const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+      dateMonth = months[d.getMonth()];
+      dateYear = d.getFullYear().toString();
+    }
+  }
 
   const pagesHTML = `
       <div class="print-page" style="font-size: 16px; line-height: 1.6; font-family: serif;">
