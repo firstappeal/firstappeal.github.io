@@ -41,7 +41,7 @@ function ordinalSuffix(day) {
 function populateCurrentDateParts() {
   const now = new Date();
   const day = now.getDate();
-  const year = now.getFullYear().toString().slice(-2);
+  const year = now.getFullYear().toString();
   const months = [
     "January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"
@@ -104,21 +104,21 @@ function renderPages() {
            Present : <strong>${present}</strong>
         </div>
         
-        <div class="doc-row" style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 15px; padding-left: 40px;">
-           <span style="min-width: 150px;"><strong>${appealType}</strong></span> No. <strong>${caseNo}</strong> of 200<strong>${caseYear}</strong>
+        <div class="doc-row" style="text-align: center; margin-bottom: 20px;">
+           <span style="font-size: 22px; font-weight: bold;">${appealType} No. ${caseNo} of ${caseYear}</span>
         </div>
         <div class="doc-row" style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 15px;">
-           ( arising out of <span style="margin-left: 20px;">No. <strong>${arisingNo1}</strong> of 200<strong>${arisingYear1}</strong></span> <span style="margin-left: 20px;">No. <strong>${arisingNo2}</strong> of 200<strong>${arisingYear2}</strong> of the Court of </span>
+           ( arising out of <span style="margin-left: 20px;"><strong>${arisingNo1}</strong> ${arisingYear1 ? 'of ' + arisingYear1 : ''}</span> <span style="margin-left: 20px;"><strong>${arisingNo2}</strong> ${arisingYear2 ? 'of ' + arisingYear2 : ''} of the Court of </span>
            <br><span style="margin-left: 20px;">of</span> <span style="margin-left: 20px;"><strong>${arisingCourt}</strong></span>
         </div>
         
-        <div class="doc-row" style="text-align: center; margin: 20px 0;">versus</div>
-
         <div class="doc-row" style="display: flex; justify-content: space-between; margin-bottom: 10px; padding-left: 40px; padding-right: 40px;">
            <strong style="width: 70%;">${appellant}</strong>
            <span>Appellant</span>
         </div>
         
+        <div class="doc-row" style="text-align: center; margin: 20px 0;">versus</div>
+
         <div class="doc-row" style="display: flex; justify-content: space-between; margin-bottom: 30px; padding-left: 40px; padding-right: 40px;">
            <strong style="width: 70%;">${respondent}</strong>
            <span>Respondent</span>
@@ -156,7 +156,7 @@ function renderPages() {
         <div class="doc-row" style="display: flex; justify-content: space-between; margin-top: 40px; align-items: center;">
            <div style="flex: 1;">
              HIGH COURT :<br><br>
-             The <strong>${dateDay}</strong> <strong>${dateMonth}</strong> 200<strong>${dateYear}</strong>
+             The <strong>${dateDay}</strong> <strong>${dateMonth}</strong> <strong>${dateYear}</strong>
            </div>
            <div style="font-size: 60px; font-weight: 300; line-height: 1; flex: 0.5; text-align: center; display: flex; align-items: center; justify-content: center; transform: scaleY(2.5);">}</div>
            <div style="text-align: center; flex: 1;">
