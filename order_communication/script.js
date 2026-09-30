@@ -306,6 +306,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const appellantField = document.getElementById('in_appellant');
         const respondentField = document.getElementById('in_respondent');
 
+        if (typeField) typeField.value = fullTypeName;
+        if (noField) noField.value = caseNumber;
+        if (yearField) yearField.value = caseYear;
         if (appellantField) appellantField.value = caseData.appellant || '';
         if (respondentField) respondentField.value = caseData.respondent || '';
       }
