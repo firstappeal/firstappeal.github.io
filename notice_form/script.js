@@ -355,16 +355,6 @@ async function printForm() {
   syncFields();
   document.body.classList.add('preview-active');
 
-  const caseNo = document.getElementById('sankhya')?.value.trim();
-  if (caseNo && typeof saveToCloud === 'function') {
-    try {
-      await saveToCloud(true);
-      showToast('✅ Record saved automatically.');
-    } catch (e) {
-      console.warn('Auto-save on print failed:', e);
-    }
-  }
-
   setTimeout(() => {
     window.print();
     if (!previewActive) {
