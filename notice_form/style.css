@@ -272,7 +272,7 @@ body {
   padding-top: 20px;
 }
 .sig-name  { font-weight: 700; color: var(--navy); font-size: .95rem; }
-.sig-title { font-size: .85rem; color: var(--ink-lt); margin-top: 3px; }
+.sig-title { font-size: .85rem; color: var(--ink-lt); margin-top: 60px; }
 
 /* ── Footer ─────────────────────────────────────────────── */
 .form-footer {
@@ -440,7 +440,7 @@ body {
 }
 
 .pr-sig-name  { font-weight: 700; font-size: 13pt; }
-.pr-sig-title { font-size: 11pt; color: #000; margin-top: 4px; }
+.pr-sig-title { font-size: 11pt; color: #000; margin-top: 60pt; }
 
 .pr-footer {
   text-align: left;
