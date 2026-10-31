@@ -78,12 +78,17 @@ function renderPages() {
   let dateDay = '    ', dateMonth = '        ', dateYear = '  ';
   const dateVal = getValue('in_date_picker');
   if (dateVal) {
-    const d = new Date(dateVal);
-    if (!isNaN(d)) {
-      dateDay = String(d.getDate()).padStart(2, '0');
+    const parts = dateVal.split('-');
+    if (parts.length === 3) {
+      const yearNum = parseInt(parts[0], 10);
+      const monthNum = parseInt(parts[1], 10) - 1;
+      const dayNum = parseInt(parts[2], 10);
       const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-      dateMonth = months[d.getMonth()];
-      dateYear = d.getFullYear().toString();
+      if (!isNaN(dayNum) && !isNaN(monthNum) && !isNaN(yearNum)) {
+        dateDay = `${dayNum}${ordinalSuffix(dayNum)}`;
+        dateMonth = months[monthNum] || '';
+        dateYear = yearNum.toString();
+      }
     }
   }
 
@@ -101,18 +106,18 @@ function renderPages() {
         <div class="doc-row" style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 8px; padding-left: 30px; font-size: 14pt;">
            <span style="min-width: 220px; text-align: center; font-weight: bold;">${appealType}</span> No. <span style="min-width: 90px; text-align: center; font-weight: bold;">${caseNo}</span> of <span style="min-width: 70px; text-align: center; font-weight: bold;">${caseYear}</span>
         </div>
-        <div class="doc-row" style="margin-bottom: 8px; padding-left: 30px; padding-right: 30px; font-size: 12pt; line-height: 1.5; text-align: justify;">
+        <div class="doc-row" style="margin-bottom: 20px; padding-left: 30px; padding-right: 30px; font-size: 12pt; line-height: 1.5; text-align: justify;">
            ( arising out of <span style="display: inline-block; min-width: 140px; text-align: center;">${arisingOutOf ? `<strong>${arisingOutOf}</strong>` : '........................'}</span> of <span style="display: inline-block; min-width: 60px; text-align: center;">${arisingYear ? `<strong>${arisingYear}</strong>` : '..........................'}</span> from the court of <span style="display: inline-block; min-width: 200px; text-align: center;">${arisingCourt ? `<strong>${arisingCourt}</strong>` : '.....................................................'}</span> )
         </div>
         
-        <div class="doc-row" style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px; padding-left: 30px; padding-right: 30px; font-size: 12pt;">
+        <div class="doc-row" style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 12px; padding-left: 30px; padding-right: 30px; font-size: 12pt;">
            <strong style="flex: 1; text-align: center; padding-right: 20px;">${appellant}</strong>
            <span style="white-space: nowrap;">Appellant</span>
         </div>
         
-        <div class="doc-row" style="text-align: center; margin: 6px 0; font-size: 12pt;">versus</div>
+        <div class="doc-row" style="text-align: center; margin: 10px 0; font-size: 12pt;">versus</div>
 
-        <div class="doc-row" style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px; padding-left: 30px; padding-right: 30px; font-size: 12pt;">
+        <div class="doc-row" style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 20px; padding-left: 30px; padding-right: 30px; font-size: 12pt;">
            <strong style="flex: 1; text-align: center; padding-right: 20px;">${respondent}</strong>
            <span style="white-space: nowrap;">Respondent</span>
         </div>
@@ -120,14 +125,14 @@ function renderPages() {
         <div class="doc-row" style="margin-bottom: 6px; font-size: 12pt;">
            In the matter of application filed by the <strong>${applicationFiledBy}</strong>
         </div>
-        <div class="doc-row" style="text-align: center; margin-bottom: 8px; font-size: 12pt;">
+        <div class="doc-row" style="text-align: center; margin-bottom: 18px; font-size: 12pt;">
            in Exn. Case No. <strong>${exnCaseNo}</strong>
         </div>
-        <div class="doc-row" style="text-align: center; margin-top: 12px; margin-bottom: 6px; font-size: 12pt; font-weight: bold;">
+        <div class="doc-row" style="text-align: center; margin-top: 14px; margin-bottom: 6px; font-size: 12pt; font-weight: bold;">
            Order
         </div>
         
-        <div class="doc-body-paragraph paragraph-indent" style="min-height: 80px; white-space: pre-wrap; margin-bottom: 12px; font-size: 12pt; line-height: 1.45;">${orderText}</div>
+        <div class="doc-body-paragraph paragraph-indent" style="min-height: 75px; white-space: pre-wrap; margin-bottom: 12px; font-size: 12pt; line-height: 1.45;">${orderText}</div>
         
         <div class="doc-row" style="text-align: right; margin-top: 10px; padding-right: 80px; font-size: 12pt;">
           ( Sd. )
@@ -142,11 +147,11 @@ function renderPages() {
         <div class="doc-row" style="margin-bottom: 6px; font-size: 12pt;">
           Copy forwarded to the <strong>${copyForwardedTo}</strong>
         </div>
-        <div class="doc-row" style="margin-bottom: 12px; text-align: center; font-size: 12pt;">
+        <div class="doc-row" style="margin-bottom: 24px; text-align: center; font-size: 12pt;">
           for information and guidance
         </div>
 
-        <div class="doc-row" style="display: flex; justify-content: space-between; margin-top: 14px; align-items: center; font-size: 12pt;">
+        <div class="doc-row" style="display: flex; justify-content: space-between; margin-top: 20px; align-items: center; font-size: 12pt;">
            <div style="flex: 1;">
              HIGH COURT :<br>
              The <strong>${dateDay}</strong> <strong>${dateMonth}</strong> <strong>${dateYear}</strong>
