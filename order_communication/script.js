@@ -88,72 +88,72 @@ function renderPages() {
   }
 
   const pagesHTML = `
-      <div class="print-page" style="font-size: 16px; line-height: 1.6; font-family: serif;">
-        <div style="font-size: 14px; margin-bottom: 10px;">( P. H. C. Sch. II-D-17 )</div>
-        <div class="doc-main-header" style="text-align: center; margin-bottom: 30px;">
-          <div class="doc-court-title" style="font-size: 24px; font-weight: bold;">In the High Court of Judicature at Patna</div>
+      <div class="print-page" style="font-size: 15px; line-height: 1.5; font-family: serif;">
+        <div style="font-size: 13px; margin-bottom: 6px;">( P. H. C. Sch. II-D-17 )</div>
+        <div class="doc-main-header" style="text-align: center; margin-bottom: 16px;">
+          <div class="doc-court-title" style="font-size: 22px; font-weight: bold;">In the High Court of Judicature at Patna</div>
         </div>
 
-        <div class="doc-row" style="margin-bottom: 15px;">
+        <div class="doc-row" style="margin-bottom: 10px;">
            Present : <strong>${present}</strong>
         </div>
         
-        <div class="doc-row" style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 15px; padding-left: 40px; font-size: 18px;">
-           <span style="min-width: 250px; text-align: center; font-weight: bold;">${appealType}</span> No. <span style="min-width: 100px; text-align: center; font-weight: bold;">${caseNo}</span> of <span style="min-width: 80px; text-align: center; font-weight: bold;">${caseYear}</span>
+        <div class="doc-row" style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 10px; padding-left: 40px; font-size: 17px;">
+           <span style="min-width: 220px; text-align: center; font-weight: bold;">${appealType}</span> No. <span style="min-width: 90px; text-align: center; font-weight: bold;">${caseNo}</span> of <span style="min-width: 70px; text-align: center; font-weight: bold;">${caseYear}</span>
         </div>
-        <div class="doc-row" style="margin-bottom: 15px; padding-left: 40px; font-size: 16px; line-height: 1.8;">
+        <div class="doc-row" style="margin-bottom: 10px; padding-left: 40px; padding-right: 40px; font-size: 15px; line-height: 1.6; text-align: justify;">
            ( arising out of <span style="display: inline-block; min-width: 140px; text-align: center;">${arisingOutOf ? `<strong>${arisingOutOf}</strong>` : '........................'}</span> of <span style="display: inline-block; min-width: 60px; text-align: center;">${arisingYear ? `<strong>${arisingYear}</strong>` : '..........................'}</span> from the court of <span style="display: inline-block; min-width: 200px; text-align: center;">${arisingCourt ? `<strong>${arisingCourt}</strong>` : '.....................................................'}</span> )
         </div>
         
-        <div class="doc-row" style="display: flex; justify-content: space-between; margin-bottom: 10px; padding-left: 40px; padding-right: 40px;">
-           <strong style="width: 70%;">${appellant}</strong>
-           <span>Appellant</span>
+        <div class="doc-row" style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px; padding-left: 40px; padding-right: 40px;">
+           <strong style="flex: 1; text-align: center; padding-right: 20px;">${appellant}</strong>
+           <span style="white-space: nowrap;">Appellant</span>
         </div>
         
-        <div class="doc-row" style="text-align: center; margin: 20px 0;">versus</div>
+        <div class="doc-row" style="text-align: center; margin: 8px 0;">versus</div>
 
-        <div class="doc-row" style="display: flex; justify-content: space-between; margin-bottom: 30px; padding-left: 40px; padding-right: 40px;">
-           <strong style="width: 70%;">${respondent}</strong>
-           <span>Respondent</span>
+        <div class="doc-row" style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 12px; padding-left: 40px; padding-right: 40px;">
+           <strong style="flex: 1; text-align: center; padding-right: 20px;">${respondent}</strong>
+           <span style="white-space: nowrap;">Respondent</span>
         </div>
 
-        <div class="doc-row" style="margin-bottom: 15px;">
+        <div class="doc-row" style="margin-bottom: 6px;">
            In the matter of application filed by the <strong>${applicationFiledBy}</strong>
         </div>
-        <div class="doc-row" style="text-align: center; margin-bottom: 20px;">
+        <div class="doc-row" style="text-align: center; margin-bottom: 8px;">
            in Exn. Case No. <strong>${exnCaseNo}</strong>
         </div>
-        <div class="doc-row" style="text-align: center; margin-top: 20px; margin-bottom: 20px;">
+        <div class="doc-row" style="text-align: center; margin-top: 10px; margin-bottom: 6px; font-weight: bold;">
            Order
         </div>
         
-        <div class="doc-body-paragraph paragraph-indent" style="min-height: 200px; white-space: pre-wrap; margin-bottom: 30px;">${orderText}</div>
+        <div class="doc-body-paragraph paragraph-indent" style="min-height: 35px; white-space: pre-wrap; margin-bottom: 8px; line-height: 1.4;">${orderText}</div>
         
-        <div class="doc-row" style="text-align: right; margin-top: 40px; padding-right: 100px;">
+        <div class="doc-row" style="text-align: right; margin-top: 8px; padding-right: 80px;">
           ( Sd. )
         </div>
-        <div class="doc-row" style="text-align: right; padding-right: 100px;">
+        <div class="doc-row" style="text-align: right; padding-right: 80px;">
           ( Sd. )
         </div>
 
-        <div class="doc-row" style="margin-bottom: 10px; text-align: center;">
+        <div class="doc-row" style="margin-top: 10px; margin-bottom: 6px; text-align: center;">
           MEMO No. <strong>${memoNo}</strong>
         </div>
-        <div class="doc-row" style="margin-bottom: 10px;">
+        <div class="doc-row" style="margin-bottom: 6px;">
           Copy forwarded to the <strong>${copyForwardedTo}</strong>
         </div>
-        <div class="doc-row" style="margin-bottom: 30px; text-align: center;">
+        <div class="doc-row" style="margin-bottom: 14px; text-align: center;">
           for information and guidance
         </div>
 
-        <div class="doc-row" style="display: flex; justify-content: space-between; margin-top: 40px; align-items: center;">
+        <div class="doc-row" style="display: flex; justify-content: space-between; margin-top: 16px; align-items: center;">
            <div style="flex: 1;">
-             HIGH COURT :<br><br>
+             HIGH COURT :<br>
              The <strong>${dateDay}</strong> <strong>${dateMonth}</strong> <strong>${dateYear}</strong>
            </div>
-           <div style="font-size: 60px; font-weight: 300; line-height: 1; flex: 0.5; text-align: center; display: flex; align-items: center; justify-content: center; transform: scaleY(2.5);">}</div>
+           <div style="font-size: 50px; font-weight: 300; line-height: 1; flex: 0.5; text-align: center; display: flex; align-items: center; justify-content: center; transform: scaleY(2.2);">}</div>
            <div style="text-align: center; flex: 1;">
-             By Order<br><br><br>
+             By Order<br><br>
              Deputy Registrar
            </div>
         </div>
