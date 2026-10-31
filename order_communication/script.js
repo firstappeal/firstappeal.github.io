@@ -7,10 +7,8 @@ const FIELD_MAP = {
   in_appeal_type      : 'in_appeal_type',
   in_case_no          : 'in_case_no',
   in_case_year        : 'in_case_year',
-  in_arising_no1      : 'in_arising_no1',
-  in_arising_year1    : 'in_arising_year1',
-  in_arising_no2      : 'in_arising_no2',
-  in_arising_year2    : 'in_arising_year2',
+  in_arising_out_of   : 'in_arising_out_of',
+  in_arising_year     : 'in_arising_year',
   in_arising_court    : 'in_arising_court',
   in_appellant        : 'in_appellant',
   in_respondent       : 'in_respondent',
@@ -62,11 +60,9 @@ function renderPages() {
   const caseNo = getValue('in_case_no') || '\u00A0\u00A0\u00A0\u00A0\u00A0';
   const caseYear = getValue('in_case_year') || '\u00A0\u00A0';
   
-  const arisingNo1 = getValue('in_arising_no1') || '\u00A0\u00A0\u00A0\u00A0\u00A0';
-  const arisingYear1 = getValue('in_arising_year1') || '\u00A0\u00A0';
-  const arisingNo2 = getValue('in_arising_no2') || '\u00A0\u00A0\u00A0\u00A0\u00A0';
-  const arisingYear2 = getValue('in_arising_year2') || '\u00A0\u00A0';
-  const arisingCourt = getValue('in_arising_court') || '\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0';
+  const arisingOutOf = getValue('in_arising_out_of') || getValue('in_arising_no1');
+  const arisingYear = getValue('in_arising_year') || getValue('in_arising_year1');
+  const arisingCourt = getValue('in_arising_court');
   
   const appellant = getValue('in_appellant') || '\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0';
   const respondent = getValue('in_respondent') || '\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0';
@@ -105,9 +101,8 @@ function renderPages() {
         <div class="doc-row" style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 15px; padding-left: 40px; font-size: 18px;">
            <span style="min-width: 250px; text-align: center; font-weight: bold;">${appealType}</span> No. <span style="min-width: 100px; text-align: center; font-weight: bold;">${caseNo}</span> of <span style="min-width: 80px; text-align: center; font-weight: bold;">${caseYear}</span>
         </div>
-        <div class="doc-row" style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 15px;">
-           ( arising out of <span style="margin-left: 20px;"><strong>${arisingNo1}</strong> ${arisingYear1 ? 'of ' + arisingYear1 : ''}</span> <span style="margin-left: 20px;"><strong>${arisingNo2}</strong> ${arisingYear2 ? 'of ' + arisingYear2 : ''} of the Court of </span>
-           <br><span style="margin-left: 20px;">of</span> <span style="margin-left: 20px;"><strong>${arisingCourt}</strong></span>
+        <div class="doc-row" style="margin-bottom: 15px; padding-left: 40px; font-size: 16px; line-height: 1.8;">
+           ( arising out of <span style="display: inline-block; min-width: 140px; text-align: center;">${arisingOutOf ? `<strong>${arisingOutOf}</strong>` : '........................'}</span> of <span style="display: inline-block; min-width: 60px; text-align: center;">${arisingYear ? `<strong>${arisingYear}</strong>` : '..........................'}</span> from the court of <span style="display: inline-block; min-width: 200px; text-align: center;">${arisingCourt ? `<strong>${arisingCourt}</strong>` : '.....................................................'}</span> )
         </div>
         
         <div class="doc-row" style="display: flex; justify-content: space-between; margin-bottom: 10px; padding-left: 40px; padding-right: 40px;">
@@ -311,6 +306,28 @@ document.addEventListener('DOMContentLoaded', () => {
         if (yearField) yearField.value = caseYear;
         if (appellantField) appellantField.value = caseData.appellant || '';
         if (respondentField) respondentField.value = caseData.respondent || '';
+
+        if (window.PortalDB && typeof window.PortalDB.getSingleCaseRecord === 'function') {
+          window.PortalDB.getSingleCaseRecord(fullTypeName, caseNumber, caseYear).then(rec => {
+            if (rec) {
+              const arisingField = document.getElementById('in_arising_out_of');
+              const yrField = document.getElementById('in_arising_year');
+              const crtField = document.getElementById('in_arising_court');
+
+              if (arisingField && !arisingField.value.trim()) {
+                const parts = [rec.lc_case_type, rec.lc_case_no ? `No. ${rec.lc_case_no}` : ''].filter(Boolean).join(' ');
+                if (parts) arisingField.value = parts;
+              }
+              if (yrField && !yrField.value.trim() && rec.lc_case_year) {
+                yrField.value = rec.lc_case_year;
+              }
+              if (crtField && !crtField.value.trim() && rec.lc_court) {
+                crtField.value = rec.lc_court;
+              }
+              renderPages();
+            }
+          }).catch(() => {});
+        }
       }
       renderPages();
     }
@@ -481,6 +498,15 @@ document.addEventListener('DOMContentLoaded', () => {
         if (el) {
             el.value = notice[key] || '';
         }
+    }
+
+    const arisingEl = document.getElementById('in_arising_out_of');
+    if (arisingEl && !arisingEl.value && notice.in_arising_no1) {
+      arisingEl.value = notice.in_arising_no1;
+    }
+    const yearEl = document.getElementById('in_arising_year');
+    if (yearEl && !yearEl.value && notice.in_arising_year1) {
+      yearEl.value = notice.in_arising_year1;
     }
 
     renderPages();
