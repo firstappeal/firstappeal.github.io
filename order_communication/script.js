@@ -123,13 +123,13 @@ function renderPages() {
         <div class="doc-row" style="text-align: center; margin-bottom: 8px;">
            in Exn. Case No. <strong>${exnCaseNo}</strong>
         </div>
-        <div class="doc-row" style="text-align: center; margin-top: 10px; margin-bottom: 6px; font-weight: bold;">
+        <div class="doc-row" style="text-align: center; margin-top: 14px; margin-bottom: 8px; font-weight: bold;">
            Order
         </div>
         
-        <div class="doc-body-paragraph paragraph-indent" style="min-height: 35px; white-space: pre-wrap; margin-bottom: 8px; line-height: 1.4;">${orderText}</div>
+        <div class="doc-body-paragraph paragraph-indent" style="min-height: 90px; white-space: pre-wrap; margin-bottom: 14px; line-height: 1.5;">${orderText}</div>
         
-        <div class="doc-row" style="text-align: right; margin-top: 8px; padding-right: 80px;">
+        <div class="doc-row" style="text-align: right; margin-top: 14px; padding-right: 80px;">
           ( Sd. )
         </div>
         <div class="doc-row" style="text-align: right; padding-right: 80px;">
