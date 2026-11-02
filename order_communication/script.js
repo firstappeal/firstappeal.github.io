@@ -515,19 +515,19 @@ document.addEventListener('DOMContentLoaded', () => {
       const caseLabel = `${d.in_appeal_type || 'FA'} No. ${d.in_case_no || '—'} / ${d.in_case_year || '—'}`;
       const saved = fmtNoticeDate(r.saved_at || r.created_at);
       return `<tr data-id="${r.id}" style="border-bottom:1px solid rgba(51,65,85,0.5);transition:background 0.15s;">
-        <td style="padding:10px 14px;font-weight:700;color:#60a5fa;cursor:pointer;" onclick="loadRecord(${r.id})">${caseLabel}</td>
-        <td style="padding:10px 14px;color:#f8fafc;cursor:pointer;" onclick="loadRecord(${r.id})">${d.in_appellant || '—'}</td>
-        <td style="padding:10px 14px;color:#94a3b8;cursor:pointer;" onclick="loadRecord(${r.id})">${d.in_respondent || '—'}</td>
-        <td style="padding:10px 14px;color:#94a3b8;white-space:nowrap;cursor:pointer;" onclick="loadRecord(${r.id})">${saved}</td>
+        <td style="padding:10px 14px;font-weight:700;color:#60a5fa;cursor:pointer;" onclick="loadRecord('${r.id}')">${caseLabel}</td>
+        <td style="padding:10px 14px;color:#f8fafc;cursor:pointer;" onclick="loadRecord('${r.id}')">${d.in_appellant || '—'}</td>
+        <td style="padding:10px 14px;color:#94a3b8;cursor:pointer;" onclick="loadRecord('${r.id}')">${d.in_respondent || '—'}</td>
+        <td style="padding:10px 14px;color:#94a3b8;white-space:nowrap;cursor:pointer;" onclick="loadRecord('${r.id}')">${saved}</td>
         <td style="padding:6px 10px;text-align:center;">
-          <button onclick="deleteRecord(${r.id})" title="Delete record" style="background:#7f1d1d;color:#fca5a5;border:1px solid #ef4444;border-radius:5px;padding:3px 10px;cursor:pointer;font-size:0.8rem;transition:background 0.2s;">🗑 Delete</button>
+          <button onclick="deleteRecord('${r.id}')" title="Delete record" style="background:#7f1d1d;color:#fca5a5;border:1px solid #ef4444;border-radius:5px;padding:3px 10px;cursor:pointer;font-size:0.8rem;transition:background 0.2s;">🗑 Delete</button>
         </td>
       </tr>`;
     }).join('');
   }
 
   window.loadRecord = function(id) {
-    const row = allRecords.find(r => r.id === id);
+    const row = allRecords.find(r => String(r.id) === String(id));
     if (!row) return;
     const notice = row.data || row;
 
@@ -588,7 +588,7 @@ document.addEventListener('DOMContentLoaded', () => {
     try {
       if (window.PortalDB && typeof window.PortalDB.deleteOrderCommunication === 'function') {
         await window.PortalDB.deleteOrderCommunication(id);
-        allRecords = allRecords.filter(r => r.id !== id);
+        allRecords = allRecords.filter(r => String(r.id) !== String(id));
         renderNoticesModal(noticesModalSearch ? noticesModalSearch.value : '');
         showToast('🗑 Record deleted.');
       } else {

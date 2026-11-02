@@ -198,6 +198,27 @@ document.addEventListener('DOMContentLoaded', () => {
     if (syncEl) syncEl.textContent = new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' });
 
     render();
+
+    // Check URL params for deep-linking (e.g. from homepage or analytics)
+    try {
+      const urlParams = new URLSearchParams(window.location.search);
+      const filterStatus = urlParams.get('status');
+      const filterSearch = urlParams.get('search');
+      const filterDa = urlParams.get('da');
+
+      if (filterStatus) {
+        switchTab(filterStatus);
+      }
+      if (filterSearch && searchInput) {
+        searchInput.value = filterSearch;
+        clearSearchBtn.style.display = 'block';
+        renderTable();
+      }
+      if (filterDa && assistantFilter) {
+        assistantFilter.value = filterDa;
+        renderTable();
+      }
+    } catch(e) {}
   }
 
   // ── Render ────────────────────────────────────────────────
@@ -232,7 +253,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const searchVal = (document.getElementById('searchInput')?.value || '').toLowerCase().trim();
     const daVal = document.getElementById('assistantFilter')?.value || '';
 
-    return compliances.filter(r => {
+    const list = compliances.filter(r => {
       const s = calculateStatusInfo(r);
 
       // Status tab filter
@@ -262,6 +283,38 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       return true;
+    });
+
+    // Smart default urgency sorting:
+    // 1. Overdue / Lapsed orders first, sorted descending by days lapsed (most critically lapsed at top)
+    // 2. Pending orders due today (daysRemaining === 0)
+    // 3. Pending orders due in future, sorted ascending by days remaining (closest deadline first)
+    // 4. Complied orders, sorted descending by compliance date or created_at
+    return list.sort((a, b) => {
+      const sa = calculateStatusInfo(a);
+      const sb = calculateStatusInfo(b);
+
+      if (sa.isLapsed && sb.isLapsed) {
+        return sb.daysLapsed - sa.daysLapsed; // highest lapsed first
+      }
+      if (sa.isLapsed && !sb.isLapsed) return -1;
+      if (!sa.isLapsed && sb.isLapsed) return 1;
+
+      // Neither is lapsed
+      if (sa.status !== 'complied' && sb.status === 'complied') return -1;
+      if (sa.status === 'complied' && sb.status !== 'complied') return 1;
+
+      if (sa.status !== 'complied' && sb.status !== 'complied') {
+        // Nearest deadline first
+        const da = a.deadline ? new Date(a.deadline).getTime() : Infinity;
+        const db = b.deadline ? new Date(b.deadline).getTime() : Infinity;
+        return da - db;
+      }
+
+      // Both complied
+      const ca = a.compliance_date ? new Date(a.compliance_date).getTime() : 0;
+      const cb = b.compliance_date ? new Date(b.compliance_date).getTime() : 0;
+      return cb - ca;
     });
   }
 
@@ -519,6 +572,12 @@ document.addEventListener('DOMContentLoaded', () => {
       directions: compDirections.value.trim()
     };
 
+    if (payload.order_date && payload.deadline && payload.deadline < payload.order_date) {
+      alert('The Last Date to Comply cannot be earlier than the Order Passed Date.');
+      compDeadline.focus();
+      return;
+    }
+
     // If case is not in CASES_DB, cache it so all portal tools recognize it
     if (payload.case_no && payload.case_year) {
       const cCode = payload.case_type === 'First Appeal' ? 'FA' : (payload.case_type === 'Misc. Appeal' ? 'MA' : 'SA');
@@ -608,6 +667,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const id = compliedRecordId.value;
     const cDate = compliedDate.value;
     const cRemarks = compliedRemarks.value.trim();
+
+    const existingRec = compliances.find(r => String(r.id) === String(id));
+    if (existingRec && existingRec.order_date && cDate < existingRec.order_date) {
+      alert(`Date of Compliance cannot be earlier than the Order Passed Date (${formatDisplayDate(existingRec.order_date)}).`);
+      compliedDate.focus();
+      return;
+    }
 
     const updates = {
       status: 'complied',
@@ -734,12 +800,31 @@ document.addEventListener('DOMContentLoaded', () => {
     renderTable();
   });
 
+  function switchTab(status) {
+    const validTabs = ['all', 'pending', 'lapsed', 'duesoon', 'complied'];
+    if (!validTabs.includes(status)) status = 'all';
+    document.querySelectorAll('#statusTabs .tab-btn').forEach(b => {
+      b.classList.toggle('active', b.dataset.status === status);
+    });
+    currentTab = status;
+    renderTable();
+  }
+
   document.querySelectorAll('#statusTabs .tab-btn').forEach(btn => {
     btn.addEventListener('click', () => {
-      document.querySelectorAll('#statusTabs .tab-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      currentTab = btn.dataset.status;
-      renderTable();
+      switchTab(btn.dataset.status);
+    });
+  });
+
+  // KPI Card Clicks to Filter
+  document.querySelectorAll('.kpi-card').forEach(card => {
+    card.style.cursor = 'pointer';
+    card.setAttribute('title', 'Click to filter table');
+    card.addEventListener('click', () => {
+      if (card.classList.contains('blue')) switchTab('all');
+      else if (card.classList.contains('amber')) switchTab('pending');
+      else if (card.classList.contains('red')) switchTab('lapsed');
+      else if (card.classList.contains('green')) switchTab('complied');
     });
   });
 

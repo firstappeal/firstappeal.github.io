@@ -519,19 +519,19 @@ document.addEventListener('DOMContentLoaded', () => {
       const caseLabel = `FA No. ${r.case_no || '—'} / ${r.case_year || '—'}`;
       const saved = fmtDate(r.saved_at);
       return `<tr data-id="${r.id}" style="border-bottom:1px solid rgba(51,65,85,0.5);transition:background 0.15s;">
-        <td style="padding:10px 14px;font-weight:700;color:#60a5fa;cursor:pointer;" onclick="loadLcrRecord(${r.id})">${caseLabel}</td>
-        <td style="padding:10px 14px;color:var(--text-light);cursor:pointer;" onclick="loadLcrRecord(${r.id})">${r.appellant || '—'}</td>
-        <td style="padding:10px 14px;color:var(--text-muted);cursor:pointer;" onclick="loadLcrRecord(${r.id})">${r.respondent || '—'}</td>
-        <td style="padding:10px 14px;color:var(--text-muted);white-space:nowrap;cursor:pointer;" onclick="loadLcrRecord(${r.id})">${saved}</td>
+        <td style="padding:10px 14px;font-weight:700;color:#60a5fa;cursor:pointer;" onclick="loadLcrRecord('${r.id}')">${caseLabel}</td>
+        <td style="padding:10px 14px;color:var(--text-light);cursor:pointer;" onclick="loadLcrRecord('${r.id}')">${r.appellant || '—'}</td>
+        <td style="padding:10px 14px;color:var(--text-muted);cursor:pointer;" onclick="loadLcrRecord('${r.id}')">${r.respondent || '—'}</td>
+        <td style="padding:10px 14px;color:var(--text-muted);white-space:nowrap;cursor:pointer;" onclick="loadLcrRecord('${r.id}')">${saved}</td>
         <td style="padding:6px 10px;text-align:center;">
-          <button onclick="deleteLcrRecord(${r.id})" title="Delete record" style="background:#7f1d1d;color:#fca5a5;border:1px solid #ef4444;border-radius:5px;padding:3px 10px;cursor:pointer;font-size:0.8rem;transition:background 0.2s;" onmouseover="this.style.background='#991b1b'" onmouseout="this.style.background='#7f1d1d'">🗑 Delete</button>
+          <button onclick="deleteLcrRecord('${r.id}')" title="Delete record" style="background:#7f1d1d;color:#fca5a5;border:1px solid #ef4444;border-radius:5px;padding:3px 10px;cursor:pointer;font-size:0.8rem;transition:background 0.2s;" onmouseover="this.style.background='#991b1b'" onmouseout="this.style.background='#7f1d1d'">🗑 Delete</button>
         </td>
       </tr>`;
     }).join('');
   }
 
   window.loadLcrRecord = function(id) {
-    const record = allLcrRecords.find(r => r.id === id);
+    const record = allLcrRecords.find(r => String(r.id) === String(id));
     if (!record) return;
     for (const editorId of Object.keys(FIELD_MAP)) {
       const input = document.getElementById(editorId);
@@ -584,7 +584,7 @@ document.addEventListener('DOMContentLoaded', () => {
     try {
       if (window.PortalDB && typeof window.PortalDB.deleteLcrCall === 'function') {
         await window.PortalDB.deleteLcrCall(id);
-        allLcrRecords = allLcrRecords.filter(r => r.id !== id);
+        allLcrRecords = allLcrRecords.filter(r => String(r.id) !== String(id));
         renderLcrModal(lcrModalSearch ? lcrModalSearch.value : '');
         showToast('🗑 LCR Call record deleted.');
       } else {

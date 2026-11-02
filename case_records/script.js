@@ -225,9 +225,9 @@ document.addEventListener('DOMContentLoaded', () => {
         </td>
         <td class="no-print">
           <div style="display: flex; gap: 4px;">
-            <button type="button" class="btn-action-icon edit" onclick="viewRecordDetails(${r.id})" title="View Details Sheet"><i class="fa-solid fa-eye"></i></button>
-            <button type="button" class="btn-action-icon edit" onclick="editRecord(${r.id})" title="Edit Case Record"><i class="fa-solid fa-pen-to-square"></i></button>
-            <button type="button" class="btn-action-icon delete" onclick="deleteRecord(${r.id})" title="Delete Case Record"><i class="fa-solid fa-trash-can"></i></button>
+            <button type="button" class="btn-action-icon edit" onclick="viewRecordDetails('${r.id}')" title="View Details Sheet"><i class="fa-solid fa-eye"></i></button>
+            <button type="button" class="btn-action-icon edit" onclick="editRecord('${r.id}')" title="Edit Case Record"><i class="fa-solid fa-pen-to-square"></i></button>
+            <button type="button" class="btn-action-icon delete" onclick="deleteRecord('${r.id}')" title="Delete Case Record"><i class="fa-solid fa-trash-can"></i></button>
           </div>
         </td>
       </tr>
@@ -306,7 +306,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 4. Edit / Delete Handlers
   window.editRecord = function(id) {
-    const record = caseRecords.find(r => r.id === id);
+    const record = caseRecords.find(r => String(r.id) === String(id));
     if (!record) return;
 
     document.getElementById('recordId').value = record.id;
@@ -337,7 +337,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (window.PortalDB) {
           await window.PortalDB.deleteCaseRecord(id);
         }
-        caseRecords = caseRecords.filter(r => r.id !== id);
+        caseRecords = caseRecords.filter(r => String(r.id) !== String(id));
         renderRecords();
         if (typeof showToast === 'function') showToast('Record deleted successfully.', 'success');
       } catch (err) {
@@ -349,7 +349,7 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   window.viewRecordDetails = function(id) {
-    const r = caseRecords.find(item => item.id === id);
+    const r = caseRecords.find(item => String(item.id) === String(id));
     if (!r) return;
 
     detailsModalContent.innerHTML = `

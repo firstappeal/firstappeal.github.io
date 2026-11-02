@@ -46,8 +46,8 @@
                     </div>
                 </div>
                 <div class="reminder-header-actions">
-                    <span id="reminderOverdueBadge" class="reminder-pill-badge badge-danger">0 Overdue</span>
-                    <span id="reminderPendingBadge" class="reminder-pill-badge badge-amber">0 Pending</span>
+                    <a href="compliance_portal/index.html?status=lapsed" id="reminderOverdueBadge" class="reminder-pill-badge badge-danger" style="text-decoration:none;cursor:pointer;" title="Click to view all overdue compliances">0 Overdue</a>
+                    <a href="compliance_portal/index.html?status=pending" id="reminderPendingBadge" class="reminder-pill-badge badge-amber" style="text-decoration:none;cursor:pointer;" title="Click to view all pending compliances">0 Pending</a>
                     <a href="compliance_portal/index.html" class="reminder-portal-link">
                         Open Compliance Portal <i class="fa-solid fa-arrow-right"></i>
                     </a>
@@ -381,7 +381,7 @@
                   <button type="button" class="btn-comply-sm" onclick="quickMarkComplied('${escHtml(r.id)}')">
                     <i class="fa-solid fa-check"></i> Mark Complied
                   </button>
-                  <a href="compliance_portal/index.html" class="reminder-portal-link" style="padding:4px 10px;font-size:0.8rem;">
+                  <a href="compliance_portal/index.html?search=${encodeURIComponent(r.case_no || '')}" class="reminder-portal-link" style="padding:4px 10px;font-size:0.8rem;">
                     Details <i class="fa-solid fa-arrow-right"></i>
                   </a>
                 </div>

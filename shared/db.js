@@ -38,12 +38,18 @@
     }
   }
 
-  try {
-    const savedLocal = JSON.parse(localStorage.getItem('phc_local_cases_db') || '{}');
-    if (typeof CASES_DB !== 'undefined') {
-      Object.assign(CASES_DB, savedLocal);
-    }
-  } catch(e) {}
+  function mergeLocalCases() {
+    try {
+      const savedLocal = JSON.parse(localStorage.getItem('phc_local_cases_db') || '{}');
+      if (typeof CASES_DB !== 'undefined') {
+        Object.assign(CASES_DB, savedLocal);
+      }
+    } catch(e) {}
+  }
+  mergeLocalCases();
+  if (typeof window !== 'undefined') {
+    window.addEventListener('DOMContentLoaded', mergeLocalCases);
+  }
 
   // ── Low-level helpers ───────────────────────────────────────
 
@@ -527,6 +533,17 @@
     async deleteOfficialLetter(id) {
       return sbDelete('official_letters', { id });
     },
+
+    syncLocalCases: mergeLocalCases,
+    recordCaseLocally(caseType, caseNo, caseYear, appellant, respondent) {
+      syncToLocalCasesCache({
+        case_type: caseType,
+        case_no: caseNo,
+        case_year: caseYear,
+        appellant: appellant,
+        respondent: respondent
+      });
+    }
 
   };
 

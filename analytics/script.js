@@ -403,9 +403,21 @@ document.addEventListener('DOMContentLoaded', () => {
               <span style="font-size:0.8rem;color:var(--text-muted);min-width:38px;">${pct}%</span>
             </div>
           </td>
-          <td><span class="badge ${stat.complied > 0 ? 'badge-green' : ''}" style="${stat.complied === 0 ? 'background:transparent;color:var(--text-muted);' : ''}">${stat.complied}</span></td>
-          <td><span class="badge ${stat.pending > 0 ? 'badge-orange' : ''}" style="${stat.pending === 0 ? 'background:transparent;color:var(--text-muted);' : ''}">${stat.pending}</span></td>
-          <td><span class="badge ${stat.overdue > 0 ? 'badge-red' : ''}" style="${stat.overdue === 0 ? 'background:transparent;color:var(--text-muted);' : ''}">${stat.overdue}</span></td>
+          <td>
+            ${stat.complied > 0
+              ? `<a href="../compliance_portal/index.html?da=${encodeURIComponent(d.name)}&status=complied" style="text-decoration:none;"><span class="badge badge-green" style="cursor:pointer;" title="View complied orders for ${esc(d.name)}">${stat.complied}</span></a>`
+              : `<span class="badge" style="background:transparent;color:var(--text-muted);">-</span>`}
+          </td>
+          <td>
+            ${stat.pending > 0
+              ? `<a href="../compliance_portal/index.html?da=${encodeURIComponent(d.name)}&status=pending" style="text-decoration:none;"><span class="badge badge-orange" style="cursor:pointer;" title="View pending compliances for ${esc(d.name)}">${stat.pending}</span></a>`
+              : `<span class="badge" style="background:transparent;color:var(--text-muted);">-</span>`}
+          </td>
+          <td>
+            ${stat.overdue > 0
+              ? `<a href="../compliance_portal/index.html?da=${encodeURIComponent(d.name)}&status=lapsed" style="text-decoration:none;"><span class="badge badge-red" style="cursor:pointer;" title="View overdue compliances for ${esc(d.name)}">${stat.overdue}</span></a>`
+              : `<span class="badge" style="background:transparent;color:var(--text-muted);">-</span>`}
+          </td>
           <td><span class="badge ${listedCount > 0 ? 'badge-blue' : ''}" style="${listedCount === 0 ? 'background:transparent;color:var(--text-muted);' : ''}">${listedCount}</span></td>
           <td><span class="badge ${printedCount > 0 ? 'badge-blue' : ''}" style="${printedCount === 0 ? 'background:transparent;color:var(--text-muted);' : ''}">${printedCount}</span></td>
           <td><span class="badge ${directCount > 0 ? 'badge-purple' : ''}" style="${directCount === 0 ? 'background:transparent;color:var(--text-muted);' : ''}">${directCount}</span></td>
