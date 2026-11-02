@@ -27,6 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let causeLists  = [];
   let fileTracking= [];
   let caseRecords = [];
+  let compliances = [];
   let crCount     = 0;
 
   /* ── Global Helpers ───────────────────────────────────────── */
@@ -113,11 +114,17 @@ document.addEventListener('DOMContentLoaded', () => {
         directNotes = analyticsData.direct_notices || [];
         causeLists  = analyticsData.cause_lists  || [];
         fileTracking= analyticsData.file_tracking|| [];
+        compliances = analyticsData.compliances  || [];
         crCount     = analyticsData.case_records_count || 0;
         caseRecords = crData || [];
       }
     } catch (e) {
       console.warn('Analytics API error:', e);
+    }
+    if (!compliances || compliances.length === 0) {
+      try {
+        compliances = JSON.parse(localStorage.getItem('phc_compliance_records') || '[]');
+      } catch(err){}
     }
     // Update last synced time
     const syncEl = document.getElementById('lastSyncedTime');
@@ -142,11 +149,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const withLC = caseRecords.filter(r => r.lc_court && r.lc_court.trim()).length;
 
     const totalDocs = lcrCalls.length + noticeForms.length + directNotes.length;
+    const pendingCompliances = compliances.filter(c => c.status !== 'complied').length;
 
-    setText('kpiTotalCases',    totalCases.toLocaleString('en-IN'));
-    setText('kpiDAs',           das.filter(d => !d.name.includes('/')).length);
-    setText('kpiRecordsFilled', withLC.toLocaleString('en-IN'));
-    setText('kpiDocsGenerated', totalDocs.toLocaleString('en-IN'));
+    setText('kpiTotalCases',          totalCases.toLocaleString('en-IN'));
+    setText('kpiDAs',                 das.filter(d => !d.name.includes('/')).length);
+    setText('kpiRecordsFilled',       withLC.toLocaleString('en-IN'));
+    setText('kpiDocsGenerated',       totalDocs.toLocaleString('en-IN'));
+    setText('kpiCompliancesPending',  pendingCompliances.toLocaleString('en-IN'));
   }
 
   /* ── Completeness bars ────────────────────────────────────── */
@@ -261,18 +270,51 @@ document.addEventListener('DOMContentLoaded', () => {
     const THIRTY_DAYS = 30 * 24 * 60 * 60 * 1000;
     const daStats = {};
     all.forEach(d => {
-      daStats[d.name] = { listed7d: new Set(), printed30d: new Set(), direct7d: new Set(), notice7d: new Set(), lcr7d: new Set(), files7d: new Set() };
+      daStats[d.name] = {
+        listed7d: new Set(), printed30d: new Set(), direct7d: new Set(),
+        notice7d: new Set(), lcr7d: new Set(), files7d: new Set(),
+        complied: 0, pending: 0, overdue: 0
+      };
     });
 
     function addStat(daName, key, caseKey) {
       if (daName && daStats[daName] && caseKey) daStats[daName][key].add(caseKey);
     }
 
+    // Process Compliances per Dealing Assistant
+    const todayMidnight = new Date();
+    todayMidnight.setHours(0, 0, 0, 0);
+
+    compliances.forEach(c => {
+      const da = (c.dealing_assistant || '').trim() || getDaForCase(c.case_no, c.case_year);
+      if (!da) return;
+      if (!daStats[da]) {
+        daStats[da] = {
+          listed7d: new Set(), printed30d: new Set(), direct7d: new Set(),
+          notice7d: new Set(), lcr7d: new Set(), files7d: new Set(),
+          complied: 0, pending: 0, overdue: 0
+        };
+      }
+
+      if (c.status === 'complied') {
+        daStats[da].complied++;
+      } else {
+        daStats[da].pending++;
+        if (c.deadline) {
+          const parts = c.deadline.split('-');
+          const deadlineDate = parts.length === 3 ? new Date(parseInt(parts[0], 10), parseInt(parts[1], 10) - 1, parseInt(parts[2], 10)) : new Date(c.deadline);
+          if (!isNaN(deadlineDate.getTime()) && deadlineDate < todayMidnight) {
+            daStats[da].overdue++;
+          }
+        }
+      }
+    });
+
     lcrCalls.forEach(c => {
       const caseKey = normalizeCaseKey(c.case_no, c.case_year);
       const da = (c.dealing_assistant || '').trim() || getDaForCase(c.case_no, c.case_year);
       if (!da) return;
-      if (!daStats[da]) daStats[da] = { listed7d: new Set(), printed30d: new Set(), direct7d: new Set(), notice7d: new Set(), lcr7d: new Set(), files7d: new Set() };
+      if (!daStats[da]) daStats[da] = { listed7d: new Set(), printed30d: new Set(), direct7d: new Set(), notice7d: new Set(), lcr7d: new Set(), files7d: new Set(), complied: 0, pending: 0, overdue: 0 };
       
       if (c.saved_at && (now - new Date(c.saved_at).getTime() <= SEVEN_DAYS)) addStat(da, 'lcr7d', caseKey);
     });
@@ -330,7 +372,11 @@ document.addEventListener('DOMContentLoaded', () => {
     tbody.innerHTML = das.map(d => {
       const pct = total > 0 ? ((d.casesAllotted / total) * 100).toFixed(1) : 0;
       const barW = Math.min(parseFloat(pct) * 4, 100);
-      const stat = daStats[d.name] || { listed7d: new Set(), printed30d: new Set(), direct7d: new Set(), notice7d: new Set(), lcr7d: new Set(), files7d: new Set() };
+      const stat = daStats[d.name] || {
+        listed7d: new Set(), printed30d: new Set(), direct7d: new Set(),
+        notice7d: new Set(), lcr7d: new Set(), files7d: new Set(),
+        complied: 0, pending: 0, overdue: 0
+      };
       
       const listedCount = stat.listed7d.size;
       const printedCount = stat.printed30d.size;
@@ -357,6 +403,9 @@ document.addEventListener('DOMContentLoaded', () => {
               <span style="font-size:0.8rem;color:var(--text-muted);min-width:38px;">${pct}%</span>
             </div>
           </td>
+          <td><span class="badge ${stat.complied > 0 ? 'badge-green' : ''}" style="${stat.complied === 0 ? 'background:transparent;color:var(--text-muted);' : ''}">${stat.complied}</span></td>
+          <td><span class="badge ${stat.pending > 0 ? 'badge-orange' : ''}" style="${stat.pending === 0 ? 'background:transparent;color:var(--text-muted);' : ''}">${stat.pending}</span></td>
+          <td><span class="badge ${stat.overdue > 0 ? 'badge-red' : ''}" style="${stat.overdue === 0 ? 'background:transparent;color:var(--text-muted);' : ''}">${stat.overdue}</span></td>
           <td><span class="badge ${listedCount > 0 ? 'badge-blue' : ''}" style="${listedCount === 0 ? 'background:transparent;color:var(--text-muted);' : ''}">${listedCount}</span></td>
           <td><span class="badge ${printedCount > 0 ? 'badge-blue' : ''}" style="${printedCount === 0 ? 'background:transparent;color:var(--text-muted);' : ''}">${printedCount}</span></td>
           <td><span class="badge ${directCount > 0 ? 'badge-purple' : ''}" style="${directCount === 0 ? 'background:transparent;color:var(--text-muted);' : ''}">${directCount}</span></td>

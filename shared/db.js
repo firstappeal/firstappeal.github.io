@@ -351,22 +351,34 @@
 
     // ── ANALYTICS ────────────────────────────────────────────
     async getAnalytics() {
-      const countPromise = fetch(
-        `${SUPA_URL}/rest/v1/case_records?select=id`,
-        { headers: { ...HEADERS, 'Prefer': 'count=exact', 'Range-Unit': 'items', 'Range': '0-0' } }
-      ).then(r => parseInt(r.headers.get('Content-Range')?.split('/')[1] || '0', 10));
+      let lcrRows = [], noticeRows = [], directRows = [], causeRows = [], trackRows = [], crCount = 0;
+      try {
+        const countPromise = fetch(
+          `${SUPA_URL}/rest/v1/case_records?select=id`,
+          { headers: { ...HEADERS, 'Prefer': 'count=exact', 'Range-Unit': 'items', 'Range': '0-0' } }
+        ).then(r => parseInt(r.headers.get('Content-Range')?.split('/')[1] || '0', 10)).catch(() => 0);
 
-      const [lcrRows, noticeRows, directRows, causeRows, trackRows, crCount] = await Promise.all([
-        sbGet('lcr_calls',           'limit=1000'),
-        sbGet('notice_forms',        'limit=500'),
-        sbGet('direct_notices',      'limit=500'),
-        sbGet('cause_lists',         'limit=100'),
-        sbGet('file_tracking_state', 'limit=1'),
-        countPromise
-      ]);
+        const results = await Promise.allSettled([
+          sbGet('lcr_calls',           'limit=1000'),
+          sbGet('notice_forms',        'limit=500'),
+          sbGet('direct_notices',      'limit=500'),
+          sbGet('cause_lists',         'limit=100'),
+          sbGet('file_tracking_state', 'limit=1'),
+          countPromise
+        ]);
+        if (results[0].status === 'fulfilled') lcrRows = results[0].value;
+        if (results[1].status === 'fulfilled') noticeRows = results[1].value;
+        if (results[2].status === 'fulfilled') directRows = results[2].value;
+        if (results[3].status === 'fulfilled') causeRows = results[3].value;
+        if (results[4].status === 'fulfilled') trackRows = results[4].value;
+        if (results[5].status === 'fulfilled') crCount = results[5].value;
+      } catch (e) {
+        console.warn('Analytics fetch error, using local data', e);
+      }
 
       // Map safely resolving flattened or nested schemas
-      const mapJson = rows => rows.map(r => ({ ...(r.data_json || r.data || r), id: r.id, saved_at: r.created_at }));
+      const mapJson = rows => (rows || []).map(r => ({ ...(r.data_json || r.data || r), id: r.id, saved_at: r.created_at }));
+      const compliances = await this.getCompliances();
 
       return {
         status:              'success',
@@ -375,9 +387,107 @@
         direct_notices:      mapJson(directRows),
         cause_lists:         causeRows.map(r => ({ cases: r.cases || r.cases_json || [], saved_at: r.created_at })),
         file_tracking:       trackRows.length ? (trackRows[0].data || []) : [],
+        compliances:         compliances || [],
         case_records:        [],   // don't load all 5k for analytics
         case_records_count:  crCount
       };
+    },
+
+    // ── COMPLIANCE RECORDS ───────────────────────────────────
+    async getCompliances() {
+      let remote = [];
+      try {
+        const rows = await sbGet('compliances', 'limit=1000');
+        remote = rows.map(r => ({ ...(r.data_json || r), id: r.id, created_at: r.created_at }));
+      } catch (e) {
+        // offline or table does not exist
+      }
+      let local = [];
+      try {
+        local = JSON.parse(localStorage.getItem('phc_compliance_records') || '[]');
+      } catch (e) { local = []; }
+
+      if (remote.length > 0) {
+        const map = new Map();
+        local.forEach(item => map.set(String(item.id), item));
+        remote.forEach(item => map.set(String(item.id), item));
+        const merged = Array.from(map.values()).sort((a,b) => new Date(b.created_at || b.order_date || 0) - new Date(a.created_at || a.order_date || 0));
+        try { localStorage.setItem('phc_compliance_records', JSON.stringify(merged)); } catch(err){}
+        return merged;
+      }
+      return local;
+    },
+
+    async insertCompliance(body) {
+      const id = body.id || ('comp_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5));
+      const record = {
+        ...body,
+        id: id,
+        created_at: body.created_at || new Date().toISOString(),
+        status: body.status || 'pending'
+      };
+      try {
+        const local = JSON.parse(localStorage.getItem('phc_compliance_records') || '[]');
+        local.unshift(record);
+        localStorage.setItem('phc_compliance_records', JSON.stringify(local));
+      } catch (e) { console.warn('Local storage compliance insert error:', e); }
+
+      try {
+        await sbInsert('compliances', {
+          id: record.id,
+          case_no: record.case_no || '',
+          case_year: record.case_year || '',
+          dealing_assistant: record.dealing_assistant || '',
+          order_date: record.order_date || '',
+          deadline: record.deadline || '',
+          status: record.status || 'pending',
+          directions: record.directions || '',
+          data_json: record
+        });
+      } catch (e) {
+        // offline mode or supabase table missing
+      }
+      return record;
+    },
+
+    async updateCompliance(id, updates) {
+      let updatedRecord = null;
+      try {
+        const local = JSON.parse(localStorage.getItem('phc_compliance_records') || '[]');
+        const idx = local.findIndex(r => String(r.id) === String(id));
+        if (idx !== -1) {
+          local[idx] = { ...local[idx], ...updates, updated_at: new Date().toISOString() };
+          updatedRecord = local[idx];
+          localStorage.setItem('phc_compliance_records', JSON.stringify(local));
+        }
+      } catch (e) { console.warn('Local storage compliance update error:', e); }
+
+      try {
+        await sbUpdate('compliances', { id }, {
+          ...(updates.status ? { status: updates.status } : {}),
+          ...(updates.compliance_date ? { compliance_date: updates.compliance_date } : {}),
+          ...(updates.compliance_remarks ? { compliance_remarks: updates.compliance_remarks } : {}),
+          data_json: updatedRecord || updates
+        });
+      } catch (e) {
+        // offline mode
+      }
+      return updatedRecord || { id, ...updates };
+    },
+
+    async deleteCompliance(id) {
+      try {
+        let local = JSON.parse(localStorage.getItem('phc_compliance_records') || '[]');
+        local = local.filter(r => String(r.id) !== String(id));
+        localStorage.setItem('phc_compliance_records', JSON.stringify(local));
+      } catch (e) { console.warn('Local storage compliance delete error:', e); }
+
+      try {
+        await sbDelete('compliances', { id });
+      } catch (e) {
+        // offline mode
+      }
+      return true;
     },
 
     // ── OFFICIAL LETTERS ─────────────────────────────────────

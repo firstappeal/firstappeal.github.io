@@ -33,8 +33,41 @@
     </div>
 </div>
 
+        <!-- DAILY COMPLIANCE REMINDERS / OVERDUE ALERTS -->
+        <section id="complianceReminderSection" class="compliance-reminder-section" style="display:none;">
+            <div class="reminder-header">
+                <div class="reminder-title-wrap">
+                    <div class="reminder-icon-pulse">
+                        <i class="fa-solid fa-bell"></i>
+                    </div>
+                    <div>
+                        <h2>Daily Compliance Reminders</h2>
+                        <p class="reminder-subtitle">Time-bound court order compliances requiring urgent attention</p>
+                    </div>
+                </div>
+                <div class="reminder-header-actions">
+                    <span id="reminderOverdueBadge" class="reminder-pill-badge badge-danger">0 Overdue</span>
+                    <span id="reminderPendingBadge" class="reminder-pill-badge badge-amber">0 Pending</span>
+                    <a href="compliance_portal/index.html" class="reminder-portal-link">
+                        Open Compliance Portal <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+            <div id="complianceReminderList" class="reminder-grid">
+                <!-- Dynamically populated -->
+            </div>
+        </section>
+
         <!-- PORTAL APPLICATIONS GRID -->
         <main class="portal-grid">
+            <a href="compliance_portal/index.html" class="portal-card" style="border-top: 3px solid #f59e0b;">
+                <div class="card-icon" style="background: rgba(245, 158, 11, 0.15); color: #f59e0b;">
+                    <i class="fa-solid fa-clipboard-check"></i>
+                </div>
+                <h2>Compliance Portal</h2>
+                <p>Record orders passed, set compliance deadlines, monitor days lapsed, and track assistant compliance.</p>
+            </a>
+
             <a href="listing_form/index.html" class="portal-card">
                 <div class="card-icon blue">
                     <i class="fa-solid fa-file-lines"></i>
@@ -207,6 +240,181 @@
                  console.warn("Failed to sync recent cases from Supabase", e);
              }
          }
+      });
+    </script>
+
+    <!-- DAILY COMPLIANCE REMINDERS SCRIPT -->
+    <script>
+      function parseDateToMidnight(dStr) {
+        if (!dStr) return null;
+        const parts = dStr.split('-');
+        if (parts.length === 3) {
+          return new Date(parseInt(parts[0], 10), parseInt(parts[1], 10) - 1, parseInt(parts[2], 10));
+        }
+        const d = new Date(dStr);
+        return isNaN(d.getTime()) ? null : new Date(d.getFullYear(), d.getMonth(), d.getDate());
+      }
+
+      function formatDispDate(dateStr) {
+        if (!dateStr) return '—';
+        const d = parseDateToMidnight(dateStr);
+        if (!d) return dateStr;
+        const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+        return `${d.getDate()} ${months[d.getMonth()]} ${d.getFullYear()}`;
+      }
+
+      function escHtml(str) {
+        return String(str || '')
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;');
+      }
+
+      async function renderComplianceReminders() {
+        const sec = document.getElementById('complianceReminderSection');
+        const list = document.getElementById('complianceReminderList');
+        const overdueBadge = document.getElementById('reminderOverdueBadge');
+        const pendingBadge = document.getElementById('reminderPendingBadge');
+        if (!sec || !list || !window.PortalDB) return;
+
+        let records = [];
+        try {
+          records = await window.PortalDB.getCompliances();
+        } catch(e) {
+          records = JSON.parse(localStorage.getItem('phc_compliance_records') || '[]');
+        }
+
+        const pending = records.filter(r => r.status !== 'complied');
+        if (pending.length === 0) {
+          sec.style.display = 'none';
+          return;
+        }
+
+        const now = new Date();
+        const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+
+        let lapsedCount = 0;
+        const processed = pending.map(r => {
+          const deadline = parseDateToMidnight(r.deadline);
+          let diffDays = 0;
+          let isLapsed = false;
+          let isToday = false;
+          let badgeHtml = '';
+          let itemClass = 'is-upcoming';
+
+          if (deadline) {
+            diffDays = Math.round((today - deadline) / (1000 * 60 * 60 * 24));
+            if (diffDays > 0) {
+              isLapsed = true;
+              lapsedCount++;
+              itemClass = 'is-lapsed';
+              badgeHtml = `<span class="reminder-pill-badge badge-danger"><i class="fa-solid fa-triangle-exclamation"></i> Lapsed ${diffDays} ${diffDays === 1 ? 'day' : 'days'}</span>`;
+            } else if (diffDays === 0) {
+              isToday = true;
+              itemClass = 'is-today';
+              badgeHtml = `<span class="reminder-pill-badge badge-amber"><i class="fa-solid fa-clock"></i> Due Today</span>`;
+            } else {
+              const left = Math.abs(diffDays);
+              itemClass = 'is-upcoming';
+              badgeHtml = `<span class="reminder-pill-badge" style="background:#eff6ff;color:#2563eb;border:1px solid #bfdbfe;"><i class="fa-solid fa-hourglass"></i> Due in ${left} ${left === 1 ? 'day' : 'days'}</span>`;
+            }
+          } else {
+            badgeHtml = `<span class="reminder-pill-badge badge-amber"><i class="fa-solid fa-hourglass-start"></i> Pending</span>`;
+          }
+
+          return {
+            ...r,
+            diffDays,
+            isLapsed,
+            isToday,
+            badgeHtml,
+            itemClass
+          };
+        });
+
+        // Sort: most lapsed first, then due today, then upcoming
+        processed.sort((a, b) => b.diffDays - a.diffDays);
+
+        if (lapsedCount > 0) {
+          sec.classList.add('has-lapsed');
+          overdueBadge.textContent = `${lapsedCount} Overdue (Lapsed)`;
+          overdueBadge.style.display = 'inline-block';
+        } else {
+          sec.classList.remove('has-lapsed');
+          overdueBadge.style.display = 'none';
+        }
+        pendingBadge.textContent = `${pending.length} Pending`;
+
+        list.innerHTML = processed.map(r => {
+          const typeStr = r.case_type || 'First Appeal';
+          const typeShort = typeStr === 'First Appeal' ? 'FA' : (typeStr === 'Misc. Appeal' ? 'MA' : 'SA');
+          const snippet = r.directions ? (r.directions.length > 90 ? r.directions.substring(0, 90) + '…' : r.directions) : 'No directions recorded.';
+
+          return `
+            <div class="reminder-item ${r.itemClass}">
+              <div>
+                <div class="reminder-item-header">
+                  <div class="reminder-case-title">
+                    ${escHtml(typeShort)} No. ${escHtml(r.case_no)} / ${escHtml(r.case_year)}
+                  </div>
+                  <div>${r.badgeHtml}</div>
+                </div>
+
+                <div class="reminder-da-box">
+                  <i class="fa-solid fa-user-tie"></i>
+                  <span>Assigned: <strong>${escHtml(r.dealing_assistant || 'Unassigned')}</strong></span>
+                </div>
+
+                <div class="reminder-directions" title="${escHtml(r.directions || '')}">
+                  ${escHtml(snippet)}
+                </div>
+              </div>
+
+              <div>
+                <div class="reminder-meta-row">
+                  <span>Order: <strong>${formatDispDate(r.order_date)}</strong></span>
+                  <span>Deadline: <strong style="color:${r.isLapsed ? '#dc2626' : 'inherit'};">${formatDispDate(r.deadline)}</strong></span>
+                </div>
+
+                <div class="reminder-actions">
+                  <button type="button" class="btn-comply-sm" onclick="quickMarkComplied('${escHtml(r.id)}')">
+                    <i class="fa-solid fa-check"></i> Mark Complied
+                  </button>
+                  <a href="compliance_portal/index.html" class="reminder-portal-link" style="padding:4px 10px;font-size:0.8rem;">
+                    Details <i class="fa-solid fa-arrow-right"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          `;
+        }).join('');
+
+        sec.style.display = 'block';
+      }
+
+      window.quickMarkComplied = async function(id) {
+        const remarks = prompt("Enter compliance remarks / steps taken (e.g. Notice dispatched, LCR placed, Report filed):", "Complied");
+        if (remarks === null) return; // user cancelled
+
+        const cDate = new Date().toISOString().split('T')[0];
+        try {
+          if (window.PortalDB) {
+            await window.PortalDB.updateCompliance(id, {
+              status: 'complied',
+              compliance_date: cDate,
+              compliance_remarks: remarks || 'Complied'
+            });
+          }
+          alert("Order marked as complied successfully!");
+          renderComplianceReminders();
+        } catch (e) {
+          alert("Error marking compliance: " + e.message);
+        }
+      };
+
+      document.addEventListener('DOMContentLoaded', () => {
+        renderComplianceReminders();
       });
     </script>
 
