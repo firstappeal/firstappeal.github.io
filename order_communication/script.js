@@ -258,11 +258,30 @@ document.addEventListener('DOMContentLoaded', () => {
     caseSearchInput.addEventListener('blur', () => {
       setTimeout(() => {
         const val = caseSearchInput.value.trim();
+        if (!val) return;
         const exactMatch = Object.keys(CASES_DB).find(caseKey => 
           caseKey.toUpperCase().replace(/\s+/g, '') === val.toUpperCase().replace(/\s+/g, '')
         );
         if (exactMatch) {
           selectCase(exactMatch);
+        } else {
+          // Allow cases not in database: parse case type, number, year
+          const m = val.match(/^(?:([A-Za-z]+)\/)?(\d+)(?:\/(\d{2,4}))?$/);
+          if (m) {
+            const tCode = m[1] ? m[1].toUpperCase() : 'FA';
+            const cNo = m[2];
+            let cYr = m[3] || '';
+            if (cYr.length === 2) cYr = (parseInt(cYr, 10) > 50 ? '19' : '20') + cYr;
+            const fullType = APPEAL_TYPES[tCode] || (tCode === 'FA' ? 'First Appeal' : tCode);
+            
+            const typeField = document.getElementById('in_appeal_type');
+            const noField = document.getElementById('in_case_no');
+            const yearField = document.getElementById('in_case_year');
+            if (typeField && !typeField.value) typeField.value = fullType;
+            if (noField) noField.value = cNo;
+            if (yearField && cYr) yearField.value = cYr;
+            renderPages();
+          }
         }
       }, 200);
     });
@@ -440,6 +459,20 @@ document.addEventListener('DOMContentLoaded', () => {
     } catch (error) {
       console.error("Error saving to cloud:", error);
       if (!silent) alert("Error saving to cloud.");
+    }
+
+    // Auto-cache case into local database if not present
+    if (caseNo && data.in_case_year) {
+      const appealCode = data.in_appeal_type === 'First Appeal' || !data.in_appeal_type ? 'FA' : data.in_appeal_type;
+      const key = `${appealCode}/${caseNo}/${data.in_case_year}`;
+      if (typeof CASES_DB !== 'undefined' && !CASES_DB[key]) {
+        CASES_DB[key] = { appellant: data.in_appellant || '', respondent: data.in_respondent || '' };
+      }
+      try {
+        const localStore = JSON.parse(localStorage.getItem('phc_local_cases_db') || '{}');
+        localStore[key] = { appellant: data.in_appellant || '', respondent: data.in_respondent || '' };
+        localStorage.setItem('phc_local_cases_db', JSON.stringify(localStore));
+      } catch(e){}
     }
   }
 

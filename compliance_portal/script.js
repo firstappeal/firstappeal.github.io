@@ -469,6 +469,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // On blur/change of case no or year, lookup DA and parties if not filled
   function checkLookup() {
+    let rawNo = (compCaseNo.value || '').trim();
+    // Allow formats like "FA/123/2026" or "123/2026" typed into the case number field
+    const m = rawNo.match(/^(?:(?:FA|MA|SA|CA)\/)?(\d+)\/(\d{2,4})$/i);
+    if (m) {
+      compCaseNo.value = m[1];
+      if (!compCaseYear.value || compCaseYear.value.trim() === '') {
+        let yr = m[2];
+        if (yr.length === 2) yr = (parseInt(yr, 10) > 50 ? '19' : '20') + yr;
+        compCaseYear.value = yr;
+      }
+    }
+
     if (compCaseNo.value && compCaseYear.value) {
       const caseData = getCaseFromDB(compCaseNo.value, compCaseYear.value);
       if (caseData) {
@@ -506,6 +518,22 @@ document.addEventListener('DOMContentLoaded', () => {
       category: compCategory.value,
       directions: compDirections.value.trim()
     };
+
+    // If case is not in CASES_DB, cache it so all portal tools recognize it
+    if (payload.case_no && payload.case_year) {
+      const cCode = payload.case_type === 'First Appeal' ? 'FA' : (payload.case_type === 'Misc. Appeal' ? 'MA' : 'SA');
+      const cKey = `${cCode}/${payload.case_no}/${payload.case_year}`;
+      if (typeof CASES_DB !== 'undefined') {
+        if (!CASES_DB[cKey]) {
+          CASES_DB[cKey] = { appellant: payload.appellant || '', respondent: payload.respondent || '' };
+        }
+      }
+      try {
+        const localStore = JSON.parse(localStorage.getItem('phc_local_cases_db') || '{}');
+        localStore[cKey] = { appellant: payload.appellant || '', respondent: payload.respondent || '' };
+        localStorage.setItem('phc_local_cases_db', JSON.stringify(localStore));
+      } catch(err){}
+    }
 
     if (id) {
       if (window.PortalDB) {
