@@ -115,6 +115,29 @@
             <option value="">All Dealing Assistants</option>
             <!-- Populated dynamically -->
           </select>
+
+          <select class="filter-select" id="categoryFilter">
+            <option value="">All Categories</option>
+            <option value="LCR Call">1. LCR Call</option>
+            <option value="Direct Notice">2. Direct Notice</option>
+            <option value="Appeal/Showcause Notice">3. Appeal/Showcause Notice</option>
+            <option value="Order communication">4. Order communication</option>
+            <option value="Communication with Lower Court">5. Communication with Lower Court</option>
+            <option value="RG/CJ permission">6. RG/CJ permission</option>
+            <option value="Any other directions">7. Any other directions</option>
+          </select>
+
+          <select class="filter-select" id="priorityFilter">
+            <option value="">All Priorities</option>
+            <option value="Top Priority">Top Priority</option>
+            <option value="General">General</option>
+          </select>
+
+          <select class="filter-select" id="natureFilter">
+            <option value="">All Natures</option>
+            <option value="Peremptory">Peremptory</option>
+            <option value="Non-peremptory">Non-peremptory</option>
+          </select>
         </div>
       </section>
 
@@ -226,14 +249,31 @@
             </div>
 
             <div class="form-group full-width">
-              <label for="compCategory">Compliance Category</label>
-              <select class="form-control" id="compCategory">
-                <option value="LCR Call">LCR Call / Lower Court Record</option>
-                <option value="Notice Service">Issue / Forward Notice</option>
-                <option value="Status Report">Status Report / Compliance Report</option>
-                <option value="Decree / Formal Order">Decree / Formal Order Preparation</option>
-                <option value="Deposit / Payment">Deposit / Security / Payment Compliance</option>
-                <option value="Other Direction">Other Court Direction</option>
+              <label for="compCategory">Compliance Category <span class="required">*</span></label>
+              <select class="form-control" id="compCategory" required>
+                <option value="LCR Call">1. LCR Call</option>
+                <option value="Direct Notice">2. Direct Notice</option>
+                <option value="Appeal/Showcause Notice">3. Appeal/Showcause Notice</option>
+                <option value="Order communication">4. Order communication</option>
+                <option value="Communication with Lower Court">5. Communication with Lower Court</option>
+                <option value="RG/CJ permission">6. RG/CJ permission</option>
+                <option value="Any other directions">7. Any other directions</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="compPriority">Priority <span class="required">*</span></label>
+              <select class="form-control" id="compPriority" required>
+                <option value="Top Priority">1. Top Priority</option>
+                <option value="General" selected>2. General</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="compNature">Nature of Compliance <span class="required">*</span></label>
+              <select class="form-control" id="compNature" required>
+                <option value="Peremptory">1. Peremptory</option>
+                <option value="Non-peremptory" selected>2. Non-peremptory</option>
               </select>
             </div>
 

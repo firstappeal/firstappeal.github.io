@@ -45,6 +45,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Populate Assistant Dropdowns
   const assistantFilter = document.getElementById('assistantFilter');
+  const categoryFilter = document.getElementById('categoryFilter');
+  const priorityFilter = document.getElementById('priorityFilter');
+  const natureFilter = document.getElementById('natureFilter');
   const compAssistant = document.getElementById('compAssistant');
   const assistants = getAssistantsList();
 
@@ -205,6 +208,9 @@ document.addEventListener('DOMContentLoaded', () => {
       const filterStatus = urlParams.get('status');
       const filterSearch = urlParams.get('search');
       const filterDa = urlParams.get('da');
+      const filterCategory = urlParams.get('category');
+      const filterPriority = urlParams.get('priority');
+      const filterNature = urlParams.get('nature');
 
       if (filterStatus) {
         switchTab(filterStatus);
@@ -212,12 +218,20 @@ document.addEventListener('DOMContentLoaded', () => {
       if (filterSearch && searchInput) {
         searchInput.value = filterSearch;
         clearSearchBtn.style.display = 'block';
-        renderTable();
       }
       if (filterDa && assistantFilter) {
         assistantFilter.value = filterDa;
-        renderTable();
       }
+      if (filterCategory && categoryFilter) {
+        categoryFilter.value = filterCategory;
+      }
+      if (filterPriority && priorityFilter) {
+        priorityFilter.value = filterPriority;
+      }
+      if (filterNature && natureFilter) {
+        natureFilter.value = filterNature;
+      }
+      renderTable();
     } catch(e) {}
   }
 
@@ -252,6 +266,9 @@ document.addEventListener('DOMContentLoaded', () => {
   function getFilteredRecords() {
     const searchVal = (document.getElementById('searchInput')?.value || '').toLowerCase().trim();
     const daVal = document.getElementById('assistantFilter')?.value || '';
+    const catVal = document.getElementById('categoryFilter')?.value || '';
+    const prioVal = document.getElementById('priorityFilter')?.value || '';
+    const natureVal = document.getElementById('natureFilter')?.value || '';
 
     const list = compliances.filter(r => {
       const s = calculateStatusInfo(r);
@@ -265,6 +282,16 @@ document.addEventListener('DOMContentLoaded', () => {
       // Dealing assistant filter
       if (daVal && (r.dealing_assistant || '').trim() !== daVal.trim()) return false;
 
+      // Category filter
+      if (catVal && (r.category || '').trim() !== catVal.trim()) return false;
+
+      // Priority filter
+      if (prioVal && (r.priority || 'General').trim() !== prioVal.trim()) return false;
+
+      // Nature filter
+      const rNature = (r.nature_of_compliance || r.nature || 'Non-peremptory').trim();
+      if (natureVal && rNature !== natureVal.trim()) return false;
+
       // Text search
       if (searchVal) {
         const caseStr = `${r.case_type || ''} ${r.case_no || ''}/${r.case_year || ''}`.toLowerCase();
@@ -272,12 +299,16 @@ document.addEventListener('DOMContentLoaded', () => {
         const da = (r.dealing_assistant || '').toLowerCase();
         const directions = (r.directions || '').toLowerCase();
         const category = (r.category || '').toLowerCase();
+        const priority = (r.priority || '').toLowerCase();
+        const nature = (r.nature_of_compliance || r.nature || '').toLowerCase();
 
         if (!caseStr.includes(searchVal) &&
             !parties.includes(searchVal) &&
             !da.includes(searchVal) &&
             !directions.includes(searchVal) &&
-            !category.includes(searchVal)) {
+            !category.includes(searchVal) &&
+            !priority.includes(searchVal) &&
+            !nature.includes(searchVal)) {
           return false;
         }
       }
@@ -342,6 +373,24 @@ document.addEventListener('DOMContentLoaded', () => {
       const directionsSnippet = r.directions ? (r.directions.length > 85 ? r.directions.substring(0, 85) + '…' : r.directions) : '—';
       const daName = r.dealing_assistant || 'Unassigned';
 
+      const categoryText = r.category || '';
+      const priorityText = r.priority || 'General';
+      const isTopPriority = priorityText === 'Top Priority';
+      const natureText = r.nature_of_compliance || r.nature || 'Non-peremptory';
+      const isPeremptory = natureText === 'Peremptory';
+
+      const priorityBadge = isTopPriority
+        ? `<span class="badge badge-top-priority" style="font-size:0.7rem;" title="Top Priority Compliance"><i class="fa-solid fa-bolt"></i> Top Priority</span>`
+        : `<span class="badge badge-gray" style="font-size:0.7rem;" title="General Priority"><i class="fa-regular fa-flag"></i> General</span>`;
+
+      const natureBadge = isPeremptory
+        ? `<span class="badge badge-peremptory" style="font-size:0.7rem;" title="Peremptory Court Order"><i class="fa-solid fa-gavel"></i> Peremptory</span>`
+        : `<span class="badge badge-gray" style="font-size:0.7rem;" title="Non-peremptory">Non-peremptory</span>`;
+
+      const categoryBadge = categoryText
+        ? `<span class="badge badge-cyan" style="font-size:0.7rem;" title="Compliance Category"><i class="fa-solid fa-tag"></i> ${esc(categoryText)}</span>`
+        : '';
+
       return `
         <tr class="${rowClass}" data-id="${esc(r.id)}">
           <td style="color:var(--text-muted);">${idx + 1}</td>
@@ -364,7 +413,11 @@ document.addEventListener('DOMContentLoaded', () => {
           <td>${s.badgeHtml}</td>
           <td>
             <div style="max-width:280px;line-height:1.4;">${esc(directionsSnippet)}</div>
-            ${r.category ? `<span class="badge badge-gray" style="font-size:0.7rem;margin-top:4px;">${esc(r.category)}</span>` : ''}
+            <div style="display:flex;flex-wrap:wrap;gap:4px;margin-top:6px;align-items:center;">
+              ${categoryBadge}
+              ${priorityBadge}
+              ${natureBadge}
+            </div>
           </td>
           <td class="no-print" style="text-align: center; white-space: nowrap;">
             <div style="display:flex;gap:4px;justify-content:center;">
@@ -421,6 +474,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const compOrderDate = document.getElementById('compOrderDate');
   const compDeadline = document.getElementById('compDeadline');
   const compCategory = document.getElementById('compCategory');
+  const compPriority = document.getElementById('compPriority');
+  const compNature = document.getElementById('compNature');
   const compDirections = document.getElementById('compDirections');
 
   const caseAutocomplete = document.getElementById('caseAutocomplete');
@@ -438,6 +493,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const d30 = new Date();
     d30.setDate(d30.getDate() + 30);
     compDeadline.value = d30.toISOString().split('T')[0];
+
+    compCategory.value = 'LCR Call';
+    compPriority.value = 'General';
+    compNature.value = 'Non-peremptory';
 
     complianceModal.style.display = 'flex';
     compCaseNo.focus();
@@ -457,7 +516,13 @@ document.addEventListener('DOMContentLoaded', () => {
     compRespondent.value = record.respondent || '';
     compOrderDate.value = record.order_date || '';
     compDeadline.value = record.deadline || '';
-    compCategory.value = record.category || 'LCR Call';
+    
+    const catVal = record.category || 'LCR Call';
+    const hasCat = Array.from(compCategory.options).some(o => o.value === catVal);
+    compCategory.value = hasCat ? catVal : (catVal === 'Other Direction' ? 'Any other directions' : 'LCR Call');
+    
+    compPriority.value = record.priority || 'General';
+    compNature.value = record.nature_of_compliance || record.nature || 'Non-peremptory';
     compDirections.value = record.directions || '';
 
     complianceModal.style.display = 'flex';
@@ -569,6 +634,9 @@ document.addEventListener('DOMContentLoaded', () => {
       order_date: compOrderDate.value,
       deadline: compDeadline.value,
       category: compCategory.value,
+      priority: compPriority.value,
+      nature_of_compliance: compNature.value,
+      nature: compNature.value,
       directions: compDirections.value.trim()
     };
 
@@ -648,7 +716,12 @@ document.addEventListener('DOMContentLoaded', () => {
         <span>Assigned: <strong>${esc(record.dealing_assistant || '—')}</strong></span>
         <span>Deadline: <strong>${formatDisplayDate(record.deadline)}</strong></span>
       </div>
-      <div style="margin-top:6px;">${s.badgeHtml}</div>
+      <div style="margin-top:6px;display:flex;gap:6px;align-items:center;flex-wrap:wrap;">
+        ${s.badgeHtml}
+        ${record.category ? `<span class="badge badge-cyan" style="font-size:0.72rem;">${esc(record.category)}</span>` : ''}
+        ${record.priority === 'Top Priority' ? `<span class="badge badge-top-priority" style="font-size:0.72rem;"><i class="fa-solid fa-bolt"></i> Top Priority</span>` : ''}
+        ${(record.nature_of_compliance === 'Peremptory' || record.nature === 'Peremptory') ? `<span class="badge badge-peremptory" style="font-size:0.72rem;"><i class="fa-solid fa-gavel"></i> Peremptory</span>` : ''}
+      </div>
     `;
 
     markCompliedModal.style.display = 'flex';
@@ -714,14 +787,30 @@ document.addEventListener('DOMContentLoaded', () => {
         <div>${s.badgeHtml}</div>
       </div>
 
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px;">
         <div>
           <strong style="color:var(--text-muted);font-size:0.8rem;text-transform:uppercase;">Dealing Assistant:</strong>
           <div style="font-weight:600;color:var(--accent-purple);">${esc(record.dealing_assistant || 'Unassigned')}</div>
         </div>
         <div>
-          <strong style="color:var(--text-muted);font-size:0.8rem;text-transform:uppercase;">Category:</strong>
-          <div style="font-weight:600;">${esc(record.category || 'General Direction')}</div>
+          <strong style="color:var(--text-muted);font-size:0.8rem;text-transform:uppercase;">Compliance Category:</strong>
+          <div style="font-weight:600;color:var(--accent-cyan);">${esc(record.category || 'Any other directions')}</div>
+        </div>
+        <div>
+          <strong style="color:var(--text-muted);font-size:0.8rem;text-transform:uppercase;">Priority:</strong>
+          <div style="margin-top:2px;">
+            ${record.priority === 'Top Priority'
+              ? '<span class="badge badge-top-priority" style="font-size:0.78rem;"><i class="fa-solid fa-bolt"></i> Top Priority</span>'
+              : '<span class="badge badge-gray" style="font-size:0.78rem;"><i class="fa-regular fa-flag"></i> General</span>'}
+          </div>
+        </div>
+        <div>
+          <strong style="color:var(--text-muted);font-size:0.8rem;text-transform:uppercase;">Nature of Compliance:</strong>
+          <div style="margin-top:2px;">
+            ${(record.nature_of_compliance === 'Peremptory' || record.nature === 'Peremptory')
+              ? '<span class="badge badge-peremptory" style="font-size:0.78rem;"><i class="fa-solid fa-gavel"></i> Peremptory</span>'
+              : '<span class="badge badge-gray" style="font-size:0.78rem;">Non-peremptory</span>'}
+          </div>
         </div>
         <div>
           <strong style="color:var(--text-muted);font-size:0.8rem;text-transform:uppercase;">Order Passed Date:</strong>
@@ -800,6 +889,24 @@ document.addEventListener('DOMContentLoaded', () => {
     renderTable();
   });
 
+  if (categoryFilter) {
+    categoryFilter.addEventListener('change', () => {
+      renderTable();
+    });
+  }
+
+  if (priorityFilter) {
+    priorityFilter.addEventListener('change', () => {
+      renderTable();
+    });
+  }
+
+  if (natureFilter) {
+    natureFilter.addEventListener('change', () => {
+      renderTable();
+    });
+  }
+
   function switchTab(status) {
     const validTabs = ['all', 'pending', 'lapsed', 'duesoon', 'complied'];
     if (!validTabs.includes(status)) status = 'all';
@@ -839,7 +946,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const headers = [
       'Sl No', 'Case Type', 'Case Number', 'Case Year', 'Appellant', 'Respondent',
       'Dealing Assistant', 'Order Date', 'Deadline (Last Date)', 'Status',
-      'Days Lapsed', 'Compliance Date', 'Category', 'Directions', 'Compliance Remarks'
+      'Days Lapsed', 'Compliance Date', 'Category', 'Priority', 'Nature of Compliance', 'Directions', 'Compliance Remarks'
     ];
 
     const rows = filtered.map((r, i) => {
@@ -858,6 +965,8 @@ document.addEventListener('DOMContentLoaded', () => {
         s.daysLapsed || 0,
         `"${(r.compliance_date || '').replace(/"/g, '""')}"`,
         `"${(r.category || '').replace(/"/g, '""')}"`,
+        `"${(r.priority || 'General').replace(/"/g, '""')}"`,
+        `"${(r.nature_of_compliance || r.nature || 'Non-peremptory').replace(/"/g, '""')}"`,
         `"${(r.directions || '').replace(/"/g, '""')}"`,
         `"${(r.compliance_remarks || '').replace(/"/g, '""')}"`
       ].join(',');
