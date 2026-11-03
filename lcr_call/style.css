@@ -509,9 +509,11 @@ body {
 }
 
 .from-address {
+  margin-top: 8pt;
+  padding-left: 40px;
+  line-height: 1.8;
   width: 100%;
-  text-align: center;
-  padding-left: 0;
+  text-align: left;
 }
 
 .doc-to-section {
